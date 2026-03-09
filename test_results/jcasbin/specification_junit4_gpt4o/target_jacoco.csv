@@ -1,0 +1,76 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+JCasbin Authorization Library,org.casbin.jcasbin.persist.cache,DefaultCache,94,0,8,0,26,0,11,0,7,0
+JCasbin Authorization Library,org.casbin.jcasbin.persist.cache,CacheItem,36,0,6,0,9,0,7,0,4,0
+JCasbin Authorization Library,org.casbin.jcasbin.exception,CasbinAdapterException,9,0,0,0,4,0,2,0,2,0
+JCasbin Authorization Library,org.casbin.jcasbin.exception,CasbinPolicyFileNotFoundException,4,0,0,0,2,0,1,0,1,0
+JCasbin Authorization Library,org.casbin.jcasbin.exception,CasbinObjConditionException,9,0,0,0,4,0,2,0,2,0
+JCasbin Authorization Library,org.casbin.jcasbin.exception,CasbinMatcherException,9,0,0,0,4,0,2,0,2,0
+JCasbin Authorization Library,org.casbin.jcasbin.exception,CasbinNameNotExistException,4,0,0,0,2,0,1,0,1,0
+JCasbin Authorization Library,org.casbin.jcasbin.exception,CasbinConfigException,0,5,0,0,0,2,0,1,0,1
+JCasbin Authorization Library,org.casbin.jcasbin.exception,CasbinEffectorException,4,0,0,0,2,0,1,0,1,0
+JCasbin Authorization Library,org.casbin.jcasbin.exception,CasbinCacheException,9,0,0,0,4,0,2,0,2,0
+JCasbin Authorization Library,org.casbin.jcasbin.exception,CasbinEmptyConditionException,9,0,0,0,4,0,2,0,2,0
+JCasbin Authorization Library,org.casbin.jcasbin.config,Config,192,253,29,25,46,51,26,14,5,8
+JCasbin Authorization Library,org.casbin.jcasbin.util,BuiltInFunctions.GenerateGFunctionClass,21,0,0,0,4,0,3,0,3,0
+JCasbin Authorization Library,org.casbin.jcasbin.util,BuiltInFunctions,552,110,55,11,128,22,40,10,12,5
+JCasbin Authorization Library,org.casbin.jcasbin.util,BuiltInFunctions.GenerateGFunctionClass.new AbstractVariadicFunction() {...},136,0,12,0,26,0,9,0,3,0
+JCasbin Authorization Library,org.casbin.jcasbin.util,BuiltInFunctions.GenerateConditionalGFunctionClass,21,0,0,0,4,0,3,0,3,0
+JCasbin Authorization Library,org.casbin.jcasbin.util,LRUCache,2,18,1,1,0,4,1,2,0,2
+JCasbin Authorization Library,org.casbin.jcasbin.util,SyncedLRUCache,0,36,0,0,0,9,0,3,0,3
+JCasbin Authorization Library,org.casbin.jcasbin.util,Glob,334,0,67,0,83,0,42,0,5,0
+JCasbin Authorization Library,org.casbin.jcasbin.util,EnforceContext,114,0,0,0,24,0,10,0,10,0
+JCasbin Authorization Library,org.casbin.jcasbin.util,Util,198,281,31,39,51,63,35,26,16,10
+JCasbin Authorization Library,org.casbin.jcasbin.util,BuiltInFunctions.GenerateConditionalGFunctionClass.new AbstractVariadicFunction() {...},135,0,12,0,27,0,9,0,3,0
+JCasbin Authorization Library,org.casbin.jcasbin.util.function,KeyMatch4Func,13,5,0,0,3,2,1,2,1,2
+JCasbin Authorization Library,org.casbin.jcasbin.util.function,KeyMatch5Func,13,5,0,0,3,2,1,2,1,2
+JCasbin Authorization Library,org.casbin.jcasbin.util.function,EvalFunc,16,5,0,0,3,2,1,2,1,2
+JCasbin Authorization Library,org.casbin.jcasbin.util.function,GlobMatchFunc,13,5,0,0,3,2,1,2,1,2
+JCasbin Authorization Library,org.casbin.jcasbin.util.function,RegexMatchFunc,0,18,0,0,0,5,0,3,0,3
+JCasbin Authorization Library,org.casbin.jcasbin.util.function,CustomFunction,29,3,4,0,8,1,5,1,3,1
+JCasbin Authorization Library,org.casbin.jcasbin.util.function,IPMatchFunc,13,5,0,0,3,2,1,2,1,2
+JCasbin Authorization Library,org.casbin.jcasbin.util.function,KeyMatch2Func,13,5,0,0,3,2,1,2,1,2
+JCasbin Authorization Library,org.casbin.jcasbin.util.function,KeyGetFunc,15,5,0,0,3,2,1,2,1,2
+JCasbin Authorization Library,org.casbin.jcasbin.util.function,KeyMatchFunc,13,5,0,0,3,2,1,2,1,2
+JCasbin Authorization Library,org.casbin.jcasbin.util.function,KeyGet2Func,20,5,0,0,4,2,1,2,1,2
+JCasbin Authorization Library,org.casbin.jcasbin.util.function,KeyMatch3Func,13,5,0,0,3,2,1,2,1,2
+JCasbin Authorization Library,org.casbin.jcasbin.model,Model,976,334,84,24,152,71,62,21,16,13
+JCasbin Authorization Library,org.casbin.jcasbin.model,Policy,857,151,100,14,142,27,67,10,13,7
+JCasbin Authorization Library,org.casbin.jcasbin.model,FunctionMap,40,93,8,0,8,19,6,3,2,3
+JCasbin Authorization Library,org.casbin.jcasbin.model,Model.PolicyOperations,24,0,0,0,3,0,1,0,1,0
+JCasbin Authorization Library,org.casbin.jcasbin.model,Assertion,525,17,60,0,96,6,39,2,8,2
+JCasbin Authorization Library,org.casbin.jcasbin.persist.file_adapter,FileAdapter,328,21,21,3,65,7,25,2,13,2
+JCasbin Authorization Library,org.casbin.jcasbin.persist.file_adapter,AdapterMock,63,0,6,0,22,0,12,0,9,0
+JCasbin Authorization Library,org.casbin.jcasbin.persist.file_adapter,FilteredAdapter,231,0,27,0,66,0,25,0,11,0
+JCasbin Authorization Library,org.casbin.jcasbin.persist.file_adapter,FilteredAdapter.Filter,3,0,0,0,1,0,1,0,1,0
+JCasbin Authorization Library,org.casbin.jcasbin.log,LogUtil,37,0,0,0,15,0,9,0,9,0
+JCasbin Authorization Library,org.casbin.jcasbin.log,DefaultLogger,274,0,26,0,47,0,22,0,9,0
+JCasbin Authorization Library,org.casbin.jcasbin.detector,DefaultDetector.DFSState,0,9,0,0,0,4,0,1,0,1
+JCasbin Authorization Library,org.casbin.jcasbin.detector,DefaultDetector,0,195,2,18,0,44,2,12,0,4
+JCasbin Authorization Library,org.casbin.jcasbin.main,Enforcer,815,60,55,3,150,20,66,5,37,5
+JCasbin Authorization Library,org.casbin.jcasbin.main,Frontend,88,0,4,0,17,0,5,0,3,0
+JCasbin Authorization Library,org.casbin.jcasbin.main,CoreEnforcer.new TypeReference() {...},6,0,0,0,1,0,1,0,1,0
+JCasbin Authorization Library,org.casbin.jcasbin.main,ManagementEnforcer.new HashSet() {...},37,0,8,0,7,0,6,0,2,0
+JCasbin Authorization Library,org.casbin.jcasbin.main,CachedEnforcer,418,0,42,0,96,0,43,0,22,0
+JCasbin Authorization Library,org.casbin.jcasbin.main,DistributedEnforcer,358,0,30,0,105,0,27,0,12,0
+JCasbin Authorization Library,org.casbin.jcasbin.main,EnforceResult,43,0,0,0,13,0,7,0,7,0
+JCasbin Authorization Library,org.casbin.jcasbin.main,SyncedEnforcer,1818,91,6,6,134,28,218,11,214,9
+JCasbin Authorization Library,org.casbin.jcasbin.main,ManagementEnforcer,644,3,26,0,113,1,83,1,70,1
+JCasbin Authorization Library,org.casbin.jcasbin.main,InternalEnforcer,726,3,99,0,167,1,61,1,10,1
+JCasbin Authorization Library,org.casbin.jcasbin.main,SyncedCachedEnforcer,424,0,50,0,102,0,51,0,26,0
+JCasbin Authorization Library,org.casbin.jcasbin.main,CoreEnforcer,1493,157,166,12,314,46,139,12,52,10
+JCasbin Authorization Library,org.casbin.jcasbin.persist,WatcherEx.UpdateType,94,0,0,0,10,0,1,0,1,0
+JCasbin Authorization Library,org.casbin.jcasbin.persist,Helper,68,0,8,0,18,0,6,0,2,0
+JCasbin Authorization Library,org.casbin.jcasbin.rbac,ConditionalRoleManager.new Consumer() {...},27,0,0,0,3,0,2,0,2,0
+JCasbin Authorization Library,org.casbin.jcasbin.rbac,DomainManager,395,0,32,0,81,0,40,0,24,0
+JCasbin Authorization Library,org.casbin.jcasbin.rbac,Role,370,0,14,0,84,0,34,0,27,0
+JCasbin Authorization Library,org.casbin.jcasbin.rbac,LinkConditionFuncKey,70,0,10,0,16,0,12,0,7,0
+JCasbin Authorization Library,org.casbin.jcasbin.rbac,DefaultRoleManager,397,90,52,6,83,23,45,8,19,5
+JCasbin Authorization Library,org.casbin.jcasbin.rbac,GroupRoleManager,53,0,8,0,14,0,6,0,2,0
+JCasbin Authorization Library,org.casbin.jcasbin.rbac,RoleManager,2,0,0,0,1,0,1,0,1,0
+JCasbin Authorization Library,org.casbin.jcasbin.rbac,ConditionalRoleManager,359,0,52,0,86,0,38,0,12,0
+JCasbin Authorization Library,org.casbin.jcasbin.effect,DefaultEffector,144,3,30,0,31,2,17,1,2,1
+JCasbin Authorization Library,org.casbin.jcasbin.effect,Effect,34,0,0,0,2,0,1,0,1,0
+JCasbin Authorization Library,org.casbin.jcasbin.effect,Effector,5,0,0,0,1,0,1,0,1,0
+JCasbin Authorization Library,org.casbin.jcasbin.effect,DefaultStreamEffectorResult,36,0,0,0,16,0,8,0,8,0
+JCasbin Authorization Library,org.casbin.jcasbin.effect,DefaultStreamEffector,119,0,19,0,30,0,14,0,3,0
+JCasbin Authorization Library,org.casbin.jcasbin.log.mocks,MockLogger,33,0,0,0,16,0,8,0,8,0
