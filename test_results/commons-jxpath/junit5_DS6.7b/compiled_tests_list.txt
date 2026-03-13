@@ -1,0 +1,8 @@
+./target/test-classes/NextNodeTests.class
+./target/test-classes/InvokeTests.class
+./target/test-classes/IterateTests.class
+./target/test-classes/org/apache/commons/jxpath/util/WrapPrimitiveTests.class
+./target/test-classes/RemoveTests.class
+./target/test-classes/StringValueTests.class
+./target/test-classes/NewTokenTests.class
+./target/test-classes/LookupStaticMethodTests.class
