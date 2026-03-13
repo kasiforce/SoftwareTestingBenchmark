@@ -1,0 +1,3 @@
+./target/test-classes/org/apache/commons/cli/AddOptionGroupTests.class
+./target/test-classes/org/apache/commons/cli/AddRequiredOptionTests.class
+./target/test-classes/org/apache/commons/cli/AddOptionsTests.class

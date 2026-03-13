@@ -1,0 +1,7 @@
+./target/test-classes/br/com/swconsultoria/nfe/wsdl/NFeAutorizacao/NfeAutorizacaoLoteTests.class
+./target/test-classes/br/com/swconsultoria/nfe/wsdl/NFeAutorizacao/NfeAutorizacaoLoteZipTests.class
+./target/test-classes/br/com/swconsultoria/nfe/wsdl/NFeInutilizacao/ce/NfeInutilizacaoNFTests.class
+./target/test-classes/br/com/swconsultoria/nfe/wsdl/NFeDistribuicaoDFe/NfeDistDFeInteresseTests.class
+./target/test-classes/br/com/swconsultoria/nfe/wsdl/NFeRecepcaoEvento/NfeRecepcaoEventoTests.class
+./target/test-classes/br/com/swconsultoria/nfe/wsdl/NFeStatusServico4MS/NfeStatusServicoNFTests.class
+./target/test-classes/br/com/swconsultoria/nfe/wsdl/CadConsultaCadastro/ms/ConsultaCadastroTests.class

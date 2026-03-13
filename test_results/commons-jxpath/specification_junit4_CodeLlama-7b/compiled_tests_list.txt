@@ -1,0 +1,8 @@
+./target/test-classes/org/apache/commons/jxpath/util/WrapPrimitiveTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/parser/BeginTokenTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/parser/NewTokenTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/parser/ReadCharTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/compiler/ComputeContextDependentTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/model/jdom/FindEnclosingAttributeTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/axes/NextNodeTests.class
+./target/test-classes/org/apache/commons/jxpath/NewInstanceTests.class

@@ -4,17 +4,10 @@
   "syntax_correct_rate": 1.0,
   "compile_pass": 2,
   "test_summary": {
-    "total": 0,
-    "passed": 0,
-    "failures": 0,
-    "errors": 0,
-    "pass_rate": 0
-  },
-  "coverage_summary": {
-    "instruction_coverage": 0.0,
-    "branch_coverage": 0.0,
-    "line_coverage": 0.0,
-    "complexity_coverage": 0.0,
-    "method_coverage": 0.0
+    "total": 37,
+    "passed": 31,
+    "failures": 5,
+    "errors": 1,
+    "pass_rate": 0.8378378378378378
   }
 }
