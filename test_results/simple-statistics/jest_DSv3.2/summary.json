@@ -1,0 +1,24 @@
+{
+  "compile_pass": 0,
+  "compile_total": 3,
+  "compile_pass_rate": 0.0,
+  "testcase": {
+    "total": 31,
+    "passed": 15,
+    "failed": 16,
+    "skipped": 0,
+    "test_pass_rate": 0.4838709677419355,
+    "run_pass_rate": 0.4838709677419355,
+    "num_total_suites": 3,
+    "num_passed_suites": 0,
+    "num_reported_test_suites": 3
+  },
+  "coverage": {
+    "total_line_coverage": 0,
+    "total_branch_coverage": 0,
+    "total_function_coverage": 0,
+    "total_statement_coverage": 0,
+    "file_coverage": {},
+    "summary": {}
+  }
+}

@@ -1,0 +1,3 @@
+./target/test-classes/AddRequiredOptionTests.class
+./target/test-classes/IndexOfWrapTests.class
+./target/test-classes/PadTests.class

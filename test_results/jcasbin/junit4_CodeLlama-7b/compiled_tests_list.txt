@@ -1,0 +1,14 @@
+./target/test-classes/org/casbin/jcasbin/util/ConvertInSyntaxTests.class
+./target/test-classes/org/casbin/jcasbin/util/RemoveCommentsTests.class
+./target/test-classes/org/casbin/jcasbin/main/RemoveFilteredPolicySelfTests.class
+./target/test-classes/org/casbin/jcasbin/main/RemoveFilteredNamedGroupingPolicyTests.class
+./target/test-classes/org/casbin/jcasbin/main/EnforceTests.class
+./target/test-classes/org/casbin/jcasbin/main/RemovePoliciesTests.class
+./target/test-classes/org/casbin/jcasbin/main/RemovePolicySelfTests.class
+./target/test-classes/org/casbin/jcasbin/rbac/MatchTests.class
+./target/test-classes/org/casbin/jcasbin/persist/cache/SetTests.class
+./target/test-classes/org/casbin/jcasbin/model/PrintModelTests.class
+./target/test-classes/org/casbin/jcasbin/model/AddDefTests.class
+./target/test-classes/org/casbin/jcasbin/model/SaveModelToTextTests.class
+./target/test-classes/org/casbin/jcasbin/config/NewConfigFromTextTests.class
+./target/test-classes/org/casbin/jcasbin/effect/PushTests.class

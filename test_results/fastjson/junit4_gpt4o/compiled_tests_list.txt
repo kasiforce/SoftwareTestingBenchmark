@@ -1,0 +1,17 @@
+./target/test-classes/com/alibaba/fastjson/parser/NameTests.class
+./target/test-classes/com/alibaba/fastjson/parser/AddSymbolTests.class
+./target/test-classes/com/alibaba/fastjson/parser/AcceptTypeTests.class
+./target/test-classes/com/alibaba/fastjson/parser/HashTests.class
+./target/test-classes/com/alibaba/fastjson/parser/CloseTests.class
+./target/test-classes/com/alibaba/fastjson/AllocateCharsTests.class
+./target/test-classes/com/alibaba/fastjson/util/DecodeFastTests.class
+./target/test-classes/com/alibaba/fastjson/util/CompareToTests.class
+./target/test-classes/com/alibaba/fastjson/util/GetTests.class
+./target/test-classes/com/alibaba/fastjson/support/moneta/DeserialzeTests.class
+./target/test-classes/com/alibaba/fastjson/support/hsf/ParseInvocationArgumentsTests.class
+./target/test-classes/com/alibaba/fastjson/support/spring/ApplyJsonQuotingTests.class
+./target/test-classes/com/alibaba/fastjson/support/retrofit/ResponseBodyConverterTests.class
+./target/test-classes/com/alibaba/fastjson/WriteJSONStringWithFastJsonConfigTests.class
+./target/test-classes/com/alibaba/fastjson/serializer/DeserialzeTests.class
+./target/test-classes/com/alibaba/fastjson/serializer/WriteTests.class
+./target/test-classes/com/alibaba/fastjson/ParseArrayTests.class

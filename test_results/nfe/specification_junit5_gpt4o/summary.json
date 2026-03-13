@@ -1,0 +1,20 @@
+{
+  "total": 34,
+  "syntax_correct": 34,
+  "syntax_correct_rate": 1.0,
+  "compile_pass": 7,
+  "test_summary": {
+    "total": 21,
+    "passed": 0,
+    "failures": 0,
+    "errors": 21,
+    "pass_rate": 0.0
+  },
+  "coverage_summary": {
+    "instruction_coverage": 0.0,
+    "branch_coverage": 0.0,
+    "line_coverage": 0.0,
+    "complexity_coverage": 0.0,
+    "method_coverage": 0.0
+  }
+}

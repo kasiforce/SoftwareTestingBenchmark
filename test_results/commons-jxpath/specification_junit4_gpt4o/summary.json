@@ -1,0 +1,13 @@
+{
+  "total": 57,
+  "syntax_correct": 57,
+  "syntax_correct_rate": 1.0,
+  "compile_pass": 16,
+  "test_summary": {
+    "total": 89,
+    "passed": 72,
+    "failures": 9,
+    "errors": 8,
+    "pass_rate": 0.8089887640449438
+  }
+}

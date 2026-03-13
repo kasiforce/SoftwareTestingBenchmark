@@ -1,0 +1,12 @@
+./target/test-classes/org/apache/commons/jxpath/util/WrapPrimitiveTests.class
+./target/test-classes/org/apache/commons/jxpath/util/LookupMethodTests.class
+./target/test-classes/org/apache/commons/jxpath/util/LookupStaticMethodTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/parser/BeginTokenTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/parser/NewTokenTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/parser/ReadCharTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/compiler/ComputeContextDependentTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/AllocateConditionallyTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/model/jdom/AsPathTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/model/dynamic/AsPathTests.class
+./target/test-classes/org/apache/commons/jxpath/functions/InvokeTests.class
+./target/test-classes/org/apache/commons/jxpath/NewInstanceTests.class

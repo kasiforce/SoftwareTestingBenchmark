@@ -1,0 +1,9 @@
+./target/test-classes/org/apache/commons/jxpath/util/WrapPrimitiveTests.class
+./target/test-classes/org/apache/commons/jxpath/util/LookupConstructorTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/parser/GetSuffixTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/parser/BeginTokenTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/parser/NewTokenTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/parser/ReadCharTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/parser/Add_escapesTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/model/jdom/AsPathTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/model/dom/CompareChildNodePointersTests.class

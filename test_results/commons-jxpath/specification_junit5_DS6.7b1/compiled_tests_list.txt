@@ -1,0 +1,8 @@
+./target/test-classes/NextNodeTests.class
+./target/test-classes/LookupMethodTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/parser/NewTokenTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/compiler/ComputeContextDependentTests.class
+./target/test-classes/AllocateConditionallyTests.class
+./target/test-classes/ExpandCollectionTests.class
+./target/test-classes/RemoveTests.class
+./target/test-classes/StringValueTests.class
