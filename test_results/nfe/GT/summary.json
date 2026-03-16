@@ -9,12 +9,5 @@
     "failures": 0,
     "errors": 0,
     "pass_rate": 1.0
-  },
-  "coverage_summary": {
-    "instruction_coverage": 0.0,
-    "branch_coverage": 0.0,
-    "line_coverage": 0.0,
-    "complexity_coverage": 0.0,
-    "method_coverage": 0.0
   }
 }
