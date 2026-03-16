@@ -1,0 +1,5 @@
+Total tests generated: 75
+Syntax check passed: 75 (100.00%)
+Compile/runtime check passed: 61 (81.33%)
+Test Suites: 50 failed, 11 passed, 61 total
+Tests:       180 failed, 174 passed, 354 total
