@@ -30,9 +30,15 @@
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">16.66% </span>
                 <span class="quiet">Branches</span>
                 <span class='fraction'>1/6</span>
+=======
+                <span class="strong">12.5% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>1/8</span>
+>>>>>>> 566dd270 (update)
             </div>
         
             
@@ -44,9 +50,15 @@
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">33.33% </span>
                 <span class="quiet">Lines</span>
                 <span class='fraction'>4/12</span>
+=======
+                <span class="strong">41.66% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>5/12</span>
+>>>>>>> 566dd270 (update)
             </div>
         
             
@@ -108,10 +120,17 @@
 <a name='L43'></a><a href='#L43'>43</a>
 <a name='L44'></a><a href='#L44'>44</a>
 <a name='L45'></a><a href='#L45'>45</a>
+<<<<<<< HEAD
 <a name='L46'></a><a href='#L46'>46</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">13x</span>
+=======
+<a name='L46'></a><a href='#L46'>46</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+>>>>>>> 566dd270 (update)
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -125,20 +144,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
+<<<<<<< HEAD
+<span class="cline-any cline-no">&nbsp;</span>
+=======
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+>>>>>>> 566dd270 (update)
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<<<<<<< HEAD
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+=======
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+>>>>>>> 566dd270 (update)
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -164,6 +196,7 @@ const MathUtil = {
   N180_PI: 180 / PI,
   Infinity: -999,
 &nbsp;
+<<<<<<< HEAD
 <span class="fstat-no" title="function not covered" >  is</span>Infinity(num) {
 <span class="cstat-no" title="statement not covered" >    return num === this.Infinity || num === INFINITY;</span>
   },
@@ -184,16 +217,47 @@ const MathUtil = {
 <span class="fstat-no" title="function not covered" >  ra</span>ndomZone(display) {},
 &nbsp;
 <span class="fstat-no" title="function not covered" >  fl</span>oor(num, k = <span class="branch-0 cbranch-no" title="branch not covered" >4)</span> {
+=======
+<span class="fstat-no" title="function not covered" >  isInfinity(n</span>um) {
+<span class="cstat-no" title="statement not covered" >    return num === this.Infinity || num === INFINITY;</span>
+  },
+&nbsp;
+  randomAToB(a, b, isInt = false) {
+    if (!isInt) return <span class="branch-1 cbranch-no" title="branch not covered" >a + Math.random() * (b - a);</span>
+    else return ((Math.random() * (b - a)) &gt;&gt; 0) + a;
+  },
+&nbsp;
+  randomFloating<span class="fstat-no" title="function not covered" >(c</span>enter, f, isInt) {
+    return this.randomAToB(center - f, center + f, isInt);
+  },
+&nbsp;
+  randomColor<span class="fstat-no" title="function not covered" >() {</span>
+<span class="cstat-no" title="statement not covered" >    return "#" + ("00000" + ((Math.random() * 0x1000000) &lt;&lt; 0).toString(16)).slice(-6);</span>
+  },
+&nbsp;
+<span class="fstat-no" title="function not covered" >  randomZone(d</span>isplay) {},
+&nbsp;
+<span class="fstat-no" title="function not covered" >  floor(n</span>um, <span class="cstat-no" title="statement not covered" >k = 4) {</span>
+>>>>>>> 566dd270 (update)
     const digits = <span class="cstat-no" title="statement not covered" >Math.pow(10, k);</span>
 <span class="cstat-no" title="statement not covered" >    return Math.floor(num * digits) / digits;</span>
   },
 &nbsp;
+<<<<<<< HEAD
 <span class="fstat-no" title="function not covered" >  de</span>greeTransform(a) {
 <span class="cstat-no" title="statement not covered" >    return (a * PI) / 180;</span>
   },
 &nbsp;
 <span class="fstat-no" title="function not covered" >  to</span>Color16(num) {
 <span class="cstat-no" title="statement not covered" >    return `#${num.toString(16)}`;</span>
+=======
+<span class="fstat-no" title="function not covered" >  degreeTransform(a</span>) {
+<span class="cstat-no" title="statement not covered" >    return (a * PI) / 180;</span>
+  },
+&nbsp;
+<span class="fstat-no" title="function not covered" >  toColor16(n</span>um) {
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >    return `#${num.toString(16)}`;</span></span>
+>>>>>>> 566dd270 (update)
   }
 };
 &nbsp;
@@ -205,7 +269,11 @@ export default MathUtil;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+<<<<<<< HEAD
                 at 2026-03-26T13:05:49.631Z
+=======
+                at 2026-03-16T02:18:54.381Z
+>>>>>>> 566dd270 (update)
             </div>
         <script src="../../prettify.js"></script>
         <script>

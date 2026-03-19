@@ -9,6 +9,7 @@
     "failures": 54,
     "errors": 18,
     "pass_rate": 0.6814159292035398
+<<<<<<< HEAD
   },
   "file_coverage": {
     "org/apache/commons/jxpath/JXPathContextFactory.java": {
@@ -577,4 +578,7 @@
   "excute_pass": 13,
   "pass_rate": 13.027404539904541,
   "pass_rate1": 18
+=======
+  }
+>>>>>>> 566dd270 (update)
 }

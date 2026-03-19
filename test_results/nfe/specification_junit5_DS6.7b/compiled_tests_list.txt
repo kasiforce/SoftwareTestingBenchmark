@@ -1,2 +1,0 @@
-./target/test-classes/CarregaJasperResourcesTests.class
-./target/test-classes/ConsultaCadastroTests.class

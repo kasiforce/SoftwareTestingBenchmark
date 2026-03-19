@@ -9,6 +9,7 @@
     "failures": 5,
     "errors": 6,
     "pass_rate": 0.35294117647058826
+<<<<<<< HEAD
   },
   "file_coverage": {
     "org/casbin/jcasbin/config/Config.java": {
@@ -505,4 +506,7 @@
   "excute_pass": 3,
   "pass_rate": 1.2,
   "pass_rate1": 2
+=======
+  }
+>>>>>>> 566dd270 (update)
 }

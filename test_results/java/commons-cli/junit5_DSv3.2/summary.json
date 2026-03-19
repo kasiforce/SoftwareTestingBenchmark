@@ -16,6 +16,7 @@
     "line_coverage": 0.0,
     "complexity_coverage": 0.0,
     "method_coverage": 0.0
+<<<<<<< HEAD
   },
   "file_coverage": {
     "src/main/java/org/apache/commons/cli/Options.java": {
@@ -126,4 +127,7 @@
   "excute_pass": 4,
   "pass_rate": 4.0,
   "pass_rate1": 4
+=======
+  }
+>>>>>>> 566dd270 (update)
 }

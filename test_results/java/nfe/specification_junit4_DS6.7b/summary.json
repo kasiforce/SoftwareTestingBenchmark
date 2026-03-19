@@ -9,6 +9,7 @@
     "failures": 0,
     "errors": 0,
     "pass_rate": 1.0
+<<<<<<< HEAD
   },
   "file_coverage": {
     "br/com/swconsultoria/nfe/CancConciliacaoFinanceira.java": {
@@ -355,4 +356,7 @@
   "excute_pass": 1,
   "pass_rate": 1.0,
   "pass_rate1": 1
+=======
+  }
+>>>>>>> 566dd270 (update)
 }

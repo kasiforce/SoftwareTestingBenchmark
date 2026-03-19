@@ -1,4 +1,5 @@
 TN:
+<<<<<<< HEAD
 SF:ava.config.js
 FNF:0
 FNH:0
@@ -162,6 +163,8 @@ BRF:4
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/merge/cause.js
 FN:9,(anonymous_0)
 FN:27,(anonymous_1)
@@ -249,6 +252,7 @@ BRF:15
 BRH:0
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:src/options/class.js
 FN:10,(anonymous_0)
 FN:30,(anonymous_1)
@@ -278,6 +282,8 @@ BRF:3
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/options/clone.js
 FN:16,(anonymous_0)
 FN:28,(anonymous_1)
@@ -335,6 +341,7 @@ BRF:3
 BRH:0
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:src/options/instance.js
 FN:10,(anonymous_0)
 FN:31,(anonymous_1)
@@ -375,6 +382,8 @@ BRF:7
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/options/merge.js
 FN:19,(anonymous_0)
 FN:22,(anonymous_1)
@@ -477,6 +486,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:src/plugins/core/main.js
 FNF:0
 FNH:0
@@ -509,6 +519,8 @@ BRF:3
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/plugins/info/error.js
 FN:14,(anonymous_0)
 FN:24,(anonymous_1)
@@ -640,6 +652,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:src/plugins/properties/assign.js
 FN:20,(anonymous_0)
 FNF:1
@@ -1059,6 +1072,8 @@ BRF:2
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/subclass/map.js
 FNF:0
 FNH:0
@@ -1070,6 +1085,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:src/subclass/normalize.js
 FN:31,(anonymous_0)
 FN:41,(anonymous_1)
@@ -1136,6 +1152,8 @@ BRF:2
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/utils/descriptors.js
 FN:2,(anonymous_0)
 FNF:1

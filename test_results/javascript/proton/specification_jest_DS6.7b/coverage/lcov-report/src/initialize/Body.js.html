@@ -23,30 +23,52 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
                 <span class='fraction'>0/10</span>
+=======
+                <span class="strong">42.85% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>3/7</span>
+>>>>>>> 566dd270 (update)
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
+<<<<<<< HEAD
                 <span class='fraction'>0/4</span>
+=======
+                <span class='fraction'>0/6</span>
+>>>>>>> 566dd270 (update)
             </div>
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
                 <span class='fraction'>0/3</span>
+=======
+                <span class="strong">25% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>1/4</span>
+>>>>>>> 566dd270 (update)
             </div>
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
                 <span class='fraction'>0/10</span>
+=======
+                <span class="strong">33.33% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>2/6</span>
+>>>>>>> 566dd270 (update)
             </div>
         
             
@@ -155,6 +177,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<<<<<<< HEAD
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -163,6 +186,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+=======
+>>>>>>> 566dd270 (update)
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -170,6 +195,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<<<<<<< HEAD
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -177,6 +203,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+=======
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+>>>>>>> 566dd270 (update)
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -190,9 +225,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<<<<<<< HEAD
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+=======
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+>>>>>>> 566dd270 (update)
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import Util from "../utils/Util";
 import ArraySpan from "../math/ArraySpan";
 import Initialize from "./Initialize";
@@ -219,6 +268,7 @@ export default class Body extends Initialize {
    * @param {number} [w=20] - The width of the particle body.
    * @param {number} [h] - The height of the particle body. Defaults to the width if not provided.
    */
+<<<<<<< HEAD
 <span class="fstat-no" title="function not covered" >  co</span>nstructor(image, w, h) {
 <span class="cstat-no" title="statement not covered" >    super();</span>
 &nbsp;
@@ -226,16 +276,32 @@ export default class Body extends Initialize {
 <span class="cstat-no" title="statement not covered" >    this.w = Util.initValue(w, 20);</span>
 <span class="cstat-no" title="statement not covered" >    this.h = Util.initValue(h, this.w);</span>
 <span class="cstat-no" title="statement not covered" >    this.name = "Body";</span>
+=======
+<span class="fstat-no" title="function not covered" >  constructor(i</span>mage, w, h) {
+    super();
+&nbsp;
+    this.image = this.setSpanValue(image);
+    this.w = Util.initValue(w, 20);
+    this.h = Util.initValue(h, this.w);
+    this.name = "Body";<span class="cstat-no" title="statement not covered" ></span>
+>>>>>>> 566dd270 (update)
   }
 &nbsp;
   /**
    * Initializes the particle's body.
    * @param {object} particle - The particle to initialize.
    */
+<<<<<<< HEAD
 <span class="fstat-no" title="function not covered" >  in</span>itialize(particle) {
     const imageTarget = <span class="cstat-no" title="statement not covered" >this.image.getValue();</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (typeof imageTarget === "string") {</span>
+=======
+<span class="fstat-no" title="function not covered" >  initialize(p</span>article) {
+    const imageTarget = <span class="cstat-no" title="statement not covered" >this.image.getValue();</span>
+&nbsp;
+    if (typeof imageTarget === "string") {
+>>>>>>> 566dd270 (update)
 <span class="cstat-no" title="statement not covered" >      particle.body = {</span>
         width: this.w,
         height: this.h,
@@ -244,7 +310,11 @@ export default class Body extends Initialize {
         inner: true
       };
     } else {
+<<<<<<< HEAD
 <span class="cstat-no" title="statement not covered" >      particle.body = imageTarget;</span>
+=======
+      particle.body = imageTarget;
+>>>>>>> 566dd270 (update)
     }
   }
 &nbsp;
@@ -254,7 +324,11 @@ export default class Body extends Initialize {
    * @returns {ArraySpan} The ArraySpan instance.
    * @private
    */
+<<<<<<< HEAD
 <span class="fstat-no" title="function not covered" >  se</span>tSpanValue(image) {
+=======
+<span class="fstat-no" title="function not covered" >  setSpanValue(i</span>mage) {
+>>>>>>> 566dd270 (update)
 <span class="cstat-no" title="statement not covered" >    return image instanceof ArraySpan ? image : new ArraySpan(image);</span>
   }
 }
@@ -265,7 +339,11 @@ export default class Body extends Initialize {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+<<<<<<< HEAD
                 at 2026-03-26T13:05:49.631Z
+=======
+                at 2026-03-16T02:18:54.381Z
+>>>>>>> 566dd270 (update)
             </div>
         <script src="../../prettify.js"></script>
         <script>

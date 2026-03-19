@@ -37,16 +37,28 @@
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">85.71% </span>
                 <span class="quiet">Functions</span>
                 <span class='fraction'>6/7</span>
+=======
+                <span class="strong">75% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>6/8</span>
+>>>>>>> 566dd270 (update)
             </div>
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">91.66% </span>
                 <span class="quiet">Lines</span>
                 <span class='fraction'>33/36</span>
+=======
+                <span class="strong">100% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>27/27</span>
+>>>>>>> 566dd270 (update)
             </div>
         
             
@@ -159,6 +171,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">13x</span>
+<<<<<<< HEAD
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -203,10 +216,59 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+=======
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+>>>>>>> 566dd270 (update)
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
+<<<<<<< HEAD
+=======
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+>>>>>>> 566dd270 (update)
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -233,9 +295,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<<<<<<< HEAD
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+=======
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+>>>>>>> 566dd270 (update)
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*
  * EventDispatcher
@@ -263,15 +331,24 @@ export default class EventDispatcher {
       this.removeEventListener(type, listener);
     }
 &nbsp;
+<<<<<<< HEAD
     <span class="missing-if-branch" title="else path not taken" >E</span>if (!this._listeners[type]) this._listeners[type] = [];
+=======
+    if (!this._listeners[type]) <span class="branch-1 cbranch-no" title="branch not covered" >this._listeners[type] = [];</span>
+>>>>>>> 566dd270 (update)
     this._listeners[type].push(listener);
 &nbsp;
     return listener;
   }
 &nbsp;
   removeEventListener(type, listener) {
+<<<<<<< HEAD
     <span class="missing-if-branch" title="if path not taken" >I</span>if (!this._listeners) <span class="cstat-no" title="statement not covered" >return;</span>
     <span class="missing-if-branch" title="if path not taken" >I</span>if (!this._listeners[type]) <span class="cstat-no" title="statement not covered" >return;</span>
+=======
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!<span class="branch-0 cbranch-no" title="branch not covered" >this._listeners) return;</span>
+    if (!this._listeners[type]) return;
+>>>>>>> 566dd270 (update)
 &nbsp;
     const arr = this._listeners[type];
     const length = arr.length;
@@ -283,8 +360,13 @@ export default class EventDispatcher {
         }
 &nbsp;
         // allows for faster checks.
+<<<<<<< HEAD
         else <span class="missing-if-branch" title="else path not taken" >E</span>{
 <span class="cstat-no" title="statement not covered" >          arr.splice(i, 1);</span>
+=======
+        else {
+<span class="branch-1 cbranch-no" title="branch not covered" >          arr.splice(i, 1);</span>
+>>>>>>> 566dd270 (update)
         }
 &nbsp;
         break;
@@ -293,6 +375,7 @@ export default class EventDispatcher {
   }
 &nbsp;
   removeAllEventListeners(type) {
+<<<<<<< HEAD
     if (!type) this._listeners = null;
     else <span class="missing-if-branch" title="else path not taken" >E</span>if (this._listeners) delete this._listeners[type];
   }
@@ -300,6 +383,15 @@ export default class EventDispatcher {
   dispatchEvent(type, args) {
     let result = false;
     const listeners = this._listeners;
+=======
+    if (!<span class="cstat-no" title="statement not covered" >type) this._listeners = null;</span>
+    else if (this._listeners) delete <span class="branch-1 cbranch-no" title="branch not covered" >this._listeners[type];</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  dispatchEvent(t</span>ype, args) {
+    let result = false;
+    const listeners = <span class="cstat-no" title="statement not covered" >this._listeners;</span>
+>>>>>>> 566dd270 (update)
 &nbsp;
     if (type &amp;&amp; listeners) {
       let arr = listeners[type];
@@ -316,10 +408,17 @@ export default class EventDispatcher {
       }
     }
 &nbsp;
+<<<<<<< HEAD
     return !!result;
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  ha</span>sEventListener(type) {
+=======
+<span class="cstat-no" title="statement not covered" >    return !!result;</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  hasEventListener(t</span>ype) {
+>>>>>>> 566dd270 (update)
     const listeners = <span class="cstat-no" title="statement not covered" >this._listeners;</span>
 <span class="cstat-no" title="statement not covered" >    return !!(listeners &amp;&amp; listeners[type]);</span>
   }
@@ -331,7 +430,11 @@ export default class EventDispatcher {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+<<<<<<< HEAD
                 at 2026-03-26T13:05:49.631Z
+=======
+                at 2026-03-16T02:18:54.381Z
+>>>>>>> 566dd270 (update)
             </div>
         <script src="../../prettify.js"></script>
         <script>

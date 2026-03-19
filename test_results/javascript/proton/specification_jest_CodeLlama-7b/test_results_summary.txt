@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 Total tests generated: 127
 Syntax check passed: 127 (100.00%)
 Compile/runtime check passed: 40 (31.50%)
+=======
+Total tests generated: 75
+Syntax check passed: 75 (100.00%)
+Compile/runtime check passed: 6 (8.00%)
+>>>>>>> 566dd270 (update)

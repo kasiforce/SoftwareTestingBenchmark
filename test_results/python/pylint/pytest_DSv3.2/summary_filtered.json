@@ -14,6 +14,7 @@
     "test_pass_rate": 0.5155778894472361,
     "run_pass_rate": 0.9105527638190954
   },
+<<<<<<< HEAD
   "filtered_stats": {
     "file": {
       "total_lines": 7569,
@@ -27,6 +28,21 @@
       "total_branches": 492,
       "covered_branches": 214
     }
+=======
+  "summary": {
+    "total_file_lines": 17378,
+    "covered_file_lines": 5326,
+    "total_file_branches": 7918,
+    "covered_file_branches": 422,
+    "total_function_lines": 13240,
+    "covered_function_lines": 1208,
+    "total_function_branches": 7904,
+    "covered_function_branches": 415,
+    "file_line_coverage": 30.65,
+    "file_branch_coverage": 5.33,
+    "function_line_coverage": 9.12,
+    "function_branch_coverage": 5.25
+>>>>>>> 566dd270 (update)
   },
   "file_coverage": {
     "pylint/__pkginfo__.py": {
@@ -1280,7 +1296,24 @@
       "branch_coverage": 0.0
     }
   },
+<<<<<<< HEAD
   "excute_pass": 25,
   "test_pass": 61,
   "testcase_pass_rate": 41.51596994610965
+=======
+  "filtered_stats": {
+    "file": {
+      "total_lines": 7569,
+      "covered_lines": 2350,
+      "total_branches": 3674,
+      "covered_branches": 315
+    },
+    "function": {
+      "total_lines": 962,
+      "covered_lines": 439,
+      "total_branches": 492,
+      "covered_branches": 214
+    }
+  }
+>>>>>>> 566dd270 (update)
 }

@@ -23,9 +23,15 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
                 <span class='fraction'>0/16</span>
+=======
+                <span class="strong">12.5% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>2/16</span>
+>>>>>>> 566dd270 (update)
             </div>
         
             
@@ -37,16 +43,28 @@
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
                 <span class='fraction'>0/5</span>
+=======
+                <span class="strong">16.66% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>1/6</span>
+>>>>>>> 566dd270 (update)
             </div>
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
                 <span class='fraction'>0/11</span>
+=======
+                <span class="strong">20% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>2/10</span>
+>>>>>>> 566dd270 (update)
             </div>
         
             
@@ -100,6 +118,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<<<<<<< HEAD
+<span class="cline-any cline-no">&nbsp;</span>
+=======
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+>>>>>>> 566dd270 (update)
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<<<<<<< HEAD
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+=======
+>>>>>>> 566dd270 (update)
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -107,29 +150,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<<<<<<< HEAD
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+=======
+<span class="cline-any cline-yes">1x</span>
+>>>>>>> 566dd270 (update)
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import Mat3 from "../math/Mat3";
 &nbsp;
 export default class MStack {
+<<<<<<< HEAD
 <span class="fstat-no" title="function not covered" >  co</span>nstructor() {
 <span class="cstat-no" title="statement not covered" >    this.mats = [];</span>
 <span class="cstat-no" title="statement not covered" >    this.size = 0;</span>
@@ -146,17 +180,44 @@ export default class MStack {
 &nbsp;
 <span class="fstat-no" title="function not covered" >  pu</span>sh(m) {
 <span class="cstat-no" title="statement not covered" >    if (this.size === 0) <span class="cstat-no" title="statement not covered" >Mat3.set(m, this.mats[0]);</span></span>
+=======
+<span class="fstat-no" title="function not covered" >  constructor() {</span>
+<span class="cstat-no" title="statement not covered" >    this.mats = [];</span>
+    this.size = 0;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (let i = <span class="cstat-no" title="statement not covered" >0; i</span> &lt; 20; i++) <span class="cstat-no" title="statement not covered" >this.mats.push(Mat3.create([0, 0, 0, 0, 0, 0, 0, 0, 0]));</span></span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  set(m</span>, i) {
+    if (i === <span class="cstat-no" title="statement not covered" >0) Mat3.set(m, this.mats[0]);</span>
+    else Mat3.multiply(this.mats[i - 1], m, this.mats[i]);
+&nbsp;
+    this.size = Math.max(this.size, i + 1);
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  push(m</span>) {
+    if (this.size === <span class="cstat-no" title="statement not covered" >0) <span class="cstat-no" title="statement not covered" >Mat3.set(m, this.mats[0]);</span></span>
+>>>>>>> 566dd270 (update)
     else <span class="cstat-no" title="statement not covered" >Mat3.multiply(this.mats[this.size - 1], m, this.mats[this.size]);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    this.size++;</span>
   }
 &nbsp;
+<<<<<<< HEAD
 <span class="fstat-no" title="function not covered" >  po</span>p() {
 <span class="cstat-no" title="statement not covered" >    if (this.size &gt; 0) <span class="cstat-no" title="statement not covered" >this.size--;</span></span>
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  to</span>p() {
 <span class="cstat-no" title="statement not covered" >    return this.mats[this.size - 1];</span>
+=======
+<span class="fstat-no" title="function not covered" >  pop() {</span>
+<span class="cstat-no" title="statement not covered" >    if (<span class="cstat-no" title="statement not covered" >this.size &gt; 0) <span class="cstat-no" title="statement not covered" >this.size--;</span></span></span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  top() {</span>
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >    return this.mats[this.size - 1];</span></span>
+>>>>>>> 566dd270 (update)
   }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -166,7 +227,11 @@ export default class MStack {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+<<<<<<< HEAD
                 at 2026-03-26T13:05:49.631Z
+=======
+                at 2026-03-16T02:18:54.381Z
+>>>>>>> 566dd270 (update)
             </div>
         <script src="../../prettify.js"></script>
         <script>

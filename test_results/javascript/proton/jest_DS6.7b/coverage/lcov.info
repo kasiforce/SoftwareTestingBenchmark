@@ -1,4 +1,5 @@
 TN:
+<<<<<<< HEAD
 SF:src/index.js
 FN:76,(anonymous_0)
 FNF:1
@@ -640,6 +641,8 @@ BRF:8
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/core/Particle.js
 FN:42,(anonymous_0)
 FN:65,(anonymous_1)
@@ -967,6 +970,7 @@ BRF:21
 BRH:0
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:src/core/Settings.js
 FN:2,(anonymous_0)
 FNF:1
@@ -1056,6 +1060,8 @@ BRF:13
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/debug/Stats.js
 FN:2,(anonymous_0)
 FN:11,(anonymous_1)
@@ -1195,6 +1201,7 @@ BRF:48
 BRH:1
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:src/emitter/BehaviourEmitter.js
 FN:12,(anonymous_0)
 FN:25,(anonymous_1)
@@ -1230,6 +1237,8 @@ BRF:4
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/emitter/Emitter.js
 FN:23,(anonymous_0)
 FN:68,(anonymous_1)
@@ -1586,6 +1595,7 @@ BRF:26
 BRH:18
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:src/initialize/Body.js
 FN:27,(anonymous_0)
 FN:40,(anonymous_1)
@@ -1615,6 +1625,8 @@ BRF:4
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/initialize/Initialize.js
 FN:2,(anonymous_0)
 FN:4,(anonymous_1)
@@ -1667,6 +1679,7 @@ BRF:4
 BRH:0
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:src/initialize/Life.js
 FN:26,(anonymous_0)
 FN:37,(anonymous_1)
@@ -1747,6 +1760,8 @@ BRF:0
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/initialize/Rate.js
 FN:41,(anonymous_0)
 FN:54,(anonymous_1)
@@ -1784,6 +1799,7 @@ BRF:6
 BRH:0
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:src/initialize/Velocity.js
 FN:36,(anonymous_0)
 FN:52,(anonymous_1)
@@ -1851,6 +1867,8 @@ BRF:8
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/math/Integration.js
 FN:2,(anonymous_0)
 FN:6,(anonymous_1)
@@ -2484,6 +2502,7 @@ BRF:2
 BRH:0
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:src/render/CanvasRenderer.js
 FN:39,(anonymous_0)
 FN:53,(anonymous_1)
@@ -2613,6 +2632,8 @@ BRF:0
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/render/DomRenderer.js
 FN:14,(anonymous_0)
 FN:19,(anonymous_1)
@@ -2708,6 +2729,7 @@ BRF:23
 BRH:0
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:src/render/EaselRenderer.js
 FN:5,(anonymous_0)
 FN:12,(anonymous_1)
@@ -2785,6 +2807,8 @@ BRF:20
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/render/PixelRenderer.js
 FN:14,(anonymous_0)
 FN:25,(anonymous_1)
@@ -3643,6 +3667,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:src/zone/CircleZone.js
 FN:15,(anonymous_0)
 FN:29,(anonymous_1)
@@ -3912,6 +3937,8 @@ BRF:47
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/zone/PointZone.js
 FN:13,(anonymous_0)
 FN:33,(anonymous_1)
@@ -3938,6 +3965,7 @@ BRF:2
 BRH:2
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:src/zone/RectZone.js
 FN:15,(anonymous_0)
 FN:28,(anonymous_1)
@@ -4028,6 +4056,8 @@ BRF:40
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/zone/Zone.js
 FN:4,(anonymous_0)
 FN:11,(anonymous_1)

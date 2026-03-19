@@ -1,4 +1,5 @@
 TN:
+<<<<<<< HEAD
 SF:babel.config.js
 FNF:0
 FNH:0
@@ -559,6 +560,8 @@ BRF:8
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/chi_squared_distribution_table.js
 FNF:0
 FNH:0
@@ -614,6 +617,7 @@ BRF:8
 BRH:5
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:src/chunk.js
 FN:18,chunk
 FNF:1
@@ -791,6 +795,8 @@ BRF:2
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/combinations_replacement.js
 FN:13,combinationsReplacement
 FNF:1
@@ -812,6 +818,7 @@ BRF:2
 BRH:2
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:src/combine_means.js
 FN:18,combineMeans
 FNF:1
@@ -867,6 +874,8 @@ BRF:2
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/epsilon.js
 FNF:0
 FNH:0
@@ -877,6 +886,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:src/equal_interval_breaks.js
 FN:17,equalIntervalBreaks
 FNF:1
@@ -1490,6 +1500,8 @@ BRF:0
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/mean.js
 FN:17,mean
 FNF:1
@@ -1506,6 +1518,7 @@ BRF:2
 BRH:2
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:src/mean_simple.js
 FN:23,meanSimple
 FNF:1
@@ -1742,6 +1755,8 @@ BRF:14
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/permutations_heap.js
 FN:8,permutationsHeap
 FNF:1
@@ -1800,6 +1815,7 @@ BRF:2
 BRH:2
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:src/probit.js
 FN:17,probit
 FNF:1
@@ -2530,6 +2546,8 @@ BRF:0
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> 566dd270 (update)
 SF:src/sum.js
 FN:19,sum
 FNF:1
@@ -2563,6 +2581,7 @@ BRDA:45,3,1,23
 BRF:8
 BRH:6
 end_of_record
+<<<<<<< HEAD
 TN:
 SF:src/sum_nth_power_deviations.js
 FN:18,sumNthPowerDeviations
@@ -2781,3 +2800,5 @@ LH:0
 BRF:0
 BRH:0
 end_of_record
+=======
+>>>>>>> 566dd270 (update)

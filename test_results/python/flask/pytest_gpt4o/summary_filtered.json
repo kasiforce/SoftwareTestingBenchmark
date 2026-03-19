@@ -6,6 +6,7 @@
   "compile_pass_rate": 0.9117647058823529,
   "testcase": {
     "passed": 33,
+<<<<<<< HEAD
     "failed": 35,
     "error": 47,
     "total": 115,
@@ -35,6 +36,29 @@
       "covered_branch": 10,
       "total_branch": 10,
       "branch_coverage": 100.0
+=======
+    "error": 48,
+    "failed": 34,
+    "total": 115,
+    "collected": 115,
+    "test_pass_rate": 0.28695652173913044,
+    "run_pass_rate": 0.5826086956521739
+  },
+  "summary": {
+    "file_line_coverage": 51.56,
+    "file_branch_coverage": 21.56,
+    "function_line_coverage": 27.91,
+    "function_branch_coverage": 21.48
+  },
+  "file_coverage": {
+    "src/flask/blueprints.py": {
+      "covered_line": 32,
+      "total_line": 34,
+      "line_coverage": 94.12,
+      "covered_branch": 9,
+      "total_branch": 10,
+      "branch_coverage": 90.0
+>>>>>>> 566dd270 (update)
     },
     "src/flask/cli.py": {
       "covered_line": 113,
@@ -119,12 +143,21 @@
       "branch_coverage": 100.0
     },
     "src/flask/blueprints.py:Blueprint.send_static_file": {
+<<<<<<< HEAD
       "covered_line": 4,
       "total_line": 4,
       "line_coverage": 100.0,
       "covered_branch": 2,
       "total_branch": 2,
       "branch_coverage": 100.0
+=======
+      "covered_line": 2,
+      "total_line": 4,
+      "line_coverage": 50.0,
+      "covered_branch": 1,
+      "total_branch": 2,
+      "branch_coverage": 50.0
+>>>>>>> 566dd270 (update)
     },
     "src/flask/blueprints.py:Blueprint.open_resource": {
       "covered_line": 6,
@@ -335,7 +368,24 @@
       "branch_coverage": 100.0
     }
   },
+<<<<<<< HEAD
   "excute_pass": 7,
   "test_pass": 13,
   "testcase_pass_rate": 9.792857142857143
+=======
+  "filtered_stats": {
+    "file": {
+      "total_lines": 1532,
+      "covered_lines": 843,
+      "total_branches": 438,
+      "covered_branches": 112
+    },
+    "function": {
+      "total_lines": 140,
+      "covered_lines": 88,
+      "total_branches": 64,
+      "covered_branches": 37
+    }
+  }
+>>>>>>> 566dd270 (update)
 }

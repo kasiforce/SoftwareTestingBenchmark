@@ -9,6 +9,7 @@
     "failures": 0,
     "errors": 0,
     "pass_rate": 0
+<<<<<<< HEAD
   },
   "summary": {
     "file": {
@@ -27,4 +28,7 @@
   "excute_pass": 0,
   "pass_rate": 0,
   "pass_rate1": 0
+=======
+  }
+>>>>>>> 566dd270 (update)
 }

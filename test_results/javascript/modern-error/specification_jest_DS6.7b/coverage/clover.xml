@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <coverage generated="1774502142821" clover="3.2.0">
   <project timestamp="1774502142821" name="All files">
     <metrics statements="418" coveredstatements="42" conditionals="147" coveredconditionals="0" methods="110" coveredmethods="0" elements="675" coveredelements="42" complexity="0" loc="418" ncloc="418" packages="14" files="42" classes="42"/>
@@ -84,6 +85,13 @@
         <line num="18" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
       </file>
+=======
+<coverage generated="1773805979698" clover="3.2.0">
+  <project timestamp="1773805979698" name="All files">
+    <metrics statements="147" coveredstatements="42" conditionals="49" coveredconditionals="0" methods="43" coveredmethods="0" elements="239" coveredelements="42" complexity="0" loc="147" ncloc="147" packages="6" files="15" classes="15"/>
+    <package name="merge">
+      <metrics statements="32" coveredstatements="8" conditionals="21" coveredconditionals="0" methods="8" coveredmethods="0"/>
+>>>>>>> 566dd270 (update)
       <file name="cause.js" path="/testbed/src/merge/cause.js">
         <metrics statements="18" coveredstatements="3" conditionals="6" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="9" count="2" type="stmt"/>
@@ -123,6 +131,7 @@
         <line num="51" count="0" type="stmt"/>
       </file>
     </package>
+<<<<<<< HEAD
     <package name="testbed.src.options">
       <metrics statements="85" coveredstatements="15" conditionals="34" coveredconditionals="0" methods="23" coveredmethods="0"/>
       <file name="class.js" path="/testbed/src/options/class.js">
@@ -139,6 +148,10 @@
         <line num="35" count="0" type="stmt"/>
         <line num="37" count="0" type="stmt"/>
       </file>
+=======
+    <package name="options">
+      <metrics statements="56" coveredstatements="15" conditionals="24" coveredconditionals="0" methods="17" coveredmethods="0"/>
+>>>>>>> 566dd270 (update)
       <file name="clone.js" path="/testbed/src/options/clone.js">
         <metrics statements="13" coveredstatements="2" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="16" count="2" type="stmt"/>
@@ -167,6 +180,7 @@
         <line num="28" count="0" type="stmt"/>
         <line num="30" count="0" type="stmt"/>
       </file>
+<<<<<<< HEAD
       <file name="instance.js" path="/testbed/src/options/instance.js">
         <metrics statements="18" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="10" count="0" type="cond" truecount="0" falsecount="1"/>
@@ -188,6 +202,8 @@
         <line num="55" count="0" type="stmt"/>
         <line num="56" count="0" type="stmt"/>
       </file>
+=======
+>>>>>>> 566dd270 (update)
       <file name="merge.js" path="/testbed/src/options/merge.js">
         <metrics statements="14" coveredstatements="5" conditionals="8" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="19" count="2" type="stmt"/>
@@ -232,6 +248,7 @@
         <line num="50" count="0" type="stmt"/>
       </file>
     </package>
+<<<<<<< HEAD
     <package name="testbed.src.plugins.core">
       <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="main.js" path="/testbed/src/plugins/core/main.js">
@@ -252,6 +269,9 @@
       </file>
     </package>
     <package name="testbed.src.plugins.info">
+=======
+    <package name="plugins.info">
+>>>>>>> 566dd270 (update)
       <metrics statements="28" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
       <file name="error.js" path="/testbed/src/plugins/info/error.js">
         <metrics statements="15" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
@@ -288,7 +308,11 @@
         <line num="50" count="0" type="stmt"/>
       </file>
     </package>
+<<<<<<< HEAD
     <package name="testbed.src.plugins.instance">
+=======
+    <package name="plugins.instance">
+>>>>>>> 566dd270 (update)
       <metrics statements="24" coveredstatements="8" conditionals="2" coveredconditionals="0" methods="10" coveredmethods="0"/>
       <file name="call.js" path="/testbed/src/plugins/instance/call.js">
         <metrics statements="8" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
@@ -324,6 +348,7 @@
         <line num="17" count="0" type="stmt"/>
       </file>
     </package>
+<<<<<<< HEAD
     <package name="testbed.src.plugins.properties">
       <metrics statements="21" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="4" coveredmethods="0"/>
       <file name="assign.js" path="/testbed/src/plugins/properties/assign.js">
@@ -539,11 +564,16 @@
         <line num="29" count="0" type="stmt"/>
         <line num="30" count="0" type="stmt"/>
       </file>
+=======
+    <package name="subclass">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+>>>>>>> 566dd270 (update)
       <file name="map.js" path="/testbed/src/subclass/map.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="8" count="2" type="stmt"/>
         <line num="11" count="2" type="stmt"/>
       </file>
+<<<<<<< HEAD
       <file name="normalize.js" path="/testbed/src/subclass/normalize.js">
         <metrics statements="17" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="31" count="0" type="cond" truecount="0" falsecount="1"/>
@@ -575,6 +605,10 @@
       </file>
     </package>
     <package name="testbed.src.utils">
+=======
+    </package>
+    <package name="utils">
+>>>>>>> 566dd270 (update)
       <metrics statements="5" coveredstatements="3" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="descriptors.js" path="/testbed/src/utils/descriptors.js">
         <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>

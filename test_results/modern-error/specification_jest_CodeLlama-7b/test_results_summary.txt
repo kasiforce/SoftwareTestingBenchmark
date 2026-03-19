@@ -1,3 +1,0 @@
-Total tests generated: 25
-Syntax check passed: 23 (92.00%)
-Compile/runtime check passed: 13 (52.00%)

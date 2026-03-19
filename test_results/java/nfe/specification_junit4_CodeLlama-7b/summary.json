@@ -2,13 +2,18 @@
   "total": 34,
   "syntax_correct": 27,
   "syntax_correct_rate": 0.7941176470588235,
+<<<<<<< HEAD
   "compile_pass": 0,
+=======
+  "compile_pass": 1,
+>>>>>>> 566dd270 (update)
   "test_summary": {
     "total": 0,
     "passed": 0,
     "failures": 0,
     "errors": 0,
     "pass_rate": 0
+<<<<<<< HEAD
   },
   "summary": {
     "file": {
@@ -27,4 +32,7 @@
   "excute_pass": 0,
   "pass_rate": 0,
   "pass_rate1": 0
+=======
+  }
+>>>>>>> 566dd270 (update)
 }

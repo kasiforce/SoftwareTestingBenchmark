@@ -9,6 +9,7 @@
     "failures": 5,
     "errors": 1,
     "pass_rate": 0.8378378378378378
+<<<<<<< HEAD
   },
   "file_coverage": {
     "src/main/java/org/apache/commons/cli/Options.java": {
@@ -119,4 +120,7 @@
   "excute_pass": 1,
   "pass_rate": 1.6794871794871795,
   "pass_rate1": 2
+=======
+  }
+>>>>>>> 566dd270 (update)
 }

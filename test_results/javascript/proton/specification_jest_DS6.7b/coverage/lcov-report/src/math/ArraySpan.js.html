@@ -23,30 +23,52 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
                 <span class='fraction'>0/9</span>
+=======
+                <span class="strong">33.33% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>2/6</span>
+>>>>>>> 566dd270 (update)
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
+<<<<<<< HEAD
                 <span class='fraction'>0/8</span>
+=======
+                <span class='fraction'>0/10</span>
+>>>>>>> 566dd270 (update)
             </div>
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
                 <span class='fraction'>0/3</span>
+=======
+                <span class="strong">25% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>1/4</span>
+>>>>>>> 566dd270 (update)
             </div>
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
                 <span class='fraction'>0/7</span>
+=======
+                <span class="strong">33.33% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>2/6</span>
+>>>>>>> 566dd270 (update)
             </div>
         
             
@@ -113,6 +135,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<<<<<<< HEAD
+=======
+<span class="cline-any cline-yes">1x</span>
+>>>>>>> 566dd270 (update)
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<<<<<<< HEAD
+<span class="cline-any cline-no">&nbsp;</span>
+=======
+>>>>>>> 566dd270 (update)
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -129,24 +168,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<<<<<<< HEAD
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+=======
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+>>>>>>> 566dd270 (update)
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import Span from "./Span";
 import Util from "../utils/Util";
 import MathUtil from "./MathUtil";
@@ -160,9 +196,15 @@ export default class ArraySpan extends Span {
    * Creates an instance of ArraySpan.
    * @param {Array|*|any} arr - The array or value to be converted to an array.
    */
+<<<<<<< HEAD
 <span class="fstat-no" title="function not covered" >  co</span>nstructor(arr) {
 <span class="cstat-no" title="statement not covered" >    super();</span>
 <span class="cstat-no" title="statement not covered" >    this._arr = Util.toArray(arr);</span>
+=======
+<span class="fstat-no" title="function not covered" >  constructor(a</span>rr) {
+    super();
+    this._arr = Util.toArray(arr);<span class="cstat-no" title="statement not covered" ></span>
+>>>>>>> 566dd270 (update)
   }
 &nbsp;
   /**
@@ -170,7 +212,11 @@ export default class ArraySpan extends Span {
    * If the value is "random" or "Random", it returns a random color.
    * @returns {*} A random value from the array or a random color.
    */
+<<<<<<< HEAD
 <span class="fstat-no" title="function not covered" >  ge</span>tValue() {
+=======
+<span class="fstat-no" title="function not covered" >  getValue() {</span>
+>>>>>>> 566dd270 (update)
     const val = <span class="cstat-no" title="statement not covered" >Util.getRandFromArray(this._arr);</span>
 <span class="cstat-no" title="statement not covered" >    return val === "random" || val === "Random" ? MathUtil.randomColor() : val;</span>
   }
@@ -182,11 +228,19 @@ export default class ArraySpan extends Span {
    * @param {Array|ArraySpan|any} arr - The array or ArraySpan instance.
    * @returns {ArraySpan|null} A new ArraySpan instance or null if the input is falsy.
    */
+<<<<<<< HEAD
 <span class="fstat-no" title="function not covered" >  st</span>atic createArraySpan(arr) {
 <span class="cstat-no" title="statement not covered" >    if (!arr) <span class="cstat-no" title="statement not covered" >return null;</span></span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (arr instanceof ArraySpan) <span class="cstat-no" title="statement not covered" >return arr;</span></span>
     else <span class="cstat-no" title="statement not covered" >return new ArraySpan(arr);</span>
+=======
+<span class="fstat-no" title="function not covered" >  static c</span>reateArraySpan(arr) {
+<span class="cstat-no" title="statement not covered" >    if (!arr) return null;</span>
+&nbsp;
+    if (arr instanceof ArraySpan) return arr;
+    else return new ArraySpan(arr);
+>>>>>>> 566dd270 (update)
   }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -196,7 +250,11 @@ export default class ArraySpan extends Span {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+<<<<<<< HEAD
                 at 2026-03-26T13:05:49.631Z
+=======
+                at 2026-03-16T02:18:54.381Z
+>>>>>>> 566dd270 (update)
             </div>
         <script src="../../prettify.js"></script>
         <script>

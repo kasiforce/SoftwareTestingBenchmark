@@ -1,2 +1,0 @@
-./target/test-classes/br/com/swconsultoria/nfe/impressao/ImpressaoPadraoCCeTests.class
-./target/test-classes/br/com/swconsultoria/nfe/impressao/ImpressaoPadraoNFCeTests.class

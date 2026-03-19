@@ -290,8 +290,12 @@
       "total_branches": 164,
       "covered_branches": 0
     }
+<<<<<<< HEAD
   },
   "excute_pass": 0,
   "test_pass": 0,
   "testcase_pass_rate": 0.0
+=======
+  }
+>>>>>>> 566dd270 (update)
 }

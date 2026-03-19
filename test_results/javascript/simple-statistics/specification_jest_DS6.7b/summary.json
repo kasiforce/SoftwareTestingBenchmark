@@ -1,6 +1,7 @@
 {
   "compile_pass": 0,
   "compile_pass_rate": 0.0,
+<<<<<<< HEAD
   "testcase": {
     "total": 0,
     "passed": 0,
@@ -31,4 +32,15 @@
   "excute_pass": 0,
   "test_pass": 0,
   "testcase_pass_rate": 0.0
+=======
+  "testcase": {},
+  "coverage": {
+    "total_line_coverage": 0,
+    "total_branch_coverage": 0,
+    "total_function_coverage": 0,
+    "total_statement_coverage": 0,
+    "file_coverage": {},
+    "summary": {}
+  }
+>>>>>>> 566dd270 (update)
 }
