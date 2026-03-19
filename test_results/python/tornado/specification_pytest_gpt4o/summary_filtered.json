@@ -1,0 +1,280 @@
+{
+  "total": 26,
+  "syntax_correct": 26,
+  "syntax_correct_rate": 1.0,
+  "compile_pass": 24,
+  "compile_pass_rate": 0.9230769230769231,
+  "testcase": {
+    "failed": 52,
+    "passed": 55,
+    "error": 10,
+    "total": 117,
+    "collected": 117,
+    "test_pass_rate": 0.4700854700854701,
+    "run_pass_rate": 0.9145299145299145
+  },
+  "summary": {
+    "total_file_lines": 9314,
+    "covered_file_lines": 2998,
+    "total_file_branches": 3140,
+    "covered_file_branches": 468,
+    "total_function_lines": 7140,
+    "covered_function_lines": 1330,
+    "total_function_branches": 3104,
+    "covered_function_branches": 460,
+    "file_line_coverage": 32.19,
+    "file_branch_coverage": 14.9,
+    "function_line_coverage": 18.63,
+    "function_branch_coverage": 14.82
+  },
+  "file_coverage": {
+    "tornado/auth.py": {
+      "covered_line": 105,
+      "total_line": 367,
+      "line_coverage": 28.61,
+      "covered_branch": 14,
+      "total_branch": 126,
+      "branch_coverage": 11.11
+    },
+    "tornado/concurrent.py": {
+      "covered_line": 59,
+      "total_line": 82,
+      "line_coverage": 71.95,
+      "covered_branch": 11,
+      "total_branch": 24,
+      "branch_coverage": 45.83
+    },
+    "tornado/escape.py": {
+      "covered_line": 68,
+      "total_line": 125,
+      "line_coverage": 54.4,
+      "covered_branch": 18,
+      "total_branch": 48,
+      "branch_coverage": 37.5
+    },
+    "tornado/platform/asyncio.py": {
+      "covered_line": 172,
+      "total_line": 333,
+      "line_coverage": 51.65,
+      "covered_branch": 27,
+      "total_branch": 80,
+      "branch_coverage": 33.75
+    },
+    "tornado/platform/caresresolver.py": {
+      "covered_line": 16,
+      "total_line": 51,
+      "line_coverage": 31.37,
+      "covered_branch": 0,
+      "total_branch": 20,
+      "branch_coverage": 0.0
+    },
+    "tornado/process.py": {
+      "covered_line": 81,
+      "total_line": 175,
+      "line_coverage": 46.29,
+      "covered_branch": 17,
+      "total_branch": 58,
+      "branch_coverage": 29.31
+    },
+    "tornado/simple_httpclient.py": {
+      "covered_line": 237,
+      "total_line": 356,
+      "line_coverage": 66.57,
+      "covered_branch": 69,
+      "total_branch": 154,
+      "branch_coverage": 44.81
+    }
+  },
+  "function_coverage": {
+    "tornado/auth.py:GoogleOAuth2Mixin.get_authenticated_user": {
+      "covered_line": 10,
+      "total_line": 10,
+      "line_coverage": 100.0,
+      "covered_branch": 4,
+      "total_branch": 6,
+      "branch_coverage": 66.67
+    },
+    "tornado/auth.py:FacebookGraphMixin.get_authenticated_user": {
+      "covered_line": 7,
+      "total_line": 17,
+      "line_coverage": 41.18,
+      "covered_branch": 2,
+      "total_branch": 6,
+      "branch_coverage": 33.33
+    },
+    "tornado/auth.py:FacebookGraphMixin.facebook_request": {
+      "covered_line": 2,
+      "total_line": 2,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "tornado/concurrent.py:DummyExecutor.submit": {
+      "covered_line": 6,
+      "total_line": 6,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "tornado/concurrent.py:run_on_executor": {
+      "covered_line": 7,
+      "total_line": 8,
+      "line_coverage": 87.5,
+      "covered_branch": 5,
+      "total_branch": 6,
+      "branch_coverage": 83.33
+    },
+    "tornado/escape.py:url_escape": {
+      "covered_line": 2,
+      "total_line": 2,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "tornado/escape.py:parse_qs_bytes": {
+      "covered_line": 7,
+      "total_line": 7,
+      "line_coverage": 100.0,
+      "covered_branch": 4,
+      "total_branch": 4,
+      "branch_coverage": 100.0
+    },
+    "tornado/escape.py:recursive_unicode": {
+      "covered_line": 9,
+      "total_line": 9,
+      "line_coverage": 100.0,
+      "covered_branch": 8,
+      "total_branch": 8,
+      "branch_coverage": 100.0
+    },
+    "tornado/platform/asyncio.py:BaseAsyncIOLoop.close": {
+      "covered_line": 0,
+      "total_line": 10,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 6,
+      "branch_coverage": 0.0
+    },
+    "tornado/platform/asyncio.py:BaseAsyncIOLoop.call_at": {
+      "covered_line": 1,
+      "total_line": 1,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "tornado/platform/asyncio.py:SelectorThread.remove_reader": {
+      "covered_line": 6,
+      "total_line": 6,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "tornado/platform/asyncio.py:AddThreadSelectorEventLoop.add_writer": {
+      "covered_line": 1,
+      "total_line": 1,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "tornado/platform/caresresolver.py:CaresResolver.initialize": {
+      "covered_line": 3,
+      "total_line": 3,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "tornado/platform/caresresolver.py:CaresResolver.resolve": {
+      "covered_line": 0,
+      "total_line": 19,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 12,
+      "branch_coverage": 0.0
+    },
+    "tornado/process.py:cpu_count": {
+      "covered_line": 3,
+      "total_line": 12,
+      "line_coverage": 25.0,
+      "covered_branch": 1,
+      "total_branch": 2,
+      "branch_coverage": 50.0
+    },
+    "tornado/process.py:fork_processes": {
+      "covered_line": 13,
+      "total_line": 33,
+      "line_coverage": 39.39,
+      "covered_branch": 7,
+      "total_branch": 22,
+      "branch_coverage": 31.82
+    },
+    "tornado/process.py:Subprocess.wait_for_exit": {
+      "covered_line": 4,
+      "total_line": 4,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "tornado/process.py:Subprocess.initialize": {
+      "covered_line": 0,
+      "total_line": 5,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 2,
+      "branch_coverage": 0.0
+    },
+    "tornado/simple_httpclient.py:SimpleAsyncHTTPClient.initialize": {
+      "covered_line": 16,
+      "total_line": 16,
+      "line_coverage": 100.0,
+      "covered_branch": 4,
+      "total_branch": 4,
+      "branch_coverage": 100.0
+    },
+    "tornado/simple_httpclient.py:SimpleAsyncHTTPClient.fetch_impl": {
+      "covered_line": 9,
+      "total_line": 13,
+      "line_coverage": 69.23,
+      "covered_branch": 2,
+      "total_branch": 6,
+      "branch_coverage": 33.33
+    },
+    "tornado/simple_httpclient.py:_HTTPConnection.run": {
+      "covered_line": 61,
+      "total_line": 91,
+      "line_coverage": 67.03,
+      "covered_branch": 33,
+      "total_branch": 68,
+      "branch_coverage": 48.53
+    },
+    "tornado/simple_httpclient.py:_HTTPConnection.data_received": {
+      "covered_line": 6,
+      "total_line": 6,
+      "line_coverage": 100.0,
+      "covered_branch": 4,
+      "total_branch": 4,
+      "branch_coverage": 100.0
+    }
+  },
+  "filtered_stats": {
+    "file": {
+      "total_lines": 1489,
+      "covered_lines": 738,
+      "total_branches": 510,
+      "covered_branches": 156
+    },
+    "function": {
+      "total_lines": 281,
+      "covered_lines": 173,
+      "total_branches": 156,
+      "covered_branches": 74
+    }
+  }
+}

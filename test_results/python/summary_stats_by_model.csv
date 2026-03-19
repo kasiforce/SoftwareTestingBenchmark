@@ -1,0 +1,6 @@
+group,total,syntax_correct,compile_pass,test_passed,test_failed,test_total,test_collected,file_total_lines,file_covered_lines,file_total_branches,file_covered_branches,func_total_lines,func_covered_lines,func_total_branches,func_covered_branches
+CodeLlama-7b,768,644,466,278,1824,2112,2112,46326,13326,20078,885,6845,1060,3494,407
+DS6.7b,768,746,482,331,781,1290,1290,46736,15109,20168,1447,6904,1808,3504,719
+DSv3.2,766,757,624,3357,3687,7631,7631,46736,18096,20168,2825,6904,3505,3504,1586
+GT,109,108,88,1999,6,2286,2286,7569,7164,3674,3360,962,889,492,443
+gpt4o,768,767,583,1051,1190,2481,2481,46736,16284,20168,2061,6904,2683,3504,1189
