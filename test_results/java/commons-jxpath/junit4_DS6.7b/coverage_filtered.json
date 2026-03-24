@@ -1,0 +1,18 @@
+{
+  "file_coverage": {},
+  "function_coverage": {},
+  "summary": {
+    "file": {
+      "total_lines": 0,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "function": {
+      "total_lines": 0,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    }
+  }
+}
