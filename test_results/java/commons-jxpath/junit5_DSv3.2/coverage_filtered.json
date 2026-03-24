@@ -1,0 +1,315 @@
+{
+  "file_coverage": {},
+  "function_coverage": {
+    "src/main/java/org/apache/commons/jxpath/ri/model/dynabeans/DynaBeanPointer.java:asPath": {
+      "covered_line": 0,
+      "total_line": 11,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 14,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/util/ValueUtils.java:remove": {
+      "covered_line": 0,
+      "total_line": 3,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 2,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/model/beans/CollectionPointer.java:attributeIterator": {
+      "covered_line": 0,
+      "total_line": 1,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 2,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/xml/DOMParser.java:parseXML": {
+      "covered_line": 0,
+      "total_line": 10,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 2,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/util/MethodLookupUtils.java:lookupConstructor": {
+      "covered_line": 0,
+      "total_line": 31,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 20,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/util/MethodLookupUtils.java:lookupMethod": {
+      "covered_line": 0,
+      "total_line": 39,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 32,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/util/MethodLookupUtils.java:lookupStaticMethod": {
+      "covered_line": 0,
+      "total_line": 32,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 26,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/util/ValueUtils.java:expandCollection": {
+      "covered_line": 0,
+      "total_line": 13,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 10,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/util/ValueUtils.java:iterate": {
+      "covered_line": 0,
+      "total_line": 6,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 4,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/util/TypeUtils.java:wrapPrimitive": {
+      "covered_line": 0,
+      "total_line": 1,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 2,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/model/NodePointer.java:newChildNodePointer": {
+      "covered_line": 0,
+      "total_line": 6,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 4,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/model/NodePointer.java:newNodePointer": {
+      "covered_line": 0,
+      "total_line": 9,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 6,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/model/NodePointer.java:verify": {
+      "covered_line": 0,
+      "total_line": 5,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 8,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/model/beans/CollectionPointer.java:childIterator": {
+      "covered_line": 0,
+      "total_line": 3,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 2,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/model/beans/CollectionPointer.java:namespacePointer": {
+      "covered_line": 0,
+      "total_line": 1,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 2,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/model/beans/CollectionPointer.java:testNode": {
+      "covered_line": 0,
+      "total_line": 7,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 10,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/model/dom/DOMNodePointer.java:compareChildNodePointers": {
+      "covered_line": 0,
+      "total_line": 1,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/model/VariablePointer.java:findVariables": {
+      "covered_line": 0,
+      "total_line": 10,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 4,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/parser/Token.java:newToken": {
+      "covered_line": 2,
+      "total_line": 2,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/parser/XPathParserTokenManager.java:jjFillToken": {
+      "covered_line": 0,
+      "total_line": 9,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 2,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/parser/ParseException.java:add_escapes": {
+      "covered_line": 0,
+      "total_line": 26,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 16,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/parser/SimpleCharStream.java:BeginToken": {
+      "covered_line": 4,
+      "total_line": 4,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/parser/SimpleCharStream.java:GetSuffix": {
+      "covered_line": 0,
+      "total_line": 6,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 2,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/parser/SimpleCharStream.java:readChar": {
+      "covered_line": 10,
+      "total_line": 10,
+      "line_coverage": 100.0,
+      "covered_branch": 6,
+      "total_branch": 6,
+      "branch_coverage": 100.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/JXPathContextReferenceImpl.java:allocateConditionally": {
+      "covered_line": 0,
+      "total_line": 7,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/JXPathContextReferenceImpl.java:removeNodePointerFactory": {
+      "covered_line": 0,
+      "total_line": 4,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/InfoSetUtil.java:booleanValue": {
+      "covered_line": 0,
+      "total_line": 19,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 26,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/InfoSetUtil.java:doubleValue": {
+      "covered_line": 0,
+      "total_line": 17,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 16,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/InfoSetUtil.java:stringValue": {
+      "covered_line": 0,
+      "total_line": 16,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 20,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/compiler/LocationPath.java:compute": {
+      "covered_line": 0,
+      "total_line": 1,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/compiler/LocationPath.java:computeContextDependent": {
+      "covered_line": 0,
+      "total_line": 5,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 6,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/compiler/CoreOperationMod.java:computeValue": {
+      "covered_line": 0,
+      "total_line": 4,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 2,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/model/dom/DOMNodePointer.java:findEnclosingAttribute": {
+      "covered_line": 0,
+      "total_line": 8,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 8,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/functions/ConstructorFunction.java:invoke": {
+      "covered_line": 0,
+      "total_line": 16,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 12,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/ri/axes/DescendantContext.java:nextNode": {
+      "covered_line": 0,
+      "total_line": 16,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 12,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/JXPathContextFactory.java:findFactory": {
+      "covered_line": 0,
+      "total_line": 37,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 24,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/jxpath/JXPathContextFactory.java:newInstance": {
+      "covered_line": 0,
+      "total_line": 5,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    }
+  },
+  "summary": {
+    "file": {
+      "total_lines": 0,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "function": {
+      "total_lines": 401,
+      "covered_lines": 16,
+      "total_branches": 302,
+      "covered_branches": 6
+    }
+  }
+}

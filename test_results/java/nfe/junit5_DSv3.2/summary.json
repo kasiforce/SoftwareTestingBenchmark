@@ -2,7 +2,7 @@
   "total": 34,
   "syntax_correct": 34,
   "syntax_correct_rate": 1.0,
-  "compile_pass": 1,
+  "compile_pass": 0,
   "test_summary": {
     "total": 0,
     "passed": 0,
