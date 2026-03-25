@@ -1,0 +1,72 @@
+# Use Ubuntu 22.04 as the base image and ensure bash is the default shell.
+FROM --platform=linux/x86_64 ubuntu:22.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Etc/UTC
+
+# Handle any expired apt package GPG issues.
+RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-time
+
+# Install essential system tools and dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        git \
+        wget \
+        curl \
+        ca-certificates \
+        build-essential \
+        python3 \
+        python3-pip \
+        jq \
+        locales \
+        locales-all \
+        tzdata && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Node.js (latest LTS >=20.16.0). Use NodeSource to get the latest LTS (20.x or higher).
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get update && \
+    apt-get install -y nodejs && \
+    rm -rf /var/lib/apt/lists/*
+
+# Upgrade npm and npx to latest via NPM
+RUN npm install -g npm@latest npx@latest
+
+# 清理 npm 缓存
+# RUN npm cache clean --force
+
+# 安装项目依赖（如果有 package.json）
+# RUN npm install --no-audit --loglevel=error
+
+# # 安装开发依赖（单独一个命令）
+# RUN npm install --save-dev --no-audit --loglevel=error \
+#     @babel/core \
+#     @babel/preset-env \
+#     babel-jest \
+#     @babel/plugin-transform-modules-commonjs \
+#     jest \
+#     @jest/globals
+# Setup for deterministic shell behavior
+SHELL ["/bin/bash", "-c"]
+
+# Set up working directory and clone pdf.js at requested commit
+WORKDIR /testbed/
+RUN git clone https://github.com/mozilla/pdf.js.git /testbed && \
+    git reset --hard 6f5d5ac6d8e018f595fdb0520899c23079257a00 && \
+    git remote remove origin && \
+    chmod -R 777 /testbed
+
+# Install project dependencies using npm ci for lockfile reproducibility
+RUN npm ci
+
+# install project deps + rollup + plugins
+RUN npm install --save-dev rollup @rollup/plugin-node-resolve @rollup/plugin-commonjs @babel/core @babel/preset-env babel-jest @babel/plugin-transform-modules-commonjs @jest/globals
+
+# Install the local package in development mode for local source linking
+RUN npm link
+
+# Set PATH so locally installed node_modules/.bin is prioritized (for npx, gulp, etc.)
+ENV PATH=/testbed/node_modules/.bin:$PATH
+
+# Guarantee that when you "docker exec -it" you'll use bash, with the node_modules binaries on the path
+RUN echo 'export PATH=/testbed/node_modules/.bin:$PATH' >> /root/.bashrc

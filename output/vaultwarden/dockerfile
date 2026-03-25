@@ -1,0 +1,79 @@
+# Use Debian Bookworm for best compatibility with Rust and Node.js workflows, includes Bash.
+FROM --platform=linux/x86_64 debian:bookworm
+ARG DEBIAN_FRONTEND=noninteractive
+
+# To avoid GPG time issues during apt
+ARG FAKE_DATE
+RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-time
+
+# Set default timezone and basic environment details
+ENV TZ=Etc/UTC
+ENV FAKE_SYSTEM_DATE=${FAKE_DATE}
+
+# Install essential system build tools, Rust build dependencies, Node.js & npm, Playwright prerequisites
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        wget \
+        curl \
+        git \
+        build-essential \
+        pkg-config \
+        clang \
+        gcc \
+        libpq-dev \
+        libpq5 \
+        libssl-dev \
+        libmariadb-dev \
+        libmariadb3 \
+        zlib1g-dev \
+        ca-certificates \
+        python3 \
+        python3-pip \
+        tzdata \
+        gnupg \
+        && rm -rf /var/lib/apt/lists/*
+
+# Install Node.js LTS (20.x) and npm from NodeSource, best compatibility with Playwright
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get update && \
+    apt-get install -y nodejs && \
+    npm install -g npm@10 && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Rust 1.92.0 as specified in rust-toolchain.toml; Add rustup to PATH
+ENV RUSTUP_HOME=/opt/rustup
+ENV CARGO_HOME=/opt/cargo
+ENV PATH=/opt/cargo/bin:/opt/rustup/bin:$PATH
+RUN curl https://sh.rustup.rs -sSf | bash -s -- -y --default-toolchain 1.92.0 --profile minimal && \
+    echo 'source $CARGO_HOME/env' >> /root/.bashrc
+
+# Install Playwright and its dependencies in its own directory for test execution
+WORKDIR /testbed/
+# Clone Vaultwarden source code into /testbed
+RUN git clone https://github.com/dani-garcia/vaultwarden.git /testbed && \
+    chmod -R 777 /testbed && \
+    cd /testbed && \
+    git reset --hard b2cd556f3e79673d3eff1dac9b7402c18aa69d69 && \
+    git remote remove origin
+
+# Prepare Node.js test environment (Playwright): Install dependencies and Playwright browsers for E2E tests
+WORKDIR /testbed/playwright/
+RUN npm ci --ignore-scripts && \
+    npx playwright install-deps && \
+    npx playwright install firefox
+
+# Prepare Rust project dependencies (does not run build or test)
+WORKDIR /testbed/
+RUN cargo fetch --locked
+
+# Ensure default shell is Bash
+SHELL ["/bin/bash", "-c"]
+
+# Ensure working directory is /testbed for later steps
+WORKDIR /testbed/
+
+# Set PATH so /opt/cargo/bin and /opt/rustup/bin (Rust toolchain) and npm binaries are found first
+ENV PATH=/opt/cargo/bin:/opt/rustup/bin:/usr/local/bin:/usr/bin:/bin:/testbed/playwright/node_modules/.bin:$PATH
+
+# Setup environment for interactive/testbed shell usage
+RUN echo "export PATH=/opt/cargo/bin:/opt/rustup/bin:/usr/local/bin:/usr/bin:/bin:/testbed/playwright/node_modules/.bin:\$PATH" >> /root/.bashrc

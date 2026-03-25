@@ -16,5 +16,111 @@
     "line_coverage": 0.0,
     "complexity_coverage": 0.0,
     "method_coverage": 0.0
+  },
+  "file_coverage": {
+    "src/main/java/org/apache/commons/cli/Options.java": {
+      "covered_line": 37,
+      "total_line": 71,
+      "line_coverage": 52.11,
+      "covered_branch": 11,
+      "total_branch": 20,
+      "branch_coverage": 55.0
+    },
+    "src/main/java/org/apache/commons/cli/help/TextHelpAppendable.java": {
+      "covered_line": 18,
+      "total_line": 164,
+      "line_coverage": 10.98,
+      "covered_branch": 10,
+      "total_branch": 78,
+      "branch_coverage": 12.82
+    },
+    "src/main/java/org/apache/commons/cli/help/TextStyle.java": {
+      "covered_line": 0,
+      "total_line": 77,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 20,
+      "branch_coverage": 0.0
+    }
+  },
+  "function_coverage": {
+    "src/main/java/org/apache/commons/cli/help/TextStyle.java:pad": {
+      "covered_line": 0,
+      "total_line": 25,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 18,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/cli/help/TextHelpAppendable.java:indexOfWrap": {
+      "covered_line": 10,
+      "total_line": 13,
+      "line_coverage": 76.92,
+      "covered_branch": 10,
+      "total_branch": 14,
+      "branch_coverage": 71.43
+    },
+    "src/main/java/org/apache/commons/cli/help/TextHelpAppendable.java:adjustTableFormat": {
+      "covered_line": 0,
+      "total_line": 32,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 22,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/cli/help/TextHelpAppendable.java:makeColumnQueue": {
+      "covered_line": 0,
+      "total_line": 14,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 8,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/cli/help/TextHelpAppendable.java:makeColumnQueues": {
+      "covered_line": 0,
+      "total_line": 4,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 2,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/cli/Options.java:addOptionGroup": {
+      "covered_line": 0,
+      "total_line": 4,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 2,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/cli/Options.java:addOptions": {
+      "covered_line": 3,
+      "total_line": 3,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "src/main/java/org/apache/commons/cli/Options.java:addRequiredOption": {
+      "covered_line": 4,
+      "total_line": 4,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    }
+  },
+  "summary": {
+    "file": {
+      "total_lines": 312,
+      "covered_lines": 55,
+      "total_branches": 118,
+      "covered_branches": 21
+    },
+    "function": {
+      "total_lines": 99,
+      "covered_lines": 17,
+      "total_branches": 66,
+      "covered_branches": 10
+    }
   }
 }

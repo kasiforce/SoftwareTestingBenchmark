@@ -1,0 +1,59 @@
+# Use Ubuntu 22.04 as the base for stability and proper Bash support
+FROM --platform=linux/x86_64 ubuntu:22.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+ARG FAKE_DATE
+ENV TZ=Etc/UTC
+ENV FAKE_SYSTEM_DATE=${FAKE_DATE}
+
+# Workaround for GPG expiration issues
+RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-time
+
+# Install system dependencies (git, curl, and build-essential required for Node builds)
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    build-essential \
+    ca-certificates \
+    jq \
+    bash \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Node.js and npm (latest LTS for compatibility)
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g npm
+
+# Create app directory and set working directory
+WORKDIR /testbed/
+
+# Clone the target repository and checkout the specified commit
+RUN git clone https://github.com/drawcall/Proton.git /testbed && \
+    chmod -R 777 /testbed && \
+    cd /testbed && \
+    git reset --hard 3792204 && \
+    git remote remove origin
+
+# Install Node dependencies (dev+prod) in local directory
+# RUN npm install
+
+# install project deps + rollup + plugins
+RUN npm install --save-dev rollup @rollup/plugin-node-resolve @rollup/plugin-commonjs @babel/core @babel/preset-env babel-jest @babel/plugin-transform-modules-commonjs @jest/globals
+
+
+# Set up local development linking (use local package reference in npm)
+RUN npm link
+
+# (Optional) Build project for completeness; not run tests
+RUN npm run build || true
+
+# Ensure npm binaries are preferred over system (important for local development tools)
+ENV PATH=/testbed/node_modules/.bin:$PATH
+
+# Set bash as default shell
+SHELL ["/bin/bash", "-c"]
+
+# Final permissions fix (useful for CI/test agent read/write access)
+RUN chmod -R 777 /testbed
+
+# The Dockerfile ends here; do not run tests!

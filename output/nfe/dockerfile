@@ -1,0 +1,54 @@
+# Base image specification
+FROM --platform=linux/x86_64 ubuntu:22.04
+ARG DEBIAN_FRONTEND=noninteractive
+ARG FAKE_DATE
+ENV TZ=Etc/UTC
+ENV FAKE_SYSTEM_DATE=${FAKE_DATE}
+RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-time
+
+# Install essential tools and system dependencies
+RUN apt update && apt install -y \
+    wget \
+    curl \
+    git \
+    openjdk-17-jdk \
+    maven \
+    unzip \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Manually install Gradle (compatible version)
+RUN wget https://services.gradle.org/distributions/gradle-7.6-bin.zip -O gradle.zip && \
+    unzip gradle.zip -d /opt/ && \
+    rm gradle.zip && \
+    ln -s /opt/gradle-7.6/bin/gradle /usr/bin/gradle
+
+# Set environment variables for Java and Gradle
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+ENV PATH=$JAVA_HOME/bin:$PATH
+ENV PATH=/opt/gradle-7.6/bin:$PATH
+
+# Set default work directory
+WORKDIR /testbed/
+
+# Clone and set up the target repository
+RUN git clone https://github.com/Samuel-Oliveira/Java_NFe.git /testbed && \
+    cd /testbed && \
+    git reset --hard 684f6e2a926e63e6e598e8428c041ad5c1da5dd7 && \
+    git remote remove origin
+
+# Download and extract the schemas.zip file
+RUN wget https://github.com/Samuel-Oliveira/Java_NFe/raw/master/schemas.zip -O /testbed/schemas.zip && \
+    unzip /testbed/schemas.zip -d /testbed/schemas && \
+    rm /testbed/schemas.zip
+
+# Install Maven dependencies (validate setup)
+# RUN mvn dependency:resolve
+RUN mvn clean install -DskipTests -Dgpg.skip
+
+# Configure environment for easy usage
+RUN echo 'export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64' >> /root/.bashrc && \
+    echo 'export PATH=$JAVA_HOME/bin:/opt/gradle-7.6/bin:$PATH' >> /root/.bashrc
+
+# Ensure permissions for the project directory
+RUN chmod -R 777 /testbed/

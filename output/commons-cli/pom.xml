@@ -1,0 +1,22 @@
+                echo "=== 在 pom.xml 中添加 JUnit 4 依赖 ==="
+                # 检查是否已存在 junit 依赖，避免重复添加
+                if ! grep -q "<artifactId>junit</artifactId>" pom.xml; then
+                    sed -i '/<\/dependencies>/i \
+            <dependency>\
+                <groupId>junit</groupId>\
+                <artifactId>junit</artifactId>\
+                <version>4.13.2</version>\
+                <scope>test</scope>\
+            </dependency>' pom.xml
+                fi
+
+                # 添加 JUnit Vintage 引擎（版本与项目 JUnit 5 一致）
+                if ! grep -q "<artifactId>junit-vintage-engine</artifactId>" pom.xml; then
+                    sed -i '/<\/dependencies>/i \
+                    <dependency>\
+                        <groupId>org.junit.vintage</groupId>\
+                        <artifactId>junit-vintage-engine</artifactId>\
+                        <version>5.14.1</version>\
+                        <scope>test</scope>\
+                    </dependency>' pom.xml
+                fi

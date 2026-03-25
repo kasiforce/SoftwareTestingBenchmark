@@ -1,0 +1,63 @@
+# Base image specification
+FROM --platform=linux/x86_64 ubuntu:22.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+ARG FAKE_DATE
+ENV TZ=Etc/UTC
+ENV FAKE_SYSTEM_DATE=${FAKE_DATE}
+
+RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-time
+
+# Essential system dependencies, including ffmpeg (for ffmpeg/ffprobe)
+RUN apt update && apt install -y \
+    wget \
+    git \
+    build-essential \
+    libffi-dev \
+    python3 \
+    python3-pip \
+    python3-venv \
+    python-is-python3 \
+    jq \
+    curl \
+    locales \
+    locales-all \
+    tzdata \
+    patch \
+    ffmpeg \
+    && rm -rf /var/lib/apt/lists/*
+
+# Upgrade pip and install hatch (Python test/build tool)
+RUN pip install --upgrade pip && pip install hatch
+
+# Set working directory
+WORKDIR /testbed/
+
+# Clone publicly accessible repository via correct URL (use HTTPS for CI/containers)
+RUN git clone https://github.com/microsoft/markitdown.git . && \
+    chmod -R 777 /testbed && \
+    git reset --hard 3d4fe3cdcced195c7f6ce6d266dbf508aa147e54 && \
+    git remote remove origin
+
+# Create Python virtual environment for project isolation
+RUN python3 -m venv /testbed/.venv && \
+    /testbed/.venv/bin/pip install --upgrade pip
+
+# Install project in editable mode with all optional/test dependencies, using authoritative source
+# RUN /testbed/.venv/bin/pip install hatch && \
+#     /testbed/.venv/bin/pip install -e packages/markitdown[all] packages/markitdown-sample-plugin packages/markitdown-mcp
+RUN /testbed/.venv/bin/pip install --upgrade pip setuptools && \
+    # 以可编辑模式安装主包和插件
+    /testbed/.venv/bin/pip install -e packages/markitdown[all] && \
+    /testbed/.venv/bin/pip install -e packages/markitdown-sample-plugin && \
+    /testbed/.venv/bin/pip install -e packages/markitdown-mcp
+    
+# Ensure pytest available for test scripts (do not run tests here)
+RUN /testbed/.venv/bin/pip install starlette pytest pytest-json-report
+
+# Activate venv in interactive shells
+RUN echo "source /testbed/.venv/bin/activate" >> /root/.bashrc
+
+ENV PATH=/testbed/.venv/bin/:$PATH
+
+

@@ -1,0 +1,55 @@
+# Base image specification: Use Ubuntu 22.04 with bash support
+FROM --platform=linux/x86_64 ubuntu:22.04
+ARG DEBIAN_FRONTEND=noninteractive
+ARG FAKE_DATE
+ENV TZ=Etc/UTC
+ENV FAKE_SYSTEM_DATE=${FAKE_DATE}
+RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-time
+
+# System dependencies installation
+RUN apt-get update && apt-get install -y \
+    wget \
+    git \
+    curl \
+    ca-certificates \
+    build-essential \
+    python3 \
+    python3-pip \
+    patch \
+    jq \
+    locales \
+    locales-all \
+    tzdata \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Node.js 20.x (LTS) using NodeSource
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install -g npm \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set up a dedicated npm global and project environment
+ENV NPM_CONFIG_PREFIX=/testbed/.npm-global
+ENV PATH=/testbed/.npm-global/bin:$PATH
+
+# Create project working directory
+WORKDIR /testbed/
+
+# Clone the target repository and checkout to specific commit
+RUN git clone https://github.com/ehmicky/modern-errors.git /testbed \
+    && cd /testbed \
+    && git reset --hard 112ffb8f378ec0aaeb020253788716c6015c6869 \
+    && git remote remove origin \
+    && chmod -R 777 /testbed
+
+# Install all project dependencies using npm (including devDependencies)
+# Plugins for dev tasks are included in devDependencies; no need for extra install
+# RUN npm install
+
+RUN npm install --save-dev rollup @rollup/plugin-node-resolve @rollup/plugin-commonjs @babel/core @babel/preset-env babel-jest @babel/plugin-transform-modules-commonjs @jest/globals
+
+# Link the local package for development mode (important for repo code; disables registry usage)
+RUN npm link
+
+# Set bash as default shell, and make sure '.npm-global' is always in PATH when using bash
+RUN echo 'export PATH=/testbed/.npm-global/bin:$PATH' >> /root/.bashrc
