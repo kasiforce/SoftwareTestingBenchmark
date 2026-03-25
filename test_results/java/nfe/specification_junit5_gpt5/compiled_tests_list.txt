@@ -1,0 +1,14 @@
+./target/test-classes/EnviaNfeTests.class
+./target/test-classes/br/com/swconsultoria/nfe/wsdl/NFeAutorizacao/NfeAutorizacaoLoteTests.class
+./target/test-classes/br/com/swconsultoria/nfe/wsdl/NFeConsultaProtocoloMS/NfeConsultaNFTests.class
+./target/test-classes/br/com/swconsultoria/nfe/util/CriaProcEventoGenericoTests.class
+./target/test-classes/br/com/swconsultoria/nfe/util/MontaCCeTests.class
+./target/test-classes/br/com/swconsultoria/nfe/util/CriaProcEventoCCeTests.class
+./target/test-classes/br/com/swconsultoria/nfe/util/MontaEventoTests.class
+./target/test-classes/br/com/swconsultoria/nfe/EconfTests.class
+./target/test-classes/br/com/swconsultoria/nfe/EventoCancelamentoSubstituicaoTests.class
+./target/test-classes/br/com/swconsultoria/nfe/MontaNfeTests.class
+./target/test-classes/br/com/swconsultoria/nfe/EnviarEnventoManualTests.class
+./target/test-classes/br/com/swconsultoria/nfe/impressao/ImpressaoPadraoCCeTests.class
+./target/test-classes/br/com/swconsultoria/nfe/impressao/ImpressaoPadraoNFCeTests.class
+./target/test-classes/br/com/swconsultoria/nfe/impressao/CarregaJasperResourcesTests.class

@@ -1,0 +1,355 @@
+{
+  "total": 34,
+  "syntax_correct": 33,
+  "syntax_correct_rate": 0.9705882352941176,
+  "compile_pass": 1,
+  "test_summary": {
+    "total": 3,
+    "passed": 3,
+    "failures": 0,
+    "errors": 0,
+    "pass_rate": 1.0
+  },
+  "file_coverage": {
+    "br/com/swconsultoria/nfe/CancConciliacaoFinanceira.java": {
+      "total_line": 7,
+      "covered_line": 0,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "br/com/swconsultoria/nfe/Cancelar.java": {
+      "total_line": 15,
+      "covered_line": 0,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "br/com/swconsultoria/nfe/CartaCorrecao.java": {
+      "total_line": 8,
+      "covered_line": 0,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "br/com/swconsultoria/nfe/ConsultaTributacao.java": {
+      "total_line": 275,
+      "covered_line": 0,
+      "total_branch": 158,
+      "covered_branch": 0
+    },
+    "br/com/swconsultoria/nfe/Enviar.java": {
+      "total_line": 39,
+      "covered_line": 0,
+      "total_branch": 18,
+      "covered_branch": 0
+    },
+    "br/com/swconsultoria/nfe/Nfe.java": {
+      "total_line": 22,
+      "covered_line": 0,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "br/com/swconsultoria/nfe/dom/ConfiguracoesNfe.java": {
+      "total_line": 67,
+      "covered_line": 0,
+      "total_branch": 8,
+      "covered_branch": 0
+    },
+    "br/com/swconsultoria/nfe/impressao/ImpressaoNfeUtil.java": {
+      "total_line": 67,
+      "covered_line": 8,
+      "total_branch": 6,
+      "covered_branch": 1
+    },
+    "br/com/swconsultoria/nfe/util/CancelamentoUtil.java": {
+      "total_line": 40,
+      "covered_line": 0,
+      "total_branch": 2,
+      "covered_branch": 0
+    },
+    "br/com/swconsultoria/nfe/util/CartaCorrecaoUtil.java": {
+      "total_line": 40,
+      "covered_line": 0,
+      "total_branch": 2,
+      "covered_branch": 0
+    },
+    "br/com/swconsultoria/nfe/util/EventoGenericoUtil.java": {
+      "total_line": 39,
+      "covered_line": 0,
+      "total_branch": 4,
+      "covered_branch": 0
+    },
+    "br/com/swconsultoria/nfe/wsdl/CadConsultaCadastro/ms/CadConsultaCadastro4Stub.java": {
+      "total_line": 504,
+      "covered_line": 0,
+      "total_branch": 184,
+      "covered_branch": 0
+    },
+    "br/com/swconsultoria/nfe/wsdl/NFeAutorizacao/NFeAutorizacao4Stub.java": {
+      "total_line": 788,
+      "covered_line": 0,
+      "total_branch": 272,
+      "covered_branch": 0
+    },
+    "br/com/swconsultoria/nfe/wsdl/NFeConsultaProtocoloMS/NFeConsultaProtocolo4Stub.java": {
+      "total_line": 503,
+      "covered_line": 0,
+      "total_branch": 184,
+      "covered_branch": 0
+    },
+    "br/com/swconsultoria/nfe/wsdl/NFeDistribuicaoDFe/NFeDistribuicaoDFeStub.java": {
+      "total_line": 789,
+      "covered_line": 0,
+      "total_branch": 374,
+      "covered_branch": 0
+    },
+    "br/com/swconsultoria/nfe/wsdl/NFeInutilizacao/ce/NFeInutilizacao4Stub.java": {
+      "total_line": 504,
+      "covered_line": 0,
+      "total_branch": 184,
+      "covered_branch": 0
+    },
+    "br/com/swconsultoria/nfe/wsdl/NFeRecepcaoEvento/NFeRecepcaoEvento4Stub.java": {
+      "total_line": 503,
+      "covered_line": 0,
+      "total_branch": 184,
+      "covered_branch": 0
+    },
+    "br/com/swconsultoria/nfe/wsdl/NFeRetAutorizacao/NFeRetAutorizacao4Stub.java": {
+      "total_line": 503,
+      "covered_line": 0,
+      "total_branch": 184,
+      "covered_branch": 0
+    },
+    "br/com/swconsultoria/nfe/wsdl/NFeStatusServico4MS/NFeStatusServico4Stub.java": {
+      "total_line": 503,
+      "covered_line": 0,
+      "total_branch": 184,
+      "covered_branch": 0
+    }
+  },
+  "function_coverage": {
+    "br.com.swconsultoria.nfe.wsdl.NFeRecepcaoEvento.NFeRecepcaoEvento4Stub.nfeRecepcaoEvento": {
+      "total_line": 54,
+      "covered_line": 0,
+      "total_branch": 6,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.wsdl.CadConsultaCadastro.ms.CadConsultaCadastro4Stub.consultaCadastro": {
+      "total_line": 55,
+      "covered_line": 0,
+      "total_branch": 6,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.wsdl.NFeAutorizacao.NFeAutorizacao4Stub.nfeAutorizacaoLote": {
+      "total_line": 54,
+      "covered_line": 0,
+      "total_branch": 6,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.wsdl.NFeAutorizacao.NFeAutorizacao4Stub.nfeAutorizacaoLoteZip": {
+      "total_line": 54,
+      "covered_line": 0,
+      "total_branch": 6,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.wsdl.NFeConsultaProtocoloMS.NFeConsultaProtocolo4Stub.nfeConsultaNF": {
+      "total_line": 54,
+      "covered_line": 0,
+      "total_branch": 6,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.wsdl.NFeRetAutorizacao.NFeRetAutorizacao4Stub.nfeRetAutorizacaoLote": {
+      "total_line": 54,
+      "covered_line": 0,
+      "total_branch": 6,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.Cancelar.eventoCancelamento": {
+      "total_line": 7,
+      "covered_line": 0,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.Cancelar.eventoCancelamentoSubstituicao": {
+      "total_line": 7,
+      "covered_line": 0,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.CancConciliacaoFinanceira.eventoEConf": {
+      "total_line": 7,
+      "covered_line": 0,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.CartaCorrecao.eventoCCe": {
+      "total_line": 7,
+      "covered_line": 0,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.Enviar.montaNfe": {
+      "total_line": 9,
+      "covered_line": 0,
+      "total_branch": 2,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.Enviar.enviaNfe": {
+      "total_line": 29,
+      "covered_line": 0,
+      "total_branch": 16,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.ConsultaTributacao.get": {
+      "total_line": 2,
+      "covered_line": 0,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.ConsultaTributacao.validate": {
+      "total_line": 2,
+      "covered_line": 0,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.ConsultaTributacao$ValidationReport.generateReport": {
+      "total_line": 32,
+      "covered_line": 0,
+      "total_branch": 26,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.Nfe.enviarEnventoManual": {
+      "total_line": 1,
+      "covered_line": 0,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.Nfe.cancelamentoInsucessoEntrega": {
+      "total_line": 2,
+      "covered_line": 0,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.Nfe.econf": {
+      "total_line": 1,
+      "covered_line": 0,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.Nfe.cancelamentoEconf": {
+      "total_line": 2,
+      "covered_line": 0,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.util.EventoGenericoUtil.montaEvento": {
+      "total_line": 29,
+      "covered_line": 0,
+      "total_branch": 4,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.util.EventoGenericoUtil.criaProcEventoGenerico": {
+      "total_line": 10,
+      "covered_line": 0,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.util.CartaCorrecaoUtil.montaCCe": {
+      "total_line": 7,
+      "covered_line": 0,
+      "total_branch": 2,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.util.CartaCorrecaoUtil.criaProcEventoCCe": {
+      "total_line": 9,
+      "covered_line": 0,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.util.CancelamentoUtil.montaCancelamento": {
+      "total_line": 7,
+      "covered_line": 0,
+      "total_branch": 2,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.util.CancelamentoUtil.criaProcEventoCancelamento": {
+      "total_line": 9,
+      "covered_line": 0,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.dom.ConfiguracoesNfe.criarConfiguracoes": {
+      "total_line": 19,
+      "covered_line": 0,
+      "total_branch": 4,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.wsdl.NFeDistribuicaoDFe.NFeDistribuicaoDFeStub.nfeDistDFeInteresse": {
+      "total_line": 49,
+      "covered_line": 0,
+      "total_branch": 6,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.impressao.ImpressaoNfeUtil.geraImpressao": {
+      "total_line": 4,
+      "covered_line": 0,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.impressao.ImpressaoNfeUtil.carregaJasperResources": {
+      "total_line": 6,
+      "covered_line": 3,
+      "total_branch": 2,
+      "covered_branch": 1
+    },
+    "br.com.swconsultoria.nfe.impressao.ImpressaoNfeUtil.impressaoPadraoNFCe": {
+      "total_line": 7,
+      "covered_line": 0,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.impressao.ImpressaoNfeUtil.impressaoPadraoCCe": {
+      "total_line": 5,
+      "covered_line": 5,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.wsdl.NFeStatusServico4MS.NFeStatusServico4Stub.nfeStatusServicoNF": {
+      "total_line": 54,
+      "covered_line": 0,
+      "total_branch": 6,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.wsdl.NFeInutilizacao.ce.NFeInutilizacao4Stub.nfeInutilizacaoNF": {
+      "total_line": 55,
+      "covered_line": 0,
+      "total_branch": 6,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.wsdl.NFeInutilizacao.ce.NFeInutilizacao4Stub$NfeResultMsg$Factory.parse": {
+      "total_line": 42,
+      "covered_line": 0,
+      "total_branch": 26,
+      "covered_branch": 0
+    },
+    "br.com.swconsultoria.nfe.wsdl.NFeInutilizacao.ce.NFeInutilizacao4Stub$NfeDadosMsg$Factory.parse": {
+      "total_line": 42,
+      "covered_line": 0,
+      "total_branch": 26,
+      "covered_branch": 0
+    }
+  },
+  "summary": {
+    "file": {
+      "total_lines": 5216,
+      "covered_lines": 8,
+      "total_branches": 1948,
+      "covered_branches": 1
+    },
+    "function": {
+      "total_lines": 800,
+      "covered_lines": 8,
+      "total_branches": 164,
+      "covered_branches": 1
+    }
+  }
+}

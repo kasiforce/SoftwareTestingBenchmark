@@ -1,0 +1,53 @@
+# Use Ubuntu 22.04 as a robust base image with Bash by default
+FROM --platform=linux/x86_64 ubuntu:22.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+ARG FAKE_DATE
+ENV TZ=Etc/UTC
+ENV FAKE_SYSTEM_DATE=${FAKE_DATE}
+
+# Ignore GPG timestamp validity issues for apt repositories if needed
+RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-time
+
+# Update and install essential system packages
+RUN apt update && apt install -y \
+    git \
+    wget \
+    openjdk-8-jdk \
+    maven \
+    curl \
+    build-essential \
+    locales \
+    tzdata \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set JAVA_HOME for Java 8 and Maven to find it
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+ENV PATH=$JAVA_HOME/bin:$PATH
+
+# Fix locale settings for Maven builds
+RUN locale-gen en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US:en
+ENV LC_ALL=en_US.UTF-8
+
+# Prepare the testbed working directory
+WORKDIR /testbed/
+
+# Clone the repository, checkout specific commit, remove origin, and ensure permissions
+RUN git clone https://github.com/apache/commons-jxpath.git /testbed && \
+    chmod -R 777 /testbed && \
+    cd /testbed && \
+    git reset --hard 84a5110 && \
+    git remote remove origin
+
+# Install all project dependencies in 'development' mode via Maven, skipping tests (tests are run later)
+RUN mvn install -DskipTests
+
+# Ensure Maven, Java 8, and Git are prioritized in the environment (already set in the PATH above)
+# Shell initialization: ensure child shells have required PATH and JAVA_HOME
+RUN echo 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' >> /root/.bashrc && \
+    echo 'export PATH=$JAVA_HOME/bin:$PATH' >> /root/.bashrc
+
+# Use Bash shell for compatibility by default
+SHELL ["/bin/bash", "-c"]

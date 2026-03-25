@@ -1,0 +1,63 @@
+FROM --platform=linux/x86_64 ubuntu:22.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+ARG FAKE_DATE
+ENV TZ=Etc/UTC
+ENV FAKE_SYSTEM_DATE=${FAKE_DATE}
+
+# Ignore expiration of apt repository metadata
+RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-time
+
+# Install system dependencies and Python3.11 + pip
+RUN apt update && apt install -y \
+    git \
+    wget \
+    curl \
+    build-essential \
+    python3.11 \
+    python3.11-venv \
+    python3.11-dev \
+    python3-pip \
+    ca-certificates \
+    patch \
+    jq \
+    libffi-dev \
+    libtiff-dev \
+    locales \
+    locales-all \
+    tzdata \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set python3 to point to python3.11 explicitly
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
+
+# Upgrade pip for Python 3.11 and in venv
+RUN python3.11 -m pip install --upgrade pip
+
+SHELL ["/bin/bash", "-c"]
+
+# Install uv and tox-uv using pip (tox-uv is required for uv-venv-lock-runner in tox)
+RUN python3.11 -m pip install uv tox tox-uv
+
+# Create and activate the testbed virtual environment
+RUN python3.11 -m venv /opt/testbed
+ENV PATH=/opt/testbed/bin:$PATH
+
+# Prepare work directory
+WORKDIR /testbed/
+
+# Clone flask repo and checkout specific commit
+RUN git clone https://github.com/pallets/flask.git /testbed && \
+    cd /testbed && \
+    git reset --hard 2579ce9f18e67ec3213c6eceb5240310ccd46af8 && \
+    git remote remove origin && \
+    chmod -R 777 /testbed
+
+# Upgrade pip in venv (if needed)
+RUN pip install --upgrade pip
+
+# Install all project dependencies with uv (as per core CI setup, installs all lock groups)
+# RUN uv pip install --system -e .[dev,pre-commit,tests,typing]
+RUN pip install -e .[dev,pre-commit,tests,typing]
+# Ensure bash startup activates venv
+RUN echo "source /opt/testbed/bin/activate" >> /root/.bashrc

@@ -1,0 +1,60 @@
+if ! grep -q "<artifactId>junit</artifactId>" pom.xml; then
+                    sed -i '/<\/dependencies>/i \
+            <dependency>\
+                <groupId>junit</groupId>\
+                <artifactId>junit</artifactId>\
+                <version>4.13.2</version>\
+                <scope>test</scope>\
+            </dependency>' pom.xml
+                fi
+
+                if ! grep -q "<artifactId>junit-vintage-engine</artifactId>" pom.xml; then
+                    sed -i '/<\/dependencies>/i \
+                    <dependency>\
+                        <groupId>org.junit.vintage</groupId>\
+                        <artifactId>junit-vintage-engine</artifactId>\
+                        <version>5.13.3</version>\
+                        <scope>test</scope>\
+                    </dependency>' pom.xml
+                fi
+           
+                if ! grep -q "<artifactId>mockito-core</artifactId>" pom.xml; then
+                    sed -i '/<\/dependencies>/i \
+                    <dependency>\
+                        <groupId>org.mockito</groupId>\
+                        <artifactId>mockito-core</artifactId>\
+                        <version>4.11.0</version>\
+                        <scope>test</scope>\
+                    </dependency>' pom.xml
+                fi
+
+                sed -i 's|<argLine>-javaagent:src/test/resources/agent.jar</argLine>|<argLine>@{{argLine}} -javaagent:src/test/resources/agent.jar</argLine>|' pom.xml
+
+                if ! grep -q "<artifactId>jakarta.xml.bind-api</artifactId>" pom.xml; then
+                    sed -i '/<\/dependencies>/i \
+                    <dependency>\
+                        <groupId>jakarta.xml.bind</groupId>\
+                        <artifactId>jakarta.xml.bind-api</artifactId>\
+                        <version>4.0.0</version>\
+                    </dependency>' pom.xml
+                fi
+
+                if ! grep -q "<artifactId>jaxb-runtime</artifactId>" pom.xml; then
+                    sed -i '/<\/dependencies>/i \
+                    <dependency>\
+                        <groupId>org.glassfish.jaxb</groupId>\
+                        <artifactId>jaxb-runtime</artifactId>\
+                        <version>4.0.3</version>\
+                        <scope>runtime</scope>\
+                    </dependency>' pom.xml
+                fi
+
+                if ! grep -q "<artifactId>junit-jupiter-engine</artifactId>" pom.xml; then
+                    sed -i '/<\/dependencies>/i \
+                    <dependency>\
+                        <groupId>org.junit.jupiter</groupId>\
+                        <artifactId>junit-jupiter-engine</artifactId>\
+                        <version>5.13.3</version>\
+                        <scope>test</scope>\
+                    </dependency>' pom.xml
+                fi

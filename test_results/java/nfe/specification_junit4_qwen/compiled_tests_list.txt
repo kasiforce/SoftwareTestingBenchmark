@@ -1,0 +1,1 @@
+./target/test-classes/br/com/swconsultoria/nfe/wsdl/NFeStatusServico4MS/NfeStatusServicoNFTests.class

@@ -1,0 +1,75 @@
+# # Use Ubuntu 22.04 as base, which includes /bin/bash by default
+# FROM --platform=linux/x86_64 ubuntu:22.04
+# ARG DEBIAN_FRONTEND=noninteractive
+# ARG FAKE_DATE
+# ENV TZ=Etc/UTC
+# ENV FAKE_SYSTEM_DATE=${FAKE_DATE}
+# RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-time
+
+# # Install system dependencies and essential tools
+# RUN apt update && apt install -y \
+#     git \
+#     curl \
+#     build-essential \
+#     wget \
+#     jq \
+#     locales \
+#     locales-all \
+#     tzdata \
+#     ca-certificates \
+#     && rm -rf /var/lib/apt/lists/*
+
+# # Set locale
+# ENV LANG=C.UTF-8
+# ENV LC_ALL=C.UTF-8
+
+# # Install Node.js and npm (latest LTS version, suitable for 'modern' Node)
+# RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+#     apt-get install -y nodejs && \
+#     npm install -g npm@latest
+
+# # Create a dedicated directory and set as workdir
+# WORKDIR /testbed/
+
+# # Clone the simple-statistics repo and checkout the provided commit
+# RUN git clone https://github.com/simple-statistics/simple-statistics.git /testbed && \
+#     cd /testbed && \
+#     git reset --hard 3949249 && \
+#     git remote remove origin && \
+#     chmod -R 777 /testbed
+
+# # Install all project dependencies using npm
+# RUN npm install
+
+# # Link the package in development mode to ensure local code is referenced if needed by consumer projects/scripts
+# RUN npm link
+
+# # Set up bashrc to ensure npm/bin is always on the PATH
+# RUN echo "export PATH=$(npm bin):\$PATH" >> /root/.bashrc
+
+# # Set environment PATH so the container prioritizes locally installed node modules
+# ENV PATH=/testbed/node_modules/.bin:$PATH
+
+# # Done -- ready for running tests via npm test (not executed here per requirements)
+
+FROM ubuntu:22.04
+ARG DEBIAN_FRONTEND=noninteractive
+
+# install system deps
+RUN apt update && apt install -y curl git build-essential locales-all tzdata ca-certificates
+
+# install Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && npm install -g npm@latest
+
+WORKDIR /testbed
+
+# clone project
+RUN git clone https://github.com/simple-statistics/simple-statistics.git /testbed && \
+    cd /testbed && git reset --hard 3949249 && git remote remove origin
+
+# install project deps + rollup + plugins
+RUN npm install --save-dev rollup @rollup/plugin-node-resolve @rollup/plugin-commonjs @babel/core @babel/preset-env babel-jest @babel/plugin-transform-modules-commonjs @jest/globals
+
+# add node_modules/.bin to PATH
+ENV PATH=/testbed/node_modules/.bin:$PATH

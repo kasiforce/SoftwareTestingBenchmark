@@ -1,0 +1,64 @@
+# Base image specification. Defines the foundation OS and architecture for the container (Required)
+FROM --platform=linux/x86_64 ubuntu:22.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+ARG FAKE_DATE
+ENV TZ=Etc/UTC
+ENV FAKE_SYSTEM_DATE=${FAKE_DATE}
+
+# To bypass potential apt GPG date issues
+RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-time
+
+# System dependencies installation. Installs essential tools and libraries required for development and runtime (Required)
+RUN apt-get update && \
+    apt-get install -y \
+        wget \
+        git \
+        build-essential \
+        python3.11 \
+        python3.11-venv \
+        python3.11-dev \
+        python3-pip \
+        locales \
+        locales-all \
+        libffi-dev \
+        tzdata \
+        curl \
+        ca-certificates \
+        && rm -rf /var/lib/apt/lists/*
+
+# Set python3.11 as default python and pip
+RUN ln -sf /usr/bin/python3.11 /usr/local/bin/python && \
+    ln -sf /usr/bin/pip3 /usr/local/bin/pip
+
+# Set default shell to bash
+SHELL ["/bin/bash", "-c"]
+
+# Create and activate virtual environment
+ENV VIRTUAL_ENV=/opt/venv/testbed
+RUN python -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# Upgrade pip in venv
+RUN pip install --upgrade pip
+
+# Set default workdir to testbed
+WORKDIR /testbed/
+
+# Target Project setup. Clones source code, checkouts to the target version, configures it, and installs project-specific dependencies
+RUN git clone https://github.com/pylint-dev/pylint.git /testbed && \
+    cd /testbed && \
+    git reset --hard f5b9d75 && \
+    git remote remove origin
+
+# Install all production and test dependencies as specified
+# Install via requirements_test.txt and then pip install -e .
+RUN pip install --upgrade pip && \
+    pip install -e . && \
+    pip install -r requirements_test.txt
+
+# Configure to ensure binaries from virtual environment are prioritized
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# Ensure bashrc initializes the environment for interactive shells (optional, good practice)
+RUN echo "source $VIRTUAL_ENV/bin/activate" >> /root/.bashrc

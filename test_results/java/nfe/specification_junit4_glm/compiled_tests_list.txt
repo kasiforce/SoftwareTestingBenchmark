@@ -1,0 +1,2 @@
+./target/test-classes/br/com/swconsultoria/nfe/EnviarEnventoManualTests.class
+./target/test-classes/br/com/swconsultoria/nfe/impressao/ImpressaoPadraoCCeTests.class
