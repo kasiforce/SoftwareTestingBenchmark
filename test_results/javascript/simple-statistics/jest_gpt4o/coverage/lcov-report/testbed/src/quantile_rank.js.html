@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/25</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/25</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
@@ -88,56 +88,56 @@
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import numericSort from "./numeric_sort.js";</span></span></span>
-<span class="cstat-no" title="statement not covered" >import quantileRankSorted from "./quantile_rank_sorted.js";</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >/**</span>
-<span class="cstat-no" title="statement not covered" > * This function returns the quantile in which one would find the given value in</span>
-<span class="cstat-no" title="statement not covered" > * the given array. It will copy and sort your array before each run, so</span>
-<span class="cstat-no" title="statement not covered" > * if you know your array is already sorted, you should use `quantileRankSorted`</span>
-<span class="cstat-no" title="statement not covered" > * instead.</span>
-<span class="cstat-no" title="statement not covered" > *</span>
-<span class="cstat-no" title="statement not covered" > * @param {Array&lt;number&gt;} x input</span>
-<span class="cstat-no" title="statement not covered" > * @returns {number} value value</span>
-<span class="cstat-no" title="statement not covered" > * @example</span>
-<span class="cstat-no" title="statement not covered" > * quantileRank([4, 3, 1, 2], 3); // =&gt; 0.75</span>
-<span class="cstat-no" title="statement not covered" > * quantileRank([4, 3, 2, 3, 1], 3); // =&gt; 0.7</span>
-<span class="cstat-no" title="statement not covered" > * quantileRank([2, 4, 1, 3], 6); // =&gt; 1</span>
-<span class="cstat-no" title="statement not covered" > * quantileRank([5, 3, 1, 2, 3], 4); // =&gt; 0.8</span>
-<span class="cstat-no" title="statement not covered" > */</span>
-<span class="cstat-no" title="statement not covered" >function quantileRank(x, value) {</span>
-<span class="cstat-no" title="statement not covered" >    // Cloning and sorting the array</span>
-<span class="cstat-no" title="statement not covered" >    const sortedCopy = numericSort(x);</span>
-<span class="cstat-no" title="statement not covered" ></span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import numericSort from "./numeric_sort.js";
+import quantileRankSorted from "./quantile_rank_sorted.js";
+&nbsp;
+/**
+ * This function returns the quantile in which one would find the given value in
+ * the given array. It will copy and sort your array before each run, so
+ * if you know your array is already sorted, you should use `quantileRankSorted`
+ * instead.
+ *
+ * @param {Array&lt;number&gt;} x input
+ * @returns {number} value value
+ * @example
+ * quantileRank([4, 3, 1, 2], 3); // =&gt; 0.75
+ * quantileRank([4, 3, 2, 3, 1], 3); // =&gt; 0.7
+ * quantileRank([2, 4, 1, 3], 6); // =&gt; 1
+ * quantileRank([5, 3, 1, 2, 3], 4); // =&gt; 0.8
+ */
+function <span class="fstat-no" title="function not covered" >quantileRank(</span>x, value) {
+    // Cloning and sorting the array
+    const sortedCopy = <span class="cstat-no" title="statement not covered" >numericSort(x);</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >    return quantileRankSorted(sortedCopy, value);</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default quantileRank;</span>
+}
+&nbsp;
+export default quantileRank;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -145,7 +145,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-25T08:05:39.837Z
+                at 2026-03-26T03:45:49.455Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

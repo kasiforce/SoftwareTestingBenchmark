@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/31</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/31</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
@@ -94,68 +94,68 @@
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { checkCustom } from './check.js'</span></span></span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >// The `custom` option can be used to customize a specific error class.</span>
-<span class="cstat-no" title="statement not covered" >// It must extend directly from the parent class.</span>
-<span class="cstat-no" title="statement not covered" >// We use a thin child class instead of `custom` directly since this allows:</span>
-<span class="cstat-no" title="statement not covered" >//  - Mutating it, e.g. its `name`, without modifying the `custom` option</span>
-<span class="cstat-no" title="statement not covered" >//  - Creating several classes with the same `custom` option</span>
-<span class="cstat-no" title="statement not covered" >// `setErrorName()` also checks that `name` is a string and is not one of the</span>
-<span class="cstat-no" title="statement not covered" >// native error classes.</span>
-<span class="cstat-no" title="statement not covered" >// `custom` instance properties and errors set after instantiation can always</span>
-<span class="cstat-no" title="statement not covered" >// override any other property</span>
-<span class="cstat-no" title="statement not covered" >//  - Including error core properties, `plugin.properties()`, instance|static</span>
-<span class="cstat-no" title="statement not covered" >//    methods</span>
-<span class="cstat-no" title="statement not covered" >//  - Reasons:</span>
-<span class="cstat-no" title="statement not covered" >//     - It is not possible for `ModernError` to check its child class since it</span>
-<span class="cstat-no" title="statement not covered" >//       is called afterwards</span>
-<span class="cstat-no" title="statement not covered" >//     - It allows for some useful overrides like `toJSON()`</span>
-<span class="cstat-no" title="statement not covered" >//     - It prevents user-defined `props` from overriding `custom` properties</span>
-<span class="cstat-no" title="statement not covered" >export const getErrorClass = (ParentError, custom) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const ParentClass = getParentClass(ParentError, custom)</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { checkCustom } from './check.js'
+&nbsp;
+// The `custom` option can be used to customize a specific error class.
+// It must extend directly from the parent class.
+// We use a thin child class instead of `custom` directly since this allows:
+//  - Mutating it, e.g. its `name`, without modifying the `custom` option
+//  - Creating several classes with the same `custom` option
+// `setErrorName()` also checks that `name` is a string and is not one of the
+// native error classes.
+// `custom` instance properties and errors set after instantiation can always
+// override any other property
+//  - Including error core properties, `plugin.properties()`, instance|static
+//    methods
+//  - Reasons:
+//     - It is not possible for `ModernError` to check its child class since it
+//       is called afterwards
+//     - It allows for some useful overrides like `toJSON()`
+//     - It prevents user-defined `props` from overriding `custom` properties
+export const getErrorClass = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(P</span>arentError, custom) =&gt; {</span>
+  const ParentClass = <span class="cstat-no" title="statement not covered" >getParentClass(ParentError, custom)</span>
 <span class="cstat-no" title="statement not covered" >  return class extends ParentClass {}</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >const getParentClass = (ParentError, custom) =&gt; {</span>
+}
+&nbsp;
+const getParentClass = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(P</span>arentError, custom) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  if (custom === undefined) {</span>
 <span class="cstat-no" title="statement not covered" >    return ParentError</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
+  }
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  checkCustom(custom, ParentError)</span>
 <span class="cstat-no" title="statement not covered" >  return custom</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -163,7 +163,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-25T08:31:17.949Z
+                at 2026-03-26T05:17:20.343Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

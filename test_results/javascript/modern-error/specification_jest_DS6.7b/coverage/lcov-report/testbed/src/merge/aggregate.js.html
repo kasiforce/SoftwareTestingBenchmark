@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/22</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/22</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
@@ -85,50 +85,50 @@
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { setNonEnumProp } from '../utils/descriptors.js'</span></span></span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >// Array of `errors` can be set using an option.</span>
-<span class="cstat-no" title="statement not covered" >// This is like `AggregateError` except:</span>
-<span class="cstat-no" title="statement not covered" >//  - This is available in any class, removing the need to create separate</span>
-<span class="cstat-no" title="statement not covered" >//    classes for it</span>
-<span class="cstat-no" title="statement not covered" >//  - Any class can opt-in to it or not</span>
-<span class="cstat-no" title="statement not covered" >//  - This uses a named parameter instead of a positional one:</span>
-<span class="cstat-no" title="statement not covered" >//     - This is more monomorphic</span>
-<span class="cstat-no" title="statement not covered" >//     - This parallels the `cause` option</span>
-<span class="cstat-no" title="statement not covered" >// Child `errors` are always kept, only appended to.</span>
-<span class="cstat-no" title="statement not covered" >export const setAggregateErrors = (error, errors) =&gt; {</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { setNonEnumProp } from '../utils/descriptors.js'
+&nbsp;
+// Array of `errors` can be set using an option.
+// This is like `AggregateError` except:
+//  - This is available in any class, removing the need to create separate
+//    classes for it
+//  - Any class can opt-in to it or not
+//  - This uses a named parameter instead of a positional one:
+//     - This is more monomorphic
+//     - This parallels the `cause` option
+// Child `errors` are always kept, only appended to.
+export const setAggregateErrors = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>rror, errors) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  if (errors === undefined) {</span>
 <span class="cstat-no" title="statement not covered" >    return</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
+  }
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  if (!Array.isArray(errors)) {</span>
 <span class="cstat-no" title="statement not covered" >    throw new TypeError(`"errors" option must be an array: ${errors}`)</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
+  }
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  setNonEnumProp(error, 'errors', errors)</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -136,7 +136,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-25T08:37:31.789Z
+                at 2026-03-26T05:15:42.737Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

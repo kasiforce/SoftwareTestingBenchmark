@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">12.5% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/16</span>
+                <span class='fraction'>0/16</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/6</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/10</span>
+                <span class='fraction'>0/11</span>
             </div>
         
             
@@ -100,16 +100,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -121,42 +114,49 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import Mat3 from "../math/Mat3";
 &nbsp;
 export default class MStack {
-<span class="fstat-no" title="function not covered" >  constructor() {</span>
+<span class="fstat-no" title="function not covered" >  co</span>nstructor() {
 <span class="cstat-no" title="statement not covered" >    this.mats = [];</span>
-    this.size = 0;
+<span class="cstat-no" title="statement not covered" >    this.size = 0;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    for (let i = <span class="cstat-no" title="statement not covered" >0; i</span> &lt; 20; i++) <span class="cstat-no" title="statement not covered" >this.mats.push(Mat3.create([0, 0, 0, 0, 0, 0, 0, 0, 0]));</span></span>
+<span class="cstat-no" title="statement not covered" >    for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; 20; i++) <span class="cstat-no" title="statement not covered" >this.mats.push(Mat3.create([0, 0, 0, 0, 0, 0, 0, 0, 0]));</span></span>
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  set(m</span>, i) {
-    if (i === <span class="cstat-no" title="statement not covered" >0) Mat3.set(m, this.mats[0]);</span>
-    else Mat3.multiply(this.mats[i - 1], m, this.mats[i]);
+<span class="fstat-no" title="function not covered" >  se</span>t(m, i) {
+<span class="cstat-no" title="statement not covered" >    if (i === 0) <span class="cstat-no" title="statement not covered" >Mat3.set(m, this.mats[0]);</span></span>
+    else <span class="cstat-no" title="statement not covered" >Mat3.multiply(this.mats[i - 1], m, this.mats[i]);</span>
 &nbsp;
-    this.size = Math.max(this.size, i + 1);
+<span class="cstat-no" title="statement not covered" >    this.size = Math.max(this.size, i + 1);</span>
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  push(m</span>) {
-    if (this.size === <span class="cstat-no" title="statement not covered" >0) <span class="cstat-no" title="statement not covered" >Mat3.set(m, this.mats[0]);</span></span>
+<span class="fstat-no" title="function not covered" >  pu</span>sh(m) {
+<span class="cstat-no" title="statement not covered" >    if (this.size === 0) <span class="cstat-no" title="statement not covered" >Mat3.set(m, this.mats[0]);</span></span>
     else <span class="cstat-no" title="statement not covered" >Mat3.multiply(this.mats[this.size - 1], m, this.mats[this.size]);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    this.size++;</span>
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  pop() {</span>
-<span class="cstat-no" title="statement not covered" >    if (<span class="cstat-no" title="statement not covered" >this.size &gt; 0) <span class="cstat-no" title="statement not covered" >this.size--;</span></span></span>
+<span class="fstat-no" title="function not covered" >  po</span>p() {
+<span class="cstat-no" title="statement not covered" >    if (this.size &gt; 0) <span class="cstat-no" title="statement not covered" >this.size--;</span></span>
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  top() {</span>
-<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >    return this.mats[this.size - 1];</span></span>
+<span class="fstat-no" title="function not covered" >  to</span>p() {
+<span class="cstat-no" title="statement not covered" >    return this.mats[this.size - 1];</span>
   }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -166,7 +166,7 @@ export default class MStack {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-16T02:18:54.381Z
+                at 2026-03-26T13:05:49.631Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

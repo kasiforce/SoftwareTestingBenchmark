@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/27</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/27</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
@@ -90,60 +90,60 @@
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
 <a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >/**</span></span></span>
-<span class="cstat-no" title="statement not covered" > * Given the output of `linearRegression`: an object</span>
-<span class="cstat-no" title="statement not covered" > * with `m` and `b` values indicating slope and intercept,</span>
-<span class="cstat-no" title="statement not covered" > * respectively, generate a line function that translates</span>
-<span class="cstat-no" title="statement not covered" > * x values into y values.</span>
-<span class="cstat-no" title="statement not covered" > *</span>
-<span class="cstat-no" title="statement not covered" > * @param {Object} mb object with `m` and `b` members, representing</span>
-<span class="cstat-no" title="statement not covered" > * slope and intersect of desired line</span>
-<span class="cstat-no" title="statement not covered" > * @returns {Function} method that computes y-value at any given</span>
-<span class="cstat-no" title="statement not covered" > * x-value on the line.</span>
-<span class="cstat-no" title="statement not covered" > * @example</span>
-<span class="cstat-no" title="statement not covered" > * var l = linearRegressionLine(linearRegression([[0, 0], [1, 1]]));</span>
-<span class="cstat-no" title="statement not covered" > * l(0) // = 0</span>
-<span class="cstat-no" title="statement not covered" > * l(2) // = 2</span>
-<span class="cstat-no" title="statement not covered" > * linearRegressionLine({ b: 0, m: 1 })(1); // =&gt; 1</span>
-<span class="cstat-no" title="statement not covered" > * linearRegressionLine({ b: 1, m: 1 })(1); // =&gt; 2</span>
-<span class="cstat-no" title="statement not covered" > */</span>
-<span class="cstat-no" title="statement not covered" >function linearRegressionLine(mb /*: { b: number, m: number }*/) {</span>
-<span class="cstat-no" title="statement not covered" >    // Return a function that computes a `y` value for each</span>
-<span class="cstat-no" title="statement not covered" >    // x value it is given, based on the values of `b` and `a`</span>
-<span class="cstat-no" title="statement not covered" >    // that we just computed.</span>
-<span class="cstat-no" title="statement not covered" >    return function (x) {</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * Given the output of `linearRegression`: an object
+ * with `m` and `b` values indicating slope and intercept,
+ * respectively, generate a line function that translates
+ * x values into y values.
+ *
+ * @param {Object} mb object with `m` and `b` members, representing
+ * slope and intersect of desired line
+ * @returns {Function} method that computes y-value at any given
+ * x-value on the line.
+ * @example
+ * var l = linearRegressionLine(linearRegression([[0, 0], [1, 1]]));
+ * l(0) // = 0
+ * l(2) // = 2
+ * linearRegressionLine({ b: 0, m: 1 })(1); // =&gt; 1
+ * linearRegressionLine({ b: 1, m: 1 })(1); // =&gt; 2
+ */
+function <span class="fstat-no" title="function not covered" >linearRegressionLine(</span>mb /*: { b: number, m: number }*/) {
+    // Return a function that computes a `y` value for each
+    // x value it is given, based on the values of `b` and `a`
+    // that we just computed.
+<span class="cstat-no" title="statement not covered" >    return <span class="fstat-no" title="function not covered" >fu</span>nction (x) {</span>
 <span class="cstat-no" title="statement not covered" >        return mb.b + mb.m * x;</span>
-<span class="cstat-no" title="statement not covered" >    };</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default linearRegressionLine;</span>
+    };
+}
+&nbsp;
+export default linearRegressionLine;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -151,7 +151,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-25T08:15:50.970Z
+                at 2026-03-26T03:57:43.589Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

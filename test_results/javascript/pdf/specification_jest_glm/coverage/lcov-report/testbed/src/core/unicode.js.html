@@ -1,0 +1,904 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for testbed/src/core/unicode.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">testbed/src/core</a> unicode.js</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/273</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/273</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a>
+<a name='L154'></a><a href='#L154'>154</a>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a>
+<a name='L158'></a><a href='#L158'>158</a>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a>
+<a name='L161'></a><a href='#L161'>161</a>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a>
+<a name='L178'></a><a href='#L178'>178</a>
+<a name='L179'></a><a href='#L179'>179</a>
+<a name='L180'></a><a href='#L180'>180</a>
+<a name='L181'></a><a href='#L181'>181</a>
+<a name='L182'></a><a href='#L182'>182</a>
+<a name='L183'></a><a href='#L183'>183</a>
+<a name='L184'></a><a href='#L184'>184</a>
+<a name='L185'></a><a href='#L185'>185</a>
+<a name='L186'></a><a href='#L186'>186</a>
+<a name='L187'></a><a href='#L187'>187</a>
+<a name='L188'></a><a href='#L188'>188</a>
+<a name='L189'></a><a href='#L189'>189</a>
+<a name='L190'></a><a href='#L190'>190</a>
+<a name='L191'></a><a href='#L191'>191</a>
+<a name='L192'></a><a href='#L192'>192</a>
+<a name='L193'></a><a href='#L193'>193</a>
+<a name='L194'></a><a href='#L194'>194</a>
+<a name='L195'></a><a href='#L195'>195</a>
+<a name='L196'></a><a href='#L196'>196</a>
+<a name='L197'></a><a href='#L197'>197</a>
+<a name='L198'></a><a href='#L198'>198</a>
+<a name='L199'></a><a href='#L199'>199</a>
+<a name='L200'></a><a href='#L200'>200</a>
+<a name='L201'></a><a href='#L201'>201</a>
+<a name='L202'></a><a href='#L202'>202</a>
+<a name='L203'></a><a href='#L203'>203</a>
+<a name='L204'></a><a href='#L204'>204</a>
+<a name='L205'></a><a href='#L205'>205</a>
+<a name='L206'></a><a href='#L206'>206</a>
+<a name='L207'></a><a href='#L207'>207</a>
+<a name='L208'></a><a href='#L208'>208</a>
+<a name='L209'></a><a href='#L209'>209</a>
+<a name='L210'></a><a href='#L210'>210</a>
+<a name='L211'></a><a href='#L211'>211</a>
+<a name='L212'></a><a href='#L212'>212</a>
+<a name='L213'></a><a href='#L213'>213</a>
+<a name='L214'></a><a href='#L214'>214</a>
+<a name='L215'></a><a href='#L215'>215</a>
+<a name='L216'></a><a href='#L216'>216</a>
+<a name='L217'></a><a href='#L217'>217</a>
+<a name='L218'></a><a href='#L218'>218</a>
+<a name='L219'></a><a href='#L219'>219</a>
+<a name='L220'></a><a href='#L220'>220</a>
+<a name='L221'></a><a href='#L221'>221</a>
+<a name='L222'></a><a href='#L222'>222</a>
+<a name='L223'></a><a href='#L223'>223</a>
+<a name='L224'></a><a href='#L224'>224</a>
+<a name='L225'></a><a href='#L225'>225</a>
+<a name='L226'></a><a href='#L226'>226</a>
+<a name='L227'></a><a href='#L227'>227</a>
+<a name='L228'></a><a href='#L228'>228</a>
+<a name='L229'></a><a href='#L229'>229</a>
+<a name='L230'></a><a href='#L230'>230</a>
+<a name='L231'></a><a href='#L231'>231</a>
+<a name='L232'></a><a href='#L232'>232</a>
+<a name='L233'></a><a href='#L233'>233</a>
+<a name='L234'></a><a href='#L234'>234</a>
+<a name='L235'></a><a href='#L235'>235</a>
+<a name='L236'></a><a href='#L236'>236</a>
+<a name='L237'></a><a href='#L237'>237</a>
+<a name='L238'></a><a href='#L238'>238</a>
+<a name='L239'></a><a href='#L239'>239</a>
+<a name='L240'></a><a href='#L240'>240</a>
+<a name='L241'></a><a href='#L241'>241</a>
+<a name='L242'></a><a href='#L242'>242</a>
+<a name='L243'></a><a href='#L243'>243</a>
+<a name='L244'></a><a href='#L244'>244</a>
+<a name='L245'></a><a href='#L245'>245</a>
+<a name='L246'></a><a href='#L246'>246</a>
+<a name='L247'></a><a href='#L247'>247</a>
+<a name='L248'></a><a href='#L248'>248</a>
+<a name='L249'></a><a href='#L249'>249</a>
+<a name='L250'></a><a href='#L250'>250</a>
+<a name='L251'></a><a href='#L251'>251</a>
+<a name='L252'></a><a href='#L252'>252</a>
+<a name='L253'></a><a href='#L253'>253</a>
+<a name='L254'></a><a href='#L254'>254</a>
+<a name='L255'></a><a href='#L255'>255</a>
+<a name='L256'></a><a href='#L256'>256</a>
+<a name='L257'></a><a href='#L257'>257</a>
+<a name='L258'></a><a href='#L258'>258</a>
+<a name='L259'></a><a href='#L259'>259</a>
+<a name='L260'></a><a href='#L260'>260</a>
+<a name='L261'></a><a href='#L261'>261</a>
+<a name='L262'></a><a href='#L262'>262</a>
+<a name='L263'></a><a href='#L263'>263</a>
+<a name='L264'></a><a href='#L264'>264</a>
+<a name='L265'></a><a href='#L265'>265</a>
+<a name='L266'></a><a href='#L266'>266</a>
+<a name='L267'></a><a href='#L267'>267</a>
+<a name='L268'></a><a href='#L268'>268</a>
+<a name='L269'></a><a href='#L269'>269</a>
+<a name='L270'></a><a href='#L270'>270</a>
+<a name='L271'></a><a href='#L271'>271</a>
+<a name='L272'></a><a href='#L272'>272</a>
+<a name='L273'></a><a href='#L273'>273</a>
+<a name='L274'></a><a href='#L274'>274</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >/* Copyright 2016 Mozilla Foundation</span></span></span>
+<span class="cstat-no" title="statement not covered" > *</span>
+<span class="cstat-no" title="statement not covered" > * Licensed under the Apache License, Version 2.0 (the "License");</span>
+<span class="cstat-no" title="statement not covered" > * you may not use this file except in compliance with the License.</span>
+<span class="cstat-no" title="statement not covered" > * You may obtain a copy of the License at</span>
+<span class="cstat-no" title="statement not covered" > *</span>
+<span class="cstat-no" title="statement not covered" > *     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="cstat-no" title="statement not covered" > *</span>
+<span class="cstat-no" title="statement not covered" > * Unless required by applicable law or agreed to in writing, software</span>
+<span class="cstat-no" title="statement not covered" > * distributed under the License is distributed on an "AS IS" BASIS,</span>
+<span class="cstat-no" title="statement not covered" > * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="cstat-no" title="statement not covered" > * See the License for the specific language governing permissions and</span>
+<span class="cstat-no" title="statement not covered" > * limitations under the License.</span>
+<span class="cstat-no" title="statement not covered" > */</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >import { getLookupTableFactory } from "./core_utils.js";</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >// Some characters, e.g. copyrightserif, are mapped to the private use area</span>
+<span class="cstat-no" title="statement not covered" >// and might not be displayed using standard fonts. Mapping/hacking well-known</span>
+<span class="cstat-no" title="statement not covered" >// chars to the similar equivalents in the normal characters range.</span>
+<span class="cstat-no" title="statement not covered" >const getSpecialPUASymbols = getLookupTableFactory(function (t) {</span>
+<span class="cstat-no" title="statement not covered" >  t[63721] = 0x00a9; // copyrightsans (0xF8E9) =&gt; copyright</span>
+<span class="cstat-no" title="statement not covered" >  t[63193] = 0x00a9; // copyrightserif (0xF6D9) =&gt; copyright</span>
+<span class="cstat-no" title="statement not covered" >  t[63720] = 0x00ae; // registersans (0xF8E8) =&gt; registered</span>
+<span class="cstat-no" title="statement not covered" >  t[63194] = 0x00ae; // registerserif (0xF6DA) =&gt; registered</span>
+<span class="cstat-no" title="statement not covered" >  t[63722] = 0x2122; // trademarksans (0xF8EA) =&gt; trademark</span>
+<span class="cstat-no" title="statement not covered" >  t[63195] = 0x2122; // trademarkserif (0xF6DB) =&gt; trademark</span>
+<span class="cstat-no" title="statement not covered" >  t[63729] = 0x23a7; // bracelefttp (0xF8F1)</span>
+<span class="cstat-no" title="statement not covered" >  t[63730] = 0x23a8; // braceleftmid (0xF8F2)</span>
+<span class="cstat-no" title="statement not covered" >  t[63731] = 0x23a9; // braceleftbt (0xF8F3)</span>
+<span class="cstat-no" title="statement not covered" >  t[63740] = 0x23ab; // bracerighttp (0xF8FC)</span>
+<span class="cstat-no" title="statement not covered" >  t[63741] = 0x23ac; // bracerightmid (0xF8FD)</span>
+<span class="cstat-no" title="statement not covered" >  t[63742] = 0x23ad; // bracerightbt (0xF8FE)</span>
+<span class="cstat-no" title="statement not covered" >  t[63726] = 0x23a1; // bracketlefttp (0xF8EE)</span>
+<span class="cstat-no" title="statement not covered" >  t[63727] = 0x23a2; // bracketleftex (0xF8EF)</span>
+<span class="cstat-no" title="statement not covered" >  t[63728] = 0x23a3; // bracketleftbt (0xF8F0)</span>
+<span class="cstat-no" title="statement not covered" >  t[63737] = 0x23a4; // bracketrighttp (0xF8F9)</span>
+<span class="cstat-no" title="statement not covered" >  t[63738] = 0x23a5; // bracketrightex (0xF8FA)</span>
+<span class="cstat-no" title="statement not covered" >  t[63739] = 0x23a6; // bracketrightbt (0xF8FB)</span>
+<span class="cstat-no" title="statement not covered" >  t[63723] = 0x239b; // parenlefttp (0xF8EB)</span>
+<span class="cstat-no" title="statement not covered" >  t[63724] = 0x239c; // parenleftex (0xF8EC)</span>
+<span class="cstat-no" title="statement not covered" >  t[63725] = 0x239d; // parenleftbt (0xF8ED)</span>
+<span class="cstat-no" title="statement not covered" >  t[63734] = 0x239e; // parenrighttp (0xF8F6)</span>
+<span class="cstat-no" title="statement not covered" >  t[63735] = 0x239f; // parenrightex (0xF8F7)</span>
+<span class="cstat-no" title="statement not covered" >  t[63736] = 0x23a0; // parenrightbt (0xF8F8)</span>
+<span class="cstat-no" title="statement not covered" >});</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >function mapSpecialUnicodeValues(code) {</span>
+<span class="cstat-no" title="statement not covered" >  if (code &gt;= 0xfff0 &amp;&amp; code &lt;= 0xffff) {</span>
+<span class="cstat-no" title="statement not covered" >    // Specials unicode block.</span>
+<span class="cstat-no" title="statement not covered" >    return 0;</span>
+<span class="cstat-no" title="statement not covered" >  } else if (code &gt;= 0xf600 &amp;&amp; code &lt;= 0xf8ff) {</span>
+<span class="cstat-no" title="statement not covered" >    return getSpecialPUASymbols()[code] || code;</span>
+<span class="cstat-no" title="statement not covered" >  } else if (code === /* softhyphen = */ 0x00ad) {</span>
+<span class="cstat-no" title="statement not covered" >    return 0x002d; // hyphen</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >  return code;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >function getUnicodeForGlyph(name, glyphsUnicodeMap) {</span>
+<span class="cstat-no" title="statement not covered" >  let unicode = glyphsUnicodeMap[name];</span>
+<span class="cstat-no" title="statement not covered" >  if (unicode !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >    return unicode;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >  if (!name) {</span>
+<span class="cstat-no" title="statement not covered" >    return -1;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >  // Try to recover valid Unicode values from 'uniXXXX'/'uXXXX{XX}' glyphs.</span>
+<span class="cstat-no" title="statement not covered" >  if (name[0] === "u") {</span>
+<span class="cstat-no" title="statement not covered" >    const nameLen = name.length;</span>
+<span class="cstat-no" title="statement not covered" >    let hexStr;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    if (nameLen === 7 &amp;&amp; name[1] === "n" &amp;&amp; name[2] === "i") {</span>
+<span class="cstat-no" title="statement not covered" >      // 'uniXXXX'</span>
+<span class="cstat-no" title="statement not covered" >      hexStr = name.substring(3);</span>
+<span class="cstat-no" title="statement not covered" >    } else if (nameLen &gt;= 5 &amp;&amp; nameLen &lt;= 7) {</span>
+<span class="cstat-no" title="statement not covered" >      // 'uXXXX{XX}'</span>
+<span class="cstat-no" title="statement not covered" >      hexStr = name.substring(1);</span>
+<span class="cstat-no" title="statement not covered" >    } else {</span>
+<span class="cstat-no" title="statement not covered" >      return -1;</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >    // Check for upper-case hexadecimal characters, to avoid false positives.</span>
+<span class="cstat-no" title="statement not covered" >    if (hexStr === hexStr.toUpperCase()) {</span>
+<span class="cstat-no" title="statement not covered" >      unicode = parseInt(hexStr, 16);</span>
+<span class="cstat-no" title="statement not covered" >      if (unicode &gt;= 0) {</span>
+<span class="cstat-no" title="statement not covered" >        return unicode;</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >  return -1;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >// See https://learn.microsoft.com/en-us/typography/opentype/spec/os2#ulunicoderange1-bits-031ulunicoderange2-bits-3263ulunicoderange3-bits-6495ulunicoderange4-bits-96127</span>
+<span class="cstat-no" title="statement not covered" >const UnicodeRanges = [</span>
+<span class="cstat-no" title="statement not covered" >  [0x0000, 0x007f], // 0 - Basic Latin</span>
+<span class="cstat-no" title="statement not covered" >  [0x0080, 0x00ff], // 1 - Latin-1 Supplement</span>
+<span class="cstat-no" title="statement not covered" >  [0x0100, 0x017f], // 2 - Latin Extended-A</span>
+<span class="cstat-no" title="statement not covered" >  [0x0180, 0x024f], // 3 - Latin Extended-B</span>
+<span class="cstat-no" title="statement not covered" >  [0x0250, 0x02af, 0x1d00, 0x1d7f, 0x1d80, 0x1dbf], // 4 - IPA Extensions - Phonetic Extensions - Phonetic Extensions Supplement</span>
+<span class="cstat-no" title="statement not covered" >  [0x02b0, 0x02ff, 0xa700, 0xa71f], // 5 - Spacing Modifier Letters - Modifier Tone Letters</span>
+<span class="cstat-no" title="statement not covered" >  [0x0300, 0x036f, 0x1dc0, 0x1dff], // 6 - Combining Diacritical Marks - Combining Diacritical Marks Supplement</span>
+<span class="cstat-no" title="statement not covered" >  [0x0370, 0x03ff], // 7 - Greek and Coptic</span>
+<span class="cstat-no" title="statement not covered" >  [0x2c80, 0x2cff], // 8 - Coptic</span>
+<span class="cstat-no" title="statement not covered" >  [0x0400, 0x04ff, 0x0500, 0x052f, 0x2de0, 0x2dff, 0xa640, 0xa69f], // 9 - Cyrillic - Cyrillic Supplement - Cyrillic Extended-A - Cyrillic Extended-B</span>
+<span class="cstat-no" title="statement not covered" >  [0x0530, 0x058f], // 10 - Armenian</span>
+<span class="cstat-no" title="statement not covered" >  [0x0590, 0x05ff], // 11 - Hebrew</span>
+<span class="cstat-no" title="statement not covered" >  [0xa500, 0xa63f], // 12 - Vai</span>
+<span class="cstat-no" title="statement not covered" >  [0x0600, 0x06ff, 0x0750, 0x077f], // 13 - Arabic - Arabic Supplement</span>
+<span class="cstat-no" title="statement not covered" >  [0x07c0, 0x07ff], // 14 - NKo</span>
+<span class="cstat-no" title="statement not covered" >  [0x0900, 0x097f], // 15 - Devanagari</span>
+<span class="cstat-no" title="statement not covered" >  [0x0980, 0x09ff], // 16 - Bengali</span>
+<span class="cstat-no" title="statement not covered" >  [0x0a00, 0x0a7f], // 17 - Gurmukhi</span>
+<span class="cstat-no" title="statement not covered" >  [0x0a80, 0x0aff], // 18 - Gujarati</span>
+<span class="cstat-no" title="statement not covered" >  [0x0b00, 0x0b7f], // 19 - Oriya</span>
+<span class="cstat-no" title="statement not covered" >  [0x0b80, 0x0bff], // 20 - Tamil</span>
+<span class="cstat-no" title="statement not covered" >  [0x0c00, 0x0c7f], // 21 - Telugu</span>
+<span class="cstat-no" title="statement not covered" >  [0x0c80, 0x0cff], // 22 - Kannada</span>
+<span class="cstat-no" title="statement not covered" >  [0x0d00, 0x0d7f], // 23 - Malayalam</span>
+<span class="cstat-no" title="statement not covered" >  [0x0e00, 0x0e7f], // 24 - Thai</span>
+<span class="cstat-no" title="statement not covered" >  [0x0e80, 0x0eff], // 25 - Lao</span>
+<span class="cstat-no" title="statement not covered" >  [0x10a0, 0x10ff, 0x2d00, 0x2d2f], // 26 - Georgian - Georgian Supplement</span>
+<span class="cstat-no" title="statement not covered" >  [0x1b00, 0x1b7f], // 27 - Balinese</span>
+<span class="cstat-no" title="statement not covered" >  [0x1100, 0x11ff], // 28 - Hangul Jamo</span>
+<span class="cstat-no" title="statement not covered" >  [0x1e00, 0x1eff, 0x2c60, 0x2c7f, 0xa720, 0xa7ff], // 29 - Latin Extended Additional - Latin Extended-C - Latin Extended-D</span>
+<span class="cstat-no" title="statement not covered" >  [0x1f00, 0x1fff], // 30 - Greek Extended</span>
+<span class="cstat-no" title="statement not covered" >  [0x2000, 0x206f, 0x2e00, 0x2e7f], // 31 - General Punctuation - Supplemental Punctuation</span>
+<span class="cstat-no" title="statement not covered" >  [0x2070, 0x209f], // 32 - Superscripts And Subscripts</span>
+<span class="cstat-no" title="statement not covered" >  [0x20a0, 0x20cf], // 33 - Currency Symbol</span>
+<span class="cstat-no" title="statement not covered" >  [0x20d0, 0x20ff], // 34 - Combining Diacritical Marks</span>
+<span class="cstat-no" title="statement not covered" >  [0x2100, 0x214f], // 35 - Letterlike Symbols</span>
+<span class="cstat-no" title="statement not covered" >  [0x2150, 0x218f], // 36 - Number Forms</span>
+<span class="cstat-no" title="statement not covered" >  [0x2190, 0x21ff, 0x27f0, 0x27ff, 0x2900, 0x297f, 0x2b00, 0x2bff], // 37 - Arrows - Supplemental Arrows-A - Supplemental Arrows-B - Miscellaneous Symbols and Arrows</span>
+<span class="cstat-no" title="statement not covered" >  [0x2200, 0x22ff, 0x2a00, 0x2aff, 0x27c0, 0x27ef, 0x2980, 0x29ff], // 38 - Mathematical Operators - Supplemental Mathematical Operators - Miscellaneous Mathematical Symbols-A - Miscellaneous Mathematical Symbols-B</span>
+<span class="cstat-no" title="statement not covered" >  [0x2300, 0x23ff], // 39 - Miscellaneous Technical</span>
+<span class="cstat-no" title="statement not covered" >  [0x2400, 0x243f], // 40 - Control Pictures</span>
+<span class="cstat-no" title="statement not covered" >  [0x2440, 0x245f], // 41 - Optical Character Recognition</span>
+<span class="cstat-no" title="statement not covered" >  [0x2460, 0x24ff], // 42 - Enclosed Alphanumerics</span>
+<span class="cstat-no" title="statement not covered" >  [0x2500, 0x257f], // 43 - Box Drawing</span>
+<span class="cstat-no" title="statement not covered" >  [0x2580, 0x259f], // 44 - Block Elements</span>
+<span class="cstat-no" title="statement not covered" >  [0x25a0, 0x25ff], // 45 - Geometric Shapes</span>
+<span class="cstat-no" title="statement not covered" >  [0x2600, 0x26ff], // 46 - Miscellaneous Symbols</span>
+<span class="cstat-no" title="statement not covered" >  [0x2700, 0x27bf], // 47 - Dingbats</span>
+<span class="cstat-no" title="statement not covered" >  [0x3000, 0x303f], // 48 - CJK Symbols And Punctuation</span>
+<span class="cstat-no" title="statement not covered" >  [0x3040, 0x309f], // 49 - Hiragana</span>
+<span class="cstat-no" title="statement not covered" >  [0x30a0, 0x30ff, 0x31f0, 0x31ff], // 50 - Katakana - Katakana Phonetic Extensions</span>
+<span class="cstat-no" title="statement not covered" >  [0x3100, 0x312f, 0x31a0, 0x31bf], // 51 - Bopomofo - Bopomofo Extended</span>
+<span class="cstat-no" title="statement not covered" >  [0x3130, 0x318f], // 52 - Hangul Compatibility Jamo</span>
+<span class="cstat-no" title="statement not covered" >  [0xa840, 0xa87f], // 53 - Phags-pa</span>
+<span class="cstat-no" title="statement not covered" >  [0x3200, 0x32ff], // 54 - Enclosed CJK Letters And Months</span>
+<span class="cstat-no" title="statement not covered" >  [0x3300, 0x33ff], // 55 - CJK Compatibility</span>
+<span class="cstat-no" title="statement not covered" >  [0xac00, 0xd7af], // 56 - Hangul Syllables</span>
+<span class="cstat-no" title="statement not covered" >  [0xd800, 0xdfff], // 57 - Non-Plane 0 *</span>
+<span class="cstat-no" title="statement not covered" >  [0x10900, 0x1091f], // 58 - Phoenicia</span>
+<span class="cstat-no" title="statement not covered" >  [</span>
+<span class="cstat-no" title="statement not covered" >    0x4e00, 0x9fff, 0x2e80, 0x2eff, 0x2f00, 0x2fdf, 0x2ff0, 0x2fff, 0x3400,</span>
+<span class="cstat-no" title="statement not covered" >    0x4dbf, 0x20000, 0x2a6df, 0x3190, 0x319f,</span>
+<span class="cstat-no" title="statement not covered" >  ], // 59 - CJK Unified Ideographs - CJK Radicals Supplement - Kangxi Radicals - Ideographic Description Characters - CJK Unified Ideographs Extension A - CJK Unified Ideographs Extension B - Kanbun</span>
+<span class="cstat-no" title="statement not covered" >  [0xe000, 0xf8ff], // 60 - Private Use Area (plane 0)</span>
+<span class="cstat-no" title="statement not covered" >  [0x31c0, 0x31ef, 0xf900, 0xfaff, 0x2f800, 0x2fa1f], // 61 - CJK Strokes - CJK Compatibility Ideographs - CJK Compatibility Ideographs Supplement</span>
+<span class="cstat-no" title="statement not covered" >  [0xfb00, 0xfb4f], // 62 - Alphabetic Presentation Forms</span>
+<span class="cstat-no" title="statement not covered" >  [0xfb50, 0xfdff], // 63 - Arabic Presentation Forms-A</span>
+<span class="cstat-no" title="statement not covered" >  [0xfe20, 0xfe2f], // 64 - Combining Half Marks</span>
+<span class="cstat-no" title="statement not covered" >  [0xfe10, 0xfe1f], // 65 - Vertical Forms</span>
+<span class="cstat-no" title="statement not covered" >  [0xfe50, 0xfe6f], // 66 - Small Form Variants</span>
+<span class="cstat-no" title="statement not covered" >  [0xfe70, 0xfeff], // 67 - Arabic Presentation Forms-B</span>
+<span class="cstat-no" title="statement not covered" >  [0xff00, 0xffef], // 68 - Halfwidth And Fullwidth Forms</span>
+<span class="cstat-no" title="statement not covered" >  [0xfff0, 0xffff], // 69 - Specials</span>
+<span class="cstat-no" title="statement not covered" >  [0x0f00, 0x0fff], // 70 - Tibetan</span>
+<span class="cstat-no" title="statement not covered" >  [0x0700, 0x074f], // 71 - Syriac</span>
+<span class="cstat-no" title="statement not covered" >  [0x0780, 0x07bf], // 72 - Thaana</span>
+<span class="cstat-no" title="statement not covered" >  [0x0d80, 0x0dff], // 73 - Sinhala</span>
+<span class="cstat-no" title="statement not covered" >  [0x1000, 0x109f], // 74 - Myanmar</span>
+<span class="cstat-no" title="statement not covered" >  [0x1200, 0x137f, 0x1380, 0x139f, 0x2d80, 0x2ddf], // 75 - Ethiopic - Ethiopic Supplement - Ethiopic Extended</span>
+<span class="cstat-no" title="statement not covered" >  [0x13a0, 0x13ff], // 76 - Cherokee</span>
+<span class="cstat-no" title="statement not covered" >  [0x1400, 0x167f], // 77 - Unified Canadian Aboriginal Syllabics</span>
+<span class="cstat-no" title="statement not covered" >  [0x1680, 0x169f], // 78 - Ogham</span>
+<span class="cstat-no" title="statement not covered" >  [0x16a0, 0x16ff], // 79 - Runic</span>
+<span class="cstat-no" title="statement not covered" >  [0x1780, 0x17ff], // 80 - Khmer</span>
+<span class="cstat-no" title="statement not covered" >  [0x1800, 0x18af], // 81 - Mongolian</span>
+<span class="cstat-no" title="statement not covered" >  [0x2800, 0x28ff], // 82 - Braille Patterns</span>
+<span class="cstat-no" title="statement not covered" >  [0xa000, 0xa48f], // 83 - Yi Syllables</span>
+<span class="cstat-no" title="statement not covered" >  [0x1700, 0x171f, 0x1720, 0x173f, 0x1740, 0x175f, 0x1760, 0x177f], // 84 - Tagalog - Hanunoo - Buhid - Tagbanwa</span>
+<span class="cstat-no" title="statement not covered" >  [0x10300, 0x1032f], // 85 - Old Italic</span>
+<span class="cstat-no" title="statement not covered" >  [0x10330, 0x1034f], // 86 - Gothic</span>
+<span class="cstat-no" title="statement not covered" >  [0x10400, 0x1044f], // 87 - Deseret</span>
+<span class="cstat-no" title="statement not covered" >  [0x1d000, 0x1d0ff, 0x1d100, 0x1d1ff, 0x1d200, 0x1d24f], // 88 - Byzantine Musical Symbols - Musical Symbols - Ancient Greek Musical Notation</span>
+<span class="cstat-no" title="statement not covered" >  [0x1d400, 0x1d7ff], // 89 - Mathematical Alphanumeric Symbols</span>
+<span class="cstat-no" title="statement not covered" >  [0xff000, 0xffffd], // 90 - Private Use (plane 15)</span>
+<span class="cstat-no" title="statement not covered" >  [0xfe00, 0xfe0f, 0xe0100, 0xe01ef], // 91 - Variation Selectors - Variation Selectors Supplement</span>
+<span class="cstat-no" title="statement not covered" >  [0xe0000, 0xe007f], // 92 - Tags</span>
+<span class="cstat-no" title="statement not covered" >  [0x1900, 0x194f], // 93 - Limbu</span>
+<span class="cstat-no" title="statement not covered" >  [0x1950, 0x197f], // 94 - Tai Le</span>
+<span class="cstat-no" title="statement not covered" >  [0x1980, 0x19df], // 95 - New Tai Lue</span>
+<span class="cstat-no" title="statement not covered" >  [0x1a00, 0x1a1f], // 96 - Buginese</span>
+<span class="cstat-no" title="statement not covered" >  [0x2c00, 0x2c5f], // 97 - Glagolitic</span>
+<span class="cstat-no" title="statement not covered" >  [0x2d30, 0x2d7f], // 98 - Tifinagh</span>
+<span class="cstat-no" title="statement not covered" >  [0x4dc0, 0x4dff], // 99 - Yijing Hexagram Symbols</span>
+<span class="cstat-no" title="statement not covered" >  [0xa800, 0xa82f], // 100 - Syloti Nagri</span>
+<span class="cstat-no" title="statement not covered" >  [0x10000, 0x1007f, 0x10080, 0x100ff, 0x10100, 0x1013f], // 101 - Linear B Syllabary - Linear B Ideograms - Aegean Numbers</span>
+<span class="cstat-no" title="statement not covered" >  [0x10140, 0x1018f], // 102 - Ancient Greek Numbers</span>
+<span class="cstat-no" title="statement not covered" >  [0x10380, 0x1039f], // 103 - Ugaritic</span>
+<span class="cstat-no" title="statement not covered" >  [0x103a0, 0x103df], // 104 - Old Persian</span>
+<span class="cstat-no" title="statement not covered" >  [0x10450, 0x1047f], // 105 - Shavian</span>
+<span class="cstat-no" title="statement not covered" >  [0x10480, 0x104af], // 106 - Osmanya</span>
+<span class="cstat-no" title="statement not covered" >  [0x10800, 0x1083f], // 107 - Cypriot Syllabary</span>
+<span class="cstat-no" title="statement not covered" >  [0x10a00, 0x10a5f], // 108 - Kharoshthi</span>
+<span class="cstat-no" title="statement not covered" >  [0x1d300, 0x1d35f], // 109 - Tai Xuan Jing Symbols</span>
+<span class="cstat-no" title="statement not covered" >  [0x12000, 0x123ff, 0x12400, 0x1247f], // 110 - Cuneiform - Cuneiform Numbers and Punctuation</span>
+<span class="cstat-no" title="statement not covered" >  [0x1d360, 0x1d37f], // 111 - Counting Rod Numerals</span>
+<span class="cstat-no" title="statement not covered" >  [0x1b80, 0x1bbf], // 112 - Sundanese</span>
+<span class="cstat-no" title="statement not covered" >  [0x1c00, 0x1c4f], // 113 - Lepcha</span>
+<span class="cstat-no" title="statement not covered" >  [0x1c50, 0x1c7f], // 114 - Ol Chiki</span>
+<span class="cstat-no" title="statement not covered" >  [0xa880, 0xa8df], // 115 - Saurashtra</span>
+<span class="cstat-no" title="statement not covered" >  [0xa900, 0xa92f], // 116 - Kayah Li</span>
+<span class="cstat-no" title="statement not covered" >  [0xa930, 0xa95f], // 117 - Rejang</span>
+<span class="cstat-no" title="statement not covered" >  [0xaa00, 0xaa5f], // 118 - Cham</span>
+<span class="cstat-no" title="statement not covered" >  [0x10190, 0x101cf], // 119 - Ancient Symbols</span>
+<span class="cstat-no" title="statement not covered" >  [0x101d0, 0x101ff], // 120 - Phaistos Disc</span>
+<span class="cstat-no" title="statement not covered" >  [0x102a0, 0x102df, 0x10280, 0x1029f, 0x10920, 0x1093f], // 121 - Carian - Lycian - Lydian</span>
+<span class="cstat-no" title="statement not covered" >  [0x1f030, 0x1f09f, 0x1f000, 0x1f02f], // 122 - Domino Tiles - Mahjong Tiles</span>
+<span class="cstat-no" title="statement not covered" >];</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >function getUnicodeRangeFor(value, lastPosition = -1) {</span>
+<span class="cstat-no" title="statement not covered" >  // TODO: create a map range =&gt; position, sort the ranges and cache it.</span>
+<span class="cstat-no" title="statement not covered" >  // Then we can make a binary search for finding a range for a given unicode.</span>
+<span class="cstat-no" title="statement not covered" >  if (lastPosition !== -1) {</span>
+<span class="cstat-no" title="statement not covered" >    const range = UnicodeRanges[lastPosition];</span>
+<span class="cstat-no" title="statement not covered" >    for (let i = 0, ii = range.length; i &lt; ii; i += 2) {</span>
+<span class="cstat-no" title="statement not covered" >      if (value &gt;= range[i] &amp;&amp; value &lt;= range[i + 1]) {</span>
+<span class="cstat-no" title="statement not covered" >        return lastPosition;</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >  for (let i = 0, ii = UnicodeRanges.length; i &lt; ii; i++) {</span>
+<span class="cstat-no" title="statement not covered" >    const range = UnicodeRanges[i];</span>
+<span class="cstat-no" title="statement not covered" >    for (let j = 0, jj = range.length; j &lt; jj; j += 2) {</span>
+<span class="cstat-no" title="statement not covered" >      if (value &gt;= range[j] &amp;&amp; value &lt;= range[j + 1]) {</span>
+<span class="cstat-no" title="statement not covered" >        return i;</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >  return -1;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >const SpecialCharRegExp = new RegExp("^(\\s)|(\\p{Mn})|(\\p{Cf})$", "u");</span>
+<span class="cstat-no" title="statement not covered" >const CategoryCache = new Map();</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >function getCharUnicodeCategory(char) {</span>
+<span class="cstat-no" title="statement not covered" >  const cachedCategory = CategoryCache.get(char);</span>
+<span class="cstat-no" title="statement not covered" >  if (cachedCategory) {</span>
+<span class="cstat-no" title="statement not covered" >    return cachedCategory;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >  const groups = char.match(SpecialCharRegExp);</span>
+<span class="cstat-no" title="statement not covered" >  const category = {</span>
+<span class="cstat-no" title="statement not covered" >    isWhitespace: !!groups?.[1],</span>
+<span class="cstat-no" title="statement not covered" >    isZeroWidthDiacritic: !!groups?.[2],</span>
+<span class="cstat-no" title="statement not covered" >    isInvisibleFormatMark: !!groups?.[3],</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
+<span class="cstat-no" title="statement not covered" >  CategoryCache.set(char, category);</span>
+<span class="cstat-no" title="statement not covered" >  return category;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >function clearUnicodeCaches() {</span>
+<span class="cstat-no" title="statement not covered" >  CategoryCache.clear();</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >export {</span>
+<span class="cstat-no" title="statement not covered" >  clearUnicodeCaches,</span>
+<span class="cstat-no" title="statement not covered" >  getCharUnicodeCategory,</span>
+<span class="cstat-no" title="statement not covered" >  getUnicodeForGlyph,</span>
+<span class="cstat-no" title="statement not covered" >  getUnicodeRangeFor,</span>
+<span class="cstat-no" title="statement not covered" >  mapSpecialUnicodeValues,</span>
+<span class="cstat-no" title="statement not covered" >};</span>
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2026-03-25T10:34:46.960Z
+            </div>
+        <script src="../../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../../sorter.js"></script>
+        <script src="../../../block-navigation.js"></script>
+    </body>
+</html>
+    

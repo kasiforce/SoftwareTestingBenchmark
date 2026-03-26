@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/34</span>
+                <span class='fraction'>0/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/34</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
@@ -97,7 +97,17 @@
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -106,65 +116,55 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import sampleCorrelation from "./sample_correlation.js";</span></span></span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >/**</span>
-<span class="cstat-no" title="statement not covered" > * The [rank correlation](https://en.wikipedia.org/wiki/Rank_correlation) is</span>
-<span class="cstat-no" title="statement not covered" > * a measure of the strength of monotonic relationship between two arrays</span>
-<span class="cstat-no" title="statement not covered" > *</span>
-<span class="cstat-no" title="statement not covered" > * @param {Array&lt;number&gt;} x first input</span>
-<span class="cstat-no" title="statement not covered" > * @param {Array&lt;number&gt;} y second input</span>
-<span class="cstat-no" title="statement not covered" > * @returns {number} sample rank correlation</span>
-<span class="cstat-no" title="statement not covered" > */</span>
-<span class="cstat-no" title="statement not covered" >function sampleRankCorrelation(x, y) {</span>
-<span class="cstat-no" title="statement not covered" >    const xIndexes = x</span>
-<span class="cstat-no" title="statement not covered" >        .map((value, index) =&gt; [value, index])</span>
-<span class="cstat-no" title="statement not covered" >        .sort((a, b) =&gt; a[0] - b[0])</span>
-<span class="cstat-no" title="statement not covered" >        .map((pair) =&gt; pair[1]);</span>
-<span class="cstat-no" title="statement not covered" >    const yIndexes = y</span>
-<span class="cstat-no" title="statement not covered" >        .map((value, index) =&gt; [value, index])</span>
-<span class="cstat-no" title="statement not covered" >        .sort((a, b) =&gt; a[0] - b[0])</span>
-<span class="cstat-no" title="statement not covered" >        .map((pair) =&gt; pair[1]);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    // At this step, we have an array of indexes</span>
-<span class="cstat-no" title="statement not covered" >    // that map from sorted numbers to their original indexes. We reverse</span>
-<span class="cstat-no" title="statement not covered" >    // that so that it is an array of the sorted destination index.</span>
-<span class="cstat-no" title="statement not covered" >    const xRanks = Array(xIndexes.length);</span>
-<span class="cstat-no" title="statement not covered" >    const yRanks = Array(xIndexes.length);</span>
-<span class="cstat-no" title="statement not covered" >    for (let i = 0; i &lt; xIndexes.length; i++) {</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import sampleCorrelation from "./sample_correlation.js";
+&nbsp;
+/**
+ * The [rank correlation](https://en.wikipedia.org/wiki/Rank_correlation) is
+ * a measure of the strength of monotonic relationship between two arrays
+ *
+ * @param {Array&lt;number&gt;} x first input
+ * @param {Array&lt;number&gt;} y second input
+ * @returns {number} sample rank correlation
+ */
+function <span class="fstat-no" title="function not covered" >sampleRankCorrelation(</span>x, y) {
+    const xIndexes = <span class="cstat-no" title="statement not covered" >x</span>
+        .map(<span class="fstat-no" title="function not covered" >(v</span>alue, index) =&gt; <span class="cstat-no" title="statement not covered" >[value, index])</span>
+        .sort(<span class="fstat-no" title="function not covered" >(a</span>, b) =&gt; <span class="cstat-no" title="statement not covered" >a[0] - b[0])</span>
+        .map(<span class="fstat-no" title="function not covered" >(p</span>air) =&gt; <span class="cstat-no" title="statement not covered" >pair[1])</span>;
+    const yIndexes = <span class="cstat-no" title="statement not covered" >y</span>
+        .map(<span class="fstat-no" title="function not covered" >(v</span>alue, index) =&gt; <span class="cstat-no" title="statement not covered" >[value, index])</span>
+        .sort(<span class="fstat-no" title="function not covered" >(a</span>, b) =&gt; <span class="cstat-no" title="statement not covered" >a[0] - b[0])</span>
+        .map(<span class="fstat-no" title="function not covered" >(p</span>air) =&gt; <span class="cstat-no" title="statement not covered" >pair[1])</span>;
+&nbsp;
+    // At this step, we have an array of indexes
+    // that map from sorted numbers to their original indexes. We reverse
+    // that so that it is an array of the sorted destination index.
+    const xRanks = <span class="cstat-no" title="statement not covered" >Array(xIndexes.length);</span>
+    const yRanks = <span class="cstat-no" title="statement not covered" >Array(xIndexes.length);</span>
+<span class="cstat-no" title="statement not covered" >    for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; xIndexes.length; i++) {</span>
 <span class="cstat-no" title="statement not covered" >        xRanks[xIndexes[i]] = i;</span>
 <span class="cstat-no" title="statement not covered" >        yRanks[yIndexes[i]] = i;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" ></span>
+    }
+&nbsp;
 <span class="cstat-no" title="statement not covered" >    return sampleCorrelation(xRanks, yRanks);</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default sampleRankCorrelation;</span>
+}
+&nbsp;
+export default sampleRankCorrelation;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -172,7 +172,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-25T08:14:00.924Z
+                at 2026-03-26T04:00:37.553Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

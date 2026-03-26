@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/32</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/32</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
@@ -95,70 +95,70 @@
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import combineMeans from "./combine_means.js";</span></span></span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >/**</span>
-<span class="cstat-no" title="statement not covered" > * When combining two lists of values for which one already knows the variances,</span>
-<span class="cstat-no" title="statement not covered" > * one does not have to necessary recompute the variance of the combined lists</span>
-<span class="cstat-no" title="statement not covered" > * in linear time. They can instead use this function to compute the combined</span>
-<span class="cstat-no" title="statement not covered" > * variance by providing the variance, mean &amp; number of values of the first list</span>
-<span class="cstat-no" title="statement not covered" > * and the variance, mean &amp; number of values of the second list.</span>
-<span class="cstat-no" title="statement not covered" > *</span>
-<span class="cstat-no" title="statement not covered" > * @since 3.0.0</span>
-<span class="cstat-no" title="statement not covered" > * @param {number} variance1 variance of the first list</span>
-<span class="cstat-no" title="statement not covered" > * @param {number} mean1 mean of the first list</span>
-<span class="cstat-no" title="statement not covered" > * @param {number} n1 number of items in the first list</span>
-<span class="cstat-no" title="statement not covered" > * @param {number} variance2 variance of the second list</span>
-<span class="cstat-no" title="statement not covered" > * @param {number} mean2 mean of the second list</span>
-<span class="cstat-no" title="statement not covered" > * @param {number} n2 number of items in the second list</span>
-<span class="cstat-no" title="statement not covered" > * @returns {number} the combined mean</span>
-<span class="cstat-no" title="statement not covered" > *</span>
-<span class="cstat-no" title="statement not covered" > * @example</span>
-<span class="cstat-no" title="statement not covered" > * combineVariances(14 / 3, 5, 3, 8 / 3, 4, 3); // =&gt; 47 / 12</span>
-<span class="cstat-no" title="statement not covered" > */</span>
-<span class="cstat-no" title="statement not covered" >function combineVariances(variance1, mean1, n1, variance2, mean2, n2) {</span>
-<span class="cstat-no" title="statement not covered" >    const newMean = combineMeans(mean1, n1, mean2, n2);</span>
-<span class="cstat-no" title="statement not covered" ></span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import combineMeans from "./combine_means.js";
+&nbsp;
+/**
+ * When combining two lists of values for which one already knows the variances,
+ * one does not have to necessary recompute the variance of the combined lists
+ * in linear time. They can instead use this function to compute the combined
+ * variance by providing the variance, mean &amp; number of values of the first list
+ * and the variance, mean &amp; number of values of the second list.
+ *
+ * @since 3.0.0
+ * @param {number} variance1 variance of the first list
+ * @param {number} mean1 mean of the first list
+ * @param {number} n1 number of items in the first list
+ * @param {number} variance2 variance of the second list
+ * @param {number} mean2 mean of the second list
+ * @param {number} n2 number of items in the second list
+ * @returns {number} the combined mean
+ *
+ * @example
+ * combineVariances(14 / 3, 5, 3, 8 / 3, 4, 3); // =&gt; 47 / 12
+ */
+function <span class="fstat-no" title="function not covered" >combineVariances(</span>variance1, mean1, n1, variance2, mean2, n2) {
+    const newMean = <span class="cstat-no" title="statement not covered" >combineMeans(mean1, n1, mean2, n2);</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >    return (</span>
-<span class="cstat-no" title="statement not covered" >        (n1 * (variance1 + Math.pow(mean1 - newMean, 2)) +</span>
-<span class="cstat-no" title="statement not covered" >            n2 * (variance2 + Math.pow(mean2 - newMean, 2))) /</span>
-<span class="cstat-no" title="statement not covered" >        (n1 + n2)</span>
-<span class="cstat-no" title="statement not covered" >    );</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default combineVariances;</span>
+        (n1 * (variance1 + Math.pow(mean1 - newMean, 2)) +
+            n2 * (variance2 + Math.pow(mean2 - newMean, 2))) /
+        (n1 + n2)
+    );
+}
+&nbsp;
+export default combineVariances;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -166,7 +166,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-25T07:45:29.546Z
+                at 2026-03-26T03:40:02.527Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

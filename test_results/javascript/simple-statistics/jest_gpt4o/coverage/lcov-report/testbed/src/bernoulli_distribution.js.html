@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/29</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/29</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
@@ -92,64 +92,64 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >/**</span></span></span>
-<span class="cstat-no" title="statement not covered" > * The [Bernoulli distribution](http://en.wikipedia.org/wiki/Bernoulli_distribution)</span>
-<span class="cstat-no" title="statement not covered" > * is the probability discrete</span>
-<span class="cstat-no" title="statement not covered" > * distribution of a random variable which takes value 1 with success</span>
-<span class="cstat-no" title="statement not covered" > * probability `p` and value 0 with failure</span>
-<span class="cstat-no" title="statement not covered" > * probability `q` = 1 - `p`. It can be used, for example, to represent the</span>
-<span class="cstat-no" title="statement not covered" > * toss of a coin, where "1" is defined to mean "heads" and "0" is defined</span>
-<span class="cstat-no" title="statement not covered" > * to mean "tails" (or vice versa). It is</span>
-<span class="cstat-no" title="statement not covered" > * a special case of a Binomial Distribution</span>
-<span class="cstat-no" title="statement not covered" > * where `n` = 1.</span>
-<span class="cstat-no" title="statement not covered" > *</span>
-<span class="cstat-no" title="statement not covered" > * @param {number} p input value, between 0 and 1 inclusive</span>
-<span class="cstat-no" title="statement not covered" > * @returns {number[]} values of bernoulli distribution at this point</span>
-<span class="cstat-no" title="statement not covered" > * @throws {Error} if p is outside 0 and 1</span>
-<span class="cstat-no" title="statement not covered" > * @example</span>
-<span class="cstat-no" title="statement not covered" > * bernoulliDistribution(0.3); // =&gt; [0.7, 0.3]</span>
-<span class="cstat-no" title="statement not covered" > */</span>
-<span class="cstat-no" title="statement not covered" >function bernoulliDistribution(p) /*: number[] */ {</span>
-<span class="cstat-no" title="statement not covered" >    // Check that `p` is a valid probability (0 ≤ p ≤ 1)</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * The [Bernoulli distribution](http://en.wikipedia.org/wiki/Bernoulli_distribution)
+ * is the probability discrete
+ * distribution of a random variable which takes value 1 with success
+ * probability `p` and value 0 with failure
+ * probability `q` = 1 - `p`. It can be used, for example, to represent the
+ * toss of a coin, where "1" is defined to mean "heads" and "0" is defined
+ * to mean "tails" (or vice versa). It is
+ * a special case of a Binomial Distribution
+ * where `n` = 1.
+ *
+ * @param {number} p input value, between 0 and 1 inclusive
+ * @returns {number[]} values of bernoulli distribution at this point
+ * @throws {Error} if p is outside 0 and 1
+ * @example
+ * bernoulliDistribution(0.3); // =&gt; [0.7, 0.3]
+ */
+function <span class="fstat-no" title="function not covered" >bernoulliDistribution(</span>p) /*: number[] */ {
+    // Check that `p` is a valid probability (0 ≤ p ≤ 1)
 <span class="cstat-no" title="statement not covered" >    if (p &lt; 0 || p &gt; 1) {</span>
 <span class="cstat-no" title="statement not covered" >        throw new Error(</span>
-<span class="cstat-no" title="statement not covered" >            "bernoulliDistribution requires probability to be between 0 and 1 inclusive"</span>
-<span class="cstat-no" title="statement not covered" >        );</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" ></span>
+            "bernoulliDistribution requires probability to be between 0 and 1 inclusive"
+        );
+    }
+&nbsp;
 <span class="cstat-no" title="statement not covered" >    return [1 - p, p];</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default bernoulliDistribution;</span>
+}
+&nbsp;
+export default bernoulliDistribution;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -157,7 +157,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-25T08:05:39.837Z
+                at 2026-03-26T03:45:49.455Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

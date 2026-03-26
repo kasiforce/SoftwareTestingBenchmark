@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">3.33% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>1/30</span>
+                <span class='fraction'>0/30</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">4.54% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/22</span>
+                <span class='fraction'>0/30</span>
             </div>
         
             
@@ -142,22 +142,13 @@
 <a name='L77'></a><a href='#L77'>77</a>
 <a name='L78'></a><a href='#L78'>78</a>
 <a name='L79'></a><a href='#L79'>79</a>
-<a name='L80'></a><a href='#L80'>80</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L80'></a><a href='#L80'>80</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -168,20 +159,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -235,32 +235,32 @@
    *
    * @return {Object}
    */
-  createCanvas<span class="fstat-no" title="function not covered" >(i</span>d, width, height, <span class="cstat-no" title="statement not covered" >position = "absolute") {</span>
+<span class="fstat-no" title="function not covered" >  cr</span>eateCanvas(id, width, height, position = <span class="branch-0 cbranch-no" title="branch not covered" >"absolute")</span> {
     const dom = <span class="cstat-no" title="statement not covered" >document.createElement("canvas");</span>
 &nbsp;
-    dom.id = id;
-    dom.width = width;
-    dom.height = height;
-    dom.style.opacity = 0;
-    dom.style.position = position;
-    this.transform(dom, -500, -500, 0, 0);
+<span class="cstat-no" title="statement not covered" >    dom.id = id;</span>
+<span class="cstat-no" title="statement not covered" >    dom.width = width;</span>
+<span class="cstat-no" title="statement not covered" >    dom.height = height;</span>
+<span class="cstat-no" title="statement not covered" >    dom.style.opacity = 0;</span>
+<span class="cstat-no" title="statement not covered" >    dom.style.position = position;</span>
+<span class="cstat-no" title="statement not covered" >    this.transform(dom, -500, -500, 0, 0);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return dom;</span>
   },
 &nbsp;
-  createDiv<span class="fstat-no" title="function not covered" >(i</span>d, width, height) {
+<span class="fstat-no" title="function not covered" >  cr</span>eateDiv(id, width, height) {
     const dom = <span class="cstat-no" title="statement not covered" >document.createElement("div");</span>
 &nbsp;
-    dom.id = id;
-    dom.style.position = "absolute";
-    this.resize(dom, width, height);
+<span class="cstat-no" title="statement not covered" >    dom.id = id;</span>
+<span class="cstat-no" title="statement not covered" >    dom.style.position = "absolute";</span>
+<span class="cstat-no" title="statement not covered" >    this.resize(dom, width, height);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return dom;</span>
   },
 &nbsp;
-  resize<span class="fstat-no" title="function not covered" >(d</span>om, width, height) {
+<span class="fstat-no" title="function not covered" >  re</span>size(dom, width, height) {
 <span class="cstat-no" title="statement not covered" >    dom.style.width = width + "px";</span>
-    dom.style.height = height + "px";
+<span class="cstat-no" title="statement not covered" >    dom.style.height = height + "px";</span>
 <span class="cstat-no" title="statement not covered" >    dom.style.marginLeft = -width / 2 + "px";</span>
 <span class="cstat-no" title="statement not covered" >    dom.style.marginTop = -height / 2 + "px";</span>
   },
@@ -277,23 +277,23 @@
    * @param {Number} $scale
    * @param {Number} $rotate
    */
-<span class="fstat-no" title="function not covered" >  transform(d</span>iv, x, y, scale, rotate) {
-<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >    div.style.willChange = "transform";</span></span>
-    const <span class="cstat-no" title="statement not covered" >transform = <span class="cstat-no" title="statement not covered" >`translate(${x}px, ${y}px) scale(${scale}) rotate(${rotate}deg)`;</span></span>
-<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >    this.css3(div, "transform", transform);</span></span>
-  },
-&nbsp;
-<span class="fstat-no" title="function not covered" >  transform3d(d</span>iv, x, y, scale, rotate) {
-<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >    div.style.willChange = "transform";</span></span>
-    const <span class="cstat-no" title="statement not covered" >transform = <span class="cstat-no" title="statement not covered" >`translate3d(${x}px, ${y}px, 0) scale(${scale}) rotate(${rotate}deg)`;</span></span>
-<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >    this.css3(div, "backfaceVisibility", "hidden");</span></span>
+<span class="fstat-no" title="function not covered" >  tr</span>ansform(div, x, y, scale, rotate) {
+<span class="cstat-no" title="statement not covered" >    div.style.willChange = "transform";</span>
+    const transform = <span class="cstat-no" title="statement not covered" >`translate(${x}px, ${y}px) scale(${scale}) rotate(${rotate}deg)`;</span>
 <span class="cstat-no" title="statement not covered" >    this.css3(div, "transform", transform);</span>
   },
 &nbsp;
-  css3<span class="fstat-no" title="function not covered" >(d</span>iv, key, val) {
-    const bkey = <span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >key.charAt(0).toUpperCase() + key.substr(1);</span></span>
+<span class="fstat-no" title="function not covered" >  tr</span>ansform3d(div, x, y, scale, rotate) {
+<span class="cstat-no" title="statement not covered" >    div.style.willChange = "transform";</span>
+    const transform = <span class="cstat-no" title="statement not covered" >`translate3d(${x}px, ${y}px, 0) scale(${scale}) rotate(${rotate}deg)`;</span>
+<span class="cstat-no" title="statement not covered" >    this.css3(div, "backfaceVisibility", "hidden");</span>
+<span class="cstat-no" title="statement not covered" >    this.css3(div, "transform", transform);</span>
+  },
 &nbsp;
-<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >    div.style[`Webkit${bkey}`] = val;</span></span>
+<span class="fstat-no" title="function not covered" >  cs</span>s3(div, key, val) {
+    const bkey = <span class="cstat-no" title="statement not covered" >key.charAt(0).toUpperCase() + key.substr(1);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    div.style[`Webkit${bkey}`] = val;</span>
 <span class="cstat-no" title="statement not covered" >    div.style[`Moz${bkey}`] = val;</span>
 <span class="cstat-no" title="statement not covered" >    div.style[`O${bkey}`] = val;</span>
 <span class="cstat-no" title="statement not covered" >    div.style[`ms${bkey}`] = val;</span>
@@ -307,7 +307,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-16T02:18:54.381Z
+                at 2026-03-26T13:05:49.631Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
