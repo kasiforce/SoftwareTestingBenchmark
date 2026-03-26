@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/26</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/26</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
@@ -89,58 +89,58 @@
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import epsilon from "./epsilon.js";</span></span></span>
-<span class="cstat-no" title="statement not covered" >import inverseErrorFunction from "./inverse_error_function.js";</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >/**</span>
-<span class="cstat-no" title="statement not covered" > * The [Probit](http://en.wikipedia.org/wiki/Probit)</span>
-<span class="cstat-no" title="statement not covered" > * is the inverse of cumulativeStdNormalProbability(),</span>
-<span class="cstat-no" title="statement not covered" > * and is also known as the normal quantile function.</span>
-<span class="cstat-no" title="statement not covered" > *</span>
-<span class="cstat-no" title="statement not covered" > * It returns the number of standard deviations from the mean</span>
-<span class="cstat-no" title="statement not covered" > * where the p'th quantile of values can be found in a normal distribution.</span>
-<span class="cstat-no" title="statement not covered" > * So, for example, probit(0.5 + 0.6827/2) ≈ 1 because 68.27% of values are</span>
-<span class="cstat-no" title="statement not covered" > * normally found within 1 standard deviation above or below the mean.</span>
-<span class="cstat-no" title="statement not covered" > *</span>
-<span class="cstat-no" title="statement not covered" > * @param {number} p</span>
-<span class="cstat-no" title="statement not covered" > * @returns {number} probit</span>
-<span class="cstat-no" title="statement not covered" > */</span>
-<span class="cstat-no" title="statement not covered" >function probit(p) {</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import epsilon from "./epsilon.js";
+import inverseErrorFunction from "./inverse_error_function.js";
+&nbsp;
+/**
+ * The [Probit](http://en.wikipedia.org/wiki/Probit)
+ * is the inverse of cumulativeStdNormalProbability(),
+ * and is also known as the normal quantile function.
+ *
+ * It returns the number of standard deviations from the mean
+ * where the p'th quantile of values can be found in a normal distribution.
+ * So, for example, probit(0.5 + 0.6827/2) ≈ 1 because 68.27% of values are
+ * normally found within 1 standard deviation above or below the mean.
+ *
+ * @param {number} p
+ * @returns {number} probit
+ */
+function <span class="fstat-no" title="function not covered" >probit(</span>p) {
 <span class="cstat-no" title="statement not covered" >    if (p === 0) {</span>
 <span class="cstat-no" title="statement not covered" >        p = epsilon;</span>
-<span class="cstat-no" title="statement not covered" >    } else if (p &gt;= 1) {</span>
+    } else <span class="cstat-no" title="statement not covered" >if (p &gt;= 1) {</span>
 <span class="cstat-no" title="statement not covered" >        p = 1 - epsilon;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+    }
 <span class="cstat-no" title="statement not covered" >    return Math.sqrt(2) * inverseErrorFunction(2 * p - 1);</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default probit;</span>
+}
+&nbsp;
+export default probit;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -148,7 +148,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-25T08:14:00.924Z
+                at 2026-03-26T04:00:37.553Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

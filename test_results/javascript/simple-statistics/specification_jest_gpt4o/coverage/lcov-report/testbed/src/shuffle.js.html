@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/25</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/25</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
@@ -88,56 +88,56 @@
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import shuffleInPlace from "./shuffle_in_place.js";</span></span></span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >/**</span>
-<span class="cstat-no" title="statement not covered" > * A [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)</span>
-<span class="cstat-no" title="statement not covered" > * is a fast way to create a random permutation of a finite set. This is</span>
-<span class="cstat-no" title="statement not covered" > * a function around `shuffle_in_place` that adds the guarantee that</span>
-<span class="cstat-no" title="statement not covered" > * it will not modify its input.</span>
-<span class="cstat-no" title="statement not covered" > *</span>
-<span class="cstat-no" title="statement not covered" > * @param {Array} x sample of 0 or more numbers</span>
-<span class="cstat-no" title="statement not covered" > * @param {Function} [randomSource=Math.random] an optional entropy source that</span>
-<span class="cstat-no" title="statement not covered" > * returns numbers between 0 inclusive and 1 exclusive: the range [0, 1)</span>
-<span class="cstat-no" title="statement not covered" > * @return {Array} shuffled version of input</span>
-<span class="cstat-no" title="statement not covered" > * @example</span>
-<span class="cstat-no" title="statement not covered" > * var shuffled = shuffle([1, 2, 3, 4]);</span>
-<span class="cstat-no" title="statement not covered" > * shuffled; // = [2, 3, 1, 4] or any other random permutation</span>
-<span class="cstat-no" title="statement not covered" > */</span>
-<span class="cstat-no" title="statement not covered" >function shuffle(x, randomSource) {</span>
-<span class="cstat-no" title="statement not covered" >    // slice the original array so that it is not modified</span>
-<span class="cstat-no" title="statement not covered" >    const sample = x.slice();</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    // and then shuffle that shallow-copied array, in place</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import shuffleInPlace from "./shuffle_in_place.js";
+&nbsp;
+/**
+ * A [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
+ * is a fast way to create a random permutation of a finite set. This is
+ * a function around `shuffle_in_place` that adds the guarantee that
+ * it will not modify its input.
+ *
+ * @param {Array} x sample of 0 or more numbers
+ * @param {Function} [randomSource=Math.random] an optional entropy source that
+ * returns numbers between 0 inclusive and 1 exclusive: the range [0, 1)
+ * @return {Array} shuffled version of input
+ * @example
+ * var shuffled = shuffle([1, 2, 3, 4]);
+ * shuffled; // = [2, 3, 1, 4] or any other random permutation
+ */
+function <span class="fstat-no" title="function not covered" >shuffle(</span>x, randomSource) {
+    // slice the original array so that it is not modified
+    const sample = <span class="cstat-no" title="statement not covered" >x.slice();</span>
+&nbsp;
+    // and then shuffle that shallow-copied array, in place
 <span class="cstat-no" title="statement not covered" >    return shuffleInPlace(sample, randomSource);</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default shuffle;</span>
+}
+&nbsp;
+export default shuffle;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -145,7 +145,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-25T08:10:01.527Z
+                at 2026-03-26T03:51:13.949Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

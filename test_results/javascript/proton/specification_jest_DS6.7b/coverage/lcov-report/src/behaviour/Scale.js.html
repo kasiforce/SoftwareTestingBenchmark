@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.85% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/7</span>
+                <span class='fraction'>0/15</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/5</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/6</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
@@ -164,20 +164,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -189,7 +178,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -200,14 +202,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import Span from "../math/Span";
 import Util from "../utils/Util";
@@ -236,11 +236,11 @@ export default class Scale extends Behaviour {
    * @param {number} [life=Infinity] - This behaviour's life.
    * @param {string} [easing='easeLinear'] - This behaviour's easing function.
    */
-<span class="fstat-no" title="function not covered" >  constructor(a</span>, b, life, easing) {
-    super(life, easing);
+<span class="fstat-no" title="function not covered" >  co</span>nstructor(a, b, life, easing) {
+<span class="cstat-no" title="statement not covered" >    super(life, easing);</span>
 &nbsp;
-    this.reset(a, b);
-    this.name = "Scale";<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    this.reset(a, b);</span>
+<span class="cstat-no" title="statement not covered" >    this.name = "Scale";</span>
   }
 &nbsp;
   /**
@@ -250,22 +250,22 @@ export default class Scale extends Behaviour {
    * @param {number} [life] - This behaviour's life.
    * @param {string} [easing] - This behaviour's easing function.
    */
-<span class="fstat-no" title="function not covered" >  reset(a</span>, b, life, easing) {
+<span class="fstat-no" title="function not covered" >  re</span>set(a, b, life, easing) {
 <span class="cstat-no" title="statement not covered" >    this.same = b === null || b === undefined;</span>
-    this.a = Span.setSpanValue(Util.initValue(a, 1));
-    this.b = Span.setSpanValue(b);
+<span class="cstat-no" title="statement not covered" >    this.a = Span.setSpanValue(Util.initValue(a, 1));</span>
+<span class="cstat-no" title="statement not covered" >    this.b = Span.setSpanValue(b);</span>
 &nbsp;
-    life &amp;&amp; super.reset(life, easing);
+<span class="cstat-no" title="statement not covered" >    life &amp;&amp; super.reset(life, easing);</span>
   }
 &nbsp;
   /**
    * Initializes the particle's scale values.
    * @param {Particle} particle - The particle to initialize.
    */
-<span class="fstat-no" title="function not covered" >  initialize(p</span>article) {
+<span class="fstat-no" title="function not covered" >  in</span>itialize(particle) {
 <span class="cstat-no" title="statement not covered" >    particle.data.scaleA = this.a.getValue();</span>
-    particle.data.oldRadius = particle.radius;
-    particle.data.scaleB = this.same ? particle.data.scaleA : this.b.getValue();
+<span class="cstat-no" title="statement not covered" >    particle.data.oldRadius = particle.radius;</span>
+<span class="cstat-no" title="statement not covered" >    particle.data.scaleB = this.same ? particle.data.scaleA : this.b.getValue();</span>
   }
 &nbsp;
   /**
@@ -274,12 +274,12 @@ export default class Scale extends Behaviour {
    * @param {number} time - The current simulation time.
    * @param {number} index - The index of the particle.
    */
-<span class="fstat-no" title="function not covered" >  applyBehaviour(p</span>article, time, index) {
+<span class="fstat-no" title="function not covered" >  ap</span>plyBehaviour(particle, time, index) {
 <span class="cstat-no" title="statement not covered" >    this.calculate(particle, time, index);</span>
-    particle.scale = particle.data.scaleB + (particle.data.scaleA - particle.data.scaleB) * this.energy;
+<span class="cstat-no" title="statement not covered" >    particle.scale = particle.data.scaleB + (particle.data.scaleA - particle.data.scaleB) * this.energy;</span>
 &nbsp;
-    if (particle.scale &lt; 0.0001) particle.scale = 0;
-    particle.radius = particle.data.oldRadius * particle.scale;
+<span class="cstat-no" title="statement not covered" >    if (particle.scale &lt; 0.0001) <span class="cstat-no" title="statement not covered" >particle.scale = 0;</span></span>
+<span class="cstat-no" title="statement not covered" >    particle.radius = particle.data.oldRadius * particle.scale;</span>
   }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -289,7 +289,7 @@ export default class Scale extends Behaviour {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-16T02:18:54.381Z
+                at 2026-03-26T13:05:49.631Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

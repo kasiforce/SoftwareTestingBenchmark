@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
@@ -81,42 +81,42 @@
 <a name='L16'></a><a href='#L16'>16</a>
 <a name='L17'></a><a href='#L17'>17</a>
 <a name='L18'></a><a href='#L18'>18</a>
-<a name='L19'></a><a href='#L19'>19</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L19'></a><a href='#L19'>19</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { callMethod } from './call.js'</span></span></span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >// Called on `ErrorClass[methodName](error, ...args)`</span>
-<span class="cstat-no" title="statement not covered" >// All instance methods are also available as static methods</span>
-<span class="cstat-no" title="statement not covered" >//  - This reduces the potential for the common mistake of calling</span>
-<span class="cstat-no" title="statement not covered" >//    `error[methodName]` without first normalizing `error`</span>
-<span class="cstat-no" title="statement not covered" >//  - This is the preferred way, which should be solely documented</span>
-<span class="cstat-no" title="statement not covered" >//  - `error[methodName]` still has a few use cases though:</span>
-<span class="cstat-no" title="statement not covered" >//     - Method chaining</span>
-<span class="cstat-no" title="statement not covered" >//     - Known methods, e.g. `error.toJSON()`</span>
-<span class="cstat-no" title="statement not covered" >export const callMixedMethod = (</span>
-<span class="cstat-no" title="statement not covered" >  { methodFunc, plugin, plugins, ErrorClass },</span>
-<span class="cstat-no" title="statement not covered" >  error,</span>
-<span class="cstat-no" title="statement not covered" >  ...args</span>
-<span class="cstat-no" title="statement not covered" >) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const errorA = ErrorClass.normalize(error)</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { callMethod } from './call.js'
+&nbsp;
+// Called on `ErrorClass[methodName](error, ...args)`
+// All instance methods are also available as static methods
+//  - This reduces the potential for the common mistake of calling
+//    `error[methodName]` without first normalizing `error`
+//  - This is the preferred way, which should be solely documented
+//  - `error[methodName]` still has a few use cases though:
+//     - Method chaining
+//     - Known methods, e.g. `error.toJSON()`
+export const callMixedMethod = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span></span>
+  { methodFunc, plugin, plugins, ErrorClass },
+  error,
+  ...args
+) =&gt; {
+  const errorA = <span class="cstat-no" title="statement not covered" >ErrorClass.normalize(error)</span>
 <span class="cstat-no" title="statement not covered" >  return callMethod({ methodFunc, plugin, plugins, error: errorA, args })</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -124,7 +124,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-25T08:23:31.684Z
+                at 2026-03-26T05:09:28.322Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

@@ -1,0 +1,1141 @@
+{
+  "extensions/chromium/contentscript.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 261,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "extensions/chromium/preserve-referer.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 159,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "extensions/chromium/telemetry.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 187,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "extensions/chromium/options/options.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 210,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "external/builder/fixtures_babel/unused-function.js": {
+    "file_line_coverage": 0.5,
+    "file_branch_coverage": 0.6666666666666666,
+    "total_lines": 14,
+    "covered_lines": 7,
+    "total_branches": 3,
+    "covered_branches": 2,
+    "functions": {
+      "used": {
+        "start_line": 5,
+        "end_line": 9,
+        "hit": true,
+        "line_coverage": 0.6,
+        "branch_coverage": 0.5,
+        "total_lines": 5,
+        "covered_lines": 3,
+        "total_branches": 2,
+        "covered_branches": 1
+      }
+    }
+  },
+  "external/qcms/qcms.js": {
+    "file_line_coverage": 0.6332046332046332,
+    "file_branch_coverage": 0.8181818181818182,
+    "total_lines": 259,
+    "covered_lines": 164,
+    "total_branches": 11,
+    "covered_branches": 9,
+    "functions": {
+      "passArray8ToWasm0": {
+        "start_line": 26,
+        "end_line": 31,
+        "hit": false,
+        "line_coverage": 0.0,
+        "branch_coverage": 1,
+        "total_lines": 6,
+        "covered_lines": 0,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "qcms_transformer_from_memory": {
+        "start_line": 95,
+        "end_line": 100,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 6,
+        "covered_lines": 6,
+        "total_branches": 1,
+        "covered_branches": 1
+      },
+      "initSync": {
+        "start_line": 207,
+        "end_line": 230,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 0.8333333333333334,
+        "total_lines": 24,
+        "covered_lines": 24,
+        "total_branches": 6,
+        "covered_branches": 5
+      }
+    }
+  },
+  "external/qcms/qcms_utils.js": {
+    "file_line_coverage": 0.6071428571428571,
+    "file_branch_coverage": 0.5,
+    "total_lines": 84,
+    "covered_lines": 51,
+    "total_branches": 6,
+    "covered_branches": 3,
+    "functions": {
+      "copy_result": {
+        "start_line": 42,
+        "end_line": 66,
+        "hit": true,
+        "line_coverage": 0.32,
+        "branch_coverage": 0.5,
+        "total_lines": 25,
+        "covered_lines": 8,
+        "total_branches": 2,
+        "covered_branches": 1
+      }
+    }
+  },
+  "src/pdf.sandbox.external.js": {
+    "file_line_coverage": 0.3315508021390374,
+    "file_branch_coverage": 1.0,
+    "total_lines": 187,
+    "covered_lines": 62,
+    "total_branches": 3,
+    "covered_branches": 3,
+    "functions": {
+      "destroy": {
+        "start_line": 32,
+        "end_line": 38,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 7,
+        "covered_lines": 7,
+        "total_branches": 2,
+        "covered_branches": 2
+      },
+      "callSandboxFunction": {
+        "start_line": 65,
+        "end_line": 75,
+        "hit": true,
+        "line_coverage": 0.09090909090909091,
+        "branch_coverage": 1,
+        "total_lines": 11,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      }
+    }
+  },
+  "src/core/ascii_85_stream.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 98,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/core/colorspace_utils.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 303,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/core/flate_stream.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 483,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/core/image_utils.js": {
+    "file_line_coverage": 0.4174454828660436,
+    "file_branch_coverage": 0.75,
+    "total_lines": 321,
+    "covered_lines": 134,
+    "total_branches": 12,
+    "covered_branches": 9,
+    "functions": {
+      "shouldCache": {
+        "start_line": 230,
+        "end_line": 245,
+        "hit": true,
+        "line_coverage": 0.875,
+        "branch_coverage": 0.8333333333333334,
+        "total_lines": 16,
+        "covered_lines": 14,
+        "total_branches": 6,
+        "covered_branches": 5
+      },
+      "addByteSize": {
+        "start_line": 258,
+        "end_line": 267,
+        "hit": true,
+        "line_coverage": 0.1,
+        "branch_coverage": 1,
+        "total_lines": 10,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      }
+    }
+  },
+  "src/core/editor/pdf_editor.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 1600,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/core/xfa/config.js": {
+    "file_line_coverage": 0.4690265486725664,
+    "file_branch_coverage": 1.0,
+    "total_lines": 1921,
+    "covered_lines": 901,
+    "total_branches": 2,
+    "covered_branches": 2,
+    "functions": {
+      "base": {
+        "start_line": 1420,
+        "end_line": 1422,
+        "hit": true,
+        "line_coverage": 0.3333333333333333,
+        "branch_coverage": 1,
+        "total_lines": 3,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "includeXDPContent": {
+        "start_line": 1572,
+        "end_line": 1574,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 3,
+        "covered_lines": 3,
+        "total_branches": 1,
+        "covered_branches": 1
+      },
+      "msgId": {
+        "start_line": 1644,
+        "end_line": 1646,
+        "hit": true,
+        "line_coverage": 0.3333333333333333,
+        "branch_coverage": 1,
+        "total_lines": 3,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "startNode": {
+        "start_line": 1808,
+        "end_line": 1810,
+        "hit": true,
+        "line_coverage": 0.3333333333333333,
+        "branch_coverage": 1,
+        "total_lines": 3,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      }
+    }
+  },
+  "src/core/xfa/connection_set.js": {
+    "file_line_coverage": 0.5198019801980198,
+    "file_branch_coverage": 1.0,
+    "total_lines": 202,
+    "covered_lines": 105,
+    "total_branches": 6,
+    "covered_branches": 6,
+    "functions": {
+      "operation": {
+        "start_line": 165,
+        "end_line": 167,
+        "hit": true,
+        "line_coverage": 0.3333333333333333,
+        "branch_coverage": 1,
+        "total_lines": 3,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "uri": {
+        "start_line": 181,
+        "end_line": 183,
+        "hit": true,
+        "line_coverage": 0.3333333333333333,
+        "branch_coverage": 1,
+        "total_lines": 3,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "wsdlAddress": {
+        "start_line": 185,
+        "end_line": 187,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 3,
+        "covered_lines": 3,
+        "total_branches": 1,
+        "covered_branches": 1
+      },
+      "xsdConnection": {
+        "start_line": 197,
+        "end_line": 199,
+        "hit": true,
+        "line_coverage": 0.3333333333333333,
+        "branch_coverage": 1,
+        "total_lines": 3,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      }
+    }
+  },
+  "src/core/xfa/data.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 82,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/core/xfa/locale_set.js": {
+    "file_line_coverage": 0.5391304347826087,
+    "file_branch_coverage": 1.0,
+    "total_lines": 345,
+    "covered_lines": 186,
+    "total_branches": 4,
+    "covered_branches": 4,
+    "functions": {
+      "dateTimeSymbols": {
+        "start_line": 268,
+        "end_line": 270,
+        "hit": true,
+        "line_coverage": 0.3333333333333333,
+        "branch_coverage": 1,
+        "total_lines": 3,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "meridiem": {
+        "start_line": 296,
+        "end_line": 298,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 3,
+        "covered_lines": 3,
+        "total_branches": 1,
+        "covered_branches": 1
+      },
+      "month": {
+        "start_line": 304,
+        "end_line": 306,
+        "hit": true,
+        "line_coverage": 0.3333333333333333,
+        "branch_coverage": 1,
+        "total_lines": 3,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "numberPatterns": {
+        "start_line": 316,
+        "end_line": 318,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 3,
+        "covered_lines": 3,
+        "total_branches": 1,
+        "covered_branches": 1
+      }
+    }
+  },
+  "src/core/xfa/template.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 6605,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/core/xfa/xhtml.js": {
+    "file_line_coverage": 0.40202702702702703,
+    "file_branch_coverage": 1.0,
+    "total_lines": 592,
+    "covered_lines": 238,
+    "total_branches": 4,
+    "covered_branches": 4,
+    "functions": {
+      "b": {
+        "start_line": 543,
+        "end_line": 545,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 3,
+        "covered_lines": 3,
+        "total_branches": 1,
+        "covered_branches": 1
+      },
+      "li": {
+        "start_line": 563,
+        "end_line": 565,
+        "hit": true,
+        "line_coverage": 0.3333333333333333,
+        "branch_coverage": 1,
+        "total_lines": 3,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "p": {
+        "start_line": 571,
+        "end_line": 573,
+        "hit": true,
+        "line_coverage": 0.3333333333333333,
+        "branch_coverage": 1,
+        "total_lines": 3,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "span": {
+        "start_line": 575,
+        "end_line": 577,
+        "hit": true,
+        "line_coverage": 0.3333333333333333,
+        "branch_coverage": 1,
+        "total_lines": 3,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      }
+    }
+  },
+  "src/display/canvas_dependency_tracker.js": {
+    "file_line_coverage": 0.4232456140350877,
+    "file_branch_coverage": 0.5882352941176471,
+    "total_lines": 912,
+    "covered_lines": 386,
+    "total_branches": 17,
+    "covered_branches": 10,
+    "functions": {
+      "recordCloseMarker": {
+        "start_line": 667,
+        "end_line": 670,
+        "hit": true,
+        "line_coverage": 0.25,
+        "branch_coverage": 1,
+        "total_lines": 4,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "recordFullPageBBox": {
+        "start_line": 804,
+        "end_line": 809,
+        "hit": true,
+        "line_coverage": 0.16666666666666666,
+        "branch_coverage": 1,
+        "total_lines": 6,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "recordShowTextOperation": {
+        "start_line": 834,
+        "end_line": 837,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 4,
+        "covered_lines": 4,
+        "total_branches": 1,
+        "covered_branches": 1
+      }
+    }
+  },
+  "src/display/display_utils.js": {
+    "file_line_coverage": 0.2914714151827554,
+    "file_branch_coverage": 1.0,
+    "total_lines": 1067,
+    "covered_lines": 311,
+    "total_branches": 7,
+    "covered_branches": 7,
+    "functions": {
+      "time": {
+        "start_line": 426,
+        "end_line": 431,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 6,
+        "covered_lines": 6,
+        "total_branches": 2,
+        "covered_branches": 2
+      },
+      "applyOpacity": {
+        "start_line": 800,
+        "end_line": 807,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 8,
+        "covered_lines": 8,
+        "total_branches": 2,
+        "covered_branches": 2
+      },
+      "computeLuminance": {
+        "start_line": 883,
+        "end_line": 885,
+        "hit": false,
+        "line_coverage": 0.0,
+        "branch_coverage": 1,
+        "total_lines": 3,
+        "covered_lines": 0,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "contrastRatio": {
+        "start_line": 887,
+        "end_line": 897,
+        "hit": false,
+        "line_coverage": 0.0,
+        "branch_coverage": 1,
+        "total_lines": 11,
+        "covered_lines": 0,
+        "total_branches": 0,
+        "covered_branches": 0
+      }
+    }
+  },
+  "src/display/font_loader.js": {
+    "file_line_coverage": 0.16636528028933092,
+    "file_branch_coverage": 0.6,
+    "total_lines": 553,
+    "covered_lines": 92,
+    "total_branches": 10,
+    "covered_branches": 6,
+    "functions": {
+      "insertRule": {
+        "start_line": 59,
+        "end_line": 68,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 10,
+        "covered_lines": 10,
+        "total_branches": 2,
+        "covered_branches": 2
+      },
+      "clear": {
+        "start_line": 70,
+        "end_line": 82,
+        "hit": true,
+        "line_coverage": 0.8461538461538461,
+        "branch_coverage": 0.6666666666666666,
+        "total_lines": 13,
+        "covered_lines": 11,
+        "total_branches": 3,
+        "covered_branches": 2
+      },
+      "loadSystemFont": {
+        "start_line": 84,
+        "end_line": 118,
+        "hit": true,
+        "line_coverage": 0.02857142857142857,
+        "branch_coverage": 1,
+        "total_lines": 35,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      }
+    }
+  },
+  "src/display/network_utils.js": {
+    "file_line_coverage": 0.6694214876033058,
+    "file_branch_coverage": 0.9411764705882353,
+    "total_lines": 121,
+    "covered_lines": 81,
+    "total_branches": 17,
+    "covered_branches": 16,
+    "functions": {
+      "validateRangeRequestCapabilities": {
+        "start_line": 40,
+        "end_line": 84,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 0.9333333333333333,
+        "total_lines": 45,
+        "covered_lines": 45,
+        "total_branches": 15,
+        "covered_branches": 14
+      },
+      "extractFilenameFromHeader": {
+        "start_line": 86,
+        "end_line": 100,
+        "hit": false,
+        "line_coverage": 0.0,
+        "branch_coverage": 1,
+        "total_lines": 15,
+        "covered_lines": 0,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "validateResponseStatus": {
+        "start_line": 110,
+        "end_line": 112,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 3,
+        "covered_lines": 3,
+        "total_branches": 2,
+        "covered_branches": 2
+      }
+    }
+  },
+  "src/display/pdf_objects.js": {
+    "file_line_coverage": 0.696,
+    "file_branch_coverage": 0.6666666666666666,
+    "total_lines": 125,
+    "covered_lines": 87,
+    "total_branches": 6,
+    "covered_branches": 4,
+    "functions": {
+      "delete": {
+        "start_line": 83,
+        "end_line": 91,
+        "hit": true,
+        "line_coverage": 0.6666666666666666,
+        "branch_coverage": 0.3333333333333333,
+        "total_lines": 9,
+        "covered_lines": 6,
+        "total_branches": 3,
+        "covered_branches": 1
+      },
+      "resolve": {
+        "start_line": 99,
+        "end_line": 103,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 5,
+        "covered_lines": 5,
+        "total_branches": 1,
+        "covered_branches": 1
+      },
+      "clear": {
+        "start_line": 105,
+        "end_line": 111,
+        "hit": true,
+        "line_coverage": 0.14285714285714285,
+        "branch_coverage": 1,
+        "total_lines": 7,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      }
+    }
+  },
+  "src/display/standard_fontdata_factory.js": {
+    "file_line_coverage": 0.8923076923076924,
+    "file_branch_coverage": 0.75,
+    "total_lines": 65,
+    "covered_lines": 58,
+    "total_branches": 8,
+    "covered_branches": 6,
+    "functions": {
+      "fetch": {
+        "start_line": 30,
+        "end_line": 44,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 15,
+        "covered_lines": 15,
+        "total_branches": 5,
+        "covered_branches": 5
+      }
+    }
+  },
+  "src/display/editor/color_picker.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 369,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/display/editor/comment.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 340,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/display/editor/draw.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 987,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/display/editor/editor.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 2425,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/display/editor/ink.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 319,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/display/editor/drawers/freedraw.js": {
+    "file_line_coverage": 0.030973451327433628,
+    "file_branch_coverage": 0.3333333333333333,
+    "total_lines": 678,
+    "covered_lines": 21,
+    "total_branches": 3,
+    "covered_branches": 1,
+    "functions": {}
+  },
+  "src/display/editor/drawers/highlight.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 378,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/display/editor/drawers/inkdraw.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 897,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/display/editor/drawers/signaturedraw.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 839,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/scripting_api/color.js": {
+    "file_line_coverage": 0.7984496124031008,
+    "file_branch_coverage": 0.7241379310344828,
+    "total_lines": 129,
+    "covered_lines": 103,
+    "total_branches": 29,
+    "covered_branches": 21,
+    "functions": {
+      "convert": {
+        "start_line": 90,
+        "end_line": 111,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 22,
+        "covered_lines": 22,
+        "total_branches": 9,
+        "covered_branches": 9
+      }
+    }
+  },
+  "src/scripting_api/doc.js": {
+    "file_line_coverage": 0.5121951219512195,
+    "file_branch_coverage": 0.45161290322580644,
+    "total_lines": 1353,
+    "covered_lines": 693,
+    "total_branches": 31,
+    "covered_branches": 14,
+    "functions": {
+      "get": {
+        "start_line": 25,
+        "end_line": 27,
+        "hit": true,
+        "line_coverage": 0.3333333333333333,
+        "branch_coverage": 1,
+        "total_lines": 3,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "print": {
+        "start_line": 1156,
+        "end_line": 1197,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 0.9230769230769231,
+        "total_lines": 42,
+        "covered_lines": 42,
+        "total_branches": 13,
+        "covered_branches": 12
+      }
+    }
+  },
+  "src/scripting_api/field.js": {
+    "file_line_coverage": 0.42579750346740636,
+    "file_branch_coverage": 0.717948717948718,
+    "total_lines": 721,
+    "covered_lines": 307,
+    "total_branches": 39,
+    "covered_branches": 28,
+    "functions": {
+      "buttonGetIcon": {
+        "start_line": 343,
+        "end_line": 348,
+        "hit": true,
+        "line_coverage": 0.6666666666666666,
+        "branch_coverage": 0.5,
+        "total_lines": 6,
+        "covered_lines": 4,
+        "total_branches": 2,
+        "covered_branches": 1
+      },
+      "buttonSetCaption": {
+        "start_line": 354,
+        "end_line": 363,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 10,
+        "covered_lines": 10,
+        "total_branches": 2,
+        "covered_branches": 2
+      },
+      "buttonSetIcon": {
+        "start_line": 365,
+        "end_line": 370,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 6,
+        "covered_lines": 6,
+        "total_branches": 2,
+        "covered_branches": 2
+      },
+      "clearItems": {
+        "start_line": 374,
+        "end_line": 380,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 7,
+        "covered_lines": 7,
+        "total_branches": 3,
+        "covered_branches": 3
+      }
+    }
+  },
+  "src/scripting_api/proxy.js": {
+    "file_line_coverage": 0.5251798561151079,
+    "file_branch_coverage": 1.0,
+    "total_lines": 139,
+    "covered_lines": 73,
+    "total_branches": 13,
+    "covered_branches": 13,
+    "functions": {
+      "get": {
+        "start_line": 24,
+        "end_line": 45,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 22,
+        "covered_lines": 22,
+        "total_branches": 10,
+        "covered_branches": 10
+      },
+      "preventExtensions": {
+        "start_line": 101,
+        "end_line": 103,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 3,
+        "covered_lines": 3,
+        "total_branches": 1,
+        "covered_branches": 1
+      },
+      "defineProperty": {
+        "start_line": 121,
+        "end_line": 124,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 4,
+        "covered_lines": 4,
+        "total_branches": 1,
+        "covered_branches": 1
+      }
+    }
+  },
+  "src/shared/image_utils.js": {
+    "file_line_coverage": 0.4666666666666667,
+    "file_branch_coverage": 0.9,
+    "total_lines": 135,
+    "covered_lines": 63,
+    "total_branches": 30,
+    "covered_branches": 27,
+    "functions": {
+      "convertToRGBA": {
+        "start_line": 18,
+        "end_line": 27,
+        "hit": false,
+        "line_coverage": 0.0,
+        "branch_coverage": 1,
+        "total_lines": 10,
+        "covered_lines": 0,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "convertBlackAndWhiteToRGBA": {
+        "start_line": 29,
+        "end_line": 69,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 0.9,
+        "total_lines": 41,
+        "covered_lines": 41,
+        "total_branches": 30,
+        "covered_branches": 27
+      },
+      "convertRGBToRGBA": {
+        "start_line": 71,
+        "end_line": 121,
+        "hit": false,
+        "line_coverage": 0.0,
+        "branch_coverage": 1,
+        "total_lines": 51,
+        "covered_lines": 0,
+        "total_branches": 0,
+        "covered_branches": 0
+      }
+    }
+  },
+  "src/shared/message_handler.js": {
+    "file_line_coverage": 0.1970260223048327,
+    "file_branch_coverage": 1.0,
+    "total_lines": 538,
+    "covered_lines": 106,
+    "total_branches": 2,
+    "covered_branches": 2,
+    "functions": {
+      "sendWithStream": {
+        "start_line": 229,
+        "end_line": 294,
+        "hit": true,
+        "line_coverage": 0.015151515151515152,
+        "branch_coverage": 1,
+        "total_lines": 66,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "destroy": {
+        "start_line": 532,
+        "end_line": 535,
+        "hit": true,
+        "line_coverage": 0.25,
+        "branch_coverage": 1,
+        "total_lines": 4,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      }
+    }
+  },
+  "src/shared/murmurhash3.js": {
+    "file_line_coverage": 0.9407407407407408,
+    "file_branch_coverage": 0.9130434782608695,
+    "total_lines": 135,
+    "covered_lines": 127,
+    "total_branches": 23,
+    "covered_branches": 21,
+    "functions": {
+      "update": {
+        "start_line": 31,
+        "end_line": 110,
+        "hit": true,
+        "line_coverage": 0.9,
+        "branch_coverage": 0.8823529411764706,
+        "total_lines": 80,
+        "covered_lines": 72,
+        "total_branches": 17,
+        "covered_branches": 15
+      },
+      "hexdigest": {
+        "start_line": 112,
+        "end_line": 132,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 21,
+        "covered_lines": 21,
+        "total_branches": 1,
+        "covered_branches": 1
+      }
+    }
+  },
+  "src/shared/obj-bin-transform.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 920,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/shared/scripting_utils.js": {
+    "file_line_coverage": 0.8095238095238095,
+    "file_branch_coverage": 1.0,
+    "total_lines": 126,
+    "covered_lines": 102,
+    "total_branches": 7,
+    "covered_branches": 7,
+    "functions": {
+      "G_RGB": {
+        "start_line": 43,
+        "end_line": 45,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 3,
+        "covered_lines": 3,
+        "total_branches": 1,
+        "covered_branches": 1
+      },
+      "RGB_G": {
+        "start_line": 57,
+        "end_line": 59,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 3,
+        "covered_lines": 3,
+        "total_branches": 1,
+        "covered_branches": 1
+      },
+      "T_rgb": {
+        "start_line": 73,
+        "end_line": 75,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 3,
+        "covered_lines": 3,
+        "total_branches": 1,
+        "covered_branches": 1
+      },
+      "CMYK_rgb": {
+        "start_line": 86,
+        "end_line": 92,
+        "hit": true,
+        "line_coverage": 1.0,
+        "branch_coverage": 1.0,
+        "total_lines": 7,
+        "covered_lines": 7,
+        "total_branches": 1,
+        "covered_branches": 1
+      }
+    }
+  },
+  "web/base_pdf_page_view.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 278,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "web/caret_browsing.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 365,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "web/pdf_page_view.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 1197,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "web/sidebar.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 221,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  }
+}

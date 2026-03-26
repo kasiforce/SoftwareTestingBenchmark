@@ -14,379 +14,275 @@
     "num_reported_test_suites": 13
   },
   "coverage": {
-    "src/merge/cause.js": {
-      "file_line_coverage": 0.5686274509803921,
-      "file_branch_coverage": 1.0,
-      "total_lines": 51,
-      "covered_lines": 29,
-      "total_branches": 1,
-      "covered_branches": 1,
-      "functions": {
-        "mergeSpecificCause": {
-          "start_line": 9,
-          "end_line": 13,
-          "hit": true,
-          "line_coverage": 1.0,
-          "branch_coverage": 1.0,
-          "total_lines": 5,
-          "covered_lines": 5,
-          "total_branches": 1,
-          "covered_branches": 1
-        },
-        "mergeCause": {
-          "start_line": 27,
-          "end_line": 39,
-          "hit": true,
-          "line_coverage": 0.07692307692307693,
-          "branch_coverage": 1,
-          "total_lines": 13,
-          "covered_lines": 1,
-          "total_branches": 0,
-          "covered_branches": 0
-        },
-        "mergePrefixedError": {
-          "start_line": 41,
-          "end_line": 51,
-          "hit": true,
-          "line_coverage": 0.09090909090909091,
-          "branch_coverage": 1,
-          "total_lines": 11,
-          "covered_lines": 1,
-          "total_branches": 0,
-          "covered_branches": 0
-        }
+    "file": {
+      "src/merge/cause.js": {
+        "total_lines": 18,
+        "covered_lines": 6,
+        "total_branches": 6,
+        "covered_branches": 0
+      },
+      "src/merge/prefix.js": {
+        "total_lines": 14,
+        "covered_lines": 5,
+        "total_branches": 15,
+        "covered_branches": 0
+      },
+      "src/options/class.js": {
+        "total_lines": 11,
+        "covered_lines": 0,
+        "total_branches": 3,
+        "covered_branches": 0
+      },
+      "src/options/clone.js": {
+        "total_lines": 13,
+        "covered_lines": 5,
+        "total_branches": 4,
+        "covered_branches": 2
+      },
+      "src/options/merge.js": {
+        "total_lines": 14,
+        "covered_lines": 5,
+        "total_branches": 8,
+        "covered_branches": 0
+      },
+      "src/options/method.js": {
+        "total_lines": 15,
+        "covered_lines": 6,
+        "total_branches": 9,
+        "covered_branches": 1
+      },
+      "src/options/plugins.js": {
+        "total_lines": 5,
+        "covered_lines": 4,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/plugins/instance/call.js": {
+        "total_lines": 8,
+        "covered_lines": 3,
+        "total_branches": 2,
+        "covered_branches": 0
+      },
+      "src/plugins/instance/main.js": {
+        "total_lines": 13,
+        "covered_lines": 6,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/plugins/properties/assign.js": {
+        "total_lines": 10,
+        "covered_lines": 6,
+        "total_branches": 6,
+        "covered_branches": 3
+      },
+      "src/plugins/properties/main.js": {
+        "total_lines": 11,
+        "covered_lines": 0,
+        "total_branches": 4,
+        "covered_branches": 0
+      },
+      "src/plugins/shape/duplicate.js": {
+        "total_lines": 21,
+        "covered_lines": 5,
+        "total_branches": 8,
+        "covered_branches": 0
+      },
+      "src/plugins/shape/main.js": {
+        "total_lines": 29,
+        "covered_lines": 0,
+        "total_branches": 9,
+        "covered_branches": 0
+      },
+      "src/plugins/shape/methods.js": {
+        "total_lines": 19,
+        "covered_lines": 16,
+        "total_branches": 10,
+        "covered_branches": 7
+      },
+      "src/plugins/shape/name.js": {
+        "total_lines": 22,
+        "covered_lines": 0,
+        "total_branches": 10,
+        "covered_branches": 0
+      },
+      "src/plugins/static/call.js": {
+        "total_lines": 6,
+        "covered_lines": 2,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/subclass/validate.js": {
+        "total_lines": 6,
+        "covered_lines": 0,
+        "total_branches": 2,
+        "covered_branches": 0
       }
     },
-    "src/merge/prefix.js": {
-      "file_line_coverage": 0.5576923076923077,
-      "file_branch_coverage": 1,
-      "total_lines": 52,
-      "covered_lines": 29,
-      "total_branches": 0,
-      "covered_branches": 0,
-      "functions": {
-        "shouldPrefixCause": {
-          "start_line": 18,
-          "end_line": 24,
-          "hit": true,
-          "line_coverage": 0.14285714285714285,
-          "branch_coverage": 1,
-          "total_lines": 7,
-          "covered_lines": 1,
-          "total_branches": 0,
-          "covered_branches": 0
-        },
-        "prefixCause": {
-          "start_line": 41,
-          "end_line": 47,
-          "hit": true,
-          "line_coverage": 0.14285714285714285,
-          "branch_coverage": 1,
-          "total_lines": 7,
-          "covered_lines": 1,
-          "total_branches": 0,
-          "covered_branches": 0
-        }
+    "function": {
+      "src/merge/cause.js::mergePrefixedError:41-51": {
+        "total_lines": 7,
+        "covered_lines": 1,
+        "total_branches": 2,
+        "covered_branches": 0
+      },
+      "src/merge/cause.js::mergeSpecificCause:9-13": {
+        "total_lines": 4,
+        "covered_lines": 4,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/merge/cause.js::mergeCause:27-39": {
+        "total_lines": 7,
+        "covered_lines": 1,
+        "total_branches": 4,
+        "covered_branches": 0
+      },
+      "src/merge/prefix.js::shouldPrefixCause:18-24": {
+        "total_lines": 3,
+        "covered_lines": 1,
+        "total_branches": 3,
+        "covered_branches": 0
+      },
+      "src/merge/prefix.js::prefixCause:41-47": {
+        "total_lines": 5,
+        "covered_lines": 1,
+        "total_branches": 4,
+        "covered_branches": 0
+      },
+      "src/options/class.js::normalizeClassOpts:10-18": {
+        "total_lines": 4,
+        "covered_lines": 0,
+        "total_branches": 3,
+        "covered_branches": 0
+      },
+      "src/options/clone.js::deepCloneObject:28-40": {
+        "total_lines": 7,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/options/clone.js::deepClone:16-26": {
+        "total_lines": 6,
+        "covered_lines": 4,
+        "total_branches": 4,
+        "covered_branches": 2
+      },
+      "src/options/merge.js::mergePluginOpts:26-29": {
+        "total_lines": 3,
+        "covered_lines": 1,
+        "total_branches": 2,
+        "covered_branches": 0
+      },
+      "src/options/merge.js::mergeOpt:31-41": {
+        "total_lines": 6,
+        "covered_lines": 1,
+        "total_branches": 6,
+        "covered_branches": 0
+      },
+      "src/options/method.js::lastArgIsOptions:42-52": {
+        "total_lines": 5,
+        "covered_lines": 1,
+        "total_branches": 2,
+        "covered_branches": 0
+      },
+      "src/options/plugins.js::finalizePluginsOpts:37-51": {
+        "total_lines": 5,
+        "covered_lines": 4,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/plugins/instance/call.js::callMethod:23-27": {
+        "total_lines": 4,
+        "covered_lines": 2,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/plugins/instance/call.js::callInstanceMethod:5-21": {
+        "total_lines": 4,
+        "covered_lines": 1,
+        "total_branches": 2,
+        "covered_branches": 0
+      },
+      "src/plugins/instance/main.js::addInstanceMethod:20-50": {
+        "total_lines": 4,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/plugins/properties/assign.js::assignError:20-42": {
+        "total_lines": 9,
+        "covered_lines": 5,
+        "total_branches": 6,
+        "covered_branches": 3
+      },
+      "src/plugins/properties/main.js::applyPluginProperties:23-43": {
+        "total_lines": 8,
+        "covered_lines": 0,
+        "total_branches": 4,
+        "covered_branches": 0
+      },
+      "src/plugins/shape/duplicate.js::validateEachPlugin:31-58": {
+        "total_lines": 8,
+        "covered_lines": 1,
+        "total_branches": 6,
+        "covered_branches": 0
+      },
+      "src/plugins/shape/main.js::normalizePlugin:32-46": {
+        "total_lines": 10,
+        "covered_lines": 0,
+        "total_branches": 2,
+        "covered_branches": 0
+      },
+      "src/plugins/shape/main.js::normalizePluginsOpt:22-30": {
+        "total_lines": 4,
+        "covered_lines": 0,
+        "total_branches": 3,
+        "covered_branches": 0
+      },
+      "src/plugins/shape/methods.js::normalizeAllMethods:4-21": {
+        "total_lines": 5,
+        "covered_lines": 5,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/plugins/shape/methods.js::normalizeMethods:35-62": {
+        "total_lines": 7,
+        "covered_lines": 6,
+        "total_branches": 4,
+        "covered_branches": 3
+      },
+      "src/plugins/shape/name.js::validatePluginName:19-33": {
+        "total_lines": 8,
+        "covered_lines": 0,
+        "total_branches": 4,
+        "covered_branches": 0
+      },
+      "src/plugins/static/call.js::callStaticMethod:7-27": {
+        "total_lines": 6,
+        "covered_lines": 2,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/subclass/validate.js::validateSubclass:14-26": {
+        "total_lines": 6,
+        "covered_lines": 0,
+        "total_branches": 2,
+        "covered_branches": 0
       }
     },
-    "src/options/class.js": {
-      "file_line_coverage": 0.0,
-      "file_branch_coverage": 0.0,
-      "total_lines": 38,
-      "covered_lines": 0,
-      "total_branches": 1,
-      "covered_branches": 0,
-      "functions": {}
-    },
-    "src/options/clone.js": {
-      "file_line_coverage": 0.6,
-      "file_branch_coverage": 0.3333333333333333,
-      "total_lines": 40,
-      "covered_lines": 24,
-      "total_branches": 3,
-      "covered_branches": 1,
-      "functions": {
-        "deepClone": {
-          "start_line": 16,
-          "end_line": 26,
-          "hit": true,
-          "line_coverage": 0.6363636363636364,
-          "branch_coverage": 0.3333333333333333,
-          "total_lines": 11,
-          "covered_lines": 7,
-          "total_branches": 3,
-          "covered_branches": 1
-        },
-        "deepCloneObject": {
-          "start_line": 28,
-          "end_line": 40,
-          "hit": true,
-          "line_coverage": 0.07692307692307693,
-          "branch_coverage": 1,
-          "total_lines": 13,
-          "covered_lines": 1,
-          "total_branches": 0,
-          "covered_branches": 0
-        }
+    "summary": {
+      "file": {
+        "total_lines": 235,
+        "covered_lines": 69,
+        "total_branches": 96,
+        "covered_branches": 13
+      },
+      "function": {
+        "total_lines": 145,
+        "covered_lines": 43,
+        "total_branches": 63,
+        "covered_branches": 8
       }
-    },
-    "src/options/merge.js": {
-      "file_line_coverage": 0.6,
-      "file_branch_coverage": 1,
-      "total_lines": 45,
-      "covered_lines": 27,
-      "total_branches": 0,
-      "covered_branches": 0,
-      "functions": {
-        "mergePluginOpts": {
-          "start_line": 26,
-          "end_line": 29,
-          "hit": true,
-          "line_coverage": 0.25,
-          "branch_coverage": 1,
-          "total_lines": 4,
-          "covered_lines": 1,
-          "total_branches": 0,
-          "covered_branches": 0
-        },
-        "mergeOpt": {
-          "start_line": 31,
-          "end_line": 41,
-          "hit": true,
-          "line_coverage": 0.09090909090909091,
-          "branch_coverage": 1,
-          "total_lines": 11,
-          "covered_lines": 1,
-          "total_branches": 0,
-          "covered_branches": 0
-        }
-      }
-    },
-    "src/options/method.js": {
-      "file_line_coverage": 0.631578947368421,
-      "file_branch_coverage": 0.4,
-      "total_lines": 57,
-      "covered_lines": 36,
-      "total_branches": 5,
-      "covered_branches": 2,
-      "functions": {
-        "lastArgIsOptions": {
-          "start_line": 42,
-          "end_line": 52,
-          "hit": true,
-          "line_coverage": 0.09090909090909091,
-          "branch_coverage": 1,
-          "total_lines": 11,
-          "covered_lines": 1,
-          "total_branches": 0,
-          "covered_branches": 0
-        }
-      }
-    },
-    "src/options/plugins.js": {
-      "file_line_coverage": 1.0,
-      "file_branch_coverage": 1.0,
-      "total_lines": 51,
-      "covered_lines": 51,
-      "total_branches": 1,
-      "covered_branches": 1,
-      "functions": {
-        "finalizePluginsOpts": {
-          "start_line": 37,
-          "end_line": 51,
-          "hit": true,
-          "line_coverage": 1.0,
-          "branch_coverage": 1.0,
-          "total_lines": 15,
-          "covered_lines": 15,
-          "total_branches": 1,
-          "covered_branches": 1
-        }
-      }
-    },
-    "src/plugins/instance/call.js": {
-      "file_line_coverage": 0.4074074074074074,
-      "file_branch_coverage": 1.0,
-      "total_lines": 27,
-      "covered_lines": 11,
-      "total_branches": 1,
-      "covered_branches": 1,
-      "functions": {
-        "callInstanceMethod": {
-          "start_line": 5,
-          "end_line": 21,
-          "hit": true,
-          "line_coverage": 0.058823529411764705,
-          "branch_coverage": 1,
-          "total_lines": 17,
-          "covered_lines": 1,
-          "total_branches": 0,
-          "covered_branches": 0
-        },
-        "callMethod": {
-          "start_line": 23,
-          "end_line": 27,
-          "hit": true,
-          "line_coverage": 1.0,
-          "branch_coverage": 1.0,
-          "total_lines": 5,
-          "covered_lines": 5,
-          "total_branches": 1,
-          "covered_branches": 1
-        }
-      }
-    },
-    "src/plugins/instance/main.js": {
-      "file_line_coverage": 0.3157894736842105,
-      "file_branch_coverage": 1.0,
-      "total_lines": 57,
-      "covered_lines": 18,
-      "total_branches": 1,
-      "covered_branches": 1,
-      "functions": {
-        "addInstanceMethod": {
-          "start_line": 20,
-          "end_line": 50,
-          "hit": true,
-          "line_coverage": 0.03225806451612903,
-          "branch_coverage": 1,
-          "total_lines": 31,
-          "covered_lines": 1,
-          "total_branches": 0,
-          "covered_branches": 0
-        }
-      }
-    },
-    "src/plugins/properties/assign.js": {
-      "file_line_coverage": 0.8636363636363636,
-      "file_branch_coverage": 0.5714285714285714,
-      "total_lines": 44,
-      "covered_lines": 38,
-      "total_branches": 7,
-      "covered_branches": 4,
-      "functions": {
-        "assignError": {
-          "start_line": 20,
-          "end_line": 42,
-          "hit": true,
-          "line_coverage": 0.7391304347826086,
-          "branch_coverage": 0.5714285714285714,
-          "total_lines": 23,
-          "covered_lines": 17,
-          "total_branches": 7,
-          "covered_branches": 4
-        }
-      }
-    },
-    "src/plugins/properties/main.js": {
-      "file_line_coverage": 0.0,
-      "file_branch_coverage": 0.0,
-      "total_lines": 43,
-      "covered_lines": 0,
-      "total_branches": 1,
-      "covered_branches": 0,
-      "functions": {}
-    },
-    "src/plugins/shape/duplicate.js": {
-      "file_line_coverage": 0.20634920634920634,
-      "file_branch_coverage": 1,
-      "total_lines": 63,
-      "covered_lines": 13,
-      "total_branches": 0,
-      "covered_branches": 0,
-      "functions": {
-        "validateEachPlugin": {
-          "start_line": 31,
-          "end_line": 58,
-          "hit": true,
-          "line_coverage": 0.03571428571428571,
-          "branch_coverage": 1,
-          "total_lines": 28,
-          "covered_lines": 1,
-          "total_branches": 0,
-          "covered_branches": 0
-        }
-      }
-    },
-    "src/plugins/shape/main.js": {
-      "file_line_coverage": 0.0,
-      "file_branch_coverage": 0.0,
-      "total_lines": 64,
-      "covered_lines": 0,
-      "total_branches": 1,
-      "covered_branches": 0,
-      "functions": {}
-    },
-    "src/plugins/shape/methods.js": {
-      "file_line_coverage": 0.8571428571428571,
-      "file_branch_coverage": 0.6666666666666666,
-      "total_lines": 84,
-      "covered_lines": 72,
-      "total_branches": 9,
-      "covered_branches": 6,
-      "functions": {
-        "normalizeAllMethods": {
-          "start_line": 4,
-          "end_line": 21,
-          "hit": true,
-          "line_coverage": 1.0,
-          "branch_coverage": 1.0,
-          "total_lines": 18,
-          "covered_lines": 18,
-          "total_branches": 1,
-          "covered_branches": 1
-        },
-        "normalizeMethods": {
-          "start_line": 35,
-          "end_line": 62,
-          "hit": true,
-          "line_coverage": 0.8571428571428571,
-          "branch_coverage": 0.8,
-          "total_lines": 28,
-          "covered_lines": 24,
-          "total_branches": 5,
-          "covered_branches": 4
-        }
-      }
-    },
-    "src/plugins/shape/name.js": {
-      "file_line_coverage": 0.0,
-      "file_branch_coverage": 0.0,
-      "total_lines": 59,
-      "covered_lines": 0,
-      "total_branches": 1,
-      "covered_branches": 0,
-      "functions": {}
-    },
-    "src/plugins/static/call.js": {
-      "file_line_coverage": 1.0,
-      "file_branch_coverage": 1.0,
-      "total_lines": 27,
-      "covered_lines": 27,
-      "total_branches": 1,
-      "covered_branches": 1,
-      "functions": {
-        "callStaticMethod": {
-          "start_line": 7,
-          "end_line": 27,
-          "hit": true,
-          "line_coverage": 1.0,
-          "branch_coverage": 1.0,
-          "total_lines": 21,
-          "covered_lines": 21,
-          "total_branches": 1,
-          "covered_branches": 1
-        }
-      }
-    },
-    "src/subclass/validate.js": {
-      "file_line_coverage": 0.0,
-      "file_branch_coverage": 0.0,
-      "total_lines": 26,
-      "covered_lines": 0,
-      "total_branches": 1,
-      "covered_branches": 0,
-      "functions": {}
     }
   }
 }

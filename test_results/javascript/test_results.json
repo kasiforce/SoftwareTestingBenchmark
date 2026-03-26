@@ -1,0 +1,176 @@
+{
+  "by_model": {
+    "CodeLlama-7b": {
+      "total_tests_generated": 462,
+      "syntax_check_passed": 413,
+      "compile_runtime_check_passed": 186
+    },
+    "qwen": {
+      "total_tests_generated": 462,
+      "syntax_check_passed": 442,
+      "compile_runtime_check_passed": 317
+    },
+    "glm": {
+      "total_tests_generated": 462,
+      "syntax_check_passed": 433,
+      "compile_runtime_check_passed": 264
+    },
+    "gpt4o": {
+      "total_tests_generated": 462,
+      "syntax_check_passed": 411,
+      "compile_runtime_check_passed": 260
+    },
+    "gpt5": {
+      "total_tests_generated": 462,
+      "syntax_check_passed": 449,
+      "compile_runtime_check_passed": 343
+    },
+    "DSv3.2": {
+      "total_tests_generated": 462,
+      "syntax_check_passed": 443,
+      "compile_runtime_check_passed": 286
+    },
+    "DS6.7b": {
+      "total_tests_generated": 462,
+      "syntax_check_passed": 433,
+      "compile_runtime_check_passed": 251
+    }
+  },
+  "by_model_and_framework": {
+    "CodeLlama-7b": {
+      "jest": {
+        "total_tests_generated": 462,
+        "syntax_check_passed": 413,
+        "compile_runtime_check_passed": 186
+      }
+    },
+    "qwen": {
+      "jest": {
+        "total_tests_generated": 462,
+        "syntax_check_passed": 442,
+        "compile_runtime_check_passed": 317
+      }
+    },
+    "glm": {
+      "jest": {
+        "total_tests_generated": 462,
+        "syntax_check_passed": 433,
+        "compile_runtime_check_passed": 264
+      }
+    },
+    "gpt4o": {
+      "jest": {
+        "total_tests_generated": 462,
+        "syntax_check_passed": 411,
+        "compile_runtime_check_passed": 260
+      }
+    },
+    "gpt5": {
+      "jest": {
+        "total_tests_generated": 462,
+        "syntax_check_passed": 449,
+        "compile_runtime_check_passed": 343
+      }
+    },
+    "DSv3.2": {
+      "jest": {
+        "total_tests_generated": 462,
+        "syntax_check_passed": 443,
+        "compile_runtime_check_passed": 286
+      }
+    },
+    "DS6.7b": {
+      "jest": {
+        "total_tests_generated": 462,
+        "syntax_check_passed": 433,
+        "compile_runtime_check_passed": 251
+      }
+    }
+  },
+  "by_model_and_specification": {
+    "CodeLlama-7b": {
+      "with_specification": {
+        "total_tests_generated": 231,
+        "syntax_check_passed": 213,
+        "compile_runtime_check_passed": 59
+      },
+      "without_specification": {
+        "total_tests_generated": 231,
+        "syntax_check_passed": 200,
+        "compile_runtime_check_passed": 127
+      }
+    },
+    "qwen": {
+      "with_specification": {
+        "total_tests_generated": 231,
+        "syntax_check_passed": 226,
+        "compile_runtime_check_passed": 175
+      },
+      "without_specification": {
+        "total_tests_generated": 231,
+        "syntax_check_passed": 216,
+        "compile_runtime_check_passed": 142
+      }
+    },
+    "glm": {
+      "without_specification": {
+        "total_tests_generated": 231,
+        "syntax_check_passed": 210,
+        "compile_runtime_check_passed": 127
+      },
+      "with_specification": {
+        "total_tests_generated": 231,
+        "syntax_check_passed": 223,
+        "compile_runtime_check_passed": 137
+      }
+    },
+    "gpt4o": {
+      "with_specification": {
+        "total_tests_generated": 231,
+        "syntax_check_passed": 213,
+        "compile_runtime_check_passed": 143
+      },
+      "without_specification": {
+        "total_tests_generated": 231,
+        "syntax_check_passed": 198,
+        "compile_runtime_check_passed": 117
+      }
+    },
+    "gpt5": {
+      "without_specification": {
+        "total_tests_generated": 231,
+        "syntax_check_passed": 226,
+        "compile_runtime_check_passed": 163
+      },
+      "with_specification": {
+        "total_tests_generated": 231,
+        "syntax_check_passed": 223,
+        "compile_runtime_check_passed": 180
+      }
+    },
+    "DSv3.2": {
+      "with_specification": {
+        "total_tests_generated": 231,
+        "syntax_check_passed": 226,
+        "compile_runtime_check_passed": 148
+      },
+      "without_specification": {
+        "total_tests_generated": 231,
+        "syntax_check_passed": 217,
+        "compile_runtime_check_passed": 138
+      }
+    },
+    "DS6.7b": {
+      "without_specification": {
+        "total_tests_generated": 231,
+        "syntax_check_passed": 204,
+        "compile_runtime_check_passed": 127
+      },
+      "with_specification": {
+        "total_tests_generated": 231,
+        "syntax_check_passed": 229,
+        "compile_runtime_check_passed": 124
+      }
+    }
+  }
+}

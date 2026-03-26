@@ -9,5 +9,19 @@
     "failures": 0,
     "errors": 0,
     "pass_rate": 0
+  },
+  "summary": {
+    "file": {
+      "total_lines": 5216,
+      "covered_lines": 0,
+      "total_branches": 1948,
+      "covered_branches": 0
+    },
+    "function": {
+      "total_lines": 800,
+      "covered_lines": 0,
+      "total_branches": 164,
+      "covered_branches": 0
+    }
   }
 }

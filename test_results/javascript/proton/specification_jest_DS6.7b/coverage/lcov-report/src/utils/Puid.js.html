@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">21.05% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/19</span>
+                <span class='fraction'>4/16</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">45.45% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/11</span>
+                <span class='fraction'>4/16</span>
             </div>
         
             
@@ -106,31 +106,31 @@
 <a name='L41'></a><a href='#L41'>41</a>
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
-<a name='L44'></a><a href='#L44'>44</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">11x</span>
+<a name='L44'></a><a href='#L44'>44</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -160,34 +160,34 @@ const Puid = {
     return `${type}_${idsMap[type]++}`;
   },
 &nbsp;
-<span class="fstat-no" title="function not covered" >  getId(t</span>arget) {
-    let uid = this.getIdFromCache(target);
-    if (uid) return uid;
+<span class="fstat-no" title="function not covered" >  ge</span>tId(target) {
+    let uid = <span class="cstat-no" title="statement not covered" >this.getIdFromCache(target);</span>
+<span class="cstat-no" title="statement not covered" >    if (uid) <span class="cstat-no" title="statement not covered" >return uid;</span></span>
 &nbsp;
-    uid = `PUID_${this._index++}`;
-    this._cache[uid] = target;
-    return uid;
+<span class="cstat-no" title="statement not covered" >    uid = `PUID_${this._index++}`;</span>
+<span class="cstat-no" title="statement not covered" >    this._cache[uid] = target;</span>
+<span class="cstat-no" title="statement not covered" >    return uid;</span>
   },
 &nbsp;
-<span class="fstat-no" title="function not covered" >  getIdFromCache(t</span>arget) {
+<span class="fstat-no" title="function not covered" >  ge</span>tIdFromCache(target) {
     let obj, id;
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    for (id in this._cache) {</span>
-      obj = this._cache[id];
+<span class="cstat-no" title="statement not covered" >      obj = this._cache[id];</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >      if (obj === target) <span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >return id;</span></span></span></span>
-<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >      if (this.isBody(obj, target) &amp;&amp; obj.src === target.src) <span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >return id;</span></span></span></span>
+<span class="cstat-no" title="statement not covered" >      if (obj === target) <span class="cstat-no" title="statement not covered" >return id;</span></span>
+<span class="cstat-no" title="statement not covered" >      if (this.isBody(obj, target) &amp;&amp; obj.src === target.src) <span class="cstat-no" title="statement not covered" >return id;</span></span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >    return null;</span></span>
+<span class="cstat-no" title="statement not covered" >    return null;</span>
   },
 &nbsp;
-<span class="fstat-no" title="function not covered" >  isBody(o</span>bj, target) {
-<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >    return typeof obj === "object" &amp;&amp; typeof target === "object" &amp;&amp; obj.isInner &amp;&amp; target.isInner;</span></span>
+<span class="fstat-no" title="function not covered" >  is</span>Body(obj, target) {
+<span class="cstat-no" title="statement not covered" >    return typeof obj === "object" &amp;&amp; typeof target === "object" &amp;&amp; obj.isInner &amp;&amp; target.isInner;</span>
   },
 &nbsp;
-<span class="fstat-no" title="function not covered" >  getTarget(u</span>id) {
-<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >    return this._cache[uid];</span></span>
+<span class="fstat-no" title="function not covered" >  ge</span>tTarget(uid) {
+<span class="cstat-no" title="statement not covered" >    return this._cache[uid];</span>
   }
 };
 &nbsp;
@@ -199,7 +199,7 @@ export default Puid;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-16T02:18:54.381Z
+                at 2026-03-26T13:05:49.631Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

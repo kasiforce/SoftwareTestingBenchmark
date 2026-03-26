@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/22</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/22</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
@@ -85,50 +85,50 @@
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import max from "./max.js";</span></span></span>
-<span class="cstat-no" title="statement not covered" >import silhouette from "./silhouette.js";</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >/**</span>
-<span class="cstat-no" title="statement not covered" > * Calculate the [silhouette metric](https://en.wikipedia.org/wiki/Silhouette_(clustering))</span>
-<span class="cstat-no" title="statement not covered" > * for a set of N-dimensional points arranged in groups. The metric is the largest</span>
-<span class="cstat-no" title="statement not covered" > * individual silhouette value for the data.</span>
-<span class="cstat-no" title="statement not covered" > *</span>
-<span class="cstat-no" title="statement not covered" > * @param {Array&lt;Array&lt;number&gt;&gt;} points N-dimensional coordinates of points.</span>
-<span class="cstat-no" title="statement not covered" > * @param {Array&lt;number&gt;} labels Labels of points. This must be the same length as `points`,</span>
-<span class="cstat-no" title="statement not covered" > * and values must lie in [0..G-1], where G is the number of groups.</span>
-<span class="cstat-no" title="statement not covered" > * @return {number} The silhouette metric for the groupings.</span>
-<span class="cstat-no" title="statement not covered" > *</span>
-<span class="cstat-no" title="statement not covered" > * @example</span>
-<span class="cstat-no" title="statement not covered" > * silhouetteMetric([[0.25], [0.75]], [0, 0]); // =&gt; 1.0</span>
-<span class="cstat-no" title="statement not covered" > */</span>
-<span class="cstat-no" title="statement not covered" >function silhouetteMetric(points, labels) {</span>
-<span class="cstat-no" title="statement not covered" >    const values = silhouette(points, labels);</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import max from "./max.js";
+import silhouette from "./silhouette.js";
+&nbsp;
+/**
+ * Calculate the [silhouette metric](https://en.wikipedia.org/wiki/Silhouette_(clustering))
+ * for a set of N-dimensional points arranged in groups. The metric is the largest
+ * individual silhouette value for the data.
+ *
+ * @param {Array&lt;Array&lt;number&gt;&gt;} points N-dimensional coordinates of points.
+ * @param {Array&lt;number&gt;} labels Labels of points. This must be the same length as `points`,
+ * and values must lie in [0..G-1], where G is the number of groups.
+ * @return {number} The silhouette metric for the groupings.
+ *
+ * @example
+ * silhouetteMetric([[0.25], [0.75]], [0, 0]); // =&gt; 1.0
+ */
+function <span class="fstat-no" title="function not covered" >silhouetteMetric(</span>points, labels) {
+    const values = <span class="cstat-no" title="statement not covered" >silhouette(points, labels);</span>
 <span class="cstat-no" title="statement not covered" >    return max(values);</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default silhouetteMetric;</span>
+}
+&nbsp;
+export default silhouetteMetric;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -136,7 +136,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-25T08:15:50.970Z
+                at 2026-03-26T03:57:43.589Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

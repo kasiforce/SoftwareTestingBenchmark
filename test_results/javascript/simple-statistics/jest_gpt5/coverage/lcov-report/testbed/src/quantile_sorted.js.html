@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/40</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/40</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
@@ -103,86 +103,86 @@
 <a name='L38'></a><a href='#L38'>38</a>
 <a name='L39'></a><a href='#L39'>39</a>
 <a name='L40'></a><a href='#L40'>40</a>
-<a name='L41'></a><a href='#L41'>41</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L41'></a><a href='#L41'>41</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >/**</span></span></span>
-<span class="cstat-no" title="statement not covered" > * This is the internal implementation of quantiles: when you know</span>
-<span class="cstat-no" title="statement not covered" > * that the order is sorted, you don't need to re-sort it, and the computations</span>
-<span class="cstat-no" title="statement not covered" > * are faster.</span>
-<span class="cstat-no" title="statement not covered" > *</span>
-<span class="cstat-no" title="statement not covered" > * @param {Array&lt;number&gt;} x sample of one or more data points</span>
-<span class="cstat-no" title="statement not covered" > * @param {number} p desired quantile: a number between 0 to 1, inclusive</span>
-<span class="cstat-no" title="statement not covered" > * @returns {number} quantile value</span>
-<span class="cstat-no" title="statement not covered" > * @throws {Error} if p ix outside of the range from 0 to 1</span>
-<span class="cstat-no" title="statement not covered" > * @throws {Error} if x is empty</span>
-<span class="cstat-no" title="statement not covered" > * @example</span>
-<span class="cstat-no" title="statement not covered" > * quantileSorted([3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20], 0.5); // =&gt; 9</span>
-<span class="cstat-no" title="statement not covered" > */</span>
-<span class="cstat-no" title="statement not covered" >function quantileSorted(x, p) {</span>
-<span class="cstat-no" title="statement not covered" >    const idx = x.length * p;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * This is the internal implementation of quantiles: when you know
+ * that the order is sorted, you don't need to re-sort it, and the computations
+ * are faster.
+ *
+ * @param {Array&lt;number&gt;} x sample of one or more data points
+ * @param {number} p desired quantile: a number between 0 to 1, inclusive
+ * @returns {number} quantile value
+ * @throws {Error} if p ix outside of the range from 0 to 1
+ * @throws {Error} if x is empty
+ * @example
+ * quantileSorted([3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20], 0.5); // =&gt; 9
+ */
+function <span class="fstat-no" title="function not covered" >quantileSorted(</span>x, p) {
+    const idx = <span class="cstat-no" title="statement not covered" >x.length * p;</span>
 <span class="cstat-no" title="statement not covered" >    if (x.length === 0) {</span>
 <span class="cstat-no" title="statement not covered" >        throw new Error("quantile requires at least one data point.");</span>
-<span class="cstat-no" title="statement not covered" >    } else if (p &lt; 0 || p &gt; 1) {</span>
+    } else <span class="cstat-no" title="statement not covered" >if (p &lt; 0 || p &gt; 1) {</span>
 <span class="cstat-no" title="statement not covered" >        throw new Error("quantiles must be between 0 and 1");</span>
-<span class="cstat-no" title="statement not covered" >    } else if (p === 1) {</span>
-<span class="cstat-no" title="statement not covered" >        // If p is 1, directly return the last element</span>
+    } else <span class="cstat-no" title="statement not covered" >if (p === 1) {</span>
+        // If p is 1, directly return the last element
 <span class="cstat-no" title="statement not covered" >        return x[x.length - 1];</span>
-<span class="cstat-no" title="statement not covered" >    } else if (p === 0) {</span>
-<span class="cstat-no" title="statement not covered" >        // If p is 0, directly return the first element</span>
+    } else <span class="cstat-no" title="statement not covered" >if (p === 0) {</span>
+        // If p is 0, directly return the first element
 <span class="cstat-no" title="statement not covered" >        return x[0];</span>
-<span class="cstat-no" title="statement not covered" >    } else if (idx % 1 !== 0) {</span>
-<span class="cstat-no" title="statement not covered" >        // If p is not integer, return the next element in array</span>
+    } else <span class="cstat-no" title="statement not covered" >if (idx % 1 !== 0) {</span>
+        // If p is not integer, return the next element in array
 <span class="cstat-no" title="statement not covered" >        return x[Math.ceil(idx) - 1];</span>
-<span class="cstat-no" title="statement not covered" >    } else if (x.length % 2 === 0) {</span>
-<span class="cstat-no" title="statement not covered" >        // If the list has even-length, we'll take the average of this number</span>
-<span class="cstat-no" title="statement not covered" >        // and the next value, if there is one</span>
+    } else <span class="cstat-no" title="statement not covered" >if (x.length % 2 === 0) {</span>
+        // If the list has even-length, we'll take the average of this number
+        // and the next value, if there is one
 <span class="cstat-no" title="statement not covered" >        return (x[idx - 1] + x[idx]) / 2;</span>
-<span class="cstat-no" title="statement not covered" >    } else {</span>
-<span class="cstat-no" title="statement not covered" >        // Finally, in the simple case of an integer value</span>
-<span class="cstat-no" title="statement not covered" >        // with an odd-length list, return the x value at the index.</span>
+    } else {
+        // Finally, in the simple case of an integer value
+        // with an odd-length list, return the x value at the index.
 <span class="cstat-no" title="statement not covered" >        return x[idx];</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default quantileSorted;</span>
+    }
+}
+&nbsp;
+export default quantileSorted;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -190,7 +190,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-25T08:15:50.970Z
+                at 2026-03-26T03:57:43.589Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
