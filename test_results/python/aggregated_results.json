@@ -154,7 +154,7 @@
       "test_pass_rate": 0.47049737411183196,
       "run_pass_rate": 0.7832986472424558
     },
-    "": {
+    "GT": {
       "total": 109,
       "syntax_correct": 108,
       "compile_pass": 88,

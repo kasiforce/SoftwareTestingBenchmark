@@ -154,7 +154,7 @@
       "testcase_collected": 0,
       "run_pass_rate": null
     },
-    "": {
+    "GT": {
       "total": 34,
       "syntax_correct": 34,
       "compile_pass": 1,

@@ -1,0 +1,1064 @@
+{
+  "file": {
+    "extensions/chromium/contentscript.js": {
+      "total_lines": 261,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    },
+    "extensions/chromium/preserve-referer.js": {
+      "total_lines": 159,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    },
+    "extensions/chromium/telemetry.js": {
+      "total_lines": 187,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    },
+    "extensions/chromium/options/options.js": {
+      "total_lines": 210,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    },
+    "external/builder/fixtures_babel/unused-function.js": {
+      "total_lines": 14,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    },
+    "external/qcms/qcms.js": {
+      "total_lines": 259,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    },
+    "external/qcms/qcms_utils.js": {
+      "total_lines": 84,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    },
+    "src/pdf.sandbox.external.js": {
+      "total_lines": 187,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    },
+    "src/core/ascii_85_stream.js": {
+      "total_lines": 98,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    },
+    "src/core/colorspace_utils.js": {
+      "total_lines": 303,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    },
+    "src/core/flate_stream.js": {
+      "total_lines": 483,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    },
+    "src/core/image_utils.js": {
+      "total_lines": 321,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    },
+    "src/core/editor/pdf_editor.js": {
+      "total_lines": 1600,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    },
+    "src/core/xfa/config.js": {
+      "total_lines": 1921,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    },
+    "src/core/xfa/connection_set.js": {
+      "total_lines": 202,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    },
+    "src/core/xfa/data.js": {
+      "total_lines": 82,
+      "covered_lines": 34,
+      "total_branches": 1,
+      "covered_branches": 1
+    },
+    "src/core/xfa/locale_set.js": {
+      "total_lines": 345,
+      "covered_lines": 185,
+      "total_branches": 4,
+      "covered_branches": 4
+    },
+    "src/core/xfa/template.js": {
+      "total_lines": 6605,
+      "covered_lines": 1169,
+      "total_branches": 15,
+      "covered_branches": 11
+    },
+    "src/core/xfa/xhtml.js": {
+      "total_lines": 592,
+      "covered_lines": 242,
+      "total_branches": 6,
+      "covered_branches": 6
+    },
+    "src/display/canvas_dependency_tracker.js": {
+      "total_lines": 912,
+      "covered_lines": 210,
+      "total_branches": 6,
+      "covered_branches": 4
+    },
+    "src/display/display_utils.js": {
+      "total_lines": 1067,
+      "covered_lines": 295,
+      "total_branches": 4,
+      "covered_branches": 4
+    },
+    "src/display/font_loader.js": {
+      "total_lines": 553,
+      "covered_lines": 69,
+      "total_branches": 7,
+      "covered_branches": 2
+    },
+    "src/display/network_utils.js": {
+      "total_lines": 121,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    },
+    "src/display/pdf_objects.js": {
+      "total_lines": 125,
+      "covered_lines": 82,
+      "total_branches": 3,
+      "covered_branches": 3
+    },
+    "src/display/standard_fontdata_factory.js": {
+      "total_lines": 65,
+      "covered_lines": 44,
+      "total_branches": 3,
+      "covered_branches": 1
+    },
+    "src/display/editor/color_picker.js": {
+      "total_lines": 369,
+      "covered_lines": 160,
+      "total_branches": 23,
+      "covered_branches": 15
+    },
+    "src/display/editor/comment.js": {
+      "total_lines": 340,
+      "covered_lines": 101,
+      "total_branches": 4,
+      "covered_branches": 3
+    },
+    "src/display/editor/draw.js": {
+      "total_lines": 987,
+      "covered_lines": 50,
+      "total_branches": 5,
+      "covered_branches": 4
+    },
+    "src/display/editor/editor.js": {
+      "total_lines": 2425,
+      "covered_lines": 836,
+      "total_branches": 8,
+      "covered_branches": 7
+    },
+    "src/display/editor/ink.js": {
+      "total_lines": 319,
+      "covered_lines": 95,
+      "total_branches": 1,
+      "covered_branches": 1
+    },
+    "src/display/editor/drawers/freedraw.js": {
+      "total_lines": 678,
+      "covered_lines": 97,
+      "total_branches": 3,
+      "covered_branches": 3
+    },
+    "src/display/editor/drawers/highlight.js": {
+      "total_lines": 378,
+      "covered_lines": 30,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/drawers/inkdraw.js": {
+      "total_lines": 897,
+      "covered_lines": 123,
+      "total_branches": 12,
+      "covered_branches": 6
+    },
+    "src/display/editor/drawers/signaturedraw.js": {
+      "total_lines": 839,
+      "covered_lines": 196,
+      "total_branches": 8,
+      "covered_branches": 4
+    },
+    "src/scripting_api/color.js": {
+      "total_lines": 129,
+      "covered_lines": 33,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/scripting_api/doc.js": {
+      "total_lines": 1353,
+      "covered_lines": 636,
+      "total_branches": 10,
+      "covered_branches": 2
+    },
+    "src/scripting_api/field.js": {
+      "total_lines": 721,
+      "covered_lines": 258,
+      "total_branches": 15,
+      "covered_branches": 2
+    },
+    "src/scripting_api/proxy.js": {
+      "total_lines": 139,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    },
+    "src/shared/image_utils.js": {
+      "total_lines": 135,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    },
+    "src/shared/message_handler.js": {
+      "total_lines": 538,
+      "covered_lines": 109,
+      "total_branches": 3,
+      "covered_branches": 3
+    },
+    "src/shared/murmurhash3.js": {
+      "total_lines": 135,
+      "covered_lines": 112,
+      "total_branches": 15,
+      "covered_branches": 8
+    },
+    "src/shared/obj-bin-transform.js": {
+      "total_lines": 920,
+      "covered_lines": 46,
+      "total_branches": 8,
+      "covered_branches": 4
+    },
+    "src/shared/scripting_utils.js": {
+      "total_lines": 126,
+      "covered_lines": 74,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "web/base_pdf_page_view.js": {
+      "total_lines": 278,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    },
+    "web/caret_browsing.js": {
+      "total_lines": 365,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    },
+    "web/pdf_page_view.js": {
+      "total_lines": 1197,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    },
+    "web/sidebar.js": {
+      "total_lines": 221,
+      "covered_lines": 0,
+      "total_branches": 1,
+      "covered_branches": 0
+    }
+  },
+  "function": {
+    "extensions/chromium/contentscript.js::maybeRenderPdfDoc:228-261": {
+      "total_lines": 34,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "extensions/chromium/contentscript.js::watchObjectOrEmbed:40-117": {
+      "total_lines": 78,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "extensions/chromium/contentscript.js::updateEmbedElement:120-141": {
+      "total_lines": 22,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "extensions/chromium/preserve-referer.js::canRequestBody:84-90": {
+      "total_lines": 7,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "extensions/chromium/telemetry.js::doSendPing:95-123": {
+      "total_lines": 29,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "extensions/chromium/telemetry.js::maybeSendPing:75-93": {
+      "total_lines": 19,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "extensions/chromium/telemetry.js::didUpdateSinceLastCheck:151-159": {
+      "total_lines": 9,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "extensions/chromium/options/options.js::renderBooleanPref:147-164": {
+      "total_lines": 18,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "extensions/chromium/options/options.js::renderEnumPref:166-181": {
+      "total_lines": 16,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "external/builder/fixtures_babel/unused-function.js::used:5-9": {
+      "total_lines": 5,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "external/qcms/qcms.js::passArray8ToWasm0:26-31": {
+      "total_lines": 6,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "external/qcms/qcms.js::initSync:207-230": {
+      "total_lines": 24,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "external/qcms/qcms.js::qcms_transformer_from_memory:95-100": {
+      "total_lines": 6,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "external/qcms/qcms_utils.js::copy_result:42-66": {
+      "total_lines": 25,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/pdf.sandbox.external.js::callSandboxFunction:65-75": {
+      "total_lines": 11,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/pdf.sandbox.external.js::destroy:32-38": {
+      "total_lines": 7,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/ascii_85_stream.js::readBlock:33-95": {
+      "total_lines": 63,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/colorspace_utils.js::parse:34-99": {
+      "total_lines": 66,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/flate_stream.js::generateHuffmanTable:266-306": {
+      "total_lines": 41,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/image_utils.js::addByteSize:258-267": {
+      "total_lines": 10,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/image_utils.js::shouldCache:230-245": {
+      "total_lines": 16,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/editor/pdf_editor.js::writePDF:1562-1597": {
+      "total_lines": 36,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/editor/pdf_editor.js::cloneDict:137-141": {
+      "total_lines": 5,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/editor/pdf_editor.js::fetch:71-73": {
+      "total_lines": 3,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/xfa/config.js::base:1420-1422": {
+      "total_lines": 3,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/xfa/config.js::includeXDPContent:1572-1574": {
+      "total_lines": 3,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/xfa/config.js::startNode:1808-1810": {
+      "total_lines": 3,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/xfa/config.js::msgId:1644-1646": {
+      "total_lines": 3,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/xfa/connection_set.js::wsdlAddress:185-187": {
+      "total_lines": 3,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/xfa/connection_set.js::uri:181-183": {
+      "total_lines": 3,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/xfa/connection_set.js::operation:165-167": {
+      "total_lines": 3,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/xfa/connection_set.js::xsdConnection:197-199": {
+      "total_lines": 3,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/xfa/data.js::serialize:31-79": {
+      "total_lines": 49,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/xfa/locale_set.js::dateTimeSymbols:268-270": {
+      "total_lines": 3,
+      "covered_lines": 3,
+      "total_branches": 1,
+      "covered_branches": 1
+    },
+    "src/core/xfa/locale_set.js::month:304-306": {
+      "total_lines": 3,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/xfa/locale_set.js::meridiem:296-298": {
+      "total_lines": 3,
+      "covered_lines": 3,
+      "total_branches": 1,
+      "covered_branches": 1
+    },
+    "src/core/xfa/locale_set.js::numberPatterns:316-318": {
+      "total_lines": 3,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/xfa/template.js::bind:6163-6165": {
+      "total_lines": 3,
+      "covered_lines": 3,
+      "total_branches": 1,
+      "covered_branches": 1
+    },
+    "src/core/xfa/template.js::float:6347-6349": {
+      "total_lines": 3,
+      "covered_lines": 3,
+      "total_branches": 1,
+      "covered_branches": 1
+    },
+    "src/core/xfa/template.js::font:6351-6353": {
+      "total_lines": 3,
+      "covered_lines": 3,
+      "total_branches": 1,
+      "covered_branches": 1
+    },
+    "src/core/xfa/template.js::validate:6583-6585": {
+      "total_lines": 3,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/xfa/xhtml.js::li:563-565": {
+      "total_lines": 3,
+      "covered_lines": 3,
+      "total_branches": 1,
+      "covered_branches": 1
+    },
+    "src/core/xfa/xhtml.js::p:571-573": {
+      "total_lines": 3,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/core/xfa/xhtml.js::span:575-577": {
+      "total_lines": 3,
+      "covered_lines": 3,
+      "total_branches": 1,
+      "covered_branches": 1
+    },
+    "src/core/xfa/xhtml.js::b:543-545": {
+      "total_lines": 3,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/canvas_dependency_tracker.js::recordCloseMarker:205-214": {
+      "total_lines": 10,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/canvas_dependency_tracker.js::recordShowTextOperation:834-837": {
+      "total_lines": 4,
+      "covered_lines": 4,
+      "total_branches": 1,
+      "covered_branches": 1
+    },
+    "src/display/canvas_dependency_tracker.js::recordFullPageBBox:464-471": {
+      "total_lines": 8,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/canvas_dependency_tracker.js::recordCloseMarker:667-670": {
+      "total_lines": 4,
+      "covered_lines": 4,
+      "total_branches": 1,
+      "covered_branches": 1
+    },
+    "src/display/display_utils.js::contrastRatio:887-897": {
+      "total_lines": 11,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/display_utils.js::time:426-431": {
+      "total_lines": 6,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/display_utils.js::applyOpacity:800-807": {
+      "total_lines": 8,
+      "covered_lines": 8,
+      "total_branches": 2,
+      "covered_branches": 2
+    },
+    "src/display/display_utils.js::computeLuminance:883-885": {
+      "total_lines": 3,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/font_loader.js::clear:70-82": {
+      "total_lines": 13,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/font_loader.js::loadSystemFont:84-118": {
+      "total_lines": 35,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/font_loader.js::insertRule:59-68": {
+      "total_lines": 10,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/network_utils.js::validateRangeRequestCapabilities:40-84": {
+      "total_lines": 45,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/network_utils.js::extractFilenameFromHeader:86-100": {
+      "total_lines": 15,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/network_utils.js::validateResponseStatus:110-112": {
+      "total_lines": 3,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/pdf_objects.js::delete:83-91": {
+      "total_lines": 9,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/pdf_objects.js::resolve:99-103": {
+      "total_lines": 5,
+      "covered_lines": 5,
+      "total_branches": 1,
+      "covered_branches": 1
+    },
+    "src/display/pdf_objects.js::clear:105-111": {
+      "total_lines": 7,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/standard_fontdata_factory.js::fetch:30-44": {
+      "total_lines": 15,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/color_picker.js::destroy:300-306": {
+      "total_lines": 7,
+      "covered_lines": 7,
+      "total_branches": 3,
+      "covered_branches": 1
+    },
+    "src/display/editor/color_picker.js::renderButton:95-113": {
+      "total_lines": 19,
+      "covered_lines": 7,
+      "total_branches": 2,
+      "covered_branches": 1
+    },
+    "src/display/editor/color_picker.js::updateColor:286-298": {
+      "total_lines": 13,
+      "covered_lines": 5,
+      "total_branches": 3,
+      "covered_branches": 1
+    },
+    "src/display/editor/color_picker.js::update:354-359": {
+      "total_lines": 6,
+      "covered_lines": 4,
+      "total_branches": 2,
+      "covered_branches": 1
+    },
+    "src/display/editor/comment.js::finish:265-273": {
+      "total_lines": 9,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/comment.js::onUpdatedColor:80-89": {
+      "total_lines": 10,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/comment.js::serialize:287-289": {
+      "total_lines": 3,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/comment.js::removeStandaloneCommentButton:124-127": {
+      "total_lines": 4,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/draw.js::rotate:600-615": {
+      "total_lines": 16,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/draw.js::reset:50-52": {
+      "total_lines": 3,
+      "covered_lines": 3,
+      "total_branches": 1,
+      "covered_branches": 1
+    },
+    "src/display/editor/draw.js::rebuild:383-400": {
+      "total_lines": 18,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/draw.js::renderAnnotationElement:974-980": {
+      "total_lines": 7,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/editor.js::serializeAltText:1160-1162": {
+      "total_lines": 3,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/editor.js::removeStandaloneCommentButton:1197-1200": {
+      "total_lines": 4,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/editor.js::addStandaloneCommentButton:1180-1195": {
+      "total_lines": 16,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/editor.js::unselect:2162-2179": {
+      "total_lines": 18,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/ink.js::serialize:247-286": {
+      "total_lines": 40,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/ink.js::onScaleChanging:211-222": {
+      "total_lines": 12,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/ink.js::renderAnnotationElement:302-316": {
+      "total_lines": 15,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/ink.js::updateSVGProperty:44-50": {
+      "total_lines": 7,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/drawers/freedraw.js::newOutliner:638-647": {
+      "total_lines": 10,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/drawers/freedraw.js::serialize:515-557": {
+      "total_lines": 43,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/drawers/freedraw.js::newFreeDrawOutline:288-297": {
+      "total_lines": 10,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/drawers/highlight.js::newOutliner:366-375": {
+      "total_lines": 10,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/drawers/highlight.js::newFreeDrawOutline:353-362": {
+      "total_lines": 10,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/drawers/highlight.js::serialize:328-341": {
+      "total_lines": 14,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/drawers/inkdraw.js::build:301-319": {
+      "total_lines": 19,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/drawers/inkdraw.js::updateProperty:57-61": {
+      "total_lines": 5,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/display/editor/drawers/inkdraw.js::updateProperty:628-633": {
+      "total_lines": 6,
+      "covered_lines": 6,
+      "total_branches": 2,
+      "covered_branches": 2
+    },
+    "src/display/editor/drawers/inkdraw.js::deserialize:450-567": {
+      "total_lines": 118,
+      "covered_lines": 16,
+      "total_branches": 6,
+      "covered_branches": 1
+    },
+    "src/display/editor/drawers/signaturedraw.js::process:558-581": {
+      "total_lines": 24,
+      "covered_lines": 24,
+      "total_branches": 1,
+      "covered_branches": 1
+    },
+    "src/display/editor/drawers/signaturedraw.js::extractContoursFromText:482-556": {
+      "total_lines": 75,
+      "covered_lines": 74,
+      "total_branches": 4,
+      "covered_branches": 1
+    },
+    "src/scripting_api/color.js::convert:90-111": {
+      "total_lines": 22,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/scripting_api/doc.js::get:25-27": {
+      "total_lines": 3,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/scripting_api/doc.js::print:1156-1197": {
+      "total_lines": 42,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/scripting_api/field.js::buttonGetIcon:343-348": {
+      "total_lines": 6,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/scripting_api/field.js::buttonSetIcon:365-370": {
+      "total_lines": 6,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/scripting_api/field.js::clearItems:374-380": {
+      "total_lines": 7,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/scripting_api/field.js::buttonSetCaption:354-363": {
+      "total_lines": 10,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/scripting_api/proxy.js::get:24-45": {
+      "total_lines": 22,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/scripting_api/proxy.js::defineProperty:121-124": {
+      "total_lines": 4,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/scripting_api/proxy.js::preventExtensions:101-103": {
+      "total_lines": 3,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/shared/image_utils.js::convertToRGBA:18-27": {
+      "total_lines": 10,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/shared/image_utils.js::convertRGBToRGBA:71-121": {
+      "total_lines": 51,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/shared/image_utils.js::convertBlackAndWhiteToRGBA:29-69": {
+      "total_lines": 41,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/shared/message_handler.js::destroy:532-535": {
+      "total_lines": 4,
+      "covered_lines": 4,
+      "total_branches": 1,
+      "covered_branches": 1
+    },
+    "src/shared/message_handler.js::error:344-357": {
+      "total_lines": 14,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/shared/message_handler.js::close:330-342": {
+      "total_lines": 13,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/shared/message_handler.js::sendWithStream:229-294": {
+      "total_lines": 66,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/shared/murmurhash3.js::update:31-110": {
+      "total_lines": 80,
+      "covered_lines": 57,
+      "total_branches": 11,
+      "covered_branches": 6
+    },
+    "src/shared/murmurhash3.js::hexdigest:112-132": {
+      "total_lines": 21,
+      "covered_lines": 21,
+      "total_branches": 1,
+      "covered_branches": 1
+    },
+    "src/shared/obj-bin-transform.js::write:886-901": {
+      "total_lines": 16,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/shared/scripting_utils.js::T_rgb:73-75": {
+      "total_lines": 3,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/shared/scripting_utils.js::G_RGB:43-45": {
+      "total_lines": 3,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/shared/scripting_utils.js::RGB_G:57-59": {
+      "total_lines": 3,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "src/shared/scripting_utils.js::CMYK_rgb:86-92": {
+      "total_lines": 7,
+      "covered_lines": 1,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "web/base_pdf_page_view.js::cancelRendering:251-257": {
+      "total_lines": 7,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "web/caret_browsing.js::moveCaret:261-362": {
+      "total_lines": 102,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "web/pdf_page_view.js::cssTransform:863-913": {
+      "total_lines": 51,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "web/pdf_page_view.js::updateVisibleArea:643-660": {
+      "total_lines": 18,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "web/pdf_page_view.js::cancelRendering:821-861": {
+      "total_lines": 41,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "web/pdf_page_view.js::reset:541-623": {
+      "total_lines": 83,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "web/sidebar.js::toggle:211-213": {
+      "total_lines": 3,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    },
+    "web/sidebar.js::destroy:215-218": {
+      "total_lines": 4,
+      "covered_lines": 0,
+      "total_branches": 0,
+      "covered_branches": 0
+    }
+  },
+  "summary": {
+    "file": {
+      "total_lines": 30245,
+      "covered_lines": 5286,
+      "total_branches": 186,
+      "covered_branches": 98
+    },
+    "function": {
+      "total_lines": 2216,
+      "covered_lines": 310,
+      "total_branches": 49,
+      "covered_branches": 30
+    }
+  }
+}
