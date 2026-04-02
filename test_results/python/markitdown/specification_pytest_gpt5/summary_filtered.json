@@ -301,5 +301,8 @@
       "total_branch": 48,
       "branch_coverage": 0.0
     }
-  }
+  },
+  "excute_pass": 9,
+  "test_pass": 15,
+  "testcase_pass_rate": 10.799999999999999
 }

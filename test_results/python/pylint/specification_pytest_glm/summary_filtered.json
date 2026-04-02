@@ -5,24 +5,24 @@
   "compile_pass": 74,
   "compile_pass_rate": 0.6788990825688074,
   "testcase": {
-    "passed": 224,
-    "failed": 255,
-    "error": 80,
+    "passed": 232,
+    "failed": 258,
+    "error": 69,
     "total": 559,
     "collected": 559,
-    "test_pass_rate": 0.4007155635062612,
-    "run_pass_rate": 0.8568872987477638
+    "test_pass_rate": 0.4150268336314848,
+    "run_pass_rate": 0.8765652951699463
   },
   "filtered_stats": {
     "file": {
       "total_lines": 7569,
-      "covered_lines": 2362,
+      "covered_lines": 2398,
       "total_branches": 3674,
-      "covered_branches": 337
+      "covered_branches": 355
     },
     "function": {
       "total_lines": 962,
-      "covered_lines": 385,
+      "covered_lines": 387,
       "total_branches": 492,
       "covered_branches": 187
     }
@@ -125,12 +125,12 @@
       "branch_coverage": 0.0
     },
     "pylint/checkers/refactoring/refactoring_checker.py": {
-      "covered_line": 176,
+      "covered_line": 212,
       "total_line": 1016,
-      "line_coverage": 17.32,
-      "covered_branch": 4,
+      "line_coverage": 20.87,
+      "covered_branch": 22,
       "total_branch": 540,
-      "branch_coverage": 0.74
+      "branch_coverage": 4.07
     },
     "pylint/checkers/variables.py": {
       "covered_line": 242,
@@ -623,9 +623,9 @@
       "branch_coverage": 16.67
     },
     "pylint/checkers/refactoring/refactoring_checker.py:RefactoringChecker.visit_assign": {
-      "covered_line": 0,
+      "covered_line": 2,
       "total_line": 2,
-      "line_coverage": 0.0,
+      "line_coverage": 100.0,
       "covered_branch": 0,
       "total_branch": 0,
       "branch_coverage": 0.0
@@ -1278,5 +1278,8 @@
       "total_branch": 0,
       "branch_coverage": 0.0
     }
-  }
+  },
+  "excute_pass": 20,
+  "test_pass": 45,
+  "testcase_pass_rate": 29.113590576090576
 }

@@ -6,26 +6,26 @@
   "compile_pass_rate": 0.8165137614678899,
   "testcase": {
     "passed": 139,
-    "failed": 194,
-    "error": 74,
+    "failed": 195,
+    "error": 73,
     "total": 407,
     "collected": 407,
     "test_pass_rate": 0.3415233415233415,
-    "run_pass_rate": 0.8181818181818182
+    "run_pass_rate": 0.8206388206388207
   },
-  "summary": {
-    "total_file_lines": 17378,
-    "covered_file_lines": 5311,
-    "total_file_branches": 7918,
-    "covered_file_branches": 399,
-    "total_function_lines": 13240,
-    "covered_function_lines": 1192,
-    "total_function_branches": 7904,
-    "covered_function_branches": 392,
-    "file_line_coverage": 30.56,
-    "file_branch_coverage": 5.04,
-    "function_line_coverage": 9.0,
-    "function_branch_coverage": 4.96
+  "filtered_stats": {
+    "file": {
+      "total_lines": 7569,
+      "covered_lines": 2337,
+      "total_branches": 3674,
+      "covered_branches": 288
+    },
+    "function": {
+      "total_lines": 962,
+      "covered_lines": 408,
+      "total_branches": 492,
+      "covered_branches": 181
+    }
   },
   "file_coverage": {
     "pylint/__pkginfo__.py": {
@@ -53,12 +53,12 @@
       "branch_coverage": 0.0
     },
     "pylint/checkers/base/name_checker/checker.py": {
-      "covered_line": 80,
+      "covered_line": 88,
       "total_line": 326,
-      "line_coverage": 24.54,
-      "covered_branch": 3,
+      "line_coverage": 26.99,
+      "covered_branch": 6,
       "total_branch": 186,
-      "branch_coverage": 1.61
+      "branch_coverage": 3.23
     },
     "pylint/checkers/base/pass_checker.py": {
       "covered_line": 7,
@@ -1279,18 +1279,7 @@
       "branch_coverage": 0.0
     }
   },
-  "filtered_stats": {
-    "file": {
-      "total_lines": 7569,
-      "covered_lines": 2329,
-      "total_branches": 3674,
-      "covered_branches": 285
-    },
-    "function": {
-      "total_lines": 962,
-      "covered_lines": 408,
-      "total_branches": 492,
-      "covered_branches": 181
-    }
-  }
+  "excute_pass": 21,
+  "test_pass": 48,
+  "testcase_pass_rate": 27.517460317460312
 }

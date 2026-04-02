@@ -5,19 +5,27 @@
   "compile_pass": 31,
   "compile_pass_rate": 0.9117647058823529,
   "testcase": {
-    "passed": 54,
-    "failed": 55,
-    "error": 45,
+    "passed": 55,
+    "failed": 57,
+    "error": 42,
     "total": 154,
     "collected": 154,
-    "test_pass_rate": 0.35064935064935066,
-    "run_pass_rate": 0.7077922077922078
+    "test_pass_rate": 0.35714285714285715,
+    "run_pass_rate": 0.7272727272727273
   },
-  "summary": {
-    "file_line_coverage": 50.58,
-    "file_branch_coverage": 18.76,
-    "function_line_coverage": 26.47,
-    "function_branch_coverage": 18.62
+  "filtered_stats": {
+    "file": {
+      "total_lines": 1532,
+      "covered_lines": 908,
+      "total_branches": 438,
+      "covered_branches": 133
+    },
+    "function": {
+      "total_lines": 140,
+      "covered_lines": 98,
+      "total_branches": 64,
+      "covered_branches": 47
+    }
   },
   "file_coverage": {
     "src/flask/blueprints.py": {
@@ -61,12 +69,12 @@
       "branch_coverage": 55.0
     },
     "src/flask/sansio/app.py": {
-      "covered_line": 151,
+      "covered_line": 155,
       "total_line": 244,
-      "line_coverage": 61.89,
-      "covered_branch": 14,
+      "line_coverage": 63.52,
+      "covered_branch": 17,
       "total_branch": 72,
-      "branch_coverage": 19.44
+      "branch_coverage": 23.61
     },
     "src/flask/sansio/blueprints.py": {
       "covered_line": 138,
@@ -77,12 +85,12 @@
       "branch_coverage": 26.39
     },
     "src/flask/sansio/scaffold.py": {
-      "covered_line": 139,
+      "covered_line": 141,
       "total_line": 205,
-      "line_coverage": 67.8,
-      "covered_branch": 16,
+      "line_coverage": 68.78,
+      "covered_branch": 18,
       "total_branch": 40,
-      "branch_coverage": 40.0
+      "branch_coverage": 45.0
     },
     "src/flask/testing.py": {
       "covered_line": 53,
@@ -223,12 +231,12 @@
       "branch_coverage": 100.0
     },
     "src/flask/sansio/app.py:App.name": {
-      "covered_line": 2,
+      "covered_line": 5,
       "total_line": 6,
-      "line_coverage": 33.33,
-      "covered_branch": 1,
+      "line_coverage": 83.33,
+      "covered_branch": 3,
       "total_branch": 4,
-      "branch_coverage": 25.0
+      "branch_coverage": 75.0
     },
     "src/flask/sansio/app.py:App.select_jinja_autoescape": {
       "covered_line": 0,
@@ -327,18 +335,7 @@
       "branch_coverage": 100.0
     }
   },
-  "filtered_stats": {
-    "file": {
-      "total_lines": 1532,
-      "covered_lines": 902,
-      "total_branches": 438,
-      "covered_branches": 128
-    },
-    "function": {
-      "total_lines": 140,
-      "covered_lines": 95,
-      "total_branches": 64,
-      "covered_branches": 45
-    }
-  }
+  "excute_pass": 6,
+  "test_pass": 12,
+  "testcase_pass_rate": 9.638095238095238
 }

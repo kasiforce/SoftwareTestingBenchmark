@@ -6,18 +6,25 @@
   "compile_pass_rate": 0.9117647058823529,
   "testcase": {
     "failed": 149,
-    "passed": 185,
-    "error": 6,
+    "passed": 191,
     "total": 340,
     "collected": 340,
-    "test_pass_rate": 0.5441176470588235,
-    "run_pass_rate": 0.9823529411764705
+    "test_pass_rate": 0.5617647058823529,
+    "run_pass_rate": 1.0
   },
-  "summary": {
-    "file_line_coverage": 49.67,
-    "file_branch_coverage": 18.07,
-    "function_line_coverage": 25.03,
-    "function_branch_coverage": 17.9
+  "filtered_stats": {
+    "file": {
+      "total_lines": 1532,
+      "covered_lines": 862,
+      "total_branches": 438,
+      "covered_branches": 119
+    },
+    "function": {
+      "total_lines": 140,
+      "covered_lines": 101,
+      "total_branches": 64,
+      "covered_branches": 49
+    }
   },
   "file_coverage": {
     "src/flask/blueprints.py": {
@@ -327,18 +334,7 @@
       "branch_coverage": 100.0
     }
   },
-  "filtered_stats": {
-    "file": {
-      "total_lines": 1532,
-      "covered_lines": 862,
-      "total_branches": 438,
-      "covered_branches": 119
-    },
-    "function": {
-      "total_lines": 140,
-      "covered_lines": 101,
-      "total_branches": 64,
-      "covered_branches": 49
-    }
-  }
+  "excute_pass": 8,
+  "test_pass": 23,
+  "testcase_pass_rate": 16.46408182460814
 }

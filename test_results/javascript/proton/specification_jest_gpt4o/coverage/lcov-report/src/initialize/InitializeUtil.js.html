@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.23% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/13</span>
+                <span class='fraction'>0/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.23% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/13</span>
+                <span class='fraction'>0/13</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -104,29 +104,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -138,30 +138,30 @@ import Initialize from "./Initialize";
 import MathUtil from "../math/MathUtil";
 &nbsp;
 export default {
-  initialize(emitter, particle, initializes) {
-    const length = initializes.length;
+<span class="fstat-no" title="function not covered" >  in</span>itialize(emitter, particle, initializes) {
+    const length = <span class="cstat-no" title="statement not covered" >initializes.length;</span>
     let i;
 &nbsp;
-    for (i = 0; i &lt; length; i++) {
-      <span class="missing-if-branch" title="if path not taken" >I</span>if (initializes[i] instanceof Initialize) {
+<span class="cstat-no" title="statement not covered" >    for (i = 0; i &lt; length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >      if (initializes[i] instanceof Initialize) {</span>
 <span class="cstat-no" title="statement not covered" >        initializes[i].init(emitter, particle);</span>
       } else {
-        this.init(emitter, particle, initializes[i]);
+<span class="cstat-no" title="statement not covered" >        this.init(emitter, particle, initializes[i]);</span>
       }
     }
 &nbsp;
-    this.bindEmitter(emitter, particle);
+<span class="cstat-no" title="statement not covered" >    this.bindEmitter(emitter, particle);</span>
   },
 &nbsp;
   // init
-  init(emitter, particle, initialize) {
-    PropUtil.setProp(particle, initialize);
-    PropUtil.setVectorVal(particle, initialize);
+<span class="fstat-no" title="function not covered" >  in</span>it(emitter, particle, initialize) {
+<span class="cstat-no" title="statement not covered" >    PropUtil.setProp(particle, initialize);</span>
+<span class="cstat-no" title="statement not covered" >    PropUtil.setVectorVal(particle, initialize);</span>
   },
 &nbsp;
-  bindEmitter(emitter, particle) {
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (emitter.bindEmitter) {
-      particle.p.add(emitter.p);
+<span class="fstat-no" title="function not covered" >  bi</span>ndEmitter(emitter, particle) {
+<span class="cstat-no" title="statement not covered" >    if (emitter.bindEmitter) {</span>
+<span class="cstat-no" title="statement not covered" >      particle.p.add(emitter.p);</span>
 <span class="cstat-no" title="statement not covered" >      particle.v.add(emitter.v);</span>
 <span class="cstat-no" title="statement not covered" >      particle.a.add(emitter.a);</span>
 <span class="cstat-no" title="statement not covered" >      particle.v.rotate(MathUtil.degreeTransform(emitter.rotation));</span>
@@ -175,7 +175,7 @@ export default {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-26T13:28:12.623Z
+                at 2026-04-02T07:14:37.867Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

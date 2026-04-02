@@ -6,12 +6,12 @@
   "compile_pass_rate": 0.8715596330275229,
   "testcase": {
     "passed": 297,
-    "failed": 185,
-    "error": 47,
+    "failed": 187,
+    "error": 45,
     "total": 529,
     "collected": 529,
     "test_pass_rate": 0.5614366729678639,
-    "run_pass_rate": 0.9111531190926276
+    "run_pass_rate": 0.9149338374291115
   },
   "filtered_stats": {
     "file": {
@@ -1278,5 +1278,8 @@
       "total_branch": 0,
       "branch_coverage": 0.0
     }
-  }
+  },
+  "excute_pass": 41,
+  "test_pass": 65,
+  "testcase_pass_rate": 52.05238095238096
 }

@@ -1,16 +1,17 @@
 {
-  "compile_pass": 0,
-  "compile_pass_rate": 0.0,
+  "compile_pass": 14,
+  "compile_total": 58,
+  "compile_pass_rate": 0.2413793103448276,
   "testcase": {
-    "total": 354,
+    "total": 291,
     "passed": 174,
-    "failed": 180,
+    "failed": 117,
     "skipped": 0,
-    "test_pass_rate": 0.4915254237288,
-    "run_pass_rate": 0.4049586776859504,
-    "num_total_suites": 61,
-    "num_passed_suites": 11,
-    "num_reported_test_suites": 61
+    "test_pass_rate": 0.5979381443298969,
+    "run_pass_rate": 0.5979381443298969,
+    "num_total_suites": 58,
+    "num_passed_suites": 14,
+    "num_reported_test_suites": 58
   },
   "coverage": {
     "file": {
@@ -28,9 +29,9 @@
       },
       "src/behaviour/Cyclone.js": {
         "total_lines": 41,
-        "covered_lines": 28,
+        "covered_lines": 24,
         "total_branches": 29,
-        "covered_branches": 19
+        "covered_branches": 14
       },
       "src/behaviour/Force.js": {
         "total_lines": 7,
@@ -46,27 +47,27 @@
       },
       "src/core/Particle.js": {
         "total_lines": 73,
-        "covered_lines": 55,
+        "covered_lines": 52,
         "total_branches": 12,
-        "covered_branches": 6
+        "covered_branches": 4
       },
       "src/core/Pool.js": {
         "total_lines": 23,
-        "covered_lines": 18,
+        "covered_lines": 14,
         "total_branches": 16,
-        "covered_branches": 13
+        "covered_branches": 12
       },
       "src/core/Proton.js": {
         "total_lines": 91,
-        "covered_lines": 32,
+        "covered_lines": 31,
         "total_branches": 21,
         "covered_branches": 0
       },
       "src/debug/Stats.js": {
         "total_lines": 62,
-        "covered_lines": 5,
+        "covered_lines": 29,
         "total_branches": 48,
-        "covered_branches": 0
+        "covered_branches": 16
       },
       "src/emitter/BehaviourEmitter.js": {
         "total_lines": 14,
@@ -78,19 +79,19 @@
         "total_lines": 117,
         "covered_lines": 31,
         "total_branches": 48,
-        "covered_branches": 7
+        "covered_branches": 10
       },
       "src/emitter/FollowEmitter.js": {
         "total_lines": 20,
-        "covered_lines": 2,
+        "covered_lines": 16,
         "total_branches": 10,
-        "covered_branches": 0
+        "covered_branches": 8
       },
       "src/events/EventDispatcher.js": {
         "total_lines": 36,
-        "covered_lines": 30,
+        "covered_lines": 33,
         "total_branches": 26,
-        "covered_branches": 19
+        "covered_branches": 20
       },
       "src/initialize/Body.js": {
         "total_lines": 10,
@@ -106,7 +107,7 @@
       },
       "src/initialize/Position.js": {
         "total_lines": 7,
-        "covered_lines": 0,
+        "covered_lines": 4,
         "total_branches": 0,
         "covered_branches": 0
       },
@@ -142,33 +143,33 @@
       },
       "src/render/BaseRenderer.js": {
         "total_lines": 42,
-        "covered_lines": 29,
+        "covered_lines": 30,
         "total_branches": 2,
         "covered_branches": 0
       },
       "src/render/DomRenderer.js": {
         "total_lines": 41,
-        "covered_lines": 0,
+        "covered_lines": 14,
         "total_branches": 23,
-        "covered_branches": 0
+        "covered_branches": 4
       },
       "src/render/PixelRenderer.js": {
         "total_lines": 28,
-        "covered_lines": 0,
+        "covered_lines": 7,
         "total_branches": 10,
-        "covered_branches": 0
+        "covered_branches": 1
       },
       "src/render/PixiRenderer.js": {
         "total_lines": 49,
-        "covered_lines": 7,
+        "covered_lines": 18,
         "total_branches": 24,
-        "covered_branches": 0
+        "covered_branches": 7
       },
       "src/render/WebGLRenderer.js": {
         "total_lines": 154,
-        "covered_lines": 12,
+        "covered_lines": 14,
         "total_branches": 16,
-        "covered_branches": 1
+        "covered_branches": 2
       },
       "src/utils/Rgb.js": {
         "total_lines": 6,
@@ -178,15 +179,15 @@
       },
       "src/zone/CircleZone.js": {
         "total_lines": 30,
-        "covered_lines": 16,
+        "covered_lines": 7,
         "total_branches": 12,
-        "covered_branches": 11
+        "covered_branches": 0
       },
       "src/zone/LineZone.js": {
         "total_lines": 69,
-        "covered_lines": 49,
+        "covered_lines": 50,
         "total_branches": 47,
-        "covered_branches": 25
+        "covered_branches": 29
       },
       "src/zone/PointZone.js": {
         "total_lines": 9,
@@ -196,29 +197,29 @@
       },
       "src/zone/RectZone.js": {
         "total_lines": 35,
-        "covered_lines": 23,
+        "covered_lines": 21,
         "total_branches": 40,
-        "covered_branches": 26
+        "covered_branches": 23
       },
       "src/zone/Zone.js": {
         "total_lines": 5,
-        "covered_lines": 4,
+        "covered_lines": 5,
         "total_branches": 0,
         "covered_branches": 0
       }
     },
     "function": {
-      "src/behaviour/Alpha.js::reset:54-60": {
-        "total_lines": 4,
-        "covered_lines": 4,
-        "total_branches": 4,
-        "covered_branches": 3
-      },
       "src/behaviour/Alpha.js::initialize:66-71": {
         "total_lines": 3,
         "covered_lines": 3,
         "total_branches": 2,
         "covered_branches": 2
+      },
+      "src/behaviour/Alpha.js::reset:54-60": {
+        "total_lines": 4,
+        "covered_lines": 4,
+        "total_branches": 4,
+        "covered_branches": 3
       },
       "src/behaviour/Alpha.js::applyBehaviour:79-85": {
         "total_lines": 3,
@@ -226,23 +227,23 @@
         "total_branches": 2,
         "covered_branches": 1
       },
-      "src/behaviour/Color.js::initialize:53-58": {
-        "total_lines": 3,
-        "covered_lines": 3,
-        "total_branches": 2,
-        "covered_branches": 1
-      },
-      "src/behaviour/Color.js::reset:38-42": {
-        "total_lines": 3,
-        "covered_lines": 3,
-        "total_branches": 2,
-        "covered_branches": 2
-      },
       "src/behaviour/Color.js::applyBehaviour:71-87": {
         "total_lines": 11,
         "covered_lines": 11,
         "total_branches": 2,
         "covered_branches": 2
+      },
+      "src/behaviour/Color.js::initialize:53-58": {
+        "total_lines": 3,
+        "covered_lines": 3,
+        "total_branches": 2,
+        "covered_branches": 2
+      },
+      "src/behaviour/Color.js::reset:38-42": {
+        "total_lines": 3,
+        "covered_lines": 3,
+        "total_branches": 2,
+        "covered_branches": 1
       },
       "src/behaviour/Cyclone.js::initialize:74-82": {
         "total_lines": 5,
@@ -252,15 +253,15 @@
       },
       "src/behaviour/Cyclone.js::reset:68-72": {
         "total_lines": 3,
-        "covered_lines": 3,
+        "covered_lines": 0,
         "total_branches": 2,
-        "covered_branches": 2
+        "covered_branches": 0
       },
       "src/behaviour/Cyclone.js::applyBehaviour:95-116": {
         "total_lines": 12,
-        "covered_lines": 10,
+        "covered_lines": 9,
         "total_branches": 6,
-        "covered_branches": 5
+        "covered_branches": 4
       },
       "src/behaviour/Force.js::reset:37-41": {
         "total_lines": 2,
@@ -280,17 +281,11 @@
         "total_branches": 2,
         "covered_branches": 2
       },
-      "src/core/Particle.js::removeBehaviour:167-174": {
-        "total_lines": 4,
-        "covered_lines": 4,
-        "total_branches": 2,
-        "covered_branches": 2
-      },
       "src/core/Particle.js::applyBehaviours:130-137": {
         "total_lines": 3,
-        "covered_lines": 3,
+        "covered_lines": 0,
         "total_branches": 2,
-        "covered_branches": 2
+        "covered_branches": 0
       },
       "src/core/Particle.js::destroy:186-191": {
         "total_lines": 4,
@@ -298,17 +293,17 @@
         "total_branches": 0,
         "covered_branches": 0
       },
+      "src/core/Particle.js::removeBehaviour:167-174": {
+        "total_lines": 4,
+        "covered_lines": 4,
+        "total_branches": 2,
+        "covered_branches": 2
+      },
       "src/core/Particle.js::reset:73-104": {
         "total_lines": 25,
         "covered_lines": 25,
         "total_branches": 0,
         "covered_branches": 0
-      },
-      "src/core/Pool.js::get:48-60": {
-        "total_lines": 6,
-        "covered_lines": 6,
-        "total_branches": 9,
-        "covered_branches": 8
       },
       "src/core/Pool.js::destroy:121-126": {
         "total_lines": 3,
@@ -321,6 +316,12 @@
         "covered_lines": 1,
         "total_branches": 0,
         "covered_branches": 0
+      },
+      "src/core/Pool.js::get:48-60": {
+        "total_lines": 6,
+        "covered_lines": 6,
+        "total_branches": 9,
+        "covered_branches": 9
       },
       "src/core/Proton.js::removeEmitter:133-139": {
         "total_lines": 4,
@@ -342,21 +343,21 @@
       },
       "src/debug/Stats.js::update:11-45": {
         "total_lines": 22,
-        "covered_lines": 0,
+        "covered_lines": 1,
         "total_branches": 20,
         "covered_branches": 0
       },
       "src/debug/Stats.js::add:47-92": {
         "total_lines": 21,
-        "covered_lines": 0,
+        "covered_lines": 18,
         "total_branches": 12,
-        "covered_branches": 0
+        "covered_branches": 10
       },
       "src/debug/Stats.js::destroy:121-129": {
         "total_lines": 5,
-        "covered_lines": 0,
+        "covered_lines": 5,
         "total_branches": 6,
-        "covered_branches": 0
+        "covered_branches": 6
       },
       "src/emitter/BehaviourEmitter.js::removeSelfBehaviour:41-44": {
         "total_lines": 2,
@@ -370,11 +371,11 @@
         "total_branches": 2,
         "covered_branches": 0
       },
-      "src/emitter/Emitter.js::stop:85-89": {
-        "total_lines": 3,
-        "covered_lines": 3,
-        "total_branches": 0,
-        "covered_branches": 0
+      "src/emitter/Emitter.js::removeBehaviour:184-194": {
+        "total_lines": 6,
+        "covered_lines": 6,
+        "total_branches": 2,
+        "covered_branches": 2
       },
       "src/emitter/Emitter.js::removeInitialize:150-153": {
         "total_lines": 2,
@@ -382,22 +383,16 @@
         "total_branches": 2,
         "covered_branches": 2
       },
-      "src/emitter/Emitter.js::removeBehaviour:184-194": {
-        "total_lines": 6,
-        "covered_lines": 6,
-        "total_branches": 2,
-        "covered_branches": 2
+      "src/emitter/Emitter.js::stop:85-89": {
+        "total_lines": 3,
+        "covered_lines": 3,
+        "total_branches": 0,
+        "covered_branches": 0
       },
       "src/emitter/Emitter.js::setupParticle:293-306": {
         "total_lines": 9,
-        "covered_lines": 6,
-        "total_branches": 4,
-        "covered_branches": 2
-      },
-      "src/emitter/FollowEmitter.js::emit:38-40": {
-        "total_lines": 1,
         "covered_lines": 0,
-        "total_branches": 0,
+        "total_branches": 4,
         "covered_branches": 0
       },
       "src/emitter/FollowEmitter.js::stop:46-48": {
@@ -406,11 +401,17 @@
         "total_branches": 0,
         "covered_branches": 0
       },
+      "src/emitter/FollowEmitter.js::emit:38-40": {
+        "total_lines": 1,
+        "covered_lines": 0,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
       "src/emitter/FollowEmitter.js::mousemove:50-60": {
         "total_lines": 7,
-        "covered_lines": 0,
+        "covered_lines": 7,
         "total_branches": 10,
-        "covered_branches": 0
+        "covered_branches": 8
       },
       "src/events/EventDispatcher.js::addEventListener:20-31": {
         "total_lines": 6,
@@ -428,7 +429,7 @@
         "total_lines": 2,
         "covered_lines": 2,
         "total_branches": 4,
-        "covered_branches": 4
+        "covered_branches": 3
       },
       "src/initialize/Body.js::initialize:40-54": {
         "total_lines": 4,
@@ -444,7 +445,7 @@
       },
       "src/initialize/Position.js::initialize:46-51": {
         "total_lines": 3,
-        "covered_lines": 0,
+        "covered_lines": 1,
         "total_branches": 0,
         "covered_branches": 0
       },
@@ -484,17 +485,17 @@
         "total_branches": 0,
         "covered_branches": 0
       },
-      "src/math/Polar2D.js::clone:58-60": {
-        "total_lines": 1,
-        "covered_lines": 1,
-        "total_branches": 0,
-        "covered_branches": 0
-      },
       "src/math/Polar2D.js::equals:48-50": {
         "total_lines": 1,
         "covered_lines": 1,
         "total_branches": 2,
         "covered_branches": 2
+      },
+      "src/math/Polar2D.js::clone:58-60": {
+        "total_lines": 1,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
       },
       "src/math/Rectangle.js::contains:13-16": {
         "total_lines": 2,
@@ -514,27 +515,27 @@
         "total_branches": 0,
         "covered_branches": 0
       },
-      "src/math/Vector2D.js::distanceToSquared:245-250": {
-        "total_lines": 3,
-        "covered_lines": 3,
-        "total_branches": 0,
-        "covered_branches": 0
-      },
       "src/math/Vector2D.js::add:80-89": {
         "total_lines": 5,
         "covered_lines": 5,
         "total_branches": 2,
         "covered_branches": 2
       },
-      "src/render/BaseRenderer.js::destroy:64-70": {
-        "total_lines": 5,
-        "covered_lines": 0,
+      "src/math/Vector2D.js::distanceToSquared:245-250": {
+        "total_lines": 3,
+        "covered_lines": 3,
         "total_branches": 0,
         "covered_branches": 0
       },
       "src/render/BaseRenderer.js::remove:72-84": {
         "total_lines": 8,
         "covered_lines": 8,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/render/BaseRenderer.js::destroy:64-70": {
+        "total_lines": 5,
+        "covered_lines": 1,
         "total_branches": 0,
         "covered_branches": 0
       },
@@ -546,23 +547,29 @@
       },
       "src/render/DomRenderer.js::onParticleCreated:25-32": {
         "total_lines": 4,
-        "covered_lines": 0,
+        "covered_lines": 3,
         "total_branches": 2,
-        "covered_branches": 0
+        "covered_branches": 2
       },
       "src/render/DomRenderer.js::destroy:101-104": {
         "total_lines": 2,
-        "covered_lines": 0,
+        "covered_lines": 1,
         "total_branches": 0,
         "covered_branches": 0
       },
       "src/render/DomRenderer.js::addImg2Body:63-69": {
         "total_lines": 4,
-        "covered_lines": 0,
+        "covered_lines": 4,
         "total_branches": 2,
-        "covered_branches": 0
+        "covered_branches": 2
       },
       "src/render/PixelRenderer.js::onProtonUpdate:36-44": {
+        "total_lines": 2,
+        "covered_lines": 0,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/render/PixelRenderer.js::resize:25-28": {
         "total_lines": 2,
         "covered_lines": 0,
         "total_branches": 0,
@@ -574,23 +581,17 @@
         "total_branches": 0,
         "covered_branches": 0
       },
-      "src/render/PixelRenderer.js::resize:25-28": {
-        "total_lines": 2,
-        "covered_lines": 0,
-        "total_branches": 0,
-        "covered_branches": 0
-      },
       "src/render/PixiRenderer.js::onParticleUpdate:60-66": {
         "total_lines": 3,
-        "covered_lines": 0,
+        "covered_lines": 1,
         "total_branches": 4,
         "covered_branches": 0
       },
       "src/render/PixiRenderer.js::onParticleCreated:43-55": {
         "total_lines": 6,
-        "covered_lines": 0,
+        "covered_lines": 5,
         "total_branches": 4,
-        "covered_branches": 0
+        "covered_branches": 3
       },
       "src/render/WebGLRenderer.js::onParticleCreated:245-258": {
         "total_lines": 9,
@@ -624,21 +625,21 @@
       },
       "src/zone/CircleZone.js::crossing:52-65": {
         "total_lines": 9,
-        "covered_lines": 9,
+        "covered_lines": 1,
         "total_branches": 12,
-        "covered_branches": 11
+        "covered_branches": 0
+      },
+      "src/zone/LineZone.js::rangeOut:125-135": {
+        "total_lines": 5,
+        "covered_lines": 5,
+        "total_branches": 10,
+        "covered_branches": 10
       },
       "src/zone/LineZone.js::crossing:149-176": {
         "total_lines": 18,
         "covered_lines": 14,
         "total_branches": 30,
-        "covered_branches": 16
-      },
-      "src/zone/LineZone.js::rangeOut:125-135": {
-        "total_lines": 5,
-        "covered_lines": 4,
-        "total_branches": 10,
-        "covered_branches": 5
+        "covered_branches": 15
       },
       "src/zone/PointZone.js::crossing:44-49": {
         "total_lines": 3,
@@ -648,13 +649,13 @@
       },
       "src/zone/RectZone.js::crossing:38-81": {
         "total_lines": 27,
-        "covered_lines": 18,
+        "covered_lines": 16,
         "total_branches": 38,
-        "covered_branches": 26
+        "covered_branches": 23
       },
       "src/zone/Zone.js::destroy:15-17": {
         "total_lines": 1,
-        "covered_lines": 0,
+        "covered_lines": 1,
         "total_branches": 0,
         "covered_branches": 0
       }
@@ -662,16 +663,19 @@
     "summary": {
       "file": {
         "total_lines": 1135,
-        "covered_lines": 455,
+        "covered_lines": 514,
         "total_branches": 455,
-        "covered_branches": 169
+        "covered_branches": 192
       },
       "function": {
         "total_lines": 433,
-        "covered_lines": 231,
+        "covered_lines": 257,
         "total_branches": 260,
-        "covered_branches": 130
+        "covered_branches": 144
       }
     }
-  }
+  },
+  "excute_pass": 37,
+  "test_pass": 46,
+  "testcase_pass_rate": 32.805952380952384
 }
