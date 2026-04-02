@@ -5,25 +5,25 @@
   "compile_pass": 82,
   "compile_pass_rate": 0.7522935779816514,
   "testcase": {
-    "passed": 255,
+    "passed": 257,
     "failed": 208,
-    "error": 58,
+    "error": 56,
     "skipped": 1,
     "total": 522,
     "collected": 522,
-    "test_pass_rate": 0.4885057471264368,
-    "run_pass_rate": 0.8888888888888888
+    "test_pass_rate": 0.49233716475095785,
+    "run_pass_rate": 0.89272030651341
   },
   "filtered_stats": {
     "file": {
       "total_lines": 7569,
-      "covered_lines": 2560,
+      "covered_lines": 2562,
       "total_branches": 3674,
       "covered_branches": 416
     },
     "function": {
       "total_lines": 962,
-      "covered_lines": 511,
+      "covered_lines": 513,
       "total_branches": 492,
       "covered_branches": 242
     }
@@ -118,9 +118,9 @@
       "branch_coverage": 2.78
     },
     "pylint/checkers/refactoring/recommendation_checker.py": {
-      "covered_line": 27,
+      "covered_line": 29,
       "total_line": 198,
-      "line_coverage": 13.64,
+      "line_coverage": 14.65,
       "covered_branch": 0,
       "total_branch": 132,
       "branch_coverage": 0.0
@@ -600,9 +600,9 @@
       "branch_coverage": 100.0
     },
     "pylint/checkers/refactoring/recommendation_checker.py:RecommendationChecker.open": {
-      "covered_line": 0,
+      "covered_line": 2,
       "total_line": 2,
-      "line_coverage": 0.0,
+      "line_coverage": 100.0,
       "covered_branch": 0,
       "total_branch": 0,
       "branch_coverage": 0.0
@@ -1279,5 +1279,8 @@
       "total_branch": 0,
       "branch_coverage": 0.0
     }
-  }
+  },
+  "excute_pass": 33,
+  "test_pass": 57,
+  "testcase_pass_rate": 39.73598068598069
 }

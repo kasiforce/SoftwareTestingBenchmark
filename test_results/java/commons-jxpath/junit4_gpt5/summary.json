@@ -573,5 +573,8 @@
       "total_branches": 563,
       "covered_branches": 221
     }
-  }
+  },
+  "excute_pass": 26,
+  "pass_rate": 24.3,
+  "pass_rate1": 26
 }

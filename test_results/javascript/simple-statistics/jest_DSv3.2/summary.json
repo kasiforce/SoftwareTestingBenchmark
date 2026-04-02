@@ -80,5 +80,8 @@
         "covered_branches": 14
       }
     }
-  }
+  },
+  "excute_pass": 2,
+  "test_pass": 3,
+  "testcase_pass_rate": 1.4096153846153845
 }

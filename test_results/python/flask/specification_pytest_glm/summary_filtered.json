@@ -5,26 +5,26 @@
   "compile_pass": 31,
   "compile_pass_rate": 0.9117647058823529,
   "testcase": {
-    "passed": 17,
-    "failed": 22,
-    "error": 2,
-    "total": 41,
+    "passed": 114,
+    "failed": 93,
+    "error": 41,
+    "total": 248,
     "collected": 248,
-    "test_pass_rate": 0.4146341463414634,
-    "run_pass_rate": 0.9512195121951219
+    "test_pass_rate": 0.4596774193548387,
+    "run_pass_rate": 0.8346774193548387
   },
   "filtered_stats": {
     "file": {
       "total_lines": 1532,
-      "covered_lines": 877,
+      "covered_lines": 1021,
       "total_branches": 438,
-      "covered_branches": 113
+      "covered_branches": 175
     },
     "function": {
       "total_lines": 140,
-      "covered_lines": 46,
+      "covered_lines": 117,
       "total_branches": 64,
-      "covered_branches": 21
+      "covered_branches": 53
     }
   },
   "file_coverage": {
@@ -45,68 +45,68 @@
       "branch_coverage": 26.35
     },
     "src/flask/json/__init__.py": {
-      "covered_line": 10,
+      "covered_line": 20,
       "total_line": 25,
-      "line_coverage": 40.0,
-      "covered_branch": 0,
+      "line_coverage": 80.0,
+      "covered_branch": 6,
       "total_branch": 8,
-      "branch_coverage": 0.0
+      "branch_coverage": 75.0
     },
     "src/flask/json/provider.py": {
-      "covered_line": 33,
+      "covered_line": 57,
       "total_line": 64,
-      "line_coverage": 51.56,
-      "covered_branch": 0,
+      "line_coverage": 89.06,
+      "covered_branch": 12,
       "total_branch": 16,
-      "branch_coverage": 0.0
+      "branch_coverage": 75.0
     },
     "src/flask/json/tag.py": {
-      "covered_line": 87,
+      "covered_line": 109,
       "total_line": 132,
-      "line_coverage": 65.91,
-      "covered_branch": 6,
+      "line_coverage": 82.58,
+      "covered_branch": 12,
       "total_branch": 20,
-      "branch_coverage": 30.0
+      "branch_coverage": 60.0
     },
     "src/flask/sansio/app.py": {
-      "covered_line": 151,
+      "covered_line": 169,
       "total_line": 244,
-      "line_coverage": 61.89,
-      "covered_branch": 14,
+      "line_coverage": 69.26,
+      "covered_branch": 20,
       "total_branch": 72,
-      "branch_coverage": 19.44
+      "branch_coverage": 27.78
     },
     "src/flask/sansio/blueprints.py": {
-      "covered_line": 129,
+      "covered_line": 147,
       "total_line": 235,
-      "line_coverage": 54.89,
-      "covered_branch": 19,
+      "line_coverage": 62.55,
+      "covered_branch": 23,
       "total_branch": 72,
-      "branch_coverage": 26.39
+      "branch_coverage": 31.94
     },
     "src/flask/sansio/scaffold.py": {
-      "covered_line": 144,
+      "covered_line": 146,
       "total_line": 205,
-      "line_coverage": 70.24,
-      "covered_branch": 16,
+      "line_coverage": 71.22,
+      "covered_branch": 18,
       "total_branch": 40,
-      "branch_coverage": 40.0
+      "branch_coverage": 45.0
     },
     "src/flask/testing.py": {
-      "covered_line": 70,
+      "covered_line": 86,
       "total_line": 112,
-      "line_coverage": 62.5,
-      "covered_branch": 9,
+      "line_coverage": 76.79,
+      "covered_branch": 18,
       "total_branch": 32,
-      "branch_coverage": 28.12
+      "branch_coverage": 56.25
     },
     "src/flask/views.py": {
-      "covered_line": 18,
+      "covered_line": 52,
       "total_line": 53,
-      "line_coverage": 33.96,
-      "covered_branch": 0,
+      "line_coverage": 98.11,
+      "covered_branch": 17,
       "total_branch": 20,
-      "branch_coverage": 0.0
+      "branch_coverage": 85.0
     }
   },
   "function_coverage": {
@@ -151,28 +151,28 @@
       "branch_coverage": 100.0
     },
     "src/flask/json/__init__.py:dumps": {
-      "covered_line": 0,
+      "covered_line": 4,
       "total_line": 4,
-      "line_coverage": 0.0,
-      "covered_branch": 0,
+      "line_coverage": 100.0,
+      "covered_branch": 2,
       "total_branch": 2,
-      "branch_coverage": 0.0
+      "branch_coverage": 100.0
     },
     "src/flask/json/__init__.py:loads": {
-      "covered_line": 0,
+      "covered_line": 3,
       "total_line": 3,
-      "line_coverage": 0.0,
-      "covered_branch": 0,
+      "line_coverage": 100.0,
+      "covered_branch": 2,
       "total_branch": 2,
-      "branch_coverage": 0.0
+      "branch_coverage": 100.0
     },
     "src/flask/json/__init__.py:load": {
-      "covered_line": 0,
+      "covered_line": 3,
       "total_line": 3,
-      "line_coverage": 0.0,
-      "covered_branch": 0,
+      "line_coverage": 100.0,
+      "covered_branch": 2,
       "total_branch": 2,
-      "branch_coverage": 0.0
+      "branch_coverage": 100.0
     },
     "src/flask/json/provider.py:JSONProvider.response": {
       "covered_line": 0,
@@ -183,25 +183,25 @@
       "branch_coverage": 0.0
     },
     "src/flask/json/provider.py:DefaultJSONProvider.dumps": {
-      "covered_line": 0,
+      "covered_line": 4,
       "total_line": 4,
-      "line_coverage": 0.0,
+      "line_coverage": 100.0,
       "covered_branch": 0,
       "total_branch": 0,
       "branch_coverage": 0.0
     },
     "src/flask/json/provider.py:DefaultJSONProvider.response": {
-      "covered_line": 0,
+      "covered_line": 6,
       "total_line": 6,
-      "line_coverage": 0.0,
-      "covered_branch": 0,
+      "line_coverage": 100.0,
+      "covered_branch": 2,
       "total_branch": 2,
-      "branch_coverage": 0.0
+      "branch_coverage": 100.0
     },
     "src/flask/json/tag.py:TagDict.check": {
-      "covered_line": 0,
+      "covered_line": 1,
       "total_line": 1,
-      "line_coverage": 0.0,
+      "line_coverage": 100.0,
       "covered_branch": 0,
       "total_branch": 0,
       "branch_coverage": 0.0
@@ -215,28 +215,28 @@
       "branch_coverage": 0.0
     },
     "src/flask/json/tag.py:TaggedJSONSerializer.register": {
-      "covered_line": 7,
+      "covered_line": 9,
       "total_line": 9,
-      "line_coverage": 77.78,
-      "covered_branch": 4,
+      "line_coverage": 100.0,
+      "covered_branch": 6,
       "total_branch": 6,
-      "branch_coverage": 66.67
+      "branch_coverage": 100.0
     },
     "src/flask/json/tag.py:TaggedJSONSerializer.tag": {
-      "covered_line": 0,
+      "covered_line": 4,
       "total_line": 4,
-      "line_coverage": 0.0,
-      "covered_branch": 0,
+      "line_coverage": 100.0,
+      "covered_branch": 4,
       "total_branch": 4,
-      "branch_coverage": 0.0
+      "branch_coverage": 100.0
     },
     "src/flask/sansio/app.py:App.name": {
-      "covered_line": 2,
+      "covered_line": 5,
       "total_line": 6,
-      "line_coverage": 33.33,
-      "covered_branch": 1,
+      "line_coverage": 83.33,
+      "covered_branch": 3,
       "total_branch": 4,
-      "branch_coverage": 25.0
+      "branch_coverage": 75.0
     },
     "src/flask/sansio/app.py:App.select_jinja_autoescape": {
       "covered_line": 0,
@@ -247,33 +247,33 @@
       "branch_coverage": 0.0
     },
     "src/flask/sansio/app.py:App.add_template_filter": {
-      "covered_line": 0,
+      "covered_line": 1,
       "total_line": 1,
-      "line_coverage": 0.0,
+      "line_coverage": 100.0,
       "covered_branch": 0,
       "total_branch": 0,
       "branch_coverage": 0.0
     },
     "src/flask/sansio/blueprints.py:Blueprint.app_template_global": {
-      "covered_line": 0,
+      "covered_line": 5,
       "total_line": 5,
-      "line_coverage": 0.0,
-      "covered_branch": 0,
+      "line_coverage": 100.0,
+      "covered_branch": 2,
       "total_branch": 2,
-      "branch_coverage": 0.0
+      "branch_coverage": 100.0
     },
     "src/flask/sansio/blueprints.py:Blueprint.teardown_app_request": {
-      "covered_line": 0,
+      "covered_line": 2,
       "total_line": 2,
-      "line_coverage": 0.0,
+      "line_coverage": 100.0,
       "covered_branch": 0,
       "total_branch": 0,
       "branch_coverage": 0.0
     },
     "src/flask/sansio/blueprints.py:Blueprint.app_url_value_preprocessor": {
-      "covered_line": 0,
+      "covered_line": 2,
       "total_line": 2,
-      "line_coverage": 0.0,
+      "line_coverage": 100.0,
       "covered_branch": 0,
       "total_branch": 0,
       "branch_coverage": 0.0
@@ -303,12 +303,12 @@
       "branch_coverage": 0.0
     },
     "src/flask/testing.py:FlaskClient.open": {
-      "covered_line": 8,
+      "covered_line": 17,
       "total_line": 17,
-      "line_coverage": 47.06,
-      "covered_branch": 2,
+      "line_coverage": 100.0,
+      "covered_branch": 8,
       "total_branch": 8,
-      "branch_coverage": 25.0
+      "branch_coverage": 100.0
     },
     "src/flask/testing.py:FlaskCliRunner.invoke": {
       "covered_line": 0,
@@ -319,20 +319,23 @@
       "branch_coverage": 0.0
     },
     "src/flask/views.py:View.as_view": {
-      "covered_line": 0,
+      "covered_line": 17,
       "total_line": 17,
-      "line_coverage": 0.0,
-      "covered_branch": 0,
+      "line_coverage": 100.0,
+      "covered_branch": 6,
       "total_branch": 6,
-      "branch_coverage": 0.0
+      "branch_coverage": 100.0
     },
     "src/flask/views.py:MethodView.dispatch_request": {
-      "covered_line": 0,
+      "covered_line": 5,
       "total_line": 5,
-      "line_coverage": 0.0,
-      "covered_branch": 0,
+      "line_coverage": 100.0,
+      "covered_branch": 2,
       "total_branch": 2,
-      "branch_coverage": 0.0
+      "branch_coverage": 100.0
     }
-  }
+  },
+  "excute_pass": 7,
+  "test_pass": 22,
+  "testcase_pass_rate": 14.219083694083695
 }

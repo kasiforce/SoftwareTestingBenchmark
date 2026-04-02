@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.19% </span>
+                <span class="strong">61.7% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>25/47</span>
+                <span class='fraction'>29/47</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.01% </span>
+                <span class="strong">72.46% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>49/69</span>
+                <span class='fraction'>50/69</span>
             </div>
         
             
@@ -356,7 +356,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">27x</span>
+<span class="cline-any cline-yes">26x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -365,15 +365,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -390,29 +390,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -544,8 +544,8 @@ export default class LineZone extends Zone {
   rangeOut(particle) {
     const angle = Math.abs(this.getGradient());
 &nbsp;
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (angle &lt;= MathUtil.PI / 4) {
-<span class="cstat-no" title="statement not covered" >      if (particle.p.x &lt;= this.maxx &amp;&amp; particle.p.x &gt;= this.minx) <span class="cstat-no" title="statement not covered" >return true;</span></span>
+    if (angle &lt;= MathUtil.PI / 4) {
+      if (particle.p.x &lt;= this.maxx &amp;&amp; particle.p.x &gt;= this.minx) return true;
     } else {
       if (particle.p.y &lt;= this.maxy &amp;&amp; particle.p.y &gt;= this.miny) return true;
     }
@@ -568,14 +568,14 @@ export default class LineZone extends Zone {
   crossing(particle) {
     if (this.crossType === "dead") {
       if (this.direction === "&gt;" || <span class="branch-1 cbranch-no" title="branch not covered" >this.direction === "R" </span>|| <span class="branch-2 cbranch-no" title="branch not covered" >this.direction === "right" </span>|| <span class="branch-3 cbranch-no" title="branch not covered" >this.direction === "down")</span> {
-        if (!this.rangeOut(particle)) return;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!this.rangeOut(particle)) <span class="cstat-no" title="statement not covered" >return;</span>
         <span class="missing-if-branch" title="if path not taken" >I</span>if (this.getDirection(particle.p.x, particle.p.y)) <span class="cstat-no" title="statement not covered" >particle.dead = true;</span>
       } else <span class="missing-if-branch" title="else path not taken" >E</span>{
 <span class="cstat-no" title="statement not covered" >        if (!this.rangeOut(particle)) <span class="cstat-no" title="statement not covered" >return;</span></span>
 <span class="cstat-no" title="statement not covered" >        if (!this.getDirection(particle.p.x, particle.p.y)) <span class="cstat-no" title="statement not covered" >particle.dead = true;</span></span>
       }
     } else if (this.crossType === "bound") {
-      if (!this.rangeOut(particle)) return;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!this.rangeOut(particle)) <span class="cstat-no" title="statement not covered" >return;</span>
 &nbsp;
       <span class="missing-if-branch" title="else path not taken" >E</span>if (this.getDistance(particle.p.x, particle.p.y) &lt;= particle.radius) {
         <span class="missing-if-branch" title="if path not taken" >I</span>if (this.dx === 0) {
@@ -586,7 +586,7 @@ export default class LineZone extends Zone {
           this.getSymmetric(particle.v);
         }
       }
-    } else <span class="missing-if-branch" title="else path not taken" >E</span>if (this.crossType === "cross") {
+    } else if (this.crossType === "cross") {
       <span class="missing-if-branch" title="else path not taken" >E</span>if (this.alert) {
         console.error("Sorry, LineZone does not support cross method!");
         this.alert = false;
@@ -601,7 +601,7 @@ export default class LineZone extends Zone {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-26T13:28:12.623Z
+                at 2026-04-02T07:14:37.867Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

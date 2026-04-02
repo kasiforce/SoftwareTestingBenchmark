@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">24.13% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/29</span>
+                <span class='fraction'>7/29</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">10% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>1/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">20% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>2/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/28</span>
+                <span class='fraction'>7/28</span>
             </div>
         
             
@@ -163,24 +163,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -248,13 +248,13 @@ export default class PixelRenderer extends BaseRenderer {
    * @param {HTMLCanvasElement} element - The canvas element to render to.
    * @param {Rectangle} [rectangle] - The rectangle defining the rendering area.
    */
-<span class="fstat-no" title="function not covered" >  co</span>nstructor(element, rectangle) {
-<span class="cstat-no" title="statement not covered" >    super(element);</span>
+  constructor(element, rectangle) {
+    super(element);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    this.context = this.element.getContext("2d");</span>
-<span class="cstat-no" title="statement not covered" >    this.imageData = null;</span>
-<span class="cstat-no" title="statement not covered" >    this.rectangle = rectangle;</span>
-<span class="cstat-no" title="statement not covered" >    this.createImageData(rectangle);</span>
+    this.context = this.element.getContext("2d");
+    this.imageData = null;
+    this.rectangle = rectangle;
+    this.createImageData(rectangle);
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    this.name = "PixelRenderer";</span>
   }
@@ -264,9 +264,9 @@ export default class PixelRenderer extends BaseRenderer {
 <span class="cstat-no" title="statement not covered" >    this.element.height = height;</span>
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  cr</span>eateImageData(rectangle) {
-<span class="cstat-no" title="statement not covered" >    this.rectangle = rectangle ? rectangle : new Rectangle(0, 0, this.element.width, this.element.height);</span>
-<span class="cstat-no" title="statement not covered" >    this.imageData = this.context.createImageData(this.rectangle.width, this.rectangle.height);</span>
+  createImageData(rectangle) {
+    this.rectangle = rectangle ? rectangle : <span class="branch-1 cbranch-no" title="branch not covered" >new Rectangle(0, 0, this.element.width, this.element.height);</span>
+    this.imageData = this.context.createImageData(this.rectangle.width, this.rectangle.height);
 <span class="cstat-no" title="statement not covered" >    this.context.putImageData(this.imageData, this.rectangle.x, this.rectangle.y);</span>
   }
 &nbsp;
@@ -328,7 +328,7 @@ export default class PixelRenderer extends BaseRenderer {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-26T13:28:12.623Z
+                at 2026-04-02T07:14:37.867Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
