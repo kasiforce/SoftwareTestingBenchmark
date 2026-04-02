@@ -19,7 +19,7 @@
       "compile_pass_rate": 0.9335071707953064,
       "excute_pass_rate": 0.4667535853976532,
       "test_pass_rate": 0.5919165580182529,
-      "testcase_pass_rate": 0.48653639204486665
+      "testcase_passed_rate": 0.48653639204486665
     },
     "qwen": {
       "total": 768,
@@ -40,7 +40,7 @@
       "compile_pass_rate": 0.8463541666666666,
       "excute_pass_rate": 0.3307291666666667,
       "test_pass_rate": 0.5390625,
-      "testcase_pass_rate": 0.376582438637241
+      "testcase_passed_rate": 0.376582438637241
     },
     "CodeLlama-7b": {
       "total": 768,
@@ -61,7 +61,7 @@
       "compile_pass_rate": 0.6067708333333334,
       "excute_pass_rate": 0.07421875,
       "test_pass_rate": 0.125,
-      "testcase_pass_rate": 0.06424093116227002
+      "testcase_passed_rate": 0.06424093116227002
     },
     "gpt4o": {
       "total": 768,
@@ -82,7 +82,7 @@
       "compile_pass_rate": 0.7591145833333334,
       "excute_pass_rate": 0.2877604166666667,
       "test_pass_rate": 0.3997395833333333,
-      "testcase_pass_rate": 0.2872866030092592
+      "testcase_passed_rate": 0.2872866030092592
     },
     "DS6.7b": {
       "total": 768,
@@ -103,7 +103,7 @@
       "compile_pass_rate": 0.6263020833333334,
       "excute_pass_rate": 0.17317708333333334,
       "test_pass_rate": 0.19661458333333334,
-      "testcase_pass_rate": 0.13038607804232802
+      "testcase_passed_rate": 0.13038607804232802
     },
     "DSv3.2": {
       "total": 766,
@@ -124,7 +124,7 @@
       "compile_pass_rate": 0.814621409921671,
       "excute_pass_rate": 0.21801566579634465,
       "test_pass_rate": 0.5378590078328982,
-      "testcase_pass_rate": 0.33770874255710964
+      "testcase_passed_rate": 0.33770874255710964
     },
     "glm": {
       "total": 768,
@@ -145,7 +145,7 @@
       "compile_pass_rate": 0.71484375,
       "excute_pass_rate": 0.25,
       "test_pass_rate": 0.4244791666666667,
-      "testcase_pass_rate": 0.29212080800718215
+      "testcase_passed_rate": 0.29212080800718215
     }
   },
   "by_framework": {
@@ -168,7 +168,7 @@
       "compile_pass_rate": 0.7677707480461481,
       "excute_pass_rate": 0.2966133234090063,
       "test_pass_rate": 0.401190919240789,
-      "testcase_pass_rate": 0.28533572475517766
+      "testcase_passed_rate": 0.28533572475517766
     },
     "pytest": {
       "total": 2686,
@@ -189,7 +189,7 @@
       "compile_pass_rate": 0.7468354430379747,
       "excute_pass_rate": 0.21779597915115415,
       "test_pass_rate": 0.4028294862248697,
-      "testcase_pass_rate": 0.27879187069365446
+      "testcase_passed_rate": 0.27879187069365446
     }
   },
   "by_spec": {
@@ -212,7 +212,7 @@
       "compile_pass_rate": 0.7573502046892445,
       "excute_pass_rate": 0.31336062523260144,
       "test_pass_rate": 0.42054335690361,
-      "testcase_pass_rate": 0.32823228399914073
+      "testcase_passed_rate": 0.32823228399914073
     },
     "with_spec": {
       "total": 2686,
@@ -233,7 +233,7 @@
       "compile_pass_rate": 0.7572598659717051,
       "excute_pass_rate": 0.20104244229337304,
       "test_pass_rate": 0.383469843633656,
-      "testcase_pass_rate": 0.23587934102555
+      "testcase_passed_rate": 0.23587934102555
     }
   }
 }
