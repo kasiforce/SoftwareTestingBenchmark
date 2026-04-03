@@ -1,0 +1,17 @@
+json_file,file_total_lines,file_covered_lines,file_total_branches,file_covered_branches,func_total_lines,func_covered_lines,func_total_branches,func_covered_branches
+/mnt/test_results/flask/specification_pytest_CodeLlama-7b/summary.json,2859,1085,858,43,1870,141,838,42
+/mnt/test_results/flask/specification_pytest_gpt4o/summary.json,2859,1446,858,161,1870,495,838,156
+/mnt/test_results/flask/specification_unittest_gpt4o/summary.json,2859,1361,858,136,1870,410,838,131
+/mnt/test_results/flask/pytest_DS6.7b/summary.json,2859,1478,858,178,1870,526,838,173
+/mnt/test_results/flask/unittest_CodeLlama-7b/summary.json,2859,1085,858,36,1870,141,838,35
+/mnt/test_results/flask/pytest_DSv3.2/summary.json,2859,1420,858,155,1870,468,838,150
+/mnt/test_results/flask/unittest_DS6.7b/summary.json,2859,1251,858,91,1870,301,838,87
+/mnt/test_results/flask/specification_unittest_DSv3.2/summary.json,2859,1438,858,151,1870,486,838,146
+/mnt/test_results/flask/specification_pytest_DS6.7b/summary.json,2859,1295,858,106,1870,343,838,101
+/mnt/test_results/flask/pytest_gpt4o/summary.json,2859,1474,858,185,1870,522,838,180
+/mnt/test_results/flask/specification_pytest_DSv3.2/summary.json,2859,1495,858,180,1870,543,838,175
+/mnt/test_results/flask/unittest_gpt4o/summary.json,2859,1316,858,118,1870,365,838,113
+/mnt/test_results/flask/specification_unittest_CodeLlama-7b/summary.json,2859,1170,858,69,1870,220,838,65
+/mnt/test_results/flask/specification_unittest_DS6.7b/summary.json,2859,1332,858,115,1870,381,838,110
+/mnt/test_results/flask/pytest_CodeLlama-7b/summary.json,2859,1080,858,40,1870,136,838,39
+/mnt/test_results/flask/unittest_DSv3.2/summary.json,2859,1574,858,223,1870,619,838,216

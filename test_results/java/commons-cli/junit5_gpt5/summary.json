@@ -1,0 +1,100 @@
+{
+  "total": 8,
+  "syntax_correct": 8,
+  "syntax_correct_rate": 1.0,
+  "compile_pass": 5,
+  "test_summary": {
+    "total": 16,
+    "passed": 15,
+    "failures": 0,
+    "errors": 1,
+    "pass_rate": 0.9375
+  },
+  "file_coverage": {
+    "org/apache/commons/cli/Options.java": {
+      "total_line": 71,
+      "covered_line": 43,
+      "total_branch": 20,
+      "covered_branch": 13
+    },
+    "org/apache/commons/cli/help/TextHelpAppendable.java": {
+      "total_line": 164,
+      "covered_line": 21,
+      "total_branch": 78,
+      "covered_branch": 14
+    },
+    "org/apache/commons/cli/help/TextStyle.java": {
+      "total_line": 77,
+      "covered_line": 0,
+      "total_branch": 20,
+      "covered_branch": 0
+    }
+  },
+  "function_coverage": {
+    "org.apache.commons.cli.help.TextStyle.pad": {
+      "total_line": 25,
+      "covered_line": 0,
+      "total_branch": 18,
+      "covered_branch": 0
+    },
+    "org.apache.commons.cli.help.TextHelpAppendable.indexOfWrap": {
+      "total_line": 13,
+      "covered_line": 13,
+      "total_branch": 14,
+      "covered_branch": 14
+    },
+    "org.apache.commons.cli.help.TextHelpAppendable.adjustTableFormat": {
+      "total_line": 32,
+      "covered_line": 0,
+      "total_branch": 22,
+      "covered_branch": 0
+    },
+    "org.apache.commons.cli.help.TextHelpAppendable.makeColumnQueue": {
+      "total_line": 14,
+      "covered_line": 0,
+      "total_branch": 8,
+      "covered_branch": 0
+    },
+    "org.apache.commons.cli.help.TextHelpAppendable.makeColumnQueues": {
+      "total_line": 4,
+      "covered_line": 0,
+      "total_branch": 2,
+      "covered_branch": 0
+    },
+    "org.apache.commons.cli.Options.addOptionGroup": {
+      "total_line": 4,
+      "covered_line": 4,
+      "total_branch": 2,
+      "covered_branch": 2
+    },
+    "org.apache.commons.cli.Options.addOptions": {
+      "total_line": 3,
+      "covered_line": 3,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "org.apache.commons.cli.Options.addRequiredOption": {
+      "total_line": 4,
+      "covered_line": 4,
+      "total_branch": 0,
+      "covered_branch": 0
+    }
+  },
+  "summary": {
+    "file": {
+      "total_lines": 312,
+      "covered_lines": 64,
+      "total_branches": 118,
+      "covered_branches": 27
+    },
+    "function": {
+      "total_lines": 99,
+      "covered_lines": 24,
+      "total_branches": 66,
+      "covered_branches": 16
+    }
+  },
+  "excute_pass": 4,
+  "pass_rate": 4.0,
+  "pass_rate1": 4
+}

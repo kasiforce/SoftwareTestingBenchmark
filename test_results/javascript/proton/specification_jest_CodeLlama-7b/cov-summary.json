@@ -1,0 +1,506 @@
+{
+  "src/behaviour/Alpha.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 86,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/behaviour/Color.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 88,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/behaviour/Cyclone.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 117,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/behaviour/Force.js": {
+    "file_line_coverage": 0.7931034482758621,
+    "file_branch_coverage": 1,
+    "total_lines": 58,
+    "covered_lines": 46,
+    "total_branches": 0,
+    "covered_branches": 0,
+    "functions": {
+      "reset": {
+        "start_line": 37,
+        "end_line": 41,
+        "hit": true,
+        "line_coverage": 0.2,
+        "branch_coverage": 1,
+        "total_lines": 5,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      }
+    }
+  },
+  "src/behaviour/RandomDrift.js": {
+    "file_line_coverage": 0.6666666666666666,
+    "file_branch_coverage": 1,
+    "total_lines": 78,
+    "covered_lines": 52,
+    "total_branches": 0,
+    "covered_branches": 0,
+    "functions": {
+      "reset": {
+        "start_line": 42,
+        "end_line": 48,
+        "hit": true,
+        "line_coverage": 0.14285714285714285,
+        "branch_coverage": 1,
+        "total_lines": 7,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "applyBehaviour": {
+        "start_line": 65,
+        "end_line": 77,
+        "hit": true,
+        "line_coverage": 0.07692307692307693,
+        "branch_coverage": 1,
+        "total_lines": 13,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      }
+    }
+  },
+  "src/core/Particle.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 192,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/core/Pool.js": {
+    "file_line_coverage": 0.7272727272727273,
+    "file_branch_coverage": 1,
+    "total_lines": 143,
+    "covered_lines": 104,
+    "total_branches": 0,
+    "covered_branches": 0,
+    "functions": {
+      "get": {
+        "start_line": 48,
+        "end_line": 60,
+        "hit": true,
+        "line_coverage": 0.07692307692307693,
+        "branch_coverage": 1,
+        "total_lines": 13,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "expire": {
+        "start_line": 72,
+        "end_line": 74,
+        "hit": true,
+        "line_coverage": 0.3333333333333333,
+        "branch_coverage": 1,
+        "total_lines": 3,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "destroy": {
+        "start_line": 121,
+        "end_line": 126,
+        "hit": true,
+        "line_coverage": 0.16666666666666666,
+        "branch_coverage": 1,
+        "total_lines": 6,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      }
+    }
+  },
+  "src/core/Proton.js": {
+    "file_line_coverage": 0.5454545454545454,
+    "file_branch_coverage": 1,
+    "total_lines": 264,
+    "covered_lines": 144,
+    "total_branches": 0,
+    "covered_branches": 0,
+    "functions": {
+      "removeEmitter": {
+        "start_line": 133,
+        "end_line": 139,
+        "hit": true,
+        "line_coverage": 0.14285714285714285,
+        "branch_coverage": 1,
+        "total_lines": 7,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "update": {
+        "start_line": 148,
+        "end_line": 183,
+        "hit": true,
+        "line_coverage": 0.027777777777777776,
+        "branch_coverage": 1,
+        "total_lines": 36,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "destroy": {
+        "start_line": 239,
+        "end_line": 261,
+        "hit": true,
+        "line_coverage": 0.043478260869565216,
+        "branch_coverage": 1,
+        "total_lines": 23,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      }
+    }
+  },
+  "src/debug/Stats.js": {
+    "file_line_coverage": 0.14615384615384616,
+    "file_branch_coverage": 1,
+    "total_lines": 130,
+    "covered_lines": 19,
+    "total_branches": 0,
+    "covered_branches": 0,
+    "functions": {
+      "update": {
+        "start_line": 11,
+        "end_line": 45,
+        "hit": true,
+        "line_coverage": 0.02857142857142857,
+        "branch_coverage": 1,
+        "total_lines": 35,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "add": {
+        "start_line": 47,
+        "end_line": 92,
+        "hit": true,
+        "line_coverage": 0.021739130434782608,
+        "branch_coverage": 1,
+        "total_lines": 46,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "destroy": {
+        "start_line": 121,
+        "end_line": 129,
+        "hit": true,
+        "line_coverage": 0.1111111111111111,
+        "branch_coverage": 1,
+        "total_lines": 9,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      }
+    }
+  },
+  "src/emitter/BehaviourEmitter.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 58,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/emitter/Emitter.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 336,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/emitter/FollowEmitter.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 70,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/events/EventDispatcher.js": {
+    "file_line_coverage": 0.3103448275862069,
+    "file_branch_coverage": 1.0,
+    "total_lines": 87,
+    "covered_lines": 27,
+    "total_branches": 1,
+    "covered_branches": 1,
+    "functions": {
+      "addEventListener": {
+        "start_line": 20,
+        "end_line": 31,
+        "hit": true,
+        "line_coverage": 0.08333333333333333,
+        "branch_coverage": 1,
+        "total_lines": 12,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "removeAllEventListeners": {
+        "start_line": 56,
+        "end_line": 59,
+        "hit": true,
+        "line_coverage": 0.25,
+        "branch_coverage": 1,
+        "total_lines": 4,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "dispatchEvent": {
+        "start_line": 61,
+        "end_line": 81,
+        "hit": true,
+        "line_coverage": 0.047619047619047616,
+        "branch_coverage": 1,
+        "total_lines": 21,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      }
+    }
+  },
+  "src/initialize/Body.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 65,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/initialize/Initialize.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 14,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/initialize/Position.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 52,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/initialize/Radius.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 49,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/initialize/Rate.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 81,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/math/Polar2D.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 61,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/math/Rectangle.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 17,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/math/Vector2D.js": {
+    "file_line_coverage": 0.6323024054982818,
+    "file_branch_coverage": 1,
+    "total_lines": 291,
+    "covered_lines": 184,
+    "total_branches": 0,
+    "covered_branches": 0,
+    "functions": {
+      "add": {
+        "start_line": 80,
+        "end_line": 89,
+        "hit": true,
+        "line_coverage": 0.1,
+        "branch_coverage": 1,
+        "total_lines": 10,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "multiplyScalar": {
+        "start_line": 168,
+        "end_line": 173,
+        "hit": true,
+        "line_coverage": 0.16666666666666666,
+        "branch_coverage": 1,
+        "total_lines": 6,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "lengthSq": {
+        "start_line": 196,
+        "end_line": 198,
+        "hit": true,
+        "line_coverage": 0.3333333333333333,
+        "branch_coverage": 1,
+        "total_lines": 3,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "distanceToSquared": {
+        "start_line": 245,
+        "end_line": 250,
+        "hit": true,
+        "line_coverage": 0.16666666666666666,
+        "branch_coverage": 1,
+        "total_lines": 6,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      }
+    }
+  },
+  "src/render/BaseRenderer.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 95,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/render/DomRenderer.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 105,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/render/PixelRenderer.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 86,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/render/PixiRenderer.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 134,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/render/WebGLRenderer.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 324,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/utils/Rgb.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 13,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/zone/CircleZone.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 91,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/zone/LineZone.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 177,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/zone/PointZone.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 50,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/zone/RectZone.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 82,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  },
+  "src/zone/Zone.js": {
+    "file_line_coverage": 0.0,
+    "file_branch_coverage": 0.0,
+    "total_lines": 18,
+    "covered_lines": 0,
+    "total_branches": 1,
+    "covered_branches": 0,
+    "functions": {}
+  }
+}

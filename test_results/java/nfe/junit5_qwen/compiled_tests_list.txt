@@ -1,0 +1,4 @@
+./target/test-classes/br/com/swconsultoria/nfe/wsdl/CadConsultaCadastro/ms/ConsultaCadastroTests.class
+./target/test-classes/br/com/swconsultoria/nfe/EventoCancelamentoTests.class
+./target/test-classes/br/com/swconsultoria/nfe/EventoCCeTests.class
+./target/test-classes/br/com/swconsultoria/nfe/impressao/GeraImpressaoTests.class

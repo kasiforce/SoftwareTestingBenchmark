@@ -1,0 +1,67 @@
+# Use Ubuntu 24.04 for Python 3.12+ availability and robust, supported build environment
+FROM --platform=linux/x86_64 ubuntu:24.04
+ARG DEBIAN_FRONTEND=noninteractive
+ARG FAKE_DATE
+
+ENV TZ=Etc/UTC
+ENV FAKE_SYSTEM_DATE=${FAKE_DATE}
+
+# Workaround for APT repo GPG expiration/reproducibility
+RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-time
+
+# Install Python 3.12 and essentials
+RUN apt update && apt install -y \
+    wget \
+    git \
+    build-essential \
+    python3.12 \
+    python3.12-venv \
+    python3.12-dev \
+    python3-pip \
+    python-is-python3 \
+    libffi-dev \
+    libssl-dev \
+    locales \
+    locales-all \
+    tzdata \
+    curl \
+    patch \
+    && rm -rf /var/lib/apt/lists/*
+
+# Make sure python3 points to python3.12 (ensures correct version for venv/pip)
+RUN ln -sf /usr/bin/python3.12 /usr/bin/python3
+
+# ----------- Python virtual environment (no conda/miniforge) ---------------
+RUN python3 -m venv /testbed_venv
+
+# Upgrade pip, wheel, setuptools in a memory-efficient way
+RUN /testbed_venv/bin/pip install --upgrade pip wheel setuptools
+
+# Set PATH so testbed venv is always used by default
+ENV PATH=/testbed_venv/bin:$PATH
+
+# Install only essential test dependencies first
+RUN pip install pytest pytest-json-report
+
+# Install tornado dependencies from requirements.txt (from GitHub, at the requested commit)
+RUN wget https://raw.githubusercontent.com/tornadoweb/tornado/e14929c/requirements.txt -O /tmp/requirements.txt \
+    && pip install -r /tmp/requirements.txt
+
+# Set working directory for cloning
+WORKDIR /testbed/
+
+# Clone tornado repo and checkout the commit, then install in develop mode (authoritative source)
+RUN git clone https://github.com/tornadoweb/tornado.git /testbed \
+    && cd /testbed \
+    && git reset --hard e14929c \
+    && git remote remove origin \
+    && pip install -e .
+
+# Set recommended envs for testing, used by eval script/test runner
+ENV PYTHONWARNINGS=error:::tornado
+ENV PYTHONWARNDEFAULTENCODING=1
+ENV ASYNC_TEST_TIMEOUT=25
+ENV TORNADO_EXTENSION=1
+
+# Source venv automatically in interactive bash shells
+RUN echo "source /testbed_venv/bin/activate" >> /root/.bashrc

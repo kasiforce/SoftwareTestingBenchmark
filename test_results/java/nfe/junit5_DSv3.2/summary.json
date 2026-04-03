@@ -1,0 +1,30 @@
+{
+  "total": 34,
+  "syntax_correct": 34,
+  "syntax_correct_rate": 1.0,
+  "compile_pass": 0,
+  "test_summary": {
+    "total": 0,
+    "passed": 0,
+    "failures": 0,
+    "errors": 0,
+    "pass_rate": 0
+  },
+  "summary": {
+    "file": {
+      "total_lines": 5216,
+      "covered_lines": 0,
+      "total_branches": 1948,
+      "covered_branches": 0
+    },
+    "function": {
+      "total_lines": 800,
+      "covered_lines": 0,
+      "total_branches": 164,
+      "covered_branches": 0
+    }
+  },
+  "excute_pass": 0,
+  "pass_rate": 0,
+  "pass_rate1": 0
+}

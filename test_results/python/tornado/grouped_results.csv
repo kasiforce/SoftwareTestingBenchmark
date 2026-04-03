@@ -1,0 +1,5 @@
+model,file_total_lines,file_covered_lines,file_total_branches,file_covered_branches,func_total_lines,func_covered_lines,func_total_branches,func_covered_branches
+CodeLlama-7b,37256,8055,12560,393,28560,1249,12416,359
+DS6.7b,37256,10078,12560,955,28560,3031,12416,919
+DSv3.2,37256,10214,12560,1093,28560,3406,12416,1059
+gpt4o,37256,9687,12560,1007,28560,3019,12416,975

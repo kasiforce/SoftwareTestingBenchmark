@@ -1,0 +1,68 @@
+{
+  "file": {
+    "src/chi_squared_goodness_of_fit.js": {
+      "total_lines": 103,
+      "covered_lines": 93,
+      "total_branches": 14,
+      "covered_branches": 12
+    },
+    "src/combinations_replacement.js": {
+      "total_lines": 43,
+      "covered_lines": 43,
+      "total_branches": 7,
+      "covered_branches": 7
+    },
+    "src/permutations_heap.js": {
+      "total_lines": 43,
+      "covered_lines": 43,
+      "total_branches": 8,
+      "covered_branches": 8
+    },
+    "src/poisson_distribution.js": {
+      "total_lines": 47,
+      "covered_lines": 47,
+      "total_branches": 5,
+      "covered_branches": 5
+    }
+  },
+  "function": {
+    "src/chi_squared_goodness_of_fit.js::chiSquaredGoodnessOfFit:31-101": {
+      "total_lines": 71,
+      "covered_lines": 61,
+      "total_branches": 14,
+      "covered_branches": 12
+    },
+    "src/combinations_replacement.js::combinationsReplacement:13-41": {
+      "total_lines": 29,
+      "covered_lines": 29,
+      "total_branches": 7,
+      "covered_branches": 7
+    },
+    "src/permutations_heap.js::permutationsHeap:8-41": {
+      "total_lines": 34,
+      "covered_lines": 34,
+      "total_branches": 8,
+      "covered_branches": 8
+    },
+    "src/poisson_distribution.js::poissonDistribution:16-45": {
+      "total_lines": 30,
+      "covered_lines": 30,
+      "total_branches": 5,
+      "covered_branches": 5
+    }
+  },
+  "summary": {
+    "file": {
+      "total_lines": 236,
+      "covered_lines": 226,
+      "total_branches": 34,
+      "covered_branches": 32
+    },
+    "function": {
+      "total_lines": 164,
+      "covered_lines": 154,
+      "total_branches": 34,
+      "covered_branches": 32
+    }
+  }
+}

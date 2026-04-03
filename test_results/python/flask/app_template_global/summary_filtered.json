@@ -1,0 +1,51 @@
+{
+  "total": 1,
+  "syntax_correct": 1,
+  "syntax_correct_rate": 1.0,
+  "compile_pass": 1,
+  "compile_pass_rate": 1.0,
+  "testcase": {
+    "passed": 2,
+    "total": 2,
+    "collected": 2,
+    "test_pass_rate": 1.0,
+    "run_pass_rate": 1.0
+  },
+  "filtered_stats": {
+    "file": {
+      "total_lines": 235,
+      "covered_lines": 80,
+      "total_branches": 72,
+      "covered_branches": 4
+    },
+    "function": {
+      "total_lines": 2,
+      "covered_lines": 2,
+      "total_branches": 0,
+      "covered_branches": 0
+    }
+  },
+  "file_coverage": {
+    "src/flask/sansio/blueprints.py": {
+      "covered_line": 80,
+      "total_line": 235,
+      "line_coverage": 34.04,
+      "covered_branch": 4,
+      "total_branch": 72,
+      "branch_coverage": 5.56
+    }
+  },
+  "function_coverage": {
+    "src/flask/sansio/blueprints.py:Blueprint.teardown_app_request": {
+      "covered_line": 2,
+      "total_line": 2,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    }
+  },
+  "excute_pass": 1,
+  "test_pass": 1,
+  "testcase_pass_rate": 1.0
+}
