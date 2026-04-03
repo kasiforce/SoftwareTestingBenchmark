@@ -1,0 +1,87 @@
+{
+  "compile_pass": 0,
+  "compile_total": 4,
+  "compile_pass_rate": 0.0,
+  "testcase": {
+    "total": 34,
+    "passed": 19,
+    "failed": 15,
+    "skipped": 0,
+    "test_pass_rate": 0.5588235294117647,
+    "run_pass_rate": 0.5588235294117647,
+    "num_total_suites": 4,
+    "num_passed_suites": 0,
+    "num_reported_test_suites": 4
+  },
+  "coverage": {
+    "file": {
+      "src/chi_squared_goodness_of_fit.js": {
+        "total_lines": 26,
+        "covered_lines": 20,
+        "total_branches": 8,
+        "covered_branches": 5
+      },
+      "src/combinations_replacement.js": {
+        "total_lines": 8,
+        "covered_lines": 8,
+        "total_branches": 2,
+        "covered_branches": 2
+      },
+      "src/permutations_heap.js": {
+        "total_lines": 18,
+        "covered_lines": 18,
+        "total_branches": 4,
+        "covered_branches": 4
+      },
+      "src/poisson_distribution.js": {
+        "total_lines": 12,
+        "covered_lines": 12,
+        "total_branches": 2,
+        "covered_branches": 2
+      }
+    },
+    "function": {
+      "src/chi_squared_goodness_of_fit.js::chiSquaredGoodnessOfFit": {
+        "total_lines": 26,
+        "covered_lines": 20,
+        "total_branches": 8,
+        "covered_branches": 5
+      },
+      "src/combinations_replacement.js::combinationsReplacement": {
+        "total_lines": 8,
+        "covered_lines": 8,
+        "total_branches": 2,
+        "covered_branches": 2
+      },
+      "src/permutations_heap.js::permutationsHeap": {
+        "total_lines": 18,
+        "covered_lines": 18,
+        "total_branches": 4,
+        "covered_branches": 4
+      },
+      "src/poisson_distribution.js::poissonDistribution": {
+        "total_lines": 12,
+        "covered_lines": 12,
+        "total_branches": 2,
+        "covered_branches": 2
+      }
+    },
+    "summary": {
+      "file": {
+        "total_lines": 64,
+        "covered_lines": 58,
+        "total_branches": 16,
+        "covered_branches": 13
+      },
+      "function": {
+        "total_lines": 64,
+        "covered_lines": 58,
+        "total_branches": 16,
+        "covered_branches": 13
+      }
+    }
+  },
+  "excute_pass": 3,
+  "test_pass": 4,
+  "testcase_pass_rate": 2.212121212121212
+}

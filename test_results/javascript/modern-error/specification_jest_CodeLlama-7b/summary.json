@@ -1,0 +1,291 @@
+{
+  "compile_pass": 1,
+  "compile_total": 13,
+  "compile_pass_rate": 0.07692307692307693,
+  "testcase": {
+    "total": 38,
+    "passed": 22,
+    "failed": 16,
+    "skipped": 0,
+    "test_pass_rate": 0.5789473684210527,
+    "run_pass_rate": 0.47368421052631576,
+    "num_total_suites": 13,
+    "num_passed_suites": 1,
+    "num_reported_test_suites": 13
+  },
+  "coverage": {
+    "file": {
+      "src/merge/cause.js": {
+        "total_lines": 18,
+        "covered_lines": 6,
+        "total_branches": 6,
+        "covered_branches": 0
+      },
+      "src/merge/prefix.js": {
+        "total_lines": 14,
+        "covered_lines": 5,
+        "total_branches": 15,
+        "covered_branches": 0
+      },
+      "src/options/class.js": {
+        "total_lines": 11,
+        "covered_lines": 0,
+        "total_branches": 3,
+        "covered_branches": 0
+      },
+      "src/options/clone.js": {
+        "total_lines": 13,
+        "covered_lines": 5,
+        "total_branches": 4,
+        "covered_branches": 2
+      },
+      "src/options/merge.js": {
+        "total_lines": 14,
+        "covered_lines": 5,
+        "total_branches": 8,
+        "covered_branches": 0
+      },
+      "src/options/method.js": {
+        "total_lines": 15,
+        "covered_lines": 6,
+        "total_branches": 9,
+        "covered_branches": 1
+      },
+      "src/options/plugins.js": {
+        "total_lines": 5,
+        "covered_lines": 4,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/plugins/instance/call.js": {
+        "total_lines": 8,
+        "covered_lines": 3,
+        "total_branches": 2,
+        "covered_branches": 0
+      },
+      "src/plugins/instance/main.js": {
+        "total_lines": 13,
+        "covered_lines": 6,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/plugins/properties/assign.js": {
+        "total_lines": 10,
+        "covered_lines": 6,
+        "total_branches": 6,
+        "covered_branches": 3
+      },
+      "src/plugins/properties/main.js": {
+        "total_lines": 11,
+        "covered_lines": 0,
+        "total_branches": 4,
+        "covered_branches": 0
+      },
+      "src/plugins/shape/duplicate.js": {
+        "total_lines": 21,
+        "covered_lines": 5,
+        "total_branches": 8,
+        "covered_branches": 0
+      },
+      "src/plugins/shape/main.js": {
+        "total_lines": 29,
+        "covered_lines": 0,
+        "total_branches": 9,
+        "covered_branches": 0
+      },
+      "src/plugins/shape/methods.js": {
+        "total_lines": 19,
+        "covered_lines": 16,
+        "total_branches": 10,
+        "covered_branches": 7
+      },
+      "src/plugins/shape/name.js": {
+        "total_lines": 22,
+        "covered_lines": 0,
+        "total_branches": 10,
+        "covered_branches": 0
+      },
+      "src/plugins/static/call.js": {
+        "total_lines": 6,
+        "covered_lines": 2,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/subclass/validate.js": {
+        "total_lines": 6,
+        "covered_lines": 0,
+        "total_branches": 2,
+        "covered_branches": 0
+      }
+    },
+    "function": {
+      "src/merge/cause.js::mergePrefixedError:41-51": {
+        "total_lines": 7,
+        "covered_lines": 1,
+        "total_branches": 2,
+        "covered_branches": 0
+      },
+      "src/merge/cause.js::mergeSpecificCause:9-13": {
+        "total_lines": 4,
+        "covered_lines": 4,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/merge/cause.js::mergeCause:27-39": {
+        "total_lines": 7,
+        "covered_lines": 1,
+        "total_branches": 4,
+        "covered_branches": 0
+      },
+      "src/merge/prefix.js::shouldPrefixCause:18-24": {
+        "total_lines": 3,
+        "covered_lines": 1,
+        "total_branches": 3,
+        "covered_branches": 0
+      },
+      "src/merge/prefix.js::prefixCause:41-47": {
+        "total_lines": 5,
+        "covered_lines": 1,
+        "total_branches": 4,
+        "covered_branches": 0
+      },
+      "src/options/class.js::normalizeClassOpts:10-18": {
+        "total_lines": 4,
+        "covered_lines": 0,
+        "total_branches": 3,
+        "covered_branches": 0
+      },
+      "src/options/clone.js::deepCloneObject:28-40": {
+        "total_lines": 7,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/options/clone.js::deepClone:16-26": {
+        "total_lines": 6,
+        "covered_lines": 4,
+        "total_branches": 4,
+        "covered_branches": 2
+      },
+      "src/options/merge.js::mergePluginOpts:26-29": {
+        "total_lines": 3,
+        "covered_lines": 1,
+        "total_branches": 2,
+        "covered_branches": 0
+      },
+      "src/options/merge.js::mergeOpt:31-41": {
+        "total_lines": 6,
+        "covered_lines": 1,
+        "total_branches": 6,
+        "covered_branches": 0
+      },
+      "src/options/method.js::lastArgIsOptions:42-52": {
+        "total_lines": 5,
+        "covered_lines": 1,
+        "total_branches": 2,
+        "covered_branches": 0
+      },
+      "src/options/plugins.js::finalizePluginsOpts:37-51": {
+        "total_lines": 5,
+        "covered_lines": 4,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/plugins/instance/call.js::callMethod:23-27": {
+        "total_lines": 4,
+        "covered_lines": 2,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/plugins/instance/call.js::callInstanceMethod:5-21": {
+        "total_lines": 4,
+        "covered_lines": 1,
+        "total_branches": 2,
+        "covered_branches": 0
+      },
+      "src/plugins/instance/main.js::addInstanceMethod:20-50": {
+        "total_lines": 4,
+        "covered_lines": 1,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/plugins/properties/assign.js::assignError:20-42": {
+        "total_lines": 9,
+        "covered_lines": 5,
+        "total_branches": 6,
+        "covered_branches": 3
+      },
+      "src/plugins/properties/main.js::applyPluginProperties:23-43": {
+        "total_lines": 8,
+        "covered_lines": 0,
+        "total_branches": 4,
+        "covered_branches": 0
+      },
+      "src/plugins/shape/duplicate.js::validateEachPlugin:31-58": {
+        "total_lines": 8,
+        "covered_lines": 1,
+        "total_branches": 6,
+        "covered_branches": 0
+      },
+      "src/plugins/shape/main.js::normalizePlugin:32-46": {
+        "total_lines": 10,
+        "covered_lines": 0,
+        "total_branches": 2,
+        "covered_branches": 0
+      },
+      "src/plugins/shape/main.js::normalizePluginsOpt:22-30": {
+        "total_lines": 4,
+        "covered_lines": 0,
+        "total_branches": 3,
+        "covered_branches": 0
+      },
+      "src/plugins/shape/methods.js::normalizeAllMethods:4-21": {
+        "total_lines": 5,
+        "covered_lines": 5,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/plugins/shape/methods.js::normalizeMethods:35-62": {
+        "total_lines": 7,
+        "covered_lines": 6,
+        "total_branches": 4,
+        "covered_branches": 3
+      },
+      "src/plugins/shape/name.js::validatePluginName:19-33": {
+        "total_lines": 8,
+        "covered_lines": 0,
+        "total_branches": 4,
+        "covered_branches": 0
+      },
+      "src/plugins/static/call.js::callStaticMethod:7-27": {
+        "total_lines": 6,
+        "covered_lines": 2,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "src/subclass/validate.js::validateSubclass:14-26": {
+        "total_lines": 6,
+        "covered_lines": 0,
+        "total_branches": 2,
+        "covered_branches": 0
+      }
+    },
+    "summary": {
+      "file": {
+        "total_lines": 235,
+        "covered_lines": 69,
+        "total_branches": 96,
+        "covered_branches": 13
+      },
+      "function": {
+        "total_lines": 145,
+        "covered_lines": 43,
+        "total_branches": 63,
+        "covered_branches": 8
+      }
+    }
+  },
+  "excute_pass": 7,
+  "test_pass": 8,
+  "testcase_pass_rate": 5.011904761904762
+}

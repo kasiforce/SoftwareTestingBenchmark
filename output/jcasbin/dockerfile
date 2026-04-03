@@ -1,0 +1,49 @@
+# Use Ubuntu 22.04 as the base image for compatibility and stability. Ensure /bin/bash availability.
+FROM --platform=linux/x86_64 ubuntu:22.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+ARG FAKE_DATE
+ENV TZ=Etc/UTC
+ENV FAKE_SYSTEM_DATE=${FAKE_DATE}
+
+# Fix for possible GPG/apt date validity issues in CI
+RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-time
+
+# Install essential system tools and libraries.
+RUN apt-get update && apt-get install -y \
+    wget \
+    git \
+    build-essential \
+    curl \
+    unzip \
+    openjdk-8-jdk \
+    maven \
+    tzdata \
+    locales \
+    locales-all \
+    && rm -rf /var/lib/apt/lists/*
+
+# Make JAVA_HOME available, and prioritize Java 8 binaries
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+ENV PATH=$JAVA_HOME/bin:$PATH
+
+# Set locale to en_US.UTF-8 for consistency (recommended for Java projects)
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US:en
+ENV LC_ALL=en_US.UTF-8
+
+# Set the working directory for the repository
+WORKDIR /testbed/
+
+# Clone the given repository and check out the target commit
+RUN git clone https://github.com/casbin/jcasbin.git /testbed && \
+    chmod -R 777 /testbed && \
+    cd /testbed && \
+    git reset --hard 53d9a5f9f6c1d8fd72c5e7ab3659c3d02a3ff1fe && \
+    git remote remove origin
+
+# Build the project and install its dependencies, skipping tests and GPG signing.
+RUN mvn install -DskipTests -Dgpg.skip=true
+
+# Ensure you default into bash and set up environment each time a shell is opened.
+SHELL ["/bin/bash", "-c"]

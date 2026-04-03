@@ -1,0 +1,27 @@
+if ! grep -q "<artifactId>junit-jupiter</artifactId>" pom.xml; then
+                    sed -i '/<\/dependencies>/i \
+                    <dependency>\
+                        <groupId>org.junit.jupiter</groupId>\
+                        <artifactId>junit-jupiter</artifactId>\
+                        <version>5.9.2</version>\
+                        <scope>test</scope>\
+                    </dependency>' pom.xml
+                fi
+
+            #     # 添加 JUnit Vintage 引擎（版本与项目 JUnit 5 一致）
+                if ! grep -q "<artifactId>junit-vintage-engine</artifactId>" pom.xml; then
+                    sed -i '/<\/dependencies>/i \
+                    <dependency>\
+                        <groupId>org.junit.vintage</groupId>\
+                        <artifactId>junit-vintage-engine</artifactId>\
+                        <version>5.9.2</version>\
+                        <scope>test</scope>\
+                    </dependency>' pom.xml
+                fi
+
+                sed -i '/<\/plugins>/i \
+        <plugin>\
+            <groupId>org.apache.maven.plugins</groupId>\
+            <artifactId>maven-surefire-plugin</artifactId>\
+            <version>3.0.0-M7</version>\
+        </plugin>' pom.xml
