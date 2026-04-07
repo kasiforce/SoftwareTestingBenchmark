@@ -1,0 +1,1778 @@
+[
+  {
+    "project_root": "projects/Proton",
+    "name": "reset",
+    "src_file": "src/utils/Rgb.js",
+    "test_file": "test/utils/Rgb/reset.test.js",
+    "code": "reset() {\n    this.r = 255;\n    this.g = 255;\n    this.b = 255;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Rgb",
+    "full_class_name": "Rgb",
+    "class_constructor": [
+      "constructor(r = 255, g = 255, b = 255) {\n    this.r = r;\n    this.g = g;\n    this.b = b;\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Rgb"
+    ],
+    "generated_tests": [
+      "import Rgb from '../../src/utils/Rgb';\n\ndescribe('Rgb', () => {\n  describe('reset', () => {\n    it('should reset the RGB values to 255', () => {\n      // Arrange\n      const rgb = new Rgb(100, 150, 200);\n\n      // Act\n      rgb.reset();\n\n      // Assert\n      expect(rgb.r).toBe(255);\n      expect(rgb.g).toBe(255);\n      expect(rgb.b).toBe(255);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "reset",
+    "src_file": "src/core/Particle.js",
+    "test_file": "test/core/Particle/reset.test.js",
+    "code": "reset() {\n    this.life = Infinity;\n    this.age = 0;\n\n    this.dead = false;\n    this.sleep = false;\n    this.body = null;\n    this.sprite = null;\n    this.parent = null;\n\n    this.energy = 1; // Energy Loss\n    this.mass = 1;\n    this.radius = 10;\n    this.alpha = 1;\n    this.scale = 1;\n    this.rotation = 0;\n    this.color = null;\n\n    this.p.set(0, 0);\n    this.v.set(0, 0);\n    this.a.set(0, 0);\n    this.old.p.set(0, 0);\n    this.old.v.set(0, 0);\n    this.old.a.set(0, 0);\n    this.easing = ease.easeLinear;\n\n    this.rgb.reset();\n    Util.emptyObject(this.data);\n    this.removeAllBehaviours();\n\n    return this;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Particle",
+    "full_class_name": "Particle",
+    "class_constructor": [
+      "constructor(conf) {\n    this.name = \"Particle\";\n    this.id = Puid.id(this.name);\n    this.old = {};\n    this.data = {};\n    this.behaviours = [];\n\n    this.p = new Vector2D();\n    this.v = new Vector2D();\n    this.a = new Vector2D();\n    this.old.p = new Vector2D();\n    this.old.v = new Vector2D();\n    this.old.a = new Vector2D();\n\n    this.rgb = new Rgb();\n    this.reset();\n    conf && PropUtil.setProp(this, conf);\n  }"
+    ],
+    "class_fields": [
+      "id = \"\"",
+      "old = null",
+      "data = null",
+      "behaviours = null",
+      "p = null",
+      "v = null",
+      "a = null",
+      "rgb = null"
+    ],
+    "class_hierarchy": [
+      "Particle"
+    ],
+    "generated_tests": [
+      "import Particle from 'src/core/Particle';\nimport Vector2D from 'src/core/Vector2D';\nimport Rgb from 'src/core/Rgb';\nimport PropUtil from 'src/core/PropUtil';\nimport Puid from 'src/core/Puid';\nimport Util from 'src/core/Util';\n\ndescribe('Particle', () => {\n  describe('reset', () => {\n    let particle;\n\n    beforeEach(() => {\n      particle = new Particle();\n      particle.reset();\n    });\n\n    it('should set life to Infinity', () => {\n      expect(particle.life).toBe(Infinity);\n    });\n\n    it('should set age to 0', () => {\n      expect(particle.age).toBe(0);\n    });\n\n    it('should set dead to false', () => {\n      expect(particle.dead).toBe(false);\n    });\n\n    it('should set sleep to false', () => {\n      expect(particle.sleep).toBe(false);\n    });\n\n    it('should set body to null', () => {\n      expect(particle.body).toBe(null);\n    });\n\n    it('should set sprite to null', () => {\n      expect(particle.sprite).toBe(null);\n    });\n\n    it('should set parent to null', () => {\n      expect(particle.parent).toBe(null);\n    });\n\n    it('should set energy to 1', () => {\n      expect(particle.energy).toBe(1);\n    });\n\n    it('should set mass to 1', () => {\n      expect(particle.mass).toBe(1);\n    });\n\n    it('should set radius to 10', () => {\n      expect(particle.radius).toBe(10);\n    });\n\n    it('should set alpha to 1', () => {\n      expect(particle.alpha).toBe(1);\n    });\n\n    it('should set scale to 1', () => {\n      expect(particle.scale).toBe(1);\n    });\n\n    it('should set rotation to 0', () => {\n      expect(particle.rotation).toBe(0);\n    });\n\n    it('should set color to null', () => {\n      expect(particle.color).toBe(null);\n    });\n\n    it('should set p to (0, 0)', () => {\n      expect(particle.p.x).toBe(0);\n      expect(particle.p.y).toBe(0);\n    });\n\n    it('should set v to (0, 0)', () => {\n      expect(particle.v.x).toBe(0);\n      expect(particle.v.y).toBe(0);\n    });\n\n    it('should set a to (0, 0)', () => {\n      expect(particle.a.x).toBe(0);\n      expect(particle.a.y).toBe(0);\n    });\n\n    it('should set old.p to (0, 0)', () => {\n      expect(particle.old.p.x).toBe(0);\n      expect(particle.old.p.y).toBe(0);\n    });\n\n    it('should set old.v to (0, 0)', () => {\n      expect(particle.old.v.x).toBe(0);\n      expect(particle.old.v.y).toBe(0);\n    });\n\n    it('should set old.a to (0, 0)', () => {\n      expect(particle.old.a.x).toBe(0);\n      expect(particle.old.a.y).toBe(0);\n    });\n\n    it('should call rgb.reset', () => {\n      expect(particle.rgb.reset).toHaveBeenCalled();\n    });\n\n    it('should call Util.emptyObject with data', () => {\n      expect(Util.emptyObject).toHaveBeenCalledWith(particle.data);\n    });\n\n    it('should call removeAllBehaviours', () => {\n      expect(particle.removeAllBehaviours).toHaveBeenCalled();\n    });\n\n    it('should return this', () => {\n      expect(particle.reset()).toBe(particle);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "removeBehaviour",
+    "src_file": "src/core/Particle.js",
+    "test_file": "test/core/Particle/removeBehaviour.test.js",
+    "code": "removeBehaviour(behaviour) {\n    const index = this.behaviours.indexOf(behaviour);\n\n    if (index > -1) {\n      const behaviour = this.behaviours.splice(index, 1);\n      behaviour.parents = null;\n    }\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Particle",
+    "full_class_name": "Particle",
+    "class_constructor": [
+      "constructor(conf) {\n    this.name = \"Particle\";\n    this.id = Puid.id(this.name);\n    this.old = {};\n    this.data = {};\n    this.behaviours = [];\n\n    this.p = new Vector2D();\n    this.v = new Vector2D();\n    this.a = new Vector2D();\n    this.old.p = new Vector2D();\n    this.old.v = new Vector2D();\n    this.old.a = new Vector2D();\n\n    this.rgb = new Rgb();\n    this.reset();\n    conf && PropUtil.setProp(this, conf);\n  }"
+    ],
+    "class_fields": [
+      "id = \"\"",
+      "old = null",
+      "data = null",
+      "behaviours = null",
+      "p = null",
+      "v = null",
+      "a = null",
+      "rgb = null"
+    ],
+    "class_hierarchy": [
+      "Particle"
+    ],
+    "generated_tests": [
+      "import Particle from '../../src/core/Particle';\nimport Vector2D from '../../src/core/Vector2D';\nimport Rgb from '../../src/core/Rgb';\nimport Puid from '../../src/core/Puid';\nimport PropUtil from '../../src/core/PropUtil';\n\ndescribe('Particle', () => {\n  describe('removeBehaviour', () => {\n    let particle;\n    let behaviour1;\n    let behaviour2;\n\n    beforeEach(() => {\n      particle = new Particle();\n      behaviour1 = { parents: [] };\n      behaviour2 = { parents: [] };\n      particle.behaviours = [behaviour1, behaviour2];\n    });\n\n    it('should remove the behaviour from the behaviours array', () => {\n      particle.removeBehaviour(behaviour1);\n      expect(particle.behaviours).toEqual([behaviour2]);\n    });\n\n    it('should set the parents property of the removed behaviour to null', () => {\n      particle.removeBehaviour(behaviour1);\n      expect(behaviour1.parents).toBeNull();\n    });\n\n    it('should not remove the behaviour if it is not in the behaviours array', () => {\n      particle.removeBehaviour({});\n      expect(particle.behaviours).toEqual([behaviour1, behaviour2]);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "applyBehaviours",
+    "src_file": "src/core/Particle.js",
+    "test_file": "test/core/Particle/applyBehaviours.test.js",
+    "code": "applyBehaviours(time, index) {\n    const length = this.behaviours.length;\n    let i;\n\n    for (i = 0; i < length; i++) {\n      this.behaviours[i] && this.behaviours[i].applyBehaviour(this, time, index);\n    }\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Particle",
+    "full_class_name": "Particle",
+    "class_constructor": [
+      "constructor(conf) {\n    this.name = \"Particle\";\n    this.id = Puid.id(this.name);\n    this.old = {};\n    this.data = {};\n    this.behaviours = [];\n\n    this.p = new Vector2D();\n    this.v = new Vector2D();\n    this.a = new Vector2D();\n    this.old.p = new Vector2D();\n    this.old.v = new Vector2D();\n    this.old.a = new Vector2D();\n\n    this.rgb = new Rgb();\n    this.reset();\n    conf && PropUtil.setProp(this, conf);\n  }"
+    ],
+    "class_fields": [
+      "id = \"\"",
+      "old = null",
+      "data = null",
+      "behaviours = null",
+      "p = null",
+      "v = null",
+      "a = null",
+      "rgb = null"
+    ],
+    "class_hierarchy": [
+      "Particle"
+    ],
+    "generated_tests": [
+      "import Particle from '../../src/core/Particle';\nimport Vector2D from '../../src/core/Vector2D';\nimport Rgb from '../../src/core/Rgb';\nimport PropUtil from '../../src/utils/PropUtil';\n\ndescribe('Particle', () => {\n  describe('applyBehaviours', () => {\n    let particle;\n    let mockBehaviour1;\n    let mockBehaviour2;\n\n    beforeEach(() => {\n      particle = new Particle();\n      mockBehaviour1 = { applyBehaviour: jest.fn() };\n      mockBehaviour2 = { applyBehaviour: jest.fn() };\n      particle.behaviours = [mockBehaviour1, mockBehaviour2];\n    });\n\n    it('should call applyBehaviour on each behaviour', () => {\n      particle.applyBehaviours(100, 200);\n\n      expect(mockBehaviour1.applyBehaviour).toHaveBeenCalledWith(particle, 100, 200);\n      expect(mockBehaviour2.applyBehaviour).toHaveBeenCalledWith(particle, 100, 200);\n    });\n\n    it('should not call applyBehaviour if behaviour is undefined', () => {\n      particle.behaviours[1] = undefined;\n\n      particle.applyBehavours(100, 200);\n\n      expect(mockBehaviour1.applyBehaviour).toHaveBeenCalledWith(particle, 100, 200);\n      expect(mockBehaviour2.applyBehaviour).not.toHaveBeenCalled();\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "destroy",
+    "src_file": "src/core/Particle.js",
+    "test_file": "test/core/Particle/destroy.test.js",
+    "code": "destroy() {\n    this.removeAllBehaviours();\n    this.energy = 0;\n    this.dead = true;\n    this.parent = null;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Particle",
+    "full_class_name": "Particle",
+    "class_constructor": [
+      "constructor(conf) {\n    this.name = \"Particle\";\n    this.id = Puid.id(this.name);\n    this.old = {};\n    this.data = {};\n    this.behaviours = [];\n\n    this.p = new Vector2D();\n    this.v = new Vector2D();\n    this.a = new Vector2D();\n    this.old.p = new Vector2D();\n    this.old.v = new Vector2D();\n    this.old.a = new Vector2D();\n\n    this.rgb = new Rgb();\n    this.reset();\n    conf && PropUtil.setProp(this, conf);\n  }"
+    ],
+    "class_fields": [
+      "id = \"\"",
+      "old = null",
+      "data = null",
+      "behaviours = null",
+      "p = null",
+      "v = null",
+      "a = null",
+      "rgb = null"
+    ],
+    "class_hierarchy": [
+      "Particle"
+    ],
+    "generated_tests": [
+      "import Particle from '../../src/core/Particle';\nimport Vector2D from '../../src/core/Vector2D';\nimport Rgb from '../../src/core/Rgb';\nimport Puid from '../../src/core/Puid';\nimport PropUtil from '../../src/core/PropUtil';\n\ndescribe('Particle', () => {\n  describe('destroy', () => {\n    let particle;\n\n    beforeEach(() => {\n      particle = new Particle({\n        p: new Vector2D(),\n        v: new Vector2D(),\n        a: new Vector2D(),\n        rgb: new Rgb(),\n      });\n    });\n\n    it('should remove all behaviours', () => {\n      particle.behaviours = ['behaviour1', 'behaviour2'];\n      particle.destroy();\n      expect(particle.behaviours).toEqual([]);\n    });\n\n    it('should set energy to 0', () => {\n      particle.energy = 100;\n      particle.destroy();\n      expect(particle.energy).toEqual(0);\n    });\n\n    it('should set dead to true', () => {\n      particle.destroy();\n      expect(particle.dead).toBe(true);\n    });\n\n    it('should set parent to null', () => {\n      particle.parent = 'parent';\n      particle.destroy();\n      expect(particle.parent).toBe(null);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "reset",
+    "src_file": "src/behaviour/RandomDrift.js",
+    "test_file": "test/behaviour/RandomDrift/reset.test.js",
+    "code": "reset(driftX, driftY, delay, life, easing) {\n    this.panFoce = new Vector2D(driftX, driftY);\n    this.panFoce = this.normalizeForce(this.panFoce);\n    this.delay = delay;\n\n    life && super.reset(life, easing);\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "RandomDrift",
+    "full_class_name": "RandomDrift",
+    "class_constructor": [
+      "constructor(driftX, driftY, delay, life, easing) {\n    super(life, easing);\n\n    this.reset(driftX, driftY, delay);\n    this.time = 0;\n    this.name = \"RandomDrift\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "RandomDrift"
+    ],
+    "generated_tests": [
+      "import RandomDrift from '../../src/behaviour/RandomDrift';\nimport Vector2D from '../../src/utils/Vector2D';\n\ndescribe('RandomDrift', () => {\n  describe('reset', () => {\n    let instance;\n\n    beforeEach(() => {\n      instance = new RandomDrift(1, 1, 1, 1, 'easeInOut');\n    });\n\n    it('should set panForce to a new Vector2D with normalized x and y', () => {\n      instance.reset(1, 2, 3, 4, 'easeInOut');\n      expect(instance.panForce).toEqual(new Vector2D(0.44721359549995796, 0.8944271909999159));\n    });\n\n    it('should set delay', () => {\n      instance.reset(1, 2, 3, 4, 'easeInOut');\n      expect(instance.delay).toEqual(3);\n    });\n\n    it('should call super.reset if life and easing are provided', () => {\n      const spy = jest.spyOn(RandomDrift.prototype, 'reset');\n      instance.reset(1, 2, 3, 4, 'easeInOut');\n      expect(spy).toHaveBeenCalledWith(4, 'easeInOut');\n    });\n\n    it('should not call super.reset if life and easing are not provided', () => {\n      const spy = jest.spyOn(RandomDrift.prototype, 'reset');\n      instance.reset(1, 2, 3);\n      expect(spy).not.toHaveBeenCalled();\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "applyBehaviour",
+    "src_file": "src/behaviour/RandomDrift.js",
+    "test_file": "test/behaviour/RandomDrift/applyBehaviour.test.js",
+    "code": "applyBehaviour(particle, time, index) {\n    this.calculate(particle, time, index);\n    particle.data.time += time;\n\n    if (particle.data.time >= this.delay) {\n      particle.a.addXY(\n        MathUtil.randomAToB(-this.panFoce.x, this.panFoce.x),\n        MathUtil.randomAToB(-this.panFoce.y, this.panFoce.y)\n      );\n\n      particle.data.time = 0;\n    }\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "RandomDrift",
+    "full_class_name": "RandomDrift",
+    "class_constructor": [
+      "constructor(driftX, driftY, delay, life, easing) {\n    super(life, easing);\n\n    this.reset(driftX, driftY, delay);\n    this.time = 0;\n    this.name = \"RandomDrift\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "RandomDrift"
+    ],
+    "generated_tests": [
+      "import RandomDrift from 'src/behaviour/RandomDrift';\nimport Particle from 'src/objects/Particle';\nimport MathUtil from 'src/utils/MathUtil';\n\njest.mock('src/utils/MathUtil', () => ({\n  randomAToB: jest.fn().mockReturnValue(1),\n}));\n\ndescribe('RandomDrift', () => {\n  let randomDrift;\n  let particle;\n\n  beforeEach(() => {\n    randomDrift = new RandomDrift(1, 1, 100, 1000, 'easeOut');\n    particle = new Particle();\n    particle.data = {\n      time: 0,\n    };\n    particle.a = {\n      addXY: jest.fn(),\n    };\n  });\n\n  it('should call calculate method', () => {\n    const calculateSpy = jest.spyOn(randomDrift, 'calculate');\n    randomDrift.applyBehaviour(particle, 10, 0);\n    expect(calculateSpy).toHaveBeenCalledWith(particle, 10, 0);\n  });\n\n  it('should add random values to particle.a if time is greater than or equal to delay', () => {\n    randomDrift.delay = 100;\n    particle.data.time = 100;\n    randomDrift.applyBehaviour(particle, 10, 0);\n    expect(particle.a.addXY).toHaveBeenCalledWith(1, 1);\n  });\n\n  it('should reset time to 0 if time is greater than or equal to delay', () => {\n    randomDrift.delay = 100;\n    particle.data.time = 100;\n    randomDrift.applyBehaviour(particle, 10, 0);\n    expect(particle.data.time).toBe(0);\n  });\n\n  it('should not add random values to particle.a if time is less than delay', () => {\n    randomDrift.delay = 100;\n    particle.data.time = 99;\n    randomDrift.applyBehaviour(particle, 10, 0);\n    expect(particle.a.addXY).not.toHaveBeenCalled();\n  });\n\n  it('should not reset time to 0 if time is less than delay', () => {\n    randomDrift.delay = 100;\n    particle.data.time = 99;\n    randomDrift.applyBehaviour(particle, 10, 0);\n    expect(particle.data.time).toBe(99);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "update",
+    "src_file": "src/debug/Stats.js",
+    "test_file": "test/debug/Stats/update.test.js",
+    "code": "update(style, body) {\n    this.add(style, body);\n\n    const emitter = this.getEmitter();\n    const renderer = this.getRenderer();\n    let str = \"\";\n\n    switch (this.type) {\n      case 2:\n        str += \"emitter:\" + this.proton.emitters.length + \"<br>\";\n        if (emitter) str += \"em speed:\" + emitter.emitSpeed + \"<br>\";\n        if (emitter) str += \"pos:\" + this.getEmitterPos(emitter);\n        break;\n\n      case 3:\n        if (emitter) str += \"initializes:\" + emitter.initializes.length + \"<br>\";\n        if (emitter)\n          str += '<span style=\"display:inline-block;\">' + this.concatArr(emitter.initializes) + \"</span><br>\";\n        if (emitter) str += \"behaviours:\" + emitter.behaviours.length + \"<br>\";\n        if (emitter) str += '<span style=\"display:inline-block;\">' + this.concatArr(emitter.behaviours) + \"</span><br>\";\n        break;\n\n      case 4:\n        if (renderer) str += renderer.name + \"<br>\";\n        if (renderer) str += \"body:\" + this.getCreatedNumber(renderer) + \"<br>\";\n        break;\n\n      default:\n        str += \"particles:\" + this.proton.getCount() + \"<br>\";\n        str += \"pool:\" + this.proton.pool.getCount() + \"<br>\";\n        str += \"total:\" + this.proton.pool.total;\n    }\n\n    this.container.innerHTML = str;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Stats",
+    "full_class_name": "Stats",
+    "class_constructor": [
+      "constructor(proton) {\n    this.proton = proton;\n    this.container = null;\n    this.type = 1;\n\n    this.emitterIndex = 0;\n    this.rendererIndex = 0;\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Stats"
+    ],
+    "generated_tests": [
+      "import Stats from 'src/debug/Stats';\n\ndescribe('Stats', () => {\n  let stats;\n\n  beforeEach(() => {\n    stats = new Stats();\n  });\n\n  it('should call add method with style and body', () => {\n    const style = 'style';\n    const body = 'body';\n    const addSpy = jest.spyOn(stats, 'add');\n\n    stats.update(style, body);\n\n    expect(addSpy).toHaveBeenCalledWith(style, body);\n  });\n\n  it('should handle type 2 correctly', () => {\n    stats.type = 2;\n    const emitter = { emitSpeed: 10, initializes: [1, 2, 3], behaviours: [4, 5, 6] };\n    const getEmitterSpy = jest.spyOn(stats, 'getEmitter').mockReturnValue(emitter);\n    const getEmitterPosSpy = jest.spyOn(stats, 'getEmitterPos');\n    const concatArrSpy = jest.spyOn(stats, 'concatArr');\n\n    stats.update();\n\n    expect(getEmitterSpy).toHaveBeenCalled();\n    expect(getEmitterPosSpy).toHaveBeenCalledWith(emitter);\n    expect(concatArrSpy).toHaveBeenCalledTimes(2);\n  });\n\n  it('should handle type 3 correctly', () => {\n    stats.type = 3;\n    const emitter = { initializes: [1, 2, 3], behaviours: [4, 5, 6] };\n    const getEmitterSpy = jest.spyOn(stats, 'getEmitter').mockReturnValue(emitter);\n    const concatArrSpy = jest.spyOn(stats, 'concatArr');\n\n    stats.update();\n\n    expect(getEmitterSpy).toHaveBeenCalled();\n    expect(concatArrSpy).toHaveBeenCalledTimes(2);\n  });\n\n  it('should handle type 4 correctly', () => {\n    stats.type = 4;\n    const renderer = { name: 'renderer', createdNumber: 10 };\n    const getRendererSpy = jest.spyOn(stats, 'getRenderer').mockReturnValue(renderer);\n    const getCreatedNumberSpy = jest.spyOn(stats, 'getCreatedNumber');\n\n    stats.update();\n\n    expect(getRendererSpy).toHaveBeenCalled();\n    expect(getCreatedNumberSpy).toHaveBeenCalledWith(renderer);\n  });\n\n  it('should handle default case correctly', () => {\n    const getCountSpy = jest.spyOn(stats.proton, 'getCount').mockReturnValue(10);\n    const getPoolCountSpy = jest.spyOn(stats.proton.pool, 'getCount').mockReturnValue(20);\n\n    stats.update();\n\n    expect(getCountSpy).toHaveBeenCalled();\n    expect(getPoolCountSpy).toHaveBeenCalled();\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "destroy",
+    "src_file": "src/debug/Stats.js",
+    "test_file": "test/debug/Stats/destroy.test.js",
+    "code": "destroy() {\n    if (this.container && this.container.parentNode) {\n      const body = this.body || document.body;\n      body.removeChild(this.container);\n    }\n\n    this.proton = null;\n    this.container = null;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Stats",
+    "full_class_name": "Stats",
+    "class_constructor": [
+      "constructor(proton) {\n    this.proton = proton;\n    this.container = null;\n    this.type = 1;\n\n    this.emitterIndex = 0;\n    this.rendererIndex = 0;\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Stats"
+    ],
+    "generated_tests": [
+      "import Stats from 'src/debug/Stats';\n\ndescribe('Stats', () => {\n  let stats;\n  let mockProton;\n  let mockContainer;\n  let mockBody;\n\n  beforeEach(() => {\n    mockProton = { foo: 'bar' };\n    mockContainer = { parentNode: document.createElement('div') };\n    mockBody = document.createElement('body');\n    document.body.appendChild(mockBody);\n    stats = new Stats(mockProton);\n    stats.container = mockContainer;\n    stats.body = mockBody;\n  });\n\n  afterEach(() => {\n    document.body.removeChild(mockBody);\n  });\n\n  test('should remove container from body when container and parentNode exist', () => {\n    stats.destroy();\n    expect(mockBody.contains(mockContainer)).toBe(false);\n  });\n\n  test('should set proton and container to null when destroy is called', () => {\n    stats.destroy();\n    expect(stats.proton).toBe(null);\n    expect(stats.container).toBe(null);\n  });\n\n  test('should not throw error when container does not exist', () => {\n    stats.container = null;\n    expect(() => stats.destroy()).not.toThrow();\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "add",
+    "src_file": "src/debug/Stats.js",
+    "test_file": "test/debug/Stats/add.test.js",
+    "code": "add(style, body) {\n    if (!this.container) {\n      this.type = 1;\n\n      this.container = document.createElement(\"div\");\n      this.container.style.cssText = [\n        \"position:absolute;bottom:0px;left:0;cursor:pointer;\",\n        \"opacity:0.9;z-index:10000;padding:10px;font-size:12px;font-family:Helvetica,Arial,sans-serif;\",\n        \"width:120px;height:50px;background-color:#002;color:#0ff;\"\n      ].join(\"\");\n\n      this.container.addEventListener(\n        \"click\",\n        e => {\n          this.type++;\n          if (this.type > 4) this.type = 1;\n        },\n        false\n      );\n\n      let bg, color;\n      switch (style) {\n        case 2:\n          bg = \"#201\";\n          color = \"#f08\";\n          break;\n\n        case 3:\n          bg = \"#020\";\n          color = \"#0f0\";\n          break;\n\n        default:\n          bg = \"#002\";\n          color = \"#0ff\";\n      }\n\n      this.container.style[\"background-color\"] = bg;\n      this.container.style[\"color\"] = color;\n    }\n\n    if (!this.container.parentNode) {\n      body = body || this.body || document.body;\n      body.appendChild(this.container);\n    }\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Stats",
+    "full_class_name": "Stats",
+    "class_constructor": [
+      "constructor(proton) {\n    this.proton = proton;\n    this.container = null;\n    this.type = 1;\n\n    this.emitterIndex = 0;\n    this.rendererIndex = 0;\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Stats"
+    ],
+    "generated_tests": [
+      "import Stats from 'src/debug/Stats';\n\ndescribe('Stats', () => {\n  describe('add', () => {\n    let stats;\n    let mockBody;\n\n    beforeEach(() => {\n      mockBody = document.createElement('div');\n      stats = new Stats('proton');\n    });\n\n    it('should create a div element with correct styles when container is null', () => {\n      stats.add();\n\n      expect(stats.container.style.cssText).toBe([\n        \"position:absolute;bottom:0px;left:0;cursor:pointer;\",\n        \"opacity:0.9;z-index:10000;padding:10px;font-size:12px;font-family:Helvetica,Arial,sans-serif;\",\n        \"width:120px;height:50px;background-color:#002;color:#0ff;\"\n      ].join(\"\"));\n    });\n\n    it('should change the background and color of the div based on the style parameter', () => {\n      stats.add(2);\n      expect(stats.container.style[\"background-color\"]).toBe(\"#201\");\n      expect(stats.container.style[\"color\"]).toBe(\"#f08\");\n\n      stats.add(3);\n      expect(stats.container.style[\"background-color\"]).toBe(\"#020\");\n      expect(stats.container.style[\"color\"]).toBe(\"#0f0\");\n    });\n\n    it('should append the container to the body when it is not already attached', () => {\n      stats.add();\n      expect(stats.container.parentNode).toBe(mockBody);\n    });\n\n    it('should increment the type when the div is clicked', () => {\n      stats.add();\n      stats.container.dispatchEvent(new MouseEvent('click'));\n      expect(stats.type).toBe(2);\n    });\n\n    it('should reset the type to 1 when it exceeds 4', () => {\n      stats.type = 5;\n      stats.add();\n      expect(stats.type).toBe(1);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "contains",
+    "src_file": "src/math/Rectangle.js",
+    "test_file": "test/math/Rectangle/contains.test.js",
+    "code": "contains(x, y) {\n    if (x <= this.right && x >= this.x && y <= this.bottom && y >= this.y) return true;\n    else return false;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Rectangle",
+    "full_class_name": "Rectangle",
+    "class_constructor": [
+      "constructor(x, y, w, h) {\n    this.x = x;\n    this.y = y;\n\n    this.width = w;\n    this.height = h;\n\n    this.bottom = this.y + this.height;\n    this.right = this.x + this.width;\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Rectangle"
+    ],
+    "generated_tests": [
+      "import Rectangle from '../../src/math/Rectangle';\n\ndescribe('Rectangle', () => {\n  describe('contains', () => {\n    test('should return true if the point is inside the rectangle', () => {\n      const rectangle = new Rectangle(10, 10, 20, 20);\n      expect(rectangle.contains(15, 15)).toBe(true);\n    });\n\n    test('should return false if the point is outside the rectangle', () => {\n      const rectangle = new Rectangle(10, 10, 20, 20);\n      expect(rectangle.contains(30, 30)).toBe(false);\n    });\n\n    test('should return false if the point is on the edge of the rectangle', () => {\n      const rectangle = new Rectangle(10, 10, 20, 20);\n      expect(rectangle.contains(20, 20)).toBe(false);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "crossing",
+    "src_file": "src/zone/RectZone.js",
+    "test_file": "test/zone/RectZone/crossing.test.js",
+    "code": "crossing(particle) {\n    // particle dead zone\n    if (this.crossType === \"dead\") {\n      if (particle.p.x + particle.radius < this.x) particle.dead = true;\n      else if (particle.p.x - particle.radius > this.x + this.width) particle.dead = true;\n\n      if (particle.p.y + particle.radius < this.y) particle.dead = true;\n      else if (particle.p.y - particle.radius > this.y + this.height) particle.dead = true;\n    }\n\n    // particle bound zone\n    else if (this.crossType === \"bound\") {\n      if (particle.p.x - particle.radius < this.x) {\n        particle.p.x = this.x + particle.radius;\n        particle.v.x *= -1;\n      } else if (particle.p.x + particle.radius > this.x + this.width) {\n        particle.p.x = this.x + this.width - particle.radius;\n        particle.v.x *= -1;\n      }\n\n      if (particle.p.y - particle.radius < this.y) {\n        particle.p.y = this.y + particle.radius;\n        particle.v.y *= -1;\n      } else if (particle.p.y + particle.radius > this.y + this.height) {\n        particle.p.y = this.y + this.height - particle.radius;\n        particle.v.y *= -1;\n      }\n    }\n\n    // particle cross zone\n    else if (this.crossType === \"cross\") {\n      if (particle.p.x + particle.radius < this.x && particle.v.x <= 0) {\n        particle.p.x = this.x + this.width + particle.radius;\n      } else if (particle.p.x - particle.radius > this.x + this.width && particle.v.x >= 0) {\n        particle.p.x = this.x - particle.radius;\n      }\n\n      if (particle.p.y + particle.radius < this.y && particle.v.y <= 0) {\n        particle.p.y = this.y + this.height + particle.radius;\n      } else if (particle.p.y - particle.radius > this.y + this.height && particle.v.y >= 0) {\n        particle.p.y = this.y - particle.radius;\n      }\n    }\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "RectZone",
+    "full_class_name": "RectZone",
+    "class_constructor": [
+      "constructor(x, y, width = 200, height = 200) {\n    super();\n\n    this.x = x;\n    this.y = y;\n    this.width = width;\n    this.height = height;\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "RectZone"
+    ],
+    "generated_tests": [
+      "import RectZone from 'src/zone/RectZone';\nimport Particle from 'src/particle/Particle';\n\ndescribe('RectZone crossing method', () => {\n  let rectZone;\n  let particle;\n\n  beforeEach(() => {\n    rectZone = new RectZone(100, 100, 200, 200);\n    particle = new Particle();\n  });\n\n  it('should set particle.dead to true when crossing dead zone', () => {\n    rectZone.crossType = 'dead';\n    particle.p.x = 50;\n    particle.p.y = 50;\n    particle.radius = 50;\n\n    rectZone.crossing(particle);\n\n    expect(particle.dead).toBe(true);\n  });\n\n  it('should bounce particle off bound zone', () => {\n    rectZone.crossType = 'bound';\n    particle.p.x = 50;\n    particle.p.y = 50;\n    particle.radius = 50;\n    particle.v.x = -1;\n    particle.v.y = -1;\n\n    rectZone.crossing(particle);\n\n    expect(particle.p.x).toBe(150);\n    expect(particle.v.x).toBe(1);\n    expect(particle.p.y).toBe(150);\n    expect(particle.v.y).toBe(1);\n  });\n\n  it('should wrap particle across cross zone', () => {\n    rectZone.crossType = 'cross';\n    particle.p.x = 50;\n    particle.p.y = 50;\n    particle.radius = 50;\n    particle.v.x = -1;\n    particle.v.y = -1;\n\n    rectZone.crossing(particle);\n\n    expect(particle.p.x).toBe(300);\n    expect(particle.v.x).toBe(-1);\n    expect(particle.p.y).toBe(300);\n    expect(particle.v.y).toBe(-1);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "onParticleCreated",
+    "src_file": "src/render/DomRenderer.js",
+    "test_file": "test/render/DomRenderer/onParticleCreated.test.js",
+    "code": "onParticleCreated(particle) {\n    if (particle.body) {\n      ImgUtil.getImgFromCache(particle.body, this.addImg2Body, particle);\n    } else {\n      particle.body = this.pool.get(this.circleConf, particle);\n      this.element.appendChild(particle.body);\n    }\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "DomRenderer",
+    "full_class_name": "DomRenderer",
+    "class_constructor": [
+      "constructor(element) {\n    super(element);\n\n    this.stroke = null;\n    this.transform3d = false;\n    this.pool.create = (body, particle) => this.createBody(body, particle);\n    this.addImg2Body = this.addImg2Body.bind(this);\n\n    this.name = \"DomRenderer\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "DomRenderer"
+    ],
+    "generated_tests": [
+      "import DomRenderer from 'src/render/DomRenderer';\nimport ImgUtil from 'utils/ImgUtil';\n\njest.mock('utils/ImgUtil');\n\ndescribe('DomRenderer', () => {\n  let renderer;\n  let mockElement;\n  let mockParticle;\n  let mockPool;\n\n  beforeEach(() => {\n    mockElement = document.createElement('div');\n    mockParticle = { body: null };\n    mockPool = {\n      get: jest.fn(),\n      create: jest.fn(),\n    };\n    renderer = new DomRenderer(mockElement);\n    renderer.pool = mockPool;\n  });\n\n  it('should create a body for the particle if it does not have one', () => {\n    const mockCircleConf = {};\n    renderer.circleConf = mockCircleConf;\n    const mockBody = {};\n    mockPool.get.mockReturnValue(mockBody);\n\n    renderer.onParticleCreated(mockParticle);\n\n    expect(mockPool.get).toHaveBeenCalledWith(mockCircleConf, mockParticle);\n    expect(mockParticle.body).toBe(mockBody);\n    expect(mockElement.contains(mockBody)).toBe(true);\n  });\n\n  it('should use ImgUtil to get image if particle has a body', () => {\n    const mockBody = 'testBody';\n    mockParticle.body = mockBody;\n    const mockCallback = jest.fn();\n\n    renderer.onParticleCreated(mockParticle);\n\n    expect(ImgUtil.getImgFromCache).toHaveBeenCalledWith(mockBody, mockCallback, mockParticle);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "addImg2Body",
+    "src_file": "src/render/DomRenderer.js",
+    "test_file": "test/render/DomRenderer/addImg2Body.test.js",
+    "code": "addImg2Body(img, particle) {\n    if (particle.dead) return;\n    particle.body = this.pool.get(img, particle);\n    DomUtil.resize(particle.body, img.width, img.height);\n\n    this.element.appendChild(particle.body);\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "DomRenderer",
+    "full_class_name": "DomRenderer",
+    "class_constructor": [
+      "constructor(element) {\n    super(element);\n\n    this.stroke = null;\n    this.transform3d = false;\n    this.pool.create = (body, particle) => this.createBody(body, particle);\n    this.addImg2Body = this.addImg2Body.bind(this);\n\n    this.name = \"DomRenderer\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "DomRenderer"
+    ],
+    "generated_tests": [
+      "import DomRenderer from 'src/render/DomRenderer';\nimport DomUtil from 'src/render/DomUtil';\n\ndescribe('DomRenderer', () => {\n  let renderer;\n  let element;\n  let img;\n  let particle;\n\n  beforeEach(() => {\n    element = document.createElement('div');\n    renderer = new DomRenderer(element);\n    img = { width: 100, height: 100 };\n    particle = { dead: false, body: null };\n  });\n\n  it('should return if particle is dead', () => {\n    particle.dead = true;\n    renderer.addImg2Body(img, particle);\n    expect(particle.body).toBe(null);\n  });\n\n  it('should add image to body and resize it', () => {\n    const body = document.createElement('img');\n    renderer.pool.get = jest.fn().mockReturnValue(body);\n    DomUtil.resize = jest.fn();\n\n    renderer.addImg2Body(img, particle);\n\n    expect(renderer.pool.get).toHaveBeenCalledWith(img, particle);\n    expect(DomUtil.resize).toHaveBeenCalledWith(body, img.width, img.height);\n    expect(element.contains(body)).toBe(true);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "destroy",
+    "src_file": "src/render/DomRenderer.js",
+    "test_file": "test/render/DomRenderer/destroy.test.js",
+    "code": "destroy() {\n    super.destroy();\n    this.stroke = null;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "DomRenderer",
+    "full_class_name": "DomRenderer",
+    "class_constructor": [
+      "constructor(element) {\n    super(element);\n\n    this.stroke = null;\n    this.transform3d = false;\n    this.pool.create = (body, particle) => this.createBody(body, particle);\n    this.addImg2Body = this.addImg2Body.bind(this);\n\n    this.name = \"DomRenderer\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "DomRenderer"
+    ],
+    "generated_tests": [
+      "import DomRenderer from 'src/render/DomRenderer';\nimport { JSDOM } from 'jsdom';\n\nconst { window } = new JSDOM(`<html><body></body></html>`, { url: 'http://localhost' });\nglobal.window = window;\nglobal.document = window.document;\n\ndescribe('DomRenderer', () => {\n  describe('destroy', () => {\n    it('should call super.destroy and set stroke to null', () => {\n      const mockSuperDestroy = jest.fn();\n      const domRenderer = new DomRenderer('testElement');\n      domRenderer.super = { destroy: mockSuperDestroy };\n\n      domRenderer.destroy();\n\n      expect(mockSuperDestroy).toHaveBeenCalled();\n      expect(domRenderer.stroke).toBeNull();\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "reset",
+    "src_file": "src/initialize/Position.js",
+    "test_file": "test/initialize/Position/reset.test.js",
+    "code": "reset(zone) {\n    this.zone = Util.initValue(zone, new PointZone());\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Position",
+    "full_class_name": "Position",
+    "class_constructor": [
+      "constructor(zone) {\n    super();\n    this.zone = Util.initValue(zone, new PointZone());\n    this.name = \"Position\";\n  }"
+    ],
+    "class_fields": [
+      "zone",
+      "name"
+    ],
+    "class_hierarchy": [
+      "Position"
+    ],
+    "generated_tests": [
+      "import Position from 'src/initialize/Position';\nimport PointZone from 'src/initialize/PointZone';\nimport Util from 'src/initialize/Util';\n\ndescribe('Position', () => {\n  describe('reset', () => {\n    let position;\n\n    beforeEach(() => {\n      position = new Position();\n    });\n\n    it('should set the zone to the provided value if it is provided', () => {\n      const zone = new PointZone();\n      position.reset(zone);\n      expect(position.zone).toBe(zone);\n    });\n\n    it('should set the zone to a new PointZone if no zone is provided', () => {\n      position.reset();\n      expect(position.zone).toBeInstanceOf(PointZone);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "initialize",
+    "src_file": "src/initialize/Position.js",
+    "test_file": "test/initialize/Position/initialize.test.js",
+    "code": "initialize(target) {\n    this.zone.getPosition();\n\n    target.p.x = this.zone.vector.x;\n    target.p.y = this.zone.vector.y;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Position",
+    "full_class_name": "Position",
+    "class_constructor": [
+      "constructor(zone) {\n    super();\n    this.zone = Util.initValue(zone, new PointZone());\n    this.name = \"Position\";\n  }"
+    ],
+    "class_fields": [
+      "zone",
+      "name"
+    ],
+    "class_hierarchy": [
+      "Position"
+    ],
+    "generated_tests": [
+      "import Position from 'src/initialize/Position';\nimport PointZone from 'src/initialize/PointZone';\n\ndescribe('Position initialize method', () => {\n  let position;\n  let target;\n  let zone;\n\n  beforeEach(() => {\n    zone = new PointZone();\n    position = new Position(zone);\n    target = { p: { x: 0, y: 0 } };\n  });\n\n  it('should set target position to zone vector', () => {\n    position.initialize(target);\n    expect(target.p.x).toEqual(zone.vector.x);\n    expect(target.p.y).toEqual(zone.vector.y);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "addEventListener",
+    "src_file": "src/events/EventDispatcher.js",
+    "test_file": "test/events/EventDispatcher/addEventListener.test.js",
+    "code": "addEventListener(type, listener) {\n    if (!this._listeners) {\n      this._listeners = {};\n    } else {\n      this.removeEventListener(type, listener);\n    }\n\n    if (!this._listeners[type]) this._listeners[type] = [];\n    this._listeners[type].push(listener);\n\n    return listener;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "EventDispatcher",
+    "full_class_name": "EventDispatcher",
+    "class_constructor": [
+      "constructor() {\n    this._listeners = null;\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "EventDispatcher"
+    ],
+    "generated_tests": [
+      "import EventDispatcher from 'src/events/EventDispatcher';\n\ndescribe('EventDispatcher', () => {\n  let dispatcher;\n\n  beforeEach(() => {\n    dispatcher = new EventDispatcher();\n  });\n\n  describe('addEventListener', () => {\n    it('should add a listener to the event type', () => {\n      const listener = jest.fn();\n      dispatcher.addEventListener('testEvent', listener);\n      expect(dispatcher._listeners.testEvent).toEqual([listener]);\n    });\n\n    it('should remove and add a listener if it already exists', () => {\n      const listener1 = jest.fn();\n      const listener2 = jest.fn();\n      dispatcher.addEventListener('testEvent', listener1);\n      dispatcher.addEventListener('testEvent', listener2);\n      expect(dispatcher._listeners.testEvent).toEqual([listener2]);\n    });\n\n    it('should return the listener', () => {\n      const listener = jest.fn();\n      expect(dispatcher.addEventListener('testEvent', listener)).toBe(listener);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "removeAllEventListeners",
+    "src_file": "src/events/EventDispatcher.js",
+    "test_file": "test/events/EventDispatcher/removeAllEventListeners.test.js",
+    "code": "removeAllEventListeners(type) {\n    if (!type) this._listeners = null;\n    else if (this._listeners) delete this._listeners[type];\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "EventDispatcher",
+    "full_class_name": "EventDispatcher",
+    "class_constructor": [
+      "constructor() {\n    this._listeners = null;\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "EventDispatcher"
+    ],
+    "generated_tests": [
+      "import EventDispatcher from 'src/events/EventDispatcher';\n\ndescribe('removeAllEventListeners', () => {\n  let dispatcher;\n\n  beforeEach(() => {\n    dispatcher = new EventDispatcher();\n    dispatcher._listeners = {\n      event1: jest.fn(),\n      event2: jest.fn(),\n    };\n  });\n\n  it('should remove all event listeners if no type is provided', () => {\n    dispatcher.removeAllEventListeners();\n    expect(dispatcher._listeners).toBeNull();\n  });\n\n  it('should remove specific event listener if type is provided', () => {\n    dispatcher.removeAllEventListeners('event1');\n    expect(dispatcher._listeners.event1).toBeUndefined();\n    expect(dispatcher._listeners.event2).toBeDefined();\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "dispatchEvent",
+    "src_file": "src/events/EventDispatcher.js",
+    "test_file": "test/events/EventDispatcher/dispatchEvent.test.js",
+    "code": "dispatchEvent(type, args) {\n    let result = false;\n    const listeners = this._listeners;\n\n    if (type && listeners) {\n      let arr = listeners[type];\n      if (!arr) return result;\n\n      // arr = arr.slice();\n      // to avoid issues with items being removed or added during the dispatch\n\n      let handler;\n      let i = arr.length;\n      while (i--) {\n        handler = arr[i];\n        result = result || handler(args);\n      }\n    }\n\n    return !!result;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "EventDispatcher",
+    "full_class_name": "EventDispatcher",
+    "class_constructor": [
+      "constructor() {\n    this._listeners = null;\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "EventDispatcher"
+    ],
+    "generated_tests": [
+      "import EventDispatcher from 'src/events/EventDispatcher';\n\ndescribe('EventDispatcher', () => {\n  let dispatcher;\n\n  beforeEach(() => {\n    dispatcher = new EventDispatcher();\n    dispatcher._listeners = {\n      testEvent: [jest.fn(), jest.fn()]\n    };\n  });\n\n  it('should dispatch event and return true if at least one listener returns true', () => {\n    const result = dispatcher.dispatchEvent('testEvent', {});\n    expect(result).toBe(true);\n    expect(dispatcher._listeners.testEvent[0]).toHaveBeenCalled();\n    expect(dispatcher._listeners.testEvent[1]).toHaveBeenCalled();\n  });\n\n  it('should return false if no listeners are registered for the event', () => {\n    const result = dispatcher.dispatchEvent('nonExistentEvent', {});\n    expect(result).toBe(false);\n  });\n\n  it('should return false if no event type is provided', () => {\n    const result = dispatcher.dispatchEvent(null, {});\n    expect(result).toBe(false);\n  });\n\n  it('should return false if no listeners are set', () => {\n    dispatcher._listeners = null;\n    const result = dispatcher.dispatchEvent('testEvent', {});\n    expect(result).toBe(false);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "init",
+    "src_file": "src/initialize/Rate.js",
+    "test_file": "test/initialize/Rate/init.test.js",
+    "code": "init() {\n    this.startTime = 0;\n    this.nextTime = this.timePan.getValue();\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Rate",
+    "full_class_name": "Rate",
+    "class_constructor": [
+      "constructor(numpan, timepan) {\n    this.numPan = Span.setSpanValue(Util.initValue(numpan, 1));\n    this.timePan = Span.setSpanValue(Util.initValue(timepan, 1));\n\n    this.startTime = 0;\n    this.nextTime = 0;\n    this.init();\n  }"
+    ],
+    "class_fields": [
+      "numPan",
+      "timePan",
+      "startTime",
+      "nextTime"
+    ],
+    "class_hierarchy": [
+      "Rate"
+    ],
+    "generated_tests": [
+      "import Rate from 'src/initialize/Rate';\nimport Span from 'src/initialize/Span';\nimport Util from 'src/initialize/Util';\n\ndescribe('Rate', () => {\n  describe('init', () => {\n    let rate;\n    let mockSpan;\n    let mockUtil;\n\n    beforeEach(() => {\n      mockSpan = {\n        setSpanValue: jest.fn().mockReturnValue(1),\n        getValue: jest.fn().mockReturnValue(2),\n      };\n\n      mockUtil = {\n        initValue: jest.fn().mockReturnValue(1),\n      };\n\n      jest.spyOn(Span, 'setSpanValue').mockImplementation(mockSpan.setSpanValue);\n      jest.spyOn(Util, 'initValue').mockImplementation(mockUtil.initValue);\n\n      rate = new Rate(mockSpan, mockUtil);\n    });\n\n    it('should set startTime to 0', () => {\n      rate.init();\n      expect(rate.startTime).toBe(0);\n    });\n\n    it('should set nextTime to the value of timePan', () => {\n      rate.init();\n      expect(rate.nextTime).toBe(2);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "rangeOut",
+    "src_file": "src/zone/LineZone.js",
+    "test_file": "test/zone/LineZone/rangeOut.test.js",
+    "code": "rangeOut(particle) {\n    const angle = Math.abs(this.getGradient());\n\n    if (angle <= MathUtil.PI / 4) {\n      if (particle.p.x <= this.maxx && particle.p.x >= this.minx) return true;\n    } else {\n      if (particle.p.y <= this.maxy && particle.p.y >= this.miny) return true;\n    }\n\n    return false;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "LineZone",
+    "full_class_name": "LineZone",
+    "class_constructor": [
+      "constructor(x1, y1, x2, y2, direction = \">\") {\n    super();\n\n    if (x2 - x1 >= 0) {\n      this.x1 = x1;\n      this.y1 = y1;\n      this.x2 = x2;\n      this.y2 = y2;\n    } else {\n      this.x1 = x2;\n      this.y1 = y2;\n      this.x2 = x1;\n      this.y2 = y1;\n    }\n\n    this.dx = this.x2 - this.x1;\n    this.dy = this.y2 - this.y1;\n\n    this.minx = Math.min(this.x1, this.x2);\n    this.miny = Math.min(this.y1, this.y2);\n    this.maxx = Math.max(this.x1, this.x2);\n    this.maxy = Math.max(this.y1, this.y2);\n\n    this.dot = this.x2 * this.y1 - this.x1 * this.y2;\n    this.xxyy = this.dx * this.dx + this.dy * this.dy;\n\n    this.gradient = this.getGradient();\n    this.length = this.getLength();\n    this.direction = Util.initValue(direction, \">\");\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "LineZone"
+    ],
+    "generated_tests": [
+      "import LineZone from 'src/zone/LineZone';\nimport Particle from 'src/particle/Particle';\nimport Util from 'src/util/Util';\nimport MathUtil from 'src/math/MathUtil';\n\ndescribe('LineZone', () => {\n  describe('rangeOut', () => {\n    let lineZone;\n    let particle;\n\n    beforeEach(() => {\n      lineZone = new LineZone(0, 0, 10, 10);\n      particle = new Particle(5, 5);\n    });\n\n    test('should return true if particle is within the x range', () => {\n      jest.spyOn(lineZone, 'getGradient').mockReturnValue(0);\n      expect(lineZone.rangeOut(particle)).toBe(true);\n    });\n\n    test('should return true if particle is within the y range', () => {\n      jest.spyOn(lineZone, 'getGradient').mockReturnValue(Infinity);\n      expect(lineZone.rangeOut(particle)).toBe(true);\n    });\n\n    test('should return false if particle is not within the range', () => {\n      jest.spyOn(lineZone, 'getGradient').mockReturnValue(1);\n      expect(lineZone.rangeOut(particle)).toBe(false);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "crossing",
+    "src_file": "src/zone/LineZone.js",
+    "test_file": "test/zone/LineZone/crossing.test.js",
+    "code": "crossing(particle) {\n    if (this.crossType === \"dead\") {\n      if (this.direction === \">\" || this.direction === \"R\" || this.direction === \"right\" || this.direction === \"down\") {\n        if (!this.rangeOut(particle)) return;\n        if (this.getDirection(particle.p.x, particle.p.y)) particle.dead = true;\n      } else {\n        if (!this.rangeOut(particle)) return;\n        if (!this.getDirection(particle.p.x, particle.p.y)) particle.dead = true;\n      }\n    } else if (this.crossType === \"bound\") {\n      if (!this.rangeOut(particle)) return;\n\n      if (this.getDistance(particle.p.x, particle.p.y) <= particle.radius) {\n        if (this.dx === 0) {\n          particle.v.x *= -1;\n        } else if (this.dy === 0) {\n          particle.v.y *= -1;\n        } else {\n          this.getSymmetric(particle.v);\n        }\n      }\n    } else if (this.crossType === \"cross\") {\n      if (this.alert) {\n        console.error(\"Sorry, LineZone does not support cross method!\");\n        this.alert = false;\n      }\n    }\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "LineZone",
+    "full_class_name": "LineZone",
+    "class_constructor": [
+      "constructor(x1, y1, x2, y2, direction = \">\") {\n    super();\n\n    if (x2 - x1 >= 0) {\n      this.x1 = x1;\n      this.y1 = y1;\n      this.x2 = x2;\n      this.y2 = y2;\n    } else {\n      this.x1 = x2;\n      this.y1 = y2;\n      this.x2 = x1;\n      this.y2 = y1;\n    }\n\n    this.dx = this.x2 - this.x1;\n    this.dy = this.y2 - this.y1;\n\n    this.minx = Math.min(this.x1, this.x2);\n    this.miny = Math.min(this.y1, this.y2);\n    this.maxx = Math.max(this.x1, this.x2);\n    this.maxy = Math.max(this.y1, this.y2);\n\n    this.dot = this.x2 * this.y1 - this.x1 * this.y2;\n    this.xxyy = this.dx * this.dx + this.dy * this.dy;\n\n    this.gradient = this.getGradient();\n    this.length = this.getLength();\n    this.direction = Util.initValue(direction, \">\");\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "LineZone"
+    ],
+    "generated_tests": [
+      "import LineZone from 'src/zone/LineZone';\nimport Particle from 'src/particle/Particle';\n\ndescribe('LineZone crossing method', () => {\n  let lineZone;\n  let particle;\n\n  beforeEach(() => {\n    lineZone = new LineZone(0, 0, 10, 10);\n    particle = new Particle(5, 5);\n  });\n\n  test('should not mark particle as dead if crossType is not \"dead\"', () => {\n    lineZone.crossType = 'bound';\n    lineZone.crossing(particle);\n    expect(particle.dead).toBe(false);\n  });\n\n  test('should mark particle as dead if crossType is \"dead\" and direction is \">\" or \"R\" or \"right\" or \"down\"', () => {\n    lineZone.crossType = 'dead';\n    lineZone.direction = '>';\n    lineZone.crossing(particle);\n    expect(particle.dead).toBe(true);\n  });\n\n  test('should not mark particle as dead if crossType is \"dead\" and direction is not \">\" or \"R\" or \"right\" or \"down\"', () => {\n    lineZone.crossType = 'dead';\n    lineZone.direction = 'left';\n    lineZone.crossing(particle);\n    expect(particle.dead).toBe(false);\n  });\n\n  test('should bounce particle if crossType is \"bound\" and particle is within radius', () => {\n    lineZone.crossType = 'bound';\n    lineZone.crossing(particle);\n    expect(particle.v.x).toBe(0);\n    expect(particle.v.y).toBe(0);\n  });\n\n  test('should throw error if crossType is \"cross\"', () => {\n    lineZone.crossType = 'cross';\n    expect(() => lineZone.crossing(particle)).toThrow('Sorry, LineZone does not support cross method!');\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "add",
+    "src_file": "src/math/Vector2D.js",
+    "test_file": "test/math/Vector2D/add.test.js",
+    "code": "add(v, w) {\n    if (w !== undefined) {\n      return this.addVectors(v, w);\n    }\n\n    this.x += v.x;\n    this.y += v.y;\n\n    return this;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Vector2D",
+    "full_class_name": "Vector2D",
+    "class_constructor": [
+      "constructor(x, y) {\n    this.x = x || 0;\n    this.y = y || 0;\n  }"
+    ],
+    "class_fields": [
+      "x",
+      "y"
+    ],
+    "class_hierarchy": [
+      "Vector2D"
+    ],
+    "generated_tests": [
+      "import Vector2D from '../../src/math/Vector2D';\n\ndescribe('Vector2D', () => {\n  describe('add', () => {\n    it('should add a vector to this vector', () => {\n      const v1 = new Vector2D(1, 2);\n      const v2 = new Vector2D(3, 4);\n      v1.add(v2);\n      expect(v1.x).toBe(4);\n      expect(v1.y).toBe(6);\n    });\n\n    it('should add a vector to this vector when the second argument is undefined', () => {\n      const v1 = new Vector2D(1, 2);\n      v1.add({ x: 3, y: 4 });\n      expect(v1.x).toBe(4);\n      expect(v1.y).toBe(6);\n    });\n\n    it('should return this vector after addition', () => {\n      const v1 = new Vector2D(1, 2);\n      const result = v1.add({ x: 3, y: 4 });\n      expect(result).toBe(v1);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "lengthSq",
+    "src_file": "src/math/Vector2D.js",
+    "test_file": "test/math/Vector2D/lengthSq.test.js",
+    "code": "lengthSq() {\n    return this.x * this.x + this.y * this.y;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Vector2D",
+    "full_class_name": "Vector2D",
+    "class_constructor": [
+      "constructor(x, y) {\n    this.x = x || 0;\n    this.y = y || 0;\n  }"
+    ],
+    "class_fields": [
+      "x",
+      "y"
+    ],
+    "class_hierarchy": [
+      "Vector2D"
+    ],
+    "generated_tests": [
+      "import Vector2D from '../../src/math/Vector2D';\n\ndescribe('Vector2D', () => {\n  describe('lengthSq', () => {\n    it('should return the square of the length of the vector', () => {\n      const vector = new Vector2D(3, 4);\n      expect(vector.lengthSq()).toBe(25);\n    });\n\n    it('should return 0 for a zero vector', () => {\n      const vector = new Vector2D(0, 0);\n      expect(vector.lengthSq()).toBe(0);\n    });\n\n    it('should return the square of the length of the vector with negative components', () => {\n      const vector = new Vector2D(-3, 4);\n      expect(vector.lengthSq()).toBe(25);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "multiplyScalar",
+    "src_file": "src/math/Vector2D.js",
+    "test_file": "test/math/Vector2D/multiplyScalar.test.js",
+    "code": "multiplyScalar(s) {\n    this.x *= s;\n    this.y *= s;\n\n    return this;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Vector2D",
+    "full_class_name": "Vector2D",
+    "class_constructor": [
+      "constructor(x, y) {\n    this.x = x || 0;\n    this.y = y || 0;\n  }"
+    ],
+    "class_fields": [
+      "x",
+      "y"
+    ],
+    "class_hierarchy": [
+      "Vector2D"
+    ],
+    "generated_tests": [
+      "import Vector2D from 'src/math/Vector2D';\n\ndescribe('Vector2D', () => {\n  describe('multiplyScalar', () => {\n    it('should multiply the x and y properties by the given scalar', () => {\n      const vector = new Vector2D(2, 3);\n      const scalar = 5;\n      const result = vector.multiplyScalar(scalar);\n\n      expect(result.x).toBe(10);\n      expect(result.y).toBe(15);\n    });\n\n    it('should return the modified vector', () => {\n      const vector = new Vector2D(2, 3);\n      const scalar = 5;\n      const result = vector.multiplyScalar(scalar);\n\n      expect(result).toBe(vector);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "distanceToSquared",
+    "src_file": "src/math/Vector2D.js",
+    "test_file": "test/math/Vector2D/distanceToSquared.test.js",
+    "code": "distanceToSquared(v) {\n    const dx = this.x - v.x;\n    const dy = this.y - v.y;\n\n    return dx * dx + dy * dy;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Vector2D",
+    "full_class_name": "Vector2D",
+    "class_constructor": [
+      "constructor(x, y) {\n    this.x = x || 0;\n    this.y = y || 0;\n  }"
+    ],
+    "class_fields": [
+      "x",
+      "y"
+    ],
+    "class_hierarchy": [
+      "Vector2D"
+    ],
+    "generated_tests": [
+      "import Vector2D from '../../src/math/Vector2D';\n\ndescribe('Vector2D', () => {\n  describe('distanceToSquared', () => {\n    it('should return the squared distance between two points', () => {\n      const v1 = new Vector2D(3, 4);\n      const v2 = new Vector2D(6, 8);\n      const expectedResult = 81;\n\n      const result = v1.distanceToSquared(v2);\n\n      expect(result).toEqual(expectedResult);\n    });\n\n    it('should return 0 if the two points are the same', () => {\n      const v1 = new Vector2D(3, 4);\n      const v2 = new Vector2D(3, 4);\n      const expectedResult = 0;\n\n      const result = v1.distanceToSquared(v2);\n\n      expect(result).toEqual(expectedResult);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "onParticleCreated",
+    "src_file": "src/render/PixiRenderer.js",
+    "test_file": "test/render/PixiRenderer/onParticleCreated.test.js",
+    "code": "onParticleCreated(particle) {\n    if (particle.body) {\n      particle.body = this.pool.get(particle.body, particle);\n    } else {\n      particle.body = this.pool.get(this.circleConf, particle);\n    }\n\n    if (this.blendMode) {\n      particle.body.blendMode = this.blendMode;\n    }\n\n    this.element.addChild(particle.body);\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "PixiRenderer",
+    "full_class_name": "PixiRenderer",
+    "class_constructor": [
+      "constructor(element, stroke) {\n    super(element);\n\n    this.stroke = stroke;\n    this.color = false;\n    this.setColor = false;\n    this.blendMode = null;\n    this.pool.create = (body, particle) => this.createBody(body, particle);\n    this.setPIXI(window.PIXI);\n\n    this.name = \"PixiRenderer\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "PixiRenderer"
+    ],
+    "generated_tests": [
+      "import PixiRenderer from 'src/render/PixiRenderer';\nimport { Container } from 'pixi.js';\n\ndescribe('PixiRenderer', () => {\n  let renderer;\n  let particle;\n  let mockPool;\n\n  beforeEach(() => {\n    mockPool = {\n      get: jest.fn().mockReturnValue({ blendMode: jest.fn() }),\n    };\n    renderer = new PixiRenderer(new Container(), 'stroke', mockPool);\n    particle = { body: null };\n  });\n\n  it('should create a body from the pool if the particle has a body', () => {\n    particle.body = 'existing body';\n    renderer.onParticleCreated(particle);\n    expect(mockPool.get).toHaveBeenCalledWith('existing body', particle);\n  });\n\n  it('should create a new body from the pool if the particle does not have a body', () => {\n    renderer.circleConf = 'circleConf';\n    renderer.onParticleCreated(particle);\n    expect(mockPool.get).toHaveBeenCalledWith('circleConf', particle);\n  });\n\n  it('should set the blend mode of the particle body if blendMode is set', () => {\n    renderer.blendMode = 'blendMode';\n    renderer.onParticleCreated(particle);\n    expect(particle.body.blendMode).toBe('blendMode');\n  });\n\n  it('should add the particle body to the renderer element', () => {\n    renderer.onParticleCreated(particle);\n    expect(renderer.element.children).toContain(particle.body);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "onParticleUpdate",
+    "src_file": "src/render/PixiRenderer.js",
+    "test_file": "test/render/PixiRenderer/onParticleUpdate.test.js",
+    "code": "onParticleUpdate(particle) {\n    this.transform(particle, particle.body);\n\n    if (this.setColor === true || this.color === true) {\n      particle.body.tint = ColorUtil.getHex16FromParticle(particle);\n    }\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "PixiRenderer",
+    "full_class_name": "PixiRenderer",
+    "class_constructor": [
+      "constructor(element, stroke) {\n    super(element);\n\n    this.stroke = stroke;\n    this.color = false;\n    this.setColor = false;\n    this.blendMode = null;\n    this.pool.create = (body, particle) => this.createBody(body, particle);\n    this.setPIXI(window.PIXI);\n\n    this.name = \"PixiRenderer\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "PixiRenderer"
+    ],
+    "generated_tests": [
+      "import PixiRenderer from 'src/render/PixiRenderer';\nimport ColorUtil from 'utils/ColorUtil';\n\ndescribe('PixiRenderer', () => {\n  let renderer;\n  let particle;\n  let body;\n\n  beforeEach(() => {\n    renderer = new PixiRenderer('element', 'stroke');\n    body = { tint: 0x000000 };\n    particle = { body: body };\n  });\n\n  it('should call transform method with particle and body', () => {\n    const transformSpy = jest.spyOn(renderer, 'transform');\n    renderer.onParticleUpdate(particle);\n    expect(transformSpy).toHaveBeenCalledWith(particle, body);\n  });\n\n  it('should set tint of body if setColor or color is true', () => {\n    jest.spyOn(ColorUtil, 'getHex16FromParticle').mockReturnValue(0x123456);\n    renderer.setColor = true;\n    renderer.onParticleUpdate(particle);\n    expect(body.tint).toBe(0x123456);\n  });\n\n  it('should not set tint of body if setColor or color is false', () => {\n    jest.spyOn(ColorUtil, 'getHex16FromParticle').mockReturnValue(0x123456);\n    renderer.setColor = false;\n    renderer.onParticleUpdate(particle);\n    expect(body.tint).toBe(0x000000);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "reset",
+    "src_file": "src/behaviour/Alpha.js",
+    "test_file": "test/behaviour/Alpha/reset.test.js",
+    "code": "reset(a, b, life, easing) {\n    this.same = b === null || b === undefined;\n    this.a = Span.setSpanValue(Util.initValue(a, 1));\n    this.b = Span.setSpanValue(b);\n\n    life && super.reset(life, easing);\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Alpha",
+    "full_class_name": "Alpha",
+    "class_constructor": [
+      "constructor(a, b, life, easing) {\n    super(life, easing);\n\n    this.reset(a, b);\n    this.name = \"Alpha\";\n  }"
+    ],
+    "class_fields": [
+      "same",
+      "a",
+      "b",
+      "name"
+    ],
+    "class_hierarchy": [
+      "Alpha"
+    ],
+    "generated_tests": [
+      "import Alpha from '../../src/behaviour/Alpha';\nimport Span from '../../src/behaviour/Span';\nimport Util from '../../src/behaviour/Util';\n\ndescribe('Alpha', () => {\n  describe('reset', () => {\n    let alpha;\n\n    beforeEach(() => {\n      alpha = new Alpha(1, 2, 3, 'ease');\n    });\n\n    it('should set same to true if b is null or undefined', () => {\n      alpha.reset(1, null, 3, 'ease');\n      expect(alpha.same).toBe(true);\n\n      alpha.reset(1, undefined, 3, 'ease');\n      expect(alpha.same).toBe(true);\n    });\n\n    it('should set same to false if b is not null or undefined', () => {\n      alpha.reset(1, 2, 3, 'ease');\n      expect(alpha.same).toBe(false);\n    });\n\n    it('should set a to the result of Span.setSpanValue(Util.initValue(a, 1))', () => {\n      const initValueSpy = jest.spyOn(Util, 'initValue').mockReturnValue(5);\n      const setSpanValueSpy = jest.spyOn(Span, 'setSpanValue');\n\n      alpha.reset(1, 2, 3, 'ease');\n\n      expect(initValueSpy).toHaveBeenCalledWith(1, 1);\n      expect(setSpanValueSpy).toHaveBeenCalledWith(5);\n      expect(alpha.a).toBe(setSpanValueSpy.mock.results[0].value);\n    });\n\n    it('should set b to the result of Span.setSpanValue(b)', () => {\n      const setSpanValueSpy = jest.spyOn(Span, 'setSpanValue');\n\n      alpha.reset(1, 2, 3, 'ease');\n\n      expect(setSpanValueSpy).toHaveBeenCalledWith(2);\n      expect(alpha.b).toBe(setSpanValueSpy.mock.results[0].value);\n    });\n\n    it('should call super.reset if life and easing are provided', () => {\n      const resetSpy = jest.spyOn(Alpha.prototype, 'reset');\n\n      alpha.reset(1, 2, 3, 'ease');\n\n      expect(resetSpy).toHaveBeenCalledWith(3, 'ease');\n    });\n\n    it('should not call super.reset if life and easing are not provided', () => {\n      const resetSpy = jest.spyOn(Alpha.prototype, 'reset');\n\n      alpha.reset(1, 2);\n\n      expect(resetSpy).not.toHaveBeenCalled();\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "applyBehaviour",
+    "src_file": "src/behaviour/Alpha.js",
+    "test_file": "test/behaviour/Alpha/applyBehaviour.test.js",
+    "code": "applyBehaviour(particle, time, index) {\n    this.calculate(particle, time, index);\n\n    particle.alpha = particle.data.alphaB + (particle.data.alphaA - particle.data.alphaB) * this.energy;\n\n    if (particle.alpha < 0.001) particle.alpha = 0;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Alpha",
+    "full_class_name": "Alpha",
+    "class_constructor": [
+      "constructor(a, b, life, easing) {\n    super(life, easing);\n\n    this.reset(a, b);\n    this.name = \"Alpha\";\n  }"
+    ],
+    "class_fields": [
+      "same",
+      "a",
+      "b",
+      "name"
+    ],
+    "class_hierarchy": [
+      "Alpha"
+    ],
+    "generated_tests": [
+      "import Alpha from '../../src/behaviour/Alpha';\nimport Particle from '../../src/Particle';\n\ndescribe('Alpha', () => {\n  describe('applyBehaviour', () => {\n    let alpha;\n    let particle;\n    let time;\n    let index;\n\n    beforeEach(() => {\n      alpha = new Alpha();\n      particle = new Particle();\n      time = 1;\n      index = 1;\n\n      particle.data = {\n        alphaA: 1,\n        alphaB: 0.5,\n      };\n    });\n\n    it('should calculate the alpha value correctly', () => {\n      alpha.energy = 0.5;\n      alpha.applyBehaviour(particle, time, index);\n      expect(particle.alpha).toBe(0.75);\n    });\n\n    it('should set alpha to 0 if it is less than 0.001', () => {\n      alpha.energy = 0.0005;\n      alpha.applyBehaviour(particle, time, index);\n      expect(particle.alpha).toBe(0);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "initialize",
+    "src_file": "src/behaviour/Alpha.js",
+    "test_file": "test/behaviour/Alpha/initialize.test.js",
+    "code": "initialize(particle) {\n    particle.data.alphaA = this.a.getValue();\n\n    if (this.same) particle.data.alphaB = particle.data.alphaA;\n    else particle.data.alphaB = this.b.getValue();\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Alpha",
+    "full_class_name": "Alpha",
+    "class_constructor": [
+      "constructor(a, b, life, easing) {\n    super(life, easing);\n\n    this.reset(a, b);\n    this.name = \"Alpha\";\n  }"
+    ],
+    "class_fields": [
+      "same",
+      "a",
+      "b",
+      "name"
+    ],
+    "class_hierarchy": [
+      "Alpha"
+    ],
+    "generated_tests": [
+      "import Alpha from '../../src/behaviour/Alpha';\nimport { mockFunction } from 'jest-mock';\n\ndescribe('Alpha', () => {\n  describe('initialize', () => {\n    let alpha;\n    let particle;\n    let getValue;\n\n    beforeEach(() => {\n      getValue = mockFunction();\n      alpha = new Alpha(getValue, getValue, 1000, 'ease-in-out');\n      particle = { data: {} };\n    });\n\n    it('should set alphaA to the value of a', () => {\n      getValue.mockReturnValue(10);\n      alpha.initialize(particle);\n      expect(particle.data.alphaA).toBe(10);\n    });\n\n    it('should set alphaB to the value of a if same is true', () => {\n      getValue.mockReturnValue(10);\n      alpha.same = true;\n      alpha.initialize(particle);\n      expect(particle.data.alphaB).toBe(10);\n    });\n\n    it('should set alphaB to the value of b if same is false', () => {\n      getValue.mockReturnValueOnce(10);\n      getValue.mockReturnValueOnce(20);\n      alpha.same = false;\n      alpha.initialize(particle);\n      expect(particle.data.alphaB).toBe(20);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "crossing",
+    "src_file": "src/zone/CircleZone.js",
+    "test_file": "test/zone/CircleZone/crossing.test.js",
+    "code": "crossing(particle) {\n    const d = particle.p.distanceTo(this.center);\n\n    if (this.crossType === \"dead\") {\n      if (d - particle.radius > this.radius) particle.dead = true;\n    } else if (this.crossType === \"bound\") {\n      if (d + particle.radius >= this.radius) this.getSymmetric(particle);\n    } else if (this.crossType === \"cross\") {\n      if (this.alert) {\n        console.error(\"Sorry, CircleZone does not support cross method!\");\n        this.alert = false;\n      }\n    }\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "CircleZone",
+    "full_class_name": "CircleZone",
+    "class_constructor": [
+      "constructor(x, y, radius) {\n    super();\n\n    this.x = x;\n    this.y = y;\n    this.radius = radius;\n    this.angle = 0;\n    this.center = { x, y };\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "CircleZone"
+    ],
+    "generated_tests": [
+      "import CircleZone from 'src/zone/CircleZone';\nimport Particle from 'src/particle/Particle';\n\ndescribe('CircleZone', () => {\n  describe('crossing', () => {\n    let circleZone;\n    let particle;\n\n    beforeEach(() => {\n      circleZone = new CircleZone(0, 0, 10);\n      particle = new Particle(0, 0);\n    });\n\n    it('should set particle.dead to true if distance between particle and center is greater than radius', () => {\n      particle.p.distanceTo = jest.fn().mockReturnValue(circleZone.radius + particle.radius + 1);\n      circleZone.crossing(particle);\n      expect(particle.dead).toBe(true);\n    });\n\n    it('should call getSymmetric if crossType is \"bound\" and distance between particle and center is less than or equal to radius', () => {\n      circleZone.crossType = \"bound\";\n      particle.p.distanceTo = jest.fn().mockReturnValue(circleZone.radius - particle.radius);\n      circleZone.getSymmetric = jest.fn();\n      circleZone.crossing(particle);\n      expect(circleZone.getSymmetric).toHaveBeenCalled();\n    });\n\n    it('should log an error and set alert to false if crossType is \"cross\"', () => {\n      console.error = jest.fn();\n      circleZone.crossType = \"cross\";\n      circleZone.crossing(particle);\n      expect(console.error).toHaveBeenCalledWith(\"Sorry, CircleZone does not support cross method!\");\n      expect(circleZone.alert).toBe(false);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "reset",
+    "src_file": "src/initialize/Radius.js",
+    "test_file": "test/initialize/Radius/reset.test.js",
+    "code": "reset(a, b, c) {\n    this.radius = Span.setSpanValue(a, b, c);\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Radius",
+    "full_class_name": "Radius",
+    "class_constructor": [
+      "constructor(a, b, c) {\n    super();\n    this.radius = Span.setSpanValue(a, b, c);\n    this.name = \"Radius\";\n  }"
+    ],
+    "class_fields": [
+      "radius",
+      "name"
+    ],
+    "class_hierarchy": [
+      "Radius"
+    ],
+    "generated_tests": [
+      "import Radius from 'src/initialize/Radius';\nimport Span from 'src/initialize/Span';\n\njest.mock('src/initialize/Span');\n\ndescribe('Radius', () => {\n  describe('reset', () => {\n    let radius;\n\n    beforeEach(() => {\n      radius = new Radius();\n    });\n\n    it('should call Span.setSpanValue with the provided arguments', () => {\n      const a = 1;\n      const b = 2;\n      const c = 3;\n      const expectedResult = 'expected result';\n\n      Span.setSpanValue.mockReturnValue(expectedResult);\n\n      radius.reset(a, b, c);\n\n      expect(Span.setSpanValue).toHaveBeenCalledWith(a, b, c);\n      expect(radius.radius).toEqual(expectedResult);\n    });\n\n    it('should set the name property to \"Radius\"', () => {\n      radius.reset();\n\n      expect(radius.name).toEqual('Radius');\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "initialize",
+    "src_file": "src/initialize/Radius.js",
+    "test_file": "test/initialize/Radius/initialize.test.js",
+    "code": "initialize(particle) {\n    particle.radius = this.radius.getValue();\n    particle.data.oldRadius = particle.radius;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Radius",
+    "full_class_name": "Radius",
+    "class_constructor": [
+      "constructor(a, b, c) {\n    super();\n    this.radius = Span.setSpanValue(a, b, c);\n    this.name = \"Radius\";\n  }"
+    ],
+    "class_fields": [
+      "radius",
+      "name"
+    ],
+    "class_hierarchy": [
+      "Radius"
+    ],
+    "generated_tests": [
+      "import Radius from 'src/initialize/Radius.js';\nimport Particle from 'particle/Particle.js';\n\ndescribe('Radius initialize method', () => {\n  let radius;\n  let particle;\n\n  beforeEach(() => {\n    radius = new Radius(1, 2, 3);\n    particle = new Particle();\n    jest.spyOn(radius.radius, 'getValue').mockReturnValue(10);\n  });\n\n  test('should set the radius of the particle to the value returned by the radius getValue method', () => {\n    radius.initialize(particle);\n    expect(particle.radius).toBe(10);\n  });\n\n  test('should store the old radius of the particle in the data object', () => {\n    radius.initialize(particle);\n    expect(particle.data.oldRadius).toBe(10);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "reset",
+    "src_file": "src/behaviour/Force.js",
+    "test_file": "test/behaviour/Force/reset.test.js",
+    "code": "reset(fx, fy, life, easing) {\n    this.force = this.normalizeForce(new Vector2D(fx, fy));\n\n    life && super.reset(life, easing);\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Force",
+    "full_class_name": "Force",
+    "class_constructor": [
+      "constructor(fx, fy, life, easing) {\n    super(life, easing);\n\n    this.force = this.normalizeForce(new Vector2D(fx, fy));\n    this.name = \"Force\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Force"
+    ],
+    "generated_tests": [
+      "import Force from '../../src/behaviour/Force';\nimport Vector2D from '../../src/math/Vector2D';\n\ndescribe('Force', () => {\n  describe('reset', () => {\n    let force;\n\n    beforeEach(() => {\n      force = new Force(10, 20, 100, 'linear');\n    });\n\n    it('should set the force to the normalized vector of the given x and y components', () => {\n      force.reset(30, 40);\n      expect(force.force).toEqual(new Vector2D(0.6, 0.8));\n    });\n\n    it('should call the super reset method if a life and easing are provided', () => {\n      const mockSuperReset = jest.fn();\n      force.reset = jest.fn().mockImplementation(mockSuperReset);\n\n      force.reset(30, 40, 50, 'quadratic');\n      expect(mockSuperReset).toHaveBeenCalledWith(50, 'quadratic');\n    });\n\n    it('should not call the super reset method if no life and easing are provided', () => {\n      const mockSuperReset = jest.fn();\n      force.reset = jest.fn().mockImplementation(mockSuperReset);\n\n      force.reset(30, 40);\n      expect(mockSuperReset).not.toHaveBeenCalled();\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "resize",
+    "src_file": "src/render/PixelRenderer.js",
+    "test_file": "test/render/PixelRenderer/resize.test.js",
+    "code": "resize(width, height) {\n    this.element.width = width;\n    this.element.height = height;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "PixelRenderer",
+    "full_class_name": "PixelRenderer",
+    "class_constructor": [
+      "constructor(element, rectangle) {\n    super(element);\n\n    this.context = this.element.getContext(\"2d\");\n    this.imageData = null;\n    this.rectangle = rectangle;\n    this.createImageData(rectangle);\n\n    this.name = \"PixelRenderer\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "PixelRenderer"
+    ],
+    "generated_tests": [
+      "import PixelRenderer from 'src/render/PixelRenderer';\n\ndescribe('PixelRenderer', () => {\n  let renderer;\n  let mockElement;\n  let mockRectangle;\n\n  beforeEach(() => {\n    mockElement = document.createElement('canvas');\n    mockRectangle = { width: 100, height: 100 };\n    renderer = new PixelRenderer(mockElement, mockRectangle);\n  });\n\n  test('should resize the canvas element and update its dimensions', () => {\n    const newWidth = 200;\n    const newHeight = 300;\n\n    renderer.resize(newWidth, newHeight);\n\n    expect(mockElement.width).toBe(newWidth);\n    expect(mockElement.height).toBe(newHeight);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "onProtonUpdate",
+    "src_file": "src/render/PixelRenderer.js",
+    "test_file": "test/render/PixelRenderer/onProtonUpdate.test.js",
+    "code": "onProtonUpdate() {\n    this.context.clearRect(this.rectangle.x, this.rectangle.y, this.rectangle.width, this.rectangle.height);\n    this.imageData = this.context.getImageData(\n      this.rectangle.x,\n      this.rectangle.y,\n      this.rectangle.width,\n      this.rectangle.height\n    );\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "PixelRenderer",
+    "full_class_name": "PixelRenderer",
+    "class_constructor": [
+      "constructor(element, rectangle) {\n    super(element);\n\n    this.context = this.element.getContext(\"2d\");\n    this.imageData = null;\n    this.rectangle = rectangle;\n    this.createImageData(rectangle);\n\n    this.name = \"PixelRenderer\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "PixelRenderer"
+    ],
+    "generated_tests": [
+      "import PixelRenderer from 'src/render/PixelRenderer';\n\ndescribe('PixelRenderer', () => {\n  describe('onProtonUpdate', () => {\n    let instance;\n    let mockContext;\n    let mockElement;\n    let mockRectangle;\n\n    beforeEach(() => {\n      mockElement = document.createElement('canvas');\n      mockContext = {\n        clearRect: jest.fn(),\n        getImageData: jest.fn(),\n      };\n      mockElement.getContext = jest.fn().mockReturnValue(mockContext);\n      mockRectangle = {\n        x: 10,\n        y: 20,\n        width: 30,\n        height: 40,\n      };\n      instance = new PixelRenderer(mockElement, mockRectangle);\n    });\n\n    it('should call clearRect with correct arguments', () => {\n      instance.onProtonUpdate();\n      expect(mockContext.clearRect).toHaveBeenCalledWith(10, 20, 30, 40);\n    });\n\n    it('should call getImageData with correct arguments', () => {\n      instance.onProtonUpdate();\n      expect(mockContext.getImageData).toHaveBeenCalledWith(10, 20, 30, 40);\n    });\n\n    it('should assign the result of getImageData to imageData', () => {\n      const mockImageData = {};\n      mockContext.getImageData.mockReturnValue(mockImageData);\n      instance.onProtonUpdate();\n      expect(instance.imageData).toBe(mockImageData);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "destroy",
+    "src_file": "src/render/PixelRenderer.js",
+    "test_file": "test/render/PixelRenderer/destroy.test.js",
+    "code": "destroy() {\n    super.destroy();\n    this.stroke = null;\n    this.context = null;\n    this.imageData = null;\n    this.rectangle = null;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "PixelRenderer",
+    "full_class_name": "PixelRenderer",
+    "class_constructor": [
+      "constructor(element, rectangle) {\n    super(element);\n\n    this.context = this.element.getContext(\"2d\");\n    this.imageData = null;\n    this.rectangle = rectangle;\n    this.createImageData(rectangle);\n\n    this.name = \"PixelRenderer\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "PixelRenderer"
+    ],
+    "generated_tests": [
+      "import PixelRenderer from 'src/render/PixelRenderer';\nimport Renderer from 'src/render/Renderer';\n\njest.mock('src/render/Renderer');\n\ndescribe('PixelRenderer destroy method', () => {\n  let pixelRenderer;\n  let mockRenderer;\n\n  beforeEach(() => {\n    mockRenderer = new Renderer();\n    pixelRenderer = new PixelRenderer(document.createElement('canvas'), { x: 0, y: 0, width: 100, height: 100 });\n    Renderer.mockImplementation(() => mockRenderer);\n  });\n\n  test('should call super.destroy', () => {\n    const spy = jest.spyOn(mockRenderer, 'destroy');\n    pixelRenderer.destroy();\n    expect(spy).toHaveBeenCalled();\n  });\n\n  test('should set stroke, context, imageData, and rectangle to null', () => {\n    pixelRenderer.destroy();\n    expect(pixelRenderer.stroke).toBeNull();\n    expect(pixelRenderer.context).toBeNull();\n    expect(pixelRenderer.imageData).toBeNull();\n    expect(pixelRenderer.rectangle).toBeNull();\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "init",
+    "src_file": "src/initialize/Initialize.js",
+    "test_file": "test/initialize/Initialize/init.test.js",
+    "code": "init(emitter, particle) {\n    if (particle) {\n      this.initialize(particle);\n    } else {\n      this.initialize(emitter);\n    }\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Initialize",
+    "full_class_name": "Initialize",
+    "class_constructor": [],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Initialize"
+    ],
+    "generated_tests": [
+      "import Initialize from '../../src/initialize/Initialize';\n\ndescribe('Initialize', () => {\n  let initialize;\n  let emitter;\n  let particle;\n\n  beforeEach(() => {\n    initialize = new Initialize();\n    emitter = { emit: jest.fn() };\n    particle = { emit: jest.fn() };\n  });\n\n  test('should call initialize with emitter if particle is not provided', () => {\n    initialize.init(emitter);\n    expect(initialize.initialize).toHaveBeenCalledWith(emitter);\n  });\n\n  test('should call initialize with particle if provided', () => {\n    initialize.init(emitter, particle);\n    expect(initialize.initialize).toHaveBeenCalledWith(particle);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "emit",
+    "src_file": "src/emitter/FollowEmitter.js",
+    "test_file": "test/emitter/FollowEmitter/emit.test.js",
+    "code": "emit() {\n    this._allowEmitting = true;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "FollowEmitter",
+    "full_class_name": "FollowEmitter",
+    "class_constructor": [
+      "constructor(mouseTarget, ease, conf) {\n    super(conf);\n\n    this.mouseTarget = Util.initValue(mouseTarget, window);\n    this.ease = Util.initValue(ease, 0.7);\n\n    this._allowEmitting = false;\n    this.initEventHandler();\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "FollowEmitter"
+    ],
+    "generated_tests": [
+      "import FollowEmitter from '../../src/emitter/FollowEmitter';\n\ndescribe('FollowEmitter', () => {\n  describe('emit', () => {\n    let followEmitter;\n\n    beforeEach(() => {\n      followEmitter = new FollowEmitter();\n    });\n\n    it('should set _allowEmitting to true when called', () => {\n      followEmitter.emit();\n      expect(followEmitter._allowEmitting).toBe(true);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "mousemove",
+    "src_file": "src/emitter/FollowEmitter.js",
+    "test_file": "test/emitter/FollowEmitter/mousemove.test.js",
+    "code": "mousemove(e) {\n    if (e.layerX || e.layerX === 0) {\n      this.p.x += (e.layerX - this.p.x) * this.ease;\n      this.p.y += (e.layerY - this.p.y) * this.ease;\n    } else if (e.offsetX || e.offsetX === 0) {\n      this.p.x += (e.offsetX - this.p.x) * this.ease;\n      this.p.y += (e.offsetY - this.p.y) * this.ease;\n    }\n\n    if (this._allowEmitting) super.emit(\"once\");\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "FollowEmitter",
+    "full_class_name": "FollowEmitter",
+    "class_constructor": [
+      "constructor(mouseTarget, ease, conf) {\n    super(conf);\n\n    this.mouseTarget = Util.initValue(mouseTarget, window);\n    this.ease = Util.initValue(ease, 0.7);\n\n    this._allowEmitting = false;\n    this.initEventHandler();\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "FollowEmitter"
+    ],
+    "generated_tests": [
+      "import FollowEmitter from 'src/emitter/FollowEmitter';\n\ndescribe('FollowEmitter', () => {\n  describe('mousemove', () => {\n    let followEmitter;\n    let mockEvent;\n\n    beforeEach(() => {\n      mockEvent = {\n        layerX: 100,\n        layerY: 200,\n        offsetX: 0,\n        offsetY: 0\n      };\n\n      followEmitter = new FollowEmitter(null, 0.7, {});\n      followEmitter._allowEmitting = true;\n      followEmitter.p = { x: 0, y: 0 };\n    });\n\n    it('should update position based on layerX and layerY', () => {\n      followEmitter.mousemove(mockEvent);\n      expect(followEmitter.p.x).toBeCloseTo(100);\n      expect(followEmitter.p.y).toBeCloseTo(200);\n    });\n\n    it('should update position based on offsetX and offsetY', () => {\n      mockEvent.layerX = 0;\n      mockEvent.layerY = 0;\n      mockEvent.offsetX = 100;\n      mockEvent.offsetY = 200;\n\n      followEmitter.mousemove(mockEvent);\n      expect(followEmitter.p.x).toBeCloseTo(100);\n      expect(followEmitter.p.y).toBeCloseTo(200);\n    });\n\n    it('should emit \"once\" event when _allowEmitting is true', () => {\n      const emitSpy = jest.spyOn(followEmitter, 'emit');\n      followEmitter.mousemove(mockEvent);\n      expect(emitSpy).toHaveBeenCalledWith('once');\n    });\n\n    it('should not emit \"once\" event when _allowEmitting is false', () => {\n      followEmitter._allowEmitting = false;\n      const emitSpy = jest.spyOn(followEmitter, 'emit');\n      followEmitter.mousemove(mockEvent);\n      expect(emitSpy).not.toHaveBeenCalledWith('once');\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "stop",
+    "src_file": "src/emitter/FollowEmitter.js",
+    "test_file": "test/emitter/FollowEmitter/stop.test.js",
+    "code": "stop() {\n    this._allowEmitting = false;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "FollowEmitter",
+    "full_class_name": "FollowEmitter",
+    "class_constructor": [
+      "constructor(mouseTarget, ease, conf) {\n    super(conf);\n\n    this.mouseTarget = Util.initValue(mouseTarget, window);\n    this.ease = Util.initValue(ease, 0.7);\n\n    this._allowEmitting = false;\n    this.initEventHandler();\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "FollowEmitter"
+    ],
+    "generated_tests": [
+      "import FollowEmitter from '../../src/emitter/FollowEmitter';\n\ndescribe('FollowEmitter', () => {\n  let followEmitter;\n\n  beforeEach(() => {\n    followEmitter = new FollowEmitter();\n  });\n\n  it('should set _allowEmitting to false when stop is called', () => {\n    followEmitter._allowEmitting = true;\n    followEmitter.stop();\n    expect(followEmitter._allowEmitting).toBe(false);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "initVar",
+    "src_file": "src/render/WebGLRenderer.js",
+    "test_file": "test/render/WebGLRenderer/initVar.test.js",
+    "code": "initVar() {\n    this.mstack = new MStack();\n    this.umat = Mat3.create([2, 0, 1, 0, -2, 0, -1, 1, 1]);\n    this.smat = Mat3.create([1 / 100, 0, 1, 0, 1 / 100, 0, 0, 0, 1]);\n    this.texturebuffers = {};\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "WebGLRenderer",
+    "full_class_name": "WebGLRenderer",
+    "class_constructor": [
+      "constructor(element) {\n    super(element);\n\n    this.gl = this.element.getContext(\"experimental-webgl\", { antialias: true, stencil: false, depth: false });\n    if (!this.gl) alert(\"Sorry your browser do not suppest WebGL!\");\n\n    this.initVar();\n    this.setMaxRadius();\n    this.initShaders();\n    this.initBuffers();\n\n    this.gl.blendEquation(this.gl.FUNC_ADD);\n    this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);\n    this.gl.enable(this.gl.BLEND);\n    this.addImg2Body = this.addImg2Body.bind(this);\n\n    this.name = \"WebGLRenderer\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "WebGLRenderer"
+    ],
+    "generated_tests": [
+      "import WebGLRenderer from 'src/render/WebGLRenderer';\nimport MStack from 'MStack';\nimport Mat3 from 'Mat3';\n\ndescribe('WebGLRenderer', () => {\n  describe('initVar', () => {\n    let renderer;\n\n    beforeEach(() => {\n      renderer = new WebGLRenderer(document.createElement('canvas'));\n    });\n\n    it('should initialize mstack', () => {\n      renderer.initVar();\n      expect(renderer.mstack).toBeInstanceOf(MStack);\n    });\n\n    it('should initialize umat', () => {\n      renderer.initVar();\n      expect(renderer.umat).toEqual(Mat3.create([2, 0, 1, 0, -2, 0, -1, 1, 1]));\n    });\n\n    it('should initialize smat', () => {\n      renderer.initVar();\n      expect(renderer.smat).toEqual(Mat3.create([1 / 100, 0, 1, 0, 1 / 100, 0, 0, 0, 1]));\n    });\n\n    it('should initialize texturebuffers as an empty object', () => {\n      renderer.initVar();\n      expect(renderer.texturebuffers).toEqual({});\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "initShaders",
+    "src_file": "src/render/WebGLRenderer.js",
+    "test_file": "test/render/WebGLRenderer/initShaders.test.js",
+    "code": "initShaders() {\n    const fragmentShader = this.getShader(this.gl, this.getFragmentShader(), true);\n    const vertexShader = this.getShader(this.gl, this.getVertexShader(), false);\n\n    this.sprogram = this.gl.createProgram();\n    this.gl.attachShader(this.sprogram, vertexShader);\n    this.gl.attachShader(this.sprogram, fragmentShader);\n    this.gl.linkProgram(this.sprogram);\n\n    if (!this.gl.getProgramParameter(this.sprogram, this.gl.LINK_STATUS)) alert(\"Could not initialise shaders\");\n\n    this.gl.useProgram(this.sprogram);\n    this.sprogram.vpa = this.gl.getAttribLocation(this.sprogram, \"aVertexPosition\");\n    this.sprogram.tca = this.gl.getAttribLocation(this.sprogram, \"aTextureCoord\");\n    this.gl.enableVertexAttribArray(this.sprogram.tca);\n    this.gl.enableVertexAttribArray(this.sprogram.vpa);\n\n    this.sprogram.tMatUniform = this.gl.getUniformLocation(this.sprogram, \"tMat\");\n    this.sprogram.samplerUniform = this.gl.getUniformLocation(this.sprogram, \"uSampler\");\n    this.sprogram.useTex = this.gl.getUniformLocation(this.sprogram, \"useTexture\");\n    this.sprogram.color = this.gl.getUniformLocation(this.sprogram, \"uColor\");\n    this.gl.uniform1i(this.sprogram.useTex, 1);\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "WebGLRenderer",
+    "full_class_name": "WebGLRenderer",
+    "class_constructor": [
+      "constructor(element) {\n    super(element);\n\n    this.gl = this.element.getContext(\"experimental-webgl\", { antialias: true, stencil: false, depth: false });\n    if (!this.gl) alert(\"Sorry your browser do not suppest WebGL!\");\n\n    this.initVar();\n    this.setMaxRadius();\n    this.initShaders();\n    this.initBuffers();\n\n    this.gl.blendEquation(this.gl.FUNC_ADD);\n    this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);\n    this.gl.enable(this.gl.BLEND);\n    this.addImg2Body = this.addImg2Body.bind(this);\n\n    this.name = \"WebGLRenderer\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "WebGLRenderer"
+    ],
+    "generated_tests": [
+      "import WebGLRenderer from 'src/render/WebGLRenderer';\n\ndescribe('WebGLRenderer', () => {\n  describe('initShaders', () => {\n    let instance;\n    let mockGL;\n\n    beforeEach(() => {\n      mockGL = {\n        createProgram: jest.fn().mockReturnValue('mockProgram'),\n        attachShader: jest.fn(),\n        linkProgram: jest.fn(),\n        getProgramParameter: jest.fn().mockReturnValue(true),\n        useProgram: jest.fn(),\n        getAttribLocation: jest.fn().mockReturnValue('mockAttribLocation'),\n        enableVertexAttribArray: jest.fn(),\n        getUniformLocation: jest.fn().mockReturnValue('mockUniformLocation'),\n        uniform1i: jest.fn(),\n      };\n      instance = new WebGLRenderer({ getContext: () => mockGL });\n      instance.getShader = jest.fn().mockReturnValue('mockShader');\n    });\n\n    it('should create a program', () => {\n      instance.initShaders();\n      expect(mockGL.createProgram).toHaveBeenCalled();\n    });\n\n    it('should attach vertex and fragment shaders to the program', () => {\n      instance.initShaders();\n      expect(mockGL.attachShader).toHaveBeenCalledWith('mockProgram', 'mockShader');\n      expect(mockGL.attachShader).toHaveBeenCalledTimes(2);\n    });\n\n    it('should link the program', () => {\n      instance.initShaders();\n      expect(mockGL.linkProgram).toHaveBeenCalledWith('mockProgram');\n    });\n\n    it('should check if the program was linked successfully', () => {\n      instance.initShaders();\n      expect(mockGL.getProgramParameter).toHaveBeenCalledWith('mockProgram', mockGL.LINK_STATUS);\n    });\n\n    it('should use the program', () => {\n      instance.initShaders();\n      expect(mockGL.useProgram).toHaveBeenCalledWith('mockProgram');\n    });\n\n    it('should get attribute locations', () => {\n      instance.initShaders();\n      expect(mockGL.getAttribLocation).toHaveBeenCalledTimes(2);\n    });\n\n    it('should enable vertex attribute arrays', () => {\n      instance.initShaders();\n      expect(mockGL.enableVertexAttribArray).toHaveBeenCalledTimes(2);\n    });\n\n    it('should get uniform locations', () => {\n      instance.initShaders();\n      expect(mockGL.getUniformLocation).toHaveBeenCalledTimes(4);\n    });\n\n    it('should set a uniform value', () => {\n      instance.initShaders();\n      expect(mockGL.uniform1i).toHaveBeenCalledWith('mockUniformLocation', 1);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "onParticleCreated",
+    "src_file": "src/render/WebGLRenderer.js",
+    "test_file": "test/render/WebGLRenderer/onParticleCreated.test.js",
+    "code": "onParticleCreated(particle) {\n    particle.data.textureLoaded = false;\n    particle.data.tmat = Mat3.create();\n    particle.data.tmat[8] = 1;\n    particle.data.imat = Mat3.create();\n    particle.data.imat[8] = 1;\n\n    if (particle.body) {\n      ImgUtil.getImgFromCache(particle.body, this.addImg2Body, particle);\n    } else {\n      ImgUtil.getImgFromCache(this.circleCanvasURL, this.addImg2Body, particle);\n      particle.data.oldScale = particle.radius / this.circleCanvasRadius;\n    }\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "WebGLRenderer",
+    "full_class_name": "WebGLRenderer",
+    "class_constructor": [
+      "constructor(element) {\n    super(element);\n\n    this.gl = this.element.getContext(\"experimental-webgl\", { antialias: true, stencil: false, depth: false });\n    if (!this.gl) alert(\"Sorry your browser do not suppest WebGL!\");\n\n    this.initVar();\n    this.setMaxRadius();\n    this.initShaders();\n    this.initBuffers();\n\n    this.gl.blendEquation(this.gl.FUNC_ADD);\n    this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);\n    this.gl.enable(this.gl.BLEND);\n    this.addImg2Body = this.addImg2Body.bind(this);\n\n    this.name = \"WebGLRenderer\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "WebGLRenderer"
+    ],
+    "generated_tests": [
+      "import WebGLRenderer from 'src/render/WebGLRenderer';\nimport Mat3 from 'src/math/Mat3';\nimport ImgUtil from 'src/util/ImgUtil';\nimport Particle from 'src/render/Particle';\n\njest.mock('src/math/Mat3', () => ({\n  create: jest.fn().mockReturnValue([0, 0, 0, 0, 0, 0, 0, 0, 0]),\n}));\n\njest.mock('src/util/ImgUtil', () => ({\n  getImgFromCache: jest.fn(),\n}));\n\ndescribe('WebGLRenderer', () => {\n  let renderer;\n  let particle;\n\n  beforeEach(() => {\n    renderer = new WebGLRenderer(document.createElement('canvas'));\n    particle = new Particle();\n  });\n\n  it('should set particle data properties', () => {\n    renderer.onParticleCreated(particle);\n\n    expect(particle.data.textureLoaded).toBe(false);\n    expect(Mat3.create).toHaveBeenCalledTimes(2);\n    expect(particle.data.tmat[8]).toBe(1);\n    expect(particle.data.imat[8]).toBe(1);\n  });\n\n  it('should call ImgUtil.getImgFromCache with particle body if it exists', () => {\n    particle.body = 'testBody';\n\n    renderer.onParticleCreated(particle);\n\n    expect(ImgUtil.getImgFromCache).toHaveBeenCalledWith(particle.body, expect.any(Function), particle);\n  });\n\n  it('should call ImgUtil.getImgFromCache with circleCanvasURL if particle body does not exist', () => {\n    renderer.circleCanvasURL = 'testURL';\n    renderer.circleCanvasRadius = 10;\n\n    renderer.onParticleCreated(particle);\n\n    expect(ImgUtil.getImgFromCache).toHaveBeenCalledWith(renderer.circleCanvasURL, expect.any(Function), particle);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "addImg2Body",
+    "src_file": "src/render/WebGLRenderer.js",
+    "test_file": "test/render/WebGLRenderer/addImg2Body.test.js",
+    "code": "addImg2Body(img, particle) {\n    if (particle.dead) return;\n    particle.body = img;\n    particle.data.src = img.src;\n    particle.data.canvas = ImgUtil.getCanvasFromCache(img);\n    particle.data.oldScale = 1;\n\n    this.drawImg2Canvas(particle);\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "WebGLRenderer",
+    "full_class_name": "WebGLRenderer",
+    "class_constructor": [
+      "constructor(element) {\n    super(element);\n\n    this.gl = this.element.getContext(\"experimental-webgl\", { antialias: true, stencil: false, depth: false });\n    if (!this.gl) alert(\"Sorry your browser do not suppest WebGL!\");\n\n    this.initVar();\n    this.setMaxRadius();\n    this.initShaders();\n    this.initBuffers();\n\n    this.gl.blendEquation(this.gl.FUNC_ADD);\n    this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);\n    this.gl.enable(this.gl.BLEND);\n    this.addImg2Body = this.addImg2Body.bind(this);\n\n    this.name = \"WebGLRenderer\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "WebGLRenderer"
+    ],
+    "generated_tests": [
+      "import WebGLRenderer from 'src/render/WebGLRenderer';\nimport ImgUtil from 'utils/ImgUtil';\n\ndescribe('WebGLRenderer', () => {\n  let instance;\n  let mockElement;\n  let mockParticle;\n  let mockImg;\n\n  beforeEach(() => {\n    mockElement = document.createElement('canvas');\n    mockParticle = { dead: false, body: null, data: {} };\n    mockImg = new Image();\n    instance = new WebGLRenderer(mockElement);\n    instance.addImg2Body = jest.fn(instance.addImg2Body);\n    ImgUtil.getCanvasFromCache = jest.fn().mockReturnValue(document.createElement('canvas'));\n  });\n\n  it('should return early if particle is dead', () => {\n    mockParticle.dead = true;\n    instance.addImg2Body(mockImg, mockParticle);\n    expect(instance.addImg2Body).not.toHaveBeenCalled();\n  });\n\n  it('should assign img to particle body', () => {\n    instance.addImg2Body(mockImg, mockParticle);\n    expect(mockParticle.body).toBe(mockImg);\n  });\n\n  it('should assign img src to particle data', () => {\n    instance.addImg2Body(mockImg, mockParticle);\n    expect(mockParticle.data.src).toBe(mockImg.src);\n  });\n\n  it('should assign img canvas to particle data', () => {\n    instance.addImg2Body(mockImg, mockParticle);\n    expect(mockParticle.data.canvas).toBeInstanceOf(HTMLCanvasElement);\n  });\n\n  it('should assign oldScale to 1', () => {\n    instance.addImg2Body(mockImg, mockParticle);\n    expect(mockParticle.data.oldScale).toBe(1);\n  });\n\n  it('should call drawImg2Canvas with particle', () => {\n    const mockDrawImg2Canvas = jest.fn();\n    instance.drawImg2Canvas = mockDrawImg2Canvas;\n    instance.addImg2Body(mockImg, mockParticle);\n    expect(mockDrawImg2Canvas).toHaveBeenCalledWith(mockParticle);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "crossing",
+    "src_file": "src/zone/PointZone.js",
+    "test_file": "test/zone/PointZone/crossing.test.js",
+    "code": "crossing(particle) {\n    if (this.alert) {\n      console.error(\"Sorry, PointZone does not support crossing method!\");\n      this.alert = false;\n    }\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "PointZone",
+    "full_class_name": "PointZone",
+    "class_constructor": [
+      "constructor(x, y) {\n    super();\n\n    /**\n     * The x-coordinate of the point.\n     * @type {number}\n     */\n    this.x = x;\n\n    /**\n     * The y-coordinate of the point.\n     * @type {number}\n     */\n    this.y = y;\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "PointZone"
+    ],
+    "generated_tests": [
+      "import PointZone from 'src/zone/PointZone';\n\ndescribe('PointZone', () => {\n  describe('crossing', () => {\n    let pointZone;\n\n    beforeEach(() => {\n      pointZone = new PointZone(1, 2);\n      console.error = jest.fn();\n    });\n\n    it('should throw an error if alert is true', () => {\n      pointZone.alert = true;\n      pointZone.crossing({});\n      expect(console.error).toHaveBeenCalledWith(\"Sorry, PointZone does not support crossing method!\");\n    });\n\n    it('should not throw an error if alert is false', () => {\n      pointZone.alert = false;\n      pointZone.crossing({});\n      expect(console.error).not.toHaveBeenCalled();\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "destroy",
+    "src_file": "src/zone/Zone.js",
+    "test_file": "test/zone/Zone/destroy.test.js",
+    "code": "destroy() {\n    this.vector = null;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Zone",
+    "full_class_name": "Zone",
+    "class_constructor": [
+      "constructor() {\n    this.vector = new Vector2D(0, 0);\n    this.random = 0;\n    this.crossType = \"dead\";\n    this.alert = true;\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Zone"
+    ],
+    "generated_tests": [
+      "import Zone from 'src/zone/Zone';\n\ndescribe('Zone', () => {\n  describe('destroy', () => {\n    it('should set vector to null', () => {\n      const zone = new Zone();\n      zone.vector = { x: 1, y: 2 };\n      zone.destroy();\n      expect(zone.vector).toBeNull();\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "stop",
+    "src_file": "src/emitter/Emitter.js",
+    "test_file": "test/emitter/Emitter/stop.test.js",
+    "code": "stop() {\n    this.totalTime = -1;\n    this.emitTime = 0;\n    this.stoped = true;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Emitter",
+    "full_class_name": "Emitter",
+    "class_constructor": [
+      "constructor(conf = {}) {\n    super(conf);\n\n    this.particles = [];\n    this.behaviours = [];\n    this.initializes = [];\n\n    this.emitTime = 0;\n    this.emitSpeed = 0;\n    this.totalTime = -1;\n\n    /**\n     * The friction coefficient for all particle emit by This;\n     * @property damping\n     * @type {Number}\n     * @default 0.006\n     */\n    this.damping = 0.006;\n\n    /**\n     * If bindEmitter the particles can bind this emitter's property;\n     * @property bindEmitter\n     * @type {Boolean}\n     * @default true\n     */\n    this.bindEmitter = true;\n\n    /**\n     * The number of particles per second emit (a [particle]/b [s]);\n     * @property rate\n     * @type {Rate}\n     * @default Rate(1, .1)\n     */\n    this.rate = new Rate(1, 0.1);\n\n    this.name = \"Emitter\";\n    this.id = Puid.id(this.name);\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Emitter"
+    ],
+    "generated_tests": [
+      "import Emitter from 'src/emitter/Emitter';\n\ndescribe('Emitter', () => {\n  let emitter;\n\n  beforeEach(() => {\n    emitter = new Emitter();\n  });\n\n  it('should set totalTime to -1 and emitTime to 0 when stop is called', () => {\n    emitter.stop();\n    expect(emitter.totalTime).toBe(-1);\n    expect(emitter.emitTime).toBe(0);\n  });\n\n  it('should set stoped to true when stop is called', () => {\n    emitter.stop();\n    expect(emitter.stoped).toBe(true);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "removeInitialize",
+    "src_file": "src/emitter/Emitter.js",
+    "test_file": "test/emitter/Emitter/removeInitialize.test.js",
+    "code": "removeInitialize(initializer) {\n    const index = this.initializes.indexOf(initializer);\n    if (index > -1) this.initializes.splice(index, 1);\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Emitter",
+    "full_class_name": "Emitter",
+    "class_constructor": [
+      "constructor(conf = {}) {\n    super(conf);\n\n    this.particles = [];\n    this.behaviours = [];\n    this.initializes = [];\n\n    this.emitTime = 0;\n    this.emitSpeed = 0;\n    this.totalTime = -1;\n\n    /**\n     * The friction coefficient for all particle emit by This;\n     * @property damping\n     * @type {Number}\n     * @default 0.006\n     */\n    this.damping = 0.006;\n\n    /**\n     * If bindEmitter the particles can bind this emitter's property;\n     * @property bindEmitter\n     * @type {Boolean}\n     * @default true\n     */\n    this.bindEmitter = true;\n\n    /**\n     * The number of particles per second emit (a [particle]/b [s]);\n     * @property rate\n     * @type {Rate}\n     * @default Rate(1, .1)\n     */\n    this.rate = new Rate(1, 0.1);\n\n    this.name = \"Emitter\";\n    this.id = Puid.id(this.name);\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Emitter"
+    ],
+    "generated_tests": [
+      "import Emitter from 'src/emitter/Emitter';\n\ndescribe('Emitter', () => {\n  let emitter;\n\n  beforeEach(() => {\n    emitter = new Emitter();\n    emitter.initializes = [jest.fn(), jest.fn(), jest.fn()];\n  });\n\n  it('should remove an initialize function from the initializes array', () => {\n    const initializer = emitter.initializes[1];\n    emitter.removeInitialize(initializer);\n    expect(emitter.initializes).not.toContain(initializer);\n  });\n\n  it('should not remove an initialize function that is not in the initializes array', () => {\n    const initializer = jest.fn();\n    emitter.removeInitialize(initializer);\n    expect(emitter.initializes).not.toContain(initializer);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "removeBehaviour",
+    "src_file": "src/emitter/Emitter.js",
+    "test_file": "test/emitter/Emitter/removeBehaviour.test.js",
+    "code": "removeBehaviour(behaviour) {\n    let index = this.behaviours.indexOf(behaviour);\n    this.behaviours.splice(index, 1);\n\n    if (behaviour.parents) {\n      index = behaviour.parents.indexOf(behaviour);\n      behaviour.parents.splice(index, 1);\n    }\n\n    return index;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Emitter",
+    "full_class_name": "Emitter",
+    "class_constructor": [
+      "constructor(conf = {}) {\n    super(conf);\n\n    this.particles = [];\n    this.behaviours = [];\n    this.initializes = [];\n\n    this.emitTime = 0;\n    this.emitSpeed = 0;\n    this.totalTime = -1;\n\n    /**\n     * The friction coefficient for all particle emit by This;\n     * @property damping\n     * @type {Number}\n     * @default 0.006\n     */\n    this.damping = 0.006;\n\n    /**\n     * If bindEmitter the particles can bind this emitter's property;\n     * @property bindEmitter\n     * @type {Boolean}\n     * @default true\n     */\n    this.bindEmitter = true;\n\n    /**\n     * The number of particles per second emit (a [particle]/b [s]);\n     * @property rate\n     * @type {Rate}\n     * @default Rate(1, .1)\n     */\n    this.rate = new Rate(1, 0.1);\n\n    this.name = \"Emitter\";\n    this.id = Puid.id(this.name);\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Emitter"
+    ],
+    "generated_tests": [
+      "import Emitter from 'src/emitter/Emitter';\n\ndescribe('Emitter', () => {\n  let emitter;\n  let behaviour;\n\n  beforeEach(() => {\n    emitter = new Emitter();\n    behaviour = { parents: [] };\n    emitter.behaviours.push(behaviour);\n  });\n\n  test('removeBehaviour removes behaviour from behaviours array', () => {\n    emitter.removeBehaviour(behaviour);\n    expect(emitter.behaviours).not.toContain(behaviour);\n  });\n\n  test('removeBehaviour removes behaviour from parents array if it exists', () => {\n    behaviour.parents.push(behaviour);\n    emitter.removeBehaviour(behaviour);\n    expect(behaviour.parents).not.toContain(behaviour);\n  });\n\n  test('removeBehaviour returns index of removed behaviour', () => {\n    const index = emitter.removeBehaviour(behaviour);\n    expect(index).toBe(0);\n  });\n\n  test('removeBehaviour returns -1 if behaviour is not found', () => {\n    const index = emitter.removeBehaviour({});\n    expect(index).toBe(-1);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "setupParticle",
+    "src_file": "src/emitter/Emitter.js",
+    "test_file": "test/emitter/Emitter/setupParticle.test.js",
+    "code": "setupParticle(particle, initialize, behaviour) {\n    let initializes = this.initializes;\n    let behaviours = this.behaviours;\n\n    if (initialize) initializes = Util.toArray(initialize);\n    if (behaviour) behaviours = Util.toArray(behaviour);\n\n    particle.reset();\n    InitializeUtil.initialize(this, particle, initializes);\n    particle.addBehaviours(behaviours);\n    particle.parent = this;\n\n    this.particles.push(particle);\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Emitter",
+    "full_class_name": "Emitter",
+    "class_constructor": [
+      "constructor(conf = {}) {\n    super(conf);\n\n    this.particles = [];\n    this.behaviours = [];\n    this.initializes = [];\n\n    this.emitTime = 0;\n    this.emitSpeed = 0;\n    this.totalTime = -1;\n\n    /**\n     * The friction coefficient for all particle emit by This;\n     * @property damping\n     * @type {Number}\n     * @default 0.006\n     */\n    this.damping = 0.006;\n\n    /**\n     * If bindEmitter the particles can bind this emitter's property;\n     * @property bindEmitter\n     * @type {Boolean}\n     * @default true\n     */\n    this.bindEmitter = true;\n\n    /**\n     * The number of particles per second emit (a [particle]/b [s]);\n     * @property rate\n     * @type {Rate}\n     * @default Rate(1, .1)\n     */\n    this.rate = new Rate(1, 0.1);\n\n    this.name = \"Emitter\";\n    this.id = Puid.id(this.name);\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Emitter"
+    ],
+    "generated_tests": [
+      "import Emitter from 'src/emitter/Emitter';\nimport Particle from 'src/particle/Particle';\nimport Util from 'src/util/Util';\nimport InitializeUtil from 'src/util/InitializeUtil';\nimport Rate from 'src/util/Rate';\nimport Puid from 'puid';\n\njest.mock('src/util/Util');\njest.mock('src/util/InitializeUtil');\njest.mock('src/util/Rate');\njest.mock('puid');\n\ndescribe('Emitter', () => {\n  let emitter;\n  let particle;\n\n  beforeEach(() => {\n    emitter = new Emitter();\n    particle = new Particle();\n    Puid.mockReturnValue('test-id');\n  });\n\n  it('should setup particle', () => {\n    const initialize = jest.fn();\n    const behaviour = jest.fn();\n\n    emitter.setupParticle(particle, initialize, behaviour);\n\n    expect(particle.reset).toHaveBeenCalled();\n    expect(InitializeUtil.initialize).toHaveBeenCalledWith(emitter, particle, [initialize]);\n    expect(particle.addBehaviours).toHaveBeenCalledWith([behaviour]);\n    expect(particle.parent).toBe(emitter);\n    expect(emitter.particles).toContain(particle);\n  });\n\n  it('should handle no initialize or behaviour', () => {\n    emitter.setupParticle(particle, null, null);\n\n    expect(particle.reset).toHaveBeenCalled();\n    expect(InitializeUtil.initialize).toHaveBeenCalledWith(emitter, particle, []);\n    expect(particle.addBehaviours).toHaveBeenCalledWith([]);\n    expect(particle.parent).toBe(emitter);\n    expect(emitter.particles).toContain(particle);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "copy",
+    "src_file": "src/math/Polar2D.js",
+    "test_file": "test/math/Polar2D/copy.test.js",
+    "code": "copy(p) {\n    this.r = p.r;\n    this.tha = p.tha;\n    return this;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Polar2D",
+    "full_class_name": "Polar2D",
+    "class_constructor": [
+      "constructor(r, tha) {\n    this.r = Math.abs(r) || 0;\n    this.tha = tha || 0;\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Polar2D"
+    ],
+    "generated_tests": [
+      "import Polar2D from 'src/math/Polar2D';\n\ndescribe('Polar2D', () => {\n  describe('copy', () => {\n    it('should copy the properties of the given Polar2D object', () => {\n      const p1 = new Polar2D(3, 4);\n      const p2 = new Polar2D();\n      p2.copy(p1);\n      expect(p2.r).toBe(3);\n      expect(p2.tha).toBe(4);\n    });\n\n    it('should return the copied object', () => {\n      const p1 = new Polar2D(3, 4);\n      const p2 = new Polar2D();\n      expect(p2.copy(p1)).toBe(p2);\n    });\n\n    it('should not modify the original object', () => {\n      const p1 = new Polar2D(3, 4);\n      const p2 = new Polar2D();\n      p2.copy(p1);\n      p1.r = 5;\n      p1.tha = 6;\n      expect(p2.r).not.toBe(5);\n      expect(p2.tha).not.toBe(6);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "clear",
+    "src_file": "src/math/Polar2D.js",
+    "test_file": "test/math/Polar2D/clear.test.js",
+    "code": "clear() {\n    this.r = 0.0;\n    this.tha = 0.0;\n    return this;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Polar2D",
+    "full_class_name": "Polar2D",
+    "class_constructor": [
+      "constructor(r, tha) {\n    this.r = Math.abs(r) || 0;\n    this.tha = tha || 0;\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Polar2D"
+    ],
+    "generated_tests": [
+      "import Polar2D from 'src/math/Polar2D';\n\ndescribe('Polar2D', () => {\n  describe('clear', () => {\n    it('should set r and tha to 0', () => {\n      const polar = new Polar2D(5, Math.PI / 2);\n      expect(polar.clear()).toEqual({ r: 0, tha: 0 });\n    });\n\n    it('should return the instance of Polar2D', () => {\n      const polar = new Polar2D(5, Math.PI / 2);\n      expect(polar.clear()).toBe(polar);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "equals",
+    "src_file": "src/math/Polar2D.js",
+    "test_file": "test/math/Polar2D/equals.test.js",
+    "code": "equals(v) {\n    return v.r === this.r && v.tha === this.tha;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Polar2D",
+    "full_class_name": "Polar2D",
+    "class_constructor": [
+      "constructor(r, tha) {\n    this.r = Math.abs(r) || 0;\n    this.tha = tha || 0;\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Polar2D"
+    ],
+    "generated_tests": [
+      "import Polar2D from 'src/math/Polar2D';\n\ndescribe('Polar2D', () => {\n  describe('equals', () => {\n    it('should return true when the two Polar2D objects have the same r and theta', () => {\n      const polar1 = new Polar2D(3, 0.5);\n      const polar2 = new Polar2D(3, 0.5);\n      expect(polar1.equals(polar2)).toBe(true);\n    });\n\n    it('should return false when the two Polar2D objects have different r', () => {\n      const polar1 = new Polar2D(3, 0.5);\n      const polar2 = new Polar2D(4, 0.5);\n      expect(polar1.equals(polar2)).toBe(false);\n    });\n\n    it('should return false when the two Polar2D objects have different theta', () => {\n      const polar1 = new Polar2D(3, 0.5);\n      const polar2 = new Polar2D(3, 0.6);\n      expect(polar1.equals(polar2)).toBe(false);\n    });\n\n    it('should return false when the argument is not a Polar2D object', () => {\n      const polar1 = new Polar2D(3, 0.5);\n      const polar2 = { r: 3, tha: 0.5 };\n      expect(polar1.equals(polar2)).toBe(false);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "clone",
+    "src_file": "src/math/Polar2D.js",
+    "test_file": "test/math/Polar2D/clone.test.js",
+    "code": "clone() {\n    return new Polar2D(this.r, this.tha);\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Polar2D",
+    "full_class_name": "Polar2D",
+    "class_constructor": [
+      "constructor(r, tha) {\n    this.r = Math.abs(r) || 0;\n    this.tha = tha || 0;\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Polar2D"
+    ],
+    "generated_tests": [
+      "import Polar2D from 'src/math/Polar2D';\n\ndescribe('Polar2D', () => {\n  describe('clone', () => {\n    it('should return a new Polar2D instance with the same r and tha values', () => {\n      const polar = new Polar2D(5, Math.PI / 2);\n      const clone = polar.clone();\n\n      expect(clone).not.toBe(polar); // Ensure the clone is a new instance\n      expect(clone.r).toBe(polar.r);\n      expect(clone.tha).toBe(polar.tha);\n    });\n\n    it('should return a new Polar2D instance with default values if no arguments are provided', () => {\n      const polar = new Polar2D();\n      const clone = polar.clone();\n\n      expect(clone).not.toBe(polar); // Ensure the clone is a new instance\n      expect(clone.r).toBe(0);\n      expect(clone.tha).toBe(0);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "removeSelfBehaviour",
+    "src_file": "src/emitter/BehaviourEmitter.js",
+    "test_file": "test/emitter/BehaviourEmitter/removeSelfBehaviour.test.js",
+    "code": "removeSelfBehaviour(behaviour) {\n    const index = this.selfBehaviours.indexOf(behaviour);\n    if (index > -1) this.selfBehaviours.splice(index, 1);\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "BehaviourEmitter",
+    "full_class_name": "BehaviourEmitter",
+    "class_constructor": [
+      "constructor(conf) {\n    super(conf);\n\n    this.selfBehaviours = [];\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "BehaviourEmitter"
+    ],
+    "generated_tests": [
+      "import BehaviourEmitter from '../../src/emitter/BehaviourEmitter';\n\ndescribe('BehaviourEmitter', () => {\n  let emitter;\n  let behaviour;\n\n  beforeEach(() => {\n    emitter = new BehaviourEmitter();\n    behaviour = {};\n    emitter.selfBehaviours.push(behaviour);\n  });\n\n  it('should remove a behaviour from selfBehaviours when it exists', () => {\n    emitter.removeSelfBehaviour(behaviour);\n    expect(emitter.selfBehaviours).not.toContain(behaviour);\n  });\n\n  it('should not throw an error when trying to remove a behaviour that does not exist', () => {\n    const nonExistentBehaviour = {};\n    expect(() => emitter.removeSelfBehaviour(nonExistentBehaviour)).not.toThrow();\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "update",
+    "src_file": "src/emitter/BehaviourEmitter.js",
+    "test_file": "test/emitter/BehaviourEmitter/update.test.js",
+    "code": "update(time) {\n    super.update(time);\n\n    if (!this.sleep) {\n      const length = this.selfBehaviours.length;\n      let i;\n\n      for (i = 0; i < length; i++) {\n        this.selfBehaviours[i].applyBehaviour(this, time, i);\n      }\n    }\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "BehaviourEmitter",
+    "full_class_name": "BehaviourEmitter",
+    "class_constructor": [
+      "constructor(conf) {\n    super(conf);\n\n    this.selfBehaviours = [];\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "BehaviourEmitter"
+    ],
+    "generated_tests": [
+      "import BehaviourEmitter from 'src/emitter/BehaviourEmitter';\nimport Behaviour from 'src/emitter/Behaviour';\n\ndescribe('BehaviourEmitter', () => {\n  describe('update', () => {\n    let emitter;\n    let behaviour1;\n    let behaviour2;\n    let time;\n\n    beforeEach(() => {\n      behaviour1 = new Behaviour();\n      behaviour2 = new Behaviour();\n      emitter = new BehaviourEmitter();\n      emitter.selfBehaviours = [behaviour1, behaviour2];\n      time = Date.now();\n    });\n\n    it('should call super.update with the provided time', () => {\n      const spy = jest.spyOn(BehaviourEmitter.prototype, 'update');\n      emitter.update(time);\n      expect(spy).toHaveBeenCalledWith(time);\n    });\n\n    it('should not call applyBehaviour if emitter is sleeping', () => {\n      emitter.sleep = true;\n      const applyBehaviourSpy = jest.spyOn(behaviour1, 'applyBehaviour');\n      emitter.update(time);\n      expect(applyBehaviourSpy).not.toHaveBeenCalled();\n    });\n\n    it('should call applyBehaviour for each behaviour in selfBehaviours', () => {\n      const applyBehaviourSpy1 = jest.spyOn(behaviour1, 'applyBehaviour');\n      const applyBehaviourSpy2 = jest.spyOn(behaviour2, 'applyBehaviour');\n      emitter.update(time);\n      expect(applyBehaviourSpy1).toHaveBeenCalledWith(emitter, time, 0);\n      expect(applyBehaviourSpy2).toHaveBeenCalledWith(emitter, time, 1);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "initialize",
+    "src_file": "src/initialize/Body.js",
+    "test_file": "test/initialize/Body/initialize.test.js",
+    "code": "initialize(particle) {\n    const imageTarget = this.image.getValue();\n\n    if (typeof imageTarget === \"string\") {\n      particle.body = {\n        width: this.w,\n        height: this.h,\n        src: imageTarget,\n        isInner: true,\n        inner: true\n      };\n    } else {\n      particle.body = imageTarget;\n    }\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Body",
+    "full_class_name": "Body",
+    "class_constructor": [
+      "constructor(image, w, h) {\n    super();\n\n    this.image = this.setSpanValue(image);\n    this.w = Util.initValue(w, 20);\n    this.h = Util.initValue(h, this.w);\n    this.name = \"Body\";\n  }"
+    ],
+    "class_fields": [
+      "image",
+      "name"
+    ],
+    "class_hierarchy": [
+      "Body"
+    ],
+    "generated_tests": [
+      "import Body from 'src/initialize/Body';\nimport Util from 'src/initialize/Util';\n\ndescribe('Body initialize function', () => {\n  let body;\n  let particle;\n\n  beforeEach(() => {\n    body = new Body('testImage', 10, 20);\n    particle = { body: null };\n  });\n\n  it('should set particle body with image and dimensions when image is a string', () => {\n    body.initialize(particle);\n\n    expect(particle.body).toEqual({\n      width: 10,\n      height: 20,\n      src: 'testImage',\n      isInner: true,\n      inner: true\n    });\n  });\n\n  it('should set particle body with imageTarget when image is not a string', () => {\n    body.image.getValue = jest.fn().mockReturnValue({ custom: 'imageTarget' });\n\n    body.initialize(particle);\n\n    expect(particle.body).toEqual({ custom: 'imageTarget' });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "reset",
+    "src_file": "src/behaviour/Cyclone.js",
+    "test_file": "test/behaviour/Cyclone/reset.test.js",
+    "code": "reset(angle, force, life, easing) {\n    this.angle = MathUtil.PI / 2;\n    this.setAngleAndForce(angle, force);\n    life && super.reset(life, easing);\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Cyclone",
+    "full_class_name": "Cyclone",
+    "class_constructor": [
+      "constructor(angle, force, life, easing) {\n    super(life, easing);\n    this.setAngleAndForce(angle, force);\n    this.name = \"Cyclone\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Cyclone"
+    ],
+    "generated_tests": [
+      "import Cyclone from '../../src/behaviour/Cyclone';\nimport MathUtil from '../../src/math/MathUtil';\n\ndescribe('Cyclone', () => {\n  describe('reset', () => {\n    let cyclone;\n\n    beforeEach(() => {\n      cyclone = new Cyclone(MathUtil.PI / 2, 100, 1000, 'ease-in-out');\n    });\n\n    it('should set the angle to PI/2', () => {\n      cyclone.reset(MathUtil.PI / 4, 200, 500, 'ease-in');\n      expect(cyclone.angle).toBe(MathUtil.PI / 2);\n    });\n\n    it('should call setAngleAndForce with the provided angle and force', () => {\n      const mockSetAngleAndForce = jest.fn();\n      cyclone.setAngleAndForce = mockSetAngleAndForce;\n      cyclone.reset(MathUtil.PI / 4, 200);\n      expect(mockSetAngleAndForce).toHaveBeenCalledWith(MathUtil.PI / 4, 200);\n    });\n\n    it('should call super.reset if life and easing are provided', () => {\n      const mockSuperReset = jest.fn();\n      cyclone.reset = jest.fn().mockImplementation((life, easing) => mockSuperReset(life, easing));\n      cyclone.reset(500, 'ease-in');\n      expect(mockSuperReset).toHaveBeenCalledWith(500, 'ease-in');\n    });\n\n    it('should not call super.reset if life and easing are not provided', () => {\n      const mockSuperReset = jest.fn();\n      cyclone.reset = jest.fn().mockImplementation((life, easing) => mockSuperReset(life, easing));\n      cyclone.reset(MathUtil.PI / 4, 200);\n      expect(mockSuperReset).not.toHaveBeenCalled();\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "initialize",
+    "src_file": "src/behaviour/Cyclone.js",
+    "test_file": "test/behaviour/Cyclone/initialize.test.js",
+    "code": "initialize(particle) {\n    if (this.angle === \"random\") {\n      particle.data.cangle = MathUtil.randomAToB(-MathUtil.PI, MathUtil.PI);\n    } else if (this.angle === \"span\") {\n      particle.data.cangle = this.span.getValue();\n    }\n\n    particle.data.cyclone = new Vector2D(0, 0);\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Cyclone",
+    "full_class_name": "Cyclone",
+    "class_constructor": [
+      "constructor(angle, force, life, easing) {\n    super(life, easing);\n    this.setAngleAndForce(angle, force);\n    this.name = \"Cyclone\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Cyclone"
+    ],
+    "generated_tests": [
+      "import Cyclone from '../../src/behaviour/Cyclone';\nimport Vector2D from '../../src/math/Vector2D';\nimport MathUtil from '../../src/math/MathUtil';\nimport Particle from '../../src/objects/Particle';\n\njest.mock('../../src/math/MathUtil', () => ({\n  randomAToB: jest.fn().mockReturnValue(Math.PI),\n}));\n\njest.mock('../../src/math/Vector2D', () => jest.fn().mockImplementation(() => ({\n  x: 0,\n  y: 0,\n})));\n\ndescribe('Cyclone', () => {\n  describe('initialize', () => {\n    let cyclone;\n    let particle;\n\n    beforeEach(() => {\n      cyclone = new Cyclone('random', 10, 100, 'ease-in-out');\n      particle = new Particle();\n      particle.data = {};\n    });\n\n    it('should set cangle to a random value if angle is \"random\"', () => {\n      cyclone.initialize(particle);\n      expect(particle.data.cangle).toBe(Math.PI);\n    });\n\n    it('should set cangle to a value from span if angle is \"span\"', () => {\n      cyclone = new Cyclone('span', 10, 100, 'ease-in-out');\n      cyclone.span = { getValue: jest.fn().mockReturnValue(123) };\n      cyclone.initialize(particle);\n      expect(particle.data.cangle).toBe(123);\n    });\n\n    it('should initialize cyclone vector', () => {\n      cyclone.initialize(particle);\n      expect(particle.data.cyclone.x).toBe(0);\n      expect(particle.data.cyclone.y).toBe(0);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "applyBehaviour",
+    "src_file": "src/behaviour/Cyclone.js",
+    "test_file": "test/behaviour/Cyclone/applyBehaviour.test.js",
+    "code": "applyBehaviour(particle, time, index) {\n    this.calculate(particle, time, index);\n\n    let length;\n    let gradient = particle.v.getGradient();\n    if (this.angle === \"random\" || this.angle === \"span\") {\n      gradient += particle.data.cangle;\n    } else {\n      gradient += this.angle;\n    }\n\n    if (this.force === CHANGING) {\n      length = particle.v.length() / 100;\n    } else {\n      length = this.force;\n    }\n\n    particle.data.cyclone.x = length * Math.cos(gradient);\n    particle.data.cyclone.y = length * Math.sin(gradient);\n    particle.data.cyclone = this.normalizeForce(particle.data.cyclone);\n    particle.a.add(particle.data.cyclone);\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Cyclone",
+    "full_class_name": "Cyclone",
+    "class_constructor": [
+      "constructor(angle, force, life, easing) {\n    super(life, easing);\n    this.setAngleAndForce(angle, force);\n    this.name = \"Cyclone\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Cyclone"
+    ],
+    "generated_tests": [
+      "import Cyclone from '../../src/behaviour/Cyclone';\nimport Particle from '../../src/Particle';\n\ndescribe('Cyclone', () => {\n  describe('applyBehaviour', () => {\n    let cyclone;\n    let particle;\n    let time;\n    let index;\n\n    beforeEach(() => {\n      cyclone = new Cyclone('random', 'CHANGING', 100, 'ease');\n      particle = new Particle();\n      time = 10;\n      index = 5;\n\n      particle.v = {\n        getGradient: jest.fn().mockReturnValue(10),\n        length: jest.fn().mockReturnValue(100),\n      };\n\n      particle.data = {\n        cangle: 20,\n        cyclone: { x: 0, y: 0 },\n      };\n\n      particle.a = {\n        add: jest.fn(),\n      };\n\n      cyclone.normalizeForce = jest.fn().mockImplementation((force) => force);\n    });\n\n    test('should call calculate method', () => {\n      const calculateSpy = jest.spyOn(cyclone, 'calculate');\n      cyclone.applyBehaviour(particle, time, index);\n      expect(calculateSpy).toHaveBeenCalledWith(particle, time, index);\n    });\n\n    test('should calculate the gradient and add it to the particle data', () => {\n      cyclone.applyBehaviour(particle, time, index);\n      expect(particle.data.cyclone.x).toBeCloseTo(86.60);\n      expect(particle.data.cyclone.y).toBeCloseTo(50);\n    });\n\n    test('should call normalizeForce method', () => {\n      const normalizeForceSpy = jest.spyOn(cyclone, 'normalizeForce');\n      cyclone.applyBehaviour(particle, time, index);\n      expect(normalizeForceSpy).toHaveBeenCalledWith(particle.data.cyclone);\n    });\n\n    test('should call add method on particle.a', () => {\n      cyclone.applyBehaviour(particle, time, index);\n      expect(particle.a.add).toHaveBeenCalledWith(particle.data.cyclone);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "reset",
+    "src_file": "src/behaviour/Color.js",
+    "test_file": "test/behaviour/Color/reset.test.js",
+    "code": "reset(a, b, life, easing) {\n    this.a = ArraySpan.createArraySpan(a);\n    this.b = ArraySpan.createArraySpan(b);\n    life && super.reset(life, easing);\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Color",
+    "full_class_name": "Color",
+    "class_constructor": [
+      "constructor(a, b, life, easing) {\n    super(life, easing);\n\n    this.reset(a, b);\n    this.name = \"Color\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Color"
+    ],
+    "generated_tests": [
+      "import Color from '../../src/behaviour/Color';\nimport ArraySpan from '../../src/behaviour/ArraySpan';\n\ndescribe('Color class reset method', () => {\n  let color;\n\n  beforeEach(() => {\n    color = new Color(1, 2, 3, 4);\n  });\n\n  test('should set a and b to ArraySpan of input values', () => {\n    const a = [1, 2, 3];\n    const b = [4, 5, 6];\n\n    color.reset(a, b);\n\n    expect(color.a).toEqual(ArraySpan.createArraySpan(a));\n    expect(color.b).toEqual(ArraySpan.createArraySpan(b));\n  });\n\n  test('should call super.reset if life and easing are provided', () => {\n    const life = 5;\n    const easing = 'linear';\n    const superResetMock = jest.fn();\n    color.super = { reset: superResetMock };\n\n    color.reset(1, 2, life, easing);\n\n    expect(superResetMock).toHaveBeenCalledWith(life, easing);\n  });\n\n  test('should not call super.reset if life and easing are not provided', () => {\n    const superResetMock = jest.fn();\n    color.super = { reset: superResetMock };\n\n    color.reset(1, 2);\n\n    expect(superResetMock).not.toHaveBeenCalled();\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "initialize",
+    "src_file": "src/behaviour/Color.js",
+    "test_file": "test/behaviour/Color/initialize.test.js",
+    "code": "initialize(particle) {\n    particle.color = this.a.getValue();\n    particle.data.colorA = ColorUtil.hexToRgb(particle.color);\n\n    if (this.b) particle.data.colorB = ColorUtil.hexToRgb(this.b.getValue());\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Color",
+    "full_class_name": "Color",
+    "class_constructor": [
+      "constructor(a, b, life, easing) {\n    super(life, easing);\n\n    this.reset(a, b);\n    this.name = \"Color\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Color"
+    ],
+    "generated_tests": [
+      "import Color from '../../src/behaviour/Color';\nimport ColorUtil from '../../src/utils/ColorUtil';\n\ndescribe('Color initialize function', () => {\n  let color;\n  let particle;\n\n  beforeEach(() => {\n    color = new Color(1, 2, 3, 4);\n    particle = {\n      color: '',\n      data: {\n        colorA: '',\n        colorB: ''\n      }\n    };\n\n    jest.spyOn(ColorUtil, 'hexToRgb').mockImplementation(() => 'rgb(0,0,0)');\n  });\n\n  test('should set color and colorA properties of particle', () => {\n    color.initialize(particle);\n\n    expect(particle.color).toBe('rgb(0,0,0)');\n    expect(particle.data.colorA).toBe('rgb(0,0,0)');\n    expect(particle.data.colorB).toBe('');\n  });\n\n  test('should set colorB property of particle if b exists', () => {\n    color.b = { getValue: () => 'hex' };\n    jest.spyOn(color.b, 'getValue').mockReturnValue('hex');\n\n    color.initialize(particle);\n\n    expect(particle.data.colorB).toBe('rgb(0,0,0)');\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "applyBehaviour",
+    "src_file": "src/behaviour/Color.js",
+    "test_file": "test/behaviour/Color/applyBehaviour.test.js",
+    "code": "applyBehaviour(particle, time, index) {\n    if (this.b) {\n      this.calculate(particle, time, index);\n\n      particle.rgb.r = particle.data.colorB.r + (particle.data.colorA.r - particle.data.colorB.r) * this.energy;\n      particle.rgb.g = particle.data.colorB.g + (particle.data.colorA.g - particle.data.colorB.g) * this.energy;\n      particle.rgb.b = particle.data.colorB.b + (particle.data.colorA.b - particle.data.colorB.b) * this.energy;\n\n      particle.rgb.r = particle.rgb.r << 0;\n      particle.rgb.g = particle.rgb.g << 0;\n      particle.rgb.b = particle.rgb.b << 0;\n    } else {\n      particle.rgb.r = particle.data.colorA.r;\n      particle.rgb.g = particle.data.colorA.g;\n      particle.rgb.b = particle.data.colorA.b;\n    }\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Color",
+    "full_class_name": "Color",
+    "class_constructor": [
+      "constructor(a, b, life, easing) {\n    super(life, easing);\n\n    this.reset(a, b);\n    this.name = \"Color\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Color"
+    ],
+    "generated_tests": [
+      "import Color from '../../src/behaviour/Color';\nimport Particle from '../../src/Particle';\n\ndescribe('Color applyBehaviour function', () => {\n  let color;\n  let particle;\n\n  beforeEach(() => {\n    color = new Color(1, 2, 3, 4);\n    particle = new Particle();\n    particle.data = { colorA: { r: 10, g: 20, b: 30 }, colorB: { r: 5, g: 15, b: 25 } };\n    particle.rgb = { r: 0, g: 0, b: 0 };\n  });\n\n  test('should calculate color based on energy when b is true', () => {\n    color.b = true;\n    color.energy = 0.5;\n\n    color.applyBehaviour(particle, 100, 0);\n\n    expect(particle.rgb.r).toBe(7);\n    expect(particle.rgb.g).toBe(12);\n    expect(particle.rgb.b).toBe(17);\n  });\n\n  test('should set color to colorA when b is false', () => {\n    color.b = false;\n\n    color.applyBehaviour(particle, 100, 0);\n\n    expect(particle.rgb.r).toBe(10);\n    expect(particle.rgb.g).toBe(20);\n    expect(particle.rgb.b).toBe(30);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "update",
+    "src_file": "src/core/Proton.js",
+    "test_file": "test/core/Proton/update.test.js",
+    "code": "update() {\n    // 'auto' is the default browser refresh rate, the vast majority is 60fps\n    if (this._fps === \"auto\") {\n      this.dispatchEvent(Proton.PROTON_UPDATE);\n\n      if (Proton.USE_CLOCK) {\n        if (!this.then) this.then = new Date().getTime();\n        this.now = new Date().getTime();\n        this.elapsed = (this.now - this.then) * 0.001;\n        // Fix bugs such as chrome browser switching tabs causing excessive time difference\n        this.amendChangeTabsBug();\n\n        if (this.elapsed > 0) this.emittersUpdate(this.elapsed);\n        this.then = this.now;\n      } else {\n        this.emittersUpdate(Proton.DEFAULT_INTERVAL);\n      }\n\n      this.dispatchEvent(Proton.PROTON_UPDATE_AFTER);\n    }\n\n    // If the fps frame rate is set\n    else {\n      if (!this.then) this.then = new Date().getTime();\n      this.now = new Date().getTime();\n      this.elapsed = (this.now - this.then) * 0.001;\n\n      if (this.elapsed > this._interval) {\n        this.dispatchEvent(Proton.PROTON_UPDATE);\n        this.emittersUpdate(this._interval);\n        // https://stackoverflow.com/questions/19764018/controlling-fps-with-requestanimationframe\n        this.then = this.now - (this.elapsed % this._interval) * 1000;\n        this.dispatchEvent(Proton.PROTON_UPDATE_AFTER);\n      }\n    }\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Proton",
+    "full_class_name": "Proton",
+    "class_constructor": [
+      "constructor(integrationType) {\n    this.emitters = [];\n    this.renderers = [];\n\n    this.time = 0;\n    this.now = 0;\n    this.then = 0;\n    this.elapsed = 0;\n\n    this.stats = new Stats(this);\n    this.pool = new Pool(80);\n\n    this.integrationType = Util.initValue(integrationType, Proton.EULER);\n    this.integrator = new Integration(this.integrationType);\n\n    this._fps = \"auto\";\n    this._interval = Proton.DEFAULT_INTERVAL;\n  }"
+    ],
+    "class_fields": [
+      "static USE_CLOCK = false",
+      "static MEASURE = 100",
+      "static EULER = \"euler\"",
+      "static RK2 = \"runge-kutta2\"",
+      "static PARTICLE_CREATED = \"PARTICLE_CREATED\"",
+      "static PARTICLE_UPDATE = \"PARTICLE_UPDATE\"",
+      "static PARTICLE_SLEEP = \"PARTICLE_SLEEP\"",
+      "static PARTICLE_DEAD = \"PARTICLE_DEAD\"",
+      "static EMITTER_ADDED = \"EMITTER_ADDED\"",
+      "static EMITTER_REMOVED = \"EMITTER_REMOVED\"",
+      "static PROTON_UPDATE = \"PROTON_UPDATE\"",
+      "static PROTON_UPDATE_AFTER = \"PROTON_UPDATE_AFTER\"",
+      "static DEFAULT_INTERVAL = 0.0167",
+      "static amendChangeTabsBug = true"
+    ],
+    "class_hierarchy": [
+      "Proton"
+    ],
+    "generated_tests": [
+      "import Proton from 'src/core/Proton';\nimport Stats from 'src/core/Stats';\nimport Pool from 'src/core/Pool';\nimport Integration from 'src/core/Integration';\nimport Util from 'src/core/Util';\n\njest.mock('src/core/Stats');\njest.mock('src/core/Pool');\njest.mock('src/core/Integration');\njest.mock('src/core/Util');\n\ndescribe('Proton', () => {\n  let proton;\n\n  beforeEach(() => {\n    proton = new Proton('euler');\n  });\n\n  it('should dispatch PROTON_UPDATE event on update', () => {\n    const dispatchEvent = jest.fn();\n    proton.dispatchEvent = dispatchEvent;\n\n    proton.update();\n\n    expect(dispatchEvent).toHaveBeenCalledWith(Proton.PROTON_UPDATE);\n  });\n\n  it('should dispatch PROTON_UPDATE_AFTER event on update', () => {\n    const dispatchEvent = jest.fn();\n    proton.dispatchEvent = dispatchEvent;\n\n    proton.update();\n\n    expect(dispatchEvent).toHaveBeenCalledWith(Proton.PROTON_UPDATE_AFTER);\n  });\n\n  it('should call emittersUpdate with elapsed time if USE_CLOCK is true', () => {\n    Proton.USE_CLOCK = true;\n    const emittersUpdate = jest.fn();\n    proton.emittersUpdate = emittersUpdate;\n    const now = Date.now();\n    Date.now = jest.fn(() => now);\n\n    proton.update();\n\n    expect(emittersUpdate).toHaveBeenCalledWith(expect.any(Number));\n  });\n\n  it('should call emittersUpdate with DEFAULT_INTERVAL if USE_CLOCK is false', () => {\n    Proton.USE_CLOCK = false;\n    const emittersUpdate = jest.fn();\n    proton.emittersUpdate = emittersUpdate;\n\n    proton.update();\n\n    expect(emittersUpdate).toHaveBeenCalledWith(Proton.DEFAULT_INTERVAL);\n  });\n\n  it('should call amendChangeTabsBug if USE_CLOCK is true', () => {\n    Proton.USE_CLOCK = true;\n    const amendChangeTabsBug = jest.fn();\n    proton.amendChangeTabsBug = amendChangeTabsBug;\n\n    proton.update();\n\n    expect(amendChangeTabsBug).toHaveBeenCalled();\n  });\n\n  it('should not call amendChangeTabsBug if USE_CLOCK is false', () => {\n    Proton.USE_CLOCK = false;\n    const amendChangeTabsBug = jest.fn();\n    proton.amendChangeTabsBug = amendChangeTabsBug;\n\n    proton.update();\n\n    expect(amendChangeTabsBug).not.toHaveBeenCalled();\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "removeEmitter",
+    "src_file": "src/core/Proton.js",
+    "test_file": "test/core/Proton/removeEmitter.test.js",
+    "code": "removeEmitter(emitter) {\n    const index = this.emitters.indexOf(emitter);\n    this.emitters.splice(index, 1);\n    emitter.parent = null;\n\n    this.dispatchEvent(Proton.EMITTER_REMOVED, emitter);\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Proton",
+    "full_class_name": "Proton",
+    "class_constructor": [
+      "constructor(integrationType) {\n    this.emitters = [];\n    this.renderers = [];\n\n    this.time = 0;\n    this.now = 0;\n    this.then = 0;\n    this.elapsed = 0;\n\n    this.stats = new Stats(this);\n    this.pool = new Pool(80);\n\n    this.integrationType = Util.initValue(integrationType, Proton.EULER);\n    this.integrator = new Integration(this.integrationType);\n\n    this._fps = \"auto\";\n    this._interval = Proton.DEFAULT_INTERVAL;\n  }"
+    ],
+    "class_fields": [
+      "static USE_CLOCK = false",
+      "static MEASURE = 100",
+      "static EULER = \"euler\"",
+      "static RK2 = \"runge-kutta2\"",
+      "static PARTICLE_CREATED = \"PARTICLE_CREATED\"",
+      "static PARTICLE_UPDATE = \"PARTICLE_UPDATE\"",
+      "static PARTICLE_SLEEP = \"PARTICLE_SLEEP\"",
+      "static PARTICLE_DEAD = \"PARTICLE_DEAD\"",
+      "static EMITTER_ADDED = \"EMITTER_ADDED\"",
+      "static EMITTER_REMOVED = \"EMITTER_REMOVED\"",
+      "static PROTON_UPDATE = \"PROTON_UPDATE\"",
+      "static PROTON_UPDATE_AFTER = \"PROTON_UPDATE_AFTER\"",
+      "static DEFAULT_INTERVAL = 0.0167",
+      "static amendChangeTabsBug = true"
+    ],
+    "class_hierarchy": [
+      "Proton"
+    ],
+    "generated_tests": [
+      "import Proton from 'src/core/Proton';\nimport { EventEmitter } from 'events';\n\ndescribe('Proton', () => {\n  describe('removeEmitter', () => {\n    let proton;\n    let emitter;\n\n    beforeEach(() => {\n      proton = new Proton();\n      emitter = new EventEmitter();\n      proton.emitters.push(emitter);\n    });\n\n    it('should remove the emitter from the emitters array', () => {\n      proton.removeEmitter(emitter);\n      expect(proton.emitters).not.toContain(emitter);\n    });\n\n    it('should set the parent of the emitter to null', () => {\n      proton.removeEmitter(emitter);\n      expect(emitter.parent).toBeNull();\n    });\n\n    it('should dispatch a PROTON_EMITTER_REMOVED event', () => {\n      const dispatchSpy = jest.spyOn(proton, 'dispatchEvent');\n      proton.removeEmitter(emitter);\n      expect(dispatchSpy).toHaveBeenCalledWith(Proton.EMITTER_REMOVED, emitter);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "destroy",
+    "src_file": "src/core/Proton.js",
+    "test_file": "test/core/Proton/destroy.test.js",
+    "code": "destroy(remove = false) {\n    const destroyOther = () => {\n      this.time = 0;\n      this.then = 0;\n      this.pool.destroy();\n      this.stats.destroy();\n\n      Util.destroyAll(this.emitters);\n      Util.destroyAll(this.renderers, this.getAllParticles());\n\n      this.integrator = null;\n      this.renderers = null;\n      this.emitters = null;\n      this.stats = null;\n      this.pool = null;\n    };\n\n    if (remove) {\n      setTimeout(destroyOther, 200);\n    } else {\n      destroyOther();\n    }\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Proton",
+    "full_class_name": "Proton",
+    "class_constructor": [
+      "constructor(integrationType) {\n    this.emitters = [];\n    this.renderers = [];\n\n    this.time = 0;\n    this.now = 0;\n    this.then = 0;\n    this.elapsed = 0;\n\n    this.stats = new Stats(this);\n    this.pool = new Pool(80);\n\n    this.integrationType = Util.initValue(integrationType, Proton.EULER);\n    this.integrator = new Integration(this.integrationType);\n\n    this._fps = \"auto\";\n    this._interval = Proton.DEFAULT_INTERVAL;\n  }"
+    ],
+    "class_fields": [
+      "static USE_CLOCK = false",
+      "static MEASURE = 100",
+      "static EULER = \"euler\"",
+      "static RK2 = \"runge-kutta2\"",
+      "static PARTICLE_CREATED = \"PARTICLE_CREATED\"",
+      "static PARTICLE_UPDATE = \"PARTICLE_UPDATE\"",
+      "static PARTICLE_SLEEP = \"PARTICLE_SLEEP\"",
+      "static PARTICLE_DEAD = \"PARTICLE_DEAD\"",
+      "static EMITTER_ADDED = \"EMITTER_ADDED\"",
+      "static EMITTER_REMOVED = \"EMITTER_REMOVED\"",
+      "static PROTON_UPDATE = \"PROTON_UPDATE\"",
+      "static PROTON_UPDATE_AFTER = \"PROTON_UPDATE_AFTER\"",
+      "static DEFAULT_INTERVAL = 0.0167",
+      "static amendChangeTabsBug = true"
+    ],
+    "class_hierarchy": [
+      "Proton"
+    ],
+    "generated_tests": [
+      "import Proton from 'src/core/Proton';\nimport Util from 'src/core/Util';\nimport Stats from 'src/core/Stats';\nimport Pool from 'src/core/Pool';\nimport Integration from 'src/core/Integration';\n\njest.mock('src/core/Util');\njest.mock('src/core/Stats');\njest.mock('src/core/Pool');\njest.mock('src/core/Integration');\n\ndescribe('Proton', () => {\n  let proton;\n\n  beforeEach(() => {\n    proton = new Proton('euler');\n  });\n\n  afterEach(() => {\n    jest.clearAllMocks();\n  });\n\n  describe('destroy', () => {\n    it('should reset all properties and destroy other objects', () => {\n      proton.destroy();\n\n      expect(proton.time).toBe(0);\n      expect(proton.then).toBe(0);\n      expect(proton.pool.destroy).toHaveBeenCalled();\n      expect(proton.stats.destroy).toHaveBeenCalled();\n      expect(Util.destroyAll).toHaveBeenCalledTimes(2);\n      expect(proton.integrator).toBeNull();\n      expect(proton.renderers).toBeNull();\n      expect(proton.emitters).toBeNull();\n      expect(proton.stats).toBeNull();\n      expect(proton.pool).toBeNull();\n    });\n\n    it('should call destroyOther after 200ms if remove is true', (done) => {\n      jest.useFakeTimers();\n\n      proton.destroy(true);\n\n      setTimeout(() => {\n        expect(Util.destroyAll).toHaveBeenCalledTimes(2);\n        expect(proton.pool.destroy).toHaveBeenCalled();\n        expect(proton.stats.destroy).toHaveBeenCalled();\n        done();\n      }, 200);\n\n      jest.runAllTimers();\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "init",
+    "src_file": "src/render/BaseRenderer.js",
+    "test_file": "test/render/BaseRenderer/init.test.js",
+    "code": "init(proton) {\n    this.parent = proton;\n\n    proton.addEventListener(\"PROTON_UPDATE\", this._protonUpdateHandler);\n    proton.addEventListener(\"PROTON_UPDATE_AFTER\", this._protonUpdateAfterHandler);\n\n    proton.addEventListener(\"EMITTER_ADDED\", this._emitterAddedHandler);\n    proton.addEventListener(\"EMITTER_REMOVED\", this._emitterRemovedHandler);\n\n    proton.addEventListener(\"PARTICLE_CREATED\", this._particleCreatedHandler);\n    proton.addEventListener(\"PARTICLE_UPDATE\", this._particleUpdateHandler);\n    proton.addEventListener(\"PARTICLE_DEAD\", this._particleDeadHandler);\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "BaseRenderer",
+    "full_class_name": "BaseRenderer",
+    "class_constructor": [
+      "constructor(element, stroke) {\n    this.pool = new Pool();\n    this.element = element;\n    this.stroke = stroke;\n    this.circleConf = { isCircle: true };\n\n    this.initEventHandler();\n    this.name = \"BaseRenderer\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "BaseRenderer"
+    ],
+    "generated_tests": [
+      "import BaseRenderer from 'src/render/BaseRenderer';\nimport Proton from 'proton-api';\n\ndescribe('BaseRenderer', () => {\n  let renderer;\n  let proton;\n\n  beforeEach(() => {\n    renderer = new BaseRenderer(document.createElement('div'), '#000');\n    proton = new Proton();\n    renderer.init(proton);\n  });\n\n  it('should add event listeners to proton', () => {\n    const eventTypes = [\n      'PROTON_UPDATE',\n      'PROTON_UPDATE_AFTER',\n      'EMITTER_ADDED',\n      'EMITTER_REMOVED',\n      'PARTICLE_CREATED',\n      'PARTICLE_UPDATE',\n      'PARTICLE_DEAD'\n    ];\n\n    eventTypes.forEach(eventType => {\n      expect(proton.addEventListener).toHaveBeenCalledWith(eventType, expect.anything());\n    });\n  });\n\n  it('should set parent of proton to instance of BaseRenderer', () => {\n    expect(proton.parent).toBe(renderer);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "destroy",
+    "src_file": "src/render/BaseRenderer.js",
+    "test_file": "test/render/BaseRenderer/destroy.test.js",
+    "code": "destroy() {\n    this.remove();\n    this.pool.destroy();\n    this.pool = null;\n    this.element = null;\n    this.stroke = null;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "BaseRenderer",
+    "full_class_name": "BaseRenderer",
+    "class_constructor": [
+      "constructor(element, stroke) {\n    this.pool = new Pool();\n    this.element = element;\n    this.stroke = stroke;\n    this.circleConf = { isCircle: true };\n\n    this.initEventHandler();\n    this.name = \"BaseRenderer\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "BaseRenderer"
+    ],
+    "generated_tests": [
+      "import BaseRenderer from 'src/render/BaseRenderer';\nimport Pool from 'src/render/Pool';\n\ndescribe('BaseRenderer', () => {\n  let renderer;\n  let mockElement;\n  let mockStroke;\n  let mockPool;\n\n  beforeEach(() => {\n    mockElement = document.createElement('div');\n    mockStroke = '#000000';\n    mockPool = new Pool();\n    renderer = new BaseRenderer(mockElement, mockStroke);\n    renderer.pool = mockPool;\n  });\n\n  afterEach(() => {\n    jest.clearAllMocks();\n  });\n\n  it('should call remove method on the element', () => {\n    const removeMock = jest.fn();\n    mockElement.remove = removeMock;\n\n    renderer.destroy();\n\n    expect(removeMock).toHaveBeenCalled();\n  });\n\n  it('should call destroy method on the pool', () => {\n    const destroyMock = jest.fn();\n    mockPool.destroy = destroyMock;\n\n    renderer.destroy();\n\n    expect(destroyMock).toHaveBeenCalled();\n  });\n\n  it('should set pool to null', () => {\n    renderer.destroy();\n\n    expect(renderer.pool).toBeNull();\n  });\n\n  it('should set element to null', () => {\n    renderer.destroy();\n\n    expect(renderer.element).toBeNull();\n  });\n\n  it('should set stroke to null', () => {\n    renderer.destroy();\n\n    expect(renderer.stroke).toBeNull();\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "remove",
+    "src_file": "src/render/BaseRenderer.js",
+    "test_file": "test/render/BaseRenderer/remove.test.js",
+    "code": "remove(proton) {\n    this.parent.removeEventListener(\"PROTON_UPDATE\", this._protonUpdateHandler);\n    this.parent.removeEventListener(\"PROTON_UPDATE_AFTER\", this._protonUpdateAfterHandler);\n\n    this.parent.removeEventListener(\"EMITTER_ADDED\", this._emitterAddedHandler);\n    this.parent.removeEventListener(\"EMITTER_REMOVED\", this._emitterRemovedHandler);\n\n    this.parent.removeEventListener(\"PARTICLE_CREATED\", this._particleCreatedHandler);\n    this.parent.removeEventListener(\"PARTICLE_UPDATE\", this._particleUpdateHandler);\n    this.parent.removeEventListener(\"PARTICLE_DEAD\", this._particleDeadHandler);\n\n    this.parent = null;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "BaseRenderer",
+    "full_class_name": "BaseRenderer",
+    "class_constructor": [
+      "constructor(element, stroke) {\n    this.pool = new Pool();\n    this.element = element;\n    this.stroke = stroke;\n    this.circleConf = { isCircle: true };\n\n    this.initEventHandler();\n    this.name = \"BaseRenderer\";\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "BaseRenderer"
+    ],
+    "generated_tests": [
+      "import BaseRenderer from 'src/render/BaseRenderer';\n\ndescribe('BaseRenderer', () => {\n  let renderer;\n  let mockParent;\n\n  beforeEach(() => {\n    mockParent = {\n      removeEventListener: jest.fn(),\n    };\n    renderer = new BaseRenderer(null, null);\n    renderer.parent = mockParent;\n  });\n\n  it('should remove all event listeners', () => {\n    renderer.remove();\n\n    expect(mockParent.removeEventListener).toHaveBeenCalledTimes(6);\n    expect(mockParent.removeEventListener).toHaveBeenNthCalledWith(1, \"PROTON_UPDATE\", expect.any(Function));\n    expect(mockParent.removeEventListener).toHaveBeenNthCalledWith(2, \"PROTON_UPDATE_AFTER\", expect.any(Function));\n    expect(mockParent.removeEventListener).toHaveBeenNthCalledWith(3, \"EMITTER_ADDED\", expect.any(Function));\n    expect(mockParent.removeEventListener).toHaveBeenNthCalledWith(4, \"EMITTER_REMOVED\", expect.any(Function));\n    expect(mockParent.removeEventListener).toHaveBeenNthCalledWith(5, \"PARTICLE_CREATED\", expect.any(Function));\n    expect(mockParent.removeEventListener).toHaveBeenNthCalledWith(6, \"PARTICLE_UPDATE\", expect.any(Function));\n    expect(mockParent.removeEventListener).toHaveBeenNthCalledWith(7, \"PARTICLE_DEAD\", expect.any(Function));\n    expect(renderer.parent).toBeNull();\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "get",
+    "src_file": "src/core/Pool.js",
+    "test_file": "test/core/Pool/get.test.js",
+    "code": "get(target, params, uid) {\n    let p;\n    uid = uid || target.__puid || Puid.getId(target);\n\n    if (this.cache[uid] && this.cache[uid].length > 0) {\n      p = this.cache[uid].pop();\n    } else {\n      p = this.createOrClone(target, params);\n    }\n\n    p.__puid = target.__puid || uid;\n    return p;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Pool",
+    "full_class_name": "Pool",
+    "class_constructor": [
+      "constructor(num) {\n    this.total = 0;\n    this.cache = {};\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Pool"
+    ],
+    "generated_tests": [
+      "import Pool from 'src/core/Pool';\nimport Puid from 'src/core/Puid';\n\ndescribe('Pool', () => {\n  let pool;\n\n  beforeEach(() => {\n    pool = new Pool();\n  });\n\n  describe('get', () => {\n    it('should return a new instance if no cached instance exists', () => {\n      const target = {};\n      const params = {};\n      const uid = '123';\n      Puid.getId = jest.fn().mockReturnValue(uid);\n      const createOrClone = jest.fn().mockReturnValue('new instance');\n      pool.createOrClone = createOrClone;\n\n      const result = pool.get(target, params, uid);\n\n      expect(result).toEqual('new instance');\n      expect(createOrClone).toHaveBeenCalledWith(target, params);\n      expect(Puid.getId).toHaveBeenCalledWith(target);\n    });\n\n    it('should return a cached instance if it exists', () => {\n      const target = {};\n      const params = {};\n      const uid = '123';\n      const cachedInstance = 'cached instance';\n      pool.cache = { [uid]: [cachedInstance] };\n\n      const result = pool.get(target, params, uid);\n\n      expect(result).toEqual(cachedInstance);\n      expect(pool.cache[uid]).toHaveLength(0);\n    });\n\n    it('should set the __puid property of the instance', () => {\n      const target = {};\n      const params = {};\n      const uid = '123';\n      const instance = {};\n      pool.createOrClone = jest.fn().mockReturnValue(instance);\n\n      const result = pool.get(target, params, uid);\n\n      expect(result.__puid).toEqual(uid);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "destroy",
+    "src_file": "src/core/Pool.js",
+    "test_file": "test/core/Pool/destroy.test.js",
+    "code": "destroy() {\n    for (let id in this.cache) {\n      this.cache[id].length = 0;\n      delete this.cache[id];\n    }\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Pool",
+    "full_class_name": "Pool",
+    "class_constructor": [
+      "constructor(num) {\n    this.total = 0;\n    this.cache = {};\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Pool"
+    ],
+    "generated_tests": [
+      "import Pool from '../../src/core/Pool';\n\ndescribe('Pool', () => {\n  describe('destroy', () => {\n    let pool;\n\n    beforeEach(() => {\n      pool = new Pool();\n      pool.cache = {\n        1: [],\n        2: [],\n        3: []\n      };\n    });\n\n    it('should clear the cache', () => {\n      pool.destroy();\n      expect(pool.cache).toEqual({});\n    });\n\n    it('should delete all items in the cache', () => {\n      pool.destroy();\n      expect(Object.keys(pool.cache).length).toBe(0);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/Proton",
+    "name": "expire",
+    "src_file": "src/core/Pool.js",
+    "test_file": "test/core/Pool/expire.test.js",
+    "code": "expire(target) {\n    return this.getCache(target.__puid).push(target);\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "Pool",
+    "full_class_name": "Pool",
+    "class_constructor": [
+      "constructor(num) {\n    this.total = 0;\n    this.cache = {};\n  }"
+    ],
+    "class_fields": [],
+    "class_hierarchy": [
+      "Pool"
+    ],
+    "generated_tests": [
+      "import Pool from '../../src/core/Pool';\n\ndescribe('Pool', () => {\n  let pool;\n\n  beforeEach(() => {\n    pool = new Pool();\n  });\n\n  describe('expire', () => {\n    it('should add an item to the cache', () => {\n      const target = { __puid: 'test' };\n      const result = pool.expire(target);\n      expect(result).toEqual([target]);\n      expect(pool.getCache('test')).toEqual([target]);\n    });\n\n    it('should return the length of the cache after adding an item', () => {\n      const target = { __puid: 'test' };\n      const result = pool.expire(target);\n      expect(result).toEqual(1);\n    });\n\n    it('should add multiple items to the cache', () => {\n      const target1 = { __puid: 'test' };\n      const target2 = { __puid: 'test' };\n      pool.expire(target1);\n      const result = pool.expire(target2);\n      expect(result).toEqual(2);\n      expect(pool.getCache('test')).toEqual([target1, target2]);\n    });\n\n    it('should handle non-existing cache', () => {\n      const target = { __puid: 'non-existing' };\n      const result = pool.expire(target);\n      expect(result).toEqual([target]);\n      expect(pool.getCache('non-existing')).toEqual([target]);\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  }
+]
