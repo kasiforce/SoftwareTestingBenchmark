@@ -1,15 +1,258 @@
-# import torch
-# from transformers import AutoTokenizer, AutoModelForCausalLM
-#
-# tokenizer = AutoTokenizer.from_pretrained("deepseek-ai/deepseek-coder-6.7b-instruct", trust_remote_code=True)
-# model = AutoModelForCausalLM.from_pretrained("deepseek-ai/deepseek-coder-6.7b-instruct", trust_remote_code=True, torch_dtype=torch.bfloat16).cuda()
-# messages=[
-#     { 'role': 'user', 'content': "write a quick sort algorithm in python."}
-# ]
-# inputs = tokenizer.apply_chat_template(messages, add_generation_prompt=True, return_tensors="pt").to(model.device)
-# # tokenizer.eos_token_id is the id of <|EOT|> token
-# outputs = model.generate(inputs, max_new_tokens=512, do_sample=False, top_k=50, num_return_sequences=1, eos_token_id=tokenizer.eos_token_id)
-# print(tokenizer.decode(outputs[0][len(inputs[0]):], skip_special_tokens=True))
+# # from python_focal_extractor import FocalExtractor
+
+# # if __name__ == "__main__":
+# #     extractor = FocalExtractor("./django")
+# #     extractor.save_to_json("django_focal.json")
+
+
+# import json
+# import openai
+# from openai import OpenAI
+# import os
+# import time
+# from typing import List, Dict, Any
+# import logging
+
+# # 配置日志
+# logging.basicConfig(level=logging.INFO)
+# logger = logging.getLogger(__name__)
+
+# class TestCodeGenerator:
+#     def __init__(self, api_key: str, model: str = "gpt-4o-mini"):
+#         """
+#         初始化测试代码生成器
+
+#         Args:
+#             api_key: OpenAI API密钥
+#             model: 使用的模型名称
+#         """
+#         self.api_key = api_key
+#         self.model = model
+#         openai.api_key = api_key
+
+#     def generate_test_prompt(self, test_framework, function_info: Dict[str, Any]) -> str:
+#         """
+#         为给定函数生成测试提示
+
+#         Args:
+#             function_info: 函数信息字典
+
+#         Returns:
+#             生成的提示字符串
+#         """
+#         function_name = function_info['name']
+#         function_code = function_info['code']
+#         # imports = '\n'.join(function_info['imports']['imports'])
+#         # from_imports = '\n'.join(function_info['imports']['from_imports'])
+#         # all_imports = imports + '\n' + from_imports + '\n'
+#         class_name = None
+#         if function_info['type'] == "method":
+#             class_name = function_info.get('class_name')
+#         file_path = function_info['src_file']
+#         test_path = function_info['test_file']
+#         prompt = f"""
+# Please generate a test class for the following function.
+
+# Function Information:
+# - Src file: {file_path}
+# - Function name: {function_name}
+# - Class: {class_name if class_name else 'Standalone function'}
+# - Is async: {function_info.get('is_async', False)}
+
+# Function Code:
+# ```python
+# {function_code}
+# Requirements:
+
+# Use {test_framework} framework for writing tests
+
+# Your job is to output corresponding test class that obtains high coverage and invokes the code under test.
+# Each test case must be a function starting with test_.
+# The test code should be written into {test_path}.
+# Return ONLY code without explanations, non-code text, or markdown formatting.
+# Please make sure the imports are correct.
+# ```python
+# class Testfunction_name
+# """
+# # The test code will be written into the file /mnt/dc2024/Untitled/benchmark/markitdown/tests/generated/test_{function_name}.py.
+# # Please make sure the imports are correct.
+#         return prompt
+
+
+#     def call_llm(self, prompt: str, max_K: int = 1) -> str:
+#         """
+#         调用大模型API生成测试代码
+
+#         Args:
+#             prompt: 提示文本
+#             max_K: 最多生成测试用例数量
+
+#         Returns:
+#             生成的测试代码
+#         """
+#         message = [ {"role": "system", "content": "You are a professional Python test engineer specializing in writing high-quality unit test code."},
+#                     {"role": "user", "content": prompt}
+#                   ]
+#         tests = []
+#         client = OpenAI(api_key=self.api_key,
+#                     base_url="https://api.agicto.cn/v1")
+#         for k in range(max_K):
+#             try:
+#                 response = client.chat.completions.create(
+#                     model=self.model,
+#                     messages=message,
+#                     temperature=0.2,
+#                     max_tokens=1024
+#                 )
+#                 if response.choices and len(response.choices) > 0:
+#                     message_content = response.choices[0].message.content
+#                     if message_content:
+#                         test = self._extract_code(message_content)
+#                         tests.append(test)
+#                         message.append({"role": "assistant", "content": test})
+#                         message.append({"role": "user", "content": "Generate another test method for the function under test. Your answer must be different from previously-generated test cases and should cover different statements and branches."})
+
+
+#             except openai.RateLimitError:
+#                 wait_time = 2 ** k  # 指数退避
+#                 logger.warning(f"速率限制，等待 {wait_time} 秒后重试...")
+#                 time.sleep(wait_time)
+
+#             except openai.APIError as e:
+#                 logger.error(f"API错误: {e}")
+#                 if k >= 1:
+#                     raise
+#                 time.sleep(1)
+
+#             except Exception as e:
+#                 logger.error(f"未知错误: {e}")
+#                 if k >= 1:
+#                     raise
+#                 time.sleep(1)
+
+#         return tests
+
+#     def generate_test_for_function(self, function_info: Dict[str, Any]) -> Dict[str, Any]:
+#         """
+#         为单个函数生成测试代码
+
+#         Args:
+#             function_info: 函数信息
+
+#         Returns:
+#             包含测试代码的增强函数信息
+#         """
+#         logger.info(f"为函数 {function_info['name']} 生成测试代码...")
+
+#         try:
+#             prompt = self.generate_test_prompt("pytest", function_info)
+#             tests = self.call_llm(prompt)
+#             result = function_info.copy()
+#             result['generated_tests'] = tests
+#             result['test_generation_status'] = 'success'
+
+#             logger.info(f"成功为 {function_info['name']} 生成测试代码")
+
+#         except Exception as e:
+#             logger.error(f"为 {function_info['name']} 生成测试代码失败: {e}")
+#             result = function_info.copy()
+#             result['generated_tests'] = []
+#             result['test_generation_status'] = f'failed: {str(e)}'
+
+#         return result
+
+#     def generate_tests_for_functions(self, functions: List[Dict[str, Any]],
+#                                 output_file: str = None,
+#                                 batch_delay: int = 1) -> List[Dict[str, Any]]:
+#         """
+#         为函数列表批量生成测试代码
+
+#         Args:
+#             functions: 函数信息列表
+#             output_file: 输出文件路径（可选）
+#             batch_delay: 批次之间的延迟（秒）
+
+#         Returns:
+#             包含测试代码的函数列表
+#         """
+#         results = []
+#         total = len(functions)
+
+#         for i, func in enumerate(functions, 1):
+#             logger.info(f"处理进度: {i}/{total}")
+
+#             result = self.generate_test_for_function(func)
+#             # print(result)
+#             results.append(result)
+
+#             # 保存中间结果
+#             if output_file and i % 10 == 0:
+#                 self.save_results(results, f"{output_file}.partial")
+
+#             # 避免速率限制
+#             time.sleep(batch_delay)
+
+#         # 保存最终结果
+#         if output_file:
+#             self.save_results(results, output_file)
+
+#         return results
+
+#     def _extract_code(self, s: str):
+#         # 使用 '```python' 和 '```' 来分割字符串
+#         parts = s.split('```python')
+#         if len(parts) > 1:
+#             # 移除后面的 '```'
+#             code = parts[1].rsplit('```', 1)[0]
+#             return code.strip("\n").strip()
+#         return s.strip("\n").strip()
+
+#     def save_results(self, results: List[Dict[str, Any]], output_file: str):
+#         """
+#         保存结果到JSON文件
+
+#         Args:
+#             results: 结果列表
+#             output_file: 输出文件路径
+#         """
+#         try:
+#             with open(output_file, 'w', encoding='utf-8') as f:
+#                 json.dump(results, f, indent=2, ensure_ascii=False)
+#             logger.info(f"结果已保存到: {output_file}")
+#         except Exception as e:
+#             logger.error(f"保存结果失败: {e}")
+
+# def main():
+#     # 从环境变量获取API密钥
+#     api_key = ""
+#     if not api_key:
+#         raise ValueError("请设置 OPENAI_API_KEY 环境变量")
+
+
+#     # 初始化生成器
+#     generator = TestCodeGenerator(api_key=api_key, model="gpt-4o-mini")
+
+#     # 加载函数数据
+#     input_file = "astropy_focal.json"  # 替换为您的输入文件路径
+#     with open(input_file, 'r', encoding='utf-8') as f:
+#         functions_data = json.load(f)
+
+#     logger.info(f"找到 {len(functions_data)} 个需要生成测试的函数")
+
+#     # 生成测试代码
+#     output_file = "astropy_tests_class.json"
+#     results = generator.generate_tests_for_functions(
+#         functions=functions_data,
+#         output_file=output_file,
+#         batch_delay=1  # 每次调用间隔1秒
+#     )
+
+#     # 统计结果
+#     success_count = sum(1 for r in results if r.get('test_generation_status') == 'success')
+#     logger.info(f"测试生成完成: {success_count}/{len(results)} 成功")
+
+# if __name__ == "__main__":
+#     main()
 
 
 import json
@@ -18,216 +261,39 @@ from openai import OpenAI
 import os
 import re
 import time
-import threading
 from typing import List, Dict, Any
 import logging
 import glob
 import concurrent.futures
-from concurrent.futures import ThreadPoolExecutor, as_completed
-import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, as_completed
 
 # 配置日志
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-
-# 设置CUDA同步调试（如果需要）
-os.environ['CUDA_LAUNCH_BLOCKING'] = '0'  # 设为0可以提高性能，设为1便于调试
-
-
-class SafeParallelGenerator:
-    def __init__(self, model_name: str = "deepseek-ai/deepseek-coder-6.7b-instruct"):
-        """
-        安全的并行生成器，使用单个模型实例但线程安全的生成方法
-        """
-        self.model_name = model_name
-
-        # 初始化tokenizer
-        self.tokenizer = AutoTokenizer.from_pretrained(
-            model_name,
-            trust_remote_code=True,
-            padding_side="left"
-        )
-
-        # 确保有pad_token
-        if self.tokenizer.pad_token is None:
-            self.tokenizer.pad_token = self.tokenizer.eos_token
-            logger.info(f"Set pad_token to eos_token: {self.tokenizer.eos_token_id}")
-
-        # 初始化模型
-        logger.info(f"Loading model {model_name}...")
-        try:
-            self.model = AutoModelForCausalLM.from_pretrained(
-                model_name,
-                trust_remote_code=True,
-                torch_dtype=torch.float16,
-                device_map="auto",
-                low_cpu_mem_usage=True
-            )
-            self.model.eval()
-            logger.info(f"Model loaded on device: {self.model.device}")
-        except Exception as e:
-            logger.error(f"Failed to load model: {e}")
-            raise
-
-        # 创建线程锁，确保模型生成时的线程安全
-        self.generation_lock = threading.Lock()
-
-    def _prepare_inputs(self, messages: List[Dict[str, str]]) -> Dict[str, torch.Tensor]:
-        """准备单个输入的tokenized tensors"""
-        try:
-            # 应用聊天模板
-            text = self.tokenizer.apply_chat_template(
-                messages,
-                tokenize=False,
-                add_generation_prompt=True
-            )
-
-            # Tokenize并添加padding
-            inputs = self.tokenizer(
-                text,
-                return_tensors="pt",
-                padding=True,
-                truncation=True,
-                max_length=4096,
-                pad_to_multiple_of=8
-            )
-
-            # 移动到正确的设备
-            inputs = {k: v.to(self.model.device) for k, v in inputs.items()}
-
-            return inputs
-
-        except Exception as e:
-            logger.error(f"Error preparing inputs: {e}")
-            raise
-
-    def _batch_prepare_inputs(self, messages_list: List[List[Dict[str, str]]]) -> Dict[str, torch.Tensor]:
-        """批量准备输入"""
-        batch_texts = []
-
-        for messages in messages_list:
-            try:
-                text = self.tokenizer.apply_chat_template(
-                    messages,
-                    tokenize=False,
-                    add_generation_prompt=True
-                )
-                batch_texts.append(text)
-            except Exception as e:
-                logger.error(f"Error applying chat template: {e}")
-                # 添加安全的默认文本
-                batch_texts.append("Write a Python function.")
-
-        # 批量编码
-        inputs = self.tokenizer(
-            batch_texts,
-            return_tensors="pt",
-            padding=True,
-            truncation=True,
-            max_length=4096,
-            pad_to_multiple_of=8
-        )
-
-        # 移动到正确的设备
-        inputs = {k: v.to(self.model.device) for k, v in inputs.items()}
-
-        return inputs
-
-    def generate_single(self, messages: List[Dict[str, str]], max_new_tokens: int = 512) -> str:
-        """线程安全的单个生成"""
-        with self.generation_lock:  # 使用锁确保线程安全
-            try:
-                inputs = self._prepare_inputs(messages)
-
-                with torch.no_grad():
-                    outputs = self.model.generate(
-                        **inputs,
-                        max_new_tokens=max_new_tokens,
-                        do_sample=False,
-                        temperature=0.,
-                        top_p=0.95,
-                        top_k=50,
-                        eos_token_id=self.tokenizer.eos_token_id,
-                        pad_token_id=self.tokenizer.pad_token_id,
-                        # attention_mask=inputs.get('attention_mask')
-                    )
-
-                # 解码输出
-                generated_ids = outputs[0, inputs['input_ids'].shape[1]:]
-                text = self.tokenizer.decode(generated_ids, skip_special_tokens=True)
-
-                return text.strip()
-
-            except Exception as e:
-                logger.error(f"Generation error: {e}")
-                return f"Generation failed: {str(e)}"
-
-    def generate_batch(self, messages_list: List[List[Dict[str, str]]], max_new_tokens: int = 512) -> List[str]:
-        """线程安全的批量生成"""
-        with self.generation_lock:  # 使用锁确保线程安全
-            try:
-                inputs = self._batch_prepare_inputs(messages_list)
-
-                with torch.no_grad():
-                    outputs = self.model.generate(
-                        **inputs,
-                        max_new_tokens=max_new_tokens,
-                        do_sample=False,
-                        temperature=0.,
-                        top_p=0.95,
-                        top_k=50,
-                        eos_token_id=self.tokenizer.eos_token_id,
-                        pad_token_id=self.tokenizer.pad_token_id,
-                        # attention_mask=inputs.get('attention_mask')
-                    )
-
-                # 解码所有结果
-                results = []
-                for i in range(len(messages_list)):
-                    generated_ids = outputs[i, inputs['input_ids'].shape[1]:]
-                    text = self.tokenizer.decode(generated_ids, skip_special_tokens=True)
-                    results.append(text.strip())
-
-                return results
-
-            except Exception as e:
-                logger.error(f"Batch generation error: {e}")
-                return [f"Generation failed: {str(e)}"] * len(messages_list)
 
 
 class TestCodeGenerator:
-    def __init__(self, api_key: str = None, model: str = "gpt-4o-mini", use_api: bool = True):
+    def __init__(self, api_key: str, input: str, testframe: str, model: str = "gpt-4o-mini"):
         """
         初始化测试代码生成器
 
         Args:
             api_key: OpenAI API密钥
+            testframe: 测试框架名称
             model: 使用的模型名称
-            use_api: 是否使用API
+            model: 使用的模型名称
         """
-        self.use_api = use_api
+        self.api_key = api_key
+        self.model = model
+        self.input = input
+        self.testframe = testframe
+        openai.api_key = api_key
 
-        if use_api:
-            self.api_key = api_key
-            self.model_name = model
-            openai.api_key = api_key
-            logger.info(f"Using API model: {model}")
-        else:
-            # 使用本地模型
-            self.model_name = model
-            self.generator = SafeParallelGenerator(model_name=model)
-            logger.info(f"Using local model: {model}")
-
-    def generate_test_prompt(self, test_framework: str, function_info: Dict[str, Any]) -> str:
+    def generate_test_prompt(self, test_framework, function_info: Dict[str, Any]) -> str:
         """
         为给定函数生成测试提示
 
         Args:
-            test_framework: 测试框架名称
             function_info: 函数信息字典
 
         Returns:
@@ -237,206 +303,192 @@ class TestCodeGenerator:
         function_code = function_info['code']
         # signature = function_code.split(':\n')[0]
         signature = function_code.split('{', 1)[0].rstrip()
+        print(signature)
 
-        match = re.search(r'^def\s+\w+\([^)]*\)(?:\s*->\s*[^:]+)?:', function_code, re.MULTILINE)
-        if match:
-            signature = match.group(0)
+        # match = re.search(r'^def\s+\w+\([^)]*\)(?:\s*->\s*[^:]+)?:', function_code, re.MULTILINE)
+        # if match:
+        #     signature = match.group(0)
 
         class_name = None
         class_info = {}
         if function_info['type'] == "method":
             class_name = function_info.get('class_name')
             class_info['class_name'] = class_name
-            if function_info.get('class_constructor'):
+            if function_info['class_constructor']:
                 class_info['class_constructor'] = function_info['class_constructor']
-            if function_info.get('class_fields'):
+            if function_info['class_fields']:
                 class_info['class_fields'] = function_info['class_fields']
-            # if function_info.get('class_variables'):
+            # if function_info['class_variables']:
             #     class_info['class_variables'] = function_info['class_variables']
 
+        specification = function_info['specification']
         file_path = function_info['src_file']
         test_path = function_info['test_file']
-        specification = function_info['specification']
 
-#         prompt = f"""
-# Please generate a test class for the following function.
-#
-# Function Information:
-# - Src file: {file_path}
-# - Function name: {function_name}
-# - Class: {class_info if class_name else 'Standalone function'}
-# - Is async: {function_info.get('is_async', False)}
-#
-# Function Specification:
-# ```python
-# {signature}
-# ```{specification}```
-#
-# Requirements:
-# Use {test_framework} framework for writing tests.
-# Your job is to output corresponding test class that obtains high coverage and invokes the code under test.
-# Each test case must be a function starting with test_.
-# The test code should be written into {test_path}. Please make sure the imports are correct.
-# Return ONLY code without explanations, non-code text, or markdown formatting.
-#
-# ```python
-# <test code>
-# """
-
-
-#         prompt = f"""
-# Please generate a test class for the following function.
-#
-# Function Information:
-# - Src file: {file_path}
-# - Function name: {function_name}
-# - Class: {class_info if class_name else 'Standalone function'}
-#
-# Function Code:
-# ```python
-# {function_code}
-#
-# Requirements:
-# Use {test_framework} framework for writing tests.
-# Your job is to output corresponding test class that obtains high coverage and invokes the code under test.
-# The test code should be written into {test_path}. Please make sure the imports are correct.
-# Return ONLY code without explanations, non-code text, or markdown formatting.
-#
-# ```python
-# <test code>
-# """
-        prompt = f"""
+        if self.input == "specification":
+            prompt = f"""
 Please generate a test class for the following function.
 
 Function Information:
 - Src file: {file_path}
 - Function name: {function_name}
 - Class: {class_info if class_name else 'Standalone function'}
+- Is async: {function_info.get('is_async', False)}
 
 Function Specification:
-```java
+```javascript
 {signature}
 ```{specification}```
 
+
 Requirements:
-Java version: Java 8
 Use {test_framework} framework for writing tests.
 Your job is to output corresponding test class that obtains high coverage and invokes the code under test.
-Each test case must be a function starting with test_.
 The test code should be written into {test_path}. Please make sure the imports are correct.
 Return ONLY code without explanations, non-code text, or markdown formatting.
 
-```java
+```javascript
 <test code>
 """
-#         prompt = f"""
+
+#             prompt = f"""
 # Please generate a test class for the following function.
-#
+
 # Function Information:
 # - Src file: {file_path}
 # - Function name: {function_name}
 # - Class: {class_info if class_name else 'Standalone function'}
-#
+
 # Function Code:
-# ```java
+# ```python
 # {function_code}
-#
+
 # Requirements:
-# Java version: Java 8
 # Use {test_framework} framework for writing tests.
 # Your job is to output corresponding test class that obtains high coverage and invokes the code under test.
+# Each test case must be a function starting with test_.
 # The test code should be written into {test_path}. Please make sure the imports are correct.
 # Return ONLY code without explanations, non-code text, or markdown formatting.
-#
-# ```java
+
+# ```python
 # <test code>
 # """
+
+        # print(test_framework)
+        else:
+            prompt = f"""
+Please generate a test class for the following function.
+
+Function Information:
+- Src file: {file_path}
+- Function name: {function_name}
+- Class: {class_info if class_name else 'Standalone function'}
+- Is async: {function_info.get('is_async', False)}
+
+Function Code:
+```javascript
+{function_code}
+
+
+Requirements:
+Use {test_framework} framework for writing tests.
+Your job is to output corresponding test class that obtains high coverage and invokes the code under test.
+The test code should be written into {test_path}. Please make sure the imports are correct.
+Return ONLY code without explanations, non-code text, or markdown formatting.
+
+```javascript
+<test code>
+"""
+#             prompt = f"""
+# Please generate a test class for the following function.
+
+# Function Information:
+# - Src file: {file_path}
+# - Function name: {function_name}
+# - Class: {class_info if class_name else 'Standalone function'}
+# - Is async: {function_info.get('is_async', False)}
+
+# Function Specification:
+# ```python
+# {signature}
+# ```{specification}```
+
+# Requirements:
+# Use {test_framework} framework for writing tests.
+# Your job is to output corresponding test class that obtains high coverage and invokes the code under test.
+# Each test case must be a function starting with test_.
+# The test code should be written into {test_path}. Please make sure the imports are correct.
+# Return ONLY code without explanations, non-code text, or markdown formatting.
+
+# ```python
+# <test code>
+# """
+        # print(prompt)
         return prompt
 
-    def create_messages(self, prompt: str) -> List[Dict[str, str]]:
-        """创建消息格式"""
-        return [
-            {"role": "system",
-             "content": "You are a professional test engineer specializing in writing high-quality unit test code."},
-            {"role": "user", "content": prompt}
-        ]
-
-    def call_llm(self, prompt: str, max_K: int = 1) -> List[str]:
+    def call_llm(self, prompt: str, max_K: int = 3) -> str:
         """
-        调用大模型生成测试代码
+        调用大模型API生成测试代码
 
         Args:
             prompt: 提示文本
             max_K: 最多生成测试用例数量
 
         Returns:
-            生成的测试代码列表
+            生成的测试代码
         """
+        message = [{"role": "system",
+                    "content": "You are a professional test engineer specializing in writing high-quality unit test code."},
+                   {"role": "user", "content": prompt}
+                   ]
         tests = []
-
-        if self.use_api:
-            # API调用
-            message = self.create_messages(prompt)
-
-            for k in range(max_K):
-                try:
-                    client = OpenAI(
-                        api_key=self.api_key,
-                        base_url="https://api.agicto.cn/v1"
-                    )
-                    response = client.chat.completions.create(
-                        model=self.model_name,
-                        messages=message,
-                        temperature=0.2,
-                        max_tokens=4096
-                    )
-
-                    if response.choices and len(response.choices) > 0:
-                        message_content = response.choices[0].message.content
-                        if message_content:
-                            test = self._extract_code(message_content)
-                            tests.append(test)
-                            # 添加历史对话以便生成更多测试
-                            message.append({"role": "assistant", "content": test})
-                            message.append({"role": "user",
-                                            "content": "Generate another test method for the function under test. Your answer must be different from previously-generated test cases and should cover different statements and branches."})
-
-                except Exception as e:
-                    logger.error(f"API call error (attempt {k + 1}/{max_K}): {e}")
-                    if k >= max_K - 1:  # 最后一次尝试失败
-                        raise
-                    time.sleep(2 ** k)  # 指数退避
-        else:
-            # 本地模型调用
+        client = OpenAI(api_key=self.api_key, 
+                        base_url="https://api.apiyi.com/v1")
+                        # base_url="https://api.agicto.cn/v1")
+        # print(self.model)
+        for k in range(max_K):
             try:
-                messages = self.create_messages(prompt)
-                generated_text = self.generator.generate_single(messages, max_new_tokens=4096)
+                response = client.chat.completions.create(
+                    model=self.model,
+                    messages=message,
+                    temperature=0.,
+                    max_tokens=16384
+                )
+                # print(message)
+                # print(response)
+                if response.choices and len(response.choices) > 0:
+                    message_content = response.choices[0].message.content
+                    # print(message_content)
+                    if message_content:
+                        test = self._extract_code(message_content)
+                        if not test.strip():
+                            print(f"第 {k} 次尝试失败")
+                            time.sleep(1)
+                            continue
+                        tests.append(test)
+                        break
+                        # message.append({"role": "assistant", "content": test})
+                        # message.append({"role": "user",
+                                        # "content": "Generate another test method for the function under test. Your answer must be different from previously-generated test cases and should cover different statements and branches."})
 
-                if generated_text:
-                    # print(generated_text)
-                    test = self._extract_code(generated_text)
-                    tests.append(test)
+            except openai.RateLimitError:
+                wait_time = 2 ** k  # 指数退避
+                logger.warning(f"速率限制，等待 {wait_time} 秒后重试...")
+                time.sleep(wait_time)
 
-                    # 如果需要生成更多测试用例
-                    # for k in range(1, max_K):
-                    #     # 添加历史对话
-                    #     follow_up_messages = messages + [
-                    #         {"role": "assistant", "content": test},
-                    #         {"role": "user",
-                    #          "content": "Generate another test method for the function under test. Your answer must be different from previously-generated test cases and should cover different statements and branches."}
-                    #     ]
-                    #
-                    #     follow_up_text = self.generator.generate_single(follow_up_messages, max_new_tokens=512)
-                    #     if follow_up_text and "Generation failed" not in follow_up_text:
-                    #         follow_up_test = self._extract_code(follow_up_text)
-                    #         tests.append(follow_up_test)
-                    #         test = follow_up_test  # 更新最后一个测试用例
+            except openai.APIError as e:
+                logger.error(f"API错误: {e}")
+                if k >= 1:
+                    raise
+                time.sleep(1)
 
             except Exception as e:
-                logger.error(f"Local model generation error: {e}")
-                raise
+                logger.error(f"未知错误: {e}")
+                if k >= 1:
+                    raise
+                time.sleep(1)
 
-        return tests if tests else [""]
+        return tests
 
     def generate_test_for_function(self, function_info: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -448,272 +500,251 @@ Return ONLY code without explanations, non-code text, or markdown formatting.
         Returns:
             包含测试代码的增强函数信息
         """
-        function_name = function_info['name']
-        logger.info(f"为函数 {function_name} 生成测试代码...")
+        logger.info(f"为函数 {function_info['name']} 生成测试代码...")
 
         try:
-            prompt = self.generate_test_prompt("JUnit 5", function_info)
-            tests = self.call_llm(prompt, max_K=1)  # 默认生成1个测试用例
-
+            prompt = self.generate_test_prompt(self.testframe, function_info)
+            tests = self.call_llm(prompt)
             result = function_info.copy()
             result['generated_tests'] = tests
             result['test_generation_status'] = 'success'
-            # result['generated_at'] = time.strftime('%Y-%m-%d %H:%M:%S')
 
-            logger.info(f"成功为 {function_name} 生成测试代码")
+            logger.info(f"成功为 {function_info['name']} 生成测试代码")
 
         except Exception as e:
-            logger.error(f"为 {function_name} 生成测试代码失败: {e}")
+            logger.error(f"为 {function_info['name']} 生成测试代码失败: {e}")
             result = function_info.copy()
             result['generated_tests'] = []
             result['test_generation_status'] = f'failed: {str(e)}'
-            # result['generated_at'] = time.strftime('%Y-%m-%d %H:%M:%S')
 
         return result
 
-    def generate_tests_batch_parallel(self,
-                                      functions: List[Dict[str, Any]],
-                                      output_file: str = None,
-                                      max_workers: int = 4,
-                                      batch_size: int = 10,
-                                      batch_delay: int = 1) -> List[Dict[str, Any]]:
+    def generate_tests_for_functions_parallel(self,
+                                              functions: List[Dict[str, Any]],
+                                              output_file: str = None,
+                                              max_workers: int = 5,
+                                              save_interval: int = 10) -> List[Dict[str, Any]]:
         """
-        批量并行生成测试代码（优化版本）
+        为函数列表批量生成测试代码（并行版本）
 
         Args:
             functions: 函数信息列表
-            output_file: 输出文件路径
-            max_workers: 最大工作线程数
-            batch_size: 每批次处理数量
-            batch_delay: 批次间延迟（秒）
+            output_file: 输出文件路径（可选）
+            max_workers: 最大并行工作线程数
+            save_interval: 保存间隔（每处理多少个函数保存一次）
 
         Returns:
             包含测试代码的函数列表
         """
         results = []
-        total_functions = len(functions)
+        total = len(functions)
 
-        # 创建输出目录（如果不存在）
-        if output_file:
-            output_dir = os.path.dirname(output_file)
-            if output_dir and not os.path.exists(output_dir):
-                os.makedirs(output_dir)
+        # 创建线程池
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            # 提交所有任务
+            future_to_function = {
+                executor.submit(self.generate_test_for_function, func): func
+                for func in functions
+            }
 
-        # 处理所有批次
-        for batch_start in range(0, total_functions, batch_size):
-            batch_end = min(batch_start + batch_size, total_functions)
-            batch_functions = functions[batch_start:batch_end]
-            batch_num = batch_start // batch_size + 1
-            total_batches = (total_functions + batch_size - 1) // batch_size
+            # 处理完成的任务
+            completed_count = 0
+            for future in as_completed(future_to_function):
+                func = future_to_function[future]
+                try:
+                    result = future.result()
+                    results.append(result)
+                    completed_count += 1
 
-            logger.info(f"处理批次 {batch_num}/{total_batches}: 函数 {batch_start + 1} 到 {batch_end}")
+                    # 更新进度
+                    logger.info(f"处理进度: {completed_count}/{total} (完成 {func['name']})")
 
-            batch_results = []
+                    # 定期保存中间结果
+                    if output_file and completed_count % save_interval == 0:
+                        partial_file = f"{output_file}.partial_{completed_count}"
+                        self.save_results(results, partial_file)
+                        logger.info(f"已保存中间结果到: {partial_file}")
 
-            # 使用线程池处理当前批次
-            with ThreadPoolExecutor(max_workers=max_workers) as executor:
-                # 提交所有任务
-                future_to_func = {
-                    executor.submit(self.generate_test_for_function, func): func
-                    for func in batch_functions
-                }
-
-                # 收集结果
-                for future in as_completed(future_to_func):
-                    func = future_to_func[future]
-                    try:
-                        result = future.result(timeout=120)  # 2分钟超时
-                        batch_results.append(result)
-                        results.append(result)
-
-                        # 立即保存到JSONL文件
-                        if output_file:
-                            self._append_result_to_jsonl(result, f"{output_file}.jsonl")
-
-                    except concurrent.futures.TimeoutError:
-                        logger.error(f"处理函数 {func['name']} 超时")
-                        error_result = func.copy()
-                        error_result['generated_tests'] = []
-                        error_result['test_generation_status'] = 'failed: timeout'
-                        # error_result['generated_at'] = time.strftime('%Y-%m-%d %H:%M:%S')
-                        batch_results.append(error_result)
-                        results.append(error_result)
-
-                        if output_file:
-                            self._append_result_to_jsonl(error_result, f"{output_file}.jsonl")
-
-                    except Exception as e:
-                        logger.error(f"处理函数 {func['name']} 时发生错误: {e}")
-                        error_result = func.copy()
-                        error_result['generated_tests'] = []
-                        error_result['test_generation_status'] = f'failed: {str(e)}'
-                        # error_result['generated_at'] = time.strftime('%Y-%m-%d %H:%M:%S')
-                        batch_results.append(error_result)
-                        results.append(error_result)
-
-                        if output_file:
-                            self._append_result_to_jsonl(error_result, f"{output_file}.jsonl")
-
-            logger.info(f"批次 {batch_num} 完成: {len(batch_results)}/{len(batch_functions)} 成功")
-
-            # 定期保存完整JSON
-            if output_file and batch_end % (batch_size * 5) == 0:
-                self.save_results(results, f"{output_file}.partial_{batch_end}.json")
-
-            # 批次间延迟（避免过热）
-            if batch_end < total_functions and batch_delay > 0:
-                logger.info(f"等待 {batch_delay} 秒后处理下一批...")
-                time.sleep(batch_delay)
+                except Exception as e:
+                    logger.error(f"处理函数 {func['name']} 时发生错误: {e}")
+                    # 创建错误结果
+                    error_result = func.copy()
+                    error_result['generated_tests'] = []
+                    error_result['test_generation_status'] = f'failed: {str(e)}'
+                    results.append(error_result)
+                    completed_count += 1
 
         # 保存最终结果
         if output_file:
             self.save_results(results, output_file)
             logger.info(f"最终结果已保存到: {output_file}")
 
-            # 将JSONL转换为完整JSON
-            jsonl_file = f"{output_file}.jsonl"
-            if os.path.exists(jsonl_file):
-                self._convert_jsonl_to_json(jsonl_file, f"{output_file}.from_jsonl.json")
-                # 可选：删除JSONL文件
-                os.remove(jsonl_file)
+            # 删除所有中间文件
+            self._cleanup_partial_files(output_file)
 
         return results
 
-    # def generate_tests_batch_parallel(self,
-    #                                   functions: List[Dict[str, Any]],
-    #                                   output_file: str = None,
-    #                                   max_workers: int = 4,
-    #                                   batch_size: int = 10,
-    #                                   batch_delay: int = 1) -> List[Dict[str, Any]]:
-    #     """
-    #     批量顺序生成测试代码（原并行版本已改为完全顺序处理）
-    #
-    #     Args:
-    #         functions: 函数信息列表
-    #         output_file: 输出文件路径
-    #         max_workers: 保留参数（不再使用，仅保持接口兼容）
-    #         batch_size: 每批次处理数量
-    #         batch_delay: 批次间延迟（秒）
-    #
-    #     Returns:
-    #         包含测试代码的函数列表
-    #     """
-    #     results = []
-    #     total_functions = len(functions)
-    #
-    #     # 创建输出目录（如果不存在）
-    #     if output_file:
-    #         output_dir = os.path.dirname(output_file)
-    #         if output_dir and not os.path.exists(output_dir):
-    #             os.makedirs(output_dir)
-    #
-    #     # 按批次顺序处理所有函数
-    #     for batch_start in range(0, total_functions, batch_size):
-    #         batch_end = min(batch_start + batch_size, total_functions)
-    #         batch_functions = functions[batch_start:batch_end]
-    #         batch_num = batch_start // batch_size + 1
-    #         total_batches = (total_functions + batch_size - 1) // batch_size
-    #
-    #         logger.info(f"处理批次 {batch_num}/{total_batches}: 函数 {batch_start + 1} 到 {batch_end}")
-    #
-    #         batch_results = []
-    #
-    #         # 顺序处理当前批次中的每个函数
-    #         for func in batch_functions:
-    #             try:
-    #                 # 直接调用测试生成函数（原为线程池提交）
-    #                 result = self.generate_test_for_function(func)
-    #                 batch_results.append(result)
-    #                 results.append(result)
-    #
-    #                 # 立即保存到JSONL文件
-    #                 if output_file:
-    #                     self._append_result_to_jsonl(result, f"{output_file}.jsonl")
-    #
-    #             except Exception as e:
-    #                 logger.error(f"处理函数 {func['name']} 时发生错误: {e}")
-    #                 error_result = func.copy()
-    #                 error_result['generated_tests'] = []
-    #                 error_result['test_generation_status'] = f'failed: {str(e)}'
-    #                 batch_results.append(error_result)
-    #                 results.append(error_result)
-    #
-    #                 if output_file:
-    #                     self._append_result_to_jsonl(error_result, f"{output_file}.jsonl")
-    #
-    #         logger.info(f"批次 {batch_num} 完成: {len(batch_results)}/{len(batch_functions)} 成功")
-    #
-    #         # 定期保存完整JSON
-    #         if output_file and batch_end % (batch_size * 5) == 0:
-    #             self.save_results(results, f"{output_file}.partial_{batch_end}.json")
-    #
-    #         # 批次间延迟（避免过热）
-    #         if batch_end < total_functions and batch_delay > 0:
-    #             logger.info(f"等待 {batch_delay} 秒后处理下一批...")
-    #             time.sleep(batch_delay)
-    #
-    #     # 保存最终结果
-    #     if output_file:
-    #         self.save_results(results, output_file)
-    #         logger.info(f"最终结果已保存到: {output_file}")
-    #
-    #         # 将JSONL转换为完整JSON
-    #         jsonl_file = f"{output_file}.jsonl"
-    #         if os.path.exists(jsonl_file):
-    #             self._convert_jsonl_to_json(jsonl_file, f"{output_file}.from_jsonl.json")
-    #             # 可选：删除JSONL文件
-    #             os.remove(jsonl_file)
-    #
-    #     return results
+    def generate_tests_for_functions_parallel_batch(self,
+                                                    functions: List[Dict[str, Any]],
+                                                    output_file: str = None,
+                                                    max_workers: int = 5,
+                                                    batch_size: int = 20,
+                                                    batch_delay: int = 1) -> List[Dict[str, Any]]:
+        """
+        为函数列表批量生成测试代码（使用JSONL格式的中间文件）
 
-    def _append_result_to_jsonl(self, result: Dict[str, Any], jsonl_file: str):
-        """追加单行结果到JSONL文件"""
+        Args:
+            functions: 函数信息列表
+            output_file: 输出文件路径
+            max_workers: 最大并行工作线程数
+            batch_size: 每批次处理的函数数量
+            batch_delay: 批次之间的延迟（秒）
+
+        Returns:
+            包含测试代码的函数列表
+        """
+        results = []
+        total = len(functions)
+
+        # 打开中间结果文件（JSONL格式）
+        partial_file = None
+        partial_fp = None
+
         try:
-            with open(jsonl_file, 'a', encoding='utf-8') as f:
-                json_line = json.dumps(result, ensure_ascii=False)
-                f.write(json_line + '\n')
+            if output_file:
+                partial_file = f"{output_file}.partial.jsonl"
+                # 打开文件，如果存在则覆盖
+                partial_fp = open(partial_file, 'w', encoding='utf-8')
+                logger.info(f"中间结果将保存到: {partial_file}")
+
+            # 按批次处理
+            for i in range(0, total, batch_size):
+                batch = functions[i:i + batch_size]
+                batch_num = i // batch_size + 1
+                total_batches = (total + batch_size - 1) // batch_size
+
+                logger.info(f"开始处理批次 {batch_num}/{total_batches} ({len(batch)} 个函数)")
+
+                # 使用线程池并行处理当前批次
+                batch_results = []
+                with ThreadPoolExecutor(max_workers=max_workers) as executor:
+                    future_to_function = {
+                        executor.submit(self.generate_test_for_function, func): func
+                        for func in batch
+                    }
+
+                    # 处理完成的任务
+                    for future in as_completed(future_to_function):
+                        func = future_to_function[future]
+                        try:
+                            result = future.result()
+                            batch_results.append(result)
+                            results.append(result)
+
+                            # 立即写入单行JSON（JSONL格式）
+                            if partial_fp:
+                                json_line = json.dumps(result, ensure_ascii=False)
+                                partial_fp.write(json_line + '\n')
+                                partial_fp.flush()  # 确保立即写入磁盘
+
+                        except Exception as e:
+                            logger.error(f"处理函数 {func['name']} 时发生错误: {e}")
+                            error_result = func.copy()
+                            error_result['generated_tests'] = []
+                            error_result['test_generation_status'] = f'failed: {str(e)}'
+                            batch_results.append(error_result)
+                            results.append(error_result)
+
+                            if partial_fp:
+                                json_line = json.dumps(error_result, ensure_ascii=False)
+                                partial_fp.write(json_line + '\n')
+                                partial_fp.flush()
+
+                logger.info(f"批次 {batch_num} 处理完成，已追加到中间文件")
+
+                # 如果不是最后一批，等待一段时间
+                if i + batch_size < total and batch_delay > 0:
+                    logger.info(f"等待 {batch_delay} 秒后处理下一批...")
+                    time.sleep(batch_delay)
+
+            # 保存最终结果
+            if output_file:
+                self.save_results(results, output_file)
+                logger.info(f"最终结果已保存到: {output_file}")
+
+                # 关闭并删除中间文件
+                if partial_fp:
+                    partial_fp.close()
+
+                    # 删除中间文件
+                    # self._cleanup_partial_files(partial_file)
+                    os.remove(partial_file)
+
         except Exception as e:
-            logger.error(f"写入JSONL文件失败: {e}")
+            logger.error(f"处理过程中发生错误: {e}")
+            if partial_fp:
+                partial_fp.close()
+            raise
+
+        finally:
+            # 确保文件被关闭
+            if partial_fp:
+                partial_fp.close()
+
+        return results
 
     def _convert_jsonl_to_json(self, jsonl_file: str, json_file: str):
-        """将JSONL文件转换为标准JSON"""
+        """将JSONL文件转换为标准JSON文件"""
         try:
             results = []
             with open(jsonl_file, 'r', encoding='utf-8') as f:
                 for line in f:
                     line = line.strip()
                     if line:
-                        results.append(json.loads(line))
+                        result = json.loads(line)
+                        results.append(result)
 
             with open(json_file, 'w', encoding='utf-8') as f:
                 json.dump(results, f, indent=2, ensure_ascii=False)
 
             logger.info(f"已从JSONL转换到JSON: {json_file}")
         except Exception as e:
-            logger.error(f"转换JSONL文件失败: {e}")
+            logger.error(f"转换JSONL文件时出错: {e}")
 
-    # def _extract_code(self, s: str) -> str:
-        """从响应中提取代码块"""
-        # 查找 ```python 代码块
-        # python_pattern = r'```python\s*(.*?)\s*```'
-        # matches = re.findall(python_pattern, s, re.DOTALL)
-        #
-        # if matches:
-        #     return matches[0].strip()
-        #
-        # # 查找普通的 ``` 代码块
-        # generic_pattern = r'```\s*(.*?)\s*```'
-        # matches = re.findall(generic_pattern, s, re.DOTALL)
-        #
-        # if matches:
-        #     return matches[0].strip()
-        #
-        # # 如果没有代码块标记，返回原始文本
-        # return s.strip()
+    def _cleanup_partial_files(self, output_file: str):
+        """
+        清理中间结果文件
+
+        Args:
+            output_file: 最终输出文件路径
+        """
+        try:
+            # 获取所有以output_file为前缀的中间文件
+            base_name = os.path.basename(output_file)
+            dir_name = os.path.dirname(output_file) or "."
+
+            # 查找所有中间文件
+            pattern = os.path.join(dir_name, f"{base_name}.partial*")
+            partial_files = glob.glob(pattern)
+
+            # 删除找到的文件
+            deleted_count = 0
+            for file_path in partial_files:
+                try:
+                    os.remove(file_path)
+                    logger.info(f"已删除中间文件: {file_path}")
+                    deleted_count += 1
+                except Exception as e:
+                    logger.warning(f"删除中间文件失败 {file_path}: {e}")
+
+            logger.info(f"共删除 {deleted_count} 个中间文件")
+
+        except Exception as e:
+            logger.error(f"清理中间文件时出错: {e}")
 
     def _extract_code(self, s: str):
         # 使用 '```python' 和 '```' 来分割字符串
-        parts = s.split('```java')
+        parts = s.split('```javascript')
         if len(parts) > 1:
             # 移除后面的 '```'
             code = parts[1].split('```')[0]
@@ -721,7 +752,13 @@ Return ONLY code without explanations, non-code text, or markdown formatting.
         return s.split('```')[0].strip("\n").strip()
 
     def save_results(self, results: List[Dict[str, Any]], output_file: str):
-        """保存结果到JSON文件"""
+        """
+        保存结果到JSON文件
+
+        Args:
+            results: 结果列表
+            output_file: 输出文件路径
+        """
         try:
             with open(output_file, 'w', encoding='utf-8') as f:
                 json.dump(results, f, indent=2, ensure_ascii=False)
@@ -731,68 +768,77 @@ Return ONLY code without explanations, non-code text, or markdown formatting.
 
 
 def main():
-    """主函数"""
-    # 配置参数
-    USE_API = False  # 是否使用API，False表示使用本地模型
-    MODEL_NAME = "codellama/CodeLlama-7b-Instruct-hf"  # 本地模型名称
-    # MODEL_NAME = "deepseek-ai/deepseek-coder-6.7b-instruct"
+    # 从环境变量获取API密钥
+    # api_key = "sk-WhZar4Km8tqMhzsRhzHn5oIvd6yzP7TZrMMGzkcgF4CDiTRJ"
+    # api_key = "sk-Fxpi6k88q67K1Px71JKdRNFB1BvKMQpNOprjDowIFOtqQO6n"
+    api_key = "sk-NEoXogd5Fg8bvg2b72702d183c1c4eFc9d9d6408B6D292D7"
+    
+    if not api_key:
+        raise ValueError("请设置 OPENAI_API_KEY 环境变量")
 
-    if USE_API:
-        # API配置
-        api_key = "sk-WhZar4Km8tqMhzsRhzHn5oIvd6yzP7TZrMMGzkcgF4CDiTRJ"
-        if not api_key:
-            raise ValueError("请设置 API_KEY")
-
-        generator = TestCodeGenerator(
-            api_key=api_key,
-            model="gpt-4o-mini",
-            use_api=True
-        )
-    else:
-        # 本地模型配置
-        generator = TestCodeGenerator(
-            model=MODEL_NAME,
-            use_api=False
-        )
+    # 初始化生成器
+    generator = TestCodeGenerator(api_key=api_key, input="specification", testframe="Jest", model="gpt-5-nano")
+    # generator1 = TestCodeGenerator(api_key=api_key, input="specification", testframe="Jest", model="gpt-5-nano")
+    # generator2 = TestCodeGenerator(api_key=api_key, input="code", testframe="Jest", model="gpt-5-nano")
+    generator3 = TestCodeGenerator(api_key=api_key, input="code", testframe="Jest", model="gpt-5-nano")
 
     # 加载函数数据
-    input_file = "commons-jxpath.json"
-    # input_file = "missing_items.json"
-    logger.info(f"加载数据文件: {input_file}")
+    input_file = "modern-errors_lite_specification.json"  # 替换为您的输入文件路径
+    # input_file = "test_output.json"
+    with open(input_file, 'r', encoding='utf-8') as f:
+        functions_data = json.load(f)
 
-    try:
-        with open(input_file, 'r', encoding='utf-8') as f:
-            functions_data = json.load(f)
-        logger.info(f"找到 {len(functions_data)} 个需要生成测试的函数")
-    except Exception as e:
-        logger.error(f"加载数据文件失败: {e}")
-        return
+    logger.info(f"找到 {len(functions_data)} 个需要生成测试的函数")
 
-    # 生成测试代码
-    output_file = "commons-jxpath_lite_specification_junit5_CodeLlama-7b.json"
+    # 生成测试代码 - 使用并行版本
+    output_file = "modern-errors_lite_specification_jest_gpt5nano.json"
+    # output_file1 = "tornado_lite_specification_pytest_gpt5nano.json"
+    # output_file2= "tornado_lite_pytest_gpt5nano.json"
+    output_file3 = "modern-errors_lite_jest_gpt5nano.json"
 
-    results = generator.generate_tests_batch_parallel(
+    # 方法1: 完全并行处理
+    # results = generator.generate_tests_for_functions_parallel(
+    #     functions=functions_data,
+    #     output_file=output_file,
+    #     max_workers=5,  # 根据您的API限制调整这个值
+    #     save_interval=10
+    # )
+
+    # 方法2: 批量并行处理（推荐，可控制速率）
+    results = generator.generate_tests_for_functions_parallel_batch(
         functions=functions_data,
         output_file=output_file,
-        max_workers=4,  # 根据GPU内存调整
-        batch_size=8,  # 每批次处理数量
-        batch_delay=1  # 批次间延迟
+        max_workers=5,
+        batch_size=20,
+        batch_delay=2
     )
 
+    # results1 = generator1.generate_tests_for_functions_parallel_batch(
+    #     functions=functions_data,
+    #     output_file=output_file1,
+    #     max_workers=5,
+    #     batch_size=20,
+    #     batch_delay=2
+    # )
+
+    # results2 = generator2.generate_tests_for_functions_parallel_batch(
+    #     functions=functions_data,
+    #     output_file=output_file2,
+    #     max_workers=5,
+    #     batch_size=20,
+    #     batch_delay=2
+    # )
+
+    results3 = generator3.generate_tests_for_functions_parallel_batch(
+        functions=functions_data,
+        output_file=output_file3,
+        max_workers=5,
+        batch_size=20,
+        batch_delay=2
+    )
     # 统计结果
     success_count = sum(1 for r in results if r.get('test_generation_status') == 'success')
-    failed_count = sum(1 for r in results if r.get('test_generation_status', '').startswith('failed'))
-
-    logger.info(f"测试生成完成:")
-    logger.info(f"  成功: {success_count}/{len(results)}")
-    logger.info(f"  失败: {failed_count}/{len(results)}")
-
-    # 显示一些失败的例子
-    if failed_count > 0:
-        logger.info("失败的函数:")
-        for r in results:
-            if r.get('test_generation_status', '').startswith('failed'):
-                logger.info(f"  - {r['name']}: {r['test_generation_status']}")
+    logger.info(f"测试生成完成: {success_count}/{len(results)} 成功")
 
 
 if __name__ == "__main__":
