@@ -1,0 +1,327 @@
+[
+  {
+    "project_root": "projects/modern-errors",
+    "name": "applyPluginProperties",
+    "src_file": "src/plugins/properties/main.js",
+    "test_file": "test/plugins/properties/main/applyPluginProperties.test.js",
+    "code": "const applyPluginProperties = ({\n  error,\n  plugin,\n  plugin: { properties, fullName },\n  plugins,\n}) => {\n  if (properties === undefined) {\n    return\n  }\n\n  const info = getErrorPluginInfo({ error, plugins, plugin })\n  const newProps = properties(info)\n\n  if (!isPlainObj(newProps)) {\n    throw new TypeError(\n      `Plugin \"${fullName}\"'s \"properties()\" must return a plain object: ${newProps}`,\n    )\n  }\n\n  assignError(error, newProps, plugins)\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { applyPluginProperties } from 'src/plugins/properties/main';\n\ndescribe('applyPluginProperties', () => {\n  it('should apply plugin properties', () => {\n    const error = new Error();\n    const plugin = { properties: () => ({}) };\n    const plugins = [];\n\n    applyPluginProperties({ error, plugin, plugins });\n\n    expect(error.properties).toEqual({});\n  });\n\n  it('should throw an error if properties is not a plain object', () => {\n    const error = new Error();\n    const plugin = { properties: () => [] };\n    const plugins = [];\n\n    expect(() => applyPluginProperties({ error, plugin, plugins })).toThrow(\n      new TypeError(\n        `Plugin \"${plugin.fullName}\"'s \"properties()\" must return a plain object: ${plugin.properties()}`,\n      ),\n    );\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "addInstanceMethod",
+    "src_file": "src/plugins/instance/main.js",
+    "test_file": "test/plugins/instance/main/addInstanceMethod.test.js",
+    "code": "const addInstanceMethod = (\n  { plugin, plugins, ErrorClass },\n  [methodName, methodFunc],\n) => {\n  setNonEnumProp(\n    ErrorClass.prototype,\n    methodName,\n    function boundInstanceMethod(...args) {\n      return callInstanceMethod({\n        // eslint-disable-next-line fp/no-this, no-invalid-this\n        error: this,\n        methodFunc,\n        methodName,\n        plugin,\n        plugins,\n        ErrorClass,\n        args,\n      })\n    },\n  )\n  setNonEnumProp(\n    ErrorClass,\n    methodName,\n    callMixedMethod.bind(undefined, {\n      methodFunc,\n      plugin,\n      plugins,\n      ErrorClass,\n    }),\n  )\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { callInstanceMethod } from '../callInstanceMethod';\nimport { callMixedMethod } from '../callMixedMethod';\nimport { setNonEnumProp } from '../setNonEnumProp';\n\ndescribe('addInstanceMethod', () => {\n  it('should add an instance method to the ErrorClass prototype', () => {\n    const ErrorClass = class {};\n    const methodName = 'myMethod';\n    const methodFunc = () => {};\n    const plugin = {};\n    const plugins = {};\n\n    addInstanceMethod({ ErrorClass, plugins, plugin }, [methodName, methodFunc]);\n\n    expect(setNonEnumProp).toHaveBeenCalledWith(\n      ErrorClass.prototype,\n      methodName,\n      expect.any(Function),\n    );\n    expect(setNonEnumProp).toHaveBeenCalledWith(\n      ErrorClass,\n      methodName,\n      expect.any(Function),\n    );\n  });\n\n  it('should call the instance method with the correct arguments', () => {\n    const ErrorClass = class {};\n    const methodName = 'myMethod';\n    const methodFunc = jest.fn();\n    const plugin = {};\n    const plugins = {};\n\n    addInstanceMethod({ ErrorClass, plugins, plugin }, [methodName, methodFunc]);\n\n    const error = new ErrorClass();\n    error[methodName]();\n\n    expect(methodFunc).toHaveBeenCalledWith(error, plugin, plugins);\n  });\n\n  it('should call the mixed method with the correct arguments', () => {\n    const ErrorClass = class {};\n    const methodName = 'myMethod';\n    const methodFunc = jest.fn();\n    const plugin = {};\n    const plugins = {};\n\n    addInstanceMethod({ ErrorClass, plugins, plugin }, [methodName, methodFunc]);\n\n    const error = new ErrorClass();\n    error[methodName]();\n\n    expect(callMixedMethod).toHaveBeenCalledWith(\n      {\n        methodFunc,\n        plugin,\n        plugins,\n        ErrorClass,\n      },\n      error,\n    );\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "callStaticMethod",
+    "src_file": "src/plugins/static/call.js",
+    "test_file": "test/plugins/static/call/callStaticMethod.test.js",
+    "code": "const callStaticMethod = (\n  { methodFunc, plugin, plugins, ErrorClass },\n  ...args\n) => {\n  const { classOpts } = classesData.get(ErrorClass)\n  const { args: argsA, methodOpts } = getMethodOpts(args, plugin)\n  const options = finalizePluginsOpts({\n    pluginsOpts: classOpts,\n    methodOpts,\n    plugins,\n    plugin,\n  })\n  const info = getPluginInfo({\n    options,\n    ErrorClass,\n    methodOpts,\n    plugins,\n    plugin,\n  })\n  return methodFunc(info, ...argsA)\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { callStaticMethod } from 'src/plugins/static/call';\n\ndescribe('callStaticMethod', () => {\n  it('should call the method function with the correct arguments', () => {\n    const methodFunc = jest.fn();\n    const plugin = {};\n    const plugins = [];\n    const ErrorClass = {};\n    const args = ['arg1', 'arg2'];\n\n    callStaticMethod({ methodFunc, plugin, plugins, ErrorClass }, ...args);\n\n    expect(methodFunc).toHaveBeenCalledWith(\n      expect.objectContaining({\n        options: expect.any(Object),\n        methodOpts: expect.any(Object),\n        plugins: expect.any(Array),\n        plugin: expect.any(Object),\n      }),\n      ...args\n    );\n  });\n\n  it('should return the result of the method function', () => {\n    const methodFunc = jest.fn().mockReturnValue('result');\n    const plugin = {};\n    const plugins = [];\n    const ErrorClass = {};\n    const args = ['arg1', 'arg2'];\n\n    const result = callStaticMethod({ methodFunc, plugin, plugins, ErrorClass }, ...args);\n\n    expect(result).toBe('result');\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "validatePluginName",
+    "src_file": "src/plugins/shape/name.js",
+    "test_file": "test/plugins/shape/name/validatePluginName.test.js",
+    "code": "const validatePluginName = (plugin) => {\n  if (plugin.name === undefined) {\n    throw new TypeError(`The plugin is missing a \"name\": ${plugin}`)\n  }\n\n  const { name } = plugin\n\n  if (typeof name !== 'string') {\n    throw new TypeError(`The plugin \"name\" must be a string: ${name}`)\n  }\n\n  validateNameString(name)\n\n  return { ...plugin, fullName: `${NAME_PREFIX}${name}` }\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { validatePluginName } from 'src/plugins/shape/name';\n\ndescribe('validatePluginName', () => {\n  it('should throw an error if the plugin is missing a \"name\"', () => {\n    const plugin = {};\n    expect(() => validatePluginName(plugin)).toThrow(TypeError);\n  });\n\n  it('should throw an error if the plugin \"name\" is not a string', () => {\n    const plugin = { name: 123 };\n    expect(() => validatePluginName(plugin)).toThrow(TypeError);\n  });\n\n  it('should return the plugin with the full name', () => {\n    const plugin = { name: 'my-plugin' };\n    const result = validatePluginName(plugin);\n    expect(result).toEqual({ ...plugin, fullName: `${NAME_PREFIX}${plugin.name}` });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "validateEachPlugin",
+    "src_file": "src/plugins/shape/duplicate.js",
+    "test_file": "test/plugins/shape/duplicate/validateEachPlugin.test.js",
+    "code": "const validateEachPlugin = ({\n  pluginA,\n  pluginB,\n  indexA,\n  indexB,\n  ParentError,\n}) => {\n  if (indexA === indexB) {\n    return\n  }\n\n  if (pluginA.name === pluginB.name) {\n    throw new TypeError(\n      `The \"plugins\" option of \"${ParentError.name}.subclass()\" must not include \"${pluginA.fullName}\": this plugin has already been included.`,\n    )\n  }\n\n  const duplicateName = findDuplicateKey(\n    { ...pluginA.instanceMethods, ...pluginA.staticMethods },\n    { ...pluginB.instanceMethods, ...pluginB.staticMethods },\n  )\n\n  if (duplicateName !== undefined) {\n    throw new TypeError(\n      `The plugins \"${pluginA.fullName}\" and \"${pluginB.fullName}\" must not both define the same \"${duplicateName}()\" method.`,\n    )\n  }\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { validateEachPlugin } from 'src/plugins/shape/duplicate';\n\ndescribe('validateEachPlugin', () => {\n  it('should throw an error if the plugins have the same name', () => {\n    const pluginA = { name: 'pluginA', fullName: 'pluginA' };\n    const pluginB = { name: 'pluginB', fullName: 'pluginB' };\n    const indexA = 0;\n    const indexB = 1;\n    const ParentError = new Error();\n\n    expect(() => validateEachPlugin({ pluginA, pluginB, indexA, indexB, ParentError })).toThrow(\n      new TypeError(\n        `The \"plugins\" option of \"${ParentError.name}.subclass()\" must not include \"${pluginA.fullName}\": this plugin has already been included.`,\n      ),\n    );\n  });\n\n  it('should throw an error if the plugins define the same method', () => {\n    const pluginA = { name: 'pluginA', fullName: 'pluginA', instanceMethods: { methodA: () => {} } };\n    const pluginB = { name: 'pluginB', fullName: 'pluginB', instanceMethods: { methodA: () => {} } };\n    const indexA = 0;\n    const indexB = 1;\n    const ParentError = new Error();\n\n    expect(() => validateEachPlugin({ pluginA, pluginB, indexA, indexB, ParentError })).toThrow(\n      new TypeError(\n        `The plugins \"${pluginA.fullName}\" and \"${pluginB.fullName}\" must not both define the same \"methodA()\" method.`,\n      ),\n    );\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "callMethod",
+    "src_file": "src/plugins/instance/call.js",
+    "test_file": "test/plugins/instance/call/callMethod.test.js",
+    "code": "const callMethod = ({ methodFunc, plugin, plugins, error, args }) => {\n  const { args: argsA, methodOpts } = getMethodOpts(args, plugin)\n  const info = getErrorPluginInfo({ error, methodOpts, plugins, plugin })\n  return methodFunc(info, ...argsA)\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { callMethod } from 'src/plugins/instance/call';\n\ndescribe('callMethod', () => {\n  it('should call the method function with the correct arguments', () => {\n    const methodFunc = jest.fn();\n    const plugin = { name: 'test-plugin' };\n    const plugins = { testPlugin: plugin };\n    const error = new Error('test error');\n    const args = ['arg1', 'arg2'];\n\n    callMethod({ methodFunc, plugin, plugins, error, args });\n\n    expect(methodFunc).toHaveBeenCalledWith(\n      expect.objectContaining({\n        error,\n        methodOpts: expect.any(Object),\n        plugins,\n        plugin,\n      }),\n      ...args,\n    );\n  });\n\n  it('should return the result of the method function', () => {\n    const methodFunc = jest.fn().mockReturnValue('test-result');\n    const plugin = { name: 'test-plugin' };\n    const plugins = { testPlugin: plugin };\n    const error = new Error('test error');\n    const args = ['arg1', 'arg2'];\n\n    const result = callMethod({ methodFunc, plugin, plugins, error, args });\n\n    expect(result).toBe('test-result');\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "callInstanceMethod",
+    "src_file": "src/plugins/instance/call.js",
+    "test_file": "test/plugins/instance/call/callInstanceMethod.test.js",
+    "code": "const callInstanceMethod = ({\n  error,\n  methodFunc,\n  methodName,\n  plugin,\n  plugins,\n  ErrorClass,\n  args,\n}) => {\n  if (!(error instanceof ErrorClass)) {\n    throw new TypeError(\n      `Missing \"this\" context: \"${methodName}()\" must be called using \"error.${methodName}()\"`,\n    )\n  }\n\n  return callMethod({ methodFunc, plugin, plugins, error, args })\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { callInstanceMethod } from 'src/plugins/instance/call';\n\ndescribe('callInstanceMethod', () => {\n  it('should throw an error if the \"this\" context is not an instance of ErrorClass', () => {\n    const error = new Error();\n    const methodFunc = () => {};\n    const methodName = 'testMethod';\n    const plugin = {};\n    const plugins = {};\n    const ErrorClass = Error;\n    const args = [];\n\n    expect(() => callInstanceMethod({ error, methodFunc, methodName, plugin, plugins, ErrorClass, args })).toThrow(\n      new TypeError(\n        `Missing \"this\" context: \"${methodName}()\" must be called using \"error.${methodName}()\"`,\n      ),\n    );\n  });\n\n  it('should call the method function with the correct arguments', () => {\n    const error = new Error();\n    const methodFunc = jest.fn();\n    const methodName = 'testMethod';\n    const plugin = {};\n    const plugins = {};\n    const ErrorClass = Error;\n    const args = [1, 2, 3];\n\n    callInstanceMethod({ error, methodFunc, methodName, plugin, plugins, ErrorClass, args });\n\n    expect(methodFunc).toHaveBeenCalledWith(error, ...args);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "normalizeClassOpts",
+    "src_file": "src/options/class.js",
+    "test_file": "test/options/class/normalizeClassOpts.test.js",
+    "code": "const normalizeClassOpts = (ParentError, classOpts = {}) => {\n  if (!isPlainObj(classOpts)) {\n    throw new TypeError(\n      `The second argument of \"${ParentError.name}.subclass()\" must be a plain object, not: ${classOpts}`,\n    )\n  }\n\n  return classOpts\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { normalizeClassOpts } from 'src/options/class';\n\ndescribe('normalizeClassOpts', () => {\n  it('should throw a TypeError if the second argument is not a plain object', () => {\n    expect(() => normalizeClassOpts(new Error(), null)).toThrow(TypeError);\n    expect(() => normalizeClassOpts(new Error(), 123)).toThrow(TypeError);\n    expect(() => normalizeClassOpts(new Error(), 'hello')).toThrow(TypeError);\n  });\n\n  it('should return the class options if the second argument is a plain object', () => {\n    const classOpts = { foo: 'bar' };\n    expect(normalizeClassOpts(new Error(), classOpts)).toEqual(classOpts);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "shouldPrefixCause",
+    "src_file": "src/merge/prefix.js",
+    "test_file": "test/merge/prefix/shouldPrefixCause.test.js",
+    "code": "const shouldPrefixCause = (error, ErrorClass) => {\n  const { cause } = error\n  return (\n    hasValidName(cause) &&\n    (hasUsefulName(cause, ErrorClass) || cause.name !== cause.constructor.name)\n  )\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { shouldPrefixCause } from 'src/merge/prefix';\n\ndescribe('shouldPrefixCause', () => {\n  it('returns true when the error has a valid name and a useful name', () => {\n    const error = new Error('Test error');\n    const ErrorClass = class extends Error {};\n    expect(shouldPrefixCause(error, ErrorClass)).toBe(true);\n  });\n\n  it('returns false when the error has a valid name but an unuseful name', () => {\n    const error = new Error('Test error');\n    const ErrorClass = class extends Error {};\n    error.name = 'TestError';\n    expect(shouldPrefixCause(error, ErrorClass)).toBe(false);\n  });\n\n  it('returns false when the error has an invalid name', () => {\n    const error = new Error('Test error');\n    const ErrorClass = class extends Error {};\n    error.name = 'InvalidError';\n    expect(shouldPrefixCause(error, ErrorClass)).toBe(false);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "prefixCause",
+    "src_file": "src/merge/prefix.js",
+    "test_file": "test/merge/prefix/prefixCause.test.js",
+    "code": "const prefixCause = (cause) => {\n  const oldMessage = typeof cause.message === 'string' ? cause.message : ''\n  const newMessage =\n    oldMessage === '' ? cause.name : `${cause.name}: ${oldMessage}`\n  setErrorMessage(cause, newMessage)\n  return oldMessage\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { prefixCause } from 'src/merge/prefix';\n\ndescribe('prefixCause', () => {\n  it('should prefix the cause message with the cause name', () => {\n    const cause = { name: 'MyError', message: 'Something went wrong' };\n    const newMessage = prefixCause(cause);\n    expect(newMessage).toBe('MyError: Something went wrong');\n  });\n\n  it('should not prefix the cause message if it is already prefixed', () => {\n    const cause = { name: 'MyError', message: 'MyError: Something went wrong' };\n    const newMessage = prefixCause(cause);\n    expect(newMessage).toBe('MyError: Something went wrong');\n  });\n\n  it('should not prefix the cause message if it is not a string', () => {\n    const cause = { name: 'MyError', message: 42 };\n    const newMessage = prefixCause(cause);\n    expect(newMessage).toBe(42);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "finalizePluginsOpts",
+    "src_file": "src/options/plugins.js",
+    "test_file": "test/options/plugins/finalizePluginsOpts.test.js",
+    "code": "const finalizePluginsOpts = ({\n  pluginsOpts,\n  methodOpts,\n  plugins,\n  plugin,\n}) => {\n  const pluginsOptsA = mergeMethodOpts(pluginsOpts, methodOpts, plugins)\n  const pluginsOptsB = deepClone(pluginsOptsA)\n  const options = getPluginOpts({\n    pluginsOpts: pluginsOptsB,\n    plugin,\n    full: true,\n  })\n  return options\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { mergeMethodOpts, deepClone, getPluginOpts } from 'src/options/plugins';\n\ndescribe('finalizePluginsOpts', () => {\n  it('should merge methodOpts and pluginsOpts', () => {\n    const pluginsOpts = { a: 1 };\n    const methodOpts = { b: 2 };\n    const plugins = ['plugin1', 'plugin2'];\n    const plugin = 'plugin1';\n    const expected = { a: 1, b: 2 };\n\n    const actual = finalizePluginsOpts({ pluginsOpts, methodOpts, plugins, plugin });\n\n    expect(actual).toEqual(expected);\n  });\n\n  it('should deep clone pluginsOptsA', () => {\n    const pluginsOpts = { a: 1 };\n    const methodOpts = { b: 2 };\n    const plugins = ['plugin1', 'plugin2'];\n    const plugin = 'plugin1';\n    const expected = { a: 1, b: 2 };\n\n    const actual = finalizePluginsOpts({ pluginsOpts, methodOpts, plugins, plugin });\n\n    expect(actual).toEqual(expected);\n  });\n\n  it('should get pluginOpts for the given plugin', () => {\n    const pluginsOpts = { a: 1 };\n    const methodOpts = { b: 2 };\n    const plugins = ['plugin1', 'plugin2'];\n    const plugin = 'plugin1';\n    const expected = { a: 1, b: 2 };\n\n    const actual = finalizePluginsOpts({ pluginsOpts, methodOpts, plugins, plugin });\n\n    expect(actual).toEqual(expected);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "mergeSpecificCause",
+    "src_file": "src/merge/cause.js",
+    "test_file": "test/merge/cause/mergeSpecificCause.test.js",
+    "code": "const mergeSpecificCause = (error, cause) => {\n  error.cause = cause\n  error.wrap = true\n  return mergeErrorCause(error)\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { mergeSpecificCause } from 'src/merge/cause';\n\ndescribe('mergeSpecificCause', () => {\n  it('should merge the cause into the error', () => {\n    const error = new Error('Test error');\n    const cause = new Error('Test cause');\n    const mergedError = mergeSpecificCause(error, cause);\n    expect(mergedError.cause).toBe(cause);\n    expect(mergedError.wrap).toBe(true);\n  });\n\n  it('should return the merged error', () => {\n    const error = new Error('Test error');\n    const cause = new Error('Test cause');\n    const mergedError = mergeSpecificCause(error, cause);\n    expect(mergedError).toBe(mergeErrorCause(error));\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "mergePrefixedError",
+    "src_file": "src/merge/cause.js",
+    "test_file": "test/merge/cause/mergePrefixedError.test.js",
+    "code": "const mergePrefixedError = (error) => {\n  const { cause } = error\n  const oldMessage = prefixCause(cause)\n  const errorA = mergeErrorCause(error)\n\n  if (cause !== errorA) {\n    undoPrefixCause(cause, oldMessage)\n  }\n\n  return errorA\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { mergePrefixedError } from 'src/merge/cause';\n\ndescribe('mergePrefixedError', () => {\n  it('should merge the error cause', () => {\n    const error = new Error('Test error');\n    const cause = new Error('Cause error');\n    error.cause = cause;\n\n    const result = mergePrefixedError(error);\n\n    expect(result).toBe(error);\n    expect(result.cause).toBe(cause);\n  });\n\n  it('should not merge the error cause if the cause is not set', () => {\n    const error = new Error('Test error');\n\n    const result = mergePrefixedError(error);\n\n    expect(result).toBe(error);\n    expect(result.cause).toBeUndefined();\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "mergeCause",
+    "src_file": "src/merge/cause.js",
+    "test_file": "test/merge/cause/mergeCause.test.js",
+    "code": "const mergeCause = (error, ErrorClass) => {\n  if (!isErrorInstance(error.cause)) {\n    return mergeErrorCause(error)\n  }\n\n  error.wrap = isSubclass(error.cause.constructor, ErrorClass)\n\n  if (!shouldPrefixCause(error, ErrorClass)) {\n    return mergeErrorCause(error)\n  }\n\n  return mergePrefixedError(error)\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { mergeCause } from 'src/merge/cause';\n\ndescribe('mergeCause', () => {\n  it('should merge the cause of an error', () => {\n    const error = new Error('Something went wrong');\n    const ErrorClass = Error;\n    const mergedError = mergeCause(error, ErrorClass);\n    expect(mergedError.cause).toBe(error.cause);\n  });\n\n  it('should not merge the cause of an error if it is not an instance of Error', () => {\n    const error = new Error('Something went wrong');\n    const ErrorClass = Error;\n    error.cause = 'Not an instance of Error';\n    const mergedError = mergeCause(error, ErrorClass);\n    expect(mergedError.cause).toBe(error.cause);\n  });\n\n  it('should not merge the cause of an error if it is not a subclass of Error', () => {\n    const error = new Error('Something went wrong');\n    const ErrorClass = Error;\n    error.cause = new Error('Cause error');\n    const mergedError = mergeCause(error, ErrorClass);\n    expect(mergedError.cause).toBe(error.cause);\n  });\n\n  it('should merge the cause of an error if it is a subclass of Error', () => {\n    const error = new Error('Something went wrong');\n    const ErrorClass = Error;\n    error.cause = new Error('Cause error');\n    error.cause.constructor = ErrorClass;\n    const mergedError = mergeCause(error, ErrorClass);\n    expect(mergedError.cause).toBe(error.cause);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "assignError",
+    "src_file": "src/plugins/properties/assign.js",
+    "test_file": "test/plugins/properties/assign/assignError.test.js",
+    "code": "const assignError = (\n  error,\n  { message, stack, ...newProps },\n  plugins,\n) => {\n  if (stack !== undefined) {\n    setErrorStack(error, stack)\n  }\n\n  if (message !== undefined) {\n    setErrorMessage(error, message)\n  }\n\n  if (Reflect.ownKeys(newProps).length === 0) {\n    return\n  }\n\n  const keys = excludeKeys(newProps, [\n    ...OMITTED_PROPS,\n    ...getPluginsMethodNames(plugins),\n  ])\n  setErrorProps(error, keys)\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { assignError } from 'src/plugins/properties/assign';\n\ndescribe('assignError', () => {\n  it('should set error stack and message', () => {\n    const error = new Error();\n    const stack = 'Error stack';\n    const message = 'Error message';\n    const newProps = { foo: 'bar' };\n    const plugins = [\n      {\n        methodName: 'foo',\n        method: () => {},\n      },\n    ];\n\n    assignError(error, { stack, message, ...newProps }, plugins);\n\n    expect(error.stack).toBe(stack);\n    expect(error.message).toBe(message);\n  });\n\n  it('should set error props', () => {\n    const error = new Error();\n    const newProps = { foo: 'bar' };\n    const plugins = [\n      {\n        methodName: 'foo',\n        method: () => {},\n      },\n    ];\n\n    assignError(error, { ...newProps }, plugins);\n\n    expect(error.foo).toBe('bar');\n  });\n\n  it('should not set error stack or message if not provided', () => {\n    const error = new Error();\n    const newProps = { foo: 'bar' };\n    const plugins = [\n      {\n        methodName: 'foo',\n        method: () => {},\n      },\n    ];\n\n    assignError(error, { ...newProps }, plugins);\n\n    expect(error.stack).toBeUndefined();\n    expect(error.message).toBeUndefined();\n  });\n\n  it('should not set error props if not provided', () => {\n    const error = new Error();\n    const stack = 'Error stack';\n    const message = 'Error message';\n    const plugins = [\n      {\n        methodName: 'foo',\n        method: () => {},\n      },\n    ];\n\n    assignError(error, { stack, message }, plugins);\n\n    expect(error.foo).toBeUndefined();\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "mergePluginOpts",
+    "src_file": "src/options/merge.js",
+    "test_file": "test/options/merge/mergePluginOpts.test.js",
+    "code": "const mergePluginOpts = (oldOpts, newOpts, name) => {\n  const pluginOpt = mergeOpt(oldOpts[name], newOpts[name])\n  return pluginOpt === undefined ? undefined : [name, pluginOpt]\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { mergePluginOpts } from 'src/options/merge';\n\ndescribe('mergePluginOpts', () => {\n  it('should merge plugin options', () => {\n    const oldOpts = {\n      name: 'oldOpts',\n      options: {\n        foo: 'bar',\n      },\n    };\n    const newOpts = {\n      name: 'newOpts',\n      options: {\n        baz: 'qux',\n      },\n    };\n    const name = 'name';\n    const result = mergePluginOpts(oldOpts, newOpts, name);\n    expect(result).toEqual([name, { foo: 'bar', baz: 'qux' }]);\n  });\n\n  it('should return undefined if no options are provided', () => {\n    const oldOpts = {\n      name: 'oldOpts',\n      options: {\n        foo: 'bar',\n      },\n    };\n    const newOpts = {\n      name: 'newOpts',\n      options: {},\n    };\n    const name = 'name';\n    const result = mergePluginOpts(oldOpts, newOpts, name);\n    expect(result).toBeUndefined();\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "mergeOpt",
+    "src_file": "src/options/merge.js",
+    "test_file": "test/options/merge/mergeOpt.test.js",
+    "code": "const mergeOpt = (oldOpt, newOpt) => {\n  if (newOpt === undefined) {\n    return oldOpt\n  }\n\n  if (isPlainObj(oldOpt) && isPlainObj(newOpt)) {\n    return { ...oldOpt, ...newOpt }\n  }\n\n  return newOpt\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { mergeOpt } from 'src/options/merge';\n\ndescribe('mergeOpt', () => {\n  it('should return the old option if the new option is undefined', () => {\n    const oldOpt = { foo: 'bar' };\n    const newOpt = undefined;\n    expect(mergeOpt(oldOpt, newOpt)).toEqual(oldOpt);\n  });\n\n  it('should return the new option if the old option is undefined', () => {\n    const oldOpt = undefined;\n    const newOpt = { foo: 'bar' };\n    expect(mergeOpt(oldOpt, newOpt)).toEqual(newOpt);\n  });\n\n  it('should return a merged object if both options are objects', () => {\n    const oldOpt = { foo: 'bar' };\n    const newOpt = { baz: 'qux' };\n    expect(mergeOpt(oldOpt, newOpt)).toEqual({ foo: 'bar', baz: 'qux' });\n  });\n\n  it('should return the new option if the old option is not an object', () => {\n    const oldOpt = 'foo';\n    const newOpt = { foo: 'bar' };\n    expect(mergeOpt(oldOpt, newOpt)).toEqual(newOpt);\n  });\n\n  it('should return the old option if the new option is not an object', () => {\n    const oldOpt = { foo: 'bar' };\n    const newOpt = 'baz';\n    expect(mergeOpt(oldOpt, newOpt)).toEqual(oldOpt);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "deepCloneObject",
+    "src_file": "src/options/clone.js",
+    "test_file": "test/options/clone/deepCloneObject.test.js",
+    "code": "const deepCloneObject = (object) => {\n  const copy = {}\n\n  // eslint-disable-next-line fp/no-loops\n  for (const key of Reflect.ownKeys(object)) {\n    const descriptor = Object.getOwnPropertyDescriptor(object, key)\n    const childCopy = deepClone(descriptor.value)\n    // eslint-disable-next-line fp/no-mutating-methods\n    Object.defineProperty(copy, key, { ...descriptor, value: childCopy })\n  }\n\n  return copy\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { deepCloneObject } from 'src/options/clone';\n\ndescribe('deepCloneObject', () => {\n  it('should clone an object with primitive values', () => {\n    const object = { a: 1, b: 'hello', c: true };\n    const copy = deepCloneObject(object);\n    expect(copy).toEqual(object);\n  });\n\n  it('should clone an object with nested objects', () => {\n    const object = { a: { b: { c: 1 } } };\n    const copy = deepCloneObject(object);\n    expect(copy).toEqual(object);\n  });\n\n  it('should clone an object with nested arrays', () => {\n    const object = { a: [1, 2, 3] };\n    const copy = deepCloneObject(object);\n    expect(copy).toEqual(object);\n  });\n\n  it('should clone an object with circular references', () => {\n    const object = { a: { b: { c: 1 } } };\n    object.a.b.c = object.a;\n    const copy = deepCloneObject(object);\n    expect(copy).toEqual(object);\n  });\n\n  it('should clone an object with functions', () => {\n    const object = { a: () => 1 };\n    const copy = deepCloneObject(object);\n    expect(copy).toEqual(object);\n  });\n\n  it('should clone an object with symbols', () => {\n    const object = { a: Symbol('a') };\n    const copy = deepCloneObject(object);\n    expect(copy).toEqual(object);\n  });\n\n  it('should clone an object with dates', () => {\n    const object = { a: new Date() };\n    const copy = deepCloneObject(object);\n    expect(copy).toEqual(object);\n  });\n\n  it('should clone an object with regexes', () => {\n    const object = { a: /hello/ };\n    const copy = deepCloneObject(object);\n    expect(copy).toEqual(object);\n  });\n\n  it('should clone an object with maps', () => {\n    const object = { a: new Map([['a', 1]]) };\n    const copy = deepCloneObject(object);\n    expect(copy).toEqual(object);\n  });\n\n  it('should clone an object with sets', () => {\n    const object = { a: new Set([1, 2, 3]) };\n    const copy = deepCloneObject(object);\n    expect(copy).toEqual(object);\n  });\n\n  it('should clone an object with typed arrays', () => {\n    const object = { a: new Uint8Array([1, 2, 3]) };\n    const copy = deepCloneObject(object);\n    expect(copy).toEqual(object);\n  });\n\n  it('should clone an object with buffers', () => {\n    const object = { a: Buffer.from([1, 2, 3]) };\n    const copy = deepCloneObject(object);\n    expect(copy).toEqual(object);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "deepClone",
+    "src_file": "src/options/clone.js",
+    "test_file": "test/options/clone/deepClone.test.js",
+    "code": "const deepClone = (value) => {\n  if (Array.isArray(value)) {\n    return value.map(deepClone)\n  }\n\n  if (isPlainObj(value)) {\n    return deepCloneObject(value)\n  }\n\n  return value\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { deepClone } from 'src/options/clone';\n\ndescribe('deepClone', () => {\n  it('should clone arrays', () => {\n    const arr = [1, 2, 3];\n    const clonedArr = deepClone(arr);\n    expect(clonedArr).toEqual(arr);\n  });\n\n  it('should clone plain objects', () => {\n    const obj = { a: 1, b: 2, c: 3 };\n    const clonedObj = deepClone(obj);\n    expect(clonedObj).toEqual(obj);\n  });\n\n  it('should not clone other types', () => {\n    const num = 123;\n    const str = 'hello';\n    const bool = true;\n    const clonedNum = deepClone(num);\n    const clonedStr = deepClone(str);\n    const clonedBool = deepClone(bool);\n    expect(clonedNum).toBe(num);\n    expect(clonedStr).toBe(str);\n    expect(clonedBool).toBe(bool);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "normalizeAllMethods",
+    "src_file": "src/plugins/shape/methods.js",
+    "test_file": "test/plugins/shape/methods/normalizeAllMethods.test.js",
+    "code": "const normalizeAllMethods = (plugin) => {\n  const pluginA = normalizeMethods({\n    ...INSTANCE_METHODS,\n    plugin,\n    propName: 'instanceMethods',\n  })\n  const pluginB = normalizeMethods({\n    ...STATIC_METHODS,\n    plugin: pluginA,\n    propName: 'instanceMethods',\n  })\n  const pluginC = normalizeMethods({\n    ...STATIC_METHODS,\n    plugin: pluginB,\n    propName: 'staticMethods',\n  })\n  return pluginC\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { normalizeAllMethods } from 'src/plugins/shape/methods';\n\ndescribe('normalizeAllMethods', () => {\n  it('should normalize all methods', () => {\n    const plugin = {\n      instanceMethods: {\n        method1: () => {},\n        method2: () => {},\n      },\n      staticMethods: {\n        method3: () => {},\n        method4: () => {},\n      },\n    };\n    const result = normalizeAllMethods(plugin);\n    expect(result).toEqual({\n      instanceMethods: {\n        method1: expect.any(Function),\n        method2: expect.any(Function),\n      },\n      staticMethods: {\n        method3: expect.any(Function),\n        method4: expect.any(Function),\n      },\n    });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "normalizeMethods",
+    "src_file": "src/plugins/shape/methods.js",
+    "test_file": "test/plugins/shape/methods/normalizeMethods.test.js",
+    "code": "const normalizeMethods = ({\n  plugin,\n  propName,\n  coreObject,\n  coreObjectName,\n  forbiddenNames,\n}) => {\n  const methods = plugin[propName] ?? {}\n\n  if (!isPlainObj(methods)) {\n    throw new TypeError(\n      `The plugin \"${plugin.fullName}\"'s \"${propName}\" property must be either undefined or a plain object, not: ${methods}`,\n    )\n  }\n\n  Object.entries(methods).forEach(([methodName, methodValue]) => {\n    validateMethod({\n      methodValue,\n      propName,\n      methodName,\n      plugin,\n      coreObject,\n      coreObjectName,\n      forbiddenNames,\n    })\n  })\n  return { ...plugin, [propName]: methods }\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { normalizeMethods } from 'src/plugins/shape/methods';\n\ndescribe('normalizeMethods', () => {\n  it('should normalize methods', () => {\n    const plugin = {\n      fullName: 'MyPlugin',\n      methods: {\n        myMethod: () => {},\n      },\n    };\n\n    const coreObject = {\n      myMethod: () => {},\n    };\n\n    const forbiddenNames = ['myMethod'];\n\n    const result = normalizeMethods({\n      plugin,\n      propName: 'methods',\n      coreObject,\n      coreObjectName: 'myMethod',\n      forbiddenNames,\n    });\n\n    expect(result).toEqual({\n      ...plugin,\n      methods: {\n        myMethod: () => {},\n      },\n    });\n  });\n\n  it('should throw an error if the methods property is not a plain object', () => {\n    const plugin = {\n      fullName: 'MyPlugin',\n      methods: 'not a plain object',\n    };\n\n    const coreObject = {\n      myMethod: () => {},\n    };\n\n    const forbiddenNames = ['myMethod'];\n\n    expect(() => {\n      normalizeMethods({\n        plugin,\n        propName: 'methods',\n        coreObject,\n        coreObjectName: 'myMethod',\n        forbiddenNames,\n      });\n    }).toThrow(TypeError);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "validateSubclass",
+    "src_file": "src/subclass/validate.js",
+    "test_file": "test/subclass/validate/validateSubclass.test.js",
+    "code": "const validateSubclass = (ErrorClass) => {\n  if (classesData.has(ErrorClass)) {\n    return\n  }\n\n  const { name } = ErrorClass\n  const { name: parentName } = Object.getPrototypeOf(ErrorClass)\n  throw new Error(\n    `\"new ${name}()\" must not be directly called.\nThis error class should be created like this instead:\n  export const ${name} = ${parentName}.subclass('${name}')`,\n  )\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { validateSubclass } from 'src/subclass/validate';\n\ndescribe('validateSubclass', () => {\n  it('should throw an error if the error class is not a subclass', () => {\n    const ErrorClass = class {};\n    expect(() => validateSubclass(ErrorClass)).toThrow(\n      new Error(\n        `\"new ${name}()\" must not be directly called.\nThis error class should be created like this instead:\n  export const ${name} = ${parentName}.subclass('${name}')`,\n      ),\n    );\n  });\n\n  it('should not throw an error if the error class is a subclass', () => {\n    const ErrorClass = class extends Error {};\n    expect(() => validateSubclass(ErrorClass)).not.toThrow();\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "lastArgIsOptions",
+    "src_file": "src/options/method.js",
+    "test_file": "test/options/method/lastArgIsOptions.test.js",
+    "code": "const lastArgIsOptions = ({ isOptions, fullName }, lastArg) => {\n  const isOptionsResult = isOptions(lastArg)\n\n  if (typeof isOptionsResult !== 'boolean') {\n    throw new TypeError(\n      `The plugin \"${fullName}\"'s \"isOptions()\" method must return a boolean, not: ${typeof isOptionsResult}`,\n    )\n  }\n\n  return isOptionsResult\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { lastArgIsOptions } from 'src/options/method';\n\ndescribe('lastArgIsOptions', () => {\n  it('should return true if the last argument is an options object', () => {\n    const options = { foo: 'bar' };\n    expect(lastArgIsOptions({ isOptions: () => true }, options)).toBe(true);\n  });\n\n  it('should return false if the last argument is not an options object', () => {\n    const options = { foo: 'bar' };\n    expect(lastArgIsOptions({ isOptions: () => false }, options)).toBe(false);\n  });\n\n  it('should throw an error if the isOptions method returns a non-boolean value', () => {\n    const options = { foo: 'bar' };\n    expect(() => lastArgIsOptions({ isOptions: () => 'foo' }, options)).toThrow(\n      new TypeError(\n        'The plugin \"foo\"\\'s \"isOptions()\" method must return a boolean, not: string',\n      ),\n    );\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "normalizePluginsOpt",
+    "src_file": "src/plugins/shape/main.js",
+    "test_file": "test/plugins/shape/main/normalizePluginsOpt.test.js",
+    "code": "const normalizePluginsOpt = (ParentError, plugins = []) => {\n  if (!Array.isArray(plugins)) {\n    throw new TypeError(\n      `The \"plugins\" option of \"${ParentError.name}.subclass()\" must be an array: ${plugins}`,\n    )\n  }\n\n  return plugins\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { normalizePluginsOpt } from 'src/plugins/shape/main';\n\ndescribe('normalizePluginsOpt', () => {\n  it('should throw a TypeError if the \"plugins\" option is not an array', () => {\n    expect(() => normalizePluginsOpt(new Error(), 'not an array')).toThrow(TypeError);\n  });\n\n  it('should return the \"plugins\" option if it is an array', () => {\n    const plugins = [1, 2, 3];\n    expect(normalizePluginsOpt(new Error(), plugins)).toEqual(plugins);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/modern-errors",
+    "name": "normalizePlugin",
+    "src_file": "src/plugins/shape/main.js",
+    "test_file": "test/plugins/shape/main/normalizePlugin.test.js",
+    "code": "const normalizePlugin = (plugin, ParentError) => {\n  if (!isPlainObj(plugin)) {\n    throw new TypeError(\n      `The \"plugins\" option of \"${ParentError.name}.subclass()\" must be an array of plugin objects: ${plugin}`,\n    )\n  }\n\n  const pluginA = validatePluginName(plugin)\n  validateOptionalFuncs(pluginA)\n  const pluginB = normalizeAllMethods(pluginA)\n  validateSameMethods(pluginB)\n  const pluginC = normalizeIsOptions({ plugin: pluginB })\n  const pluginD = normalizeGetOptions({ plugin: pluginC })\n  return pluginD\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { normalizePlugin } from 'src/plugins/shape/main';\n\ndescribe('normalizePlugin', () => {\n  it('should throw an error if the plugin is not a plain object', () => {\n    expect(() => normalizePlugin(null, new Error())).toThrow(TypeError);\n  });\n\n  it('should validate the plugin name', () => {\n    const plugin = { name: 'my-plugin' };\n    const pluginA = validatePluginName(plugin);\n    expect(pluginA).toEqual({ name: 'my-plugin' });\n  });\n\n  it('should validate the optional functions', () => {\n    const plugin = { name: 'my-plugin', methods: { myMethod: () => {} } };\n    const pluginA = validateOptionalFuncs(plugin);\n    expect(pluginA).toEqual({ name: 'my-plugin', methods: { myMethod: () => {} } });\n  });\n\n  it('should normalize all methods', () => {\n    const plugin = { name: 'my-plugin', methods: { myMethod: () => {} } };\n    const pluginB = normalizeAllMethods(plugin);\n    expect(pluginB).toEqual({ name: 'my-plugin', methods: { myMethod: () => {} } });\n  });\n\n  it('should validate the same methods', () => {\n    const plugin = { name: 'my-plugin', methods: { myMethod: () => {} } };\n    const pluginB = validateSameMethods(plugin);\n    expect(pluginB).toEqual({ name: 'my-plugin', methods: { myMethod: () => {} } });\n  });\n\n  it('should normalize the isOptions', () => {\n    const plugin = { name: 'my-plugin', methods: { myMethod: () => {} } };\n    const pluginC = normalizeIsOptions({ plugin });\n    expect(pluginC).toEqual({ name: 'my-plugin', methods: { myMethod: () => {} } });\n  });\n\n  it('should normalize the getOptions', () => {\n    const plugin = { name: 'my-plugin', methods: { myMethod: () => {} } };\n    const pluginD = normalizeGetOptions({ plugin });\n    expect(pluginD).toEqual({ name: 'my-plugin', methods: { myMethod: () => {} } });\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  }
+]
