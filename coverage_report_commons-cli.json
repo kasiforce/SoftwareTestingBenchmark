@@ -1,0 +1,43 @@
+{
+  "project": "commons-cli",
+  "src_json": "tests/test_gen/java/commons-cli_lite_junit4_CodeLlama-7b.json",
+  "allowed_src_files": [
+    "src/main/java/org/apache/commons/cli/Options.java",
+    "src/main/java/org/apache/commons/cli/help/TextHelpAppendable.java",
+    "src/main/java/org/apache/commons/cli/help/TextStyle.java"
+  ],
+  "group_dirs": {
+    "without_specification": [
+      "junit4_CodeLlama-7b",
+      "junit4_DS6.7b",
+      "junit4_DSv3.2",
+      "junit4_glm",
+      "junit4_gpt4o",
+      "junit4_gpt5",
+      "junit4_qwen",
+      "junit5_CodeLlama-7b",
+      "junit5_DS6.7b",
+      "junit5_DSv3.2",
+      "junit5_glm",
+      "junit5_gpt4o",
+      "junit5_gpt5",
+      "junit5_qwen"
+    ],
+    "with_specification": [
+      "specification_junit4_CodeLlama-7b",
+      "specification_junit4_DS6.7b",
+      "specification_junit4_DSv3.2",
+      "specification_junit4_glm",
+      "specification_junit4_gpt4o",
+      "specification_junit4_gpt5",
+      "specification_junit4_qwen",
+      "specification_junit5_CodeLlama-7b",
+      "specification_junit5_DS6.7b",
+      "specification_junit5_DSv3.2",
+      "specification_junit5_glm",
+      "specification_junit5_gpt4o",
+      "specification_junit5_gpt5",
+      "specification_junit5_qwen"
+    ]
+  },
+  "with_spec": 
