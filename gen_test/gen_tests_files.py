@@ -9,44 +9,44 @@ from argparse import ArgumentParser
 from typing import List, Dict, Tuple
 
 
-# def delete_test_files_in_test_dirs(project_root):
-#     """在 test/tests 目录中删除 *test*.py 文件"""
-#     # 查找 test/tests 目录
-#     test_dirs = []
-#     for root, dirs, files in os.walk(project_root):
-#         root_path = Path(root)
+def delete_test_files_in_test_dirs(project_root):
+    """在 test/tests 目录中删除 *test*.py 文件"""
+    # 查找 test/tests 目录
+    test_dirs = []
+    for root, dirs, files in os.walk(project_root):
+        root_path = Path(root)
 
-#         # 跳过某些目录
-#         skip_dirs = ['.git', 'venv', '.venv', '__pycache__']
-#         if any(skip in root_path.parts for skip in skip_dirs):
-#             continue
+        # 跳过某些目录
+        skip_dirs = ['.git', 'venv', '.venv', '__pycache__']
+        if any(skip in root_path.parts for skip in skip_dirs):
+            continue
 
-#         # 如果是 test 或 tests 目录
-#         if root_path.name.lower() in ['test', 'tests', 'gen_tests']:
-#             test_dirs.append(root_path)
+        # 如果是 test 或 tests 目录
+        if root_path.name.lower() in ['test', 'tests', 'gen_tests']:
+            test_dirs.append(root_path)
 
-#     if not test_dirs:
-#         print("未找到 test 或 tests 目录")
-#         return
+    if not test_dirs:
+        print("未找到 test 或 tests 目录")
+        return
 
-#     # 查找并删除测试文件
-#     deleted_files = []
-#     for test_dir in test_dirs:
-#         for py_file in test_dir.rglob('*.py'):
-#             if 'test_' in py_file.name.lower() or '_test' in py_file.name.lower():
-#                 try:
-#                     os.remove(py_file)
-#                     deleted_files.append(py_file)
-#                 except Exception as e:
-#                     print(f"删除失败 {py_file}: {e}")
+    # 查找并删除测试文件
+    deleted_files = []
+    for test_dir in test_dirs:
+        for py_file in test_dir.rglob('*.py'):
+            if 'test_' in py_file.name.lower() or '_test' in py_file.name.lower():
+                try:
+                    os.remove(py_file)
+                    deleted_files.append(py_file)
+                except Exception as e:
+                    print(f"删除失败 {py_file}: {e}")
 
-#     # 显示结果
-#     print(f"在 {len(test_dirs)} 个测试目录中删除了 {len(deleted_files)} 个测试文件:")
-#     for file in deleted_files[:10]:
-#         print(f"  {file}")
+    # 显示结果
+    print(f"在 {len(test_dirs)} 个测试目录中删除了 {len(deleted_files)} 个测试文件:")
+    for file in deleted_files[:10]:
+        print(f"  {file}")
 
-#     if len(deleted_files) > 10:
-#         print(f"  ... 还有 {len(deleted_files) - 10} 个文件")
+    if len(deleted_files) > 10:
+        print(f"  ... 还有 {len(deleted_files) - 10} 个文件")
 
 
 # def delete_test_files_in_test_dirs(project_root):
@@ -90,46 +90,46 @@ from typing import List, Dict, Tuple
 
 
 
-def delete_test_files_in_test_dirs(project_root):
-    """
-    遍历整个项目目录，删除所有匹配：
-    - test_*.py
-    - *_test.py
-    的 Python 文件
-    """
-    project_root = Path(project_root)
+# def delete_test_files_in_test_dirs(project_root):
+#     """
+#     遍历整个项目目录，删除所有匹配：
+#     - test_*.py
+#     - *_test.py
+#     的 Python 文件
+#     """
+#     project_root = Path(project_root)
 
-    skip_dirs = {'.git', 'venv', '.venv', '__pycache__'}
+#     skip_dirs = {'.git', 'venv', '.venv', '__pycache__'}
 
-    deleted_files = []
+#     deleted_files = []
 
-    for root, dirs, files in os.walk(project_root):
-        root_path = Path(root)
+#     for root, dirs, files in os.walk(project_root):
+#         root_path = Path(root)
 
-        # 原地修改 dirs，阻止 os.walk 继续深入这些目录
-        dirs[:] = [d for d in dirs if d not in skip_dirs]
+#         # 原地修改 dirs，阻止 os.walk 继续深入这些目录
+#         dirs[:] = [d for d in dirs if d not in skip_dirs]
 
-        for file in files:
-            if not file.endswith('.py'):
-                continue
+#         for file in files:
+#             if not file.endswith('.py'):
+#                 continue
 
-            filename = file.lower()
+#             filename = file.lower()
 
-            if filename.startswith('test_') or filename.endswith('_test.py'):
-                file_path = root_path / file
-                try:
-                    file_path.unlink()
-                    deleted_files.append(file_path)
-                except Exception as e:
-                    print(f"删除失败 {file_path}: {e}")
+#             if filename.startswith('test_') or filename.endswith('_test.py'):
+#                 file_path = root_path / file
+#                 try:
+#                     file_path.unlink()
+#                     deleted_files.append(file_path)
+#                 except Exception as e:
+#                     print(f"删除失败 {file_path}: {e}")
 
-    # 输出结果
-    print(f"共删除 {len(deleted_files)} 个测试文件")
-    for f in deleted_files[:10]:
-        print(f"  {f}")
+#     # 输出结果
+#     print(f"共删除 {len(deleted_files)} 个测试文件")
+#     for f in deleted_files[:10]:
+#         print(f"  {f}")
 
-    if len(deleted_files) > 10:
-        print(f"  ... 还有 {len(deleted_files) - 10} 个文件")
+#     if len(deleted_files) > 10:
+#         print(f"  ... 还有 {len(deleted_files) - 10} 个文件")
 
 
 def write_generated_tests(project_root, test_json_path):
@@ -141,7 +141,7 @@ def write_generated_tests(project_root, test_json_path):
 
         for func in functions:
             # print(func)
-            project = func.get("project_root").split('projects/tornado')[1]
+            project = func.get("project_root").split('projects/markitdown')[1]
             test_file = "/testbed"+project + "/" + func.get("test_file")
 
             dir_path = os.path.dirname(test_file)
