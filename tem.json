@@ -1,0 +1,49 @@
+[
+  {
+    "project_root": "projects/markitdown/packages",
+    "name": "check_plugins_enabled",
+    "src_file": "markitdown-mcp/src/markitdown_mcp/__main__.py",
+    "test_file": "markitdown-mcp/test/markitdown_mcp/Test__main__/test_check_plugins_enabled.py",
+    "code": "def check_plugins_enabled() -> bool:\n    return os.getenv(\"MARKITDOWN_ENABLE_PLUGINS\", \"false\").strip().lower() in (\n        \"true\",\n        \"1\",\n        \"yes\",\n    )",
+    "is_async": false,
+    "type": "function",
+    "specification": [
+      "Functional Description: Checks if plugins are enabled for the application by retrieving the value of the environment variable \"MARKITDOWN_ENABLE_PLUGINS\". The method returns a boolean indicating whether the environment variable is set to a truthy value, specifically \"true\", \"1\", or \"yes\".\n\nArgs:\nNone\n\nReturns: bool - True if plugins are enabled based on the environment variable, otherwise False\n\nPreconditions:\n1. The os module must be available and imported as 'os'\n\nPostconditions:\n1. Returns a boolean value indicating the plugin status\n2. The environment variable \"MARKITDOWN_ENABLE_PLUGINS\" is not modified\n\nInvariants:\n1. The method consistently checks the same environment variable for plugin status\n2. The method does not depend on any external state other than the environment variable\n\nException:\nNone"
+    ],
+    "generated_tests": [
+      "import pytest\nfrom markitdown_mcp.__main__ import check_plugins_enabled\n\nclass Test__main__:\n    def test_unset_env_defaults_false(self, monkeypatch):\n        monkeypatch.delenv(\"MARKITDOWN_ENABLE_PLUGINS\", raising=False)\n        assert check_plugins_enabled() is False\n\n    @pytest.mark.parametrize(\"value,expected\", [\n        (\"true\", True),\n        (\"1\", True),\n        (\"yes\", True),\n        (\"  YES  \", True),\n        (\"YeS\", True),\n        (\"TRUE\", True),\n    ])\n    def test_truthy_values(self, monkeypatch, value, expected):\n        monkeypatch.setenv(\"MARKITDOWN_ENABLE_PLUGINS\", value)\n        assert check_plugins_enabled() is expected\n\n    @pytest.mark.parametrize(\"value,expected\", [\n        (\"false\", False),\n        (\"0\", False),\n        (\"no\", False),\n        (\"\", False),\n        (\"random\", False),\n        (\"  No  \", False),\n    ])\n    def test_falsy_values(self, monkeypatch, value, expected):\n        monkeypatch.setenv(\"MARKITDOWN_ENABLE_PLUGINS\", value)\n        assert check_plugins_enabled() is expected"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/markitdown/packages",
+    "name": "copy_and_update",
+    "src_file": "markitdown/src/markitdown/_stream_info.py",
+    "test_file": "markitdown/test/markitdown/Test_stream_info/test_copy_and_update.py",
+    "code": "def copy_and_update(self, *args, **kwargs):\n        \"\"\"Copy the StreamInfo object and update it with the given StreamInfo\n        instance and/or other keyword arguments.\"\"\"\n        new_info = asdict(self)\n\n        for si in args:\n            assert isinstance(si, StreamInfo)\n            new_info.update({k: v for k, v in asdict(si).items() if v is not None})\n\n        if len(kwargs) > 0:\n            new_info.update(kwargs)\n\n        return StreamInfo(**new_info)",
+    "is_async": false,
+    "type": "method",
+    "class_hierarchy": [
+      "StreamInfo"
+    ],
+    "class_name": "StreamInfo",
+    "full_class_name": "StreamInfo",
+    "class_constructor": null,
+    "class_fields": [],
+    "class_variables": [
+      "mimetype: Optional[str] = None",
+      "extension: Optional[str] = None",
+      "charset: Optional[str] = None",
+      "filename: Optional[\n        str\n    ] = None",
+      "local_path: Optional[str] = None",
+      "url: Optional[str] = None"
+    ],
+    "specification": [
+      "Functional Description: Creates a copy of the current StreamInfo object and updates its attributes with values from provided StreamInfo instances and/or additional keyword arguments. It ensures that only non-None values from the provided instances are used for the update, returning a new StreamInfo object with the combined attributes.\n\nArgs:\nself: StreamInfo - Instance of StreamInfo containing attributes to be copied and updated\n*args: StreamInfo - One or more StreamInfo instances whose non-None attributes will be used to update the new object\n**kwargs: dict - Additional keyword arguments representing attribute names and their new values for the StreamInfo object\n\nReturns: StreamInfo - A new StreamInfo object with updated attributes based on the original instance and provided arguments\n\nPreconditions:\n1. self must be an instance of StreamInfo\n2. Each argument in args must be an instance of StreamInfo\n3. kwargs must contain valid attribute names of the StreamInfo class\n\nPostconditions:\n1. Returns a new StreamInfo object with attributes updated from args and kwargs\n2. The original StreamInfo instance remains unchanged\n3. Only non-None values from args and kwargs are used for updates\n\nInvariants:\n1. The new StreamInfo object contains all attributes from the original instance\n2. Attributes from args take precedence over the original instance's attributes if they are non-None\n3. Attributes from kwargs take precedence over both the original instance's attributes and those from args if they are non-None\n\nException:\nAssertionError - If any argument in args is not an instance of StreamInfo"
+    ],
+    "generated_tests": [
+      "import pytest\n\nfrom markitdown._stream_info import StreamInfo\n\n\ndef test_copy_and_update_basic_merging():\n    s1 = StreamInfo(mimetype='text/plain', extension='.txt', charset='utf-8', local_path='/tmp')\n    s2 = StreamInfo(filename='notes.md', url='https://example.com/notes.md')\n    result = s1.copy_and_update(s2)\n\n    assert isinstance(result, StreamInfo)\n    assert result.mimetype == 'text/plain'\n    assert result.extension == '.txt'\n    assert result.charset == 'utf-8'\n    assert result.local_path == '/tmp'\n    assert result.filename == 'notes.md'\n    assert result.url == 'https://example.com/notes.md'\n\n    # Ensure original is not mutated\n    assert s1.filename is None\n\n\ndef test_copy_and_update_with_kwargs_overrides_and_none_in_args():\n    s1 = StreamInfo(mimetype='image/png', extension='.png', url=None)\n    s2 = StreamInfo(mimetype=None, url='http://example', filename='img.png')\n    result = s1.copy_and_update(s2, extension='.jpg')\n\n    assert isinstance(result, StreamInfo)\n    assert result.mimetype == 'image/png'      # from s1, not overridden by s2 (None)\n    assert result.extension == '.jpg'          # overridden by kwargs\n    assert result.filename == 'img.png'        # from s2\n    assert result.url == 'http://example'      # from s2\n    assert s1.extension == '.png'               # original remains unchanged\n\n\ndef test_copy_and_update_multiple_args_order_effect():\n    s1 = StreamInfo(mimetype='text/plain', extension=None)\n    s2 = StreamInfo(extension='.md')\n    s3 = StreamInfo(mimetype='application/json')\n    result = s1.copy_and_update(s2, s3)\n\n    assert result.mimetype == 'application/json'  # overridden by s3\n    assert result.extension == '.md'              # overridden by s2\n    assert result.filename is None\n\n\ndef test_copy_and_update_returns_new_instance_not_same():\n    s = StreamInfo(mimetype='text/plain')\n    result = s.copy_and_update()\n\n    assert isinstance(result, StreamInfo)\n    assert result is not s\n    assert result == s  # data-wise equal, but not the same object\n\n\ndef test_copy_and_update_kwargs_only():\n    s = StreamInfo(mimetype='text/plain')\n    result = s.copy_and_update(filename='document.txt', local_path='/docs')\n\n    assert result.mimetype == 'text/plain'\n    assert result.filename == 'document.txt'\n    assert result.local_path == '/docs'\n    assert s.filename is None\n    assert s.local_path is None"
+    ],
+    "test_generation_status": "success"
+  }
+]
