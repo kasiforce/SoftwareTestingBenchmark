@@ -114,7 +114,7 @@ def create_and_run_py(dockerfile_path, gen_tests_dir, cover_source, project_root
             "bash", "-c", f"""
             cd /testbed
 
-            pip install pytest pytest-json-report pytest-timeout coverage pytest-asyncio pycares
+            pip install pytest pytest-json-report pytest-timeout coverage pytest-asyncio pytest-mock pycares
 
             python /testbed/gentests_files.py \
                 --project-root /testbed \
