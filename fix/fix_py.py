@@ -1013,7 +1013,7 @@ Return ONLY code without explanations, non-code text, or markdown formatting.
                 self.container_name,
                 "bash",
                 "-c",
-                "pip install pytest pytest-json-report pytest-timeout pytest-asyncio pycares coverage",
+                "pip install pytest pytest-json-report pytest-timeout pytest-asyncio pytest-mock pycares coverage",
             ],
             check=True,
         )
@@ -1066,7 +1066,7 @@ pytest --import-mode=importlib --continue-on-collection-errors --timeout=2 -q --
                 cmd = f"""
 set -e
 cd /testbed
-pip install pytest pytest-json-report pytest-timeout pytest-asyncio pycares
+pip install pytest pytest-json-report pytest-timeout pytest-asyncio pytest-mock pycares
 python /testbed/gentests_files.py --project-root /testbed --data-path /testbed/item.json
 pytest --import-mode=importlib --continue-on-collection-errors --timeout=2 -q --disable-warnings --tb=no \
   {test_file} --json-report --json-report-file=/results/report.json || true
@@ -1203,7 +1203,7 @@ coverage json -o {container_cov} || true
                 cmd = f"""
 set -e
 cd /testbed
-pip install pytest pytest-timeout pytest-asyncio pycares coverage
+pip install pytest pytest-timeout pytest-asyncio pycares pytest-mock coverage
 python /testbed/gentests_files.py --project-root /testbed --data-path /testbed/item.json
 coverage erase
 coverage run -m pytest --import-mode=importlib --continue-on-collection-errors --timeout=2 -q --disable-warnings --tb=no {test_file} || true
@@ -1417,6 +1417,9 @@ coverage json -o /results/coverage.json || true
         with open(self.data_file, "r", encoding="utf-8") as f:
             data = json.load(f)
 
+        if not os.path.exists(output_file):
+            os.makedirs(os.path.dirname(output_file), exist_ok=True)
+
         category = "code"
         if "specification" in self.data_file:
             category = "specification"
@@ -1492,39 +1495,40 @@ def main() -> None:
     # 示例用法，可根据需要取消注释命令行参数解析部分
 
 
-    for root, dirs, files in os.walk("tests/test_gen/python/markitdown"):
+    for root, dirs, files in os.walk("tests/test_gen/python/pylint"):
         for file in files:
             if "codellama" in  file.lower() or "ds6.7b" in file.lower():
                 continue
-            if "qwen" in file.lower() :
-                model_name = "qwen3-coder-480b-a35b-instruct"
-            if "glm" in file.lower():
-                model_name = "glm-4.7"
-            if "gpt5" in file.lower():
-                model_name = "gpt-5-nano"
-            if "gpt4o" in file.lower():
-                model_name = "gpt-4o"
-            if "dsv3.2" in file.lower():
-                model_name = "deepseek-v3.2"
+            if "pylint_pytest_glm" in file or "unittest_DSv" in file or "pylint_pytest_qwen" in file or "specification_pytest_gpt5" in file:
+                if "qwen" in file.lower() :
+                    model_name = "qwen3-coder-480b-a35b-instruct"
+                if "glm" in file.lower():
+                    model_name = "glm-4.7"
+                if "gpt5" in file.lower():
+                    model_name = "gpt-5-nano"
+                if "gpt4o" in file.lower():
+                    model_name = "gpt-4o"
+                if "dsv3.2" in file.lower():
+                    model_name = "deepseek-v3.2"
 
-            full_path = os.path.join(root, file)
-            print(full_path)
-            print(model_name)
-            repairer = PythonGeneratedTestRepairer(
-                api_key="sk-YWFOQUUEmAJpfzAlLRfKqUvYF3zkP4IFXbtO7GqYZTa1agtD",
-                model=model_name,
-                dockerfile_path="output/markitdown/dockerfile",
-                data_file=full_path,
-                max_rounds=3,
-                base_url="https://api.agicto.cn/v1",
-                reuse_container=True,
-                parallel_workers=2,
-                collect_coverage_after_repair=False,
-            )
+                full_path = os.path.join(root, file)
+                print(full_path)
+                print(model_name)
+                repairer = PythonGeneratedTestRepairer(
+                    api_key="sk-cOBDeRW6zLVmrKG6pEDpCB56EgIGDi9mrPaebLFTZ8EUCth7",
+                    model=model_name,
+                    dockerfile_path="output/pylint/dockerfile",
+                    data_file=full_path,
+                    max_rounds=3,
+                    base_url="https://api.agicto.cn/v1",
+                    reuse_container=True,
+                    parallel_workers=2,
+                    collect_coverage_after_repair=False,
+                )
 
-            repairer.repair_file("test_results/python/markitdown/repaired_" + file)
+                repairer.repair_file("tests/test_gen/python/fix_pylint/repaired_" + file)
 
-            time.sleep(10)  # 每个文件处理完后等待10秒，避免过于频繁的API调用
+                time.sleep(10)  # 每个文件处理完后等待10秒，避免过于频繁的API调用
 
 
 if __name__ == "__main__":

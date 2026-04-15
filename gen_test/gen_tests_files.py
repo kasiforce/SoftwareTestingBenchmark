@@ -49,6 +49,8 @@ def delete_test_files_in_test_dirs(project_root):
         print(f"  ... 还有 {len(deleted_files) - 10} 个文件")
 
 
+
+
 # def delete_test_files_in_test_dirs(project_root):
 #     """在 test/tests 目录中删除 *test*.java 文件"""
 #     # 查找 test/tests 目录
@@ -141,19 +143,22 @@ def write_generated_tests(project_root, test_json_path):
 
         for func in functions:
             # print(func)
-            project = func.get("project_root").split('projects/markitdown')[1]
-            test_file = "/testbed"+project + "/" + func.get("test_file")
+            test_file = func.get("test_file", "")
+            root = func.get("project_root", "").split('/')
+            if len(root) > 2 and root[-1] != 'src':
+                test_file = os.path.join(root[-1], test_file)
+            test_file1 = project_root + "/" + test_file
 
-            dir_path = os.path.dirname(test_file)
+            dir_path = os.path.dirname(test_file1)
             if not os.path.exists(dir_path):
                 os.makedirs(dir_path, exist_ok=True)
 
             raw_code = "\n\n".join(func["generated_tests"])
 
             # 写入文件（UTF-8）
-            with open(test_file, 'w', encoding='utf-8') as f:
+            with open(test_file1, 'w', encoding='utf-8') as f:
                 f.write("\n\n" + raw_code)
-            print(f"写入 {test_file}")
+            print(f"写入 {test_file1}")
 
     except Exception as e:
         print(f"写入文件失败: {e}")
