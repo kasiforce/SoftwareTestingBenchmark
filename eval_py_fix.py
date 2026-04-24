@@ -48,6 +48,31 @@ def syntax_analyse(data_file):
 
     total = 0
     syntax_correct = 0
+
+    for item in data:
+        test_code = item.get("generated_tests", "")
+        for test in test_code:
+            if not test.strip():
+                continue
+
+            total += 1
+            try:
+                compile(test, '<string>', 'exec')
+                syntax_correct += 1
+            except Exception as e:
+                pass
+
+    return {"total": total, "syntax_correct": syntax_correct, "syntax_correct_rate": syntax_correct / total}
+
+
+def create_and_run_py(dockerfile_path, gen_tests_dir, cover_source, project_root, data_file):
+    cwd = os.getcwd()
+    print(f"当前工作目录: {cwd}")
+
+    with open(data_file, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    fix_data = []
     data1 = data['items']
     for func in data1:
         func1 = func['repair_history']
@@ -60,21 +85,21 @@ def syntax_analyse(data_file):
         if not raw_code.strip():
             continue
 
-        total += 1
-        try:
-            compile(raw_code, '<string>', 'exec')
-            syntax_correct += 1
-        except Exception as e:
-            pass
+        item = {
+            "project_root": func.get("project_root", ""),
+            "src_file": func.get("src_file", ""),
+            "name": func.get("name", ""),
+            "class_name": func.get("class_name", ""),
+            "test_file": func.get("test_file", ""),
+            "generated_tests": [raw_code]
+        }
+        fix_data.append(item)
+    
+    fix_data_path = "fix_data.json"
+    with open(fix_data_path, 'w', encoding='utf-8') as f:
+        json.dump(fix_data, f, indent=2, ensure_ascii=False)
 
-    return {"total": total, "syntax_correct": syntax_correct, "syntax_correct_rate": syntax_correct / total}
-
-
-def create_and_run_py(dockerfile_path, gen_tests_dir, cover_source, project_root, data_file):
-    cwd = os.getcwd()
-    print(f"当前工作目录: {cwd}")
-
-    syntax_report = syntax_analyse(data_file)
+    syntax_report = syntax_analyse(fix_data_path)
 
     project_dir = os.path.join(cwd, project_root)
 
@@ -85,8 +110,9 @@ def create_and_run_py(dockerfile_path, gen_tests_dir, cover_source, project_root
         repo_name = project_root.split("/")[1]
     test_results_dir = os.path.join(test_results_dir, "fix_"+repo_name)
 
-    model_name = data_file.split("_")[-1]
-    framework = data_file.split("_")[-2]
+    data_file1 = data_file.split(".json")[0]
+    model_name = data_file1.split("_")[-1]
+    framework = data_file1.split("_")[-2]
     json_dir = f"{framework}_{model_name}"
     if "specification" in data_file:
         json_dir = f"specification_{framework}_{model_name}"
@@ -118,8 +144,8 @@ def create_and_run_py(dockerfile_path, gen_tests_dir, cover_source, project_root
         subprocess.run([
             "docker", "run", "--rm",
             "-v", f"{test_results_dir}:/results",
-            "-v", "./gen_test/gen_fix_tests.py:/testbed/genfixtests_files.py",
-            "-v", f"./{data_file}:/testbed/{data_file}",
+            "-v", "./gen_test/gen_tests_files.py:/testbed/genfixtests_files.py",
+            "-v", f"./{fix_data_path}:/testbed/{fix_data_path}",
             "repo-with-test",
             "bash", "-c", f"""
             cd /testbed
@@ -128,7 +154,7 @@ def create_and_run_py(dockerfile_path, gen_tests_dir, cover_source, project_root
 
             python /testbed/genfixtests_files.py \
                 --project-root /testbed \
-                --data-path /testbed/{data_file}
+                --data-path /testbed/{fix_data_path}
             # find {gen_tests_dir} -name "__pycache__" -type d -exec rm -rf {{}} + 2>/dev/null || true
             # find {gen_tests_dir} -name "*.pyc" -delete 2>/dev/null || true
 
@@ -185,7 +211,7 @@ def create_and_run_py(dockerfile_path, gen_tests_dir, cover_source, project_root
 
         compile, testcase = calculate_compile_pass_rate(test_results_dir + "/report.json")
         compile["compile_pass_rate"] = compile["compile_pass"] / syntax_report["total"]
-        coverage = get_coverage_rate(test_results_dir + "/coverage.json", data_file, project_root)
+        coverage = get_coverage_rate(test_results_dir + "/coverage.json", fix_data_path, project_root)
         summary = syntax_report | compile | testcase | coverage
         # summary = compile | coverage
         with open(test_results_dir + "/summary_filtered.json", 'w', encoding='utf-8') as f:
@@ -206,8 +232,8 @@ def load_data_file(data_path, project_root):
     file_paths = set()
     func_keys = set()
     print(project_root)
-    data1 = data['items']
-    for entry in data1:
+    # data1 = data['items']
+    for entry in data:
         # print(entry.get("project_root", ''))
         src_file = entry.get('src_file')
         if not src_file:
@@ -436,13 +462,19 @@ if __name__ == "__main__":
     #     help="The root dir of project.",
     # )
     # args = parser.parse_args()
-    root = "tests/test_gen/python/fix_flask"
-    for root, dirs, files in os.walk(root):
-        for file in files:
-            print(file)
-            file_path = os.path.join(root, file)
-            create_and_run_py("output/flask/dockerfile", gen_tests_dir="",
-                      cover_source="", project_root="projects/flask", 
-                      data_file=file_path)
+    # root = "tests/test_gen/python/fix_pylint"
+    # for root, dirs, files in os.walk(root):
+    #     for file in files:
+    #         print(file)
+    #         file_path = os.path.join(root, file)
+    #         create_and_run_py("output/pylint/dockerfile", gen_tests_dir="",
+    #                   cover_source="", project_root="projects/pylint", 
+    #                   data_file=file_path)
+
+
+    create_and_run_py("output/pylint/dockerfile", gen_tests_dir="",
+                      cover_source="", project_root="projects/pylint", 
+                      data_file="tests/test_gen/python/fix_pylint/repaired_pylint_lite_specification_unittest_DSv3.2.json")
+    
 
 
