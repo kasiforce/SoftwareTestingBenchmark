@@ -145,10 +145,11 @@ def write_generated_tests(project_root, test_json_path):
             # print(func)
             test_file = func.get("test_file", "")
             root = func.get("project_root", "").split('/')
+            # print(root)
             if len(root) > 2 and root[-1] != 'src':
                 test_file = os.path.join(root[-1], test_file)
             test_file1 = project_root + "/" + test_file
-
+           
             dir_path = os.path.dirname(test_file1)
             if not os.path.exists(dir_path):
                 os.makedirs(dir_path, exist_ok=True)
@@ -182,7 +183,7 @@ if __name__ == "__main__":
     write_generated_tests(args.project_root, args.data_path)
 
     # delete_test_files_in_test_dirs("projects/markitdown")
-    # write_generated_tests("projects/markitdown", "markitdown_lite_specification_unittest_gpt4o.json")
+    # write_generated_tests("projects/flask", "fix_data.json")
 
 
 # import json

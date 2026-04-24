@@ -1499,7 +1499,7 @@ def main() -> None:
         for file in files:
             if "codellama" in  file.lower() or "ds6.7b" in file.lower():
                 continue
-            if "pylint_pytest_glm" in file or "unittest_DSv" in file or "pylint_pytest_qwen" in file or "specification_pytest_gpt5" in file:
+            if  "specification_unittest_DSv" in file or "pylint_pytest_qwen" in file or "specification_pytest_gpt5" in file:
                 if "qwen" in file.lower() :
                     model_name = "qwen3-coder-480b-a35b-instruct"
                 if "glm" in file.lower():
@@ -1515,12 +1515,12 @@ def main() -> None:
                 print(full_path)
                 print(model_name)
                 repairer = PythonGeneratedTestRepairer(
-                    api_key="sk-cOBDeRW6zLVmrKG6pEDpCB56EgIGDi9mrPaebLFTZ8EUCth7",
+                    api_key="",
                     model=model_name,
                     dockerfile_path="output/pylint/dockerfile",
                     data_file=full_path,
                     max_rounds=3,
-                    base_url="https://api.agicto.cn/v1",
+                    base_url="",
                     reuse_container=True,
                     parallel_workers=2,
                     collect_coverage_after_repair=False,

@@ -696,56 +696,56 @@
 # plt.show()
 
 
-import pandas as pd
-import matplotlib.pyplot as plt
+# import pandas as pd
+# import matplotlib.pyplot as plt
 
-# 读取三语言数据（包含 source_lines、covered_line、total_line 列）
-df_python = pd.read_csv("test_results/python/python_test_count_vs_coverage.csv")
-df_java = pd.read_csv("test_results/java/java_test_count_vs_coverage.csv")
-df_js = pd.read_csv("test_results/javascript/javascript_test_count_vs_coverage.csv")
+# # 读取三语言数据（包含 source_lines、covered_line、total_line 列）
+# df_python = pd.read_csv("test_results/python/python_test_count_vs_coverage.csv")
+# df_java = pd.read_csv("test_results/java/java_test_count_vs_coverage.csv")
+# df_js = pd.read_csv("test_results/javascript/javascript_test_count_vs_coverage.csv")
 
-# 定义统一函数行数等级
-bins = [0, 10, 20, 40, 80, float('inf')]
-labels = [1, 2, 3, 4, 5]
+# # 定义统一函数行数等级
+# bins = [0, 10, 20, 40, 80, float('inf')]
+# labels = [1, 2, 3, 4, 5]
 
-def compute_weighted_coverage(df, language_name):
-    # 按统一等级分组
-    df['line_level'] = pd.cut(df['total_line'], bins=bins, labels=labels, right=True)
-    # 计算每级覆盖率：覆盖行数总和 / 总行数总和
-    coverage = df.groupby('line_level').apply(
-        lambda x: x['covered_line'].sum() / x['total_line'].sum() * 100
-    ).reset_index(name='line_coverage_percent')
-    coverage['language'] = language_name
-    # 统计每级函数数量
-    coverage['function_count'] = df.groupby('line_level')['total_line'].count().values
-    return coverage
+# def compute_weighted_coverage(df, language_name):
+#     # 按统一等级分组
+#     df['line_level'] = pd.cut(df['total_line'], bins=bins, labels=labels, right=True)
+#     # 计算每级覆盖率：覆盖行数总和 / 总行数总和
+#     coverage = df.groupby('line_level').apply(
+#         lambda x: x['covered_line'].sum() / x['total_line'].sum() * 100
+#     ).reset_index(name='line_coverage_percent')
+#     coverage['language'] = language_name
+#     # 统计每级函数数量
+#     coverage['function_count'] = df.groupby('line_level')['total_line'].count().values
+#     return coverage
 
-cov_python = compute_weighted_coverage(df_python, "Python")
-cov_java = compute_weighted_coverage(df_java, "Java")
-cov_js = compute_weighted_coverage(df_js, "JavaScript")
+# cov_python = compute_weighted_coverage(df_python, "Python")
+# cov_java = compute_weighted_coverage(df_java, "Java")
+# cov_js = compute_weighted_coverage(df_js, "JavaScript")
 
-# 合并三语言数据
-cov_all = pd.concat([cov_python, cov_java, cov_js], axis=0)
+# # 合并三语言数据
+# cov_all = pd.concat([cov_python, cov_java, cov_js], axis=0)
 
-# 绘图
-plt.figure(figsize=(8, 6))
-markers = {'Python': 'o', 'Java': 's', 'JavaScript': '^'}
+# # 绘图
+# plt.figure(figsize=(8, 6))
+# markers = {'Python': 'o', 'Java': 's', 'JavaScript': '^'}
 
-for lang in ['Python', 'Java', 'JavaScript']:
-    subset = cov_all[cov_all['language'] == lang]
-    plt.plot(subset['line_level'], subset['line_coverage_percent'],
-             marker=markers[lang], label=lang, linewidth=2)
+# for lang in ['Python', 'Java', 'JavaScript']:
+#     subset = cov_all[cov_all['language'] == lang]
+#     plt.plot(subset['line_level'], subset['line_coverage_percent'],
+#              marker=markers[lang], label=lang, linewidth=2)
 
-plt.xlabel("行数")
-plt.ylabel("函数级行覆盖率 (%)")
-plt.title("不同函数规模下的行覆盖率")
-plt.xticks(labels, ['0-10','11-20','21-40','41-80','>80'])
-plt.grid(True)
-plt.legend(title="Language")
+# plt.xlabel("行数")
+# plt.ylabel("函数级行覆盖率 (%)")
+# plt.title("不同函数规模下的行覆盖率")
+# plt.xticks(labels, ['0-10','11-20','21-40','41-80','>80'])
+# plt.grid(True)
+# plt.legend(title="Language")
 
-# 保存图
-plt.savefig("test_results/all_languages_coverage_by_function_size_uniform.png", dpi=300, bbox_inches='tight')
-plt.show()
+# # 保存图
+# plt.savefig("test_results/all_languages_coverage_by_function_size_uniform.png", dpi=300, bbox_inches='tight')
+# plt.show()
 
 
 
@@ -887,3 +887,85 @@ plt.show()
 # plt.tight_layout()
 # plt.savefig("test_results/error_distribution_python.png", dpi=300, bbox_inches='tight')
 # plt.show()
+
+
+
+
+import json
+from pathlib import Path
+import matplotlib
+import matplotlib.pyplot as plt
+from matplotlib import font_manager as fm
+import numpy as np
+import os
+
+# ===== 1. 字体设置 =====
+matplotlib.use('Agg')  # 无需 GUI，直接保存 PNG
+font_path = '/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc'
+my_font = fm.FontProperties(fname=font_path)
+
+# ===== 2. 数据准备 =====
+base_dir = Path("test_results")
+languages = [d.name for d in base_dir.iterdir() if d.is_dir()]
+
+language_avg_compile_rate = {}
+model_compile_rates = {}
+
+for lang in languages:
+    json_path = base_dir / lang / "aggregated_results.json"
+    if not json_path.exists():
+        print(f"[Warning] Missing file: {json_path}")
+        continue
+    print(f"Processing {json_path}...")
+    with open(json_path, "r") as f:
+        data = json.load(f)
+
+    by_model = data["by_model"]
+    total_compile_pass = 0
+    total_total = 0
+
+    for model, stats in by_model.items():
+        total_compile_pass += stats["filtered_stats_function_covered_lines"]
+        total_total += stats["filtered_stats_function_total_lines"]
+
+        if model not in model_compile_rates:
+            model_compile_rates[model] = {}
+        model_compile_rates[model][lang] = stats["filtered_stats_function_covered_lines"] / stats["filtered_stats_function_total_lines"]
+
+    language_avg_compile_rate[lang] = total_compile_pass / total_total
+
+# ===== 3. 排序横坐标 =====
+sorted_langs = sorted(language_avg_compile_rate.items(), key=lambda x: x[1], reverse=True)
+langs = [x[0] for x in sorted_langs]
+avg_rates = [x[1] for x in sorted_langs]
+
+# ===== 4. 绘图 =====
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# 柱状图：语言平均编译通过率
+bars = ax.bar(langs, avg_rates, color="lightblue", label="平均行覆盖率")
+
+# 折线图：不同模型在各语言的编译通过率
+markers = ['o', 's', '^', 'D', 'v']  # 支持多模型
+for i, (model, rates) in enumerate(model_compile_rates.items()):
+    y_values = [rates.get(lang, 0) for lang in langs]
+    ax.plot(langs, y_values, marker=markers[i % len(markers)], label=model)
+
+# ===== 5. 图表美化 =====
+ax.set_ylabel("行覆盖率", fontproperties=my_font)
+# ax.set_title("不同语言的平均编译通过率及模型对比", fontproperties=my_font)
+ax.set_ylim(0, 1)
+ax.legend(prop=my_font)
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+
+# 显示百分比
+ax.set_yticks(np.linspace(0, 1, 11))
+ax.set_yticklabels([f"{int(y*100)}%" for y in np.linspace(0, 1, 11)], fontproperties=my_font)
+
+# 保存图像
+os.makedirs("test_results", exist_ok=True)
+plt.tight_layout()
+plt.savefig("test_results/language_func_line_cov.png", dpi=300, bbox_inches='tight')
+plt.close(fig)
+
+print("图像已保存：test_results/language_execute_rates.png")
