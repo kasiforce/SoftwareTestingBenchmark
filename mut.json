@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "line": 2,
+    "precode": "        if (text.length() >= maxWidth) {",
+    "aftercode": "        if (text.length() > maxWidth) {"
+  },
+  {
+    "id": 2,
+    "line": 3,
+    "precode": "            return text;",
+    "aftercode": "            return null;"
+  },
+  {
+    "id": 3,
+    "line": 12,
+    "precode": "                padLen = addIndent ? indent : 0;",
+    "aftercode": "                padLen = addIndent ? 0 : indent;"
+  },
+  {
+    "id": 4,
+    "line": 18,
+    "precode": "            rest = Util.repeatSpace(padLen - left);",
+    "aftercode": "            rest = Util.repeatSpace(padLen + left);"
+  },
+  {
+    "id": 5,
+    "line": 19,
+    "precode": "            sb.append(indentPad).append(text).append(rest);",
+    "aftercode": "            sb.append(text).append(indentPad).append(rest);"
+  },
+  {
+    "id": 6,
+    "line": 31,
+    "precode": "                    restLen -= indent;",
+    "aftercode": "                    restLen -= 2 * indent;"
+  },
+  {
+    "id": 7,
+    "line": 28,
+    "precode": "                int restLen = maxWidth - text.length();",
+    "aftercode": "                int restLen = maxWidth - text.length() - 1;"
+  },
+  {
+    "id": 8,
+    "line": 29,
+    "precode": "                if (addIndent && restLen > indent) {",
+    "aftercode": "                if (addIndent || restLen > indent) {"
+  },
+  {
+    "id": 9,
+    "line": 39,
+    "precode": "                sb.append(indentPad).append(text).append(rest);",
+    "aftercode": "                sb.append(indentPad).append(rest).append(text);"
+  },
+  {
+    "id": 10,
+    "line": 41,
+    "precode": "                sb.append(indentPad).append(rest).append(text);",
+    "aftercode": "                sb.append(text).append(indentPad).append(rest);"
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "tool": "mutmut",
+  "total_mutants": 1,
+  "killed_mutants": 0,
+  "survived_mutants": 1,
+  "timeout_mutants": 0,
+  "suspicious_mutants": 0,
+  "mutation_score": 0.0
+}

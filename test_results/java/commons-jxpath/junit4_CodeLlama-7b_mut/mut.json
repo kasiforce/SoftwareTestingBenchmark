@@ -1,0 +1,9 @@
+{
+  "total_mutations": 6305,
+  "killed_mutations": 22,
+  "survived_mutations": 10,
+  "no_coverage_mutations": 6273,
+  "run_error_mutations": 0,
+  "mutation_score": 0.0034892942109436957,
+  "reports_found": 1
+}

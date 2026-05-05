@@ -1107,16 +1107,6 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
                 fi
 
 
-                # if ! grep -q "<artifactId>junit-jupiter-engine</artifactId>" pom.xml; then
-                #     sed -i '/<\/dependencies>/i \
-                #     <dependency>\
-                #         <groupId>org.junit.jupiter</groupId>\
-                #         <artifactId>junit-jupiter-engine</artifactId>\
-                #         <version>5.13.3</version>\
-                #         <scope>test</scope>\
-                #     </dependency>' pom.xml
-                # fi
-
                 
 
                 MAX_RETRIES=10
