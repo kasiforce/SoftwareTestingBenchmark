@@ -49,7 +49,7 @@ if ! grep -q "<artifactId>junit</artifactId>" pom.xml; then
                     </dependency>' pom.xml
                 fi
 
-                if ! grep -q "<artifactId>junit-jupiter-engine</artifactId>" pom.xml; then
+                <!-- if ! grep -q "<artifactId>junit-jupiter-engine</artifactId>" pom.xml; then
                     sed -i '/<\/dependencies>/i \
                     <dependency>\
                         <groupId>org.junit.jupiter</groupId>\
@@ -57,4 +57,4 @@ if ! grep -q "<artifactId>junit</artifactId>" pom.xml; then
                         <version>5.13.3</version>\
                         <scope>test</scope>\
                     </dependency>' pom.xml
-                fi
+                fi -->
