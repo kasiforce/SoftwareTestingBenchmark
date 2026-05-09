@@ -163,6 +163,7 @@ Return ONLY code without explanations, non-code text, or markdown formatting.
         if self.client is None:
             self.client = OpenAI(api_key=self.api_key, base_url=self.base_url) if self.base_url else OpenAI(api_key=self.api_key)
         # print(messages)
+        time.sleep(1)  # 每次调用前等待1秒，避免过快调用API
         response = self.client.chat.completions.create(
             model=self.model,
             messages=messages,
@@ -233,33 +234,56 @@ Return ONLY code without explanations, non-code text, or markdown formatting.
 # set -e
 cd /testbed
 touch /tmp/compile.txt /tmp/test.txt
-if ! grep -q "<artifactId>junit-jupiter</artifactId>" pom.xml; then
+if ! grep -q "<artifactId>junit</artifactId>" pom.xml; then
     sed -i '/<\/dependencies>/i \
-    <dependency>\
-        <groupId>org.junit.jupiter</groupId>\
-        <artifactId>junit-jupiter</artifactId>\
-        <version>5.9.2</version>\
-        <scope>test</scope>\
-    </dependency>' pom.xml
+<dependency>\
+    <groupId>junit</groupId>\
+    <artifactId>junit</artifactId>\
+    <version>4.13.2</version>\
+    <scope>test</scope>\
+</dependency>' pom.xml
 fi
 
-#     # 添加 JUnit Vintage 引擎（版本与项目 JUnit 5 一致）
+# 添加 JUnit Vintage 引擎（版本与项目 JUnit 5 一致）
 if ! grep -q "<artifactId>junit-vintage-engine</artifactId>" pom.xml; then
     sed -i '/<\/dependencies>/i \
     <dependency>\
         <groupId>org.junit.vintage</groupId>\
         <artifactId>junit-vintage-engine</artifactId>\
-        <version>5.9.2</version>\
+        <version>5.14.1</version>\
         <scope>test</scope>\
     </dependency>' pom.xml
 fi
 
-sed -i '/<\/plugins>/i \
-<plugin>\
-    <groupId>org.apache.maven.plugins</groupId>\
-    <artifactId>maven-surefire-plugin</artifactId>\
-    <version>3.0.0-M7</version>\
-</plugin>' pom.xml
+if ! grep -q "<artifactId>mockito-core</artifactId>" pom.xml; then
+    sed -i '/<\/dependencies>/i \
+    <dependency>\
+        <groupId>org.mockito</groupId>\
+        <artifactId>mockito-core</artifactId>\
+        <version>4.11.0</version>\
+        <scope>test</scope>\
+    </dependency>' pom.xml
+fi
+
+if ! grep -q "<artifactId>powermock-module-junit4</artifactId>" pom.xml; then
+    sed -i '/<\/dependencies>/i \
+    <dependency>\
+        <groupId>org.powermock</groupId>\
+        <artifactId>powermock-module-junit4</artifactId>\
+        <version>2.0.9</version>\
+        <scope>test</scope>\
+    </dependency>' pom.xml
+fi
+
+if ! grep -q "<artifactId>powermock-api-mockito2</artifactId>" pom.xml; then
+    sed -i '/<\/dependencies>/i \
+    <dependency>\
+        <groupId>org.powermock</groupId>\
+        <artifactId>powermock-api-mockito2</artifactId>\
+        <version>2.0.9</version>\
+        <scope>test</scope>\
+    </dependency>' pom.xml
+fi
 
 # 安装 Python3
 if ! command -v python3 &> /dev/null; then
@@ -481,58 +505,58 @@ def main() -> None:
     # parser.add_argument("--parallel-workers", type=int, default=1)
     # args = parser.parse_args()
 
-    for root, dirs, files in os.walk("tests/test_gen/java/jcasbin"):
+    for root, dirs, files in os.walk("tests/test_gen/java/commons-jxpath"):
             for file in files:
                 if "codellama" in  file.lower() or "ds6.7b" in file.lower():
                     continue
                 
-                # if "jcasbin_lite_junit4_gpt5nano" in file.lower() or "jcasbin_lite_junit5_gpt5" in file.lower() or "jcasbin_lite_junit4_dsv3.2" in file.lower():
-                #     continue
+                if "commons-jxpath_lite_junit4_qwen" in file.lower() or "commons-jxpath_lite_specification_junit4_glm" in file.lower() or "commons-jxpath_lite_specification_junit5_gpt5" in file.lower() or "commons-jxpath_lite_specification_junit5_qwen" in file.lower():
+                    continue
                 
-                # if "jcasbin_lite_junit4_glm" in file.lower() or "jcasbin_lite_junit5_glm" in file.lower() or "specification_junit4_glm" in file.lower() or "specification_junit4_qwen" in file.lower():
+                # if "commons-jxpath_lite_specification_junit5_glm" in file.lower() or "commons-jxpath_lite_junit5_dsv" in file.lower() or "commons-jxpath_lite_junit4_qwen" in file.lower() or "commons-jxpath_lite_specification_junit4_glm" in file.lower():
                 #     continue
 
-                if "specification_junit4_qwen" in file.lower() or "specification_junit5_qwen" in file.lower() or "specification_junit4_dsv" in file.lower():
+                # if "commons-jxpath_lite_specification_junit5_dsv" in file.lower():
                     
 
-                    if "qwen" in file.lower() :
-                        model_name = "qwen3-coder-480b-a35b-instruct"
-                    if "glm" in file.lower():
-                        model_name = "glm-4.7"
-                    if "gpt5" in file.lower():
-                        model_name = "gpt-5-nano"
-                    if "gpt4o" in file.lower():
-                        model_name = "gpt-4o"
-                    if "dsv3.2" in file.lower():
-                        model_name = "deepseek-v3.2"
+                if "qwen" in file.lower() :
+                    model_name = "qwen3-coder-480b-a35b-instruct"
+                if "glm" in file.lower():
+                    model_name = "glm-4.7"
+                if "gpt5" in file.lower():
+                    model_name = "gpt-5-nano"
+                if "gpt4o" in file.lower():
+                    model_name = "gpt-4o"
+                if "dsv3.2" in file.lower():
+                    model_name = "deepseek-v3.2"
 
-                    full_path = os.path.join(root, file)
-                    print(full_path)
-                    print(model_name)
-                    repairer = JavaGeneratedTestRepairer(
-                        api_key="sk-BllRs4ogYnB8HXsCPK2PBNsemvtgfgIbETE6jXUufmlKSRIw",
-                        model=model_name,
-                        dockerfile_path="output/jcasbin/dockerfile",
-                        data_file=full_path,
-                        max_rounds=3,
-                        base_url="https://api.agicto.cn/v1",
-                        reuse_container=False,
-                        parallel_workers=1,
-                    )
-                    repairer.repair_file("tests/test_gen/java/fix_jcasbin/repaired1_"+file)
-                # time.sleep(10)  # 每次修复后等待10秒，避免过快调用API
+                full_path = os.path.join(root, file)
+                print(full_path)
+                print(model_name)
+                repairer = JavaGeneratedTestRepairer(
+                    api_key="sk-bJWJsGN6uKXR5SfbEe148895FeAb40C5A84f662a82Fa6577",
+                    model=model_name,
+                    dockerfile_path="output/commons-jxpath/dockerfile",
+                    data_file=full_path,
+                    max_rounds=3,
+                    base_url="https://api.apiyi.com/v1",
+                    reuse_container=False,
+                    parallel_workers=1,
+                )
+                repairer.repair_file("tests/test_gen/java/fix_commons-jxpath/repaired1_"+file)
+                    # time.sleep(10)  # 每次修复后等待10秒，避免过快调用API
 
     # repairer = JavaGeneratedTestRepairer(
     #                 api_key="sk-BllRs4ogYnB8HXsCPK2PBNsemvtgfgIbETE6jXUufmlKSRIw",
     #                 model="gpt-5-nano",
-    #                 dockerfile_path="output/jcasbin/dockerfile",
-    #                 data_file="tests/test_gen/java/jcasbin/jcasbin_lite_junit4_gpt5nano.json",
+    #                 dockerfile_path="output/commons-jxpath/dockerfile",
+    #                 data_file="tests/test_gen/java/commons-jxpath/commons-jxpath_junit4_gpt5nano.json",
     #                 max_rounds=3,
     #                 base_url="https://api.agicto.cn/v1",
     #                 reuse_container=False,
     #                 parallel_workers=1,
     #             )
-    # repairer.repair_file("tests/test_gen/java/fix_jcasbin/repaired_jcasbin_lite_junit4_gpt5nano.json")
+    # repairer.repair_file("tests/test_gen/java/fix_commons-jxpath/repaired_commons-jxpath_junit4_gpt5nano.json")
 
 
 
