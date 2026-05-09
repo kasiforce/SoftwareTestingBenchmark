@@ -1,40 +1,6 @@
 [
   {
     "project_root": "projects/jcasbin",
-    "name": "mustUseDispatcher",
-    "src_file": "src/main/java/org/casbin/jcasbin/main/CoreEnforcer.java",
-    "test_file": "src/test/java/org/casbin/jcasbin/main/MustUseDispatcherTests.java",
-    "code": "protected boolean mustUseDispatcher() {\n        return this.dispatcher != null && this.autoNotifyDispatcher;\n    }",
-    "is_async": false,
-    "type": "method",
-    "class_name": "CoreEnforcer",
-    "full_class_name": "CoreEnforcer",
-    "class_constructor": [],
-    "class_fields": [
-      "String modelPath;",
-      "Model model;",
-      "FunctionMap fm;",
-      "Adapter adapter;",
-      "Watcher watcher;",
-      "Dispatcher dispatcher;",
-      "Map<String, RoleManager> rmMap;",
-      "Map<String, ConditionalRoleManager> condRmMap;",
-      "boolean autoSave;",
-      "boolean autoBuildRoleLinks;",
-      "boolean autoNotifyWatcher = true;",
-      "boolean autoNotifyDispatcher = true;",
-      "boolean acceptJsonRequest = false;"
-    ],
-    "specification": [
-      "Functional Description: Determines whether the dispatcher should be used based on its initialization state and the autoNotifyDispatcher flag. Returns true if the dispatcher is not null and autoNotifyDispatcher is set to true, indicating that the dispatcher is ready to handle notifications.\n\nArgs:\nNone\n\nReturns: boolean - True if the dispatcher is initialized and autoNotifyDispatcher is true; false otherwise\n\nPreconditions:\n1. The CoreEnforcer instance must be properly initialized with a dispatcher object if it is to be used.\n2. The autoNotifyDispatcher field must be accessible and properly set.\n\nPostconditions:\n1. Returns a boolean value indicating the readiness of the dispatcher without modifying any state.\n2. The state of the dispatcher and autoNotifyDispatcher fields remains unchanged.\n\nInvariants:\n1. The method consistently checks the state of the dispatcher and the autoNotifyDispatcher flag.\n2. The method is idempotent (same inputs produce the same output).\n3. The dispatcher field must be either null or a valid Dispatcher instance.\n\nException:\nNone"
-    ],
-    "generated_tests": [
-      "package org.casbin.jcasbin.main;\n\nimport org.junit.Test;\nimport org.junit.Before;\nimport org.junit.After;\nimport static org.junit.Assert.*;\n\npublic class MustUseDispatcherTests {\n    private CoreEnforcer enforcer;\n    \n    @Before\n    public void setUp() {\n        enforcer = new CoreEnforcer();\n    }\n    \n    @After\n    public void tearDown() {\n        enforcer = null;\n    }\n    \n    @Test\n    public void testMustUseDispatcher_WhenDispatcherIsNull() {\n        enforcer.dispatcher = null;\n        enforcer.autoNotifyDispatcher = true;\n        \n        boolean result = enforcer.mustUseDispatcher();\n        \n        assertFalse(result);\n    }\n    \n    @Test\n    public void testMustUseDispatcher_WhenAutoNotifyDispatcherIsFalse() {\n        enforcer.dispatcher = new Dispatcher();\n        enforcer.autoNotifyDispatcher = false;\n        \n        boolean result = enforcer.mustUseDispatcher();\n        \n        assertFalse(result);\n    }\n    \n    @Test\n    public void testMustUseDispatcher_WhenBothConditionsMet() {\n        enforcer.dispatcher = new Dispatcher();\n        enforcer.autoNotifyDispatcher = true;\n        \n        boolean result = enforcer.mustUseDispatcher();\n        \n        assertTrue(result);\n    }\n    \n    @Test\n    public void testMustUseDispatcher_WhenDispatcherIsNullAndAutoNotifyFalse() {\n        enforcer.dispatcher = null;\n        enforcer.autoNotifyDispatcher = false;\n        \n        boolean result = enforcer.mustUseDispatcher();\n        \n        assertFalse(result);\n    }\n    \n    @Test\n    public void testMustUseDispatcher_WhenDispatcherIsNotNullButAutoNotifyFalse() {\n        enforcer.dispatcher = new Dispatcher();\n        enforcer.autoNotifyDispatcher = false;\n        \n        boolean result = enforcer.mustUseDispatcher();\n        \n        assertFalse(result);\n    }\n    \n    @Test\n    public void testMustUseDispatcher_WhenDispatcherIsNullButAutoNotifyTrue() {\n        enforcer.dispatcher = null;\n        enforcer.autoNotifyDispatcher = true;\n        \n        boolean result = enforcer.mustUseDispatcher();\n        \n        assertFalse(result);\n    }\n    \n    @Test\n    public void testMustUseDispatcher_ConsistentBehavior() {\n        enforcer.dispatcher = new Dispatcher();\n        enforcer.autoNotifyDispatcher = true;\n        \n        boolean firstResult = enforcer.mustUseDispatcher();\n        boolean secondResult = enforcer.mustUseDispatcher();\n        \n        assertEquals(firstResult, secondResult);\n    }\n    \n    @Test\n    public void testMustUseDispatcher_StateNotModified() {\n        enforcer.dispatcher = new Dispatcher();\n        enforcer.autoNotifyDispatcher = true;\n        \n        Dispatcher originalDispatcher = enforcer.dispatcher;\n        boolean originalAutoNotify = enforcer.autoNotifyDispatcher;\n        \n        enforcer.mustUseDispatcher();\n        \n        assertSame(originalDispatcher, enforcer.dispatcher);\n        assertEquals(originalAutoNotify, enforcer.autoNotifyDispatcher);\n    }\n    \n    // Mock Dispatcher class for testing\n    private static class Dispatcher {\n        // Simple mock implementation\n    }\n}"
-    ],
-    "test_generation_status": "success"
-  },
-  {
-    "project_root": "projects/jcasbin",
     "name": "addNamedDomainLinkConditionFunc",
     "src_file": "src/main/java/org/casbin/jcasbin/main/CoreEnforcer.java",
     "test_file": "src/test/java/org/casbin/jcasbin/main/AddNamedDomainLinkConditionFuncTests.java",

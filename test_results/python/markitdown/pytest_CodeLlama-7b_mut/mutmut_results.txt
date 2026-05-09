@@ -1,0 +1,52 @@
+To apply a mutant on disk:
+    mutmut apply <id>
+
+To show a mutant:
+    mutmut show <id>
+
+
+Survived 🙁 (1124)
+
+---- packages/markitdown-mcp/src/markitdown_mcp/__main__.py (48) ----
+
+650-697
+
+---- packages/markitdown-sample-plugin/src/markitdown_sample_plugin/_plugin.py (20) ----
+
+438-457
+
+---- packages/markitdown/src/markitdown/_markitdown.py (347) ----
+
+698-1044
+
+---- packages/markitdown/src/markitdown/_stream_info.py (13) ----
+
+29-41
+
+---- packages/markitdown/src/markitdown/converter_utils/docx/math/omml.py (192) ----
+
+458-649
+
+---- packages/markitdown/src/markitdown/converter_utils/docx/pre_process.py (60) ----
+
+276-335
+
+---- packages/markitdown/src/markitdown/converters/_doc_intel_converter.py (102) ----
+
+336-437
+
+---- packages/markitdown/src/markitdown/converters/_epub_converter.py (83) ----
+
+1045-1127
+
+---- packages/markitdown/src/markitdown/converters/_outlook_msg_converter.py (63) ----
+
+213-275
+
+---- packages/markitdown/src/markitdown/converters/_transcribe_audio.py (26) ----
+
+1, 4-28
+
+---- packages/markitdown/src/markitdown/converters/_youtube_converter.py (170) ----
+
+43-212

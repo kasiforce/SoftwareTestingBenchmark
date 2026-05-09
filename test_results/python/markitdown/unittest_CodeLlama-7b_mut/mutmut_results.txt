@@ -1,0 +1,116 @@
+To apply a mutant on disk:
+    mutmut apply <id>
+
+To show a mutant:
+    mutmut show <id>
+
+
+Survived 🙁 (655)
+
+---- packages/markitdown-sample-plugin/src/markitdown_sample_plugin/_plugin.py (5) ----
+
+665-669
+
+---- packages/markitdown/src/markitdown/_base_converter.py (1) ----
+
+71
+
+---- packages/markitdown/src/markitdown/_exceptions.py (1) ----
+
+69
+
+---- packages/markitdown/src/markitdown/_markitdown.py (49) ----
+
+10-12, 15-17, 19-36, 38-58, 60-61, 67-68
+
+---- packages/markitdown/src/markitdown/_stream_info.py (9) ----
+
+1-9
+
+---- packages/markitdown/src/markitdown/converter_utils/docx/math/latex_dict.py (429) ----
+
+190-618
+
+---- packages/markitdown/src/markitdown/converter_utils/docx/math/omml.py (46) ----
+
+619-664
+
+---- packages/markitdown/src/markitdown/converter_utils/docx/pre_process.py (4) ----
+
+186-189
+
+---- packages/markitdown/src/markitdown/converters/_bing_serp_converter.py (4) ----
+
+164-167
+
+---- packages/markitdown/src/markitdown/converters/_csv_converter.py (4) ----
+
+76-79
+
+---- packages/markitdown/src/markitdown/converters/_doc_intel_converter.py (22) ----
+
+129-150
+
+---- packages/markitdown/src/markitdown/converters/_docx_converter.py (5) ----
+
+117-121
+
+---- packages/markitdown/src/markitdown/converters/_epub_converter.py (7) ----
+
+122-128
+
+---- packages/markitdown/src/markitdown/converters/_html_converter.py (4) ----
+
+72-75
+
+---- packages/markitdown/src/markitdown/converters/_image_converter.py (6) ----
+
+80-85
+
+---- packages/markitdown/src/markitdown/converters/_ipynb_converter.py (3) ----
+
+86-88
+
+---- packages/markitdown/src/markitdown/converters/_markdownify.py (4) ----
+
+160-163
+
+---- packages/markitdown/src/markitdown/converters/_outlook_msg_converter.py (5) ----
+
+181-185
+
+---- packages/markitdown/src/markitdown/converters/_pdf_converter.py (5) ----
+
+172-176
+
+---- packages/markitdown/src/markitdown/converters/_plain_text_converter.py (1) ----
+
+116
+
+---- packages/markitdown/src/markitdown/converters/_pptx_converter.py (5) ----
+
+155-159
+
+---- packages/markitdown/src/markitdown/converters/_rss_converter.py (7) ----
+
+109-115
+
+---- packages/markitdown/src/markitdown/converters/_transcribe_audio.py (2) ----
+
+151, 154
+
+---- packages/markitdown/src/markitdown/converters/_wikipedia_converter.py (4) ----
+
+177-180
+
+---- packages/markitdown/src/markitdown/converters/_xlsx_converter.py (11) ----
+
+89-99
+
+---- packages/markitdown/src/markitdown/converters/_youtube_converter.py (8) ----
+
+101-108
+
+---- packages/markitdown/src/markitdown/converters/_zip_converter.py (4) ----
+
+168-171
