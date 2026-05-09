@@ -428,8 +428,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
 
-    create_and_run_py("output/tornado/dockerfile", gen_tests_dir="",
-                      cover_source="", project_root="projects/tornado", 
-                      data_file="data_file.json")
+    create_and_run_py("output/markitdown/dockerfile", gen_tests_dir="",
+                      cover_source="", project_root="projects/markitdown", 
+                      data_file="tests/test_gen/python/markitdown/markitdown_lite_pytest_CodeLlama-7b.json")
 
 
