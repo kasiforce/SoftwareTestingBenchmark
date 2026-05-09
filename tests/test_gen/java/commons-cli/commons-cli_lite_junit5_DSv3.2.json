@@ -17,7 +17,69 @@
     "generated_tests": [
       "package org.apache.commons.cli.help.textstyle;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\n\nimport org.apache.commons.cli.help.TextStyle;\nimport org.apache.commons.cli.help.TextStyle.Alignment;\nimport org.apache.commons.cli.help.TextStyle.Builder;\nimport org.junit.jupiter.api.Test;\nimport org.junit.jupiter.params.ParameterizedTest;\nimport org.junit.jupiter.params.provider.CsvSource;\n\npublic class PadTests {\n    \n    @Test\n    public void testPadWithTextLengthGreaterThanOrEqualMaxWidth() {\n        TextStyle style = TextStyle.builder()\n                .setMaxWidth(5)\n                .get();\n        \n        CharSequence result1 = style.pad(false, \"Hello\");\n        assertEquals(\"Hello\", result1.toString());\n        \n        CharSequence result2 = style.pad(false, \"HelloWorld\");\n        assertEquals(\"HelloWorld\", result2.toString());\n    }\n    \n    @Test\n    public void testPadCenterWithUnsetMaxWidth() {\n        TextStyle style = TextStyle.builder()\n                .setAlignment(Alignment.CENTER)\n                .setIndent(4)\n                .get();\n        \n        CharSequence result1 = style.pad(true, \"Hi\");\n        assertEquals(\"  Hi  \", result1.toString());\n        \n        CharSequence result2 = style.pad(false, \"Hi\");\n        assertEquals(\"Hi\", result2.toString());\n    }\n    \n    @Test\n    public void testPadCenterWithSetMaxWidth() {\n        TextStyle style = TextStyle.builder()\n                .setAlignment(Alignment.CENTER)\n                .setMaxWidth(10)\n                .setIndent(4)\n                .get();\n        \n        CharSequence result1 = style.pad(true, \"Test\");\n        assertEquals(\"   Test   \", result1.toString());\n        \n        CharSequence result2 = style.pad(false, \"Test\");\n        assertEquals(\"   Test   \", result2.toString());\n    }\n    \n    @Test\n    public void testPadLeftWithUnsetMaxWidth() {\n        TextStyle style = TextStyle.builder()\n                .setAlignment(Alignment.LEFT)\n                .setIndent(4)\n                .get();\n        \n        CharSequence result1 = style.pad(true, \"Text\");\n        assertEquals(\"    Text\", result1.toString());\n        \n        CharSequence result2 = style.pad(false, \"Text\");\n        assertEquals(\"Text\", result2.toString());\n    }\n    \n    @Test\n    public void testPadLeftWithSetMaxWidth() {\n        TextStyle style = TextStyle.builder()\n                .setAlignment(Alignment.LEFT)\n                .setMaxWidth(10)\n                .setIndent(4)\n                .get();\n        \n        CharSequence result1 = style.pad(true, \"Hello\");\n        assertEquals(\"    Hello \", result1.toString());\n        \n        CharSequence result2 = style.pad(false, \"Hello\");\n        assertEquals(\"Hello     \", result2.toString());\n        \n        CharSequence result3 = style.pad(true, \"Hi\");\n        assertEquals(\"    Hi    \", result3.toString());\n    }\n    \n    @Test\n    public void testPadRightWithUnsetMaxWidth() {\n        TextStyle style = TextStyle.builder()\n                .setAlignment(Alignment.RIGHT)\n                .setIndent(4)\n                .get();\n        \n        CharSequence result1 = style.pad(true, \"Text\");\n        assertEquals(\"    Text\", result1.toString());\n        \n        CharSequence result2 = style.pad(false, \"Text\");\n        assertEquals(\"Text\", result2.toString());\n    }\n    \n    @Test\n    public void testPadRightWithSetMaxWidth() {\n        TextStyle style = TextStyle.builder()\n                .setAlignment(Alignment.RIGHT)\n                .setMaxWidth(10)\n                .setIndent(4)\n                .get();\n        \n        CharSequence result1 = style.pad(true, \"Hello\");\n        assertEquals(\"     Hello\", result1.toString());\n        \n        CharSequence result2 = style.pad(false, \"Hello\");\n        assertEquals(\"     Hello\", result2.toString());\n        \n        CharSequence result3 = style.pad(true, \"Hi\");\n        assertEquals(\"        Hi\", result3.toString());\n    }\n    \n    @Test\n    public void testPadRightWithMaxWidthLessThanIndent() {\n        TextStyle style = TextStyle.builder()\n                .setAlignment(Alignment.RIGHT)\n                .setMaxWidth(2)\n                .setIndent(4)\n                .get();\n        \n        CharSequence result1 = style.pad(true, \"A\");\n        assertEquals(\" A\", result1.toString());\n        \n        CharSequence result2 = style.pad(false, \"A\");\n        assertEquals(\" A\", result2.toString());\n    }\n    \n    @ParameterizedTest\n    @CsvSource({\n        \"LEFT, true, 10, 4, 'Test', '    Test  '\",\n        \"LEFT, false, 10, 4, 'Test', 'Test      '\",\n        \"RIGHT, true, 10, 4, 'Test', '      Test'\",\n        \"RIGHT, false, 10, 4, 'Test', '      Test'\",\n        \"CENTER, true, 10, 4, 'Test', '   Test   '\",\n        \"CENTER, false, 10, 4, 'Test', '   Test   '\"\n    })\n    public void testPadWithVariousParameters(Alignment alignment, boolean addIndent, int maxWidth, \n                                            int indent, String text, String expected) {\n        TextStyle style = TextStyle.builder()\n                .setAlignment(alignment)\n                .setMaxWidth(maxWidth)\n                .setIndent(indent)\n                .get();\n        \n        CharSequence result = style.pad(addIndent, text);\n        assertEquals(expected, result.toString());\n    }\n    \n    @Test\n    public void testPadWithEmptyString() {\n        TextStyle style = TextStyle.builder()\n                .setAlignment(Alignment.CENTER)\n                .setMaxWidth(10)\n                .setIndent(4)\n                .get();\n        \n        CharSequence result1 = style.pad(true, \"\");\n        assertEquals(\"          \", result1.toString());\n        \n        CharSequence result2 = style.pad(false, \"\");\n        assertEquals(\"          \", result2.toString());\n    }\n    \n    @Test\n    public void testPadWithNullCharSequence() {\n        TextStyle style = TextStyle.builder()\n                .setAlignment(Alignment.LEFT)\n                .setMaxWidth(10)\n                .get();\n        \n        CharSequence result = style.pad(false, \"\");\n        assertEquals(\"          \", result.toString());\n    }\n}"
     ],
-    "test_generation_status": "success"
+    "test_generation_status": "success",
+    "mut": [
+        {
+            "id": 1,
+            "line": 2,
+            "precode": "        if (text.length() >= maxWidth) {",
+            "aftercode": "        if (text.length() > maxWidth) {"
+        },
+        {
+            "id": 2,
+            "line": 3,
+            "precode": "            return text;",
+            "aftercode": "            return text.toString();"
+        },
+        {
+            "id": 3,
+            "line": 5,
+            "precode": "        String indentPad;",
+            "aftercode": "        String indentPad = null;"
+        },
+        {
+            "id": 4,
+            "line": 12,
+            "precode": "                padLen = addIndent ? indent : 0;",
+            "aftercode": "                padLen = addIndent ? 0 : indent;"
+        },
+        {
+            "id": 5,
+            "line": 16,
+            "precode": "            final int left = padLen / 2;",
+            "aftercode": "            final int left = padLen;"
+        },
+        {
+            "id": 6,
+            "line": 17,
+            "precode": "            indentPad = Util.repeatSpace(left);",
+            "aftercode": "            indentPad = Util.repeatSpace(left + 1);"
+        },
+        {
+            "id": 7,
+            "line": 18,
+            "precode": "            rest = Util.repeatSpace(padLen - left);",
+            "aftercode": "            rest = Util.repeatSpace(padLen - left - 1);"
+        },
+        {
+            "id": 8,
+            "line": 25,
+            "precode": "                indentPad = addIndent ? Util.repeatSpace(indent) : \"\";",
+            "aftercode": "                indentPad = addIndent ? \"\" : Util.repeatSpace(indent);"
+        },
+        {
+            "id": 9,
+            "line": 28,
+            "precode": "                int restLen = maxWidth - text.length();",
+            "aftercode": "                int restLen = maxWidth - text.length() - 1;"
+        },
+        {
+            "id": 10,
+            "line": 31,
+            "precode": "                    restLen -= indent;",
+            "aftercode": "                    restLen -= indent + 1;"
+        }
+    ]
   },
   {
     "project_root": "projects/commons-cli",

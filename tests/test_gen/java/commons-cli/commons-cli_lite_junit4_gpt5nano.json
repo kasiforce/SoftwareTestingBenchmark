@@ -91,7 +91,69 @@
     "generated_tests": [
       "package org.apache.commons.cli.help;\n\nimport static org.junit.Assert.assertEquals;\n\nimport java.lang.reflect.Field;\nimport java.lang.reflect.Method;\n\nimport org.junit.Test;\n\npublic class PadTests {\n\n    private Object buildStyle(String alignmentName, Integer maxWidth, Integer indent) {\n        try {\n            Class<?> tsClass = Class.forName(\"org.apache.commons.cli.help.TextStyle\");\n\n            // Obtain builder\n            Method builderMethod = null;\n            for (Method m : tsClass.getMethods()) {\n                if (m.getName().equals(\"builder\") && m.getParameterTypes().length == 0) {\n                    builderMethod = m;\n                    break;\n                }\n            }\n            if (builderMethod == null) {\n                throw new RuntimeException(\"Builder method not found\");\n            }\n            Object builder = builderMethod.invoke(null);\n\n            // Alignment enum\n            Class<?> alignmentEnum = null;\n            for (Class<?> inner : tsClass.getDeclaredClasses()) {\n                if (\"Alignment\".equals(inner.getSimpleName())) {\n                    alignmentEnum = inner;\n                    break;\n                }\n            }\n\n            // Set alignment if provided\n            if (alignmentName != null && alignmentEnum != null) {\n                Method alignSetter = null;\n                for (Method m : builder.getClass().getMethods()) {\n                    String name = m.getName();\n                    if ((name.equals(\"alignment\") || name.equals(\"withAlignment\") || name.equals(\"setAlignment\"))\n                            && m.getParameterTypes().length == 1) {\n                        alignSetter = m;\n                        break;\n                    }\n                }\n                if (alignSetter == null) {\n                    throw new RuntimeException(\"Alignment setter not found\");\n                }\n                Object alignObj = Enum.valueOf((Class) alignmentEnum, alignmentName);\n                alignSetter.invoke(builder, alignObj);\n            }\n\n            // Set maxWidth if provided\n            if (maxWidth != null) {\n                Method maxSetter = null;\n                for (Method m : builder.getClass().getMethods()) {\n                    String name = m.getName();\n                    if ((name.equals(\"maxWidth\") || name.equals(\"withMaxWidth\") || name.equals(\"setMaxWidth\"))\n                            && m.getParameterTypes().length == 1) {\n                        maxSetter = m;\n                        break;\n                    }\n                }\n                if (maxSetter != null) {\n                    maxSetter.invoke(builder, maxWidth.intValue());\n                }\n            }\n\n            // Set indent if provided\n            if (indent != null) {\n                Method indentSetter = null;\n                for (Method m : builder.getClass().getMethods()) {\n                    String name = m.getName();\n                    if ((name.equals(\"indent\") || name.equals(\"withIndent\") || name.equals(\"setIndent\"))\n                            && m.getParameterTypes().length == 1) {\n                        indentSetter = m;\n                        break;\n                    }\n                }\n                if (indentSetter != null) {\n                    indentSetter.invoke(builder, indent.intValue());\n                }\n            }\n\n            // Build the TextStyle instance\n            Method finalMethod = null;\n            try {\n                finalMethod = tsClass.getMethod(\"get\");\n            } catch (NoSuchMethodException e1) {\n                try {\n                    finalMethod = tsClass.getMethod(\"build\");\n                } catch (NoSuchMethodException e2) {\n                    throw new RuntimeException(\"No finalizer method found on TextStyle\");\n                }\n            }\n            Object style = finalMethod.invoke(builder);\n            return style;\n        } catch (Exception ex) {\n            throw new RuntimeException(ex);\n        }\n    }\n\n    private String invokePad(Object style, boolean addIndent, String text) {\n        try {\n            Method m = style.getClass().getMethod(\"pad\", boolean.class, CharSequence.class);\n            return (String) m.invoke(style, addIndent, text);\n        } catch (Exception e) {\n            throw new RuntimeException(e);\n        }\n    }\n\n    @Test\n    public void testCenterWithMaxWidth() {\n        Object style = buildStyle(\"CENTER\", 11, null);\n        String result = invokePad(style, true, \"text\");\n        assertEquals(\"   text    \", result);\n    }\n\n    @Test\n    public void testLeftWithMaxWidthAndIndent() {\n        Object style = buildStyle(\"LEFT\", 10, 2);\n        String result = invokePad(style, true, \"hello\");\n        assertEquals(\"  hello   \", result);\n    }\n\n    @Test\n    public void testRightWithMaxWidthAndIndentFalse() {\n        Object style = buildStyle(\"RIGHT\", 10, 2);\n        String result = invokePad(style, false, \"hello\");\n        assertEquals(\"     hello\", result);\n    }\n\n    @Test\n    public void testUnsetMaxWidthCenterAddIndent() {\n        try {\n            Class<?> tsClass = Class.forName(\"org.apache.commons.cli.help.TextStyle\");\n            int unsetMax = ((Integer) tsClass.getField(\"UNSET_MAX_WIDTH\").get(null)).intValue();\n            Object style = buildStyle(\"CENTER\", unsetMax, 4);\n            String result = invokePad(style, true, \"AB\");\n            assertEquals(\"  AB  \", result);\n        } catch (Exception e) {\n            throw new RuntimeException(e);\n        }\n    }\n\n    @Test\n    public void testPadWhenTextLongerThanMax() {\n        Object style = buildStyle(null, 3, null); // alignment not set, but maxWidth = 3\n        String result = invokePad(style, true, \"abcd\");\n        assertEquals(\"abcd\", result);\n    }\n\n    @Test\n    public void testUnsetMaxWidthLeftAddIndent() {\n        Object style = buildStyle(\"LEFT\", null, 3);\n        String result = invokePad(style, true, \"X\");\n        assertEquals(\"   X\", result);\n    }\n}"
     ],
-    "test_generation_status": "success"
+    "test_generation_status": "success",
+    "mut": [
+        {
+            "id": 1,
+            "line": 2,
+            "precode": "        if (text.length() >= maxWidth) {",
+            "aftercode": "        if (text.length() > maxWidth) {"
+        },
+        {
+            "id": 2,
+            "line": 3,
+            "precode": "            return text;",
+            "aftercode": "            return text.toString();"
+        },
+        {
+            "id": 3,
+            "line": 5,
+            "precode": "        String indentPad;",
+            "aftercode": "        String indentPad = null;"
+        },
+        {
+            "id": 4,
+            "line": 12,
+            "precode": "                padLen = addIndent ? indent : 0;",
+            "aftercode": "                padLen = addIndent ? 0 : indent;"
+        },
+        {
+            "id": 5,
+            "line": 16,
+            "precode": "            final int left = padLen / 2;",
+            "aftercode": "            final int left = padLen;"
+        },
+        {
+            "id": 6,
+            "line": 17,
+            "precode": "            indentPad = Util.repeatSpace(left);",
+            "aftercode": "            indentPad = Util.repeatSpace(left + 1);"
+        },
+        {
+            "id": 7,
+            "line": 18,
+            "precode": "            rest = Util.repeatSpace(padLen - left);",
+            "aftercode": "            rest = Util.repeatSpace(padLen - left - 1);"
+        },
+        {
+            "id": 8,
+            "line": 25,
+            "precode": "                indentPad = addIndent ? Util.repeatSpace(indent) : \"\";",
+            "aftercode": "                indentPad = addIndent ? \"\" : Util.repeatSpace(indent);"
+        },
+        {
+            "id": 9,
+            "line": 28,
+            "precode": "                int restLen = maxWidth - text.length();",
+            "aftercode": "                int restLen = maxWidth - text.length() - 1;"
+        },
+        {
+            "id": 10,
+            "line": 31,
+            "precode": "                    restLen -= indent;",
+            "aftercode": "                    restLen -= indent + 1;"
+        }
+    ]
   },
   {
     "project_root": "projects/commons-cli",

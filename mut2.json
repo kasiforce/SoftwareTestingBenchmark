@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "line": 12,
+    "type": "semantic",
+    "precode": "            padLen = addIndent ? indent : 0;",
+    "aftercode": "            padLen = addIndent ? indent : 1;"
+  },
+  {
+    "id": 2,
+    "line": 14,
+    "type": "semantic",
+    "precode": "                padLen = maxWidth - text.length();",
+    "aftercode": "                padLen = maxWidth - text.length() - 1;"
+  },
+  {
+    "id": 3,
+    "line": 16,
+    "type": "semantic",
+    "precode": "            final int left = padLen / 2;",
+    "aftercode": "            final int left = padLen / 3;"
+  },
+  {
+    "id": 4,
+    "line": 19,
+    "type": "syntactic",
+    "precode": "            sb.append(indentPad).append(text).append(rest);",
+    "aftercode": "            sb.append(indentPad).append(text);"
+  },
+  {
+    "id": 5,
+    "line": 25,
+    "type": "syntactic",
+    "precode": "                indentPad = addIndent ? Util.repeatSpace(indent) : \\\"\\\";",
+    "aftercode": "                indentPad = addIndent ? Util.repeatSpace(indent + 1) : \\\"\\\";"
+  },
+  {
+    "id": 6,
+    "line": 28,
+    "type": "semantic",
+    "precode": "                int restLen = maxWidth - text.length();",
+    "aftercode": "                int restLen = maxWidth - text.length() - 2;"
+  },
+  {
+    "id": 7,
+    "line": 29,
+    "type": "syntactic",
+    "precode": "                if (addIndent && restLen > indent) {",
+    "aftercode": "                if (addIndent && restLen >= indent) {"
+  },
+  {
+    "id": 8,
+    "line": 30,
+    "type": "syntactic",
+    "precode": "                    indentPad = Util.repeatSpace(indent);",
+    "aftercode": "                    indentPad = Util.repeatSpace(indent + 2);"
+  },
+  {
+    "id": 9,
+    "line": 31,
+    "type": "syntactic",
+    "precode": "                    restLen -= indent;",
+    "aftercode": "                    restLen -= (indent + 1);"
+  },
+  {
+    "id": 10,
+    "line": 33,
+    "type": "syntactic",
+    "precode": "                indentPad = \\\"\\\";",
+    "aftercode": "                indentPad = \\\" \\\";"
+  },
+  {
+    "id": 11,
+    "line": 38,
+    "type": "semantic",
+    "precode": "            if (alignment == Alignment.LEFT) {",
+    "aftercode": "            if (alignment != Alignment.LEFT) {"
+  },
+  {
+    "id": 12,
+    "line": 39,
+    "type": "syntactic",
+    "precode": "                sb.append(indentPad).append(text).append(rest);",
+    "aftercode": "                sb.append(text).append(indentPad).append(rest);"
+  },
+  {
+    "id": 13,
+    "line": 41,
+    "type": "syntactic",
+    "precode": "            sb.append(indentPad).append(rest).append(text);",
+    "aftercode": "            sb.append(indentPad).append(rest + \\\"\\\" ).append(text);"
+  },
+  {
+    "id": 14,
+    "line": 3,
+    "type": "semantic",
+    "precode": "            return text;",
+    "aftercode": "            return text.toString();"
+  },
+  {
+    "id": 15,
+    "line": 2,
+    "type": "semantic",
+    "precode": "        if (text.length() >= maxWidth) {",
+    "aftercode": "        if (text.length() > maxWidth) {"
+  },
+  {
+    "id": 16,
+    "line": 7,
+    "type": "syntactic",
+    "precode": "        final StringBuilder sb = new StringBuilder();",
+    "aftercode": "        final StringBuilder sb = new StringBuilder(32);"
+  },
+  {
+    "id": 17,
+    "line": 17,
+    "type": "syntactic",
+    "precode": "            int padLen;",
+    "aftercode": "            int padLen;"
+  },
+  {
+    "id": 18,
+    "line": 18,
+    "type": "syntactic",
+    "precode": "            indentPad = Util.repeatSpace(left);",
+    "aftercode": "            rest = Util.repeatSpace(padLen - left - 2);"
+  },
+  {
+    "id": 19,
+    "line": 11,
+    "type": "semantic",
+    "precode": "            if (maxWidth == UNSET_MAX_WIDTH) {",
+    "aftercode": "            if (maxWidth != UNSET_MAX_WIDTH) {"
+  },
+  {
+    "id": 20,
+    "line": 5,
+    "type": "syntactic",
+    "precode": "        String indentPad;",
+    "aftercode": "        String indentPad = null;"
+  }
+]
