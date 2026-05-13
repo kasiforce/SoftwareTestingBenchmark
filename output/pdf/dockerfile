@@ -60,7 +60,7 @@ RUN git clone https://github.com/mozilla/pdf.js.git /testbed && \
 RUN npm ci
 
 # install project deps + rollup + plugins
-RUN npm install --save-dev rollup @rollup/plugin-node-resolve @rollup/plugin-commonjs @babel/core @babel/preset-env babel-jest @babel/plugin-transform-modules-commonjs @jest/globals
+RUN npm install --save-dev rollup @rollup/plugin-node-resolve @rollup/plugin-commonjs @babel/core @babel/preset-env babel-jest @babel/plugin-transform-modules-commonjs @jest/globals jest-environment-jsdom
 
 # Install the local package in development mode for local source linking
 RUN npm link

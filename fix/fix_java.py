@@ -109,7 +109,7 @@ Function Specification:
 ```{specification}```
 
 Requirements:
-Java version: Java 8
+Java version: Java 17
 Use {test_framework} framework for writing tests.
 Your job is to output corresponding test class that obtains high coverage and invokes the code under test.
 The test code should be written into {test_path}. Please make sure the imports are correct.
@@ -133,7 +133,7 @@ Function Code:
 {function_code}
 
 Requirements:
-Java version: Java 8
+Java version: Java 17
 Use {test_framework} framework for writing tests.
 Your job is to output corresponding test class that obtains high coverage and invokes the code under test.
 The test code should be written into {test_path}. Please make sure the imports are correct.
@@ -237,20 +237,19 @@ touch /tmp/compile.txt /tmp/test.txt
 if ! grep -q "<artifactId>junit</artifactId>" pom.xml; then
     sed -i '/<\/dependencies>/i \
 <dependency>\
-    <groupId>junit</groupId>\
-    <artifactId>junit</artifactId>\
-    <version>4.13.2</version>\
-    <scope>test</scope>\
+<groupId>junit</groupId>\
+<artifactId>junit</artifactId>\
+<version>4.13.2</version>\
+<scope>test</scope>\
 </dependency>' pom.xml
 fi
 
-# 添加 JUnit Vintage 引擎（版本与项目 JUnit 5 一致）
 if ! grep -q "<artifactId>junit-vintage-engine</artifactId>" pom.xml; then
     sed -i '/<\/dependencies>/i \
     <dependency>\
         <groupId>org.junit.vintage</groupId>\
         <artifactId>junit-vintage-engine</artifactId>\
-        <version>5.14.1</version>\
+        <version>5.13.3</version>\
         <scope>test</scope>\
     </dependency>' pom.xml
 fi
@@ -265,23 +264,24 @@ if ! grep -q "<artifactId>mockito-core</artifactId>" pom.xml; then
     </dependency>' pom.xml
 fi
 
-if ! grep -q "<artifactId>powermock-module-junit4</artifactId>" pom.xml; then
+# sed -i 's|<argLine>-javaagent:src/test/resources/agent.jar</argLine>|<argLine>@{{argLine}} -javaagent:src/test/resources/agent.jar</argLine>|' pom.xml
+
+if ! grep -q "<artifactId>jakarta.xml.bind-api</artifactId>" pom.xml; then
     sed -i '/<\/dependencies>/i \
     <dependency>\
-        <groupId>org.powermock</groupId>\
-        <artifactId>powermock-module-junit4</artifactId>\
-        <version>2.0.9</version>\
-        <scope>test</scope>\
+        <groupId>jakarta.xml.bind</groupId>\
+        <artifactId>jakarta.xml.bind-api</artifactId>\
+        <version>4.0.0</version>\
     </dependency>' pom.xml
 fi
 
-if ! grep -q "<artifactId>powermock-api-mockito2</artifactId>" pom.xml; then
+if ! grep -q "<artifactId>jaxb-runtime</artifactId>" pom.xml; then
     sed -i '/<\/dependencies>/i \
     <dependency>\
-        <groupId>org.powermock</groupId>\
-        <artifactId>powermock-api-mockito2</artifactId>\
-        <version>2.0.9</version>\
-        <scope>test</scope>\
+        <groupId>org.glassfish.jaxb</groupId>\
+        <artifactId>jaxb-runtime</artifactId>\
+        <version>4.0.3</version>\
+        <scope>runtime</scope>\
     </dependency>' pom.xml
 fi
 
@@ -505,12 +505,15 @@ def main() -> None:
     # parser.add_argument("--parallel-workers", type=int, default=1)
     # args = parser.parse_args()
 
-    for root, dirs, files in os.walk("tests/test_gen/java/commons-jxpath"):
+    for root, dirs, files in os.walk("tests/test_gen/java/nfe"):
             for file in files:
                 if "codellama" in  file.lower() or "ds6.7b" in file.lower():
                     continue
                 
-                if "commons-jxpath_lite_junit4_qwen" in file.lower() or "commons-jxpath_lite_specification_junit4_glm" in file.lower() or "commons-jxpath_lite_specification_junit5_gpt5" in file.lower() or "commons-jxpath_lite_specification_junit5_qwen" in file.lower():
+                if "dsv3.2" in file.lower() or "gpt4o" in file.lower():
+                    continue
+                
+                if "specification_junit4_qwen" in file.lower() or "lite_junit5_gpt5" in file.lower() or "lite_junit5_glm" in file.lower():
                     continue
                 
                 # if "commons-jxpath_lite_specification_junit5_glm" in file.lower() or "commons-jxpath_lite_junit5_dsv" in file.lower() or "commons-jxpath_lite_junit4_qwen" in file.lower() or "commons-jxpath_lite_specification_junit4_glm" in file.lower():
@@ -534,16 +537,16 @@ def main() -> None:
                 print(full_path)
                 print(model_name)
                 repairer = JavaGeneratedTestRepairer(
-                    api_key="sk-bJWJsGN6uKXR5SfbEe148895FeAb40C5A84f662a82Fa6577",
+                    api_key="sk-6qW3EPXVUJZTU46xIbGNMAdOXexqbJUbtJer6n3ux8YEAeck",
                     model=model_name,
-                    dockerfile_path="output/commons-jxpath/dockerfile",
+                    dockerfile_path="output/nfe/dockerfile",
                     data_file=full_path,
                     max_rounds=3,
-                    base_url="https://api.apiyi.com/v1",
+                    base_url="https://api.agicto.cn/v1",
                     reuse_container=False,
                     parallel_workers=1,
                 )
-                repairer.repair_file("tests/test_gen/java/fix_commons-jxpath/repaired1_"+file)
+                repairer.repair_file("tests/test_gen/java/fix_nfe/repaired_"+file)
                     # time.sleep(10)  # 每次修复后等待10秒，避免过快调用API
 
     # repairer = JavaGeneratedTestRepairer(

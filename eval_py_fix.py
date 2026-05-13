@@ -3,6 +3,7 @@ import os
 import sys
 import json
 import re
+import time
 from argparse import ArgumentParser
 from pathlib import Path
 
@@ -76,11 +77,12 @@ def create_and_run_py(dockerfile_path, gen_tests_dir, cover_source, project_root
     data1 = data['items']
     for func in data1:
         func1 = func['repair_history']
-        raw_code = ""
-        if len(func1) > 1: 
-            raw_code = func1[1]["test_code"]
-        else:
-            raw_code = func1[0]["test_code"]
+        raw_code = func1[-1]["test_code"] if func1 else ""
+
+        # if len(func1) > 1: 
+        #     raw_code = func1[1]["test_code"]
+        # else:
+        #     raw_code = func1[0]["test_code"]
        
         if not raw_code.strip():
             continue
@@ -108,7 +110,7 @@ def create_and_run_py(dockerfile_path, gen_tests_dir, cover_source, project_root
     repo_name = project_root
     if "/" in project_root:
         repo_name = project_root.split("/")[1]
-    test_results_dir = os.path.join(test_results_dir, "fix_"+repo_name)
+    test_results_dir = os.path.join(test_results_dir, "fix3_"+repo_name)
 
     data_file1 = data_file.split(".json")[0]
     model_name = data_file1.split("_")[-1]
@@ -144,7 +146,7 @@ def create_and_run_py(dockerfile_path, gen_tests_dir, cover_source, project_root
         subprocess.run([
             "docker", "run", "--rm",
             "-v", f"{test_results_dir}:/results",
-            "-v", "./gen_test/gen_tests_files.py:/testbed/genfixtests_files.py",
+            "-v", "./gen_test/gen_py_test.py:/testbed/genfixtests_files.py",
             "-v", f"./{fix_data_path}:/testbed/{fix_data_path}",
             "repo-with-test",
             "bash", "-c", f"""
@@ -466,15 +468,18 @@ if __name__ == "__main__":
     # for root, dirs, files in os.walk(root):
     #     for file in files:
     #         print(file)
+    #         if "specification_unittest_DSv3.2" in file:
+    #             continue
     #         file_path = os.path.join(root, file)
     #         create_and_run_py("output/pylint/dockerfile", gen_tests_dir="",
     #                   cover_source="", project_root="projects/pylint", 
     #                   data_file=file_path)
+    #         time.sleep(10)  # 等待10秒再运行下一个文件
 
 
-    create_and_run_py("output/pylint/dockerfile", gen_tests_dir="",
-                      cover_source="", project_root="projects/pylint", 
-                      data_file="tests/test_gen/python/fix_pylint/repaired_pylint_lite_specification_unittest_DSv3.2.json")
+    create_and_run_py("output/flask/dockerfile", gen_tests_dir="",
+                      cover_source="", project_root="projects/flask", 
+                      data_file="tests/test_gen/python/fix_flask/repaired_flask_lite_pytest_DSv3.2.json")
     
 
 

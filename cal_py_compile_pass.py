@@ -1,7 +1,7 @@
-# import json
-# import os
-# import sys
-# from collections import defaultdict
+import json
+import os
+import sys
+from collections import defaultdict
 
 
 # def count_compile_pass(directory: str) -> dict:
@@ -96,13 +96,16 @@
 #     #     print("用法: python script.py <目标目录>")
 #     #     sys.exit(1)
 
-#     target_dir = "tests/test_gen/python/fix_tornado"
+#     target_dir = "tests/test_gen/java/fix_jcasbin"
 #     if not os.path.isdir(target_dir):
 #         print(f"错误: {target_dir} 不是有效的目录")
 #         sys.exit(1)
 
 #     stats = count_compile_pass(target_dir)
 #     print(json.dumps(stats, indent=2, ensure_ascii=False))
+
+
+
 
 
 
