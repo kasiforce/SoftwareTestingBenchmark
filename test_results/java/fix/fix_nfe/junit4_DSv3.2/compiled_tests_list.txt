@@ -1,0 +1,4 @@
+./target/test-classes/br/com/swconsultoria/nfe/GenerateReportTests.class
+./target/test-classes/br/com/swconsultoria/nfe/EventoCancelamentoSubstituicaoTests.class
+./target/test-classes/br/com/swconsultoria/nfe/impressao/ImpressaoPadraoNFCeTests.class
+./target/test-classes/br/com/swconsultoria/nfe/impressao/CarregaJasperResourcesTests.class

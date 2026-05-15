@@ -1,0 +1,4 @@
+./target/test-classes/org/apache/commons/cli/help/texthelpappendable/AdjustTableFormatTests.class
+./target/test-classes/org/apache/commons/cli/help/texthelpappendable/IndexOfWrapTests.class
+./target/test-classes/org/apache/commons/cli/options/AddRequiredOptionTests.class
+./target/test-classes/org/apache/commons/cli/options/AddOptionsTests.class

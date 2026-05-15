@@ -1,0 +1,308 @@
+{
+  "total": 23,
+  "syntax_correct": 23,
+  "syntax_correct_rate": 1.0,
+  "compile_pass": 23,
+  "compile_pass_rate": 1.0,
+  "testcase": {
+    "passed": 58,
+    "failed": 34,
+    "total": 92,
+    "collected": 92,
+    "test_pass_rate": 0.6304347826086957,
+    "run_pass_rate": 1.0
+  },
+  "filtered_stats": {
+    "file": {
+      "total_lines": 1094,
+      "covered_lines": 640,
+      "total_branches": 420,
+      "covered_branches": 167
+    },
+    "function": {
+      "total_lines": 343,
+      "covered_lines": 223,
+      "total_branches": 164,
+      "covered_branches": 87
+    }
+  },
+  "file_coverage": {
+    "packages/markitdown-mcp/src/markitdown_mcp/__main__.py": {
+      "covered_line": 29,
+      "total_line": 55,
+      "line_coverage": 52.73,
+      "covered_branch": 1,
+      "total_branch": 6,
+      "branch_coverage": 16.67
+    },
+    "packages/markitdown-sample-plugin/src/markitdown_sample_plugin/_plugin.py": {
+      "covered_line": 22,
+      "total_line": 23,
+      "line_coverage": 95.65,
+      "covered_branch": 6,
+      "total_branch": 6,
+      "branch_coverage": 100.0
+    },
+    "packages/markitdown/src/markitdown/_markitdown.py": {
+      "covered_line": 234,
+      "total_line": 328,
+      "line_coverage": 71.34,
+      "covered_branch": 75,
+      "total_branch": 152,
+      "branch_coverage": 49.34
+    },
+    "packages/markitdown/src/markitdown/_stream_info.py": {
+      "covered_line": 18,
+      "total_line": 18,
+      "line_coverage": 100.0,
+      "covered_branch": 4,
+      "total_branch": 4,
+      "branch_coverage": 100.0
+    },
+    "packages/markitdown/src/markitdown/converter_utils/docx/math/omml.py": {
+      "covered_line": 68,
+      "total_line": 190,
+      "line_coverage": 35.79,
+      "covered_branch": 2,
+      "total_branch": 54,
+      "branch_coverage": 3.7
+    },
+    "packages/markitdown/src/markitdown/converter_utils/docx/pre_process.py": {
+      "covered_line": 30,
+      "total_line": 51,
+      "line_coverage": 58.82,
+      "covered_branch": 6,
+      "total_branch": 14,
+      "branch_coverage": 42.86
+    },
+    "packages/markitdown/src/markitdown/converters/_doc_intel_converter.py": {
+      "covered_line": 74,
+      "total_line": 125,
+      "line_coverage": 59.2,
+      "covered_branch": 29,
+      "total_branch": 58,
+      "branch_coverage": 50.0
+    },
+    "packages/markitdown/src/markitdown/converters/_epub_converter.py": {
+      "covered_line": 63,
+      "total_line": 63,
+      "line_coverage": 100.0,
+      "covered_branch": 20,
+      "total_branch": 22,
+      "branch_coverage": 90.91
+    },
+    "packages/markitdown/src/markitdown/converters/_outlook_msg_converter.py": {
+      "covered_line": 42,
+      "total_line": 68,
+      "line_coverage": 61.76,
+      "covered_branch": 12,
+      "total_branch": 20,
+      "branch_coverage": 60.0
+    },
+    "packages/markitdown/src/markitdown/converters/_transcribe_audio.py": {
+      "covered_line": 26,
+      "total_line": 30,
+      "line_coverage": 86.67,
+      "covered_branch": 5,
+      "total_branch": 6,
+      "branch_coverage": 83.33
+    },
+    "packages/markitdown/src/markitdown/converters/_youtube_converter.py": {
+      "covered_line": 34,
+      "total_line": 143,
+      "line_coverage": 23.78,
+      "covered_branch": 7,
+      "total_branch": 78,
+      "branch_coverage": 8.97
+    }
+  },
+  "function_coverage": {
+    "packages/markitdown-mcp/src/markitdown_mcp/__main__.py:check_plugins_enabled": {
+      "covered_line": 1,
+      "total_line": 1,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "packages/markitdown-mcp/src/markitdown_mcp/__main__.py:create_starlette_app": {
+      "covered_line": 7,
+      "total_line": 7,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "packages/markitdown-sample-plugin/src/markitdown_sample_plugin/_plugin.py:RtfConverter.accepts": {
+      "covered_line": 8,
+      "total_line": 8,
+      "line_coverage": 100.0,
+      "covered_branch": 6,
+      "total_branch": 6,
+      "branch_coverage": 100.0
+    },
+    "packages/markitdown-sample-plugin/src/markitdown_sample_plugin/_plugin.py:RtfConverter.convert": {
+      "covered_line": 3,
+      "total_line": 3,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "packages/markitdown/src/markitdown/_markitdown.py:MarkItDown.enable_builtins": {
+      "covered_line": 44,
+      "total_line": 48,
+      "line_coverage": 91.67,
+      "covered_branch": 10,
+      "total_branch": 18,
+      "branch_coverage": 55.56
+    },
+    "packages/markitdown/src/markitdown/_markitdown.py:MarkItDown.enable_plugins": {
+      "covered_line": 11,
+      "total_line": 11,
+      "line_coverage": 100.0,
+      "covered_branch": 4,
+      "total_branch": 4,
+      "branch_coverage": 100.0
+    },
+    "packages/markitdown/src/markitdown/_markitdown.py:MarkItDown.convert": {
+      "covered_line": 8,
+      "total_line": 15,
+      "line_coverage": 53.33,
+      "covered_branch": 7,
+      "total_branch": 12,
+      "branch_coverage": 58.33
+    },
+    "packages/markitdown/src/markitdown/_markitdown.py:MarkItDown.convert_stream": {
+      "covered_line": 18,
+      "total_line": 23,
+      "line_coverage": 78.26,
+      "covered_branch": 9,
+      "total_branch": 12,
+      "branch_coverage": 75.0
+    },
+    "packages/markitdown/src/markitdown/_stream_info.py:StreamInfo.copy_and_update": {
+      "covered_line": 7,
+      "total_line": 7,
+      "line_coverage": 100.0,
+      "covered_branch": 4,
+      "total_branch": 4,
+      "branch_coverage": 100.0
+    },
+    "packages/markitdown/src/markitdown/converter_utils/docx/math/omml.py:Tag2Method.process_children_dict": {
+      "covered_line": 4,
+      "total_line": 4,
+      "line_coverage": 100.0,
+      "covered_branch": 2,
+      "total_branch": 2,
+      "branch_coverage": 100.0
+    },
+    "packages/markitdown/src/markitdown/converter_utils/docx/math/omml.py:oMath2Latex.do_d": {
+      "covered_line": 6,
+      "total_line": 6,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "packages/markitdown/src/markitdown/converter_utils/docx/math/omml.py:oMath2Latex.do_sub": {
+      "covered_line": 2,
+      "total_line": 2,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "packages/markitdown/src/markitdown/converter_utils/docx/math/omml.py:oMath2Latex.do_mr": {
+      "covered_line": 1,
+      "total_line": 1,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "packages/markitdown/src/markitdown/converter_utils/docx/pre_process.py:pre_process_docx": {
+      "covered_line": 14,
+      "total_line": 16,
+      "line_coverage": 87.5,
+      "covered_branch": 4,
+      "total_branch": 4,
+      "branch_coverage": 100.0
+    },
+    "packages/markitdown/src/markitdown/converters/_doc_intel_converter.py:DocumentIntelligenceConverter.accepts": {
+      "covered_line": 5,
+      "total_line": 8,
+      "line_coverage": 62.5,
+      "covered_branch": 2,
+      "total_branch": 6,
+      "branch_coverage": 33.33
+    },
+    "packages/markitdown/src/markitdown/converters/_doc_intel_converter.py:DocumentIntelligenceConverter.convert": {
+      "covered_line": 1,
+      "total_line": 4,
+      "line_coverage": 25.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "packages/markitdown/src/markitdown/converters/_epub_converter.py:EpubConverter.accepts": {
+      "covered_line": 8,
+      "total_line": 8,
+      "line_coverage": 100.0,
+      "covered_branch": 6,
+      "total_branch": 6,
+      "branch_coverage": 100.0
+    },
+    "packages/markitdown/src/markitdown/converters/_epub_converter.py:EpubConverter.convert": {
+      "covered_line": 27,
+      "total_line": 27,
+      "line_coverage": 100.0,
+      "covered_branch": 9,
+      "total_branch": 10,
+      "branch_coverage": 90.0
+    },
+    "packages/markitdown/src/markitdown/converters/_outlook_msg_converter.py:OutlookMsgConverter.accepts": {
+      "covered_line": 19,
+      "total_line": 21,
+      "line_coverage": 90.48,
+      "covered_branch": 10,
+      "total_branch": 10,
+      "branch_coverage": 100.0
+    },
+    "packages/markitdown/src/markitdown/converters/_outlook_msg_converter.py:OutlookMsgConverter.convert": {
+      "covered_line": 6,
+      "total_line": 15,
+      "line_coverage": 40.0,
+      "covered_branch": 2,
+      "total_branch": 8,
+      "branch_coverage": 25.0
+    },
+    "packages/markitdown/src/markitdown/converters/_transcribe_audio.py:transcribe_audio": {
+      "covered_line": 11,
+      "total_line": 15,
+      "line_coverage": 73.33,
+      "covered_branch": 5,
+      "total_branch": 6,
+      "branch_coverage": 83.33
+    },
+    "packages/markitdown/src/markitdown/converters/_youtube_converter.py:YouTubeConverter.accepts": {
+      "covered_line": 12,
+      "total_line": 13,
+      "line_coverage": 92.31,
+      "covered_branch": 7,
+      "total_branch": 8,
+      "branch_coverage": 87.5
+    },
+    "packages/markitdown/src/markitdown/converters/_youtube_converter.py:YouTubeConverter.convert": {
+      "covered_line": 0,
+      "total_line": 80,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 48,
+      "branch_coverage": 0.0
+    }
+  },
+  "excute_pass": 12,
+  "test_pass": 19,
+  "testcase_pass_rate": 14.533333333333333
+}

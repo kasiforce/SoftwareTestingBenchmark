@@ -535,7 +535,7 @@ def main() -> None:
                 print(full_path)
                 print(model_name)
                 repairer = JavaScriptGeneratedTestRepairer(
-                    api_key="sk-6qW3EPXVUJZTU46xIbGNMAdOXexqbJUbtJer6n3ux8YEAeck",
+                    api_key="",
                     model=model_name,
                     dockerfile_path="output/pdf/dockerfile",
                     data_file=full_path,

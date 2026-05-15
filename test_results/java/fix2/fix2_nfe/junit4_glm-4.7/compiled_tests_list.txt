@@ -1,0 +1,6 @@
+./target/test-classes/br/com/swconsultoria/nfe/wsdl/NFeAutorizacao/NfeAutorizacaoLoteZipTests.class
+./target/test-classes/br/com/swconsultoria/nfe/wsdl/NFeInutilizacao/ce/NfeInutilizacaoNFTests.class
+./target/test-classes/br/com/swconsultoria/nfe/GenerateReportTests.class
+./target/test-classes/br/com/swconsultoria/nfe/impressao/ImpressaoPadraoCCeTests.class
+./target/test-classes/br/com/swconsultoria/nfe/impressao/ImpressaoPadraoNFCeTests.class
+./target/test-classes/br/com/swconsultoria/nfe/impressao/CarregaJasperResourcesTests.class

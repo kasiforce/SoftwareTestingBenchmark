@@ -77,12 +77,12 @@ def create_and_run_py(dockerfile_path, gen_tests_dir, cover_source, project_root
     data1 = data['items']
     for func in data1:
         func1 = func['repair_history']
-        raw_code = func1[-1]["test_code"] if func1 else ""
+        # raw_code = func1[-1]["test_code"] if func1 else ""
 
-        # if len(func1) > 1: 
-        #     raw_code = func1[1]["test_code"]
-        # else:
-        #     raw_code = func1[0]["test_code"]
+        if len(func1) > 2: 
+            raw_code = func1[2]["test_code"]
+        else:
+            raw_code = func1[-1]["test_code"]
        
         if not raw_code.strip():
             continue
@@ -110,7 +110,7 @@ def create_and_run_py(dockerfile_path, gen_tests_dir, cover_source, project_root
     repo_name = project_root
     if "/" in project_root:
         repo_name = project_root.split("/")[1]
-    test_results_dir = os.path.join(test_results_dir, "fix3_"+repo_name)
+    test_results_dir = os.path.join(test_results_dir, "fix2_"+repo_name)
 
     data_file1 = data_file.split(".json")[0]
     model_name = data_file1.split("_")[-1]
@@ -145,14 +145,20 @@ def create_and_run_py(dockerfile_path, gen_tests_dir, cover_source, project_root
     try:
         subprocess.run([
             "docker", "run", "--rm",
+            # "-e", "PYTHONNODEBUGRANGES=1",
+            # "-e", "MARKUPSAFE_SKIP_SPEEDUPS=1",
+            # "-e", "PYTHONFAULTHANDLER=1",
             "-v", f"{test_results_dir}:/results",
             "-v", "./gen_test/gen_py_test.py:/testbed/genfixtests_files.py",
             "-v", f"./{fix_data_path}:/testbed/{fix_data_path}",
             "repo-with-test",
             "bash", "-c", f"""
+            # set -e
+            # export PYTHONNODEBUGRANGES=1
             cd /testbed
 
             pip install pytest pytest-json-report pytest-timeout coverage pytest-asyncio pytest-mock pycares
+                        
 
             python /testbed/genfixtests_files.py \
                 --project-root /testbed \
@@ -164,13 +170,14 @@ def create_and_run_py(dockerfile_path, gen_tests_dir, cover_source, project_root
             # 1. coverage + pytest
             #  --source=markitdown_sample_plugin\
             # ======================
+            # python -X nodebugranges -m 
             coverage run --branch \
                 --omit="test_*.py,*_test.py,*/tests/*,*/test/*,*/gen_tests/*" \
                 -m pytest \
                 --import-mode=importlib \
                 --continue-on-collection-errors \
                 --timeout=2 \
-                -q --disable-warnings --tb=no \
+                -q --disable-warnings --tb=no --no-header \
                 --json-report \
                 --json-report-file=/results/report.json
 
@@ -464,22 +471,24 @@ if __name__ == "__main__":
     #     help="The root dir of project.",
     # )
     # args = parser.parse_args()
-    # root = "tests/test_gen/python/fix_pylint"
-    # for root, dirs, files in os.walk(root):
-    #     for file in files:
-    #         print(file)
-    #         if "specification_unittest_DSv3.2" in file:
-    #             continue
-    #         file_path = os.path.join(root, file)
-    #         create_and_run_py("output/pylint/dockerfile", gen_tests_dir="",
-    #                   cover_source="", project_root="projects/pylint", 
-    #                   data_file=file_path)
-    #         time.sleep(10)  # 等待10秒再运行下一个文件
-
-
-    create_and_run_py("output/flask/dockerfile", gen_tests_dir="",
+    root = "tests/test_gen/python/fix_flask"
+    for root, dirs, files in os.walk(root):
+        for file in files:
+            print(file)
+            if "unittest" in file:
+                continue
+            if "pytest_glm" in file:
+                continue
+            file_path = os.path.join(root, file)
+            create_and_run_py("output/flask/dockerfile", gen_tests_dir="",
                       cover_source="", project_root="projects/flask", 
-                      data_file="tests/test_gen/python/fix_flask/repaired_flask_lite_pytest_DSv3.2.json")
+                      data_file=file_path)
+            time.sleep(5)  # 等待5秒再运行下一个文件
+
+
+    # create_and_run_py("output/flask/dockerfile", gen_tests_dir="",
+    #                   cover_source="", project_root="projects/flask", 
+    #                   data_file="tests/test_gen/python/fix_flask/repaired_flask_specification_pytest_qwen.json")
     
 
 

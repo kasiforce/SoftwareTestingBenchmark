@@ -537,7 +537,7 @@ def main() -> None:
                 print(full_path)
                 print(model_name)
                 repairer = JavaGeneratedTestRepairer(
-                    api_key="sk-6qW3EPXVUJZTU46xIbGNMAdOXexqbJUbtJer6n3ux8YEAeck",
+                    api_key="",
                     model=model_name,
                     dockerfile_path="output/nfe/dockerfile",
                     data_file=full_path,
@@ -550,7 +550,7 @@ def main() -> None:
                     # time.sleep(10)  # 每次修复后等待10秒，避免过快调用API
 
     # repairer = JavaGeneratedTestRepairer(
-    #                 api_key="sk-BllRs4ogYnB8HXsCPK2PBNsemvtgfgIbETE6jXUufmlKSRIw",
+    #                 api_key="",
     #                 model="gpt-5-nano",
     #                 dockerfile_path="output/commons-jxpath/dockerfile",
     #                 data_file="tests/test_gen/java/commons-jxpath/commons-jxpath_junit4_gpt5nano.json",

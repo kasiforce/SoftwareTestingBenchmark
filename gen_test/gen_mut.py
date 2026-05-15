@@ -142,7 +142,7 @@ def call_llm(prompt: str, max_K: int = 3) -> str:
                    {"role": "user", "content": prompt}
                    ]
         tests = []
-        client = OpenAI(api_key="sk-BllRs4ogYnB8HXsCPK2PBNsemvtgfgIbETE6jXUufmlKSRIw", 
+        client = OpenAI(api_key="", 
                         # base_url="https://api.apiyi.com/v1")
                         base_url="https://api.agicto.cn/v1")
         # print(self.model)
