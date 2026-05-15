@@ -131,6 +131,86 @@ def delete_test_files_in_test_dirs(project_root):
         print(f"  ... 还有 {len(deleted_files) - 10} 个文件")
 
 
+# def write_generated_tests(project_root, test_json_path):
+#     """生成测试文件（指定 utf-8 编码）"""
+#     try:
+#         with open(test_json_path, 'r', encoding='utf-8') as f:
+#             functions = json.load(f)
+#             print(len(functions))
+
+#         total = 0
+#         syntax_pass = 0
+#         compile_pass = 0
+
+#         for func in functions:
+#             # print(func)
+#             project = func.get("project_root").split('projects/Proton')[1]
+#             test_file = "/testbed"+project + "/" + func.get("test_file")
+
+#             dir_path = os.path.dirname(test_file)
+#             if not os.path.exists(dir_path):
+#                 os.makedirs(dir_path, exist_ok=True)
+
+#             raw_code = "\n\n".join(func["generated_tests"])
+            
+#             # 语法检查
+#              # 写入文件（UTF-8）
+#             with open(test_file, 'w', encoding='utf-8') as f:
+#                 f.write("\n\n" + raw_code)
+#             print(f"写入 {test_file}")
+            
+#             total += 1
+
+#             syntax_result = subprocess.run(
+#                 ["node", "--check", str(test_file)],
+#                 capture_output=True,
+#                 text=True
+#             )
+#             syntax_ok = False
+#             if syntax_result.returncode == 0:
+#                 syntax_ok = True
+#                 syntax_pass += 1
+#             else:
+#                 os.remove(test_file)
+#                 # print(f"[Syntax Error] Test {i}:\n{syntax_result.stderr.strip()}\n")
+            
+#             if syntax_ok:
+#                 result = subprocess.run(
+#                     [
+#                         "npx", "rollup",
+#                         "-c", "rollup.temp.config.mjs",
+#                         "--input", str(test_file),
+#                     ],
+#                     capture_output=True,
+#                     text=True
+#                 )
+#                 success = result.returncode == 0
+#                 if success:
+#                     compile_pass += 1
+#                 else:
+#                     os.remove(test_file)
+#                     # print(f"[Compile Error] Test :\n{result.stderr.strip()}\n")
+
+#                 # exec_result = subprocess.run(
+#                 #     ["node", str(test_file)],
+#                 #     capture_output=True,
+#                 #     text=True
+#                 # )
+#                 # if exec_result.returncode == 0:
+#                 #     # compile_ok = True
+#                 #     compile_pass += 1
+#                 # else:
+#                 #     os.remove(test_file)
+#                 #     print(f"[Compile/Runtime Error] Test :\n{exec_result.stderr.strip()}\n")
+        
+#         with open("/results/test_results_summary.txt", 'w', encoding='utf-8') as summary_file:
+#             summary_file.write(f"Total tests generated: {total}\n")
+#             summary_file.write(f"Syntax check passed: {syntax_pass} ({syntax_pass/total*100:.2f}%)\n")
+#             summary_file.write(f"Compile/runtime check passed: {compile_pass} ({compile_pass/total*100:.2f}%)\n")
+
+#     except Exception as e:
+#         print(f"写入文件失败: {e}")
+
 def write_generated_tests(project_root, test_json_path):
     """生成测试文件（指定 utf-8 编码）"""
     try:
@@ -138,13 +218,10 @@ def write_generated_tests(project_root, test_json_path):
             functions = json.load(f)
             print(len(functions))
 
-        total = 0
-        syntax_pass = 0
-        compile_pass = 0
 
         for func in functions:
             # print(func)
-            project = func.get("project_root").split('projects/Proton')[1]
+            project = func.get("project_root").split('projects/modern-errors')[1]
             test_file = "/testbed"+project + "/" + func.get("test_file")
 
             dir_path = os.path.dirname(test_file)
@@ -159,57 +236,11 @@ def write_generated_tests(project_root, test_json_path):
                 f.write("\n\n" + raw_code)
             print(f"写入 {test_file}")
             
-            total += 1
-
-            syntax_result = subprocess.run(
-                ["node", "--check", str(test_file)],
-                capture_output=True,
-                text=True
-            )
-            syntax_ok = False
-            if syntax_result.returncode == 0:
-                syntax_ok = True
-                syntax_pass += 1
-            else:
-                os.remove(test_file)
-                # print(f"[Syntax Error] Test {i}:\n{syntax_result.stderr.strip()}\n")
-            
-            if syntax_ok:
-                result = subprocess.run(
-                    [
-                        "npx", "rollup",
-                        "-c", "rollup.temp.config.mjs",
-                        "--input", str(test_file),
-                    ],
-                    capture_output=True,
-                    text=True
-                )
-                success = result.returncode == 0
-                if success:
-                    compile_pass += 1
-                else:
-                    os.remove(test_file)
-                    # print(f"[Compile Error] Test :\n{result.stderr.strip()}\n")
-
-                # exec_result = subprocess.run(
-                #     ["node", str(test_file)],
-                #     capture_output=True,
-                #     text=True
-                # )
-                # if exec_result.returncode == 0:
-                #     # compile_ok = True
-                #     compile_pass += 1
-                # else:
-                #     os.remove(test_file)
-                #     print(f"[Compile/Runtime Error] Test :\n{exec_result.stderr.strip()}\n")
-        
-        with open("/results/test_results_summary.txt", 'w', encoding='utf-8') as summary_file:
-            summary_file.write(f"Total tests generated: {total}\n")
-            summary_file.write(f"Syntax check passed: {syntax_pass} ({syntax_pass/total*100:.2f}%)\n")
-            summary_file.write(f"Compile/runtime check passed: {compile_pass} ({compile_pass/total*100:.2f}%)\n")
+         
 
     except Exception as e:
         print(f"写入文件失败: {e}")
+
 
 
 if __name__ == "__main__":

@@ -76,8 +76,7 @@ def call_llm(prompt: str, max_K: int = 3) -> str:
                    ]
         tests = []
         client = OpenAI(api_key="", 
-                        # base_url="https://api.apiyi.com/v1")
-                        base_url="https://api.agicto.cn/v1")
+                        base_url="")
         # print(self.model)
         for k in range(max_K):
             try:

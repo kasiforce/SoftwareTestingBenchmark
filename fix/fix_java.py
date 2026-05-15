@@ -510,13 +510,14 @@ def main() -> None:
                 if "codellama" in  file.lower() or "ds6.7b" in file.lower():
                     continue
                 
-                if "commons-jxpath_lite_junit4_qwen" in file.lower() or "commons-jxpath_lite_specification_junit4_glm" in file.lower() or "commons-jxpath_lite_specification_junit5_gpt5" in file.lower() or "commons-jxpath_lite_specification_junit5_qwen" in file.lower():
+                if "commons-jxpath_lite_junit5_glm" in file.lower() or "commons-jxpath_lite_junit5_gpt5" in file.lower() or "commons-jxpath_lite_specification_junit4_ds" in file.lower() or "commons-jxpath_lite_specification_junit4_gpt5" in file.lower() or "lite_junit5_dsv3.2" in file.lower():
                     continue
                 
-                # if "commons-jxpath_lite_specification_junit5_glm" in file.lower() or "commons-jxpath_lite_junit5_dsv" in file.lower() or "commons-jxpath_lite_junit4_qwen" in file.lower() or "commons-jxpath_lite_specification_junit4_glm" in file.lower():
-                #     continue
+                if "specification_junit4_glm" in file.lower() or "commons-jxpath_lite_specification_junit5_gpt5" in file.lower() or "commons-jxpath_lite_junit4_qwen" in file.lower() or "lite_junit4_glm" in file.lower() or "lite_junit4_gpt5" in file.lower() or "specification_junit5_qwen" in file.lower():
+                    continue
 
-                # if "commons-jxpath_lite_specification_junit5_dsv" in file.lower():
+                # if "commons-jxpath_lite_junit4_glm-4.7" in file.lower() or "specification_junit4_gpt5" in file.lower() or "commons-jxpath_lite_junit5_dsv3.2" in file.lower() or "commons-jxpath_lite_specification_junit4_gpt4o" in file.lower() or "commons-jxpath_lite_specification_junit5_glm-4.7" in file.lower() or "commons-jxpath_lite_specification_junit4_qwen" in file.lower():
+                    # continue
                     
 
                 if "qwen" in file.lower() :
@@ -534,12 +535,12 @@ def main() -> None:
                 print(full_path)
                 print(model_name)
                 repairer = JavaGeneratedTestRepairer(
-                    api_key="sk-bJWJsGN6uKXR5SfbEe148895FeAb40C5A84f662a82Fa6577",
+                    api_key="",
                     model=model_name,
                     dockerfile_path="output/commons-jxpath/dockerfile",
                     data_file=full_path,
                     max_rounds=3,
-                    base_url="https://api.apiyi.com/v1",
+                    base_url="",
                     reuse_container=False,
                     parallel_workers=1,
                 )
@@ -547,12 +548,12 @@ def main() -> None:
                     # time.sleep(10)  # 每次修复后等待10秒，避免过快调用API
 
     # repairer = JavaGeneratedTestRepairer(
-    #                 api_key="sk-BllRs4ogYnB8HXsCPK2PBNsemvtgfgIbETE6jXUufmlKSRIw",
+    #                 api_key="",
     #                 model="gpt-5-nano",
     #                 dockerfile_path="output/commons-jxpath/dockerfile",
     #                 data_file="tests/test_gen/java/commons-jxpath/commons-jxpath_junit4_gpt5nano.json",
     #                 max_rounds=3,
-    #                 base_url="https://api.agicto.cn/v1",
+    #                 base_url="",
     #                 reuse_container=False,
     #                 parallel_workers=1,
     #             )

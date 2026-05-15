@@ -426,6 +426,7 @@ import subprocess
 import os
 import sys
 import json
+import time
 import xml.etree.ElementTree as ET
 from argparse import ArgumentParser
 
@@ -919,7 +920,7 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
     spec = "specification" if "specification" in data_file else ""
     model = data_file.replace(".json","").split('_')[-1]
     framework = data_file.replace(".json","").split('_')[-2]
-    mut_dir = framework + '_' + model + "_mut"
+    mut_dir = framework + '_' + model + "_mut_fix"
     if spec:
         mut_dir = spec + '_' + mut_dir
 
@@ -927,7 +928,7 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
 
     os.makedirs(test_results_dir, exist_ok=True)
 
-    syntax_report = syntax_analyse(data_file)
+    # syntax_report = syntax_analyse(data_file)
 
     project_dir = os.path.join(cwd, repo_dir)
     # with open(dockerfile_path, "r") as f:
@@ -982,28 +983,33 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
 
                 
                 
-                echo "=== 在 pom.xml 中添加 JUnit 4 依赖 ==="
-                # 检查是否已存在 junit 依赖，避免重复添加
-                if ! grep -q "<artifactId>junit</artifactId>" pom.xml; then
+                if ! grep -q "<artifactId>junit-jupiter</artifactId>" pom.xml; then
                     sed -i '/<\/dependencies>/i \
                     <dependency>\
-                        <groupId>junit</groupId>\
-                        <artifactId>junit</artifactId>\
-                        <version>4.13.2</version>\
+                        <groupId>org.junit.jupiter</groupId>\
+                        <artifactId>junit-jupiter</artifactId>\
+                        <version>5.9.2</version>\
                         <scope>test</scope>\
                     </dependency>' pom.xml
                 fi
 
-                # 添加 JUnit Vintage 引擎（版本与项目 JUnit 5 一致）
+            #     # 添加 JUnit Vintage 引擎（版本与项目 JUnit 5 一致）
                 if ! grep -q "<artifactId>junit-vintage-engine</artifactId>" pom.xml; then
                     sed -i '/<\/dependencies>/i \
                     <dependency>\
                         <groupId>org.junit.vintage</groupId>\
                         <artifactId>junit-vintage-engine</artifactId>\
-                        <version>5.14.1</version>\
+                        <version>5.9.2</version>\
                         <scope>test</scope>\
                     </dependency>' pom.xml
                 fi
+
+                sed -i '/<\/plugins>/i \
+                <plugin>\
+                    <groupId>org.apache.maven.plugins</groupId>\
+                    <artifactId>maven-surefire-plugin</artifactId>\
+                    <version>3.0.0-M7</version>\
+                </plugin>' pom.xml
 
 
                 
@@ -1115,9 +1121,13 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
 
 if __name__ == "__main__":
     # 示例调用
-    for root, dirs, files in os.walk("tests/test_gen/java/commons-cli"):
-        for file in files:
-            full_path = os.path.join(root, file)
-            print(full_path)
-            create_and_run_java("output/commons-cli/dockerfile", "projects/commons-cli", full_path)
+    # for root, dirs, files in os.walk("tests/test_gen/java/fix_jcasbin"):
+    #     for file in files:
+    #         if "junit5" in file :
+    #             continue
+    #         full_path = os.path.join(root, file)
+    #         print(full_path)
+    #         create_and_run_java("output/jcasbin/dockerfile", "projects/jcasbin", full_path)
+    #         time.sleep(10)  # 每次测试间隔10秒，避免过快连续运行
     # pass
+    create_and_run_java("output/jcasbin/dockerfile", "projects/jcasbin", "tests/test_gen/java/fix_jcasbin/repaired_jcasbin_lite_specification_junit4_DSv3.2.json")
