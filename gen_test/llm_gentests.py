@@ -769,9 +769,8 @@ Return ONLY code without explanations, non-code text, or markdown formatting.
 
 def main():
     # 从环境变量获取API密钥
-    # api_key = "sk-WhZar4Km8tqMhzsRhzHn5oIvd6yzP7TZrMMGzkcgF4CDiTRJ"
-    # api_key = "sk-Fxpi6k88q67K1Px71JKdRNFB1BvKMQpNOprjDowIFOtqQO6n"
-    api_key = "sk-NEoXogd5Fg8bvg2b72702d183c1c4eFc9d9d6408B6D292D7"
+   
+    api_key = ""
     
     if not api_key:
         raise ValueError("请设置 OPENAI_API_KEY 环境变量")

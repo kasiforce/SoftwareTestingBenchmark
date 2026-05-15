@@ -1,0 +1,1284 @@
+{
+  "total": 109,
+  "syntax_correct": 109,
+  "syntax_correct_rate": 1.0,
+  "compile_pass": 102,
+  "compile_pass_rate": 0.9357798165137615,
+  "testcase": {
+    "passed": 223,
+    "failed": 241,
+    "total": 464,
+    "collected": 464,
+    "test_pass_rate": 0.48060344827586204,
+    "run_pass_rate": 1.0
+  },
+  "filtered_stats": {
+    "file": {
+      "total_lines": 7569,
+      "covered_lines": 2454,
+      "total_branches": 3674,
+      "covered_branches": 320
+    },
+    "function": {
+      "total_lines": 962,
+      "covered_lines": 517,
+      "total_branches": 492,
+      "covered_branches": 225
+    }
+  },
+  "file_coverage": {
+    "pylint/__pkginfo__.py": {
+      "covered_line": 22,
+      "total_line": 22,
+      "line_coverage": 100.0,
+      "covered_branch": 8,
+      "total_branch": 8,
+      "branch_coverage": 100.0
+    },
+    "pylint/checkers/base/basic_error_checker.py": {
+      "covered_line": 64,
+      "total_line": 250,
+      "line_coverage": 25.6,
+      "covered_branch": 6,
+      "total_branch": 144,
+      "branch_coverage": 4.17
+    },
+    "pylint/checkers/base/function_checker.py": {
+      "covered_line": 14,
+      "total_line": 57,
+      "line_coverage": 24.56,
+      "covered_branch": 0,
+      "total_branch": 34,
+      "branch_coverage": 0.0
+    },
+    "pylint/checkers/base/name_checker/checker.py": {
+      "covered_line": 84,
+      "total_line": 326,
+      "line_coverage": 25.77,
+      "covered_branch": 6,
+      "total_branch": 186,
+      "branch_coverage": 3.23
+    },
+    "pylint/checkers/base/pass_checker.py": {
+      "covered_line": 9,
+      "total_line": 9,
+      "line_coverage": 100.0,
+      "covered_branch": 2,
+      "total_branch": 2,
+      "branch_coverage": 100.0
+    },
+    "pylint/checkers/base_checker.py": {
+      "covered_line": 99,
+      "total_line": 120,
+      "line_coverage": 82.5,
+      "covered_branch": 28,
+      "total_branch": 40,
+      "branch_coverage": 70.0
+    },
+    "pylint/checkers/classes/class_checker.py": {
+      "covered_line": 154,
+      "total_line": 1036,
+      "line_coverage": 14.86,
+      "covered_branch": 17,
+      "total_branch": 624,
+      "branch_coverage": 2.72
+    },
+    "pylint/checkers/dunder_methods.py": {
+      "covered_line": 24,
+      "total_line": 36,
+      "line_coverage": 66.67,
+      "covered_branch": 4,
+      "total_branch": 12,
+      "branch_coverage": 33.33
+    },
+    "pylint/checkers/newstyle.py": {
+      "covered_line": 17,
+      "total_line": 51,
+      "line_coverage": 33.33,
+      "covered_branch": 0,
+      "total_branch": 22,
+      "branch_coverage": 0.0
+    },
+    "pylint/checkers/raw_metrics.py": {
+      "covered_line": 44,
+      "total_line": 56,
+      "line_coverage": 78.57,
+      "covered_branch": 15,
+      "total_branch": 18,
+      "branch_coverage": 83.33
+    },
+    "pylint/checkers/refactoring/implicit_booleaness_checker.py": {
+      "covered_line": 29,
+      "total_line": 148,
+      "line_coverage": 19.59,
+      "covered_branch": 0,
+      "total_branch": 72,
+      "branch_coverage": 0.0
+    },
+    "pylint/checkers/refactoring/recommendation_checker.py": {
+      "covered_line": 29,
+      "total_line": 198,
+      "line_coverage": 14.65,
+      "covered_branch": 0,
+      "total_branch": 132,
+      "branch_coverage": 0.0
+    },
+    "pylint/checkers/refactoring/refactoring_checker.py": {
+      "covered_line": 174,
+      "total_line": 1016,
+      "line_coverage": 17.13,
+      "covered_branch": 4,
+      "total_branch": 540,
+      "branch_coverage": 0.74
+    },
+    "pylint/checkers/variables.py": {
+      "covered_line": 211,
+      "total_line": 1476,
+      "line_coverage": 14.3,
+      "covered_branch": 5,
+      "total_branch": 934,
+      "branch_coverage": 0.54
+    },
+    "pylint/config/_pylint_config/generate_command.py": {
+      "covered_line": 9,
+      "total_line": 26,
+      "line_coverage": 34.62,
+      "covered_branch": 1,
+      "total_branch": 6,
+      "branch_coverage": 16.67
+    },
+    "pylint/config/_pylint_config/help_message.py": {
+      "covered_line": 17,
+      "total_line": 23,
+      "line_coverage": 73.91,
+      "covered_branch": 3,
+      "total_branch": 6,
+      "branch_coverage": 50.0
+    },
+    "pylint/config/_pylint_config/utils.py": {
+      "covered_line": 47,
+      "total_line": 60,
+      "line_coverage": 78.33,
+      "covered_branch": 11,
+      "total_branch": 18,
+      "branch_coverage": 61.11
+    },
+    "pylint/extensions/eq_without_hash.py": {
+      "covered_line": 13,
+      "total_line": 14,
+      "line_coverage": 92.86,
+      "covered_branch": 2,
+      "total_branch": 2,
+      "branch_coverage": 100.0
+    },
+    "pylint/extensions/private_import.py": {
+      "covered_line": 43,
+      "total_line": 117,
+      "line_coverage": 36.75,
+      "covered_branch": 9,
+      "total_branch": 62,
+      "branch_coverage": 14.52
+    },
+    "pylint/graph.py": {
+      "covered_line": 66,
+      "total_line": 108,
+      "line_coverage": 61.11,
+      "covered_branch": 22,
+      "total_branch": 44,
+      "branch_coverage": 50.0
+    },
+    "pylint/lint/caching.py": {
+      "covered_line": 15,
+      "total_line": 35,
+      "line_coverage": 42.86,
+      "covered_branch": 0,
+      "total_branch": 4,
+      "branch_coverage": 0.0
+    },
+    "pylint/lint/expand_modules.py": {
+      "covered_line": 49,
+      "total_line": 86,
+      "line_coverage": 56.98,
+      "covered_branch": 15,
+      "total_branch": 30,
+      "branch_coverage": 50.0
+    },
+    "pylint/lint/message_state_handler.py": {
+      "covered_line": 70,
+      "total_line": 202,
+      "line_coverage": 34.65,
+      "covered_branch": 13,
+      "total_branch": 90,
+      "branch_coverage": 14.44
+    },
+    "pylint/lint/utils.py": {
+      "covered_line": 27,
+      "total_line": 43,
+      "line_coverage": 62.79,
+      "covered_branch": 1,
+      "total_branch": 6,
+      "branch_coverage": 16.67
+    },
+    "pylint/message/_deleted_message_ids.py": {
+      "covered_line": 27,
+      "total_line": 38,
+      "line_coverage": 71.05,
+      "covered_branch": 6,
+      "total_branch": 24,
+      "branch_coverage": 25.0
+    },
+    "pylint/message/message.py": {
+      "covered_line": 40,
+      "total_line": 41,
+      "line_coverage": 97.56,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/message/message_definition.py": {
+      "covered_line": 61,
+      "total_line": 72,
+      "line_coverage": 84.72,
+      "covered_branch": 24,
+      "total_branch": 36,
+      "branch_coverage": 66.67
+    },
+    "pylint/message/message_definition_store.py": {
+      "covered_line": 44,
+      "total_line": 62,
+      "line_coverage": 70.97,
+      "covered_branch": 8,
+      "total_branch": 16,
+      "branch_coverage": 50.0
+    },
+    "pylint/pyreverse/diadefslib.py": {
+      "covered_line": 95,
+      "total_line": 144,
+      "line_coverage": 65.97,
+      "covered_branch": 20,
+      "total_branch": 60,
+      "branch_coverage": 33.33
+    },
+    "pylint/pyreverse/diagrams.py": {
+      "covered_line": 70,
+      "total_line": 196,
+      "line_coverage": 35.71,
+      "covered_branch": 7,
+      "total_branch": 86,
+      "branch_coverage": 8.14
+    },
+    "pylint/pyreverse/mermaidjs_printer.py": {
+      "covered_line": 33,
+      "total_line": 64,
+      "line_coverage": 51.56,
+      "covered_branch": 6,
+      "total_branch": 20,
+      "branch_coverage": 30.0
+    },
+    "pylint/pyreverse/utils.py": {
+      "covered_line": 77,
+      "total_line": 136,
+      "line_coverage": 56.62,
+      "covered_branch": 12,
+      "total_branch": 46,
+      "branch_coverage": 26.09
+    },
+    "pylint/reporters/base_reporter.py": {
+      "covered_line": 33,
+      "total_line": 38,
+      "line_coverage": 86.84,
+      "covered_branch": 3,
+      "total_branch": 4,
+      "branch_coverage": 75.0
+    },
+    "pylint/reporters/multi_reporter.py": {
+      "covered_line": 40,
+      "total_line": 56,
+      "line_coverage": 71.43,
+      "covered_branch": 0,
+      "total_branch": 14,
+      "branch_coverage": 0.0
+    },
+    "pylint/reporters/progress_reporters.py": {
+      "covered_line": 12,
+      "total_line": 18,
+      "line_coverage": 66.67,
+      "covered_branch": 0,
+      "total_branch": 2,
+      "branch_coverage": 0.0
+    },
+    "pylint/reporters/text.py": {
+      "covered_line": 72,
+      "total_line": 141,
+      "line_coverage": 51.06,
+      "covered_branch": 3,
+      "total_branch": 32,
+      "branch_coverage": 9.38
+    },
+    "pylint/reporters/ureports/base_writer.py": {
+      "covered_line": 25,
+      "total_line": 44,
+      "line_coverage": 56.82,
+      "covered_branch": 2,
+      "total_branch": 10,
+      "branch_coverage": 20.0
+    },
+    "pylint/reporters/ureports/nodes.py": {
+      "covered_line": 42,
+      "total_line": 74,
+      "line_coverage": 56.76,
+      "covered_branch": 3,
+      "total_branch": 10,
+      "branch_coverage": 30.0
+    },
+    "pylint/reporters/ureports/text_writer.py": {
+      "covered_line": 20,
+      "total_line": 61,
+      "line_coverage": 32.79,
+      "covered_branch": 0,
+      "total_branch": 12,
+      "branch_coverage": 0.0
+    },
+    "pylint/testutils/_primer/package_to_lint.py": {
+      "covered_line": 41,
+      "total_line": 67,
+      "line_coverage": 61.19,
+      "covered_branch": 0,
+      "total_branch": 6,
+      "branch_coverage": 0.0
+    },
+    "pylint/testutils/_primer/primer_compare_command.py": {
+      "covered_line": 22,
+      "total_line": 88,
+      "line_coverage": 25.0,
+      "covered_branch": 3,
+      "total_branch": 32,
+      "branch_coverage": 9.38
+    },
+    "pylint/testutils/functional/find_functional_tests.py": {
+      "covered_line": 28,
+      "total_line": 72,
+      "line_coverage": 38.89,
+      "covered_branch": 3,
+      "total_branch": 38,
+      "branch_coverage": 7.89
+    },
+    "pylint/testutils/global_test_linter.py": {
+      "covered_line": 11,
+      "total_line": 11,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/testutils/pyreverse.py": {
+      "covered_line": 21,
+      "total_line": 53,
+      "line_coverage": 39.62,
+      "covered_branch": 1,
+      "total_branch": 8,
+      "branch_coverage": 12.5
+    },
+    "pylint/testutils/reporter_for_tests.py": {
+      "covered_line": 37,
+      "total_line": 43,
+      "line_coverage": 86.05,
+      "covered_branch": 5,
+      "total_branch": 6,
+      "branch_coverage": 83.33
+    },
+    "pylint/testutils/unittest_linter.py": {
+      "covered_line": 17,
+      "total_line": 39,
+      "line_coverage": 43.59,
+      "covered_branch": 0,
+      "total_branch": 22,
+      "branch_coverage": 0.0
+    },
+    "pylint/utils/ast_walker.py": {
+      "covered_line": 28,
+      "total_line": 64,
+      "line_coverage": 43.75,
+      "covered_branch": 5,
+      "total_branch": 30,
+      "branch_coverage": 16.67
+    },
+    "pylint/utils/file_state.py": {
+      "covered_line": 28,
+      "total_line": 87,
+      "line_coverage": 32.18,
+      "covered_branch": 1,
+      "total_branch": 38,
+      "branch_coverage": 2.63
+    },
+    "pylint/utils/linterstats.py": {
+      "covered_line": 94,
+      "total_line": 173,
+      "line_coverage": 54.34,
+      "covered_branch": 4,
+      "total_branch": 18,
+      "branch_coverage": 22.22
+    },
+    "pylint/utils/utils.py": {
+      "covered_line": 106,
+      "total_line": 172,
+      "line_coverage": 61.63,
+      "covered_branch": 32,
+      "total_branch": 68,
+      "branch_coverage": 47.06
+    }
+  },
+  "function_coverage": {
+    "pylint/__pkginfo__.py:get_numversion_from_version": {
+      "covered_line": 18,
+      "total_line": 18,
+      "line_coverage": 100.0,
+      "covered_branch": 8,
+      "total_branch": 8,
+      "branch_coverage": 100.0
+    },
+    "pylint/checkers/base/basic_error_checker.py:redefined_by_decorator": {
+      "covered_line": 4,
+      "total_line": 5,
+      "line_coverage": 80.0,
+      "covered_branch": 5,
+      "total_branch": 6,
+      "branch_coverage": 83.33
+    },
+    "pylint/checkers/base/basic_error_checker.py:BasicErrorChecker.visit_assign": {
+      "covered_line": 0,
+      "total_line": 6,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 6,
+      "branch_coverage": 0.0
+    },
+    "pylint/checkers/base/basic_error_checker.py:BasicErrorChecker.visit_functiondef": {
+      "covered_line": 0,
+      "total_line": 16,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 12,
+      "branch_coverage": 0.0
+    },
+    "pylint/checkers/base/basic_error_checker.py:BasicErrorChecker.visit_unaryop": {
+      "covered_line": 1,
+      "total_line": 2,
+      "line_coverage": 50.0,
+      "covered_branch": 1,
+      "total_branch": 2,
+      "branch_coverage": 50.0
+    },
+    "pylint/checkers/base/name_checker/checker.py:NameChecker.open": {
+      "covered_line": 5,
+      "total_line": 9,
+      "line_coverage": 55.56,
+      "covered_branch": 4,
+      "total_branch": 4,
+      "branch_coverage": 100.0
+    },
+    "pylint/checkers/base/name_checker/checker.py:NameChecker.visit_module": {
+      "covered_line": 2,
+      "total_line": 2,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/checkers/base/pass_checker.py:PassChecker.visit_pass": {
+      "covered_line": 2,
+      "total_line": 2,
+      "line_coverage": 100.0,
+      "covered_branch": 2,
+      "total_branch": 2,
+      "branch_coverage": 100.0
+    },
+    "pylint/checkers/base_checker.py:BaseChecker.get_full_documentation": {
+      "covered_line": 30,
+      "total_line": 30,
+      "line_coverage": 100.0,
+      "covered_branch": 18,
+      "total_branch": 18,
+      "branch_coverage": 100.0
+    },
+    "pylint/checkers/base_checker.py:BaseChecker.create_message_definition_from_tuple": {
+      "covered_line": 11,
+      "total_line": 12,
+      "line_coverage": 91.67,
+      "covered_branch": 4,
+      "total_branch": 4,
+      "branch_coverage": 100.0
+    },
+    "pylint/checkers/base_checker.py:BaseChecker.messages": {
+      "covered_line": 1,
+      "total_line": 1,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/checkers/classes/class_checker.py:ClassChecker.open": {
+      "covered_line": 3,
+      "total_line": 3,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/checkers/classes/class_checker.py:ClassChecker.visit_functiondef": {
+      "covered_line": 16,
+      "total_line": 61,
+      "line_coverage": 26.23,
+      "covered_branch": 6,
+      "total_branch": 40,
+      "branch_coverage": 15.0
+    },
+    "pylint/checkers/dunder_methods.py:DunderCallChecker.open": {
+      "covered_line": 4,
+      "total_line": 4,
+      "line_coverage": 100.0,
+      "covered_branch": 4,
+      "total_branch": 4,
+      "branch_coverage": 100.0
+    },
+    "pylint/checkers/dunder_methods.py:DunderCallChecker.within_dunder_or_lambda_def": {
+      "covered_line": 0,
+      "total_line": 6,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 4,
+      "branch_coverage": 0.0
+    },
+    "pylint/checkers/dunder_methods.py:DunderCallChecker.is_lambda_rule_exception": {
+      "covered_line": 0,
+      "total_line": 1,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/checkers/newstyle.py:NewStyleConflictChecker.visit_functiondef": {
+      "covered_line": 0,
+      "total_line": 34,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 22,
+      "branch_coverage": 0.0
+    },
+    "pylint/checkers/raw_metrics.py:RawMetricsChecker.process_tokens": {
+      "covered_line": 6,
+      "total_line": 6,
+      "line_coverage": 100.0,
+      "covered_branch": 2,
+      "total_branch": 2,
+      "branch_coverage": 100.0
+    },
+    "pylint/checkers/raw_metrics.py:get_type": {
+      "covered_line": 20,
+      "total_line": 21,
+      "line_coverage": 95.24,
+      "covered_branch": 13,
+      "total_branch": 14,
+      "branch_coverage": 92.86
+    },
+    "pylint/checkers/refactoring/implicit_booleaness_checker.py:ImplicitBooleanessChecker.instance_has_bool": {
+      "covered_line": 0,
+      "total_line": 5,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/checkers/refactoring/implicit_booleaness_checker.py:ImplicitBooleanessChecker.base_names_of_instance": {
+      "covered_line": 0,
+      "total_line": 3,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 2,
+      "branch_coverage": 0.0
+    },
+    "pylint/checkers/refactoring/recommendation_checker.py:RecommendationChecker.open": {
+      "covered_line": 2,
+      "total_line": 2,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/checkers/refactoring/refactoring_checker.py:RefactoringChecker.leave_functiondef": {
+      "covered_line": 3,
+      "total_line": 7,
+      "line_coverage": 42.86,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/checkers/refactoring/refactoring_checker.py:RefactoringChecker.visit_yield": {
+      "covered_line": 4,
+      "total_line": 10,
+      "line_coverage": 40.0,
+      "covered_branch": 1,
+      "total_branch": 6,
+      "branch_coverage": 16.67
+    },
+    "pylint/checkers/refactoring/refactoring_checker.py:RefactoringChecker.visit_assign": {
+      "covered_line": 0,
+      "total_line": 2,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/checkers/refactoring/refactoring_checker.py:RefactoringChecker.visit_functiondef": {
+      "covered_line": 1,
+      "total_line": 1,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/checkers/variables.py:NamesConsumer.mark_as_consumed": {
+      "covered_line": 5,
+      "total_line": 5,
+      "line_coverage": 100.0,
+      "covered_branch": 2,
+      "total_branch": 2,
+      "branch_coverage": 100.0
+    },
+    "pylint/checkers/variables.py:VariablesChecker.visit_module": {
+      "covered_line": 2,
+      "total_line": 7,
+      "line_coverage": 28.57,
+      "covered_branch": 0,
+      "total_branch": 6,
+      "branch_coverage": 0.0
+    },
+    "pylint/checkers/variables.py:VariablesChecker.visit_functiondef": {
+      "covered_line": 4,
+      "total_line": 19,
+      "line_coverage": 21.05,
+      "covered_branch": 2,
+      "total_branch": 16,
+      "branch_coverage": 12.5
+    },
+    "pylint/checkers/variables.py:VariablesChecker.visit_global": {
+      "covered_line": 6,
+      "total_line": 30,
+      "line_coverage": 20.0,
+      "covered_branch": 1,
+      "total_branch": 18,
+      "branch_coverage": 5.56
+    },
+    "pylint/config/_pylint_config/generate_command.py:handle_generate_command": {
+      "covered_line": 2,
+      "total_line": 5,
+      "line_coverage": 40.0,
+      "covered_branch": 1,
+      "total_branch": 2,
+      "branch_coverage": 50.0
+    },
+    "pylint/config/_pylint_config/help_message.py:get_subparser_help": {
+      "covered_line": 5,
+      "total_line": 7,
+      "line_coverage": 71.43,
+      "covered_branch": 0,
+      "total_branch": 2,
+      "branch_coverage": 0.0
+    },
+    "pylint/config/_pylint_config/help_message.py:get_help": {
+      "covered_line": 7,
+      "total_line": 11,
+      "line_coverage": 63.64,
+      "covered_branch": 3,
+      "total_branch": 4,
+      "branch_coverage": 75.0
+    },
+    "pylint/config/_pylint_config/utils.py:should_retry_after_invalid_input": {
+      "covered_line": 2,
+      "total_line": 2,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/config/_pylint_config/utils.py:get_and_validate_format": {
+      "covered_line": 6,
+      "total_line": 6,
+      "line_coverage": 100.0,
+      "covered_branch": 4,
+      "total_branch": 4,
+      "branch_coverage": 100.0
+    },
+    "pylint/config/_pylint_config/utils.py:validate_yes_no": {
+      "covered_line": 9,
+      "total_line": 9,
+      "line_coverage": 100.0,
+      "covered_branch": 6,
+      "total_branch": 6,
+      "branch_coverage": 100.0
+    },
+    "pylint/extensions/eq_without_hash.py:EqWithoutHash.visit_classdef": {
+      "covered_line": 3,
+      "total_line": 3,
+      "line_coverage": 100.0,
+      "covered_branch": 2,
+      "total_branch": 2,
+      "branch_coverage": 100.0
+    },
+    "pylint/extensions/private_import.py:PrivateImportChecker.visit_importfrom": {
+      "covered_line": 8,
+      "total_line": 18,
+      "line_coverage": 44.44,
+      "covered_branch": 5,
+      "total_branch": 10,
+      "branch_coverage": 50.0
+    },
+    "pylint/extensions/private_import.py:PrivateImportChecker.same_root_dir": {
+      "covered_line": 6,
+      "total_line": 6,
+      "line_coverage": 100.0,
+      "covered_branch": 4,
+      "total_branch": 4,
+      "branch_coverage": 100.0
+    },
+    "pylint/graph.py:target_info_from_filename": {
+      "covered_line": 4,
+      "total_line": 4,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/graph.py:DotBackend.generate": {
+      "covered_line": 0,
+      "total_line": 26,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 12,
+      "branch_coverage": 0.0
+    },
+    "pylint/graph.py:get_cycles": {
+      "covered_line": 8,
+      "total_line": 8,
+      "line_coverage": 100.0,
+      "covered_branch": 6,
+      "total_branch": 6,
+      "branch_coverage": 100.0
+    },
+    "pylint/lint/caching.py:load_results": {
+      "covered_line": 4,
+      "total_line": 14,
+      "line_coverage": 28.57,
+      "covered_branch": 0,
+      "total_branch": 4,
+      "branch_coverage": 0.0
+    },
+    "pylint/lint/expand_modules.py:discover_package_path": {
+      "covered_line": 10,
+      "total_line": 14,
+      "line_coverage": 71.43,
+      "covered_branch": 6,
+      "total_branch": 10,
+      "branch_coverage": 60.0
+    },
+    "pylint/lint/expand_modules.py:expand_modules": {
+      "covered_line": 26,
+      "total_line": 52,
+      "line_coverage": 50.0,
+      "covered_branch": 9,
+      "total_branch": 20,
+      "branch_coverage": 45.0
+    },
+    "pylint/lint/message_state_handler.py:_MessageStateHandler.enable": {
+      "covered_line": 2,
+      "total_line": 2,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/lint/message_state_handler.py:_MessageStateHandler.is_message_enabled": {
+      "covered_line": 4,
+      "total_line": 7,
+      "line_coverage": 57.14,
+      "covered_branch": 1,
+      "total_branch": 2,
+      "branch_coverage": 50.0
+    },
+    "pylint/lint/message_state_handler.py:_MessageStateHandler.process_tokens": {
+      "covered_line": 0,
+      "total_line": 52,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 24,
+      "branch_coverage": 0.0
+    },
+    "pylint/lint/utils.py:prepare_crash_report": {
+      "covered_line": 13,
+      "total_line": 15,
+      "line_coverage": 86.67,
+      "covered_branch": 1,
+      "total_branch": 2,
+      "branch_coverage": 50.0
+    },
+    "pylint/message/_deleted_message_ids.py:is_deleted_msgid": {
+      "covered_line": 3,
+      "total_line": 5,
+      "line_coverage": 60.0,
+      "covered_branch": 2,
+      "total_branch": 6,
+      "branch_coverage": 33.33
+    },
+    "pylint/message/_deleted_message_ids.py:is_moved_symbol": {
+      "covered_line": 3,
+      "total_line": 5,
+      "line_coverage": 60.0,
+      "covered_branch": 2,
+      "total_branch": 6,
+      "branch_coverage": 33.33
+    },
+    "pylint/message/_deleted_message_ids.py:is_moved_msgid": {
+      "covered_line": 3,
+      "total_line": 5,
+      "line_coverage": 60.0,
+      "covered_branch": 2,
+      "total_branch": 6,
+      "branch_coverage": 33.33
+    },
+    "pylint/message/message.py:Message.location": {
+      "covered_line": 1,
+      "total_line": 1,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/message/message_definition.py:MessageDefinition.may_be_emitted": {
+      "covered_line": 5,
+      "total_line": 5,
+      "line_coverage": 100.0,
+      "covered_branch": 4,
+      "total_branch": 4,
+      "branch_coverage": 100.0
+    },
+    "pylint/message/message_definition.py:MessageDefinition.format_help": {
+      "covered_line": 19,
+      "total_line": 20,
+      "line_coverage": 95.0,
+      "covered_branch": 11,
+      "total_branch": 12,
+      "branch_coverage": 91.67
+    },
+    "pylint/message/message_definition.py:MessageDefinition.check_message_definition": {
+      "covered_line": 3,
+      "total_line": 9,
+      "line_coverage": 33.33,
+      "covered_branch": 3,
+      "total_branch": 12,
+      "branch_coverage": 25.0
+    },
+    "pylint/message/message_definition_store.py:MessageDefinitionStore.register_message": {
+      "covered_line": 3,
+      "total_line": 3,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/message/message_definition_store.py:MessageDefinitionStore.get_msg_display_string": {
+      "covered_line": 4,
+      "total_line": 4,
+      "line_coverage": 100.0,
+      "covered_branch": 2,
+      "total_branch": 2,
+      "branch_coverage": 100.0
+    },
+    "pylint/message/message_definition_store.py:MessageDefinitionStore.find_emittable_messages": {
+      "covered_line": 8,
+      "total_line": 8,
+      "line_coverage": 100.0,
+      "covered_branch": 4,
+      "total_branch": 4,
+      "branch_coverage": 100.0
+    },
+    "pylint/pyreverse/diadefslib.py:DiaDefGenerator.get_title": {
+      "covered_line": 4,
+      "total_line": 4,
+      "line_coverage": 100.0,
+      "covered_branch": 2,
+      "total_branch": 2,
+      "branch_coverage": 100.0
+    },
+    "pylint/pyreverse/diadefslib.py:DiaDefGenerator.show_node": {
+      "covered_line": 4,
+      "total_line": 5,
+      "line_coverage": 80.0,
+      "covered_branch": 3,
+      "total_branch": 4,
+      "branch_coverage": 75.0
+    },
+    "pylint/pyreverse/diadefslib.py:ClassDiadefGenerator.class_diagram": {
+      "covered_line": 3,
+      "total_line": 10,
+      "line_coverage": 30.0,
+      "covered_branch": 1,
+      "total_branch": 2,
+      "branch_coverage": 50.0
+    },
+    "pylint/pyreverse/diadefslib.py:DiadefsHandler.get_diadefs": {
+      "covered_line": 9,
+      "total_line": 9,
+      "line_coverage": 100.0,
+      "covered_branch": 6,
+      "total_branch": 6,
+      "branch_coverage": 100.0
+    },
+    "pylint/pyreverse/diagrams.py:ClassDiagram.add_object": {
+      "covered_line": 4,
+      "total_line": 4,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/pyreverse/diagrams.py:ClassDiagram.class_names": {
+      "covered_line": 8,
+      "total_line": 9,
+      "line_coverage": 88.89,
+      "covered_branch": 7,
+      "total_branch": 8,
+      "branch_coverage": 87.5
+    },
+    "pylint/pyreverse/diagrams.py:PackageDiagram.modules": {
+      "covered_line": 1,
+      "total_line": 1,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/pyreverse/diagrams.py:PackageDiagram.add_object": {
+      "covered_line": 0,
+      "total_line": 4,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/pyreverse/mermaidjs_printer.py:MermaidJSPrinter.emit_node": {
+      "covered_line": 13,
+      "total_line": 28,
+      "line_coverage": 46.43,
+      "covered_branch": 6,
+      "total_branch": 14,
+      "branch_coverage": 42.86
+    },
+    "pylint/pyreverse/utils.py:FilterMixIn.show_attr": {
+      "covered_line": 2,
+      "total_line": 2,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/pyreverse/utils.py:LocalsVisitor.get_callbacks": {
+      "covered_line": 8,
+      "total_line": 9,
+      "line_coverage": 88.89,
+      "covered_branch": 1,
+      "total_branch": 2,
+      "branch_coverage": 50.0
+    },
+    "pylint/pyreverse/utils.py:get_annotation_label": {
+      "covered_line": 5,
+      "total_line": 5,
+      "line_coverage": 100.0,
+      "covered_branch": 4,
+      "total_branch": 4,
+      "branch_coverage": 100.0
+    },
+    "pylint/pyreverse/utils.py:get_annotation": {
+      "covered_line": 11,
+      "total_line": 21,
+      "line_coverage": 52.38,
+      "covered_branch": 3,
+      "total_branch": 8,
+      "branch_coverage": 37.5
+    },
+    "pylint/reporters/base_reporter.py:BaseReporter.writeln": {
+      "covered_line": 2,
+      "total_line": 4,
+      "line_coverage": 50.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/reporters/base_reporter.py:BaseReporter.display_reports": {
+      "covered_line": 5,
+      "total_line": 6,
+      "line_coverage": 83.33,
+      "covered_branch": 3,
+      "total_branch": 4,
+      "branch_coverage": 75.0
+    },
+    "pylint/reporters/multi_reporter.py:MultiReporter.out": {
+      "covered_line": 2,
+      "total_line": 2,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/reporters/multi_reporter.py:MultiReporter.linter": {
+      "covered_line": 0,
+      "total_line": 3,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 2,
+      "branch_coverage": 0.0
+    },
+    "pylint/reporters/progress_reporters.py:ProgressReporter.lint_file": {
+      "covered_line": 2,
+      "total_line": 2,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/reporters/text.py:TextReporter.on_set_current_module": {
+      "covered_line": 7,
+      "total_line": 10,
+      "line_coverage": 70.0,
+      "covered_branch": 3,
+      "total_branch": 6,
+      "branch_coverage": 50.0
+    },
+    "pylint/reporters/ureports/base_writer.py:BaseWriter.format": {
+      "covered_line": 7,
+      "total_line": 7,
+      "line_coverage": 100.0,
+      "covered_branch": 2,
+      "total_branch": 2,
+      "branch_coverage": 100.0
+    },
+    "pylint/reporters/ureports/base_writer.py:BaseWriter.get_table_content": {
+      "covered_line": 0,
+      "total_line": 10,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 4,
+      "branch_coverage": 0.0
+    },
+    "pylint/reporters/ureports/base_writer.py:BaseWriter.compute_content": {
+      "covered_line": 1,
+      "total_line": 8,
+      "line_coverage": 12.5,
+      "covered_branch": 0,
+      "total_branch": 2,
+      "branch_coverage": 0.0
+    },
+    "pylint/reporters/ureports/nodes.py:VNode.accept": {
+      "covered_line": 2,
+      "total_line": 2,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/reporters/ureports/nodes.py:VNode.leave": {
+      "covered_line": 2,
+      "total_line": 2,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/reporters/ureports/nodes.py:BaseLayout.parents": {
+      "covered_line": 4,
+      "total_line": 4,
+      "line_coverage": 100.0,
+      "covered_branch": 2,
+      "total_branch": 2,
+      "branch_coverage": 100.0
+    },
+    "pylint/reporters/ureports/text_writer.py:TextWriter.visit_section": {
+      "covered_line": 2,
+      "total_line": 5,
+      "line_coverage": 40.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/reporters/ureports/text_writer.py:TextWriter.visit_evaluationsection": {
+      "covered_line": 1,
+      "total_line": 4,
+      "line_coverage": 25.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/testutils/_primer/package_to_lint.py:PackageToLint.pylintrc": {
+      "covered_line": 0,
+      "total_line": 3,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 2,
+      "branch_coverage": 0.0
+    },
+    "pylint/testutils/_primer/package_to_lint.py:PackageToLint.paths_to_lint": {
+      "covered_line": 0,
+      "total_line": 1,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/testutils/_primer/package_to_lint.py:PackageToLint.lazy_clone": {
+      "covered_line": 0,
+      "total_line": 0,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/testutils/_primer/primer_compare_command.py:CompareCommand.run": {
+      "covered_line": 7,
+      "total_line": 12,
+      "line_coverage": 58.33,
+      "covered_branch": 3,
+      "total_branch": 4,
+      "branch_coverage": 75.0
+    },
+    "pylint/testutils/functional/find_functional_tests.py:get_functional_test_files_from_directory": {
+      "covered_line": 5,
+      "total_line": 11,
+      "line_coverage": 45.45,
+      "covered_branch": 2,
+      "total_branch": 8,
+      "branch_coverage": 25.0
+    },
+    "pylint/testutils/global_test_linter.py:create_test_linter": {
+      "covered_line": 6,
+      "total_line": 6,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/testutils/pyreverse.py:get_functional_test_files": {
+      "covered_line": 3,
+      "total_line": 9,
+      "line_coverage": 33.33,
+      "covered_branch": 1,
+      "total_branch": 6,
+      "branch_coverage": 16.67
+    },
+    "pylint/testutils/reporter_for_tests.py:GenericTestReporter.reset": {
+      "covered_line": 2,
+      "total_line": 2,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/testutils/reporter_for_tests.py:GenericTestReporter.finalize": {
+      "covered_line": 12,
+      "total_line": 12,
+      "line_coverage": 100.0,
+      "covered_branch": 5,
+      "total_branch": 6,
+      "branch_coverage": 83.33
+    },
+    "pylint/testutils/unittest_linter.py:UnittestLinter.release_messages": {
+      "covered_line": 3,
+      "total_line": 3,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/utils/ast_walker.py:ASTWalker.walk": {
+      "covered_line": 10,
+      "total_line": 19,
+      "line_coverage": 52.63,
+      "covered_branch": 5,
+      "total_branch": 10,
+      "branch_coverage": 50.0
+    },
+    "pylint/utils/file_state.py:FileState.set_msg_status": {
+      "covered_line": 0,
+      "total_line": 8,
+      "line_coverage": 0.0,
+      "covered_branch": 0,
+      "total_branch": 2,
+      "branch_coverage": 0.0
+    },
+    "pylint/utils/linterstats.py:LinterStats.init_single_module": {
+      "covered_line": 1,
+      "total_line": 1,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/utils/linterstats.py:LinterStats.get_bad_names": {
+      "covered_line": 3,
+      "total_line": 3,
+      "line_coverage": 100.0,
+      "covered_branch": 2,
+      "total_branch": 2,
+      "branch_coverage": 100.0
+    },
+    "pylint/utils/linterstats.py:LinterStats.reset_bad_names": {
+      "covered_line": 1,
+      "total_line": 1,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/utils/linterstats.py:LinterStats.get_undocumented": {
+      "covered_line": 3,
+      "total_line": 3,
+      "line_coverage": 100.0,
+      "covered_branch": 2,
+      "total_branch": 2,
+      "branch_coverage": 100.0
+    },
+    "pylint/utils/utils.py:normalize_text": {
+      "covered_line": 1,
+      "total_line": 1,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    },
+    "pylint/utils/utils.py:get_module_and_frameid": {
+      "covered_line": 10,
+      "total_line": 11,
+      "line_coverage": 90.91,
+      "covered_branch": 2,
+      "total_branch": 4,
+      "branch_coverage": 50.0
+    },
+    "pylint/utils/utils.py:get_rst_section": {
+      "covered_line": 17,
+      "total_line": 17,
+      "line_coverage": 100.0,
+      "covered_branch": 9,
+      "total_branch": 10,
+      "branch_coverage": 90.0
+    },
+    "pylint/utils/utils.py:tokenize_module": {
+      "covered_line": 3,
+      "total_line": 3,
+      "line_coverage": 100.0,
+      "covered_branch": 0,
+      "total_branch": 0,
+      "branch_coverage": 0.0
+    }
+  },
+  "excute_pass": 47,
+  "test_pass": 67,
+  "testcase_pass_rate": 44.28333333333334
+}

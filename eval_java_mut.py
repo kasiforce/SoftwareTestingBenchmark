@@ -426,6 +426,7 @@ import subprocess
 import os
 import sys
 import json
+import time
 import xml.etree.ElementTree as ET
 from argparse import ArgumentParser
 
@@ -919,7 +920,7 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
     spec = "specification" if "specification" in data_file else ""
     model = data_file.replace(".json","").split('_')[-1]
     framework = data_file.replace(".json","").split('_')[-2]
-    mut_dir = framework + '_' + model + "_mut"
+    mut_dir = framework + '_' + model + "_mut_fix"
     if spec:
         mut_dir = spec + '_' + mut_dir
 
@@ -927,7 +928,7 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
 
     os.makedirs(test_results_dir, exist_ok=True)
 
-    syntax_report = syntax_analyse(data_file)
+    # syntax_report = syntax_analyse(data_file)
 
     project_dir = os.path.join(cwd, repo_dir)
     # with open(dockerfile_path, "r") as f:
@@ -982,26 +983,54 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
 
                 
                 
-                echo "=== 在 pom.xml 中添加 JUnit 4 依赖 ==="
-                # 检查是否已存在 junit 依赖，避免重复添加
                 if ! grep -q "<artifactId>junit</artifactId>" pom.xml; then
                     sed -i '/<\/dependencies>/i \
-                    <dependency>\
-                        <groupId>junit</groupId>\
-                        <artifactId>junit</artifactId>\
-                        <version>4.13.2</version>\
-                        <scope>test</scope>\
-                    </dependency>' pom.xml
+            <dependency>\
+                <groupId>junit</groupId>\
+                <artifactId>junit</artifactId>\
+                <version>4.13.2</version>\
+                <scope>test</scope>\
+            </dependency>' pom.xml
                 fi
 
-                # 添加 JUnit Vintage 引擎（版本与项目 JUnit 5 一致）
                 if ! grep -q "<artifactId>junit-vintage-engine</artifactId>" pom.xml; then
                     sed -i '/<\/dependencies>/i \
                     <dependency>\
                         <groupId>org.junit.vintage</groupId>\
                         <artifactId>junit-vintage-engine</artifactId>\
-                        <version>5.14.1</version>\
+                        <version>5.13.3</version>\
                         <scope>test</scope>\
+                    </dependency>' pom.xml
+                fi
+           
+                if ! grep -q "<artifactId>mockito-core</artifactId>" pom.xml; then
+                    sed -i '/<\/dependencies>/i \
+                    <dependency>\
+                        <groupId>org.mockito</groupId>\
+                        <artifactId>mockito-core</artifactId>\
+                        <version>4.11.0</version>\
+                        <scope>test</scope>\
+                    </dependency>' pom.xml
+                fi
+
+                sed -i 's|<argLine>-javaagent:src/test/resources/agent.jar</argLine>|<argLine>@{{argLine}} -javaagent:src/test/resources/agent.jar</argLine>|' pom.xml
+
+                if ! grep -q "<artifactId>jakarta.xml.bind-api</artifactId>" pom.xml; then
+                    sed -i '/<\/dependencies>/i \
+                    <dependency>\
+                        <groupId>jakarta.xml.bind</groupId>\
+                        <artifactId>jakarta.xml.bind-api</artifactId>\
+                        <version>4.0.0</version>\
+                    </dependency>' pom.xml
+                fi
+
+                if ! grep -q "<artifactId>jaxb-runtime</artifactId>" pom.xml; then
+                    sed -i '/<\/dependencies>/i \
+                    <dependency>\
+                        <groupId>org.glassfish.jaxb</groupId>\
+                        <artifactId>jaxb-runtime</artifactId>\
+                        <version>4.0.3</version>\
+                        <scope>runtime</scope>\
                     </dependency>' pom.xml
                 fi
 
@@ -1115,9 +1144,13 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
 
 if __name__ == "__main__":
     # 示例调用
-    for root, dirs, files in os.walk("tests/test_gen/java/commons-cli"):
-        for file in files:
-            full_path = os.path.join(root, file)
-            print(full_path)
-            create_and_run_java("output/commons-cli/dockerfile", "projects/commons-cli", full_path)
+    # for root, dirs, files in os.walk("tests/test_gen/java/fix_jcasbin"):
+    #     for file in files:
+    #         if "junit5" in file :
+    #             continue
+    #         full_path = os.path.join(root, file)
+    #         print(full_path)
+    #         create_and_run_java("output/jcasbin/dockerfile", "projects/jcasbin", full_path)
+    #         time.sleep(10)  # 每次测试间隔10秒，避免过快连续运行
     # pass
+    create_and_run_java("output/nfe/dockerfile", "projects/nfe", "tests/test_gen/java/fix_nfe/repaired_nfe_lite_junit4_gpt5nano.json")

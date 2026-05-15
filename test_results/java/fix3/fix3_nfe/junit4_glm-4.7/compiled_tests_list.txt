@@ -1,0 +1,9 @@
+./target/test-classes/br/com/swconsultoria/nfe/wsdl/NFeInutilizacao/ce/NfeInutilizacaoNFTests.class
+./target/test-classes/br/com/swconsultoria/nfe/wsdl/NFeRecepcaoEvento/NfeRecepcaoEventoTests.class
+./target/test-classes/br/com/swconsultoria/nfe/wsdl/NFeStatusServico4MS/NfeStatusServicoNFTests.class
+./target/test-classes/br/com/swconsultoria/nfe/GenerateReportTests.class
+./target/test-classes/br/com/swconsultoria/nfe/util/MontaCancelamentoTests.class
+./target/test-classes/br/com/swconsultoria/nfe/ValidateTests.class
+./target/test-classes/br/com/swconsultoria/nfe/EnviarEnventoManualTests.class
+./target/test-classes/br/com/swconsultoria/nfe/impressao/ImpressaoPadraoCCeTests.class
+./target/test-classes/br/com/swconsultoria/nfe/impressao/ImpressaoPadraoNFCeTests.class
