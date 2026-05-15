@@ -1,0 +1,9 @@
+{
+  "total_mut": 82,
+  "killed": 46,
+  "status_counts": {
+    "KILLED": 46,
+    "SURVIVED": 18,
+    "NO_COVERAGE": 18
+  }
+}

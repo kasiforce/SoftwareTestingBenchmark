@@ -52,6 +52,7 @@ from typing import List, Dict, Tuple
 
 
 def delete_test_files_in_test_dirs(project_root):
+    # jxpath要删掉所有java文件
     """在 test/tests 目录中删除 *test*.java 文件"""
     # 查找 test/tests 目录
     test_dirs = []
@@ -75,12 +76,12 @@ def delete_test_files_in_test_dirs(project_root):
     deleted_files = []
     for test_dir in test_dirs:
         for file in test_dir.rglob('*.java'):
-            if 'Test' in file.name:
-                try:
-                    os.remove(file)
-                    deleted_files.append(file)
-                except Exception as e:
-                    print(f"删除失败 {file}: {e}")
+            # if 'Test' in file.name:
+            try:
+                os.remove(file)
+                deleted_files.append(file)
+            except Exception as e:
+                print(f"删除失败 {file}: {e}")
 
     # 显示结果
     print(f"在 {len(test_dirs)} 个测试目录中删除了 {len(deleted_files)} 个测试文件:")
@@ -140,7 +141,7 @@ def write_generated_tests(project_root, test_json_path):
         with open(test_json_path, 'r', encoding='utf-8') as f:
             functions = json.load(f)
             print(len(functions))
-
+        # funcs = functions["items"]
         for func in functions:
             # print(func)
             test_file = func.get("test_file", "")
@@ -154,6 +155,8 @@ def write_generated_tests(project_root, test_json_path):
             if not os.path.exists(dir_path):
                 os.makedirs(dir_path, exist_ok=True)
 
+            # test = func["repair_history"][-1]["test_code"]
+            # raw_code = test
             raw_code = "\n\n".join(func["generated_tests"])
 
             # 写入文件（UTF-8）

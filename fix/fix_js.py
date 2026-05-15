@@ -200,20 +200,7 @@ Return ONLY code without explanations, non-code text, or markdown formatting.
             run_cmd = f"""
 # set +e
 cd /testbed
-# proton
-# jq '.env.test = {{
-#     "presets": [
-#         [
-#         "@babel/preset-env",
-#         {{
-#             "modules": "commonjs",
-#             "targets": {{ "node": "current" }},
-#             "loose": true,
-#             "bugfixes": true
-#         }}
-#         ]
-#     ]
-# }}' .babelrc.json > .babelrc.json.tmp && mv .babelrc.json.tmp .babelrc.json
+
 
 if ! command -v python3 &> /dev/null; then
     apt update && apt install -y python3
@@ -251,6 +238,7 @@ if [ $SYNTAX_EXIT_CODE -eq 0 ]; then
                 cat /tmp/runtime.log > /tmp/result.txt
             fi
             echo run > /tmp/stage.txt
+            
         else
             echo done > /tmp/stage.txt
             : > /tmp/result.txt
@@ -283,22 +271,6 @@ fi
                         "docker", "cp",
                         str(Path("rollup.temp.config.mjs").resolve()),
                         f"{self.container_name}:/testbed/rollup.temp.config.mjs"
-                    ],
-                    check=True,
-                )
-                subprocess.run(
-                    [
-                        "docker", "cp",
-                        str(Path("jest.config.js").resolve()),
-                        f"{self.container_name}:/testbed/jest.config.js"
-                    ],
-                    check=True,
-                )
-                subprocess.run(
-                    [
-                        "docker", "cp",
-                        str(Path("babel.config.js").resolve()),
-                        f"{self.container_name}:/testbed/babel.config.js"
                     ],
                     check=True,
                 )
@@ -503,16 +475,16 @@ def main() -> None:
     # )
     # repairer.repair_file(args.output_file)
 
-    for root, dirs, files in os.walk("tests/test_gen/javascript/pdf"):
+    for root, dirs, files in os.walk("tests/test_gen/javascript/modern-error"):
             for file in files:
                 if "codellama" in  file.lower() or "ds6.7b" in file.lower():
                     continue
                 
-                # if "dsv3.2" in file.lower() or "gpt4o" in file.lower():
-                    # continue
+                if "dsv3.2" in file.lower() :
+                    continue
                 
-                # if "specification_junit4_qwen" in file.lower() or "lite_junit5_gpt5" in file.lower() or "lite_junit5_glm" in file.lower():
-                    # continue
+                if "specification_jest_qwen" in file.lower() or "lite_jest_gpt4" in file.lower() or "specification_jest_gpt5" in file.lower():
+                    continue
                 
                 # if "commons-jxpath_lite_specification_junit5_glm" in file.lower() or "commons-jxpath_lite_junit5_dsv" in file.lower() or "commons-jxpath_lite_junit4_qwen" in file.lower() or "commons-jxpath_lite_specification_junit4_glm" in file.lower():
                 #     continue
@@ -537,14 +509,14 @@ def main() -> None:
                 repairer = JavaScriptGeneratedTestRepairer(
                     api_key="",
                     model=model_name,
-                    dockerfile_path="output/pdf/dockerfile",
+                    dockerfile_path="output/modern-error/dockerfile",
                     data_file=full_path,
                     max_rounds=3,
-                    base_url="https://api.agicto.cn/v1",
+                    base_url="",
                     reuse_container=False,
                     parallel_workers=1,
                 )
-                repairer.repair_file("tests/test_gen/javascript/fix_pdf/repaired_"+file)
+                repairer.repair_file("tests/test_gen/javascript/fix_modern-error/repaired1_"+file)
 
 
 if __name__ == "__main__":

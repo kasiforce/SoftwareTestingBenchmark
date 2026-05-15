@@ -221,7 +221,7 @@ def write_generated_tests(project_root, test_json_path):
 
         for func in functions:
             # print(func)
-            project = func.get("project_root").split('projects/pdf.js')[1]
+            project = func.get("project_root").split('projects/modern-errors')[1]
             test_file = "/testbed"+project + "/" + func.get("test_file")
 
             dir_path = os.path.dirname(test_file)

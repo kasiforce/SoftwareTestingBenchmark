@@ -54,7 +54,7 @@ import os
 
 
 
-
+# 这个成功的
 def cal_mut(data_path, mut_path):
     mut_path1 = None
     for filename in os.listdir(mut_path):
@@ -165,7 +165,124 @@ def cal_mut(data_path, mut_path):
     }
 
 
-# cal_mut("tests/test_gen/java/commons-cli/commons-cli_lite_junit4_CodeLlama-7b.json","test_results/java/commons-cli/junit4_gpt4o_mut_fix")
+
+
+
+
+import os
+import json
+import xml.etree.ElementTree as ET
+
+def cal_mut_and_extract_xml(data_path, mut_path, output_xml_path):
+    # ----------------- 找到突变测试 XML 文件 -----------------
+    mut_path1 = None
+    for filename in os.listdir(mut_path):
+        if filename.endswith("_pitest_mutations.xml"):
+            mut_path1 = os.path.join(mut_path, filename)
+    if mut_path1 is None:
+        print(f"未找到突变测试结果 XML 文件，路径: {mut_path}")
+        return
+
+    # ----------------- 解析 JSON -----------------
+    with open(data_path, 'r', encoding='utf-8') as f:
+        json_data = json.load(f)
+    # data = json_data['items']
+    data = json_data
+    # 构建目标方法集合
+    target_methods = set()
+    for item in data:
+        method_name = item['name']
+        src_file = item['src_file']
+
+        if src_file.startswith("src/main/java/"):
+            class_path = src_file[len("src/main/java/"):]
+        elif src_file.startswith("src/"):
+            class_path = src_file[4:]
+        else:
+            class_path = src_file
+
+        if class_path.endswith(".java"):
+            class_path = class_path[:-5]
+        class_full_name = class_path.replace('/', '.')
+
+        target_methods.add((class_full_name, method_name))
+
+    # ----------------- 解析 XML -----------------
+    tree = ET.parse(mut_path1)
+    root = tree.getroot()
+
+    total_matched = 0
+    total_detected = 0
+    matched_source_files = set()
+    status_counts = {'KILLED': 0, 'SURVIVED': 0, 'NO_COVERAGE': 0}
+    method_stats = {}
+
+    # 新建 XML 根节点
+    new_root = ET.Element(root.tag, root.attrib)
+
+    for mutation in root.findall('mutation'):
+        mutated_class = mutation.findtext('mutatedClass')
+        mutated_method = mutation.findtext('mutatedMethod')
+
+        if (mutated_class, mutated_method) in target_methods:
+            total_matched += 1
+            source_file = mutation.findtext('sourceFile')
+            matched_source_files.add(source_file)
+
+            # 状态统计
+            status = mutation.get('status')
+            if status in status_counts:
+                status_counts[status] += 1
+            else:
+                status_counts[status] = status_counts.get(status, 0) + 1
+
+            if mutation.get('detected') == 'true':
+                total_detected += 1
+
+            # 每个方法统计
+            key = (mutated_class, mutated_method)
+            if key not in method_stats:
+                method_stats[key] = {'total': 0, 'killed': 0}
+            method_stats[key]['total'] += 1
+            if mutation.get('detected') == 'true':
+                method_stats[key]['killed'] += 1
+
+            # ----------------- 添加到新 XML -----------------
+            new_root.append(mutation)
+
+    # ----------------- 输出统计 -----------------
+    print(f"JSON 中包含的目标方法数量: {len(target_methods)}")
+    print(f"匹配上的突变体总数（仅目标方法）: {total_matched}")
+    print(f"被杀死的突变体数量: {total_detected}")
+    print(f"涉及到的源文件（去重）: {matched_source_files}")
+
+    print("\n突变体状态分布：")
+    for status, count in status_counts.items():
+        print(f"  {status}: {count}")
+
+    print("\n每个目标方法的变异分数：")
+    for (cls, method), stats in method_stats.items():
+        kill_rate = (stats['killed'] / stats['total'] * 100) if stats['total'] > 0 else 0
+        print(f"  {cls}.{method}: 突变体 {stats['total']}, 杀死 {stats['killed']}, 杀死率 {kill_rate:.1f}%")
+
+    if total_matched > 0:
+        overall_rate = total_detected / total_matched * 100
+        print(f"\n总体杀死率（目标方法）: {overall_rate:.1f}%")
+    else:
+        print("未匹配到任何目标方法的突变体")
+
+    # ----------------- 写入新的 XML 文件 -----------------
+    new_tree = ET.ElementTree(new_root)
+    new_tree.write(output_xml_path, encoding='utf-8', xml_declaration=True)
+    print(f"\n新的 XML 已生成: {output_xml_path}")
+
+    return {
+        "total_mut": total_matched,
+        "killed": total_detected,
+        "status_counts": status_counts
+    }
+
+cal_mut_and_extract_xml("tests/test_gen/java/jcasbin/jcasbin_lite_junit4_CodeLlama-7b.json","test_results/java/jcasbin/specification_junit4_DSv3.2_mut_fix","test_results/java/jcasbin/specification_junit4_DSv3.2_mut_fix/filtered_mutations.xml")
 # import json
 # import xml.etree.ElementTree as ET
 # import os
