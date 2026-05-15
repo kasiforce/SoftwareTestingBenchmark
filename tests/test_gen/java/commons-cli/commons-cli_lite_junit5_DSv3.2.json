@@ -1,6 +1,112 @@
 [
   {
     "project_root": "projects/commons-cli",
+    "name": "pad",
+    "src_file": "src/main/java/org/apache/commons/cli/help/TextStyle.java",
+    "test_file": "src/test/java/org/apache/commons/cli/help/textstyle/PadTests.java",
+    "code": "public CharSequence pad(final boolean addIndent, final CharSequence text) {\n        if (text.length() >= maxWidth) {\n            return text;\n        }\n        String indentPad;\n        String rest;\n        final StringBuilder sb = new StringBuilder();\n        switch (alignment) {\n        case CENTER:\n            int padLen;\n            if (maxWidth == UNSET_MAX_WIDTH) {\n                padLen = addIndent ? indent : 0;\n            } else {\n                padLen = maxWidth - text.length();\n            }\n            final int left = padLen / 2;\n            indentPad = Util.repeatSpace(left);\n            rest = Util.repeatSpace(padLen - left);\n            sb.append(indentPad).append(text).append(rest);\n            break;\n        case LEFT:\n        case RIGHT:\n        default: // default should never happen. It is here to keep code coverage happy.\n            if (maxWidth == UNSET_MAX_WIDTH) {\n                indentPad = addIndent ? Util.repeatSpace(indent) : \"\";\n                rest = \"\";\n            } else {\n                int restLen = maxWidth - text.length();\n                if (addIndent && restLen > indent) {\n                    indentPad = Util.repeatSpace(indent);\n                    restLen -= indent;\n                } else {\n                    indentPad = \"\";\n                }\n                rest = Util.repeatSpace(restLen);\n            }\n\n            if (alignment == Alignment.LEFT) {\n                sb.append(indentPad).append(text).append(rest);\n            } else {\n                sb.append(indentPad).append(rest).append(text);\n            }\n            break;\n        }\n        return sb.toString();\n    }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "TextStyle",
+    "full_class_name": "TextStyle",
+    "class_constructor": [],
+    "class_fields": [
+      "public static final int UNSET_MAX_WIDTH = Integer.MAX_VALUE;",
+      "public static final TextStyle DEFAULT = builder().get();"
+    ],
+    "generated_tests": [
+      "package org.apache.commons.cli.help.textstyle;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\n\nimport org.apache.commons.cli.help.TextStyle;\nimport org.apache.commons.cli.help.TextStyle.Alignment;\nimport org.apache.commons.cli.help.TextStyle.Builder;\nimport org.junit.jupiter.api.Test;\nimport org.junit.jupiter.params.ParameterizedTest;\nimport org.junit.jupiter.params.provider.CsvSource;\n\npublic class PadTests {\n    \n    @Test\n    public void testPadWithTextLengthGreaterThanOrEqualMaxWidth() {\n        TextStyle style = TextStyle.builder()\n                .setMaxWidth(5)\n                .get();\n        \n        CharSequence result1 = style.pad(false, \"Hello\");\n        assertEquals(\"Hello\", result1.toString());\n        \n        CharSequence result2 = style.pad(false, \"HelloWorld\");\n        assertEquals(\"HelloWorld\", result2.toString());\n    }\n    \n    @Test\n    public void testPadCenterWithUnsetMaxWidth() {\n        TextStyle style = TextStyle.builder()\n                .setAlignment(Alignment.CENTER)\n                .setIndent(4)\n                .get();\n        \n        CharSequence result1 = style.pad(true, \"Hi\");\n        assertEquals(\"  Hi  \", result1.toString());\n        \n        CharSequence result2 = style.pad(false, \"Hi\");\n        assertEquals(\"Hi\", result2.toString());\n    }\n    \n    @Test\n    public void testPadCenterWithSetMaxWidth() {\n        TextStyle style = TextStyle.builder()\n                .setAlignment(Alignment.CENTER)\n                .setMaxWidth(10)\n                .setIndent(4)\n                .get();\n        \n        CharSequence result1 = style.pad(true, \"Test\");\n        assertEquals(\"   Test   \", result1.toString());\n        \n        CharSequence result2 = style.pad(false, \"Test\");\n        assertEquals(\"   Test   \", result2.toString());\n    }\n    \n    @Test\n    public void testPadLeftWithUnsetMaxWidth() {\n        TextStyle style = TextStyle.builder()\n                .setAlignment(Alignment.LEFT)\n                .setIndent(4)\n                .get();\n        \n        CharSequence result1 = style.pad(true, \"Text\");\n        assertEquals(\"    Text\", result1.toString());\n        \n        CharSequence result2 = style.pad(false, \"Text\");\n        assertEquals(\"Text\", result2.toString());\n    }\n    \n    @Test\n    public void testPadLeftWithSetMaxWidth() {\n        TextStyle style = TextStyle.builder()\n                .setAlignment(Alignment.LEFT)\n                .setMaxWidth(10)\n                .setIndent(4)\n                .get();\n        \n        CharSequence result1 = style.pad(true, \"Hello\");\n        assertEquals(\"    Hello \", result1.toString());\n        \n        CharSequence result2 = style.pad(false, \"Hello\");\n        assertEquals(\"Hello     \", result2.toString());\n        \n        CharSequence result3 = style.pad(true, \"Hi\");\n        assertEquals(\"    Hi    \", result3.toString());\n    }\n    \n    @Test\n    public void testPadRightWithUnsetMaxWidth() {\n        TextStyle style = TextStyle.builder()\n                .setAlignment(Alignment.RIGHT)\n                .setIndent(4)\n                .get();\n        \n        CharSequence result1 = style.pad(true, \"Text\");\n        assertEquals(\"    Text\", result1.toString());\n        \n        CharSequence result2 = style.pad(false, \"Text\");\n        assertEquals(\"Text\", result2.toString());\n    }\n    \n    @Test\n    public void testPadRightWithSetMaxWidth() {\n        TextStyle style = TextStyle.builder()\n                .setAlignment(Alignment.RIGHT)\n                .setMaxWidth(10)\n                .setIndent(4)\n                .get();\n        \n        CharSequence result1 = style.pad(true, \"Hello\");\n        assertEquals(\"     Hello\", result1.toString());\n        \n        CharSequence result2 = style.pad(false, \"Hello\");\n        assertEquals(\"     Hello\", result2.toString());\n        \n        CharSequence result3 = style.pad(true, \"Hi\");\n        assertEquals(\"        Hi\", result3.toString());\n    }\n    \n    @Test\n    public void testPadRightWithMaxWidthLessThanIndent() {\n        TextStyle style = TextStyle.builder()\n                .setAlignment(Alignment.RIGHT)\n                .setMaxWidth(2)\n                .setIndent(4)\n                .get();\n        \n        CharSequence result1 = style.pad(true, \"A\");\n        assertEquals(\" A\", result1.toString());\n        \n        CharSequence result2 = style.pad(false, \"A\");\n        assertEquals(\" A\", result2.toString());\n    }\n    \n    @ParameterizedTest\n    @CsvSource({\n        \"LEFT, true, 10, 4, 'Test', '    Test  '\",\n        \"LEFT, false, 10, 4, 'Test', 'Test      '\",\n        \"RIGHT, true, 10, 4, 'Test', '      Test'\",\n        \"RIGHT, false, 10, 4, 'Test', '      Test'\",\n        \"CENTER, true, 10, 4, 'Test', '   Test   '\",\n        \"CENTER, false, 10, 4, 'Test', '   Test   '\"\n    })\n    public void testPadWithVariousParameters(Alignment alignment, boolean addIndent, int maxWidth, \n                                            int indent, String text, String expected) {\n        TextStyle style = TextStyle.builder()\n                .setAlignment(alignment)\n                .setMaxWidth(maxWidth)\n                .setIndent(indent)\n                .get();\n        \n        CharSequence result = style.pad(addIndent, text);\n        assertEquals(expected, result.toString());\n    }\n    \n    @Test\n    public void testPadWithEmptyString() {\n        TextStyle style = TextStyle.builder()\n                .setAlignment(Alignment.CENTER)\n                .setMaxWidth(10)\n                .setIndent(4)\n                .get();\n        \n        CharSequence result1 = style.pad(true, \"\");\n        assertEquals(\"          \", result1.toString());\n        \n        CharSequence result2 = style.pad(false, \"\");\n        assertEquals(\"          \", result2.toString());\n    }\n    \n    @Test\n    public void testPadWithNullCharSequence() {\n        TextStyle style = TextStyle.builder()\n                .setAlignment(Alignment.LEFT)\n                .setMaxWidth(10)\n                .get();\n        \n        CharSequence result = style.pad(false, \"\");\n        assertEquals(\"          \", result.toString());\n    }\n}"
+    ],
+    "test_generation_status": "success",
+    "mut": [
+        {
+            "id": 1,
+            "line": 2,
+            "precode": "        if (text.length() >= maxWidth) {",
+            "aftercode": "        if (text.length() > maxWidth) {"
+        },
+        {
+            "id": 2,
+            "line": 3,
+            "precode": "            return text;",
+            "aftercode": "            return text.toString();"
+        },
+        {
+            "id": 3,
+            "line": 5,
+            "precode": "        String indentPad;",
+            "aftercode": "        String indentPad = null;"
+        },
+        {
+            "id": 4,
+            "line": 12,
+            "precode": "                padLen = addIndent ? indent : 0;",
+            "aftercode": "                padLen = addIndent ? 0 : indent;"
+        },
+        {
+            "id": 5,
+            "line": 16,
+            "precode": "            final int left = padLen / 2;",
+            "aftercode": "            final int left = padLen;"
+        },
+        {
+            "id": 6,
+            "line": 17,
+            "precode": "            indentPad = Util.repeatSpace(left);",
+            "aftercode": "            indentPad = Util.repeatSpace(left + 1);"
+        },
+        {
+            "id": 7,
+            "line": 18,
+            "precode": "            rest = Util.repeatSpace(padLen - left);",
+            "aftercode": "            rest = Util.repeatSpace(padLen - left - 1);"
+        },
+        {
+            "id": 8,
+            "line": 25,
+            "precode": "                indentPad = addIndent ? Util.repeatSpace(indent) : \"\";",
+            "aftercode": "                indentPad = addIndent ? \"\" : Util.repeatSpace(indent);"
+        },
+        {
+            "id": 9,
+            "line": 28,
+            "precode": "                int restLen = maxWidth - text.length();",
+            "aftercode": "                int restLen = maxWidth - text.length() - 1;"
+        },
+        {
+            "id": 10,
+            "line": 31,
+            "precode": "                    restLen -= indent;",
+            "aftercode": "                    restLen -= indent + 1;"
+        }
+    ]
+  },
+  {
+    "project_root": "projects/commons-cli",
+    "name": "makeColumnQueues",
+    "src_file": "src/main/java/org/apache/commons/cli/help/TextHelpAppendable.java",
+    "test_file": "src/test/java/org/apache/commons/cli/help/texthelpappendable/MakeColumnQueuesTests.java",
+    "code": "protected List<Queue<String>> makeColumnQueues(final List<String> columnData, final List<TextStyle> styles) {\n        final List<Queue<String>> result = new ArrayList<>();\n        for (int i = 0; i < columnData.size(); i++) {\n            result.add(makeColumnQueue(columnData.get(i), styles.get(i)));\n        }\n        return result;\n    }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "TextHelpAppendable",
+    "full_class_name": "TextHelpAppendable",
+    "class_constructor": [
+      "public TextHelpAppendable(final Appendable output) {\n        super(output);\n        // @formatter:off\n        textStyleBuilder = TextStyle.builder()\n            .setMaxWidth(DEFAULT_WIDTH)\n            .setLeftPad(DEFAULT_LEFT_PAD)\n            .setIndent(DEFAULT_INDENT);\n        // @formatter:on\n    }"
+    ],
+    "class_fields": [
+      "public static final int DEFAULT_WIDTH = 74;",
+      "public static final int DEFAULT_LEFT_PAD = 1;",
+      "public static final int DEFAULT_INDENT = 3;",
+      "public static final int DEFAULT_LIST_INDENT = 7;"
+    ],
+    "generated_tests": [
+      "package org.apache.commons.cli.help.texthelpappendable;\n\nimport org.apache.commons.cli.help.TextHelpAppendable;\nimport org.apache.commons.cli.help.TextStyle;\nimport org.junit.jupiter.api.Test;\n\nimport java.util.ArrayList;\nimport java.util.List;\nimport java.util.Queue;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\nimport static org.junit.jupiter.api.Assertions.assertNotNull;\nimport static org.junit.jupiter.api.Assertions.assertThrows;\nimport static org.junit.jupiter.api.Assertions.assertTrue;\n\nclass MakeColumnQueuesTests {\n\n    @Test\n    void testMakeColumnQueuesEmptyInput() {\n        TextHelpAppendable appendable = new TextHelpAppendable(new StringBuilder());\n        List<String> columnData = new ArrayList<>();\n        List<TextStyle> styles = new ArrayList<>();\n        \n        List<Queue<String>> result = appendable.makeColumnQueues(columnData, styles);\n        \n        assertNotNull(result);\n        assertEquals(0, result.size());\n    }\n\n    @Test\n    void testMakeColumnQueuesSingleColumn() {\n        TextHelpAppendable appendable = new TextHelpAppendable(new StringBuilder());\n        List<String> columnData = new ArrayList<>();\n        columnData.add(\"Test Column Data\");\n        \n        List<TextStyle> styles = new ArrayList<>();\n        styles.add(TextStyle.builder().setMaxWidth(20).setLeftPad(1).setIndent(3).build());\n        \n        List<Queue<String>> result = appendable.makeColumnQueues(columnData, styles);\n        \n        assertNotNull(result);\n        assertEquals(1, result.size());\n        assertNotNull(result.get(0));\n        assertTrue(result.get(0) instanceof Queue);\n    }\n\n    @Test\n    void testMakeColumnQueuesMultipleColumns() {\n        TextHelpAppendable appendable = new TextHelpAppendable(new StringBuilder());\n        List<String> columnData = new ArrayList<>();\n        columnData.add(\"First Column\");\n        columnData.add(\"Second Column\");\n        columnData.add(\"Third Column\");\n        \n        List<TextStyle> styles = new ArrayList<>();\n        for (int i = 0; i < 3; i++) {\n            styles.add(TextStyle.builder()\n                .setMaxWidth(15 + i * 5)\n                .setLeftPad(1)\n                .setIndent(3)\n                .build());\n        }\n        \n        List<Queue<String>> result = appendable.makeColumnQueues(columnData, styles);\n        \n        assertNotNull(result);\n        assertEquals(3, result.size());\n        \n        for (int i = 0; i < 3; i++) {\n            assertNotNull(result.get(i));\n            assertTrue(result.get(i) instanceof Queue);\n        }\n    }\n\n    @Test\n    void testMakeColumnQueuesWithLongText() {\n        TextHelpAppendable appendable = new TextHelpAppendable(new StringBuilder());\n        List<String> columnData = new ArrayList<>();\n        columnData.add(\"This is a very long text that should be wrapped into multiple lines according to the style settings\");\n        \n        List<TextStyle> styles = new ArrayList<>();\n        styles.add(TextStyle.builder()\n            .setMaxWidth(20)\n            .setLeftPad(1)\n            .setIndent(3)\n            .build());\n        \n        List<Queue<String>> result = appendable.makeColumnQueues(columnData, styles);\n        \n        assertNotNull(result);\n        assertEquals(1, result.size());\n        Queue<String> queue = result.get(0);\n        assertNotNull(queue);\n        assertTrue(queue.size() > 1, \"Long text should be split into multiple queue elements\");\n    }\n\n    @Test\n    void testMakeColumnQueuesWithDifferentStyles() {\n        TextHelpAppendable appendable = new TextHelpAppendable(new StringBuilder());\n        List<String> columnData = new ArrayList<>();\n        columnData.add(\"Text with small width\");\n        columnData.add(\"Text with medium width\");\n        columnData.add(\"Text with large width\");\n        \n        List<TextStyle> styles = new ArrayList<>();\n        styles.add(TextStyle.builder().setMaxWidth(10).setLeftPad(0).setIndent(0).build());\n        styles.add(TextStyle.builder().setMaxWidth(20).setLeftPad(2).setIndent(4).build());\n        styles.add(TextStyle.builder().setMaxWidth(30).setLeftPad(4).setIndent(8).build());\n        \n        List<Queue<String>> result = appendable.makeColumnQueues(columnData, styles);\n        \n        assertNotNull(result);\n        assertEquals(3, result.size());\n        \n        for (int i = 0; i < 3; i++) {\n            assertNotNull(result.get(i));\n        }\n    }\n\n    @Test\n    void testMakeColumnQueuesNullColumnDataThrowsException() {\n        TextHelpAppendable appendable = new TextHelpAppendable(new StringBuilder());\n        List<TextStyle> styles = new ArrayList<>();\n        styles.add(TextStyle.builder().setMaxWidth(20).build());\n        \n        assertThrows(NullPointerException.class, () -> {\n            appendable.makeColumnQueues(null, styles);\n        });\n    }\n\n    @Test\n    void testMakeColumnQueuesNullStylesThrowsException() {\n        TextHelpAppendable appendable = new TextHelpAppendable(new StringBuilder());\n        List<String> columnData = new ArrayList<>();\n        columnData.add(\"Test data\");\n        \n        assertThrows(NullPointerException.class, () -> {\n            appendable.makeColumnQueues(columnData, null);\n        });\n    }\n\n    @Test\n    void testMakeColumnQueuesMismatchedSizesThrowsException() {\n        TextHelpAppendable appendable = new TextHelpAppendable(new StringBuilder());\n        List<String> columnData = new ArrayList<>();\n        columnData.add(\"Column 1\");\n        columnData.add(\"Column 2\");\n        \n        List<TextStyle> styles = new ArrayList<>();\n        styles.add(TextStyle.builder().setMaxWidth(20).build());\n        \n        assertThrows(IndexOutOfBoundsException.class, () -> {\n            appendable.makeColumnQueues(columnData, styles);\n        });\n    }\n\n    @Test\n    void testMakeColumnQueuesWithDefaultStyle() {\n        TextHelpAppendable appendable = new TextHelpAppendable(new StringBuilder());\n        List<String> columnData = new ArrayList<>();\n        columnData.add(\"Column using default style\");\n        \n        List<TextStyle> styles = new ArrayList<>();\n        styles.add(TextStyle.builder()\n            .setMaxWidth(TextHelpAppendable.DEFAULT_WIDTH)\n            .setLeftPad(TextHelpAppendable.DEFAULT_LEFT_PAD)\n            .setIndent(TextHelpAppendable.DEFAULT_INDENT)\n            .build());\n        \n        List<Queue<String>> result = appendable.makeColumnQueues(columnData, styles);\n        \n        assertNotNull(result);\n        assertEquals(1, result.size());\n        assertNotNull(result.get(0));\n    }\n}"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/commons-cli",
     "name": "makeColumnQueue",
     "src_file": "src/main/java/org/apache/commons/cli/help/TextHelpAppendable.java",
     "test_file": "src/test/java/org/apache/commons/cli/help/texthelpappendable/MakeColumnQueueTests.java",

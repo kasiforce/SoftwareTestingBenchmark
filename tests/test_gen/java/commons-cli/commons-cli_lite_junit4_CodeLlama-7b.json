@@ -64,7 +64,69 @@
     "generated_tests": [
       "package org.apache.commons.cli.help;\n\nimport org.junit.Test;\nimport static org.junit.Assert.*;\n\npublic class PadTests {\n    @Test\n    public void testPad_addIndentTrue_textLengthLessThanMaxWidth() {\n        TextStyle style = new TextStyle();\n        String text = \"Hello World\";\n        String expected = \"Hello World\";\n        String actual = style.pad(true, text);\n        assertEquals(expected, actual);\n    }\n\n    @Test\n    public void testPad_addIndentTrue_textLengthGreaterThanMaxWidth() {\n        TextStyle style = new TextStyle();\n        String text = \"Hello World\";\n        String expected = \"Hello World\";\n        String actual = style.pad(true, text);\n        assertEquals(expected, actual);\n    }\n\n    @Test\n    public void testPad_addIndentFalse_textLengthLessThanMaxWidth() {\n        TextStyle style = new TextStyle();\n        String text = \"Hello World\";\n        String expected = \"Hello World\";\n        String actual = style.pad(false, text);\n        assertEquals(expected, actual);\n    }\n\n    @Test\n    public void testPad_addIndentFalse_textLengthGreaterThanMaxWidth() {\n        TextStyle style = new TextStyle();\n        String text = \"Hello World\";\n        String expected = \"Hello World\";\n        String actual = style.pad(false, text);\n        assertEquals(expected, actual);\n    }\n}"
     ],
-    "test_generation_status": "success"
+    "test_generation_status": "success",
+    "mut": [
+        {
+            "id": 1,
+            "line": 2,
+            "precode": "        if (text.length() >= maxWidth) {",
+            "aftercode": "        if (text.length() > maxWidth) {"
+        },
+        {
+            "id": 2,
+            "line": 3,
+            "precode": "            return text;",
+            "aftercode": "            return text.toString();"
+        },
+        {
+            "id": 3,
+            "line": 5,
+            "precode": "        String indentPad;",
+            "aftercode": "        String indentPad = null;"
+        },
+        {
+            "id": 4,
+            "line": 12,
+            "precode": "                padLen = addIndent ? indent : 0;",
+            "aftercode": "                padLen = addIndent ? 0 : indent;"
+        },
+        {
+            "id": 5,
+            "line": 16,
+            "precode": "            final int left = padLen / 2;",
+            "aftercode": "            final int left = padLen;"
+        },
+        {
+            "id": 6,
+            "line": 17,
+            "precode": "            indentPad = Util.repeatSpace(left);",
+            "aftercode": "            indentPad = Util.repeatSpace(left + 1);"
+        },
+        {
+            "id": 7,
+            "line": 18,
+            "precode": "            rest = Util.repeatSpace(padLen - left);",
+            "aftercode": "            rest = Util.repeatSpace(padLen - left - 1);"
+        },
+        {
+            "id": 8,
+            "line": 25,
+            "precode": "                indentPad = addIndent ? Util.repeatSpace(indent) : \"\";",
+            "aftercode": "                indentPad = addIndent ? \"\" : Util.repeatSpace(indent);"
+        },
+        {
+            "id": 9,
+            "line": 28,
+            "precode": "                int restLen = maxWidth - text.length();",
+            "aftercode": "                int restLen = maxWidth - text.length() - 1;"
+        },
+        {
+            "id": 10,
+            "line": 31,
+            "precode": "                    restLen -= indent;",
+            "aftercode": "                    restLen -= indent + 1;"
+        }
+    ]
   },
   {
     "project_root": "projects/commons-cli",
