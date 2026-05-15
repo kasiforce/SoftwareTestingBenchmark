@@ -516,10 +516,11 @@ def main() -> None:
                 if "specification_junit4_qwen" in file.lower() or "lite_junit5_gpt5" in file.lower() or "lite_junit5_glm" in file.lower():
                     continue
                 
-                # if "commons-jxpath_lite_specification_junit5_glm" in file.lower() or "commons-jxpath_lite_junit5_dsv" in file.lower() or "commons-jxpath_lite_junit4_qwen" in file.lower() or "commons-jxpath_lite_specification_junit4_glm" in file.lower():
-                #     continue
+                if "specification_junit4_glm" in file.lower() or "commons-jxpath_lite_specification_junit5_gpt5" in file.lower() or "commons-jxpath_lite_junit4_qwen" in file.lower() or "lite_junit4_glm" in file.lower() or "lite_junit4_gpt5" in file.lower() or "specification_junit5_qwen" in file.lower():
+                    continue
 
-                # if "commons-jxpath_lite_specification_junit5_dsv" in file.lower():
+                # if "commons-jxpath_lite_junit4_glm-4.7" in file.lower() or "specification_junit4_gpt5" in file.lower() or "commons-jxpath_lite_junit5_dsv3.2" in file.lower() or "commons-jxpath_lite_specification_junit4_gpt4o" in file.lower() or "commons-jxpath_lite_specification_junit5_glm-4.7" in file.lower() or "commons-jxpath_lite_specification_junit4_qwen" in file.lower():
+                    # continue
                     
 
                 if "qwen" in file.lower() :
@@ -538,6 +539,7 @@ def main() -> None:
                 print(model_name)
                 repairer = JavaGeneratedTestRepairer(
                     api_key="",
+                    api_key="",
                     model=model_name,
                     dockerfile_path="output/nfe/dockerfile",
                     data_file=full_path,
@@ -551,11 +553,12 @@ def main() -> None:
 
     # repairer = JavaGeneratedTestRepairer(
     #                 api_key="",
+    #                 api_key="",
     #                 model="gpt-5-nano",
     #                 dockerfile_path="output/commons-jxpath/dockerfile",
     #                 data_file="tests/test_gen/java/commons-jxpath/commons-jxpath_junit4_gpt5nano.json",
     #                 max_rounds=3,
-    #                 base_url="https://api.agicto.cn/v1",
+    #                 base_url="",
     #                 reuse_container=False,
     #                 parallel_workers=1,
     #             )

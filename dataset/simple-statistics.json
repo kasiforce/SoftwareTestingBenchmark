@@ -1,0 +1,54 @@
+[
+  {
+    "project_root": "projects/simple-statistics",
+    "name": "poissonDistribution",
+    "src_file": "src/poisson_distribution.js",
+    "test_file": "test/poisson_distribution/poissonDistribution.test.js",
+    "code": "function poissonDistribution(lambda)  {\n    \n    if (lambda <= 0) {\n        return undefined;\n    }\n\n    \n    let x = 0;\n    \n    \n    let cumulativeProbability = 0;\n    \n    const cells = [];\n    let factorialX = 1;\n\n    \n    \n    \n    do {\n        \n        cells[x] = (Math.exp(-lambda) * Math.pow(lambda, x)) / factorialX;\n        cumulativeProbability += cells[x];\n        x++;\n        factorialX *= x;\n        \n        \n    } while (cumulativeProbability < 1 - epsilon);\n\n    return cells;\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { poissonDistribution } from '../src/poisson_distribution';\n\ndescribe('poissonDistribution', () => {\n  it('should return undefined for negative lambda', () => {\n    expect(poissonDistribution(-1)).toBeUndefined();\n  });\n\n  it('should return an array of numbers for positive lambda', () => {\n    expect(poissonDistribution(1)).toBeInstanceOf(Array);\n  });\n\n  it('should return an array of numbers with the correct length', () => {\n    expect(poissonDistribution(1).length).toBeGreaterThan(0);\n  });\n\n  it('should return an array of numbers with the correct values', () => {\n    const cells = poissonDistribution(1);\n    expect(cells[0]).toBeCloseTo(Math.exp(-1) * Math.pow(1, 0));\n    expect(cells[1]).toBeCloseTo(Math.exp(-1) * Math.pow(1, 1));\n    expect(cells[2]).toBeCloseTo(Math.exp(-1) * Math.pow(1, 2));\n    // ...\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/simple-statistics",
+    "name": "chiSquaredGoodnessOfFit",
+    "src_file": "src/chi_squared_goodness_of_fit.js",
+    "test_file": "test/chi_squared_goodness_of_fit/chiSquaredGoodnessOfFit.test.js",
+    "code": "function chiSquaredGoodnessOfFit(data, distributionType, significance) {\n    \n    const inputMean = mean(data);\n    \n    let chiSquared = 0;\n    \n    \n    const c = 1;\n    \n    \n    const hypothesizedDistribution = distributionType(inputMean);\n    const observedFrequencies = [];\n    const expectedFrequencies = [];\n\n    \n    \n    for (let i = 0; i < data.length; i++) {\n        if (observedFrequencies[data[i]] === undefined) {\n            observedFrequencies[data[i]] = 0;\n        }\n        observedFrequencies[data[i]]++;\n    }\n\n    \n    \n    \n    for (let i = 0; i < observedFrequencies.length; i++) {\n        if (observedFrequencies[i] === undefined) {\n            observedFrequencies[i] = 0;\n        }\n    }\n\n    \n    \n    for (const k in hypothesizedDistribution) {\n        if (k in observedFrequencies) {\n            expectedFrequencies[+k] = hypothesizedDistribution[k] * data.length;\n        }\n    }\n\n    \n    \n    \n    for (let k = expectedFrequencies.length - 1; k >= 0; k--) {\n        if (expectedFrequencies[k] < 3) {\n            expectedFrequencies[k - 1] += expectedFrequencies[k];\n            expectedFrequencies.pop();\n\n            observedFrequencies[k - 1] += observedFrequencies[k];\n            observedFrequencies.pop();\n        }\n    }\n\n    \n    \n    for (let k = 0; k < observedFrequencies.length; k++) {\n        chiSquared +=\n            Math.pow(observedFrequencies[k] - expectedFrequencies[k], 2) /\n            expectedFrequencies[k];\n    }\n\n    \n    \n    \n    \n    \n    const degreesOfFreedom = observedFrequencies.length - c - 1;\n    return (\n        chiSquaredDistributionTable[degreesOfFreedom][significance] < chiSquared\n    );\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { chiSquaredGoodnessOfFit } from '../src/chi_squared_goodness_of_fit';\n\ndescribe('chiSquaredGoodnessOfFit', () => {\n  it('should return true if the data follows the hypothesized distribution', () => {\n    const data = [1, 2, 3, 4, 5];\n    const distributionType = () => ({\n      mean: () => 3,\n    });\n    const significance = 0.05;\n    expect(chiSquaredGoodnessOfFit(data, distributionType, significance)).toBe(\n      true,\n    );\n  });\n\n  it('should return false if the data does not follow the hypothesized distribution', () => {\n    const data = [1, 2, 3, 4, 5];\n    const distributionType = () => ({\n      mean: () => 4,\n    });\n    const significance = 0.05;\n    expect(chiSquaredGoodnessOfFit(data, distributionType, significance)).toBe(\n      false,\n    );\n  });\n\n  it('should return true if the data follows the hypothesized distribution with a custom significance level', () => {\n    const data = [1, 2, 3, 4, 5];\n    const distributionType = () => ({\n      mean: () => 3,\n    });\n    const significance = 0.01;\n    expect(chiSquaredGoodnessOfFit(data, distributionType, significance)).toBe(\n      true,\n    );\n  });\n\n  it('should return false if the data does not follow the hypothesized distribution with a custom significance level', () => {\n    const data = [1, 2, 3, 4, 5];\n    const distributionType = () => ({\n      mean: () => 4,\n    });\n    const significance = 0.01;\n    expect(chiSquaredGoodnessOfFit(data, distributionType, significance)).toBe(\n      false,\n    );\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/simple-statistics",
+    "name": "combinationsReplacement",
+    "src_file": "src/combinations_replacement.js",
+    "test_file": "test/combinations_replacement/combinationsReplacement.test.js",
+    "code": "function combinationsReplacement(x, k) {\n    const combinationList = [];\n\n    for (let i = 0; i < x.length; i++) {\n        if (k === 1) {\n            \n            \n            combinationList.push([x[i]]);\n        } else {\n            \n            \n            \n            \n            \n            \n            \n            const subsetCombinations = combinationsReplacement(\n                x.slice(i, x.length),\n                k - 1\n            );\n\n            for (let j = 0; j < subsetCombinations.length; j++) {\n                combinationList.push([x[i]].concat(subsetCombinations[j]));\n            }\n        }\n    }\n\n    return combinationList;\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { combinationsReplacement } from '../src/combinations_replacement';\n\ndescribe('combinationsReplacement', () => {\n  it('should return an empty array for an empty input', () => {\n    expect(combinationsReplacement([], 1)).toEqual([]);\n  });\n\n  it('should return a single-element array for a single-element input', () => {\n    expect(combinationsReplacement(['a'], 1)).toEqual([['a']]);\n  });\n\n  it('should return a two-element array for a two-element input', () => {\n    expect(combinationsReplacement(['a', 'b'], 2)).toEqual([['a', 'b'], ['b', 'a']]);\n  });\n\n  it('should return a three-element array for a three-element input', () => {\n    expect(combinationsReplacement(['a', 'b', 'c'], 3)).toEqual([\n      ['a', 'b', 'c'],\n      ['a', 'c', 'b'],\n      ['b', 'a', 'c'],\n      ['b', 'c', 'a'],\n      ['c', 'a', 'b'],\n      ['c', 'b', 'a'],\n    ]);\n  });\n\n  it('should return a four-element array for a four-element input', () => {\n    expect(combinationsReplacement(['a', 'b', 'c', 'd'], 4)).toEqual([\n      ['a', 'b', 'c', 'd'],\n      ['a', 'b', 'd', 'c'],\n      ['a', 'c', 'b', 'd'],\n      ['a', 'c', 'd', 'b'],\n      ['a', 'd', 'b', 'c'],\n      ['a', 'd', 'c', 'b'],\n      ['b', 'a', 'c', 'd'],\n      ['b', 'a', 'd', 'c'],\n      ['b', 'c', 'a', 'd'],\n      ['b', 'c', 'd', 'a'],\n      ['b', 'd', 'a', 'c'],\n      ['b', 'd', 'c', 'a'],\n      ['c', 'a', 'b', 'd'],\n      ['c', 'a', 'd', 'b'],\n      ['c', 'b', 'a', 'd'],\n      ['c', 'b', 'd', 'a'],\n      ['c', 'd', 'a', 'b'],\n      ['c', 'd', 'b', 'a'],\n      ['d', 'a', 'b', 'c'],\n      ['d', 'a', 'c', 'b'],\n      ['d', 'b', 'a', 'c'],\n      ['d', 'b', 'c', 'a'],\n      ['d', 'c', 'a', 'b'],\n      ['d', 'c', 'b', 'a'],\n    ]);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  },
+  {
+    "project_root": "projects/simple-statistics",
+    "name": "permutationsHeap",
+    "src_file": "src/permutations_heap.js",
+    "test_file": "test/permutations_heap/permutationsHeap.test.js",
+    "code": "function permutationsHeap(elements) {\n    const indexes = new Array(elements.length);\n    const permutations = [elements.slice()];\n\n    for (let i = 0; i < elements.length; i++) {\n        indexes[i] = 0;\n    }\n\n    for (let i = 0; i < elements.length; ) {\n        if (indexes[i] < i) {\n            \n            \n            let swapFrom = 0;\n            if (i % 2 !== 0) {\n                swapFrom = indexes[i];\n            }\n\n            \n            \n            const temp = elements[swapFrom];\n            elements[swapFrom] = elements[i];\n            elements[i] = temp;\n\n            permutations.push(elements.slice());\n            indexes[i]++;\n            i = 0;\n        } else {\n            indexes[i] = 0;\n            i++;\n        }\n    }\n\n    return permutations;\n}",
+    "is_async": false,
+    "type": "function",
+    "generated_tests": [
+      "import { permutationsHeap } from '../src/permutations_heap';\n\ndescribe('permutationsHeap', () => {\n  it('should return an empty array for an empty input', () => {\n    expect(permutationsHeap([])).toEqual([]);\n  });\n\n  it('should return a single permutation for a single element input', () => {\n    expect(permutationsHeap([1])).toEqual([[1]]);\n  });\n\n  it('should return all permutations for a two-element input', () => {\n    expect(permutationsHeap([1, 2])).toEqual([\n      [1, 2],\n      [2, 1],\n    ]);\n  });\n\n  it('should return all permutations for a three-element input', () => {\n    expect(permutationsHeap([1, 2, 3])).toEqual([\n      [1, 2, 3],\n      [1, 3, 2],\n      [2, 1, 3],\n      [2, 3, 1],\n      [3, 1, 2],\n      [3, 2, 1],\n    ]);\n  });\n});"
+    ],
+    "test_generation_status": "success"
+  }
+]

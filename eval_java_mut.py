@@ -983,56 +983,33 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
 
                 
                 
-                if ! grep -q "<artifactId>junit</artifactId>" pom.xml; then
+                if ! grep -q "<artifactId>junit-jupiter</artifactId>" pom.xml; then
                     sed -i '/<\/dependencies>/i \
-            <dependency>\
-                <groupId>junit</groupId>\
-                <artifactId>junit</artifactId>\
-                <version>4.13.2</version>\
-                <scope>test</scope>\
-            </dependency>' pom.xml
+                    <dependency>\
+                        <groupId>org.junit.jupiter</groupId>\
+                        <artifactId>junit-jupiter</artifactId>\
+                        <version>5.9.2</version>\
+                        <scope>test</scope>\
+                    </dependency>' pom.xml
                 fi
 
+            #     # 添加 JUnit Vintage 引擎（版本与项目 JUnit 5 一致）
                 if ! grep -q "<artifactId>junit-vintage-engine</artifactId>" pom.xml; then
                     sed -i '/<\/dependencies>/i \
                     <dependency>\
                         <groupId>org.junit.vintage</groupId>\
                         <artifactId>junit-vintage-engine</artifactId>\
-                        <version>5.13.3</version>\
-                        <scope>test</scope>\
-                    </dependency>' pom.xml
-                fi
-           
-                if ! grep -q "<artifactId>mockito-core</artifactId>" pom.xml; then
-                    sed -i '/<\/dependencies>/i \
-                    <dependency>\
-                        <groupId>org.mockito</groupId>\
-                        <artifactId>mockito-core</artifactId>\
-                        <version>4.11.0</version>\
+                        <version>5.9.2</version>\
                         <scope>test</scope>\
                     </dependency>' pom.xml
                 fi
 
-                sed -i 's|<argLine>-javaagent:src/test/resources/agent.jar</argLine>|<argLine>@{{argLine}} -javaagent:src/test/resources/agent.jar</argLine>|' pom.xml
-
-                if ! grep -q "<artifactId>jakarta.xml.bind-api</artifactId>" pom.xml; then
-                    sed -i '/<\/dependencies>/i \
-                    <dependency>\
-                        <groupId>jakarta.xml.bind</groupId>\
-                        <artifactId>jakarta.xml.bind-api</artifactId>\
-                        <version>4.0.0</version>\
-                    </dependency>' pom.xml
-                fi
-
-                if ! grep -q "<artifactId>jaxb-runtime</artifactId>" pom.xml; then
-                    sed -i '/<\/dependencies>/i \
-                    <dependency>\
-                        <groupId>org.glassfish.jaxb</groupId>\
-                        <artifactId>jaxb-runtime</artifactId>\
-                        <version>4.0.3</version>\
-                        <scope>runtime</scope>\
-                    </dependency>' pom.xml
-                fi
+                sed -i '/<\/plugins>/i \
+                <plugin>\
+                    <groupId>org.apache.maven.plugins</groupId>\
+                    <artifactId>maven-surefire-plugin</artifactId>\
+                    <version>3.0.0-M7</version>\
+                </plugin>' pom.xml
 
 
                 
@@ -1153,4 +1130,4 @@ if __name__ == "__main__":
     #         create_and_run_java("output/jcasbin/dockerfile", "projects/jcasbin", full_path)
     #         time.sleep(10)  # 每次测试间隔10秒，避免过快连续运行
     # pass
-    create_and_run_java("output/nfe/dockerfile", "projects/nfe", "tests/test_gen/java/fix_nfe/repaired_nfe_lite_junit4_gpt5nano.json")
+    create_and_run_java("output/jcasbin/dockerfile", "projects/jcasbin", "tests/test_gen/java/fix_jcasbin/repaired_jcasbin_lite_specification_junit4_DSv3.2.json")
