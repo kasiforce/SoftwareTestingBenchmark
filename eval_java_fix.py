@@ -862,12 +862,12 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
     data1 = data['items']
     for func in data1:
         func1 = func['repair_history']
-        # raw_code = func1[-1]["test_code"] if func1 else ""
+        raw_code = func1[-1]["test_code"] if func1 else ""
 
-        if len(func1) > 1: 
-            raw_code = func1[1]["test_code"]
-        else:
-            raw_code = func1[-1]["test_code"]
+        # if len(func1) > 1: 
+        #     raw_code = func1[1]["test_code"]
+        # else:
+        #     raw_code = func1[-1]["test_code"]
        
         if not raw_code.strip():
             continue
@@ -875,6 +875,7 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
         item = {
             "project_root": func.get("project_root", ""),
             "src_file": func.get("src_file", ""),
+            "code": func.get("code", ""),
             "name": func.get("name", ""),
             "class_name": func.get("class_name", ""),
             "test_file": func.get("test_file", ""),
@@ -891,7 +892,7 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
     repo_name = repo_dir
     if "/" in repo_dir:
         repo_name = repo_dir.split("/")[1]
-    test_results_dir = os.path.join(test_results_dir, "fix_"+repo_name)
+    test_results_dir = os.path.join(test_results_dir, "bug_addRequiredOption_"+repo_name)
 
     data_file1 = data_file.split(".json")[0]
     model_name = data_file1.split("_")[-1]
@@ -1084,6 +1085,7 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
             "docker", "run", "--rm",
             "-v", f"{test_results_dir}:/results",
             "-v", "./gen_test/gen_tests_files.py:/testbed/gentests_files.py",
+            "-v", "./dataset/gen_bug.json:/testbed/gen_bug.json",
             "-v", "./delete_files.py:/testbed/delete_files.py",
             "-v", f"./{fix_data_path}:/testbed/{fix_data_path}",
             # "-v", f"{os.path.expanduser('~/.m2')}:/root/.m2",
@@ -1100,10 +1102,13 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
                 echo "生成测试文件..."
                 python3 /testbed/gentests_files.py \
                     --project-root /testbed \
-                    --data-path /testbed/{fix_data_path}
+                    --data-path /testbed/{fix_data_path} \
+                    --bug-path /testbed/gen_bug.json
 
                 
                 
+                echo "=== 在 pom.xml 中添加 JUnit 4 依赖 ==="
+                # 检查是否已存在 junit 依赖，避免重复添加
                 if ! grep -q "<artifactId>junit</artifactId>" pom.xml; then
                     sed -i '/<\/dependencies>/i \
             <dependency>\
@@ -1114,44 +1119,14 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
             </dependency>' pom.xml
                 fi
 
+                # 添加 JUnit Vintage 引擎（版本与项目 JUnit 5 一致）
                 if ! grep -q "<artifactId>junit-vintage-engine</artifactId>" pom.xml; then
                     sed -i '/<\/dependencies>/i \
                     <dependency>\
                         <groupId>org.junit.vintage</groupId>\
                         <artifactId>junit-vintage-engine</artifactId>\
-                        <version>5.13.3</version>\
+                        <version>5.14.1</version>\
                         <scope>test</scope>\
-                    </dependency>' pom.xml
-                fi
-           
-                if ! grep -q "<artifactId>mockito-core</artifactId>" pom.xml; then
-                    sed -i '/<\/dependencies>/i \
-                    <dependency>\
-                        <groupId>org.mockito</groupId>\
-                        <artifactId>mockito-core</artifactId>\
-                        <version>4.11.0</version>\
-                        <scope>test</scope>\
-                    </dependency>' pom.xml
-                fi
-
-                sed -i 's|<argLine>-javaagent:src/test/resources/agent.jar</argLine>|<argLine>@{{argLine}} -javaagent:src/test/resources/agent.jar</argLine>|' pom.xml
-
-                if ! grep -q "<artifactId>jakarta.xml.bind-api</artifactId>" pom.xml; then
-                    sed -i '/<\/dependencies>/i \
-                    <dependency>\
-                        <groupId>jakarta.xml.bind</groupId>\
-                        <artifactId>jakarta.xml.bind-api</artifactId>\
-                        <version>4.0.0</version>\
-                    </dependency>' pom.xml
-                fi
-
-                if ! grep -q "<artifactId>jaxb-runtime</artifactId>" pom.xml; then
-                    sed -i '/<\/dependencies>/i \
-                    <dependency>\
-                        <groupId>org.glassfish.jaxb</groupId>\
-                        <artifactId>jaxb-runtime</artifactId>\
-                        <version>4.0.3</version>\
-                        <scope>runtime</scope>\
                     </dependency>' pom.xml
                 fi
 
@@ -1453,19 +1428,19 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
 
 if __name__ == "__main__":
     # 示例调用
-    # create_and_run_java("output/commons-cli/dockerfile", "projects/commons-cli", "tests/test_gen/java/fix_commons-cli/repaired_commons-cli_lite_junit4_qwen.json")
+    create_and_run_java("output/commons-cli/dockerfile", "projects/commons-cli", "tests/test_gen/java/fix_commons-cli/repaired_commons-cli_lite_specification_junit4_qwen.json")
     # pass
-    root = "tests/test_gen/java/fix_nfe"
-    for root, dirs, files in os.walk(root):
-        for file in files:
-            print(file)
-            if "junit5" in file:
-                continue
-            if "specification" in file:
-                continue
-            # if "gpt4o" in file:
-            #     continue
-            file_path = os.path.join(root, file)
-            create_and_run_java("output/nfe/dockerfile", "projects/nfe", 
-                      data_file=file_path)
-            time.sleep(5)  # 等待5秒再运行下一个文件
+    # root = "tests/test_gen/java/fix_nfe"
+    # for root, dirs, files in os.walk(root):
+    #     for file in files:
+    #         print(file)
+    #         if "junit5" in file:
+    #             continue
+    #         if "specification" in file:
+    #             continue
+    #         # if "gpt4o" in file:
+    #         #     continue
+    #         file_path = os.path.join(root, file)
+    #         create_and_run_java("output/nfe/dockerfile", "projects/nfe", 
+    #                   data_file=file_path)
+    #         time.sleep(5)  # 等待5秒再运行下一个文件
