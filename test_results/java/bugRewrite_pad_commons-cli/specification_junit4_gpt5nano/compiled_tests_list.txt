@@ -1,0 +1,8 @@
+./target/test-classes/org/apache/commons/cli/AddOptionGroupTests.class
+./target/test-classes/org/apache/commons/cli/help/MakeColumnQueueTests.class
+./target/test-classes/org/apache/commons/cli/help/AdjustTableFormatTests.class
+./target/test-classes/org/apache/commons/cli/help/IndexOfWrapTests.class
+./target/test-classes/org/apache/commons/cli/help/PadTests.class
+./target/test-classes/org/apache/commons/cli/help/MakeColumnQueuesTests.class
+./target/test-classes/org/apache/commons/cli/AddOptionsTests.class
+./target/test-classes/AddRequiredOptionTests.class

@@ -475,21 +475,22 @@ def main() -> None:
     # )
     # repairer.repair_file(args.output_file)
 
-    for root, dirs, files in os.walk("tests/test_gen/javascript/modern-error"):
+    for root, dirs, files in os.walk("tests/test_gen/javascript/pdf"):
             for file in files:
                 if "codellama" in  file.lower() or "ds6.7b" in file.lower():
                     continue
                 
-                if "dsv3.2" in file.lower() :
-                    continue
+                # if "dsv3.2" in file.lower() :
+                #     continue
                 
-                if "specification_jest_qwen" in file.lower() or "lite_jest_gpt4" in file.lower() or "specification_jest_gpt5" in file.lower():
-                    continue
+                # if "specification_jest_qwen" in file.lower() or "lite_jest_gpt4" in file.lower() or "specification_jest_gpt5" in file.lower():
+                #     continue
                 
                 # if "commons-jxpath_lite_specification_junit5_glm" in file.lower() or "commons-jxpath_lite_junit5_dsv" in file.lower() or "commons-jxpath_lite_junit4_qwen" in file.lower() or "commons-jxpath_lite_specification_junit4_glm" in file.lower():
                 #     continue
 
-                # if "commons-jxpath_lite_specification_junit5_dsv" in file.lower():
+                if "pdf_jest_qwen" in file.lower() or "pdf_lite_jest_gpt4o" in file.lower():
+                    continue
                     
 
                 if "qwen" in file.lower() :
@@ -507,16 +508,16 @@ def main() -> None:
                 print(full_path)
                 print(model_name)
                 repairer = JavaScriptGeneratedTestRepairer(
-                    api_key="",
+                    api_key="sk-k9b2PKFt5xUXsYXHKikYHvFRg5fz7rSJCQcOie2pdHQUj5hZ",
                     model=model_name,
-                    dockerfile_path="output/modern-error/dockerfile",
+                    dockerfile_path="output/pdf/dockerfile",
                     data_file=full_path,
                     max_rounds=3,
-                    base_url="",
+                    base_url="https://api.agicto.cn/v1",
                     reuse_container=False,
                     parallel_workers=1,
                 )
-                repairer.repair_file("tests/test_gen/javascript/fix_modern-error/repaired1_"+file)
+                repairer.repair_file("tests/test_gen/javascript/fix_pdf/repaired1_"+file)
 
 
 if __name__ == "__main__":
