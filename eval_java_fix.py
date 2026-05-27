@@ -1085,6 +1085,7 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
             "docker", "run", "--rm",
             "-v", f"{test_results_dir}:/results",
             "-v", "./gen_test/gen_tests_files.py:/testbed/gentests_files.py",
+            "-v", "./dataset/gen_bug.json:/testbed/gen_bug.json",
             "-v", "./delete_files.py:/testbed/delete_files.py",
             "-v", f"./{fix_data_path}:/testbed/{fix_data_path}",
             # "-v", f"{os.path.expanduser('~/.m2')}:/root/.m2",
@@ -1101,7 +1102,8 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
                 echo "生成测试文件..."
                 python3 /testbed/gentests_files.py \
                     --project-root /testbed \
-                    --data-path /testbed/{fix_data_path}
+                    --data-path /testbed/{fix_data_path} \
+                    --bug-path /testbed/gen_bug.json
 
                 
                 

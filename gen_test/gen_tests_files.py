@@ -135,12 +135,18 @@ def delete_test_files_in_test_dirs(project_root):
 #         print(f"  ... 还有 {len(deleted_files) - 10} 个文件")
 
 
-def write_generated_tests(project_root, test_json_path):
+def write_generated_tests(project_root, test_json_path, bug_json_path):
     """生成测试文件（指定 utf-8 编码）"""
     try:
         with open(test_json_path, 'r', encoding='utf-8') as f:
             functions = json.load(f)
             print(len(functions))
+        with open(bug_json_path, 'r', encoding='utf-8') as f:
+            bugs = json.load(f)
+            # print(len(bugs))
+        bug_code = bugs[1]["bugged_code"]
+        src_code = bugs[1]["src_code"]
+        
         # funcs = functions["items"]
         for func in functions:
             # print(func)
@@ -164,6 +170,16 @@ def write_generated_tests(project_root, test_json_path):
                 f.write("\n\n" + raw_code)
             print(f"写入 {test_file1}")
 
+            if func.get("code", "") == src_code:
+                print(f"找到匹配的源代码")
+                src_file = func.get("src_file", "")
+                with open(src_file, 'r', encoding='utf-8') as f:
+                    src_content = f.read()
+                src_content = src_content.replace(src_code, bug_code)
+                print(f"替换的源代码: {src_content}")
+                with open(src_file, 'w', encoding='utf-8') as f:
+                    f.write(src_content)
+
     except Exception as e:
         print(f"写入文件失败: {e}")
 
@@ -180,10 +196,15 @@ if __name__ == "__main__":
         type=str,
         help="Path to data.",
     )
+    parser.add_argument(
+        "--bug-path",
+        type=str,
+        help="Path to bugged code.",
+    )
     args = parser.parse_args()
 
     delete_test_files_in_test_dirs(args.project_root)
-    write_generated_tests(args.project_root, args.data_path)
+    write_generated_tests(args.project_root, args.data_path, args.bug_path)
 
     # delete_test_files_in_test_dirs("projects/markitdown")
     # write_generated_tests("projects/flask", "fix_data.json")

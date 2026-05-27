@@ -1,15 +1,15 @@
 // simple-statistics,proton,modern-error,pdf
-import commonjs from '@rollup/plugin-commonjs'
-import resolve from '@rollup/plugin-node-resolve'
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 
 export default {
   input: process.argv[2], // 入口文件从命令行传入
   plugins: [resolve(), commonjs()],
   output: {
     file: 'temp.js', // 临时输出文件
-    format: 'esm', // ES 模块
+    format: 'esm',   // ES 模块
   },
-}
+};
 
 // proton
 // rollup.temp.config.js
