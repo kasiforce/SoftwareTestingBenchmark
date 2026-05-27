@@ -939,5 +939,5 @@ if __name__ == "__main__":
 
     # 示例调用：你可以改成你项目的路径
     create_and_run_js("output/modern-error/dockerfile",
-                      project_root="projects/modern-error", data_file="dataset/tem.json", github_token="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")
+                      project_root="projects/modern-error", data_file="dataset/tem.json", github_token="")
     # create_and_run_js(args.dockerfile_path, args.test_dir, args.cover_source, args.project_root)
