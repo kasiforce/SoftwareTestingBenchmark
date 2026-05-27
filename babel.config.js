@@ -13,18 +13,17 @@
 //   sourceMaps: 'both',
 // };
 
-
 // pdf,modern-error
-export default{
+export default {
   presets: [
     [
-      "@babel/preset-env",
+      '@babel/preset-env',
       {
         targets: {
-          node: "current" // 转换为 Node 当前版本支持的语法
-        }
-      }
-    ]
+          node: 'current', // 转换为 Node 当前版本支持的语法
+        },
+      },
+    ],
   ],
   sourceMaps: 'both',
-};
+}

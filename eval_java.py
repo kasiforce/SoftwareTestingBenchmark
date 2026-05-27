@@ -858,7 +858,7 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
     repo_name = repo_dir
     if "/" in repo_dir:
         repo_name = repo_dir.split("/")[1]
-    test_results_dir = os.path.join(cwd, "test_results", "java", repo_name, "specification_junit4_qwen")
+    test_results_dir = os.path.join(cwd, "test_results", "java", repo_name, "junit4_qwen_bug_pad")
 
     os.makedirs(test_results_dir, exist_ok=True)
 
@@ -1055,6 +1055,8 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
 
                 
                 
+                echo "=== 在 pom.xml 中添加 JUnit 4 依赖 ==="
+                # 检查是否已存在 junit 依赖，避免重复添加
                 if ! grep -q "<artifactId>junit</artifactId>" pom.xml; then
                     sed -i '/<\/dependencies>/i \
             <dependency>\
@@ -1072,36 +1074,6 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
                         <groupId>org.junit.vintage</groupId>\
                         <artifactId>junit-vintage-engine</artifactId>\
                         <version>5.14.1</version>\
-                        <scope>test</scope>\
-                    </dependency>' pom.xml
-                fi
-
-                if ! grep -q "<artifactId>mockito-core</artifactId>" pom.xml; then
-                    sed -i '/<\/dependencies>/i \
-                    <dependency>\
-                        <groupId>org.mockito</groupId>\
-                        <artifactId>mockito-core</artifactId>\
-                        <version>4.11.0</version>\
-                        <scope>test</scope>\
-                    </dependency>' pom.xml
-                fi
-
-                if ! grep -q "<artifactId>powermock-module-junit4</artifactId>" pom.xml; then
-                    sed -i '/<\/dependencies>/i \
-                    <dependency>\
-                        <groupId>org.powermock</groupId>\
-                        <artifactId>powermock-module-junit4</artifactId>\
-                        <version>2.0.9</version>\
-                        <scope>test</scope>\
-                    </dependency>' pom.xml
-                fi
-
-                if ! grep -q "<artifactId>powermock-api-mockito2</artifactId>" pom.xml; then
-                    sed -i '/<\/dependencies>/i \
-                    <dependency>\
-                        <groupId>org.powermock</groupId>\
-                        <artifactId>powermock-api-mockito2</artifactId>\
-                        <version>2.0.9</version>\
                         <scope>test</scope>\
                     </dependency>' pom.xml
                 fi
@@ -1404,5 +1376,5 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
 
 if __name__ == "__main__":
     # 示例调用
-    create_and_run_java("output/commons-jxpath/dockerfile", "projects/commons-jxpath", "data_file.json")
+    create_and_run_java("output/commons-cli/dockerfile", "projects/commons-cli", "commons-cli_bug_junit4_gpt4o1.json")
     # pass

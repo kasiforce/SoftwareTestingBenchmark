@@ -1,0 +1,430 @@
+2026-05-26 11:10:09,590 [INFO]  加载了 25 个待处理条目
+2026-05-26 11:10:09,590 [INFO] [1/25] 正在处理: applyPluginProperties
+2026-05-26 11:10:09,590 [INFO]  Running Copilot for 'applyPluginProperties' in /testbed
+2026-05-26 11:15:17,190 [INFO]  成功读取生成的测试文件: /testbed/test/plugins/properties/main/applyPluginProperties.test.js
+2026-05-26 11:15:17,190 [INFO]  成功 (返回码=0)
+2026-05-26 11:15:27,200 [INFO] [2/25] 正在处理: addInstanceMethod
+2026-05-26 11:15:27,201 [INFO]  Running Copilot for 'addInstanceMethod' in /testbed
+2026-05-26 11:21:26,112 [WARNING]  测试文件未找到: /testbed/test/plugins/instance/main/addInstanceMethod.test.js
+2026-05-26 11:21:26,113 [INFO]  成功 (返回码=0)
+2026-05-26 11:21:36,116 [INFO] [3/25] 正在处理: callStaticMethod
+2026-05-26 11:21:36,117 [INFO]  Running Copilot for 'callStaticMethod' in /testbed
+2026-05-26 11:23:26,443 [INFO]  成功读取生成的测试文件: /testbed/test/plugins/static/call/callStaticMethod.test.js
+2026-05-26 11:23:26,444 [INFO]  成功 (返回码=0)
+2026-05-26 11:23:36,454 [INFO] [4/25] 正在处理: validatePluginName
+2026-05-26 11:23:36,454 [INFO]  Running Copilot for 'validatePluginName' in /testbed
+2026-05-26 12:15:48,969 [INFO]  加载了 25 个待处理条目
+2026-05-26 12:15:48,969 [INFO] [1/25] 正在处理: applyPluginProperties
+2026-05-26 12:15:48,969 [INFO]  Running Copilot for 'applyPluginProperties' in /testbed
+2026-05-26 12:17:42,519 [WARNING]  测试文件未找到: /testbed/test/plugins/properties/main/applyPluginProperties.test.js
+2026-05-26 12:17:42,519 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 12:17:52,529 [INFO] [2/25] 正在处理: addInstanceMethod
+2026-05-26 12:17:52,529 [INFO]  Running Copilot for 'addInstanceMethod' in /testbed
+2026-05-26 12:19:42,219 [WARNING]  测试文件未找到: /testbed/test/plugins/instance/main/addInstanceMethod.test.js
+2026-05-26 12:19:42,219 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 12:19:52,223 [INFO] [3/25] 正在处理: callStaticMethod
+2026-05-26 12:19:52,223 [INFO]  Running Copilot for 'callStaticMethod' in /testbed
+2026-05-26 12:21:47,404 [WARNING]  测试文件未找到: /testbed/test/plugins/static/call/callStaticMethod.test.js
+2026-05-26 12:21:47,405 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 12:21:57,416 [INFO] [4/25] 正在处理: validatePluginName
+2026-05-26 12:21:57,416 [INFO]  Running Copilot for 'validatePluginName' in /testbed
+2026-05-26 12:23:36,534 [ERROR]  Timeout after 3600s for 'validatePluginName'
+2026-05-26 12:23:36,534 [WARNING]  未完全成功 (返回码=-1)，请检查日志详情
+2026-05-26 12:23:46,544 [INFO] [5/25] 正在处理: validateEachPlugin
+2026-05-26 12:23:46,545 [INFO]  Running Copilot for 'validateEachPlugin' in /testbed
+2026-05-26 12:23:49,891 [WARNING]  测试文件未找到: /testbed/test/plugins/shape/name/validatePluginName.test.js
+2026-05-26 12:23:49,891 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 12:23:59,901 [INFO] [5/25] 正在处理: validateEachPlugin
+2026-05-26 12:23:59,902 [INFO]  Running Copilot for 'validateEachPlugin' in /testbed
+2026-05-26 12:25:42,380 [WARNING]  测试文件未找到: /testbed/test/plugins/shape/duplicate/validateEachPlugin.test.js
+2026-05-26 12:25:42,380 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 12:25:46,237 [WARNING]  测试文件未找到: /testbed/test/plugins/shape/duplicate/validateEachPlugin.test.js
+2026-05-26 12:25:46,237 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 12:25:52,398 [INFO] [6/25] 正在处理: callMethod
+2026-05-26 12:25:52,399 [INFO]  Running Copilot for 'callMethod' in /testbed
+2026-05-26 12:25:56,247 [INFO] [6/25] 正在处理: callMethod
+2026-05-26 12:25:56,248 [INFO]  Running Copilot for 'callMethod' in /testbed
+2026-05-26 12:43:50,107 [WARNING]  测试文件未找到: /testbed/test/plugins/instance/call/callMethod.test.js
+2026-05-26 12:43:50,107 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 12:44:00,118 [INFO] [7/25] 正在处理: callInstanceMethod
+2026-05-26 12:44:00,119 [INFO]  Running Copilot for 'callInstanceMethod' in /testbed
+2026-05-26 12:45:44,670 [WARNING]  测试文件未找到: /testbed/test/plugins/instance/call/callInstanceMethod.test.js
+2026-05-26 12:45:44,671 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 12:45:54,682 [INFO] [8/25] 正在处理: normalizeClassOpts
+2026-05-26 12:45:54,683 [INFO]  Running Copilot for 'normalizeClassOpts' in /testbed
+2026-05-26 12:45:59,856 [WARNING]  测试文件未找到: /testbed/test/plugins/instance/call/callMethod.test.js
+2026-05-26 12:45:59,857 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 12:46:09,866 [INFO] [7/25] 正在处理: callInstanceMethod
+2026-05-26 12:46:09,866 [INFO]  Running Copilot for 'callInstanceMethod' in /testbed
+2026-05-26 12:47:51,820 [WARNING]  测试文件未找到: /testbed/test/options/class/normalizeClassOpts.test.js
+2026-05-26 12:47:51,820 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 12:48:01,822 [INFO] [9/25] 正在处理: shouldPrefixCause
+2026-05-26 12:48:01,823 [INFO]  Running Copilot for 'shouldPrefixCause' in /testbed
+2026-05-26 12:48:05,209 [WARNING]  测试文件未找到: /testbed/test/plugins/instance/call/callInstanceMethod.test.js
+2026-05-26 12:48:05,209 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 12:48:15,219 [INFO] [8/25] 正在处理: normalizeClassOpts
+2026-05-26 12:48:15,220 [INFO]  Running Copilot for 'normalizeClassOpts' in /testbed
+2026-05-26 12:51:04,959 [WARNING]  测试文件未找到: /testbed/test/merge/prefix/shouldPrefixCause.test.js
+2026-05-26 12:51:04,960 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 12:51:14,971 [INFO] [10/25] 正在处理: prefixCause
+2026-05-26 12:51:14,971 [INFO]  Running Copilot for 'prefixCause' in /testbed
+2026-05-26 12:52:58,791 [WARNING]  测试文件未找到: /testbed/test/merge/prefix/prefixCause.test.js
+2026-05-26 12:52:58,792 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 12:53:08,802 [INFO] [11/25] 正在处理: finalizePluginsOpts
+2026-05-26 12:53:08,803 [INFO]  Running Copilot for 'finalizePluginsOpts' in /testbed
+2026-05-26 12:54:50,876 [WARNING]  测试文件未找到: /testbed/test/options/plugins/finalizePluginsOpts.test.js
+2026-05-26 12:54:50,876 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 12:55:00,887 [INFO] [12/25] 正在处理: mergeSpecificCause
+2026-05-26 12:55:00,888 [INFO]  Running Copilot for 'mergeSpecificCause' in /testbed
+2026-05-26 12:56:44,169 [WARNING]  测试文件未找到: /testbed/test/merge/cause/mergeSpecificCause.test.js
+2026-05-26 12:56:44,169 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 12:56:54,180 [INFO] [13/25] 正在处理: mergePrefixedError
+2026-05-26 12:56:54,180 [INFO]  Running Copilot for 'mergePrefixedError' in /testbed
+2026-05-26 12:58:42,773 [WARNING]  测试文件未找到: /testbed/test/merge/cause/mergePrefixedError.test.js
+2026-05-26 12:58:42,773 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 12:58:52,784 [INFO] [14/25] 正在处理: mergeCause
+2026-05-26 12:58:52,785 [INFO]  Running Copilot for 'mergeCause' in /testbed
+2026-05-26 13:00:40,297 [WARNING]  测试文件未找到: /testbed/test/merge/cause/mergeCause.test.js
+2026-05-26 13:00:40,297 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 13:00:50,303 [INFO] [15/25] 正在处理: assignError
+2026-05-26 13:00:50,304 [INFO]  Running Copilot for 'assignError' in /testbed
+2026-05-26 13:02:25,715 [WARNING]  测试文件未找到: /testbed/test/plugins/properties/assign/assignError.test.js
+2026-05-26 13:02:25,715 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 13:02:35,727 [INFO] [16/25] 正在处理: mergePluginOpts
+2026-05-26 13:02:35,727 [INFO]  Running Copilot for 'mergePluginOpts' in /testbed
+2026-05-26 13:04:23,385 [WARNING]  测试文件未找到: /testbed/test/options/merge/mergePluginOpts.test.js
+2026-05-26 13:04:23,385 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 13:04:33,396 [INFO] [17/25] 正在处理: mergeOpt
+2026-05-26 13:04:33,396 [INFO]  Running Copilot for 'mergeOpt' in /testbed
+2026-05-26 13:06:27,700 [WARNING]  测试文件未找到: /testbed/test/options/merge/mergeOpt.test.js
+2026-05-26 13:06:27,700 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 13:06:37,706 [INFO] [18/25] 正在处理: deepCloneObject
+2026-05-26 13:06:37,706 [INFO]  Running Copilot for 'deepCloneObject' in /testbed
+2026-05-26 13:08:24,302 [WARNING]  测试文件未找到: /testbed/test/options/clone/deepCloneObject.test.js
+2026-05-26 13:08:24,302 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 13:08:34,321 [INFO] [19/25] 正在处理: deepClone
+2026-05-26 13:08:34,322 [INFO]  Running Copilot for 'deepClone' in /testbed
+2026-05-26 13:11:28,501 [WARNING]  测试文件未找到: /testbed/test/options/clone/deepClone.test.js
+2026-05-26 13:11:28,501 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 13:11:38,517 [INFO] [20/25] 正在处理: normalizeAllMethods
+2026-05-26 13:11:38,517 [INFO]  Running Copilot for 'normalizeAllMethods' in /testbed
+2026-05-26 13:13:31,892 [WARNING]  测试文件未找到: /testbed/test/plugins/shape/methods/normalizeAllMethods.test.js
+2026-05-26 13:13:31,892 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 13:13:41,903 [INFO] [21/25] 正在处理: normalizeMethods
+2026-05-26 13:13:41,904 [INFO]  Running Copilot for 'normalizeMethods' in /testbed
+2026-05-26 13:15:28,948 [WARNING]  测试文件未找到: /testbed/test/plugins/shape/methods/normalizeMethods.test.js
+2026-05-26 13:15:28,948 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 13:15:38,959 [INFO] [22/25] 正在处理: validateSubclass
+2026-05-26 13:15:38,960 [INFO]  Running Copilot for 'validateSubclass' in /testbed
+2026-05-26 13:17:33,378 [WARNING]  测试文件未找到: /testbed/test/subclass/validate/validateSubclass.test.js
+2026-05-26 13:17:33,378 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 13:17:43,429 [INFO] [23/25] 正在处理: lastArgIsOptions
+2026-05-26 13:17:43,429 [INFO]  Running Copilot for 'lastArgIsOptions' in /testbed
+2026-05-26 13:18:58,604 [WARNING]  测试文件未找到: /testbed/test/options/class/normalizeClassOpts.test.js
+2026-05-26 13:18:58,604 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 13:19:08,615 [INFO] [9/25] 正在处理: shouldPrefixCause
+2026-05-26 13:19:08,615 [INFO]  Running Copilot for 'shouldPrefixCause' in /testbed
+2026-05-26 13:19:35,675 [WARNING]  测试文件未找到: /testbed/test/options/method/lastArgIsOptions.test.js
+2026-05-26 13:19:35,675 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 13:19:45,687 [INFO] [24/25] 正在处理: normalizePluginsOpt
+2026-05-26 13:19:45,687 [INFO]  Running Copilot for 'normalizePluginsOpt' in /testbed
+2026-05-26 13:21:59,498 [WARNING]  测试文件未找到: /testbed/test/merge/prefix/shouldPrefixCause.test.js
+2026-05-26 13:21:59,498 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 13:22:09,508 [INFO] [10/25] 正在处理: prefixCause
+2026-05-26 13:22:09,508 [INFO]  Running Copilot for 'prefixCause' in /testbed
+2026-05-26 13:23:55,649 [WARNING]  测试文件未找到: /testbed/test/merge/prefix/prefixCause.test.js
+2026-05-26 13:23:55,650 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 13:24:05,654 [INFO] [11/25] 正在处理: finalizePluginsOpts
+2026-05-26 13:24:05,654 [INFO]  Running Copilot for 'finalizePluginsOpts' in /testbed
+2026-05-26 13:25:58,761 [WARNING]  测试文件未找到: /testbed/test/options/plugins/finalizePluginsOpts.test.js
+2026-05-26 13:25:58,762 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 13:26:08,772 [INFO] [12/25] 正在处理: mergeSpecificCause
+2026-05-26 13:26:08,772 [INFO]  Running Copilot for 'mergeSpecificCause' in /testbed
+2026-05-26 13:27:53,316 [WARNING]  测试文件未找到: /testbed/test/merge/cause/mergeSpecificCause.test.js
+2026-05-26 13:27:53,317 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 13:28:03,326 [INFO] [13/25] 正在处理: mergePrefixedError
+2026-05-26 13:28:03,326 [INFO]  Running Copilot for 'mergePrefixedError' in /testbed
+2026-05-26 14:45:34,620 [INFO]  加载了 25 个待处理条目
+2026-05-26 14:45:34,641 [INFO] [1/25] 正在处理: applyPluginProperties
+2026-05-26 14:45:34,642 [INFO]  Running Copilot for 'applyPluginProperties' in /testbed
+2026-05-26 14:47:45,479 [WARNING]  测试文件未找到: /testbed/test/plugins/properties/main/applyPluginProperties.test.js
+2026-05-26 14:47:45,479 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 14:47:55,493 [INFO] [2/25] 正在处理: addInstanceMethod
+2026-05-26 14:47:55,494 [INFO]  Running Copilot for 'addInstanceMethod' in /testbed
+2026-05-26 14:49:46,207 [WARNING]  测试文件未找到: /testbed/test/plugins/instance/main/addInstanceMethod.test.js
+2026-05-26 14:49:46,208 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 14:49:56,217 [INFO] [3/25] 正在处理: callStaticMethod
+2026-05-26 14:49:56,217 [INFO]  Running Copilot for 'callStaticMethod' in /testbed
+2026-05-26 14:51:41,323 [WARNING]  测试文件未找到: /testbed/test/plugins/static/call/callStaticMethod.test.js
+2026-05-26 14:51:41,324 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 14:51:51,336 [INFO] [4/25] 正在处理: validatePluginName
+2026-05-26 14:51:51,336 [INFO]  Running Copilot for 'validatePluginName' in /testbed
+2026-05-26 14:53:56,455 [WARNING]  测试文件未找到: /testbed/test/plugins/shape/name/validatePluginName.test.js
+2026-05-26 14:53:56,455 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 14:54:06,483 [INFO] [5/25] 正在处理: validateEachPlugin
+2026-05-26 14:54:06,483 [INFO]  Running Copilot for 'validateEachPlugin' in /testbed
+2026-05-26 14:55:54,232 [WARNING]  测试文件未找到: /testbed/test/plugins/shape/duplicate/validateEachPlugin.test.js
+2026-05-26 14:55:54,233 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 14:56:04,243 [INFO] [6/25] 正在处理: callMethod
+2026-05-26 14:56:04,244 [INFO]  Running Copilot for 'callMethod' in /testbed
+2026-05-26 14:57:49,379 [WARNING]  测试文件未找到: /testbed/test/plugins/instance/call/callMethod.test.js
+2026-05-26 14:57:49,380 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 14:57:59,455 [INFO] [7/25] 正在处理: callInstanceMethod
+2026-05-26 14:57:59,455 [INFO]  Running Copilot for 'callInstanceMethod' in /testbed
+2026-05-26 14:59:41,064 [WARNING]  测试文件未找到: /testbed/test/plugins/instance/call/callInstanceMethod.test.js
+2026-05-26 14:59:41,065 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 14:59:51,075 [INFO] [8/25] 正在处理: normalizeClassOpts
+2026-05-26 14:59:51,076 [INFO]  Running Copilot for 'normalizeClassOpts' in /testbed
+2026-05-26 15:01:37,994 [WARNING]  测试文件未找到: /testbed/test/options/class/normalizeClassOpts.test.js
+2026-05-26 15:01:37,995 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 15:01:48,007 [INFO] [9/25] 正在处理: shouldPrefixCause
+2026-05-26 15:01:48,008 [INFO]  Running Copilot for 'shouldPrefixCause' in /testbed
+2026-05-26 15:03:41,566 [WARNING]  测试文件未找到: /testbed/test/merge/prefix/shouldPrefixCause.test.js
+2026-05-26 15:03:41,567 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 15:03:51,584 [INFO] [10/25] 正在处理: prefixCause
+2026-05-26 15:03:51,584 [INFO]  Running Copilot for 'prefixCause' in /testbed
+2026-05-26 15:05:42,972 [WARNING]  测试文件未找到: /testbed/test/merge/prefix/prefixCause.test.js
+2026-05-26 15:05:42,972 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 15:05:52,983 [INFO] [11/25] 正在处理: finalizePluginsOpts
+2026-05-26 15:05:52,984 [INFO]  Running Copilot for 'finalizePluginsOpts' in /testbed
+2026-05-26 15:07:47,325 [WARNING]  测试文件未找到: /testbed/test/options/plugins/finalizePluginsOpts.test.js
+2026-05-26 15:07:47,325 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 15:07:57,335 [INFO] [12/25] 正在处理: mergeSpecificCause
+2026-05-26 15:07:57,336 [INFO]  Running Copilot for 'mergeSpecificCause' in /testbed
+2026-05-26 15:16:53,625 [INFO]  成功读取生成的测试文件: /testbed/test/merge/cause/mergeSpecificCause.test.js
+2026-05-26 15:16:53,625 [INFO]  成功 (返回码=0)
+2026-05-26 15:17:03,658 [INFO] [13/25] 正在处理: mergePrefixedError
+2026-05-26 15:17:03,659 [INFO]  Running Copilot for 'mergePrefixedError' in /testbed
+2026-05-26 15:18:41,745 [INFO]  成功读取生成的测试文件: /testbed/test/merge/cause/mergePrefixedError.test.js
+2026-05-26 15:18:41,745 [INFO]  成功 (返回码=0)
+2026-05-26 15:18:51,756 [INFO] [14/25] 正在处理: mergeCause
+2026-05-26 15:18:51,757 [INFO]  Running Copilot for 'mergeCause' in /testbed
+2026-05-26 15:20:31,804 [INFO]  成功读取生成的测试文件: /testbed/test/merge/cause/mergeCause.test.js
+2026-05-26 15:20:31,804 [INFO]  成功 (返回码=0)
+2026-05-26 15:20:41,817 [INFO] [15/25] 正在处理: assignError
+2026-05-26 15:20:41,817 [INFO]  Running Copilot for 'assignError' in /testbed
+2026-05-26 15:22:29,605 [INFO]  成功读取生成的测试文件: /testbed/test/plugins/properties/assign/assignError.test.js
+2026-05-26 15:22:29,605 [INFO]  成功 (返回码=0)
+2026-05-26 15:22:39,620 [INFO] [16/25] 正在处理: mergePluginOpts
+2026-05-26 15:22:39,621 [INFO]  Running Copilot for 'mergePluginOpts' in /testbed
+2026-05-26 15:23:55,648 [INFO]  成功读取生成的测试文件: /testbed/test/options/merge/mergePluginOpts.test.js
+2026-05-26 15:23:55,648 [INFO]  成功 (返回码=0)
+2026-05-26 15:24:05,659 [INFO] [17/25] 正在处理: mergeOpt
+2026-05-26 15:24:05,660 [INFO]  Running Copilot for 'mergeOpt' in /testbed
+2026-05-26 15:26:22,316 [INFO]  成功读取生成的测试文件: /testbed/test/options/merge/mergeOpt.test.js
+2026-05-26 15:26:22,317 [INFO]  成功 (返回码=0)
+2026-05-26 15:26:32,318 [INFO] [18/25] 正在处理: deepCloneObject
+2026-05-26 15:26:32,319 [INFO]  Running Copilot for 'deepCloneObject' in /testbed
+2026-05-26 15:28:53,616 [INFO]  成功读取生成的测试文件: /testbed/test/options/clone/deepCloneObject.test.js
+2026-05-26 15:28:53,617 [INFO]  成功 (返回码=0)
+2026-05-26 15:29:03,624 [INFO] [19/25] 正在处理: deepClone
+2026-05-26 15:29:03,625 [INFO]  Running Copilot for 'deepClone' in /testbed
+2026-05-26 15:30:42,712 [INFO]  成功读取生成的测试文件: /testbed/test/options/clone/deepClone.test.js
+2026-05-26 15:30:42,712 [INFO]  成功 (返回码=0)
+2026-05-26 15:30:52,725 [INFO] [20/25] 正在处理: normalizeAllMethods
+2026-05-26 15:30:52,725 [INFO]  Running Copilot for 'normalizeAllMethods' in /testbed
+2026-05-26 15:32:28,657 [INFO]  成功读取生成的测试文件: /testbed/test/plugins/shape/methods/normalizeAllMethods.test.js
+2026-05-26 15:32:28,658 [INFO]  成功 (返回码=0)
+2026-05-26 15:32:38,707 [INFO] [21/25] 正在处理: normalizeMethods
+2026-05-26 15:32:38,708 [INFO]  Running Copilot for 'normalizeMethods' in /testbed
+2026-05-26 15:34:24,575 [INFO]  成功读取生成的测试文件: /testbed/test/plugins/shape/methods/normalizeMethods.test.js
+2026-05-26 15:34:24,575 [INFO]  成功 (返回码=0)
+2026-05-26 15:34:34,609 [INFO] [22/25] 正在处理: validateSubclass
+2026-05-26 15:34:34,610 [INFO]  Running Copilot for 'validateSubclass' in /testbed
+2026-05-26 15:36:09,935 [INFO]  成功读取生成的测试文件: /testbed/test/subclass/validate/validateSubclass.test.js
+2026-05-26 15:36:09,935 [INFO]  成功 (返回码=0)
+2026-05-26 15:36:19,939 [INFO] [23/25] 正在处理: lastArgIsOptions
+2026-05-26 15:36:19,939 [INFO]  Running Copilot for 'lastArgIsOptions' in /testbed
+2026-05-26 15:38:18,341 [INFO]  成功读取生成的测试文件: /testbed/test/options/method/lastArgIsOptions.test.js
+2026-05-26 15:38:18,341 [INFO]  成功 (返回码=0)
+2026-05-26 15:38:28,354 [INFO] [24/25] 正在处理: normalizePluginsOpt
+2026-05-26 15:38:28,354 [INFO]  Running Copilot for 'normalizePluginsOpt' in /testbed
+2026-05-26 15:40:29,976 [INFO]  成功读取生成的测试文件: /testbed/test/plugins/shape/main/normalizePluginsOpt.test.js
+2026-05-26 15:40:29,976 [INFO]  成功 (返回码=0)
+2026-05-26 15:40:40,030 [INFO] [25/25] 正在处理: normalizePlugin
+2026-05-26 15:40:40,031 [INFO]  Running Copilot for 'normalizePlugin' in /testbed
+2026-05-26 15:42:28,206 [INFO]  成功读取生成的测试文件: /testbed/test/plugins/shape/main/normalizePlugin.test.js
+2026-05-26 15:42:28,207 [INFO]  成功 (返回码=0)
+2026-05-26 15:42:28,223 [INFO]  详细结果已保存至 /results/copilot_testgen_results.json
+2026-05-26 15:42:28,223 [INFO]  处理完成：成功 14/25
+2026-05-26 16:06:21,989 [INFO]  加载了 25 个待处理条目
+2026-05-26 16:06:21,989 [INFO] [1/25] 正在处理: applyPluginProperties
+2026-05-26 16:06:21,989 [INFO]  Running Copilot for 'applyPluginProperties' in /testbed
+2026-05-26 16:15:43,392 [INFO]  成功读取生成的测试文件: /testbed/test/plugins/properties/main/applyPluginProperties.test.js
+2026-05-26 16:15:43,392 [INFO]  成功 (返回码=0)
+2026-05-26 16:15:53,404 [INFO] [2/25] 正在处理: addInstanceMethod
+2026-05-26 16:15:53,404 [INFO]  Running Copilot for 'addInstanceMethod' in /testbed
+2026-05-26 16:18:38,595 [INFO]  成功读取生成的测试文件: /testbed/test/plugins/instance/main/addInstanceMethod.test.js
+2026-05-26 16:18:38,596 [INFO]  成功 (返回码=0)
+2026-05-26 16:18:48,607 [INFO] [3/25] 正在处理: callStaticMethod
+2026-05-26 16:18:48,607 [INFO]  Running Copilot for 'callStaticMethod' in /testbed
+2026-05-26 16:21:09,952 [WARNING]  测试文件未找到: /testbed/test/plugins/static/call/callStaticMethod.test.js
+2026-05-26 16:21:09,952 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 16:21:19,964 [INFO] [4/25] 正在处理: validatePluginName
+2026-05-26 16:21:19,964 [INFO]  Running Copilot for 'validatePluginName' in /testbed
+2026-05-26 16:23:17,604 [WARNING]  测试文件未找到: /testbed/test/plugins/shape/name/validatePluginName.test.js
+2026-05-26 16:23:17,605 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 16:23:27,716 [INFO] [5/25] 正在处理: validateEachPlugin
+2026-05-26 16:23:27,717 [INFO]  Running Copilot for 'validateEachPlugin' in /testbed
+2026-05-26 16:25:17,944 [WARNING]  测试文件未找到: /testbed/test/plugins/shape/duplicate/validateEachPlugin.test.js
+2026-05-26 16:25:17,945 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 16:25:27,958 [INFO] [6/25] 正在处理: callMethod
+2026-05-26 16:25:27,959 [INFO]  Running Copilot for 'callMethod' in /testbed
+2026-05-26 16:28:45,953 [INFO]  成功读取生成的测试文件: /testbed/test/plugins/instance/call/callMethod.test.js
+2026-05-26 16:28:45,967 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 16:28:55,981 [INFO] [7/25] 正在处理: callInstanceMethod
+2026-05-26 16:28:55,981 [INFO]  Running Copilot for 'callInstanceMethod' in /testbed
+2026-05-26 16:30:47,361 [WARNING]  测试文件未找到: /testbed/test/plugins/instance/call/callInstanceMethod.test.js
+2026-05-26 16:30:47,361 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 16:30:57,373 [INFO] [8/25] 正在处理: normalizeClassOpts
+2026-05-26 16:30:57,373 [INFO]  Running Copilot for 'normalizeClassOpts' in /testbed
+2026-05-26 16:51:50,260 [WARNING]  测试文件未找到: /testbed/test/options/class/normalizeClassOpts.test.js
+2026-05-26 16:51:50,260 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 16:52:00,271 [INFO] [9/25] 正在处理: shouldPrefixCause
+2026-05-26 16:52:00,272 [INFO]  Running Copilot for 'shouldPrefixCause' in /testbed
+2026-05-26 17:32:28,371 [WARNING]  测试文件未找到: /testbed/test/merge/prefix/shouldPrefixCause.test.js
+2026-05-26 17:32:28,371 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 17:32:38,387 [INFO] [10/25] 正在处理: prefixCause
+2026-05-26 17:32:38,387 [INFO]  Running Copilot for 'prefixCause' in /testbed
+2026-05-26 17:34:24,044 [WARNING]  测试文件未找到: /testbed/test/merge/prefix/prefixCause.test.js
+2026-05-26 17:34:24,045 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 17:34:34,056 [INFO] [11/25] 正在处理: finalizePluginsOpts
+2026-05-26 17:34:34,057 [INFO]  Running Copilot for 'finalizePluginsOpts' in /testbed
+2026-05-26 17:36:26,502 [WARNING]  测试文件未找到: /testbed/test/options/plugins/finalizePluginsOpts.test.js
+2026-05-26 17:36:26,503 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 17:36:36,548 [INFO] [12/25] 正在处理: mergeSpecificCause
+2026-05-26 17:36:36,549 [INFO]  Running Copilot for 'mergeSpecificCause' in /testbed
+2026-05-26 17:38:31,785 [WARNING]  测试文件未找到: /testbed/test/merge/cause/mergeSpecificCause.test.js
+2026-05-26 17:38:31,786 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 17:38:41,798 [INFO] [13/25] 正在处理: mergePrefixedError
+2026-05-26 17:38:41,799 [INFO]  Running Copilot for 'mergePrefixedError' in /testbed
+2026-05-26 17:40:21,422 [WARNING]  测试文件未找到: /testbed/test/merge/cause/mergePrefixedError.test.js
+2026-05-26 17:40:21,422 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 17:40:31,449 [INFO] [14/25] 正在处理: mergeCause
+2026-05-26 17:40:31,450 [INFO]  Running Copilot for 'mergeCause' in /testbed
+2026-05-26 17:42:32,115 [WARNING]  测试文件未找到: /testbed/test/merge/cause/mergeCause.test.js
+2026-05-26 17:42:32,116 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 17:42:42,128 [INFO] [15/25] 正在处理: assignError
+2026-05-26 17:42:42,129 [INFO]  Running Copilot for 'assignError' in /testbed
+2026-05-26 17:44:38,223 [WARNING]  测试文件未找到: /testbed/test/plugins/properties/assign/assignError.test.js
+2026-05-26 17:44:38,223 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 17:44:48,235 [INFO] [16/25] 正在处理: mergePluginOpts
+2026-05-26 17:44:48,236 [INFO]  Running Copilot for 'mergePluginOpts' in /testbed
+2026-05-26 17:46:30,120 [WARNING]  测试文件未找到: /testbed/test/options/merge/mergePluginOpts.test.js
+2026-05-26 17:46:30,121 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 17:46:40,132 [INFO] [17/25] 正在处理: mergeOpt
+2026-05-26 17:46:40,133 [INFO]  Running Copilot for 'mergeOpt' in /testbed
+2026-05-26 17:48:20,943 [WARNING]  测试文件未找到: /testbed/test/options/merge/mergeOpt.test.js
+2026-05-26 17:48:20,943 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 17:48:30,947 [INFO] [18/25] 正在处理: deepCloneObject
+2026-05-26 17:48:30,948 [INFO]  Running Copilot for 'deepCloneObject' in /testbed
+2026-05-26 17:50:24,035 [WARNING]  测试文件未找到: /testbed/test/options/clone/deepCloneObject.test.js
+2026-05-26 17:50:24,035 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 17:50:34,047 [INFO] [19/25] 正在处理: deepClone
+2026-05-26 17:50:34,047 [INFO]  Running Copilot for 'deepClone' in /testbed
+2026-05-26 17:52:27,949 [WARNING]  测试文件未找到: /testbed/test/options/clone/deepClone.test.js
+2026-05-26 17:52:27,950 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 17:52:37,961 [INFO] [20/25] 正在处理: normalizeAllMethods
+2026-05-26 17:52:37,961 [INFO]  Running Copilot for 'normalizeAllMethods' in /testbed
+2026-05-26 17:54:32,019 [WARNING]  测试文件未找到: /testbed/test/plugins/shape/methods/normalizeAllMethods.test.js
+2026-05-26 17:54:32,019 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 17:54:42,032 [INFO] [21/25] 正在处理: normalizeMethods
+2026-05-26 17:54:42,032 [INFO]  Running Copilot for 'normalizeMethods' in /testbed
+2026-05-26 17:56:31,636 [WARNING]  测试文件未找到: /testbed/test/plugins/shape/methods/normalizeMethods.test.js
+2026-05-26 17:56:31,636 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 17:56:41,648 [INFO] [22/25] 正在处理: validateSubclass
+2026-05-26 17:56:41,648 [INFO]  Running Copilot for 'validateSubclass' in /testbed
+2026-05-26 17:58:24,342 [WARNING]  测试文件未找到: /testbed/test/subclass/validate/validateSubclass.test.js
+2026-05-26 17:58:24,342 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 17:58:34,380 [INFO] [23/25] 正在处理: lastArgIsOptions
+2026-05-26 17:58:34,380 [INFO]  Running Copilot for 'lastArgIsOptions' in /testbed
+2026-05-26 18:00:24,306 [WARNING]  测试文件未找到: /testbed/test/options/method/lastArgIsOptions.test.js
+2026-05-26 18:00:24,306 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 18:00:34,318 [INFO] [24/25] 正在处理: normalizePluginsOpt
+2026-05-26 18:00:34,318 [INFO]  Running Copilot for 'normalizePluginsOpt' in /testbed
+2026-05-26 18:19:41,331 [WARNING]  测试文件未找到: /testbed/test/plugins/shape/main/normalizePluginsOpt.test.js
+2026-05-26 18:19:41,331 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 18:19:51,342 [INFO] [25/25] 正在处理: normalizePlugin
+2026-05-26 18:19:51,342 [INFO]  Running Copilot for 'normalizePlugin' in /testbed
+2026-05-26 18:21:45,912 [WARNING]  测试文件未找到: /testbed/test/plugins/shape/main/normalizePlugin.test.js
+2026-05-26 18:21:45,912 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-26 18:21:45,914 [INFO]  详细结果已保存至 /results/copilot_testgen_results.json
+2026-05-26 18:21:45,914 [INFO]  处理完成：成功 2/25
+2026-05-27 01:20:54,715 [INFO]  加载了 9 个待处理条目
+2026-05-27 01:20:54,724 [INFO] [1/9] 正在处理: callStaticMethod
+2026-05-27 01:20:54,724 [INFO]  Running Copilot for 'callStaticMethod' in /testbed
+2026-05-27 01:24:18,772 [INFO]  成功读取生成的测试文件: /testbed/test/plugins/static/call/callStaticMethod.test.js
+2026-05-27 01:24:18,772 [INFO]  成功 (返回码=0)
+2026-05-27 01:24:28,783 [INFO] [2/9] 正在处理: validatePluginName
+2026-05-27 01:24:28,784 [INFO]  Running Copilot for 'validatePluginName' in /testbed
+2026-05-27 01:26:09,257 [INFO]  成功读取生成的测试文件: /testbed/test/plugins/shape/name/validatePluginName.test.js
+2026-05-27 01:26:09,258 [INFO]  成功 (返回码=0)
+2026-05-27 01:26:19,267 [INFO] [3/9] 正在处理: validateEachPlugin
+2026-05-27 01:26:19,267 [INFO]  Running Copilot for 'validateEachPlugin' in /testbed
+2026-05-27 01:27:53,072 [INFO]  成功读取生成的测试文件: /testbed/test/plugins/shape/duplicate/validateEachPlugin.test.js
+2026-05-27 01:27:53,072 [INFO]  成功 (返回码=0)
+2026-05-27 01:28:03,082 [INFO] [4/9] 正在处理: callMethod
+2026-05-27 01:28:03,083 [INFO]  Running Copilot for 'callMethod' in /testbed
+2026-05-27 01:51:21,702 [INFO]  加载了 9 个待处理条目
+2026-05-27 01:51:21,702 [INFO] [1/9] 正在处理: callStaticMethod
+2026-05-27 01:51:21,702 [INFO]  Running Copilot for 'callStaticMethod' in /testbed
+2026-05-27 01:53:32,273 [INFO]  成功读取生成的测试文件: /testbed/test/plugins/instance/call/callMethod.test.js
+2026-05-27 01:53:32,274 [INFO]  成功 (返回码=0)
+2026-05-27 01:53:42,286 [INFO] [5/9] 正在处理: callInstanceMethod
+2026-05-27 01:53:42,286 [INFO]  Running Copilot for 'callInstanceMethod' in /testbed
+2026-05-27 01:55:27,826 [INFO]  成功读取生成的测试文件: /testbed/test/plugins/instance/call/callInstanceMethod.test.js
+2026-05-27 01:55:27,826 [INFO]  成功 (返回码=0)
+2026-05-27 01:55:37,838 [INFO] [6/9] 正在处理: normalizeClassOpts
+2026-05-27 01:55:37,839 [INFO]  Running Copilot for 'normalizeClassOpts' in /testbed
+2026-05-27 01:56:37,591 [INFO]  成功读取生成的测试文件: /testbed/test/options/class/normalizeClassOpts.test.js
+2026-05-27 01:56:37,591 [INFO]  成功 (返回码=0)
+2026-05-27 01:56:47,600 [INFO] [7/9] 正在处理: shouldPrefixCause
+2026-05-27 01:56:47,601 [INFO]  Running Copilot for 'shouldPrefixCause' in /testbed
+2026-05-27 01:58:01,998 [INFO]  成功读取生成的测试文件: /testbed/test/merge/prefix/shouldPrefixCause.test.js
+2026-05-27 01:58:01,998 [INFO]  成功 (返回码=0)
+2026-05-27 01:58:12,011 [INFO] [8/9] 正在处理: prefixCause
+2026-05-27 01:58:12,012 [INFO]  Running Copilot for 'prefixCause' in /testbed
+2026-05-27 01:59:41,021 [INFO]  成功读取生成的测试文件: /testbed/test/merge/prefix/prefixCause.test.js
+2026-05-27 01:59:41,021 [INFO]  成功 (返回码=0)
+2026-05-27 01:59:51,032 [INFO] [9/9] 正在处理: finalizePluginsOpts
+2026-05-27 01:59:51,033 [INFO]  Running Copilot for 'finalizePluginsOpts' in /testbed
+2026-05-27 02:00:20,310 [INFO]  成功读取生成的测试文件: /testbed/test/plugins/static/call/callStaticMethod.test.js
+2026-05-27 02:00:20,311 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-27 02:00:30,321 [INFO] [2/9] 正在处理: validatePluginName
+2026-05-27 02:00:30,322 [INFO]  Running Copilot for 'validatePluginName' in /testbed
+2026-05-27 02:01:15,301 [INFO]  成功读取生成的测试文件: /testbed/test/options/plugins/finalizePluginsOpts.test.js
+2026-05-27 02:01:15,302 [INFO]  成功 (返回码=0)
+2026-05-27 02:01:15,305 [INFO]  详细结果已保存至 /results/copilot_testgen_results.json
+2026-05-27 02:01:15,305 [INFO]  处理完成：成功 9/9
+2026-05-27 02:02:32,617 [WARNING]  测试文件未找到: /testbed/test/plugins/shape/name/validatePluginName.test.js
+2026-05-27 02:02:32,618 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-27 02:02:42,624 [INFO] [3/9] 正在处理: validateEachPlugin
+2026-05-27 02:02:42,625 [INFO]  Running Copilot for 'validateEachPlugin' in /testbed
+2026-05-27 02:04:37,876 [WARNING]  测试文件未找到: /testbed/test/plugins/shape/duplicate/validateEachPlugin.test.js
+2026-05-27 02:04:37,877 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-27 02:04:47,888 [INFO] [4/9] 正在处理: callMethod
+2026-05-27 02:04:47,889 [INFO]  Running Copilot for 'callMethod' in /testbed
+2026-05-27 02:06:39,824 [WARNING]  测试文件未找到: /testbed/test/plugins/instance/call/callMethod.test.js
+2026-05-27 02:06:39,825 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-27 02:06:49,835 [INFO] [5/9] 正在处理: callInstanceMethod
+2026-05-27 02:06:49,836 [INFO]  Running Copilot for 'callInstanceMethod' in /testbed
+2026-05-27 02:08:38,085 [WARNING]  测试文件未找到: /testbed/test/plugins/instance/call/callInstanceMethod.test.js
+2026-05-27 02:08:38,086 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-27 02:08:48,097 [INFO] [6/9] 正在处理: normalizeClassOpts
+2026-05-27 02:08:48,098 [INFO]  Running Copilot for 'normalizeClassOpts' in /testbed
+2026-05-27 02:10:43,460 [WARNING]  测试文件未找到: /testbed/test/options/class/normalizeClassOpts.test.js
+2026-05-27 02:10:43,461 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-27 02:10:53,467 [INFO] [7/9] 正在处理: shouldPrefixCause
+2026-05-27 02:10:53,468 [INFO]  Running Copilot for 'shouldPrefixCause' in /testbed
+2026-05-27 02:12:32,417 [WARNING]  测试文件未找到: /testbed/test/merge/prefix/shouldPrefixCause.test.js
+2026-05-27 02:12:32,418 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-27 02:12:42,428 [INFO] [8/9] 正在处理: prefixCause
+2026-05-27 02:12:42,428 [INFO]  Running Copilot for 'prefixCause' in /testbed
+2026-05-27 02:14:29,167 [WARNING]  测试文件未找到: /testbed/test/merge/prefix/prefixCause.test.js
+2026-05-27 02:14:29,167 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-27 02:14:39,179 [INFO] [9/9] 正在处理: finalizePluginsOpts
+2026-05-27 02:14:39,179 [INFO]  Running Copilot for 'finalizePluginsOpts' in /testbed
+2026-05-27 02:16:24,167 [WARNING]  测试文件未找到: /testbed/test/options/plugins/finalizePluginsOpts.test.js
+2026-05-27 02:16:24,167 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-27 02:16:24,169 [INFO]  详细结果已保存至 /results/copilot_testgen_results.json
+2026-05-27 02:16:24,169 [INFO]  处理完成：成功 0/9
