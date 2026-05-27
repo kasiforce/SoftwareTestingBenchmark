@@ -1,0 +1,2733 @@
+{
+  "files": {
+    "src/chi_squared_goodness_of_fit.js": {
+      "language": "javascript",
+      "mutants": [
+        {
+          "id": "162",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: false\nReceived: undefined\n    at Object.toBe (/testbed/stryker-tmp/sandbox-FOiAoP/test/chi_squared_goodness_of_fit/chiSquaredGoodnessOfFit.test.js:58:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "killedBy": [
+            "8"
+          ],
+          "location": {
+            "end": {
+              "column": 2,
+              "line": 101
+            },
+            "start": {
+              "column": 72,
+              "line": 31
+            }
+          }
+        },
+        {
+          "id": "163",
+          "mutatorName": "ArrayDeclaration",
+          "replacement": "[\"Stryker was here\"]",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 35,
+              "line": 42
+            },
+            "start": {
+              "column": 33,
+              "line": 42
+            }
+          }
+        },
+        {
+          "id": "164",
+          "mutatorName": "ArrayDeclaration",
+          "replacement": "[\"Stryker was here\"]",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 35,
+              "line": 43
+            },
+            "start": {
+              "column": 33,
+              "line": 43
+            }
+          }
+        },
+        {
+          "id": "166",
+          "mutatorName": "EqualityOperator",
+          "replacement": "i <= data.length",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 36,
+              "line": 47
+            },
+            "start": {
+              "column": 21,
+              "line": 47
+            }
+          }
+        },
+        {
+          "id": "165",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "statusReason": "TypeError: Cannot read properties of undefined (reading '0.05')\n    at chiSquaredGoodnessOfFit (/testbed/stryker-tmp/sandbox-FOiAoP/src/chi_squared_goodness_of_fit.js:191:372)\n    at Object.chiSquaredGoodnessOfFit (/testbed/stryker-tmp/sandbox-FOiAoP/test/chi_squared_goodness_of_fit/chiSquaredGoodnessOfFit.test.js:57:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "killedBy": [
+            "8"
+          ],
+          "location": {
+            "end": {
+              "column": 36,
+              "line": 47
+            },
+            "start": {
+              "column": 21,
+              "line": 47
+            }
+          }
+        },
+        {
+          "id": "167",
+          "mutatorName": "EqualityOperator",
+          "replacement": "i >= data.length",
+          "statusReason": "TypeError: Cannot read properties of undefined (reading '0.05')\n    at chiSquaredGoodnessOfFit (/testbed/stryker-tmp/sandbox-FOiAoP/src/chi_squared_goodness_of_fit.js:191:372)\n    at Object.chiSquaredGoodnessOfFit (/testbed/stryker-tmp/sandbox-FOiAoP/test/chi_squared_goodness_of_fit/chiSquaredGoodnessOfFit.test.js:57:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "killedBy": [
+            "8"
+          ],
+          "location": {
+            "end": {
+              "column": 36,
+              "line": 47
+            },
+            "start": {
+              "column": 21,
+              "line": 47
+            }
+          }
+        },
+        {
+          "id": "169",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "TypeError: Cannot read properties of undefined (reading '0.05')\n    at chiSquaredGoodnessOfFit (/testbed/stryker-tmp/sandbox-FOiAoP/src/chi_squared_goodness_of_fit.js:191:372)\n    at Object.chiSquaredGoodnessOfFit (/testbed/stryker-tmp/sandbox-FOiAoP/test/chi_squared_goodness_of_fit/chiSquaredGoodnessOfFit.test.js:57:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "killedBy": [
+            "8"
+          ],
+          "location": {
+            "end": {
+              "column": 6,
+              "line": 52
+            },
+            "start": {
+              "column": 43,
+              "line": 47
+            }
+          }
+        },
+        {
+          "id": "170",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "true",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 55,
+              "line": 48
+            },
+            "start": {
+              "column": 13,
+              "line": 48
+            }
+          }
+        },
+        {
+          "id": "171",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 55,
+              "line": 48
+            },
+            "start": {
+              "column": 13,
+              "line": 48
+            }
+          }
+        },
+        {
+          "id": "172",
+          "mutatorName": "EqualityOperator",
+          "replacement": "observedFrequencies[data[i]] !== undefined",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 55,
+              "line": 48
+            },
+            "start": {
+              "column": 13,
+              "line": 48
+            }
+          }
+        },
+        {
+          "id": "173",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 10,
+              "line": 50
+            },
+            "start": {
+              "column": 57,
+              "line": 48
+            }
+          }
+        },
+        {
+          "id": "174",
+          "mutatorName": "UpdateOperator",
+          "replacement": "observedFrequencies[data[i]]--",
+          "statusReason": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: false\nReceived: true\n    at Object.toBe (/testbed/stryker-tmp/sandbox-FOiAoP/test/chi_squared_goodness_of_fit/chiSquaredGoodnessOfFit.test.js:58:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "killedBy": [
+            "8"
+          ],
+          "location": {
+            "end": {
+              "column": 39,
+              "line": 51
+            },
+            "start": {
+              "column": 9,
+              "line": 51
+            }
+          }
+        },
+        {
+          "id": "175",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 51,
+              "line": 57
+            },
+            "start": {
+              "column": 21,
+              "line": 57
+            }
+          }
+        },
+        {
+          "id": "168",
+          "mutatorName": "UpdateOperator",
+          "replacement": "i--",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 41,
+              "line": 47
+            },
+            "start": {
+              "column": 38,
+              "line": 47
+            }
+          }
+        },
+        {
+          "id": "177",
+          "mutatorName": "EqualityOperator",
+          "replacement": "i >= observedFrequencies.length",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 51,
+              "line": 57
+            },
+            "start": {
+              "column": 21,
+              "line": 57
+            }
+          }
+        },
+        {
+          "id": "176",
+          "mutatorName": "EqualityOperator",
+          "replacement": "i <= observedFrequencies.length",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 51,
+              "line": 57
+            },
+            "start": {
+              "column": 21,
+              "line": 57
+            }
+          }
+        },
+        {
+          "id": "179",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 6,
+              "line": 61
+            },
+            "start": {
+              "column": 58,
+              "line": 57
+            }
+          }
+        },
+        {
+          "id": "180",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "true",
+          "statusReason": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: false\nReceived: true\n    at Object.toBe (/testbed/stryker-tmp/sandbox-FOiAoP/test/chi_squared_goodness_of_fit/chiSquaredGoodnessOfFit.test.js:58:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "killedBy": [
+            "8"
+          ],
+          "location": {
+            "end": {
+              "column": 49,
+              "line": 58
+            },
+            "start": {
+              "column": 13,
+              "line": 58
+            }
+          }
+        },
+        {
+          "id": "181",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 49,
+              "line": 58
+            },
+            "start": {
+              "column": 13,
+              "line": 58
+            }
+          }
+        },
+        {
+          "id": "182",
+          "mutatorName": "EqualityOperator",
+          "replacement": "observedFrequencies[i] !== undefined",
+          "statusReason": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: false\nReceived: true\n    at Object.toBe (/testbed/stryker-tmp/sandbox-FOiAoP/test/chi_squared_goodness_of_fit/chiSquaredGoodnessOfFit.test.js:58:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "killedBy": [
+            "8"
+          ],
+          "location": {
+            "end": {
+              "column": 49,
+              "line": 58
+            },
+            "start": {
+              "column": 13,
+              "line": 58
+            }
+          }
+        },
+        {
+          "id": "183",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 10,
+              "line": 60
+            },
+            "start": {
+              "column": 51,
+              "line": 58
+            }
+          }
+        },
+        {
+          "id": "184",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 6,
+              "line": 69
+            },
+            "start": {
+              "column": 47,
+              "line": 65
+            }
+          }
+        },
+        {
+          "id": "185",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "true",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 37,
+              "line": 66
+            },
+            "start": {
+              "column": 13,
+              "line": 66
+            }
+          }
+        },
+        {
+          "id": "186",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 37,
+              "line": 66
+            },
+            "start": {
+              "column": 13,
+              "line": 66
+            }
+          }
+        },
+        {
+          "id": "187",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 10,
+              "line": 68
+            },
+            "start": {
+              "column": 39,
+              "line": 66
+            }
+          }
+        },
+        {
+          "id": "188",
+          "mutatorName": "UnaryOperator",
+          "replacement": "-k",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 35,
+              "line": 67
+            },
+            "start": {
+              "column": 33,
+              "line": 67
+            }
+          }
+        },
+        {
+          "id": "189",
+          "mutatorName": "ArithmeticOperator",
+          "replacement": "hypothesizedDistribution[k] / data.length",
+          "statusReason": "TypeError: Cannot read properties of undefined (reading '0.05')\n    at chiSquaredGoodnessOfFit (/testbed/stryker-tmp/sandbox-FOiAoP/src/chi_squared_goodness_of_fit.js:191:372)\n    at Object.chiSquaredGoodnessOfFit (/testbed/stryker-tmp/sandbox-FOiAoP/test/chi_squared_goodness_of_fit/chiSquaredGoodnessOfFit.test.js:57:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "killedBy": [
+            "8"
+          ],
+          "location": {
+            "end": {
+              "column": 80,
+              "line": 67
+            },
+            "start": {
+              "column": 39,
+              "line": 67
+            }
+          }
+        },
+        {
+          "id": "190",
+          "mutatorName": "ArithmeticOperator",
+          "replacement": "expectedFrequencies.length + 1",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 48,
+              "line": 74
+            },
+            "start": {
+              "column": 18,
+              "line": 74
+            }
+          }
+        },
+        {
+          "id": "191",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 56,
+              "line": 74
+            },
+            "start": {
+              "column": 50,
+              "line": 74
+            }
+          }
+        },
+        {
+          "id": "192",
+          "mutatorName": "EqualityOperator",
+          "replacement": "k > 0",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 56,
+              "line": 74
+            },
+            "start": {
+              "column": 50,
+              "line": 74
+            }
+          }
+        },
+        {
+          "id": "193",
+          "mutatorName": "EqualityOperator",
+          "replacement": "k < 0",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 56,
+              "line": 74
+            },
+            "start": {
+              "column": 50,
+              "line": 74
+            }
+          }
+        },
+        {
+          "id": "178",
+          "mutatorName": "UpdateOperator",
+          "replacement": "i--",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 56,
+              "line": 57
+            },
+            "start": {
+              "column": 53,
+              "line": 57
+            }
+          }
+        },
+        {
+          "id": "195",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 6,
+              "line": 82
+            },
+            "start": {
+              "column": 63,
+              "line": 74
+            }
+          }
+        },
+        {
+          "id": "196",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "true",
+          "statusReason": "TypeError: Cannot read properties of undefined (reading '0.05')\n    at chiSquaredGoodnessOfFit (/testbed/stryker-tmp/sandbox-FOiAoP/src/chi_squared_goodness_of_fit.js:191:372)\n    at Object.chiSquaredGoodnessOfFit (/testbed/stryker-tmp/sandbox-FOiAoP/test/chi_squared_goodness_of_fit/chiSquaredGoodnessOfFit.test.js:57:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "killedBy": [
+            "8"
+          ],
+          "location": {
+            "end": {
+              "column": 39,
+              "line": 75
+            },
+            "start": {
+              "column": 13,
+              "line": 75
+            }
+          }
+        },
+        {
+          "id": "197",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 39,
+              "line": 75
+            },
+            "start": {
+              "column": 13,
+              "line": 75
+            }
+          }
+        },
+        {
+          "id": "198",
+          "mutatorName": "EqualityOperator",
+          "replacement": "expectedFrequencies[k] <= 3",
+          "statusReason": "TypeError: Cannot read properties of undefined (reading '0.05')\n    at chiSquaredGoodnessOfFit (/testbed/stryker-tmp/sandbox-FOiAoP/src/chi_squared_goodness_of_fit.js:191:372)\n    at Object.chiSquaredGoodnessOfFit (/testbed/stryker-tmp/sandbox-FOiAoP/test/chi_squared_goodness_of_fit/chiSquaredGoodnessOfFit.test.js:57:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "killedBy": [
+            "8"
+          ],
+          "location": {
+            "end": {
+              "column": 39,
+              "line": 75
+            },
+            "start": {
+              "column": 13,
+              "line": 75
+            }
+          }
+        },
+        {
+          "id": "199",
+          "mutatorName": "EqualityOperator",
+          "replacement": "expectedFrequencies[k] >= 3",
+          "statusReason": "TypeError: Cannot read properties of undefined (reading '0.05')\n    at chiSquaredGoodnessOfFit (/testbed/stryker-tmp/sandbox-FOiAoP/src/chi_squared_goodness_of_fit.js:191:372)\n    at Object.chiSquaredGoodnessOfFit (/testbed/stryker-tmp/sandbox-FOiAoP/test/chi_squared_goodness_of_fit/chiSquaredGoodnessOfFit.test.js:57:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "killedBy": [
+            "8"
+          ],
+          "location": {
+            "end": {
+              "column": 39,
+              "line": 75
+            },
+            "start": {
+              "column": 13,
+              "line": 75
+            }
+          }
+        },
+        {
+          "id": "200",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 10,
+              "line": 81
+            },
+            "start": {
+              "column": 41,
+              "line": 75
+            }
+          }
+        },
+        {
+          "id": "201",
+          "mutatorName": "AssignmentOperator",
+          "replacement": "expectedFrequencies[k - 1] -= expectedFrequencies[k]",
+          "statusReason": "TypeError: Cannot read properties of undefined (reading '0.05')\n    at chiSquaredGoodnessOfFit (/testbed/stryker-tmp/sandbox-FOiAoP/src/chi_squared_goodness_of_fit.js:191:372)\n    at Object.chiSquaredGoodnessOfFit (/testbed/stryker-tmp/sandbox-FOiAoP/test/chi_squared_goodness_of_fit/chiSquaredGoodnessOfFit.test.js:57:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "killedBy": [
+            "8"
+          ],
+          "location": {
+            "end": {
+              "column": 65,
+              "line": 76
+            },
+            "start": {
+              "column": 13,
+              "line": 76
+            }
+          }
+        },
+        {
+          "id": "202",
+          "mutatorName": "ArithmeticOperator",
+          "replacement": "k + 1",
+          "statusReason": "TypeError: Cannot read properties of undefined (reading '0.05')\n    at chiSquaredGoodnessOfFit (/testbed/stryker-tmp/sandbox-FOiAoP/src/chi_squared_goodness_of_fit.js:191:372)\n    at Object.chiSquaredGoodnessOfFit (/testbed/stryker-tmp/sandbox-FOiAoP/test/chi_squared_goodness_of_fit/chiSquaredGoodnessOfFit.test.js:57:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "killedBy": [
+            "8"
+          ],
+          "location": {
+            "end": {
+              "column": 38,
+              "line": 76
+            },
+            "start": {
+              "column": 33,
+              "line": 76
+            }
+          }
+        },
+        {
+          "id": "203",
+          "mutatorName": "AssignmentOperator",
+          "replacement": "observedFrequencies[k - 1] -= observedFrequencies[k]",
+          "statusReason": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: false\nReceived: true\n    at Object.toBe (/testbed/stryker-tmp/sandbox-FOiAoP/test/chi_squared_goodness_of_fit/chiSquaredGoodnessOfFit.test.js:58:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "killedBy": [
+            "8"
+          ],
+          "location": {
+            "end": {
+              "column": 65,
+              "line": 79
+            },
+            "start": {
+              "column": 13,
+              "line": 79
+            }
+          }
+        },
+        {
+          "id": "204",
+          "mutatorName": "ArithmeticOperator",
+          "replacement": "k + 1",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 38,
+              "line": 79
+            },
+            "start": {
+              "column": 33,
+              "line": 79
+            }
+          }
+        },
+        {
+          "id": "205",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 51,
+              "line": 86
+            },
+            "start": {
+              "column": 21,
+              "line": 86
+            }
+          }
+        },
+        {
+          "id": "206",
+          "mutatorName": "EqualityOperator",
+          "replacement": "k <= observedFrequencies.length",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 51,
+              "line": 86
+            },
+            "start": {
+              "column": 21,
+              "line": 86
+            }
+          }
+        },
+        {
+          "id": "207",
+          "mutatorName": "EqualityOperator",
+          "replacement": "k >= observedFrequencies.length",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 51,
+              "line": 86
+            },
+            "start": {
+              "column": 21,
+              "line": 86
+            }
+          }
+        },
+        {
+          "id": "194",
+          "mutatorName": "UpdateOperator",
+          "replacement": "k++",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 61,
+              "line": 74
+            },
+            "start": {
+              "column": 58,
+              "line": 74
+            }
+          }
+        },
+        {
+          "id": "209",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 6,
+              "line": 90
+            },
+            "start": {
+              "column": 58,
+              "line": 86
+            }
+          }
+        },
+        {
+          "id": "210",
+          "mutatorName": "AssignmentOperator",
+          "replacement": "chiSquared -= Math.pow(observedFrequencies[k] - expectedFrequencies[k], 2) / expectedFrequencies[k]",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 35,
+              "line": 89
+            },
+            "start": {
+              "column": 9,
+              "line": 87
+            }
+          }
+        },
+        {
+          "id": "211",
+          "mutatorName": "ArithmeticOperator",
+          "replacement": "Math.pow(observedFrequencies[k] - expectedFrequencies[k], 2) * expectedFrequencies[k]",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 35,
+              "line": 89
+            },
+            "start": {
+              "column": 13,
+              "line": 88
+            }
+          }
+        },
+        {
+          "id": "212",
+          "mutatorName": "ArithmeticOperator",
+          "replacement": "observedFrequencies[k] + expectedFrequencies[k]",
+          "statusReason": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: false\nReceived: true\n    at Object.toBe (/testbed/stryker-tmp/sandbox-FOiAoP/test/chi_squared_goodness_of_fit/chiSquaredGoodnessOfFit.test.js:58:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "killedBy": [
+            "8"
+          ],
+          "location": {
+            "end": {
+              "column": 69,
+              "line": 88
+            },
+            "start": {
+              "column": 22,
+              "line": 88
+            }
+          }
+        },
+        {
+          "id": "213",
+          "mutatorName": "ArithmeticOperator",
+          "replacement": "observedFrequencies.length - c + 1",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 64,
+              "line": 97
+            },
+            "start": {
+              "column": 30,
+              "line": 97
+            }
+          }
+        },
+        {
+          "id": "214",
+          "mutatorName": "ArithmeticOperator",
+          "replacement": "observedFrequencies.length + c",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 60,
+              "line": 97
+            },
+            "start": {
+              "column": 30,
+              "line": 97
+            }
+          }
+        },
+        {
+          "id": "215",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "true",
+          "statusReason": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: false\nReceived: true\n    at Object.toBe (/testbed/stryker-tmp/sandbox-FOiAoP/test/chi_squared_goodness_of_fit/chiSquaredGoodnessOfFit.test.js:58:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "killedBy": [
+            "8"
+          ],
+          "location": {
+            "end": {
+              "column": 81,
+              "line": 99
+            },
+            "start": {
+              "column": 9,
+              "line": 99
+            }
+          }
+        },
+        {
+          "id": "216",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 81,
+              "line": 99
+            },
+            "start": {
+              "column": 9,
+              "line": 99
+            }
+          }
+        },
+        {
+          "id": "217",
+          "mutatorName": "EqualityOperator",
+          "replacement": "chiSquaredDistributionTable[degreesOfFreedom][significance] <= chiSquared",
+          "status": "Survived",
+          "testsCompleted": 1,
+          "location": {
+            "end": {
+              "column": 81,
+              "line": 99
+            },
+            "start": {
+              "column": 9,
+              "line": 99
+            }
+          }
+        },
+        {
+          "id": "218",
+          "mutatorName": "EqualityOperator",
+          "replacement": "chiSquaredDistributionTable[degreesOfFreedom][significance] >= chiSquared",
+          "statusReason": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: false\nReceived: true\n    at Object.toBe (/testbed/stryker-tmp/sandbox-FOiAoP/test/chi_squared_goodness_of_fit/chiSquaredGoodnessOfFit.test.js:58:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "killedBy": [
+            "8"
+          ],
+          "location": {
+            "end": {
+              "column": 81,
+              "line": 99
+            },
+            "start": {
+              "column": 9,
+              "line": 99
+            }
+          }
+        },
+        {
+          "id": "208",
+          "mutatorName": "UpdateOperator",
+          "replacement": "k--",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 56,
+              "line": 86
+            },
+            "start": {
+              "column": 53,
+              "line": 86
+            }
+          }
+        }
+      ],
+      "source": "import chiSquaredDistributionTable from \"./chi_squared_distribution_table.js\";\nimport mean from \"./mean.js\";\n\n/**\n * The [χ2 (Chi-Squared) Goodness-of-Fit Test](http://en.wikipedia.org/wiki/Goodness_of_fit#Pearson.27s_chi-squared_test)\n * uses a measure of goodness of fit which is the sum of differences between observed and expected outcome frequencies\n * (that is, counts of observations), each squared and divided by the number of observations expected given the\n * hypothesized distribution. The resulting χ2 statistic, `chiSquared`, can be compared to the chi-squared distribution\n * to determine the goodness of fit. In order to determine the degrees of freedom of the chi-squared distribution, one\n * takes the total number of observed frequencies and subtracts the number of estimated parameters. The test statistic\n * follows, approximately, a chi-square distribution with (k − c) degrees of freedom where `k` is the number of non-empty\n * cells and `c` is the number of estimated parameters for the distribution.\n *\n * @param {Array<number>} data\n * @param {Function} distributionType a function that returns a point in a distribution:\n * for instance, binomial, bernoulli, or poisson\n * @param {number} significance\n * @returns {number} chi squared goodness of fit\n * @example\n * // Data from Poisson goodness-of-fit example 10-19 in William W. Hines & Douglas C. Montgomery,\n * // \"Probability and Statistics in Engineering and Management Science\", Wiley (1980).\n * var data1019 = [\n *     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,\n *     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,\n *     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,\n *     2, 2, 2, 2, 2, 2, 2, 2, 2,\n *     3, 3, 3, 3\n * ];\n * ss.chiSquaredGoodnessOfFit(data1019, ss.poissonDistribution, 0.05); //= false\n */\nfunction chiSquaredGoodnessOfFit(data, distributionType, significance) {\n    // Estimate from the sample data, a weighted mean.\n    const inputMean = mean(data);\n    // Calculated value of the χ2 statistic.\n    let chiSquared = 0;\n    // Number of hypothesized distribution parameters estimated, expected to be supplied in the distribution test.\n    // Lose one degree of freedom for estimating `lambda` from the sample data.\n    const c = 1;\n    // The hypothesized distribution.\n    // Generate the hypothesized distribution.\n    const hypothesizedDistribution = distributionType(inputMean);\n    const observedFrequencies = [];\n    const expectedFrequencies = [];\n\n    // Create an array holding a histogram from the sample data, of\n    // the form `{ value: numberOfOcurrences }`\n    for (let i = 0; i < data.length; i++) {\n        if (observedFrequencies[data[i]] === undefined) {\n            observedFrequencies[data[i]] = 0;\n        }\n        observedFrequencies[data[i]]++;\n    }\n\n    // The histogram we created might be sparse - there might be gaps\n    // between values. So we iterate through the histogram, making\n    // sure that instead of undefined, gaps have 0 values.\n    for (let i = 0; i < observedFrequencies.length; i++) {\n        if (observedFrequencies[i] === undefined) {\n            observedFrequencies[i] = 0;\n        }\n    }\n\n    // Create an array holding a histogram of expected data given the\n    // sample size and hypothesized distribution.\n    for (const k in hypothesizedDistribution) {\n        if (k in observedFrequencies) {\n            expectedFrequencies[+k] = hypothesizedDistribution[k] * data.length;\n        }\n    }\n\n    // Working backward through the expected frequencies, collapse classes\n    // if less than three observations are expected for a class.\n    // This transformation is applied to the observed frequencies as well.\n    for (let k = expectedFrequencies.length - 1; k >= 0; k--) {\n        if (expectedFrequencies[k] < 3) {\n            expectedFrequencies[k - 1] += expectedFrequencies[k];\n            expectedFrequencies.pop();\n\n            observedFrequencies[k - 1] += observedFrequencies[k];\n            observedFrequencies.pop();\n        }\n    }\n\n    // Iterate through the squared differences between observed & expected\n    // frequencies, accumulating the `chiSquared` statistic.\n    for (let k = 0; k < observedFrequencies.length; k++) {\n        chiSquared +=\n            Math.pow(observedFrequencies[k] - expectedFrequencies[k], 2) /\n            expectedFrequencies[k];\n    }\n\n    // Calculate degrees of freedom for this test and look it up in the\n    // `chiSquaredDistributionTable` in order to\n    // accept or reject the goodness-of-fit of the hypothesized distribution.\n    // Degrees of freedom, calculated as (number of class intervals -\n    // number of hypothesized distribution parameters estimated - 1)\n    const degreesOfFreedom = observedFrequencies.length - c - 1;\n    return (\n        chiSquaredDistributionTable[degreesOfFreedom][significance] < chiSquared\n    );\n}\n\nexport default chiSquaredGoodnessOfFit;\n"
+    },
+    "src/combinations_replacement.js": {
+      "language": "javascript",
+      "mutants": [
+        {
+          "id": "422",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\nExpected: []\nReceived: undefined\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/combinations_replacement/combinationsReplacement.test.js:8:48)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "0"
+          ],
+          "location": {
+            "end": {
+              "column": 2,
+              "line": 41
+            },
+            "start": {
+              "column": 40,
+              "line": 13
+            }
+          }
+        },
+        {
+          "id": "423",
+          "mutatorName": "ArrayDeclaration",
+          "replacement": "[\"Stryker was here\"]",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 1\n+ Received  + 3\n\n- Array []\n+ Array [\n+   \"Stryker was here\",\n+ ]\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/combinations_replacement/combinationsReplacement.test.js:8:48)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "0"
+          ],
+          "location": {
+            "end": {
+              "column": 31,
+              "line": 14
+            },
+            "start": {
+              "column": 29,
+              "line": 14
+            }
+          }
+        },
+        {
+          "id": "424",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 26\n+ Received  +  1\n\n- Array [\n-   Array [\n-     1,\n-     1,\n-   ],\n-   Array [\n-     1,\n-     2,\n-   ],\n-   Array [\n-     1,\n-     3,\n-   ],\n-   Array [\n-     2,\n-     2,\n-   ],\n-   Array [\n-     2,\n-     3,\n-   ],\n-   Array [\n-     3,\n-     3,\n-   ],\n- ]\n+ Array []\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/combinations_replacement/combinationsReplacement.test.js:14:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "1"
+          ],
+          "location": {
+            "end": {
+              "column": 33,
+              "line": 16
+            },
+            "start": {
+              "column": 21,
+              "line": 16
+            }
+          }
+        },
+        {
+          "id": "425",
+          "mutatorName": "EqualityOperator",
+          "replacement": "i <= x.length",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 1\n+ Received  + 5\n\n- Array []\n+ Array [\n+   Array [\n+     undefined,\n+   ],\n+ ]\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/combinations_replacement/combinationsReplacement.test.js:8:48)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "0"
+          ],
+          "location": {
+            "end": {
+              "column": 33,
+              "line": 16
+            },
+            "start": {
+              "column": 21,
+              "line": 16
+            }
+          }
+        },
+        {
+          "id": "426",
+          "mutatorName": "EqualityOperator",
+          "replacement": "i >= x.length",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 33,
+              "line": 16
+            },
+            "start": {
+              "column": 21,
+              "line": 16
+            }
+          }
+        },
+        {
+          "id": "427",
+          "mutatorName": "UpdateOperator",
+          "replacement": "i--",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 38,
+              "line": 16
+            },
+            "start": {
+              "column": 35,
+              "line": 16
+            }
+          }
+        },
+        {
+          "id": "429",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "true",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 15\n+ Received  +  0\n\n  Array [\n    Array [\n      1,\n-     1,\n    ],\n    Array [\n-     1,\n      2,\n    ],\n    Array [\n-     1,\n-     3,\n-   ],\n-   Array [\n-     2,\n-     2,\n-   ],\n-   Array [\n-     2,\n-     3,\n-   ],\n-   Array [\n-     3,\n      3,\n    ],\n  ]\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/combinations_replacement/combinationsReplacement.test.js:14:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "1"
+          ],
+          "location": {
+            "end": {
+              "column": 20,
+              "line": 17
+            },
+            "start": {
+              "column": 13,
+              "line": 17
+            }
+          }
+        },
+        {
+          "id": "428",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 26\n+ Received  +  1\n\n- Array [\n-   Array [\n-     1,\n-     1,\n-   ],\n-   Array [\n-     1,\n-     2,\n-   ],\n-   Array [\n-     1,\n-     3,\n-   ],\n-   Array [\n-     2,\n-     2,\n-   ],\n-   Array [\n-     2,\n-     3,\n-   ],\n-   Array [\n-     3,\n-     3,\n-   ],\n- ]\n+ Array []\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/combinations_replacement/combinationsReplacement.test.js:14:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "1"
+          ],
+          "location": {
+            "end": {
+              "column": 6,
+              "line": 38
+            },
+            "start": {
+              "column": 40,
+              "line": 16
+            }
+          }
+        },
+        {
+          "id": "431",
+          "mutatorName": "EqualityOperator",
+          "replacement": "k !== 1",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 15\n+ Received  +  0\n\n  Array [\n    Array [\n      1,\n-     1,\n    ],\n    Array [\n-     1,\n      2,\n    ],\n    Array [\n-     1,\n-     3,\n-   ],\n-   Array [\n-     2,\n-     2,\n-   ],\n-   Array [\n-     2,\n-     3,\n-   ],\n-   Array [\n-     3,\n      3,\n    ],\n  ]\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/combinations_replacement/combinationsReplacement.test.js:14:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "1"
+          ],
+          "location": {
+            "end": {
+              "column": 20,
+              "line": 17
+            },
+            "start": {
+              "column": 13,
+              "line": 17
+            }
+          }
+        },
+        {
+          "id": "430",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "statusReason": "RangeError: Maximum call stack size exceeded\n    at cover (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:33:17)\n    at stryCov_9fa48 (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:64:5)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "1"
+          ],
+          "location": {
+            "end": {
+              "column": 20,
+              "line": 17
+            },
+            "start": {
+              "column": 13,
+              "line": 17
+            }
+          }
+        },
+        {
+          "id": "432",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 26\n+ Received  +  1\n\n- Array [\n-   Array [\n-     1,\n-     1,\n-   ],\n-   Array [\n-     1,\n-     2,\n-   ],\n-   Array [\n-     1,\n-     3,\n-   ],\n-   Array [\n-     2,\n-     2,\n-   ],\n-   Array [\n-     2,\n-     3,\n-   ],\n-   Array [\n-     3,\n-     3,\n-   ],\n- ]\n+ Array []\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/combinations_replacement/combinationsReplacement.test.js:14:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "1"
+          ],
+          "location": {
+            "end": {
+              "column": 10,
+              "line": 21
+            },
+            "start": {
+              "column": 22,
+              "line": 17
+            }
+          }
+        },
+        {
+          "id": "433",
+          "mutatorName": "ArrayDeclaration",
+          "replacement": "[]",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 6\n+ Received  + 0\n\n  Array [\n    Array [\n      1,\n-     1,\n    ],\n    Array [\n      1,\n-     2,\n    ],\n    Array [\n      1,\n-     3,\n    ],\n    Array [\n-     2,\n      2,\n    ],\n    Array [\n      2,\n-     3,\n    ],\n    Array [\n-     3,\n      3,\n    ],\n  ]\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/combinations_replacement/combinationsReplacement.test.js:14:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "1"
+          ],
+          "location": {
+            "end": {
+              "column": 40,
+              "line": 20
+            },
+            "start": {
+              "column": 34,
+              "line": 20
+            }
+          }
+        },
+        {
+          "id": "434",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 26\n+ Received  +  1\n\n- Array [\n-   Array [\n-     1,\n-     1,\n-   ],\n-   Array [\n-     1,\n-     2,\n-   ],\n-   Array [\n-     1,\n-     3,\n-   ],\n-   Array [\n-     2,\n-     2,\n-   ],\n-   Array [\n-     2,\n-     3,\n-   ],\n-   Array [\n-     3,\n-     3,\n-   ],\n- ]\n+ Array []\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/combinations_replacement/combinationsReplacement.test.js:14:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "1"
+          ],
+          "location": {
+            "end": {
+              "column": 10,
+              "line": 37
+            },
+            "start": {
+              "column": 16,
+              "line": 21
+            }
+          }
+        },
+        {
+          "id": "435",
+          "mutatorName": "MethodExpression",
+          "replacement": "x",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  -  0\n+ Received  + 12\n\n@@ -11,15 +11,27 @@\n      1,\n      3,\n    ],\n    Array [\n      2,\n+     1,\n+   ],\n+   Array [\n+     2,\n      2,\n    ],\n    Array [\n      2,\n+     3,\n+   ],\n+   Array [\n      3,\n+     1,\n+   ],\n+   Array [\n+     3,\n+     2,\n    ],\n    Array [\n      3,\n      3,\n    ],\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/combinations_replacement/combinationsReplacement.test.js:14:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "1"
+          ],
+          "location": {
+            "end": {
+              "column": 37,
+              "line": 30
+            },
+            "start": {
+              "column": 17,
+              "line": 30
+            }
+          }
+        },
+        {
+          "id": "437",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 26\n+ Received  +  1\n\n- Array [\n-   Array [\n-     1,\n-     1,\n-   ],\n-   Array [\n-     1,\n-     2,\n-   ],\n-   Array [\n-     1,\n-     3,\n-   ],\n-   Array [\n-     2,\n-     2,\n-   ],\n-   Array [\n-     2,\n-     3,\n-   ],\n-   Array [\n-     3,\n-     3,\n-   ],\n- ]\n+ Array []\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/combinations_replacement/combinationsReplacement.test.js:14:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "1"
+          ],
+          "location": {
+            "end": {
+              "column": 58,
+              "line": 34
+            },
+            "start": {
+              "column": 29,
+              "line": 34
+            }
+          }
+        },
+        {
+          "id": "436",
+          "mutatorName": "ArithmeticOperator",
+          "replacement": "k + 1",
+          "statusReason": "RangeError: Maximum call stack size exceeded\n    at cover (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:33:17)\n    at stryCov_9fa48 (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:64:5)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)\n    at combinationsReplacement (/testbed/stryker-tmp/sandbox-FOiAoP/src/combinations_replacement.js:92:40)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "1"
+          ],
+          "location": {
+            "end": {
+              "column": 22,
+              "line": 31
+            },
+            "start": {
+              "column": 17,
+              "line": 31
+            }
+          }
+        },
+        {
+          "id": "438",
+          "mutatorName": "EqualityOperator",
+          "replacement": "j <= subsetCombinations.length",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  -  0\n+ Received  + 12\n\n@@ -10,17 +10,29 @@\n    Array [\n      1,\n      3,\n    ],\n    Array [\n+     1,\n+     undefined,\n+   ],\n+   Array [\n      2,\n      2,\n    ],\n    Array [\n      2,\n      3,\n+   ],\n+   Array [\n+     2,\n+     undefined,\n    ],\n    Array [\n      3,\n      3,\n+   ],\n+   Array [\n+     3,\n+     undefined,\n    ],\n  ]\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/combinations_replacement/combinationsReplacement.test.js:14:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "1"
+          ],
+          "location": {
+            "end": {
+              "column": 58,
+              "line": 34
+            },
+            "start": {
+              "column": 29,
+              "line": 34
+            }
+          }
+        },
+        {
+          "id": "439",
+          "mutatorName": "EqualityOperator",
+          "replacement": "j >= subsetCombinations.length",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 26\n+ Received  +  1\n\n- Array [\n-   Array [\n-     1,\n-     1,\n-   ],\n-   Array [\n-     1,\n-     2,\n-   ],\n-   Array [\n-     1,\n-     3,\n-   ],\n-   Array [\n-     2,\n-     2,\n-   ],\n-   Array [\n-     2,\n-     3,\n-   ],\n-   Array [\n-     3,\n-     3,\n-   ],\n- ]\n+ Array []\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/combinations_replacement/combinationsReplacement.test.js:14:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "1"
+          ],
+          "location": {
+            "end": {
+              "column": 58,
+              "line": 34
+            },
+            "start": {
+              "column": 29,
+              "line": 34
+            }
+          }
+        },
+        {
+          "id": "441",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 26\n+ Received  +  1\n\n- Array [\n-   Array [\n-     1,\n-     1,\n-   ],\n-   Array [\n-     1,\n-     2,\n-   ],\n-   Array [\n-     1,\n-     3,\n-   ],\n-   Array [\n-     2,\n-     2,\n-   ],\n-   Array [\n-     2,\n-     3,\n-   ],\n-   Array [\n-     3,\n-     3,\n-   ],\n- ]\n+ Array []\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/combinations_replacement/combinationsReplacement.test.js:14:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "1"
+          ],
+          "location": {
+            "end": {
+              "column": 14,
+              "line": 36
+            },
+            "start": {
+              "column": 65,
+              "line": 34
+            }
+          }
+        },
+        {
+          "id": "442",
+          "mutatorName": "ArrayDeclaration",
+          "replacement": "[]",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 6\n+ Received  + 0\n\n  Array [\n    Array [\n      1,\n-     1,\n    ],\n    Array [\n-     1,\n      2,\n    ],\n    Array [\n-     1,\n      3,\n    ],\n    Array [\n-     2,\n      2,\n    ],\n    Array [\n-     2,\n      3,\n    ],\n    Array [\n-     3,\n      3,\n    ],\n  ]\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/combinations_replacement/combinationsReplacement.test.js:14:24)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "1"
+          ],
+          "location": {
+            "end": {
+              "column": 44,
+              "line": 35
+            },
+            "start": {
+              "column": 38,
+              "line": 35
+            }
+          }
+        },
+        {
+          "id": "440",
+          "mutatorName": "UpdateOperator",
+          "replacement": "j--",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 63,
+              "line": 34
+            },
+            "start": {
+              "column": 60,
+              "line": 34
+            }
+          }
+        }
+      ],
+      "source": "/**\n * Implementation of [Combinations](https://en.wikipedia.org/wiki/Combination) with replacement\n * Combinations are unique subsets of a collection - in this case, k x from a collection at a time.\n * 'With replacement' means that a given element can be chosen multiple times.\n * Unlike permutation, order doesn't matter for combinations.\n *\n * @param {Array} x any type of data\n * @param {int} k the number of objects in each group (without replacement)\n * @returns {Array<Array>} array of permutations\n * @example\n * combinationsReplacement([1, 2], 2); // => [[1, 1], [1, 2], [2, 2]]\n */\nfunction combinationsReplacement(x, k) {\n    const combinationList = [];\n\n    for (let i = 0; i < x.length; i++) {\n        if (k === 1) {\n            // If we're requested to find only one element, we don't need\n            // to recurse: just push `x[i]` onto the list of combinations.\n            combinationList.push([x[i]]);\n        } else {\n            // Otherwise, recursively find combinations, given `k - 1`. Note that\n            // we request `k - 1`, so if you were looking for k=3 combinations, we're\n            // requesting k=2. This -1 gets reversed in the for loop right after this\n            // code, since we concatenate `x[i]` onto the selected combinations,\n            // bringing `k` back up to your requested level.\n            // This recursion may go many levels deep, since it only stops once\n            // k=1.\n            const subsetCombinations = combinationsReplacement(\n                x.slice(i, x.length),\n                k - 1\n            );\n\n            for (let j = 0; j < subsetCombinations.length; j++) {\n                combinationList.push([x[i]].concat(subsetCombinations[j]));\n            }\n        }\n    }\n\n    return combinationList;\n}\n\nexport default combinationsReplacement;\n"
+    },
+    "src/permutations_heap.js": {
+      "language": "javascript",
+      "mutants": [
+        {
+          "id": "1200",
+          "mutatorName": "ArrayDeclaration",
+          "replacement": "new Array()",
+          "status": "Survived",
+          "testsCompleted": 7,
+          "location": {
+            "end": {
+              "column": 47,
+              "line": 9
+            },
+            "start": {
+              "column": 21,
+              "line": 9
+            }
+          }
+        },
+        {
+          "id": "1199",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\nExpected: [[]]\nReceived: undefined\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/permutations_heap/permutationsHeap.test.js:8:34)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "21"
+          ],
+          "location": {
+            "end": {
+              "column": 2,
+              "line": 41
+            },
+            "start": {
+              "column": 37,
+              "line": 8
+            }
+          }
+        },
+        {
+          "id": "1202",
+          "mutatorName": "MethodExpression",
+          "replacement": "elements",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\nExpected: ArrayContaining [[1, 2], [2, 1]]\nReceived: [[2, 1], [2, 1]]\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/permutations_heap/permutationsHeap.test.js:23:37)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "23"
+          ],
+          "location": {
+            "end": {
+              "column": 43,
+              "line": 10
+            },
+            "start": {
+              "column": 27,
+              "line": 10
+            }
+          }
+        },
+        {
+          "id": "1201",
+          "mutatorName": "ArrayDeclaration",
+          "replacement": "[]",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 3\n+ Received  + 1\n\n- Array [\n-   Array [],\n- ]\n+ Array []\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/permutations_heap/permutationsHeap.test.js:8:34)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "21"
+          ],
+          "location": {
+            "end": {
+              "column": 44,
+              "line": 10
+            },
+            "start": {
+              "column": 26,
+              "line": 10
+            }
+          }
+        },
+        {
+          "id": "1204",
+          "mutatorName": "EqualityOperator",
+          "replacement": "i <= elements.length",
+          "status": "Survived",
+          "testsCompleted": 7,
+          "location": {
+            "end": {
+              "column": 40,
+              "line": 12
+            },
+            "start": {
+              "column": 21,
+              "line": 12
+            }
+          }
+        },
+        {
+          "id": "1203",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\nExpected: ArrayContaining [[1, 2], [2, 1]]\nReceived: [[1, 2]]\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/permutations_heap/permutationsHeap.test.js:23:37)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "23"
+          ],
+          "location": {
+            "end": {
+              "column": 40,
+              "line": 12
+            },
+            "start": {
+              "column": 21,
+              "line": 12
+            }
+          }
+        },
+        {
+          "id": "1205",
+          "mutatorName": "EqualityOperator",
+          "replacement": "i >= elements.length",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 40,
+              "line": 12
+            },
+            "start": {
+              "column": 21,
+              "line": 12
+            }
+          }
+        },
+        {
+          "id": "1206",
+          "mutatorName": "UpdateOperator",
+          "replacement": "i--",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 45,
+              "line": 12
+            },
+            "start": {
+              "column": 42,
+              "line": 12
+            }
+          }
+        },
+        {
+          "id": "1207",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\nExpected: ArrayContaining [[1, 2], [2, 1]]\nReceived: [[1, 2]]\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/permutations_heap/permutationsHeap.test.js:23:37)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "23"
+          ],
+          "location": {
+            "end": {
+              "column": 6,
+              "line": 14
+            },
+            "start": {
+              "column": 47,
+              "line": 12
+            }
+          }
+        },
+        {
+          "id": "1208",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\nExpected: ArrayContaining [[1, 2], [2, 1]]\nReceived: [[1, 2]]\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/permutations_heap/permutationsHeap.test.js:23:37)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "23"
+          ],
+          "location": {
+            "end": {
+              "column": 40,
+              "line": 16
+            },
+            "start": {
+              "column": 21,
+              "line": 16
+            }
+          }
+        },
+        {
+          "id": "1209",
+          "mutatorName": "EqualityOperator",
+          "replacement": "i <= elements.length",
+          "status": "Survived",
+          "testsCompleted": 7,
+          "location": {
+            "end": {
+              "column": 40,
+              "line": 16
+            },
+            "start": {
+              "column": 21,
+              "line": 16
+            }
+          }
+        },
+        {
+          "id": "1210",
+          "mutatorName": "EqualityOperator",
+          "replacement": "i >= elements.length",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 40,
+              "line": 16
+            },
+            "start": {
+              "column": 21,
+              "line": 16
+            }
+          }
+        },
+        {
+          "id": "1211",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 6,
+              "line": 38
+            },
+            "start": {
+              "column": 44,
+              "line": 16
+            }
+          }
+        },
+        {
+          "id": "1213",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\nExpected: ArrayContaining [[1, 2], [2, 1]]\nReceived: [[1, 2]]\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/permutations_heap/permutationsHeap.test.js:23:37)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "23"
+          ],
+          "location": {
+            "end": {
+              "column": 27,
+              "line": 17
+            },
+            "start": {
+              "column": 13,
+              "line": 17
+            }
+          }
+        },
+        {
+          "id": "1214",
+          "mutatorName": "EqualityOperator",
+          "replacement": "indexes[i] <= i",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 0\n+ Received  + 3\n\n  Array [\n    Array [\n      1,\n    ],\n+   Array [\n+     1,\n+   ],\n  ]\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/permutations_heap/permutationsHeap.test.js:14:37)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "22"
+          ],
+          "location": {
+            "end": {
+              "column": 27,
+              "line": 17
+            },
+            "start": {
+              "column": 13,
+              "line": 17
+            }
+          }
+        },
+        {
+          "id": "1212",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "true",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 27,
+              "line": 17
+            },
+            "start": {
+              "column": 13,
+              "line": 17
+            }
+          }
+        },
+        {
+          "id": "1215",
+          "mutatorName": "EqualityOperator",
+          "replacement": "indexes[i] >= i",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 27,
+              "line": 17
+            },
+            "start": {
+              "column": 13,
+              "line": 17
+            }
+          }
+        },
+        {
+          "id": "1217",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "true",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\nExpected: ArrayContaining [[1, 2, 3], [2, 1, 3], [3, 1, 2], [1, 3, 2], [2, 3, 1], [3, 2, 1]]\nReceived: [[1, 2, 3], [2, 1, 3], [3, 1, 2], [1, 3, 2], [1, 2, 3], [2, 1, 3]]\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/permutations_heap/permutationsHeap.test.js:44:20)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "24"
+          ],
+          "location": {
+            "end": {
+              "column": 28,
+              "line": 21
+            },
+            "start": {
+              "column": 17,
+              "line": 21
+            }
+          }
+        },
+        {
+          "id": "1218",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "status": "Survived",
+          "testsCompleted": 7,
+          "location": {
+            "end": {
+              "column": 28,
+              "line": 21
+            },
+            "start": {
+              "column": 17,
+              "line": 21
+            }
+          }
+        },
+        {
+          "id": "1219",
+          "mutatorName": "EqualityOperator",
+          "replacement": "i % 2 === 0",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\nExpected: ArrayContaining [[1, 2, 3], [2, 1, 3], [3, 1, 2], [1, 3, 2], [2, 3, 1], [3, 2, 1]]\nReceived: [[1, 2, 3], [2, 1, 3], [3, 1, 2], [1, 3, 2], [1, 2, 3], [2, 1, 3]]\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/permutations_heap/permutationsHeap.test.js:44:20)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "24"
+          ],
+          "location": {
+            "end": {
+              "column": 28,
+              "line": 21
+            },
+            "start": {
+              "column": 17,
+              "line": 21
+            }
+          }
+        },
+        {
+          "id": "1220",
+          "mutatorName": "ArithmeticOperator",
+          "replacement": "i * 2",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\nExpected: ArrayContaining [[1, 2, 3], [2, 1, 3], [3, 1, 2], [1, 3, 2], [2, 3, 1], [3, 2, 1]]\nReceived: [[1, 2, 3], [2, 1, 3], [3, 1, 2], [1, 3, 2], [1, 2, 3], [2, 1, 3]]\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/permutations_heap/permutationsHeap.test.js:44:20)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "24"
+          ],
+          "location": {
+            "end": {
+              "column": 22,
+              "line": 21
+            },
+            "start": {
+              "column": 17,
+              "line": 21
+            }
+          }
+        },
+        {
+          "id": "1221",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "status": "Survived",
+          "testsCompleted": 7,
+          "location": {
+            "end": {
+              "column": 14,
+              "line": 23
+            },
+            "start": {
+              "column": 30,
+              "line": 21
+            }
+          }
+        },
+        {
+          "id": "1222",
+          "mutatorName": "MethodExpression",
+          "replacement": "elements",
+          "statusReason": "Error: expect(received).toEqual(expected) // deep equality\n\nExpected: ArrayContaining [[1, 2, 3], [2, 1, 3], [3, 1, 2], [1, 3, 2], [2, 3, 1], [3, 2, 1]]\nReceived: [[1, 2, 3], [3, 2, 1], [3, 2, 1], [3, 2, 1], [3, 2, 1], [3, 2, 1]]\n    at Object.toEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/permutations_heap/permutationsHeap.test.js:44:20)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 7,
+          "killedBy": [
+            "24"
+          ],
+          "location": {
+            "end": {
+              "column": 47,
+              "line": 31
+            },
+            "start": {
+              "column": 31,
+              "line": 31
+            }
+          }
+        },
+        {
+          "id": "1216",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 10,
+              "line": 34
+            },
+            "start": {
+              "column": 29,
+              "line": 17
+            }
+          }
+        },
+        {
+          "id": "1223",
+          "mutatorName": "UpdateOperator",
+          "replacement": "indexes[i]--",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 25,
+              "line": 32
+            },
+            "start": {
+              "column": 13,
+              "line": 32
+            }
+          }
+        },
+        {
+          "id": "1224",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 10,
+              "line": 37
+            },
+            "start": {
+              "column": 16,
+              "line": 34
+            }
+          }
+        },
+        {
+          "id": "1225",
+          "mutatorName": "UpdateOperator",
+          "replacement": "i--",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 16,
+              "line": 36
+            },
+            "start": {
+              "column": 13,
+              "line": 36
+            }
+          }
+        }
+      ],
+      "source": "/**\n * Implementation of [Heap's Algorithm](https://en.wikipedia.org/wiki/Heap%27s_algorithm)\n * for generating permutations.\n *\n * @param {Array} elements any type of data\n * @returns {Array<Array>} array of permutations\n */\nfunction permutationsHeap(elements) {\n    const indexes = new Array(elements.length);\n    const permutations = [elements.slice()];\n\n    for (let i = 0; i < elements.length; i++) {\n        indexes[i] = 0;\n    }\n\n    for (let i = 0; i < elements.length; ) {\n        if (indexes[i] < i) {\n            // At odd indexes, swap from indexes[i] instead\n            // of from the beginning of the array\n            let swapFrom = 0;\n            if (i % 2 !== 0) {\n                swapFrom = indexes[i];\n            }\n\n            // swap between swapFrom and i, using\n            // a temporary variable as storage.\n            const temp = elements[swapFrom];\n            elements[swapFrom] = elements[i];\n            elements[i] = temp;\n\n            permutations.push(elements.slice());\n            indexes[i]++;\n            i = 0;\n        } else {\n            indexes[i] = 0;\n            i++;\n        }\n    }\n\n    return permutations;\n}\n\nexport default permutationsHeap;\n"
+    },
+    "src/poisson_distribution.js": {
+      "language": "javascript",
+      "mutants": [
+        {
+          "id": "1226",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n    at Object.toBe (/testbed/stryker-tmp/sandbox-FOiAoP/test/poisson_distribution/poissonDistribution.test.js:19:39)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 9,
+          "killedBy": [
+            "14"
+          ],
+          "location": {
+            "end": {
+              "column": 2,
+              "line": 45
+            },
+            "start": {
+              "column": 55,
+              "line": 16
+            }
+          }
+        },
+        {
+          "id": "1227",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "true",
+          "statusReason": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n    at Object.toBe (/testbed/stryker-tmp/sandbox-FOiAoP/test/poisson_distribution/poissonDistribution.test.js:19:39)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 9,
+          "killedBy": [
+            "14"
+          ],
+          "location": {
+            "end": {
+              "column": 20,
+              "line": 18
+            },
+            "start": {
+              "column": 9,
+              "line": 18
+            }
+          }
+        },
+        {
+          "id": "1228",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "statusReason": "Error: expect(received).toBeUndefined()\n\nReceived: [1]\n    at Object.toBeUndefined (/testbed/stryker-tmp/sandbox-FOiAoP/test/poisson_distribution/poissonDistribution.test.js:9:40)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 9,
+          "killedBy": [
+            "12"
+          ],
+          "location": {
+            "end": {
+              "column": 20,
+              "line": 18
+            },
+            "start": {
+              "column": 9,
+              "line": 18
+            }
+          }
+        },
+        {
+          "id": "1229",
+          "mutatorName": "EqualityOperator",
+          "replacement": "lambda < 0",
+          "statusReason": "Error: expect(received).toBeUndefined()\n\nReceived: [1]\n    at Object.toBeUndefined (/testbed/stryker-tmp/sandbox-FOiAoP/test/poisson_distribution/poissonDistribution.test.js:9:40)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 9,
+          "killedBy": [
+            "12"
+          ],
+          "location": {
+            "end": {
+              "column": 20,
+              "line": 18
+            },
+            "start": {
+              "column": 9,
+              "line": 18
+            }
+          }
+        },
+        {
+          "id": "1230",
+          "mutatorName": "EqualityOperator",
+          "replacement": "lambda > 0",
+          "statusReason": "Error: expect(received).toBeUndefined()\n\nReceived: [1]\n    at Object.toBeUndefined (/testbed/stryker-tmp/sandbox-FOiAoP/test/poisson_distribution/poissonDistribution.test.js:9:40)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 9,
+          "killedBy": [
+            "12"
+          ],
+          "location": {
+            "end": {
+              "column": 20,
+              "line": 18
+            },
+            "start": {
+              "column": 9,
+              "line": 18
+            }
+          }
+        },
+        {
+          "id": "1231",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "Error: expect(received).toBeUndefined()\n\nReceived: [1]\n    at Object.toBeUndefined (/testbed/stryker-tmp/sandbox-FOiAoP/test/poisson_distribution/poissonDistribution.test.js:9:40)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 9,
+          "killedBy": [
+            "12"
+          ],
+          "location": {
+            "end": {
+              "column": 6,
+              "line": 20
+            },
+            "start": {
+              "column": 22,
+              "line": 18
+            }
+          }
+        },
+        {
+          "id": "1232",
+          "mutatorName": "ArrayDeclaration",
+          "replacement": "[\"Stryker was here\"]",
+          "status": "Survived",
+          "testsCompleted": 9,
+          "location": {
+            "end": {
+              "column": 21,
+              "line": 28
+            },
+            "start": {
+              "column": 19,
+              "line": 28
+            }
+          }
+        },
+        {
+          "id": "1234",
+          "mutatorName": "ArithmeticOperator",
+          "replacement": "Math.exp(-lambda) * Math.pow(lambda, x) * factorialX",
+          "statusReason": "Error: expect(received).toBeLessThanOrEqual(expected)\n\nExpected: <= 1\nReceived:    1.2130613194252668\n    at Object.toBeLessThanOrEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/poisson_distribution/poissonDistribution.test.js:34:21)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 9,
+          "killedBy": [
+            "16"
+          ],
+          "location": {
+            "end": {
+              "column": 74,
+              "line": 36
+            },
+            "start": {
+              "column": 20,
+              "line": 36
+            }
+          }
+        },
+        {
+          "id": "1233",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 6,
+              "line": 42
+            },
+            "start": {
+              "column": 8,
+              "line": 34
+            }
+          }
+        },
+        {
+          "id": "1236",
+          "mutatorName": "UnaryOperator",
+          "replacement": "+lambda",
+          "statusReason": "Error: expect(received).toBeLessThanOrEqual(expected)\n\nExpected: <= 1\nReceived:    1.6487212707001282\n    at Object.toBeLessThanOrEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/poisson_distribution/poissonDistribution.test.js:34:21)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 9,
+          "killedBy": [
+            "16"
+          ],
+          "location": {
+            "end": {
+              "column": 37,
+              "line": 36
+            },
+            "start": {
+              "column": 30,
+              "line": 36
+            }
+          }
+        },
+        {
+          "id": "1235",
+          "mutatorName": "ArithmeticOperator",
+          "replacement": "Math.exp(-lambda) / Math.pow(lambda, x)",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 60,
+              "line": 36
+            },
+            "start": {
+              "column": 21,
+              "line": 36
+            }
+          }
+        },
+        {
+          "id": "1237",
+          "mutatorName": "AssignmentOperator",
+          "replacement": "cumulativeProbability -= cells[x]",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 42,
+              "line": 37
+            },
+            "start": {
+              "column": 9,
+              "line": 37
+            }
+          }
+        },
+        {
+          "id": "1239",
+          "mutatorName": "AssignmentOperator",
+          "replacement": "factorialX /= x",
+          "statusReason": "Error: expect(received).toBeLessThanOrEqual(expected)\n\nExpected: <= 1\nReceived:    1.2130613194252668\n    at Object.toBeLessThanOrEqual (/testbed/stryker-tmp/sandbox-FOiAoP/test/poisson_distribution/poissonDistribution.test.js:34:21)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 9,
+          "killedBy": [
+            "16"
+          ],
+          "location": {
+            "end": {
+              "column": 24,
+              "line": 39
+            },
+            "start": {
+              "column": 9,
+              "line": 39
+            }
+          }
+        },
+        {
+          "id": "1238",
+          "mutatorName": "UpdateOperator",
+          "replacement": "x--",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 12,
+              "line": 38
+            },
+            "start": {
+              "column": 9,
+              "line": 38
+            }
+          }
+        },
+        {
+          "id": "1240",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "statusReason": "Error: expect(received).toBeGreaterThan(expected)\n\nExpected: > 0.99\nReceived:   0.6065306597126334\n    at Object.toBeGreaterThan (/testbed/stryker-tmp/sandbox-FOiAoP/test/poisson_distribution/poissonDistribution.test.js:33:21)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 9,
+          "killedBy": [
+            "16"
+          ],
+          "location": {
+            "end": {
+              "column": 49,
+              "line": 42
+            },
+            "start": {
+              "column": 14,
+              "line": 42
+            }
+          }
+        },
+        {
+          "id": "1242",
+          "mutatorName": "EqualityOperator",
+          "replacement": "cumulativeProbability >= 1 - epsilon",
+          "statusReason": "Error: expect(received).toBeGreaterThan(expected)\n\nExpected: > 0.99\nReceived:   0.6065306597126334\n    at Object.toBeGreaterThan (/testbed/stryker-tmp/sandbox-FOiAoP/test/poisson_distribution/poissonDistribution.test.js:33:21)\n    at Promise.finally.completed (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n    at _callCircusTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n    at _runTest (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n    at /testbed/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n    at _runTestsForDescribeBlock (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:861:11)\n    at run (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n    at runAndTransformResultsToJestFormat (/testbed/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n    at jestAdapter (/testbed/node_modules/jest-circus/build/runner.js:111:19)\n    at runTestInternal (/testbed/node_modules/jest-runner/build/index.js:276:16)\n    at runTest (/testbed/node_modules/jest-runner/build/index.js:344:7)",
+          "status": "Killed",
+          "testsCompleted": 9,
+          "killedBy": [
+            "16"
+          ],
+          "location": {
+            "end": {
+              "column": 49,
+              "line": 42
+            },
+            "start": {
+              "column": 14,
+              "line": 42
+            }
+          }
+        },
+        {
+          "id": "1241",
+          "mutatorName": "EqualityOperator",
+          "replacement": "cumulativeProbability <= 1 - epsilon",
+          "status": "Survived",
+          "testsCompleted": 9,
+          "location": {
+            "end": {
+              "column": 49,
+              "line": 42
+            },
+            "start": {
+              "column": 14,
+              "line": 42
+            }
+          }
+        },
+        {
+          "id": "1243",
+          "mutatorName": "ArithmeticOperator",
+          "replacement": "1 + epsilon",
+          "status": "Timeout",
+          "location": {
+            "end": {
+              "column": 49,
+              "line": 42
+            },
+            "start": {
+              "column": 38,
+              "line": 42
+            }
+          }
+        }
+      ],
+      "source": "import epsilon from \"./epsilon.js\";\n\n/**\n * The [Poisson Distribution](http://en.wikipedia.org/wiki/Poisson_distribution)\n * is a discrete probability distribution that expresses the probability\n * of a given number of events occurring in a fixed interval of time\n * and/or space if these events occur with a known average rate and\n * independently of the time since the last event.\n *\n * The Poisson Distribution is characterized by the strictly positive\n * mean arrival or occurrence rate, `λ`.\n *\n * @param {number} lambda location poisson distribution\n * @returns {number[]} values of poisson distribution at that point\n */\nfunction poissonDistribution(lambda) /*: ?number[] */ {\n    // Check that lambda is strictly positive\n    if (lambda <= 0) {\n        return undefined;\n    }\n\n    // our current place in the distribution\n    let x = 0;\n    // and we keep track of the current cumulative probability, in\n    // order to know when to stop calculating chances.\n    let cumulativeProbability = 0;\n    // the calculated cells to be returned\n    const cells = [];\n    let factorialX = 1;\n\n    // This algorithm iterates through each potential outcome,\n    // until the `cumulativeProbability` is very close to 1, at\n    // which point we've defined the vast majority of outcomes\n    do {\n        // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)\n        cells[x] = (Math.exp(-lambda) * Math.pow(lambda, x)) / factorialX;\n        cumulativeProbability += cells[x];\n        x++;\n        factorialX *= x;\n        // when the cumulativeProbability is nearly 1, we've calculated\n        // the useful range of this distribution\n    } while (cumulativeProbability < 1 - epsilon);\n\n    return cells;\n}\n\nexport default poissonDistribution;\n"
+    }
+  },
+  "schemaVersion": "1.0",
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "testFiles": {
+    "test/combinations_replacement/combinationsReplacement.test.js": {
+      "tests": [
+        {
+          "id": "0",
+          "name": "combinationsReplacement should return an empty array if input array x is empty",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 6
+            }
+          }
+        },
+        {
+          "id": "1",
+          "name": "combinationsReplacement should return combinations of length k",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 11
+            }
+          }
+        },
+        {
+          "id": "2",
+          "name": "combinationsReplacement should return single-element combinations when k is 1",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 23
+            }
+          }
+        },
+        {
+          "id": "3",
+          "name": "combinationsReplacement should handle repeated elements in input array correctly",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 32
+            }
+          }
+        },
+        {
+          "id": "4",
+          "name": "combinationsReplacement should return a single combination if k matches the array length (specific logic check)",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 44
+            }
+          }
+        },
+        {
+          "id": "5",
+          "name": "combinationsReplacement should handle k value greater than array length",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 53
+            }
+          }
+        },
+        {
+          "id": "6",
+          "name": "combinationsReplacement should handle k of 0 or negative by returning empty list (edge case on loop/logic)",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 83
+            }
+          }
+        }
+      ],
+      "source": "\n\nimport combinationsReplacement from '../../src/combinations_replacement';\n\ndescribe('combinationsReplacement', () => {\n    test('should return an empty array if input array x is empty', () => {\n        expect(combinationsReplacement([], 1)).toEqual([]);\n        expect(combinationsReplacement([], 2)).toEqual([]);\n    });\n\n    test('should return combinations of length k', () => {\n        const result = combinationsReplacement([1, 2, 3], 2);\n        expect(result).toEqual([\n            [1, 1],\n            [1, 2],\n            [1, 3],\n            [2, 2],\n            [2, 3],\n            [3, 3]\n        ]);\n    });\n\n    test('should return single-element combinations when k is 1', () => {\n        const result = combinationsReplacement([1, 2, 3], 1);\n        expect(result).toEqual([\n            [1],\n            [2],\n            [3]\n        ]);\n    });\n\n    test('should handle repeated elements in input array correctly', () => {\n        const result = combinationsReplacement([1, 1, 2], 2);\n        expect(result).toEqual([\n            [1, 1],\n            [1, 1],\n            [1, 2],\n            [1, 1],\n            [1, 2],\n            [2, 2]\n        ]);\n    });\n\n    test('should return a single combination if k matches the array length (specific logic check)', () => {\n        const result = combinationsReplacement([1, 2], 2);\n        expect(result).toEqual([\n            [1, 1],\n            [1, 2],\n            [2, 2]\n        ]);\n    });\n\n    test('should handle k value greater than array length', () => {\n        // The function relies on x.length for the loop. \n        // If k > length, recursion eventually tries slice(i, length) on empty or smaller arrays.\n        // Specifically, if x=[1], k=2. i=0, k!=1. Recurse x.slice(0)=[1], k=1.\n        // Recursion returns [[1]]. Loop pushes [1, 1].\n        // If x=[], k=1, loop doesn't run, returns [].\n        const result1 = combinationsReplacement([1], 2);\n        expect(result1).toEqual([[1, 1]]);\n\n        const result2 = combinationsReplacement([1, 2], 4);\n        // Based on logic: \n        // k=4 -> i=0 -> rec([1,2], 3)\n        //   k=3 -> i=0 -> rec([1,2], 2)\n        //     k=2 -> i=0 -> rec([1,2], 1) -> [[1], [2]] -> push [1,1], [1,2]\n        //           -> i=1 -> rec([2], 1) -> [[2]] -> push [2,2]\n        //           -> ret [[1,1], [1,2], [2,2]]\n        //     push [1,1,1], [1,1,2], [1,2,2]\n        //   -> i=1 -> rec([2], 2)\n        //     k=2 -> i=0 -> rec([2], 1) -> [[2]] -> push [2,2]\n        //     -> ret [[2,2]]\n        //     push [2,2,2]\n        //   -> ret [[1,1,1], [1,1,2], [1,2,2], [2,2,2]]\n        // push [1,1,1,1], [1,1,1,2], [1,1,2,2], [1,2,2,2]\n        // i=1 -> rec([2], 3)\n        //   ... similar depth logic leads to [2,2,2,2]\n        expect(result2.length).toBe(5); // 4+1\n        expect(result2).toContainEqual([1, 1, 1, 1]);\n        expect(result2).toContainEqual([2, 2, 2, 2]);\n    });\n\n    test('should handle k of 0 or negative by returning empty list (edge case on loop/logic)', () => {\n        // If k < 1, the outer loop runs, but neither branch (k===1 nor else with recursion logic stopping properly) handles k=0 gracefully in standard combinatorics.\n        // However, standard recursion here assumes k >= 1. \n        // If k=0 is passed, loop runs, k!=1. recurses with k=-1... stack overflow eventually or just weird behavior.\n        // Assuming k >= 1 based on usage. If k=0, function is strictly for combinations.\n        // We will test valid k. If k is 0, the condition k===1 is false. \n        // recurses k-1. Eventually stack overflow. \n        // So we stick to valid inputs k >= 1.\n        // If x is empty, k=1, result is [].\n    });\n});"
+    },
+    "test/chi_squared_goodness_of_fit/chiSquaredGoodnessOfFit.test.js": {
+      "tests": [
+        {
+          "id": "7",
+          "name": "chiSquaredGoodnessOfFit should return true if chi-squared statistic exceeds critical value (reject null hypothesis)",
+          "location": {
+            "start": {
+              "column": 11,
+              "line": 35
+            }
+          }
+        },
+        {
+          "id": "8",
+          "name": "chiSquaredGoodnessOfFit should return false if chi-squared statistic is less than critical value (fail to reject null hypothesis)",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 48
+            }
+          }
+        },
+        {
+          "id": "9",
+          "name": "chiSquaredGoodnessOfFit should handle sparse arrays by filling gaps with zeros",
+          "location": {
+            "start": {
+              "column": 11,
+              "line": 60
+            }
+          }
+        },
+        {
+          "id": "10",
+          "name": "chiSquaredGoodnessOfFit should collapse classes with expected frequency < 3",
+          "location": {
+            "start": {
+              "column": 11,
+              "line": 73
+            }
+          }
+        },
+        {
+          "id": "11",
+          "name": "chiSquaredGoodnessOfFit should handle standard significance levels",
+          "location": {
+            "start": {
+              "column": 11,
+              "line": 88
+            }
+          }
+        }
+      ],
+      "source": "\n\nconst src = require('../../src/chi_squared_goodness_of_fit');\n\n// Mock global dependencies that the source code relies on\nglobal.chiSquaredDistributionTable = {\n    0: { 0.05: 3.841, 0.01: 6.635 },\n    1: { 0.05: 5.991, 0.01: 9.210 },\n    2: { 0.05: 7.815, 0.01: 11.345 },\n    3: { 0.05: 9.488, 0.01: 13.277 },\n    4: { 0.05: 11.070, 0.01: 15.086 },\n    5: { 0.05: 12.592, 0.01: 16.812 },\n    10: { 0.05: 18.307, 0.01: 23.209 }\n};\n\nglobal.mean = (data) => {\n    const sum = data.reduce((acc, val) => acc + val, 0);\n    return sum / data.length;\n};\n\n// Robustly handle different potential export structures (default, named, or direct)\nconst chiSquaredGoodnessOfFit = src.default || src.chiSquaredGoodnessOfFit || src;\n\ndescribe('chiSquaredGoodnessOfFit', () => {\n    const mockDistribution = (mean) => {\n        return {\n            0: 0.1,\n            1: 0.2,\n            2: 0.4,\n            3: 0.2,\n            4: 0.1\n        };\n    };\n\n    test.skip('should return true if chi-squared statistic exceeds critical value (reject null hypothesis)', () => {\n        const poorFitData = Array(20).fill(0);\n        \n        // Expected Freqs: [2, 4, 8, 4, 2]\n        // Observed Freqs: [20, 0, 0, 0, 0]\n        // ChiSq bin 0: (20-2)^2 / 2 = 162\n        // Total ChiSq >> Critical\n        // df = 5 - 1 - 1 = 3. Critical @ 0.05 = 9.488.\n        \n        const result = chiSquaredGoodnessOfFit(poorFitData, mockDistribution, 0.05);\n        expect(result).toBe(true);\n    });\n\n    test('should return false if chi-squared statistic is less than critical value (fail to reject null hypothesis)', () => {\n        const goodFitData = [\n            0, 1, 1, 2, 2, 2, 2, 3, 3, 4\n        ];\n\n        // Perfect fit match. ChiSq ~ 0.\n        // 0 < 9.488 => false.\n        \n        const result = chiSquaredGoodnessOfFit(goodFitData, mockDistribution, 0.05);\n        expect(result).toBe(false);\n    });\n\n    test.skip('should handle sparse arrays by filling gaps with zeros', () => {\n        const sparseData = [0, 2, 2, 2, 4];\n        \n        // Obs: [1, 0, 3, 0, 1]\n        // Exp: [0.5, 1.0, 2.0, 1.0, 0.5]\n        // ChiSq = 0.5 + 1 + 0.5 + 1 + 0.5 = 3.5\n        // df = 3. Critical = 9.488.\n        // 3.5 < 9.488 => false.\n\n        const result = chiSquaredGoodnessOfFit(sparseData, mockDistribution, 0.05);\n        expect(result).toBe(false);\n    });\n\n    test.skip('should collapse classes with expected frequency < 3', () => {\n        const dataCollapse = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]; // 10 occurrences of 2\n        \n        // Exp: [1, 2, 4, 2, 1]\n        // Collapse k=4 (1<3) into 3 -> Exp[3]=3. Pop 4.\n        // Collapse k=1 (2<3) into 0 -> Exp[0]=3. Pop 1.\n        // Final Exp: [3, 4, 3]. Obs: [0, 10, 0].\n        // ChiSq: 3 + 9 + 3 = 15.\n        // df = 3 - 1 - 1 = 1. Critical = 5.991.\n        // 15 > 5.991 => true.\n\n        const result = chiSquaredGoodnessOfFit(dataCollapse, mockDistribution, 0.05);\n        expect(result).toBe(true);\n    });\n\n    test.skip('should handle standard significance levels', () => {\n        const data = [2, 2, 2, 2, 2];\n        const result05 = chiSquaredGoodnessOfFit(data, mockDistribution, 0.05);\n        const result01 = chiSquaredGoodnessOfFit(data, mockDistribution, 0.01);\n        \n        expect(typeof result05).toBe('boolean');\n        expect(typeof result01).toBe('boolean');\n    });\n});"
+    },
+    "test/poisson_distribution/poissonDistribution.test.js": {
+      "tests": [
+        {
+          "id": "12",
+          "name": "poissonDistribution should return undefined if lambda is 0",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 7
+            }
+          }
+        },
+        {
+          "id": "13",
+          "name": "poissonDistribution should return undefined if lambda is negative",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 11
+            }
+          }
+        },
+        {
+          "id": "14",
+          "name": "poissonDistribution should return an array for a positive lambda",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 16
+            }
+          }
+        },
+        {
+          "id": "15",
+          "name": "poissonDistribution should return undefined for non-positive lambda (boundary checks)",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 22
+            }
+          }
+        },
+        {
+          "id": "16",
+          "name": "poissonDistribution should handle small lambda values correctly",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 26
+            }
+          }
+        },
+        {
+          "id": "17",
+          "name": "poissonDistribution should handle large lambda values correctly",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 36
+            }
+          }
+        },
+        {
+          "id": "18",
+          "name": "poissonDistribution should return probabilities that sum up to nearly 1 for lambda=1",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 50
+            }
+          }
+        },
+        {
+          "id": "19",
+          "name": "poissonDistribution should calculate the first cell correctly for specific lambda",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 59
+            }
+          }
+        },
+        {
+          "id": "20",
+          "name": "poissonDistribution should ensure probabilities are non-negative",
+          "location": {
+            "start": {
+              "column": 6,
+              "line": 72
+            }
+          }
+        }
+      ],
+      "source": "\n\nconst src = require('../../src/poisson_distribution');\nconst poissonDistribution = src.poissonDistribution || src.poisson_distribution || src.default || src;\n\ndescribe('poissonDistribution', () => {\n    test('should return undefined if lambda is 0', () => {\n        expect(poissonDistribution(0)).toBeUndefined();\n    });\n\n    test('should return undefined if lambda is negative', () => {\n        expect(poissonDistribution(-1)).toBeUndefined();\n        expect(poissonDistribution(-10.5)).toBeUndefined();\n    });\n\n    test('should return an array for a positive lambda', () => {\n        const result = poissonDistribution(1);\n        expect(Array.isArray(result)).toBe(true);\n        expect(result.length).toBeGreaterThan(0);\n    });\n\n    test('should return undefined for non-positive lambda (boundary checks)', () => {\n        expect(poissonDistribution(-0.0001)).toBeUndefined();\n    });\n\n    test('should handle small lambda values correctly', () => {\n        const lambda = 0.5;\n        const result = poissonDistribution(lambda);\n\n        // Verify the sum of probabilities approaches 1\n        const sum = result.reduce((acc, val) => acc + val, 0);\n        expect(sum).toBeGreaterThan(0.99); // Accounting for epsilon\n        expect(sum).toBeLessThanOrEqual(1.0);\n    });\n\n    test('should handle large lambda values correctly', () => {\n        const lambda = 20;\n        const result = poissonDistribution(lambda);\n\n        // Verify the sum of probabilities approaches 1\n        const sum = result.reduce((acc, val) => acc + val, 0);\n        expect(sum).toBeGreaterThan(0.99);\n        expect(sum).toBeLessThanOrEqual(1.0);\n        \n        // Ensure we have a reasonable number of cells for lambda=20\n        // The mean is 20, so the array should cover well beyond 20\n        expect(result.length).toBeGreaterThanOrEqual(40);\n    });\n\n    test('should return probabilities that sum up to nearly 1 for lambda=1', () => {\n        const lambda = 1;\n        const result = poissonDistribution(lambda);\n        \n        const sum = result.reduce((acc, val) => acc + val, 0);\n        expect(sum).toBeGreaterThan(0.99);\n        expect(sum).toBeLessThanOrEqual(1.0);\n    });\n\n    test('should calculate the first cell correctly for specific lambda', () => {\n        const lambda = 2;\n        const result = poissonDistribution(lambda);\n\n        // P(X=0) = e^(-2) * 2^0 / 0! = e^(-2) ≈ 0.1353\n        const expectedP0 = Math.exp(-lambda);\n        expect(result[0]).toBeCloseTo(expectedP0, 5);\n\n        // P(X=1) = e^(-2) * 2^1 / 1! = 2 * e^(-2) ≈ 0.2706\n        const expectedP1 = (Math.exp(-lambda) * Math.pow(lambda, 1)) / 1;\n        expect(result[1]).toBeCloseTo(expectedP1, 5);\n    });\n\n    test('should ensure probabilities are non-negative', () => {\n        const lambda = 5;\n        const result = poissonDistribution(lambda);\n\n        for (let i = 0; i < result.length; i++) {\n            expect(result[i]).toBeGreaterThanOrEqual(0);\n        }\n    });\n});"
+    },
+    "test/permutations_heap/permutationsHeap.test.js": {
+      "tests": [
+        {
+          "id": "21",
+          "name": "permutationsHeap should return an empty array for empty input",
+          "location": {
+            "start": {
+              "column": 4,
+              "line": 6
+            }
+          }
+        },
+        {
+          "id": "22",
+          "name": "permutationsHeap should return single permutation for single element",
+          "location": {
+            "start": {
+              "column": 4,
+              "line": 10
+            }
+          }
+        },
+        {
+          "id": "23",
+          "name": "permutationsHeap should generate all permutations for two elements",
+          "location": {
+            "start": {
+              "column": 4,
+              "line": 16
+            }
+          }
+        },
+        {
+          "id": "24",
+          "name": "permutationsHeap should generate all permutations for three distinct elements",
+          "location": {
+            "start": {
+              "column": 4,
+              "line": 26
+            }
+          }
+        },
+        {
+          "id": "25",
+          "name": "permutationsHeap should handle duplicate elements in the input array (generates N! permutations including duplicates)",
+          "location": {
+            "start": {
+              "column": 4,
+              "line": 46
+            }
+          }
+        },
+        {
+          "id": "26",
+          "name": "permutationsHeap should handle input with mixed types (numbers and strings)",
+          "location": {
+            "start": {
+              "column": 4,
+              "line": 56
+            }
+          }
+        },
+        {
+          "id": "27",
+          "name": "permutationsHeap should mutate the original input array",
+          "location": {
+            "start": {
+              "column": 4,
+              "line": 67
+            }
+          }
+        }
+      ],
+      "source": "\n\nimport permutationsHeap from '../../src/permutations_heap';\n\ndescribe('permutationsHeap', () => {\n  it('should return an empty array for empty input', () => {\n    expect(permutationsHeap([])).toEqual([[]]);\n  });\n\n  it('should return single permutation for single element', () => {\n    const input = [1];\n    const expected = [[1]];\n    expect(permutationsHeap(input)).toEqual(expected);\n  });\n\n  it('should generate all permutations for two elements', () => {\n    const input = [1, 2];\n    const expected = [\n      [1, 2],\n      [2, 1]\n    ];\n    expect(permutationsHeap(input)).toEqual(expect.arrayContaining(expected));\n    expect(permutationsHeap(input).length).toBe(2);\n  });\n\n  it('should generate all permutations for three distinct elements', () => {\n    const input = [1, 2, 3];\n    const result = permutationsHeap(input);\n    \n    // There should be 3! = 6 permutations\n    expect(result.length).toBe(6);\n    \n    // Check if the original array's permutations are present\n    const expected = [\n      [1, 2, 3],\n      [2, 1, 3],\n      [3, 1, 2],\n      [1, 3, 2],\n      [2, 3, 1],\n      [3, 2, 1]\n    ];\n    \n    expect(result).toEqual(expect.arrayContaining(expected));\n  });\n\n  it('should handle duplicate elements in the input array (generates N! permutations including duplicates)', () => {\n    const input = [1, 1];\n    const result = permutationsHeap(input);\n    \n    // Heap's algorithm generates N! permutations based on positions, not values\n    expect(result.length).toBe(2);\n    expect(result[0]).toEqual([1, 1]);\n    expect(result[1]).toEqual([1, 1]);\n  });\n\n  it('should handle input with mixed types (numbers and strings)', () => {\n    const input = [1, 'a', 2];\n    const result = permutationsHeap(input);\n    expect(result.length).toBe(6);\n    \n    // Verify a few specific permutations exist\n    expect(result).toContainEqual([1, 'a', 2]);\n    expect(result).toContainEqual([2, 'a', 1]);\n    expect(result).toContainEqual(['a', 1, 2]);\n  });\n\n  it('should mutate the original input array', () => {\n    const input = [1, 2, 3];\n    const originalCopy = [...input];\n    \n    permutationsHeap(input);\n    \n    // The function implementation performs in-place swaps, mutating the input array\n    expect(input).not.toEqual(originalCopy);\n  });\n});"
+    }
+  },
+  "projectRoot": "/testbed",
+  "config": {
+    "mutate": [
+      "src/**/*.js"
+    ],
+    "testRunner": "jest",
+    "jest": {
+      "projectType": "custom",
+      "enableFindRelatedTests": true
+    },
+    "reporters": [
+      "html",
+      "clear-text",
+      "json"
+    ],
+    "coverageAnalysis": "off",
+    "tempDirName": "stryker-tmp",
+    "allowConsoleColors": true,
+    "checkers": [],
+    "checkerNodeArgs": [],
+    "commandRunner": {
+      "command": "npm test"
+    },
+    "clearTextReporter": {
+      "allowColor": true,
+      "allowEmojis": false,
+      "logTests": true,
+      "maxTestsToLog": 3,
+      "reportTests": true,
+      "reportMutants": true,
+      "reportScoreTable": true,
+      "skipFull": false
+    },
+    "dashboard": {
+      "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+      "reportType": "full"
+    },
+    "dryRunOnly": false,
+    "eventReporter": {
+      "baseDir": "reports/mutation/events"
+    },
+    "ignorePatterns": [],
+    "ignoreStatic": false,
+    "incremental": false,
+    "incrementalFile": "reports/stryker-incremental.json",
+    "force": false,
+    "fileLogLevel": "off",
+    "inPlace": false,
+    "logLevel": "info",
+    "maxConcurrentTestRunners": 9007199254740991,
+    "maxTestRunnerReuse": 0,
+    "mutator": {
+      "plugins": null,
+      "excludedMutations": []
+    },
+    "plugins": [
+      "@stryker-mutator/*"
+    ],
+    "appendPlugins": [],
+    "htmlReporter": {
+      "fileName": "reports/mutation/mutation.html"
+    },
+    "jsonReporter": {
+      "fileName": "reports/mutation/mutation.json"
+    },
+    "disableTypeChecks": true,
+    "symlinkNodeModules": true,
+    "cleanTempDir": true,
+    "testRunnerNodeArgs": [],
+    "thresholds": {
+      "high": 80,
+      "low": 60,
+      "break": null
+    },
+    "timeoutFactor": 1.5,
+    "timeoutMS": 5000,
+    "dryRunTimeoutMinutes": 5,
+    "tsconfigFile": "tsconfig.json",
+    "warnings": true,
+    "disableBail": false,
+    "allowEmpty": false,
+    "ignorers": [],
+    "testFiles": []
+  },
+  "framework": {
+    "name": "StrykerJS",
+    "version": "9.6.1",
+    "branding": {
+      "homepageUrl": "https://stryker-mutator.io",
+      "imageUrl": "data:image/svg+xml;utf8,%3Csvg viewBox='0 0 1458 1458' xmlns='http://www.w3.org/2000/svg' fill-rule='evenodd' clip-rule='evenodd' stroke-linejoin='round' stroke-miterlimit='2'%3E%3Cpath fill='none' d='M0 0h1458v1458H0z'/%3E%3CclipPath id='a'%3E%3Cpath d='M0 0h1458v1458H0z'/%3E%3C/clipPath%3E%3Cg clip-path='url(%23a)'%3E%3Cpath d='M1458 729c0 402.655-326.345 729-729 729S0 1131.655 0 729C0 326.445 326.345 0 729 0s729 326.345 729 729' fill='%23e74c3c' fill-rule='nonzero'/%3E%3Cpath d='M778.349 1456.15L576.6 1254.401l233-105 85-78.668v-64.332l-257-257-44-187-50-208 251.806-82.793L1076.6 389.401l380.14 379.15c-19.681 367.728-311.914 663.049-678.391 687.599z' fill-opacity='.3'/%3E%3Cpath d='M753.4 329.503c41.79 0 74.579 7.83 97.925 25.444 23.571 18.015 41.69 43.956 55.167 77.097l11.662 28.679 165.733-58.183-14.137-32.13c-26.688-60.655-64.896-108.61-114.191-144.011-49.329-35.423-117.458-54.302-204.859-54.302-50.78 0-95.646 7.376-134.767 21.542-40.093 14.671-74.09 34.79-102.239 60.259-28.84 26.207-50.646 57.06-65.496 92.701-14.718 35.052-22.101 72.538-22.101 112.401 0 72.536 20.667 133.294 61.165 182.704 38.624 47.255 98.346 88.037 179.861 121.291 42.257 17.475 78.715 33.125 109.227 46.994 27.193 12.361 49.294 26.124 66.157 41.751 15.309 14.186 26.497 30.584 33.63 49.258 7.721 20.214 11.16 45.69 11.16 76.402 0 28.021-4.251 51.787-13.591 71.219-8.832 18.374-20.171 33.178-34.523 44.219-14.787 11.374-31.193 19.591-49.393 24.466-19.68 5.359-39.14 7.993-58.69 7.993-29.359 0-54.387-3.407-75.182-10.747-20.112-7.013-37.144-16.144-51.259-27.486-13.618-11.009-24.971-23.766-33.744-38.279-9.64-15.8-17.272-31.924-23.032-48.408l-10.965-31.376-161.669 60.585 10.734 30.124c10.191 28.601 24.197 56.228 42.059 82.748 18.208 27.144 41.322 51.369 69.525 72.745 27.695 21.075 60.904 38.218 99.481 51.041 37.777 12.664 82.004 19.159 132.552 19.159 49.998 0 95.818-8.321 137.611-24.622 42.228-16.471 78.436-38.992 108.835-67.291 30.719-28.597 54.631-62.103 71.834-100.642 17.263-38.56 25.923-79.392 25.923-122.248 0-54.339-8.368-100.37-24.208-138.32-16.29-38.759-38.252-71.661-65.948-98.797-26.965-26.418-58.269-48.835-93.858-67.175-33.655-17.241-69.196-33.11-106.593-47.533-35.934-13.429-65.822-26.601-89.948-39.525-22.153-11.868-40.009-24.21-53.547-37.309-11.429-11.13-19.83-23.678-24.718-37.664-5.413-15.49-7.98-33.423-7.98-53.577 0-40.883 11.293-71.522 37.086-90.539 28.443-20.825 64.985-30.658 109.311-30.658z' fill='%23f1c40f' fill-rule='nonzero'/%3E%3Cpath d='M720 0h18v113h-18zM1458 738v-18h-113v18h113zM720 1345h18v113h-18zM113 738v-18H0v18h113z'/%3E%3C/g%3E%3C/svg%3E"
+    },
+    "dependencies": {
+      "@stryker-mutator/jest-runner": "9.6.1",
+      "jest": "30.4.2",
+      "typescript": "5.9.3"
+    }
+  }
+}

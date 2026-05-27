@@ -106,9 +106,9 @@ export default {
   testEnvironment: 'node',
 
   // pdf
-  // testEnvironment: 'jsdom',
-
-  // modern-error,simple-statistics,pdf
+  testEnvironment: 'jsdom', 
+  
+// modern-error,simple-statistics,pdf
   moduleDirectories: ['node_modules', 'src'],
 
   moduleNameMapper: {
@@ -123,9 +123,7 @@ export default {
   // pdf,simple-statistics
   // transformIgnorePatterns: ['/node_modules/'],
   // modern-error
-  transformIgnorePatterns: [
-    '/node_modules/(?!(merge-error-cause|set-error-class|set-error-stack|set-error-props|normalize-exception|is-error-instance|is-plain-obj|redefine-property|wrap-error-message|set-error-message|filter-obj)/)',
-  ],
+  // transformIgnorePatterns: ['/node_modules/(?!(merge-error-cause|set-error-class|set-error-stack|set-error-props|normalize-exception|is-error-instance|is-plain-obj|redefine-property|wrap-error-message|set-error-message|filter-obj)/)'],
 
   coverageProvider: 'babel',
   collectCoverage: true,
