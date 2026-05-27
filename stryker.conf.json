@@ -1,0 +1,21 @@
+{
+    "mutate": [
+        "src/**/*.js"
+    ],
+
+    "testRunner": "jest",
+
+    "jest": {
+        "projectType": "custom"
+    },
+
+    "reporters": [
+        "html",
+        "clear-text",
+        "json"
+    ],
+
+    "coverageAnalysis": "off",
+
+    "tempDirName": "stryker-tmp"
+}
