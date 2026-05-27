@@ -219,7 +219,7 @@ def write_generated_tests(project_root, test_json_path):
             print(len(functions))
 
 
-        for func in functions:
+        for func in functions['items']:
             # print(func)
             
             
@@ -229,7 +229,8 @@ def write_generated_tests(project_root, test_json_path):
             if not os.path.exists(dir_path):
                 os.makedirs(dir_path, exist_ok=True)
 
-            raw_code = "\n\n".join(func["generated_tests"])
+            # raw_code = "\n\n".join(func["generated_tests"])
+            raw_code = func["repair_history"][-1]["test_code"]
             
             # 语法检查
              # 写入文件（UTF-8）
