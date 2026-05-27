@@ -4,39 +4,68 @@ import time
 import openai
 from openai import OpenAI
 
+# system_prompt_modify = f"""
+#   You are a software developer doing chaos monkey testing.
+#   Your job is to rewrite a function such that it introduces a logical, subtle, plausible, human-like bug that will break existing unit test(s) in a codebase.
+
+#   To this end, some kinds of bugs you might introduce include:
+#     - "Alter calculation order for incorrect results: Rearrange the sequence of operations in a calculation to subtly change the output (e.g., change (a + b) * c to a + (b * c))."
+#     - "Introduce subtle data transformation errors: Modify data processing logic, such as flipping a sign, truncating a value, or applying the wrong transformation function."
+#     - "Change variable assignments to alter computation state: Assign a wrong or outdated value to a variable that affects subsequent logic."
+#     - "Mishandle edge cases for specific inputs: Change handling logic to ignore or improperly handle boundary cases, like an empty array or a null input."
+#     - "Modify logic in conditionals or loops: Adjust conditions or loop boundaries (e.g., replace <= with <) to change the control flow."
+#     - "Introduce off-by-one errors in indices or loop boundaries: Shift an index or iteration boundary by one, such as starting a loop at 1 instead of 0."
+#     - "Adjust default values or constants to affect behavior: Change a hardcoded value or default parameter that alters how the function behaves under normal use."
+#     - "Reorder operations while maintaining syntax: Rearrange steps in a process so the function produces incorrect intermediate results without breaking the code."
+#     - "Swallow exceptions or return defaults silently: Introduce logic that catches an error but doesn't log or handle it properly, leading to silent failures."
+  
+#   Tips about the bug-introducing task:
+#     - "It should not cause compilation errors."
+#     - "It should not be a syntax error."
+#     - "It should be subtle and challenging to detect."
+#     - "It should not modify the function signature."
+#     - "It should not modify the documentation significantly."
+#     - "Please DO NOT INCLUDE COMMENTS IN THE CODE indicating the bug location or the bug itself."
+#     - "You can write different kinds of bugs, but please make sure each bugged version only introduces one bug that differs from others."
+
+
+#   Your answer should be formatted as follows:
+
+#   [{{"BuggedCode1": "bugged_code", "Explanation": "explanation", "Failing_tests": ["test1", "test2"]}}, {{"BuggedCode2": "bugged_code", "Explanation": "explanation", "Failing_tests": ["test1", "test2"]}}, ...]
+# """
+
 system_prompt_modify = f"""
   You are a software developer doing chaos monkey testing.
-  Your job is to rewrite a function such that it introduces a logical bug that will break existing unit test(s) in a codebase.
+  Your job is to rewrite a function such that it introduces a subtle, plausible, human-like bug that will break existing unit test(s) in a codebase.
 
-  To this end, some kinds of bugs you might introduce include:
-    - "Alter calculation order for incorrect results: Rearrange the sequence of operations in a calculation to subtly change the output (e.g., change (a + b) * c to a + (b * c))."
-    - "Introduce subtle data transformation errors: Modify data processing logic, such as flipping a sign, truncating a value, or applying the wrong transformation function."
-    - "Change variable assignments to alter computation state: Assign a wrong or outdated value to a variable that affects subsequent logic."
-    - "Mishandle edge cases for specific inputs: Change handling logic to ignore or improperly handle boundary cases, like an empty array or a null input."
-    - "Modify logic in conditionals or loops: Adjust conditions or loop boundaries (e.g., replace <= with <) to change the control flow."
-    - "Introduce off-by-one errors in indices or loop boundaries: Shift an index or iteration boundary by one, such as starting a loop at 1 instead of 0."
-    - "Adjust default values or constants to affect behavior: Change a hardcoded value or default parameter that alters how the function behaves under normal use."
-    - "Reorder operations while maintaining syntax: Rearrange steps in a process so the function produces incorrect intermediate results without breaking the code."
-    - "Swallow exceptions or return defaults silently: Introduce logic that catches an error but doesn't log or handle it properly, leading to silent failures."
-  
+  You MUST select a strategy from the pool below to guide your each mutation:
+    A. API Specifications & Contracts
+    (e.g., Alter default parameter values; Swap argument order; Substitute exception types)
+    B. Boundaries & Conditional Logic
+    (e.g., Introduce off-by-one errors; Remove null checks; Invert boolean logic)
+    C. Type & Data Shape
+    (e.g., Break implicit type coercion; Reduce numerical precision; Confuse text/bytes encoding)
+    D. I/O & Stateful Logic Sequences
+    (e.g., Break state initialization/reset; Introduce sequential dependencies; Hardcode environment
+    paths)
+    E. Test-expectation Alignment
+    (e.g., Alter error messages to fail assertions; Make implicit behaviors explicit)
+
   Tips about the bug-introducing task:
     - "It should not cause compilation errors."
     - "It should not be a syntax error."
     - "It should be subtle and challenging to detect."
     - "It should not modify the function signature."
     - "It should not modify the documentation significantly."
-    - "For longer functions, if there is an opportunity to introduce multiple bugs, please do!"
     - "Please DO NOT INCLUDE COMMENTS IN THE CODE indicating the bug location or the bug itself."
 
 
   Your answer should be formatted as follows:
 
-  Explanation:
-  <explanation>
-
-  Bugged Code:
-  <bugged_code>
+  [{{"BuggedCode1": "bugged_code", "Explanation": "explanation", "Failing_tests": ["test1", "test2"]}}, {{"BuggedCode2": "bugged_code", "Explanation": "explanation", "Failing_tests": ["test1", "test2"]}}, ...]
 """
+
+
 
 def gen_prompt_modify(function_info: dict) -> str:
     function_name = function_info['name']
@@ -75,11 +104,180 @@ Function Information:
 Function Code:
 ```java
 {function_code}
+
+Existing Tests:
+```java
+class TextStyleTest {{
+
+    static Stream<Arguments> padTestData() {{
+        final List<Arguments> lst = new ArrayList<>();
+        final TextStyle.Builder builder = TextStyle.builder();
+        builder.setIndent(5);
+        builder.setLeftPad(5);
+        builder.setMinWidth(4);
+        builder.setScalable(true);
+
+        // undefined creates result of original text + indent
+        builder.setMaxWidth(TextStyle.UNSET_MAX_WIDTH);
+        builder.setAlignment(TextStyle.Alignment.LEFT);
+        lst.add(Arguments.of(builder.get(), "Hello world", "     Hello world"));
+
+        builder.setAlignment(TextStyle.Alignment.RIGHT);
+        lst.add(Arguments.of(builder.get(), "Hello world", "     Hello world"));
+
+        builder.setAlignment(TextStyle.Alignment.CENTER);
+        lst.add(Arguments.of(builder.get(), "Hello world", "  Hello world   "));
+
+        // width less than text length creates result of original text
+        builder.setMaxWidth(5);
+        builder.setAlignment(TextStyle.Alignment.LEFT);
+        lst.add(Arguments.of(builder.get(), "Hello world", "Hello world"));
+
+        builder.setAlignment(TextStyle.Alignment.RIGHT);
+        lst.add(Arguments.of(builder.get(), "Hello world", "Hello world"));
+
+        builder.setAlignment(TextStyle.Alignment.CENTER);
+        lst.add(Arguments.of(builder.get(), "Hello world", "Hello world"));
+
+        // width greater than text length + indent creates result of text length with indent
+        builder.setMaxWidth(20);
+        builder.setAlignment(TextStyle.Alignment.LEFT);
+        lst.add(Arguments.of(builder.get(), "Hello world         ", "     Hello world    "));
+
+        builder.setAlignment(TextStyle.Alignment.RIGHT);
+        lst.add(Arguments.of(builder.get(), "         Hello world", "         Hello world"));
+
+        builder.setAlignment(TextStyle.Alignment.CENTER);
+        lst.add(Arguments.of(builder.get(), "    Hello world     ", "    Hello world     "));
+
+        // width greater than text length and less than text length + indent creates result of text length + pad
+        builder.setMaxWidth(14);
+        builder.setAlignment(TextStyle.Alignment.LEFT);
+        lst.add(Arguments.of(builder.get(), "Hello world   ", "Hello world   "));
+
+        builder.setAlignment(TextStyle.Alignment.RIGHT);
+        lst.add(Arguments.of(builder.get(), "   Hello world", "   Hello world"));
+
+        builder.setAlignment(TextStyle.Alignment.CENTER);
+        lst.add(Arguments.of(builder.get(), " Hello world  ", " Hello world  "));
+
+        return lst.stream();
+    }}
+
+    @Test
+    void testDefaultStyle() {{
+        final TextStyle underTest = TextStyle.DEFAULT;
+        assertEquals(TextStyle.Alignment.LEFT, underTest.getAlignment());
+        assertTrue(underTest.isScalable());
+        assertEquals(0, underTest.getLeftPad());
+        assertEquals(0, underTest.getMinWidth());
+        assertEquals(TextStyle.UNSET_MAX_WIDTH, underTest.getMaxWidth());
+    }}
+
+    @ParameterizedTest(name = "{{index}} {{0}}")
+    @MethodSource("padTestData")
+    void testPad(final TextStyle underTest, final String unindentedString, final String indentedString) {{
+        assertEquals(unindentedString, underTest.pad(false, "Hello world"), "Unindented string test failed");
+        assertEquals(indentedString, underTest.pad(true, "Hello world"), "Indented string test failed");
+    }}
+}}
     """
 
     prompt = f"""
   <INPUT>
   {function_code}
+
+  Existing Tests:
+```java
+final class TextHelpAppendableTest {{
+
+    private StringBuilder sb;
+    private TextHelpAppendable underTest;
+
+    @BeforeEach
+    void setUp() {{
+        sb = new StringBuilder();
+        underTest = new TextHelpAppendable(sb);
+    }}
+
+    @Test
+    void testAdjustTableFormat() {{
+        // test width smaller than header
+        // @formatter:off
+        final TableDefinition tableDefinition = TableDefinition.from("Testing",
+                Collections.singletonList(TextStyle.builder().setMaxWidth(3).get()),
+                Collections.singletonList("header"),
+                // "data" shorter than "header"
+                Collections.singletonList(Collections.singletonList("data"))
+        );
+        // @formatter:on
+        final TableDefinition actual = underTest.adjustTableFormat(tableDefinition);
+        assertEquals("header".length(), actual.columnTextStyles().get(0).getMaxWidth());
+        assertEquals("header".length(), actual.columnTextStyles().get(0).getMinWidth());
+    }}
+
+    @Test
+    void testAppendTable() throws IOException {{
+        final TextStyle.Builder styleBuilder = TextStyle.builder();
+        final List<TextStyle> styles = new ArrayList<>();
+        styles.add(styleBuilder.setIndent(2).get());
+        styles.add(styleBuilder.setIndent(0).setLeftPad(5).setAlignment(TextStyle.Alignment.RIGHT).get());
+        final String[] headers = {{ "fox", "time" }};
+        // @formatter:off
+        final List<List<String>> rows = Arrays.asList(
+                Arrays.asList("The quick brown fox jumps over the lazy dog",
+                        "Now is the time for all good people to come to the aid of their country"),
+                Arrays.asList("Léimeann an sionnach donn gasta thar an madra leisciúil",
+                        "Anois an t-am do na daoine maithe go léir teacht i gcabhair ar a dtír")
+        );
+        // @formatter:on
+
+        List<String> expected = new ArrayList<>();
+        expected.add(" Common Phrases");
+        expected.add("");
+        expected.add("               fox                                       time                   ");
+        expected.add(" The quick brown fox jumps over           Now is the time for all good people to");
+        expected.add("   the lazy dog                                 come to the aid of their country");
+        expected.add(" Léimeann an sionnach donn gasta       Anois an t-am do na daoine maithe go léir");
+        expected.add("   thar an madra leisciúil                           teacht i gcabhair ar a dtír");
+        expected.add("");
+
+        TableDefinition table = TableDefinition.from("Common Phrases", styles, Arrays.asList(headers), rows);
+        sb.setLength(0);
+        underTest.setMaxWidth(80);
+        underTest.appendTable(table);
+        List<String> actual = IOUtils.readLines(new StringReader(sb.toString()));
+        assertEquals(expected, actual, "full table failed");
+
+        table = TableDefinition.from(null, styles, Arrays.asList(headers), rows);
+        expected.remove(1);
+        expected.remove(0);
+        sb.setLength(0);
+        underTest.appendTable(table);
+        actual = IOUtils.readLines(new StringReader(sb.toString()));
+        assertEquals(expected, actual);
+
+        table = TableDefinition.from(null, styles, Arrays.asList(headers), Collections.emptyList());
+        expected = new ArrayList<>();
+        expected.add(" fox     time");
+        expected.add("");
+        sb.setLength(0);
+        underTest.appendTable(table);
+        actual = IOUtils.readLines(new StringReader(sb.toString()));
+        assertEquals(expected, actual, "no rows test failed");
+    }}
+
+    @Test
+    void testResizeTableFormat() {{
+        underTest.setMaxWidth(150);
+        final TableDefinition tableDefinition = TableDefinition.from("Caption",
+                Collections.singletonList(TextStyle.builder().setMinWidth(20).setMaxWidth(100).get()), Collections.singletonList("header"),
+                Collections.singletonList(Collections.singletonList("one")));
+        final TableDefinition result = underTest.adjustTableFormat(tableDefinition);
+        assertEquals(20, result.columnTextStyles().get(0).getMinWidth(), "Minimum width should not be reset");
+        assertEquals(100, result.columnTextStyles().get(0).getMaxWidth(), "Maximum width should not be reset");
+    }}
+}}
   </INPUT>
 
   <IMPORTANT>As a reminder, Please DO NOT INCLUDE ANY COMMENTS IN THE CODE OR POINT OUT THE BUG IN ANY WAY.</IMPORTANT>
@@ -481,7 +679,7 @@ def call_llm(system_prompt, prompt: str, max_K: int = 3) -> str:
         for k in range(max_K):
             try:
                 response = client.chat.completions.create(
-                    model="gpt-4o-mini",
+                    model="gpt-5",
                     messages=message,
                     temperature=0.3,
                     max_tokens=16384
@@ -494,12 +692,13 @@ def call_llm(system_prompt, prompt: str, max_K: int = 3) -> str:
                     # with open("mut.txt",'w') as f:
                     #     f.write(message_content)
                     if message_content:
-                        explanation = (
-                            message_content.split("Explanation:")[-1].strip()
-                            if "Explanation" in message_content
-                            else message_content.split("```")[-1].strip()
-                        )
-                        bugged_code = extract_code_block(message_content)
+                        mu = json.loads(message_content)
+                        # explanation = (
+                        #     message_content.split("Explanation:")[-1].strip()
+                        #     if "Explanation" in message_content
+                        #     else message_content.split("```")[-1].strip()
+                        # )
+                        # bugged_code = extract_code_block(message_content)
 
                         # with open("bug.json", 'w', encoding='utf-8') as f:
                         #     json.dump(mu, f, indent=2, ensure_ascii=False)
@@ -529,7 +728,7 @@ def call_llm(system_prompt, prompt: str, max_K: int = 3) -> str:
                     raise
                 time.sleep(1)
 
-        return explanation, bugged_code
+        return mu
 
 def gen_bug_modify(data_file) -> str:
     with open(data_file, 'r', encoding='utf-8') as f:
@@ -539,16 +738,15 @@ def gen_bug_modify(data_file) -> str:
     for func in function_info:
         # print(func)
         prompt = gen_prompt_modify(func)
-        explanation, bugged_code = call_llm(system_prompt_modify, prompt)
+        mu = call_llm(system_prompt_modify, prompt)
 
         result = {
             "src_code": func['code'],
-            "explanation": explanation,
-            "bugged_code": bugged_code
+            "mutations": mu
         }
         results.append(result)
     
-    with open("dataset/gen_bug.json", 'w', encoding='utf-8') as f:
+    with open("dataset/gen_bug_modify.json", 'w', encoding='utf-8') as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
 
 def gen_bug_rewrite() -> str:
@@ -566,15 +764,14 @@ def gen_bug_rewrite() -> str:
     #         "bugged_code": bugged_code
     #     }
     #     results.append(result)
-    explanation, bugged_code = call_llm(system_prompt_rewrite, user_prompt_rewrite)
+    mu = call_llm(system_prompt_rewrite, user_prompt_rewrite)
     result = {
             "src_code": "public CharSequence pad(final boolean addIndent, final CharSequence text) {\n        if (text.length() >= maxWidth) {\n            return text;\n        }\n        String indentPad;\n        String rest;\n        final StringBuilder sb = new StringBuilder();\n        switch (alignment) {\n        case CENTER:\n            int padLen;\n            if (maxWidth == UNSET_MAX_WIDTH) {\n                padLen = addIndent ? indent : 0;\n            } else {\n                padLen = maxWidth - text.length();\n            }\n            final int left = padLen / 2;\n            indentPad = Util.repeatSpace(left);\n            rest = Util.repeatSpace(padLen - left);\n            sb.append(indentPad).append(text).append(rest);\n            break;\n        case LEFT:\n        case RIGHT:\n        default: \n            if (maxWidth == UNSET_MAX_WIDTH) {\n                indentPad = addIndent ? Util.repeatSpace(indent) : \"\";\n                rest = \"\";\n            } else {\n                int restLen = maxWidth - text.length();\n                if (addIndent && restLen > indent) {\n                    indentPad = Util.repeatSpace(indent);\n                    restLen -= indent;\n                } else {\n                    indentPad = \"\";\n                }\n                rest = Util.repeatSpace(restLen);\n            }\n\n            if (alignment == Alignment.LEFT) {\n                sb.append(indentPad).append(text).append(rest);\n            } else {\n                sb.append(indentPad).append(rest).append(text);\n            }\n            break;\n        }\n        return sb.toString();\n    }",
-            "explanation": explanation,
-            "rewrite_code": bugged_code
+            "mutation": mu,
         }
     function_info.append(result)
     with open("dataset/gen_bug_rewrite.json", 'w', encoding='utf-8') as f:
         json.dump(function_info, f, indent=2, ensure_ascii=False)
 
 if __name__ == "__main__":
-    gen_bug_rewrite()
+    gen_bug_modify("dataset/tem.json")
