@@ -1,0 +1,30 @@
+full_name,sha,stars,license,created_at,pushed_at,status,reject_reason,baseline_seconds,n_poms,junit_version,strict_post_cutoff,relaxed_post_cutoff,strict_pre_cutoff,relaxed_pre_cutoff,selected,screened_at
+JodaOrg/joda-time,d1ee10e1b855b403ae957e2a2765e41c450f7cdc,4981,Apache-2.0,2011-05-16T16:49:57Z,2026-07-26T13:33:54Z,rejected,"过 cutoff 候选不足（strict=0, relaxed=0）",skipped,1,junit4,0,0,2,9,0,2026-09-05 16:45:20
+querydsl/querydsl,dd905aebf987599044e20b5822e7f035cee6a868,4970,Apache-2.0,2011-08-05T06:46:32Z,2026-05-28T12:13:54Z,rejected,cutoff 2026-01-01 以来 src/main/java 零提交（主代码冻结）,,33,junit4+vintage,,,,,,2026-09-05 16:46:04
+spring-cloud/spring-cloud-netflix,17e7a17f23a5a780627d5430ca93e1aab4aeb7f0,4968,Apache-2.0,2014-07-11T15:46:12Z,2026-09-02T21:03:10Z,rejected,pom 中未声明 JUnit 依赖,,8,,,,,,,2026-09-05 16:46:08
+iflytek/skillhub,53df1041f5e2f7382a2cd9ea81775c55a81b10d3,4966,Apache-2.0,2026-03-11T12:17:05Z,2026-09-03T12:10:59Z,accepted,,skipped,8,junit5,1,6,0,0,5,2026-09-05 16:46:56
+spring-cloud/spring-cloud-gateway,c84adc94414af383c2aa1ecabc4641ae782e1873,4905,Apache-2.0,2016-11-16T21:42:51Z,2026-09-01T22:58:41Z,rejected,pom 中未声明 JUnit 依赖,,15,,,,,,,2026-09-05 16:47:10
+micrometer-metrics/micrometer,7efb0bcfb7c97972d73534d953c0ea04a2edd999,4896,Apache-2.0,2017-04-10T21:36:51Z,2026-09-02T21:21:40Z,rejected,无 pom.xml（Gradle-only? gradle文件数=53）,,0,,,,,,,2026-09-05 16:47:12
+deepjavalibrary/djl,1cb7449ac8ea04f2b17fe562610982413dfab2cf,4852,Apache-2.0,2019-10-29T22:38:54Z,2026-09-03T00:34:27Z,rejected,pom 中未声明 JUnit 依赖,,1,,,,,,,2026-09-05 16:47:15
+dromara/dynamic-tp,e304f1832db7afc2a83bd7440b1b95018c0562c5,4801,Apache-2.0,2022-01-07T16:35:27Z,2026-08-21T11:35:17Z,rejected,"过 cutoff 候选不足（strict=0, relaxed=0）",skipped,100,junit4+junit5,0,0,0,1,0,2026-09-05 16:47:19
+Querz/mcaselector,ee60b273515415b5aaf00ae40b9841587b14bd8c,4779,MIT,2018-04-22T22:23:26Z,2026-07-18T03:57:27Z,rejected,无 pom.xml（Gradle-only? gradle文件数=2）,,0,,,,,,,2026-09-05 16:47:22
+discord-jda/JDA,f0a4cf0fb54a87804025b3c87132754243da6a84,4684,Apache-2.0,2015-12-12T13:57:32Z,2026-08-26T19:13:12Z,rejected,无 pom.xml（Gradle-only? gradle文件数=8）,,0,,,,,,,2026-09-05 16:47:24
+rememberber/WePush,48ff0f6b6b6488841b948c8332664f3ea1ac969c,4677,MIT,2017-06-23T09:03:36Z,2026-08-30T14:33:46Z,accepted,,skipped,26,junit4+junit5,4,20,0,2,5,2026-09-05 16:47:26
+RedSpider1/concurrent,573cea97fe83ddaa91c7918ba367dcaf70a3e804,4612,MIT,2018-11-03T13:49:36Z,2026-07-10T15:56:22Z,rejected,无 pom.xml（Gradle-only? gradle文件数=0）,,0,,,,,,,2026-09-05 16:48:50
+JZ-Darkal/AndroidHttpCapture,6935cbb0790af02ff96dde03a225f4170c359422,4603,MIT,2016-10-15T19:48:00Z,2026-05-07T15:24:24Z,rejected,无 pom.xml（Gradle-only? gradle文件数=3）,,0,,,,,,,2026-09-05 16:48:52
+jishenghua/jshERP,ad6cf886dd4e0676723060a25d361c703dc56bc0,4552,Apache-2.0,2016-09-20T04:51:39Z,2026-08-19T03:49:28Z,rejected,pom 中未声明 JUnit 依赖,,1,,,,,,,2026-09-05 16:48:53
+s4kibs4mi/java-developer-roadmap,08496fab46d3d037e6ea7ce3baebd4cb19fc0a0f,4530,MIT,2019-04-23T06:42:13Z,2026-03-15T18:46:28Z,rejected,无 pom.xml（Gradle-only? gradle文件数=0）,,0,,,,,,,2026-09-05 16:48:54
+apache/fory,80e9b576c84aba6fed54b6520d0c88ea11bf9172,4523,Apache-2.0,2023-04-28T03:57:00Z,2026-09-03T06:43:50Z,accepted,,skipped,26,junit4,5,40,0,6,5,2026-09-05 16:48:54
+apache/shiro,ca444c3332b5996a1c7c75eed610a9598c0ca5a9,4455,Apache-2.0,2009-08-29T08:00:17Z,2026-09-01T20:35:47Z,rejected,"过 cutoff 候选不足（strict=1, relaxed=0）",skipped,56,junit5+vintage,1,0,0,1,1,2026-09-05 16:50:40
+dreamhead/moco,5ed23ff30d7128487c6ca6fdf595594e5436ef21,4445,MIT,2012-10-18T09:09:51Z,2026-05-10T02:14:56Z,rejected,无 pom.xml（Gradle-only? gradle文件数=10）,,0,,,,,,,2026-09-05 16:50:48
+JetBrains/fernflower,032de386b93d1327b4fd022a3420e50c985cd263,4385,Apache-2.0,2014-10-03T05:00:15Z,2026-09-03T11:23:36Z,rejected,无 pom.xml（Gradle-only? gradle文件数=1）,,0,,,,,,,2026-09-05 16:50:49
+eirslett/frontend-maven-plugin,9322a2dffec2f8ce83bf5dea5c7fbcbeb4f404b4,4383,Apache-2.0,2013-08-30T14:44:38Z,2026-08-04T04:24:48Z,rejected,"过 cutoff 候选不足（strict=0, relaxed=0）",skipped,14,junit5,0,0,0,1,0,2026-09-05 16:50:50
+google/open-location-code,83986da0156bbf51fba33d0327d8ca4b7f955c89,4349,Apache-2.0,2014-09-30T18:26:35Z,2026-03-30T16:23:12Z,rejected,cutoff 2026-01-01 以来 src/main/java 零提交（主代码冻结）,,1,junit4,,,,,,2026-09-05 16:50:53
+apache/streampark,829466b5470d749773793193f1fc1d46e8613d61,4329,Apache-2.0,2019-05-27T05:56:03Z,2026-09-02T02:30:45Z,accepted,,skipped,30,junit5,1,6,0,3,5,2026-09-05 16:50:54
+JFormDesigner/FlatLaf,5989569bc50610e6b5797980d33b760165a3de43,4267,Apache-2.0,2019-08-19T10:27:05Z,2026-08-25T17:43:16Z,rejected,无 pom.xml（Gradle-only? gradle文件数=26）,,0,,,,,,,2026-09-05 16:51:22
+mybatis/spring-boot-starter,5254db9c6db04b7ab7f4f31c0c98c27b87f42b67,4252,Apache-2.0,2015-09-25T13:05:15Z,2026-08-27T21:51:52Z,rejected,"过 cutoff 候选不足（strict=0, relaxed=0）",skipped,17,junit5,0,0,0,1,0,2026-09-05 16:51:25
+lukas-krecan/ShedLock,00bc847746081aa9556666eaec262fb502baebfa,4215,Apache-2.0,2016-12-11T13:53:59Z,2026-09-02T16:25:49Z,rejected,"过 cutoff 候选不足（strict=0, relaxed=0）",skipped,52,junit5,0,0,0,0,0,2026-09-05 16:51:31
+RipMeApp/ripme,3810204bb0fab85d7e09bec9465e4a5733d0485f,4113,MIT,2017-01-06T17:12:09Z,2026-08-16T06:38:22Z,rejected,无 pom.xml（Gradle-only? gradle文件数=2）,,0,,,,,,,2026-09-05 16:51:34
+knowm/XChange,3da5e7686506e824d5eb510a1df26656bceaea1a,4082,MIT,2012-02-02T10:48:28Z,2026-07-31T12:04:54Z,rejected,"过 cutoff 候选不足（strict=0, relaxed=1）",skipped,100,junit5+vintage,0,1,2,14,1,2026-09-05 16:51:34
+awaitility/awaitility,4fc23ccbd610ec16d14c2e7728e0593bffa6ac64,4022,Apache-2.0,2010-01-22T15:12:52Z,2026-04-17T11:01:24Z,rejected,"过 cutoff 候选不足（strict=0, relaxed=0）",skipped,8,junit4,0,0,0,0,0,2026-09-05 16:53:40
+fishercoder1534/Leetcode,f19b8bfda4659a774751d475dbe5d40df30c65b0,4003,Apache-2.0,2016-07-31T05:28:15Z,2026-08-04T02:51:24Z,rejected,无 pom.xml（Gradle-only? gradle文件数=2）,,0,,,,,,,2026-09-05 16:53:41

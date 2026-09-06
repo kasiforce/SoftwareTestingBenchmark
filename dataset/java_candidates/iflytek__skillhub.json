@@ -1,0 +1,183 @@
+[
+  {
+    "project_root": "projects/skillhub",
+    "name": "search",
+    "src_file": "server/skillhub-search/src/main/java/com/iflytek/skillhub/search/postgres/PostgresFullTextQueryService.java",
+    "test_file": "server/skillhub-search/src/test/java/com/iflytek/skillhub/search/postgres/SearchTests.java",
+    "code": "@Override\n    public SearchResult search(SearchQuery query) {\n        String normalizedKeyword = normalizeKeyword(query.keyword());\n        String tsQuery = buildPrefixTsQuery(normalizedKeyword);\n        boolean hasKeyword = normalizedKeyword != null;\n        boolean hasTsQuery = tsQuery != null;\n        boolean useRelevanceOrdering = \"relevance\".equals(query.sortBy()) && hasKeyword;\n        boolean useShortPrefixTitleSearch = hasTsQuery && isShortAsciiPrefixSearch(normalizedKeyword);\n        boolean useSemanticRerank = semanticEnabled\n                && hasKeyword\n                && \"relevance\".equals(query.sortBy())\n                && searchDocumentRepository != null\n                && searchEmbeddingService != null;\n        int requestedOffset = query.page() * query.size();\n        if (useSemanticRerank && requestedOffset + query.size() > maxCandidates) {\n            useSemanticRerank = false;\n        }\n        int sqlLimit = query.size();\n        int sqlOffset = requestedOffset;\n        if (useSemanticRerank) {\n            sqlLimit = Math.min(Math.max((query.page() + 1) * query.size() * candidateMultiplier, query.size() * candidateMultiplier), maxCandidates);\n            sqlOffset = 0;\n        }\n        Set<Long> memberNamespaceIds = query.visibilityScope().memberNamespaceIds().isEmpty()\n                ? Set.of(-1L)\n                : query.visibilityScope().memberNamespaceIds();\n        StringBuilder sql = new StringBuilder();\n        sql.append(\"SELECT d.skill_id \");\n        sql.append(\"FROM skill_search_document d \");\n        sql.append(\"JOIN skill s ON s.id = d.skill_id \");\n        sql.append(\"JOIN namespace n ON n.id = d.namespace_id \");\n        if (query.requireInstallableLatest()) {\n            sql.append(\"JOIN skill_version latest ON latest.id = s.latest_version_id \");\n        }\n        sql.append(\"WHERE 1=1 \");\n\n        // Visibility filtering\n        sql.append(\"AND (d.visibility = 'PUBLIC' \");\n        if (query.visibilityScope().userId() != null) {\n            sql.append(\"OR (d.visibility = 'NAMESPACE_ONLY' AND d.namespace_id IN :memberNamespaceIds) \");\n        }\n        sql.append(\") \");\n\n        // Status filtering\n        sql.append(\"AND d.status = 'ACTIVE' \");\n        sql.append(\"AND s.status = 'ACTIVE' \");\n        sql.append(\"AND s.hidden = FALSE \");\n        if (query.requireInstallableLatest()) {\n            sql.append(\"AND latest.status = 'PUBLISHED' \");\n            sql.append(\"AND latest.download_ready = TRUE \");\n            sql.append(\"AND latest.yanked_at IS NULL \");\n        }\n        sql.append(\"AND (n.status <> 'ARCHIVED' \");\n        if (query.visibilityScope().userId() != null) {\n            sql.append(\"OR d.namespace_id IN :memberNamespaceIds \");\n        }\n        sql.append(\") \");\n\n        // Namespace filtering\n        if (query.namespaceId() != null) {\n            sql.append(\"AND d.namespace_id = :namespaceId \");\n        }\n\n        if (query.labelSlugs() != null && !query.labelSlugs().isEmpty()) {\n            sql.append(\"AND d.skill_id IN (\");\n            sql.append(\"SELECT sl.skill_id FROM skill_label sl \");\n            sql.append(\"JOIN label_definition ld ON ld.id = sl.label_id \");\n            sql.append(\"WHERE LOWER(ld.slug) IN :labelSlugs\");\n            sql.append(\") \");\n        }\n\n        // Full-text search\n        if (hasKeyword) {\n            sql.append(\"AND (\");\n            if (hasTsQuery) {\n                if (useShortPrefixTitleSearch) {\n                    sql.append(TITLE_VECTOR_SQL).append(\" @@ to_tsquery('simple', :tsQuery) \");\n                } else {\n                    sql.append(\"d.search_vector @@ to_tsquery('simple', :tsQuery) \");\n                }\n                sql.append(\" OR \");\n            }\n            sql.append(TITLE_SQL).append(\" LIKE :titleLike\");\n            sql.append(\") \");\n        }\n\n        // Sorting\n        if (\"downloads\".equals(query.sortBy())) {\n            sql.append(\"ORDER BY s.download_count DESC, s.updated_at DESC, d.skill_id DESC \");\n        } else if (\"rating\".equals(query.sortBy())) {\n            sql.append(\"ORDER BY s.rating_avg DESC, s.updated_at DESC, d.skill_id DESC \");\n        } else if (\"newest\".equals(query.sortBy())) {\n            sql.append(\"ORDER BY s.updated_at DESC, d.skill_id DESC \");\n        } else if (useRelevanceOrdering) {\n            sql.append(\"ORDER BY CASE \");\n            sql.append(\"WHEN \").append(TITLE_SQL).append(\" = :titleExact THEN 4 \");\n            sql.append(\"WHEN \").append(TITLE_SQL).append(\" LIKE :titlePrefix THEN 3 \");\n            sql.append(\"WHEN \").append(TITLE_SQL).append(\" LIKE :titleLike THEN 2 \");\n            sql.append(\"ELSE 1 END DESC, \");\n            if (useShortPrefixTitleSearch) {\n                sql.append(\"ts_rank_cd(\").append(TITLE_VECTOR_SQL)\n                        .append(\", to_tsquery('simple', :tsQuery)) DESC, d.updated_at DESC, d.skill_id DESC \");\n            } else if (hasTsQuery) {\n                sql.append(\"ts_rank_cd(d.search_vector, to_tsquery('simple', :tsQuery)) DESC, d.updated_at DESC, d.skill_id DESC \");\n            } else {\n                sql.append(\"d.updated_at DESC, d.skill_id DESC \");\n            }\n        } else {\n            sql.append(\"ORDER BY s.updated_at DESC, d.skill_id DESC \");\n        }\n\n        // Pagination\n        sql.append(\"LIMIT :limit OFFSET :offset\");\n\n        Query nativeQuery = entityManager.createNativeQuery(sql.toString());\n\n        if (query.visibilityScope().userId() != null) {\n            nativeQuery.setParameter(\"memberNamespaceIds\", memberNamespaceIds);\n        }\n\n        if (query.namespaceId() != null) {\n            nativeQuery.setParameter(\"namespaceId\", query.namespaceId());\n        }\n\n        if (query.labelSlugs() != null && !query.labelSlugs().isEmpty()) {\n            nativeQuery.setParameter(\"labelSlugs\", query.labelSlugs());\n        }\n\n        if (hasKeyword) {\n            if (hasTsQuery) {\n                nativeQuery.setParameter(\"tsQuery\", tsQuery);\n            }\n            if (useRelevanceOrdering) {\n                nativeQuery.setParameter(\"titleExact\", normalizedKeyword.toLowerCase(Locale.ROOT));\n                nativeQuery.setParameter(\"titlePrefix\", normalizedKeyword.toLowerCase(Locale.ROOT) + \"%\");\n            }\n            nativeQuery.setParameter(\"titleLike\", \"%\" + normalizedKeyword.toLowerCase(Locale.ROOT) + \"%\");\n        }\n\n        nativeQuery.setParameter(\"limit\", sqlLimit);\n        nativeQuery.setParameter(\"offset\", sqlOffset);\n\n        @SuppressWarnings(\"unchecked\")\n        List<Long> skillIds = (List<Long>) nativeQuery.getResultList().stream()\n                .map(obj -> ((Number) obj).longValue())\n                .toList();\n\n        // Count total\n        String countSql = sql.toString().replaceFirst(\"SELECT d\\\\.skill_id\", \"SELECT COUNT(*)\");\n        int orderByIndex = countSql.indexOf(\"ORDER BY\");\n        if (orderByIndex >= 0) {\n            countSql = countSql.substring(0, orderByIndex);\n        }\n        int limitIndex = countSql.indexOf(\"LIMIT\");\n        if (limitIndex >= 0) {\n            countSql = countSql.substring(0, limitIndex);\n        }\n\n        Query countQuery = entityManager.createNativeQuery(countSql);\n\n        if (query.visibilityScope().userId() != null) {\n            countQuery.setParameter(\"memberNamespaceIds\", memberNamespaceIds);\n        }\n\n        if (query.namespaceId() != null) {\n            countQuery.setParameter(\"namespaceId\", query.namespaceId());\n        }\n\n        if (query.labelSlugs() != null && !query.labelSlugs().isEmpty()) {\n            countQuery.setParameter(\"labelSlugs\", query.labelSlugs());\n        }\n\n        if (hasKeyword) {\n            if (hasTsQuery) {\n                countQuery.setParameter(\"tsQuery\", tsQuery);\n            }\n            countQuery.setParameter(\"titleLike\", \"%\" + normalizedKeyword.toLowerCase(Locale.ROOT) + \"%\");\n        }\n\n        long total = ((Number) countQuery.getSingleResult()).longValue();\n\n        if (useSemanticRerank && !skillIds.isEmpty()) {\n            skillIds = rerankBySemanticSimilarity(skillIds, normalizedKeyword, requestedOffset, query.size());\n        }\n\n        return new SearchResult(skillIds, total, query.page(), query.size());\n    }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "PostgresFullTextQueryService",
+    "full_class_name": "PostgresFullTextQueryService",
+    "class_constructor": [
+      "public PostgresFullTextQueryService(EntityManager entityManager) {\n        this(entityManager, null, null, new SearchTextTokenizer(), false, 0.35D, 8, 120);\n    }",
+      "@Autowired\n    public PostgresFullTextQueryService(EntityManager entityManager,\n                                        SkillSearchDocumentJpaRepository searchDocumentRepository,\n                                        SearchEmbeddingService searchEmbeddingService,\n                                        SearchTextTokenizer searchTextTokenizer,\n                                        @Value(\"${skillhub.search.semantic.enabled:true}\") boolean semanticEnabled,\n                                        @Value(\"${skillhub.search.semantic.weight:0.35}\") double semanticWeight,\n                                        @Value(\"${skillhub.search.semantic.candidate-multiplier:8}\") int candidateMultiplier,\n                                        @Value(\"${skillhub.search.semantic.max-candidates:120}\") int maxCandidates) {\n        this.entityManager = entityManager;\n        this.searchDocumentRepository = searchDocumentRepository;\n        this.searchEmbeddingService = searchEmbeddingService;\n        this.searchTextTokenizer = searchTextTokenizer;\n        this.semanticEnabled = semanticEnabled;\n        this.semanticWeight = semanticWeight;\n        this.candidateMultiplier = candidateMultiplier;\n        this.maxCandidates = maxCandidates;\n    }"
+    ],
+    "class_fields": [],
+    "nloc": 156,
+    "complexity": 44,
+    "param_count": 1,
+    "tier": "strict",
+    "method_last_modified": "2026-06-17",
+    "method_oldest_line": "2026-03-11",
+    "class_covered_in_baseline": null,
+    "repo_meta": {
+      "full_name": "iflytek/skillhub",
+      "html_url": "https://github.com/iflytek/skillhub",
+      "stars": "4966",
+      "license": "Apache-2.0",
+      "created_at": "2026-03-11T12:17:05Z",
+      "pushed_at": "2026-09-03T12:10:59Z",
+      "sha": "53df1041f5e2f7382a2cd9ea81775c55a81b10d3",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "screened_at": "2026-09-05 16:46:56"
+    }
+  },
+  {
+    "project_root": "projects/skillhub",
+    "name": "validateContentMatchesExtension",
+    "src_file": "server/skillhub-domain/src/main/java/com/iflytek/skillhub/domain/skill/validation/SkillPackagePolicy.java",
+    "test_file": "server/skillhub-domain/src/test/java/com/iflytek/skillhub/domain/skill/validation/ValidateContentMatchesExtensionTests.java",
+    "code": "public static String validateContentMatchesExtension(String path, byte[] content) {\n        String lowerPath = path.toLowerCase();\n        if (lowerPath.endsWith(\".png\")) {\n            return hasPrefix(content, (byte) 0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a)\n                    ? null\n                    : \"File content does not match extension: \" + path;\n        }\n        if (lowerPath.endsWith(\".jpg\")) {\n            return hasPrefix(content, (byte) 0xff, (byte) 0xd8, (byte) 0xff)\n                    ? null\n                    : \"File content does not match extension: \" + path;\n        }\n        if (lowerPath.endsWith(\".svg\")) {\n            if (!isUtf8Text(content)) {\n                return \"File content does not match extension: \" + path;\n            }\n            String text = new String(content, StandardCharsets.UTF_8).trim().toLowerCase();\n            return text.contains(\"<svg\") ? null : \"File content does not match extension: \" + path;\n        }\n        if (lowerPath.endsWith(\".jpeg\")) {\n            return hasPrefix(content, (byte) 0xff, (byte) 0xd8, (byte) 0xff)\n                    ? null\n                    : \"File content does not match extension: \" + path;\n        }\n        if (lowerPath.endsWith(\".gif\")) {\n            return hasPrefix(content, 'G', 'I', 'F', '8')\n                    ? null\n                    : \"File content does not match extension: \" + path;\n        }\n        if (lowerPath.endsWith(\".webp\")) {\n            return (content.length >= 12\n                    && hasPrefix(content, 'R', 'I', 'F', 'F')\n                    && content[8] == 'W' && content[9] == 'E' && content[10] == 'B' && content[11] == 'P')\n                    ? null\n                    : \"File content does not match extension: \" + path;\n        }\n        if (lowerPath.endsWith(\".ico\")) {\n            return hasPrefix(content, 0x00, 0x00, 0x01, 0x00)\n                    ? null\n                    : \"File content does not match extension: \" + path;\n        }\n        if (lowerPath.endsWith(\".pdf\")) {\n            return hasPrefix(content, '%', 'P', 'D', 'F')\n                    ? null\n                    : \"File content does not match extension: \" + path;\n        }\n        if (isTextExtension(lowerPath)) {\n            return isUtf8Text(content) ? null : \"File content does not match extension: \" + path;\n        }\n        return null;\n    }",
+    "is_async": false,
+    "type": "function",
+    "class_name": "SkillPackagePolicy",
+    "full_class_name": "SkillPackagePolicy",
+    "class_constructor": [],
+    "class_fields": [
+      "public static final int MAX_FILE_COUNT = 500;",
+      "public static final long MAX_SINGLE_FILE_SIZE = 10 * 1024 * 1024;",
+      "public static final long MAX_TOTAL_PACKAGE_SIZE = 100 * 1024 * 1024;",
+      "public static final String SKILL_MD_PATH = \"SKILL.md\";",
+      "public static final Set<String> ALLOWED_EXTENSIONS = Set.of(\n            // Documentation\n            \".md\", \".txt\", \".json\", \".yaml\", \".yml\", \".html\", \".css\", \".csv\", \".pdf\",\n            // Configuration and schemas\n            \".toml\", \".xml\", \".xsd\", \".xsl\", \".dtd\", \".ini\", \".cfg\", \".env\",\n            // Scripts and source code\n            \".js\", \".cjs\", \".mjs\", \".ts\", \".py\", \".sh\", \".rb\", \".go\", \".rs\", \".java\", \".kt\",\n            \".lua\", \".sql\", \".r\", \".bat\", \".ps1\", \".zsh\", \".bash\",\n            // Images\n            \".png\", \".jpg\", \".jpeg\", \".svg\", \".gif\", \".webp\", \".ico\",\n            // Office documents\n            \".doc\", \".xls\", \".ppt\", \".docx\", \".xlsx\", \".pptx\"\n    );"
+    ],
+    "nloc": 51,
+    "complexity": 25,
+    "param_count": 2,
+    "tier": "relaxed",
+    "method_last_modified": "2026-03-18",
+    "method_oldest_line": "2026-03-15",
+    "class_covered_in_baseline": null,
+    "repo_meta": {
+      "full_name": "iflytek/skillhub",
+      "html_url": "https://github.com/iflytek/skillhub",
+      "stars": "4966",
+      "license": "Apache-2.0",
+      "created_at": "2026-03-11T12:17:05Z",
+      "pushed_at": "2026-09-03T12:10:59Z",
+      "sha": "53df1041f5e2f7382a2cd9ea81775c55a81b10d3",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "screened_at": "2026-09-05 16:46:56"
+    }
+  },
+  {
+    "project_root": "projects/skillhub",
+    "name": "validateOnly",
+    "src_file": "server/skillhub-domain/src/main/java/com/iflytek/skillhub/domain/skill/service/SkillPublishService.java",
+    "test_file": "server/skillhub-domain/src/test/java/com/iflytek/skillhub/domain/skill/service/ValidateOnlyTests.java",
+    "code": "@Transactional(readOnly = true)\n    public DryRunResult validateOnly(\n            String namespaceSlug,\n            List<PackageEntry> entries,\n            String publisherId,\n            SkillVisibility visibility,\n            Set<String> platformRoles) {\n\n        List<String> errors = new ArrayList<>();\n        List<String> warnings = new ArrayList<>();\n        String resolvedSlug = null;\n        String resolvedVersion = null;\n\n        // 1. Find namespace\n        var namespaceOpt = namespaceRepository.findBySlug(namespaceSlug);\n        if (namespaceOpt.isEmpty()) {\n            errors.add(\"Namespace not found: \" + namespaceSlug);\n            return new DryRunResult(false, errors, warnings, null, null);\n        }\n        Namespace namespace = namespaceOpt.get();\n        if (namespace.getStatus() == NamespaceStatus.FROZEN) {\n            errors.add(\"Namespace is frozen: \" + namespaceSlug);\n        }\n        if (namespace.getStatus() == NamespaceStatus.ARCHIVED) {\n            errors.add(\"Namespace is archived: \" + namespaceSlug);\n        }\n\n        // 2. Check membership\n        boolean isSuperAdmin = platformRoles.contains(\"SUPER_ADMIN\");\n        if (!isSuperAdmin) {\n            var member = namespaceMemberRepository.findByNamespaceIdAndUserId(namespace.getId(), publisherId);\n            if (member.isEmpty()) {\n                errors.add(\"Publisher is not a member of namespace: \" + namespaceSlug);\n            }\n        }\n        if (requiresSecurityScanner(visibility) && !securityScanService.isEnabled()) {\n            errors.add(\"error.security.scanner.required\");\n        }\n\n        // 3. Package validation\n        ValidationResult packageValidation = skillPackageValidator.validate(entries);\n        errors.addAll(packageValidation.errors());\n        warnings.addAll(packageValidation.warnings());\n\n        if (!packageValidation.passed()) {\n            return new DryRunResult(false, errors, warnings, null, null);\n        }\n\n        // 4. Parse SKILL.md\n        PackageEntry skillMd = entries.stream()\n                .filter(e -> e.path().equals(\"SKILL.md\"))\n                .findFirst()\n                .orElse(null);\n        if (skillMd == null) {\n            errors.add(\"Missing required file: SKILL.md at root\");\n            return new DryRunResult(false, errors, warnings, null, null);\n        }\n\n        SkillMetadata metadata;\n        try {\n            metadata = skillMetadataParser.parse(new String(skillMd.content(), java.nio.charset.StandardCharsets.UTF_8));\n        } catch (Exception e) {\n            errors.add(\"Invalid SKILL.md: \" + e.getMessage());\n            return new DryRunResult(false, errors, warnings, null, null);\n        }\n\n        if (metadata.version() == null || metadata.version().isBlank()) {\n            resolvedVersion = AUTO_VERSION_FORMATTER.format(currentTime());\n        } else {\n            resolvedVersion = metadata.version();\n        }\n\n        try {\n            resolvedSlug = SlugValidator.slugify(metadata.name());\n        } catch (Exception e) {\n            errors.add(\"Invalid skill name for slug generation: \" + e.getMessage());\n            return new DryRunResult(false, errors, warnings, resolvedSlug, resolvedVersion);\n        }\n\n        // 5. Pre-publish validation (credential scan)\n        PrePublishValidator.SkillPackageContext context = new PrePublishValidator.SkillPackageContext(\n                entries, metadata, publisherId, namespace.getId());\n        ValidationResult prePublishValidation = prePublishValidator.validate(context);\n        errors.addAll(prePublishValidation.errors());\n        warnings.addAll(prePublishValidation.warnings());\n\n        // 6. Slug conflict, archived skill, and version-exists checks\n        if (resolvedSlug != null && errors.isEmpty()) {\n            List<Skill> existingSkills = skillRepository.findByNamespaceIdAndSlug(namespace.getId(), resolvedSlug);\n            for (Skill existing : existingSkills) {\n                if (existing.getOwnerId().equals(publisherId)) {\n                    if (existing.getStatus() == SkillStatus.ARCHIVED) {\n                        errors.add(\"Cannot publish to archived skill: \" + resolvedSlug);\n                    }\n                    if (resolvedVersion != null) {\n                        var existingVersion = skillVersionRepository.findBySkillIdAndVersion(existing.getId(), resolvedVersion);\n                        if (existingVersion.isPresent() && existingVersion.get().getStatus() == SkillVersionStatus.PUBLISHED) {\n                            errors.add(\"Version already published: \" + resolvedVersion);\n                        }\n                    }\n                } else {\n                    boolean hasPublished = !skillVersionRepository\n                            .findBySkillIdAndStatus(existing.getId(), SkillVersionStatus.PUBLISHED)\n                            .isEmpty();\n                    if (hasPublished) {\n                        errors.add(\"Name conflict: slug \\\"\" + resolvedSlug + \"\\\" is already published by another user\");\n                        break;\n                    }\n                }\n            }\n        }\n\n        // Warnings make valid=false: real publish rejects them when confirmWarnings=false,\n        // which is the only mode the CLI uses today.\n        boolean valid = errors.isEmpty() && warnings.isEmpty();\n        return new DryRunResult(valid, errors, warnings, resolvedSlug, resolvedVersion);\n    }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "SkillPublishService",
+    "full_class_name": "SkillPublishService",
+    "class_constructor": [
+      "public SkillPublishService(\n            NamespaceRepository namespaceRepository,\n            NamespaceMemberRepository namespaceMemberRepository,\n            SkillRepository skillRepository,\n            SkillVersionRepository skillVersionRepository,\n            SkillFileRepository skillFileRepository,\n            ObjectStorageService objectStorageService,\n            SkillPackageValidator skillPackageValidator,\n            SkillMetadataParser skillMetadataParser,\n            PrePublishValidator prePublishValidator,\n            ObjectMapper objectMapper,\n            ReviewTaskRepository reviewTaskRepository,\n            SecurityScanService securityScanService,\n            SkillStorageDeletionCompensationService compensationService,\n            ApplicationEventPublisher eventPublisher,\n            Clock clock) {\n        this.namespaceRepository = namespaceRepository;\n        this.namespaceMemberRepository = namespaceMemberRepository;\n        this.skillRepository = skillRepository;\n        this.skillVersionRepository = skillVersionRepository;\n        this.skillFileRepository = skillFileRepository;\n        this.objectStorageService = objectStorageService;\n        this.skillPackageValidator = skillPackageValidator;\n        this.skillMetadataParser = skillMetadataParser;\n        this.prePublishValidator = prePublishValidator;\n        this.objectMapper = objectMapper;\n        this.reviewTaskRepository = reviewTaskRepository;\n        this.securityScanService = securityScanService;\n        this.compensationService = compensationService;\n        this.eventPublisher = eventPublisher;\n        this.clock = clock;\n    }"
+    ],
+    "class_fields": [],
+    "nloc": 96,
+    "complexity": 24,
+    "param_count": 5,
+    "tier": "relaxed",
+    "method_last_modified": "2026-06-12",
+    "method_oldest_line": "2026-05-18",
+    "class_covered_in_baseline": null,
+    "repo_meta": {
+      "full_name": "iflytek/skillhub",
+      "html_url": "https://github.com/iflytek/skillhub",
+      "stars": "4966",
+      "license": "Apache-2.0",
+      "created_at": "2026-03-11T12:17:05Z",
+      "pushed_at": "2026-09-03T12:10:59Z",
+      "sha": "53df1041f5e2f7382a2cd9ea81775c55a81b10d3",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "screened_at": "2026-09-05 16:46:56"
+    }
+  },
+  {
+    "project_root": "projects/skillhub",
+    "name": "load",
+    "src_file": "server/skillhub-app/src/main/java/com/iflytek/skillhub/bootstrap/BuiltinSkillManifestLoader.java",
+    "test_file": "server/skillhub-app/src/test/java/com/iflytek/skillhub/bootstrap/LoadTests.java",
+    "code": "public List<ManifestItem> load() {\n        Resource resource = resourceLoader.getResource(MANIFEST_LOCATION);\n        if (!resource.exists()) {\n            log.warn(\"Built-in skill manifest not found at {}\", MANIFEST_LOCATION);\n            return List.of();\n        }\n\n        JsonNode root;\n        try (InputStream inputStream = resource.getInputStream()) {\n            root = objectMapper.readTree(inputStream);\n        } catch (IOException | RuntimeException ex) {\n            log.warn(\"Failed to read built-in skill manifest at {}: {}\", MANIFEST_LOCATION, ex.getMessage());\n            return List.of();\n        }\n\n        if (root == null || root.isNull()) {\n            log.warn(\"Built-in skill manifest at {} is empty\", MANIFEST_LOCATION);\n            return List.of();\n        }\n\n        JsonNode skillsNode = root.path(\"skills\");\n        if (!skillsNode.isArray()) {\n            log.warn(\"Built-in skill manifest at {} does not contain an array field 'skills'\", MANIFEST_LOCATION);\n            return List.of();\n        }\n\n        List<ManifestItem> items = new ArrayList<>();\n        Set<String> seenSlugVersions = new HashSet<>();\n        int totalEntries = skillsNode.size();\n        if (totalEntries > MAX_ITEMS) {\n            log.warn(\"Built-in skill manifest has {} entries, only the first {} entries will be processed\",\n                    totalEntries, MAX_ITEMS);\n        }\n        int limit = Math.min(totalEntries, MAX_ITEMS);\n        for (int index = 0; index < limit; index++) {\n            JsonNode itemNode = skillsNode.get(index);\n            String slug = text(itemNode, \"slug\");\n            String version = text(itemNode, \"version\");\n            String url = text(itemNode, \"url\");\n            String sha256 = text(itemNode, \"sha256\");\n            if (!StringUtils.hasText(slug)\n                    || !StringUtils.hasText(version)\n                    || !StringUtils.hasText(url)\n                    || !StringUtils.hasText(sha256)) {\n                log.warn(\n                        \"Skipping built-in skill manifest item {} because slug, version, url, and sha256 are required\",\n                        index\n                );\n                continue;\n            }\n            if (!SHA256_PATTERN.matcher(sha256).matches()) {\n                log.warn(\n                        \"Skipping built-in skill manifest item {} because sha256 must be 64 lowercase hexadecimal characters\",\n                        index\n                );\n                continue;\n            }\n            try {\n                SlugValidator.validate(slug);\n            } catch (RuntimeException ex) {\n                log.warn(\"Skipping built-in skill manifest item {} because slug is invalid [slug={}]: {}\",\n                        index, slug, ex.getMessage());\n                continue;\n            }\n\n            String key = slug + \"\\n\" + version;\n            if (!seenSlugVersions.add(key)) {\n                log.warn(\"Skipping duplicate built-in skill manifest item for slug={} version={}\", slug, version);\n                continue;\n            }\n\n            items.add(new ManifestItem(slug, version, url, sha256));\n        }\n        return List.copyOf(items);\n    }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "BuiltinSkillManifestLoader",
+    "full_class_name": "BuiltinSkillManifestLoader",
+    "class_constructor": [
+      "public BuiltinSkillManifestLoader(ObjectMapper objectMapper, ResourceLoader resourceLoader) {\n        this.objectMapper = objectMapper;\n        this.resourceLoader = resourceLoader;\n    }"
+    ],
+    "class_fields": [
+      "static final String MANIFEST_LOCATION = \"classpath:builtin-skills/manifest.json\";",
+      "static final int MAX_ITEMS = 100;"
+    ],
+    "nloc": 69,
+    "complexity": 15,
+    "param_count": 0,
+    "tier": "relaxed",
+    "method_last_modified": "2026-07-31",
+    "method_oldest_line": "2026-06-05",
+    "class_covered_in_baseline": null,
+    "repo_meta": {
+      "full_name": "iflytek/skillhub",
+      "html_url": "https://github.com/iflytek/skillhub",
+      "stars": "4966",
+      "license": "Apache-2.0",
+      "created_at": "2026-03-11T12:17:05Z",
+      "pushed_at": "2026-09-03T12:10:59Z",
+      "sha": "53df1041f5e2f7382a2cd9ea81775c55a81b10d3",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "screened_at": "2026-09-05 16:46:56"
+    }
+  },
+  {
+    "project_root": "projects/skillhub",
+    "name": "synchronize",
+    "src_file": "server/skillhub-app/src/main/java/com/iflytek/skillhub/bootstrap/BuiltinSkillInitializer.java",
+    "test_file": "server/skillhub-app/src/test/java/com/iflytek/skillhub/bootstrap/SynchronizeTests.java",
+    "code": "void synchronize() {\n        if (!properties.isEnabled()) {\n            log.info(\"Built-in skill startup synchronization is disabled\");\n            return;\n        }\n\n        Optional<Namespace> namespace = namespaceRepository.findBySlug(GLOBAL_NAMESPACE);\n        if (namespace.isEmpty()) {\n            log.warn(\"Global namespace '{}' does not exist, skipping built-in skill synchronization\",\n                    GLOBAL_NAMESPACE);\n            return;\n        }\n\n        List<ManifestItem> items = manifestLoader.load();\n        if (items.isEmpty()) {\n            log.info(\"No built-in skill manifest items to synchronize\");\n            return;\n        }\n\n        try {\n            if (!ensureSystemPublisher(namespace.get())) {\n                return;\n            }\n        } catch (RuntimeException exception) {\n            log.error(\"Failed to initialize built-in skill system publisher, skipping synchronization: {}\",\n                    exception.getMessage(), exception);\n            return;\n        }\n\n        int published = 0;\n        int idempotentSkipped = 0;\n        int conflictSkipped = 0;\n        int failed = 0;\n        for (ManifestItem item : items) {\n            try {\n                SyncOutcome outcome = syncItem(namespace.get(), item);\n                switch (outcome) {\n                    case PUBLISHED -> published++;\n                    case IDEMPOTENT_SKIPPED -> idempotentSkipped++;\n                    case CONFLICT_SKIPPED -> conflictSkipped++;\n                    case FAILED -> failed++;\n                }\n            } catch (Exception exception) {\n                failed++;\n                log.error(\n                        \"Failed to synchronize built-in skill slug={} version={}: {}\",\n                        item.slug(),\n                        item.version(),\n                        exception.getMessage(),\n                        exception\n                );\n            }\n        }\n        log.info(\n                \"Built-in skill synchronization finished: total={}, published={}, idempotentSkipped={}, conflictSkipped={}, failed={}\",\n                items.size(),\n                published,\n                idempotentSkipped,\n                conflictSkipped,\n                failed\n        );\n    }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "BuiltinSkillInitializer",
+    "full_class_name": "BuiltinSkillInitializer",
+    "class_constructor": [
+      "public BuiltinSkillInitializer(\n            BuiltinSkillProperties properties,\n            BuiltinSkillManifestLoader manifestLoader,\n            BuiltinSkillRemotePackageDownloader downloader,\n            BuiltinSkillPackageExtractor extractor,\n            SkillMetadataParser metadataParser,\n            NamespaceRepository namespaceRepository,\n            NamespaceMemberRepository namespaceMemberRepository,\n            UserAccountRepository userAccountRepository,\n            SkillRepository skillRepository,\n            SkillVersionRepository skillVersionRepository,\n            SkillFileRepository skillFileRepository,\n            SkillPublishService skillPublishService) {\n        this.properties = properties;\n        this.manifestLoader = manifestLoader;\n        this.downloader = downloader;\n        this.extractor = extractor;\n        this.metadataParser = metadataParser;\n        this.namespaceRepository = namespaceRepository;\n        this.namespaceMemberRepository = namespaceMemberRepository;\n        this.userAccountRepository = userAccountRepository;\n        this.skillRepository = skillRepository;\n        this.skillVersionRepository = skillVersionRepository;\n        this.skillFileRepository = skillFileRepository;\n        this.skillPublishService = skillPublishService;\n    }"
+    ],
+    "class_fields": [
+      "static final String GLOBAL_NAMESPACE = \"global\";",
+      "static final String SYSTEM_PUBLISHER_ID = \"builtin-skill-publisher\";"
+    ],
+    "nloc": 58,
+    "complexity": 12,
+    "param_count": 0,
+    "tier": "relaxed",
+    "method_last_modified": "2026-06-10",
+    "method_oldest_line": "2026-06-05",
+    "class_covered_in_baseline": null,
+    "repo_meta": {
+      "full_name": "iflytek/skillhub",
+      "html_url": "https://github.com/iflytek/skillhub",
+      "stars": "4966",
+      "license": "Apache-2.0",
+      "created_at": "2026-03-11T12:17:05Z",
+      "pushed_at": "2026-09-03T12:10:59Z",
+      "sha": "53df1041f5e2f7382a2cd9ea81775c55a81b10d3",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "screened_at": "2026-09-05 16:46:56"
+    }
+  }
+]
