@@ -1,43 +1,50 @@
 import json
 import os
-import re
 from pathlib import Path
 from bug_generation_agent import BugGenerationAgent
 from test_gen import TestGenerationAgent
 from llm_config import LLMConfig
 from valid_agent import ValidAgent
 
-ANSI_ESCAPE_RE = re.compile(r'\x1B(?:[@-_]|\[[0-?]*[ -/]*[@-~])')
-RUNNING_RE = re.compile(r'\[INFO\]\s+Running\s+([^\s]+)')
-ERROR_RE = re.compile(r'\[ERROR\]')
+def delete_test_files_in_test_dirs(project_root):
+    """在 test/tests 目录中删除 *test*.java 文件"""
+    # 查找 test/tests 目录
+    test_dirs = []
+    for root, dirs, files in os.walk(project_root):
+        root_path = Path(root)
 
-
-def find_first_error_test_file(stdout, project_root="."):
-    # 去掉 [INFO] / [ERROR] 周围的 ANSI 颜色
-    stdout = ANSI_ESCAPE_RE.sub('', stdout)
-
-    current_test = None
-
-    for line in stdout.splitlines():
-        line = line.strip()
-
-        # 记录当前运行的测试类
-        match = RUNNING_RE.search(line)
-        if match:
-            current_test = match.group(1)
+        # 跳过某些目录
+        skip_dirs = ['.git', 'venv', '.venv', '__pycache__']
+        if any(skip in root_path.parts for skip in skip_dirs):
             continue
 
-        # 第一个出现 ERROR 的测试类
-        if current_test and ERROR_RE.search(line):
-            class_name = current_test.split("$")[0]
-            file_name = class_name.split(".")[-1] + ".java"
+        # 如果是 test 或 tests 目录
+        if root_path.name.lower() in ['test', 'tests']:
+            test_dirs.append(root_path)
 
-            # 不需要知道 test_root，直接从项目根目录搜索
-            matches = list(Path(project_root).rglob(file_name))
+    if not test_dirs:
+        print("未找到 test 或 tests 目录")
+        return
 
-            return matches[0] if matches else None
+    # 查找并删除测试文件
+    deleted_files = []
+    for test_dir in test_dirs:
+        for file in test_dir.rglob('*.java'):
+            if 'Test' in file.name:
+                try:
+                    os.remove(file)
+                    deleted_files.append(file)
+                except Exception as e:
+                    print(f"删除失败 {file}: {e}")
 
-    return None
+    # 显示结果
+    print(f"在 {len(test_dirs)} 个测试目录中删除了 {len(deleted_files)} 个测试文件:")
+    for file in deleted_files[:10]:
+        print(f"  {file}")
+
+    if len(deleted_files) > 10:
+        print(f"  ... 还有 {len(deleted_files)-10} 个文件")
+
 
 def main(data_path):
     llm_config = LLMConfig("sk-f9iJyNvXH7W8Zc4TC6k3c7gzEpN42jpBOhyqgGfGsay4iEkB", "https://api.agicto.cn/v1", "gpt-5.4-mini")
@@ -75,7 +82,7 @@ def main(data_path):
                 print(f"已将源代码替换为错误代码")
 
             result = subprocess.run(
-                ["mvn", "compile", "-Drat.skip=true", "-Dformatter.skip=true", "-q"],
+                ["mvn", "compile", "-Drat.skip=true", "--show-version", "--batch-mode", "--no-transfer-progress", "-q"],
                 cwd="/testbed",
                 capture_output=True,
                 text=True
@@ -91,7 +98,7 @@ def main(data_path):
                         f.write(src)
 
                     result = subprocess.run(
-                        ["mvn", "compile", "-Drat.skip=true", "-Dformatter.skip=true", "-q"],
+                        ["mvn", "compile", "-Drat.skip=true", "-q"],
                         cwd="/testbed",
                         capture_output=True,
                         text=True
@@ -115,69 +122,45 @@ def main(data_path):
                     continue
 
 
+            
+            bug_code_list.append(bug_code)
+
+            # delete_test_files_in_test_dirs("/testbed")
+            
+            tests = test_agent.init_test_prompt(bug_code, entry)
+            print(tests)
+            test_file = entry.get("test_file", "")
+            os.makedirs(os.path.dirname(test_file), exist_ok=True)
+            with open(test_file, 'w', encoding='utf-8') as f:
+                f.write(tests)
+
             result = subprocess.run(
-                ["mvn", "test", "-Drat.skip=true", "-Dformatter.skip=true", "-DforkCount=0", "-q"],
+                ["mvn", "test-compile", "-Drat.skip=true", "--show-version", "--batch-mode", "--no-transfer-progress", "-q"],
                 cwd="/testbed",
                 capture_output=True,
                 text=True
             )
-            
-            bug_code_list.append(bug_code)
-
-            # print(result.stdout)
             if result.returncode != 0:
-                with open(src_file, 'r', encoding='utf-8') as f:
-                    src = f.read()
-                src = src.replace(bug_code, code)
-                with open(src_file, 'w', encoding='utf-8') as f:
-                    f.write(src)
-                # print("测试失败，详细信息：\n", result.stdout[-1000:])
-                # output = result.stdout.split("ERROR]")[0].strip()
-                # output1 = output.split(output)[0].strip()
-                # fail_file = find_first_error_test_file(result.stdout, project_root="/testbed")
-                # with open(fail_file, 'r', encoding='utf-8') as f:
-                #     fail_file_content = f.read()
-                # test_info = fail_file_content + result.stdout  # Get the last 1000 characters of stdout
-                test_info = result.stdout  # Get the last 1000 characters of stdout
-                print("测试失败，详细信息：\n", test_info[:1000])
-                continue
-            
-            else:
-                print("原有测试通过")
-                flag = "src_test_pass"
-                tests = test_agent.init_test_prompt(bug_code, entry)
-                test_file = entry.get("test_file", "")
-                os.makedirs(os.path.dirname(test_file), exist_ok=True)
-                with open(test_file, 'w', encoding='utf-8') as f:
-                    f.write(tests)
+                error_message = result.stdout
+                for i in range(5):
+                    test_code_fix = test_agent.fix_test_prompt(tests, error_message)
+                    with open(test_file, 'w', encoding='utf-8') as f:
+                        f.write(test_code_fix)
 
-                result = subprocess.run(
-                    ["mvn", "test-compile", "-Drat.skip=true", "-Dformatter.skip=true", "-q"],
-                    cwd="/testbed",
-                    capture_output=True,
-                    text=True
-                )
-                if result.returncode != 0:
-                    error_message = result.stdout
-                    for i in range(5):
-                        test_code_fix = test_agent.fix_test_prompt(tests, error_message)
-                        with open(test_file, 'w', encoding='utf-8') as f:
-                            f.write(test_code_fix)
-
-                        result = subprocess.run(
-                            ["mvn", "test-compile", "-Drat.skip=true", "-Dformatter.skip=true", "-q"],
-                            cwd="/testbed",
-                            capture_output=True,
-                            text=True
-                        )
-                        if result.returncode == 0:
-                            tests = test_code_fix
-                            print(f"已将错误测试代码修复")
-                            break
-                        else:
-                            error_message = result.stdout
-                            tests = test_code_fix
-                            print(f"测试修复尝试 {i+1} 失败，错误信息:\n{error_message}")
+                    result = subprocess.run(
+                        ["mvn", "test-compile", "-Drat.skip=true", "--show-version", "--batch-mode", "--no-transfer-progress", "-q"],
+                        cwd="/testbed",
+                        capture_output=True,
+                        text=True
+                    )
+                    if result.returncode == 0:
+                        tests = test_code_fix
+                        print(f"已将错误测试代码修复")
+                        break
+                    else:
+                        error_message = result.stdout
+                        tests = test_code_fix
+                        print(f"测试修复尝试 {i+1} 失败，错误信息:\n{error_message}")
 
                 # result = subprocess.run(
                 #     ["mvn", "verify", "-Drat.skip=true", "-DforkCount=0", "-q"],
@@ -193,8 +176,11 @@ def main(data_path):
                         "test",
                         f"-Dtest={test_class}",
                         "-Drat.skip=true",
-                        "-Dformatter.skip=true",
                         "-DforkCount=0",
+                        "-Dspotless.check.skip=true",
+                        "--show-version",
+                        "--batch-mode",
+                        "--no-transfer-progress",
                         "-q"
                     ],
                     cwd="/testbed",
@@ -203,9 +189,8 @@ def main(data_path):
                 )
                 
                 test_code_list.append(tests)
-                print(tests)
 
-                # print(result.stdout)
+                print(result.stdout)
                 if result.returncode != 0:
                     with open(src_file, 'r', encoding='utf-8') as f:
                         src = f.read()
@@ -213,7 +198,7 @@ def main(data_path):
                     with open(src_file, 'w', encoding='utf-8') as f:
                         f.write(src)
                     os.remove(test_file)
-                    print("生成的测试失败，详细信息：\n", result.stdout[:1000])
+                    print("生成的测试失败，详细信息：\n", result.stdout[-1000:])
                     # output = result.stdout.split("ERROR]")[0].strip()
                     # output1 = output.split(output)[0].strip()
                     test_info = tests + "\n" + result.stdout  # Get the last 1000 characters of stdout  

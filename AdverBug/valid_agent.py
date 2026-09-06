@@ -1,11 +1,41 @@
 import os
 import json
+import re
 import openai
 from openai import OpenAI
 from llm_config import LLMConfig
 import logging
 
 logger = logging.getLogger(__name__)
+
+
+def parse_json_object(text):
+    """
+    容错地从一个 LLM 回复中提取第一个 JSON 对象。
+
+    兼容：裸 JSON、```json 围栏、前后夹杂说明文字、Python 风格 True/False。
+    解析失败返回 None（旧实现只认 ` ```json ` 开头的回复，其余形态会把
+    原始字符串返回给调用方，导致 adver.py 的 .get() 崩溃）。
+    """
+    if not isinstance(text, str):
+        return text if isinstance(text, dict) else None
+    cleaned = text.strip()
+    fence = re.search(r"```(?:json)?\s*(.*?)\s*```", cleaned, re.DOTALL)
+    if fence:
+        cleaned = fence.group(1).strip()
+    start, end = cleaned.find("{"), cleaned.rfind("}")
+    if start == -1 or end == -1 or end <= start:
+        return None
+    candidate = cleaned[start:end + 1]
+    for attempt in (candidate,
+                    candidate.replace("True", "true").replace("False", "false")):
+        try:
+            parsed = json.loads(attempt)
+        except json.JSONDecodeError:
+            continue
+        if isinstance(parsed, dict):
+            return parsed
+    return None
 
 class ValidAgent:
     def __init__(self, llm_config: LLMConfig):
@@ -74,7 +104,7 @@ The provided tests are only reference information. They should not be used as th
 Return the result in exactly this format:
 ```json
 {{
-    "is_valid_bug": True or False,
+    "is_valid_bug": <true or false>,
     "reason": "<brief explanation of the semantic difference or why no meaningful difference was found>"
 }}
 ```
@@ -91,12 +121,15 @@ Return the result in exactly this format:
                 max_tokens=4096
             )
             valid_result = response.choices[0].message.content.strip()
-            # Ensure we only get JSON object if LLM adds markdown
-            if valid_result.startswith("```json") and valid_result.endswith("```"):
-                valid_result = valid_result[len("```json"):-len("```")].strip()
-                valid_result = json.loads(valid_result)
-                print(f"valid result: {valid_result}")
-            return valid_result
+            parsed = parse_json_object(valid_result)
+            if parsed is not None:
+                print(f"valid result: {parsed}")
+                return parsed
+            logger.error(f"Could not parse validation response: {valid_result[:300]}")
+            return {
+                        "is_valid_bug": False,
+                        "reason": "Validation response was not parseable JSON."
+                    }
         except Exception as e:
             logger.error(f"Error calling LLM for validation: {e}")
             return {
@@ -108,7 +141,7 @@ Return the result in exactly this format:
 
 if __name__ == "__main__":
     # Example usage (will require actual API key and endpoint)
-    llm_config_instance = LLMConfig(api_key=os.getenv("LLM_API_KEY", "sk-hIrt8jKCY6fysHpf79w5jQwtxlSRuQYAFQ5nWwWRfGMYmOB3"),
+    llm_config_instance = LLMConfig(api_key=os.getenv("LLM_API_KEY", "sk-f9iJyNvXH7W8Zc4TC6k3c7gzEpN42jpBOhyqgGfGsay4iEkB"),
                                     api_endpoint=os.getenv("LLM_API_ENDPOINT", "https://api.agicto.cn/v1"),
                                     model_name=os.getenv("LLM_MODEL_NAME", "gpt-5.4-mini"))
 

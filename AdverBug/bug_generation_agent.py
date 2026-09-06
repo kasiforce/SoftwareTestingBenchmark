@@ -13,7 +13,7 @@ class BugGenerationAgent:
         self.client = OpenAI(api_key=self.llm_config.API_KEY, base_url=self.llm_config.API_ENDPOINT)
         self.model = self.llm_config.MODEL_NAME
 
-    def init_bug_prompt(self, code):
+    def init_bug_prompt(self, code, tests_context=None):
         system_prompt = """You are a talented Java programmer and experienced in realistic bug synthesis."""
 
     #     user_prompt = f"""
@@ -81,8 +81,9 @@ class BugGenerationAgent:
     - adding redundant null‑checks or always‑true/always‑false conditions,
     - any other change that leaves the observable output or side effects exactly the same in every possible execution.
     
+    ## Note:
     The buggy code must exhibit incorrect behavior in at least one scenario that the tests happen to miss.
-
+    
     ## Output format
 
     Return a JSON object exactly in the following format:
@@ -94,6 +95,14 @@ class BugGenerationAgent:
     }}
     ```
     """
+        if tests_context:
+            user_prompt += f"""
+## Existing Test Suite (all of them must keep passing)
+The project already contains the tests below for this code. The buggy version must not change any behavior they rely on — every test below must still pass on the buggy code:
+```java
+{tests_context}
+```
+"""
         message = [{"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt}
                     ]
@@ -124,7 +133,7 @@ class BugGenerationAgent:
             logger.error(f"Error calling LLM for bug generation: {e}")
             return code # Return original code on error
 
-    def enhance_bug_prompt(self, code, buggy_code, test_info):
+    def enhance_bug_prompt(self, code, buggy_code, test_info, tests_context=None):
         system_prompt = """You are a talented Java programmer and experienced in realistic bug synthesis."""
 
     #     user_prompt = f"""
@@ -209,6 +218,7 @@ class BugGenerationAgent:
     - adding redundant null‑checks or always‑true/always‑false conditions,
     - any other change that leaves the observable output or side effects exactly the same in every possible execution.
     
+    ## Note:
     The buggy code must exhibit incorrect behavior in at least one scenario that the tests happen to miss.
 
     ## Output format
@@ -222,6 +232,14 @@ class BugGenerationAgent:
     }}
     ```
     """
+        if tests_context:
+            user_prompt += f"""
+## Existing Test Suite (all of them must keep passing)
+The project already contains the tests below for this code. The buggy version must not change any behavior they rely on — every test below must still pass on the buggy code:
+```java
+{tests_context}
+```
+"""
         message = [{"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt}
                     ]
@@ -378,7 +396,7 @@ class BugGenerationAgent:
 
 if __name__ == "__main__":
     # Example usage (will require actual API key and endpoint)
-    llm_config_instance = LLMConfig(api_key=os.getenv("LLM_API_KEY", "sk-hIrt8jKCY6fysHpf79w5jQwtxlSRuQYAFQ5nWwWRfGMYmOB3"),
+    llm_config_instance = LLMConfig(api_key=os.getenv("LLM_API_KEY", "sk-f9iJyNvXH7W8Zc4TC6k3c7gzEpN42jpBOhyqgGfGsay4iEkB"),
                                     api_endpoint=os.getenv("LLM_API_ENDPOINT", "https://api.agicto.cn/v1"),
                                     model_name=os.getenv("LLM_MODEL_NAME", "gpt-5.4-mini"))
 
