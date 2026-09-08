@@ -43,8 +43,8 @@ from filter_test_gen import FilterTestGenerationAgent
 TESTBED = "/testbed"
 MVN_SKIP_ARGS = ["-Drat.skip=true", "-Dformatter.skip=true", "-DforkCount=0"]
 
-DEFAULT_API_KEY = "sk-f9iJyNvXH7W8Zc4TC6k3c7gzEpN42jpBOhyqgGfGsay4iEkB"
-DEFAULT_ENDPOINT = "https://api.agicto.cn/v1"
+DEFAULT_API_KEY = "sk-uf9mxfN9heLBvDWUF27aB3C79eDb4322BcAb9b9b8b70Bc5d"
+DEFAULT_ENDPOINT = "https://api.apiyi.com/v1"
 
 
 # ---------------------------------------------------------------------------
@@ -255,41 +255,54 @@ def evaluate_filter_model(agent, entry, bug_code, src_file, original_code,
         compile_ok, tests, compile_err = compile_test_suite(agent, test_file, tests)
         if not compile_ok:
             last_feedback = compile_err
+            print(f"测试套件编译失败，{compile_err}")
             tests = ""
             continue
 
-        clean_surefire_reports()
+        # clean_surefire_reports()
         buggy_run = mvn(["test", f"-Dtest={test_class_name(test_file)}"], timeout=1800)
-        buggy_results = parse_surefire_results()
+        # buggy_results = parse_surefire_results()
 
-        if buggy_run.returncode == 0 and buggy_results:
-            return True, tests, {"detected": False, "total_cases": len(buggy_results),
-                                 "false_positives": None, "note": "passed_on_buggy"}
-        if not buggy_results:
-            # 没有任何用例被执行（空套件/类名不匹配/全部被跳过）
-            last_feedback = buggy_run.stdout[-4000:] or "no tests were executed"
-            tests = agent.repair_tests(tests, last_feedback)
-            continue
+        if buggy_run.returncode == 0:
+            return True, tests, {"detected": False, "note": "passed_on_buggy"}
+
+        # if buggy_run.returncode == 0 and buggy_results:
+        #     return True, tests, {"detected": False, "total_cases": len(buggy_results),
+        #                          "false_positives": None, "note": "passed_on_buggy"}
+        # if not buggy_results:
+        #     # 没有任何用例被执行（空套件/类名不匹配/全部被跳过）
+        #     last_feedback = buggy_run.stdout[-4000:] or "no tests were executed"
+        #     tests = agent.repair_tests(tests, last_feedback)
+        #     continue
 
         # bug 版运行失败 → 补跑一次原代码做 per-test 差分仲裁
         set_src_code(src_file, original_code, bug_code)
         clean_surefire_reports()
-        mvn(["test", f"-Dtest={test_class_name(test_file)}"], timeout=1800)
-        orig_results = parse_surefire_results()
+        src_run = mvn(["test", f"-Dtest={test_class_name(test_file)}"], timeout=1800)
+        # orig_results = parse_surefire_results()
         set_src_code(src_file, bug_code, original_code)  # 恢复 bug 版
 
-        differential, false_positives = diff_surefire(buggy_results, orig_results)
-        total_false_positives = len(false_positives)
-        if differential:
-            names = ", ".join(f"{c}.{n}" for c, n in differential)
-            return False, tests, {"detected": True, "total_cases": len(buggy_results),
-                                  "false_positives": len(false_positives),
-                                  "note": f"detected_by: {names}",
+        if src_run.returncode != 0:
+            last_feedback = src_run.stdout[-4000:] or "tests fail on the correct implementation (false positives)"
+            tests = agent.repair_tests(tests, last_feedback)
+        else:
+            # 真检出：原代码过 ∧ bug 版挂
+            return False, tests, {"detected": True, "note": "detected_by_filter",
                                   "feedback": buggy_run.stdout[-6000:]}
+            
+
+        # differential, false_positives = diff_surefire(buggy_results, orig_results)
+        # total_false_positives = len(false_positives)
+        # if differential:
+        #     names = ", ".join(f"{c}.{n}" for c, n in differential)
+        #     return False, tests, {"detected": True, "total_cases": len(buggy_results),
+        #                           "false_positives": len(false_positives),
+        #                           "note": f"detected_by: {names}",
+        #                           "feedback": buggy_run.stdout[-6000:]}
         # 纯误报：问题在套件不在 bug → 修复套件后重试，bug 保留
-        last_feedback = buggy_run.stdout[-4000:] or \
-            "tests fail on the correct implementation (false positives)"
-        tests = agent.repair_tests(tests, last_feedback)
+        # last_feedback = buggy_run.stdout[-4000:] or \
+        #     "tests fail on the correct implementation (false positives)"
+        # tests = agent.repair_tests(tests, last_feedback)
 
     return False, tests or "", {"detected": False, "total_cases": 0,
                                 "false_positives": total_false_positives,
@@ -302,7 +315,7 @@ def process_entry(entry, agents, opts):
     src_file = entry.get("src_file", "")
     test_file = entry.get("test_file", "")
     test_class = test_class_name(test_file) if test_file else ""
-    tests_context = find_related_test_sources(entry)
+    # tests_context = find_related_test_sources(entry)
 
     current_bug = ""
     test_info = ""
@@ -313,10 +326,10 @@ def process_entry(entry, agents, opts):
 
         # ---- Stage 1：生成 bug（对抗循环，反馈源为过滤套件的失败输出）----
         if attempt == 0:
-            bug_json = agents["bug"].init_bug_prompt(code, tests_context=tests_context)
+            bug_json = agents["bug"].init_bug_prompt(code)
         else:
             bug_json = agents["bug"].enhance_bug_prompt(
-                code, current_bug, test_info, tests_context=tests_context)
+                code, current_bug, test_info)
         if not isinstance(bug_json, dict):
             trace["outcome"] = "bug_generation_error"
             attempt_traces.append(trace)
@@ -334,7 +347,10 @@ def process_entry(entry, agents, opts):
 
         compile_ok, current_bug, compile_err = compile_bug(
             agents["bug"], src_file, code, current_bug)
+       
+            
         if not compile_ok:
+            print(f"compile_error: {compile_err}")
             set_src_code(src_file, code, current_bug)
             trace["outcome"] = "compile_failed"
             trace["compile_error"] = compile_err
@@ -373,16 +389,16 @@ def process_entry(entry, agents, opts):
             continue
 
         # ---- Stage 3：原测试套件作为元数据（不过滤）----
-        purge_stale_test_classes([test_class] + declared_class_names(suites["model_a"])
-                                 + declared_class_names(suites["model_b"]))
-        if test_file and os.path.exists(test_file):
-            os.remove(test_file)  # 过滤套件不参与原套件运行
-        clean_surefire_reports()
-        full_run = mvn(["test"], timeout=3600)
-        full_results = parse_surefire_results()
-        escaped = full_run.returncode == 0
-        original_failing = [f"{c}.{n}" for (c, n), s in full_results.items() if s == "failed"]
-        trace["original_suite"] = {"escaped": escaped, "failing": original_failing}
+        # purge_stale_test_classes([test_class] + declared_class_names(suites["model_a"])
+        #                          + declared_class_names(suites["model_b"]))
+        # if test_file and os.path.exists(test_file):
+        #     os.remove(test_file)  # 过滤套件不参与原套件运行
+        # clean_surefire_reports()
+        # full_run = mvn(["test"], timeout=3600)
+        # full_results = parse_surefire_results()
+        # escaped = full_run.returncode == 0
+        # original_failing = [f"{c}.{n}" for (c, n), s in full_results.items() if s == "failed"]
+        # trace["original_suite"] = {"escaped": escaped, "failing": original_failing}
 
         # ---- Stage 4：等效判定（沿用语义行为一致性）----
         validation = agents["judge"].validate(
@@ -405,8 +421,8 @@ def process_entry(entry, agents, opts):
                 "bug_summary": bug_summary,
                 "suites": suites,
                 "filter_results": filter_results,
-                "escaped_original_suite": escaped,
-                "original_failing_tests": original_failing,
+                # "escaped_original_suite": escaped,
+                # "original_failing_tests": original_failing,
                 "validation": validation,
             }, attempt_traces
 
@@ -462,8 +478,8 @@ def main(args):
             entry["flag"] = "dual_filter_pass"
             entry["status"] = "accepted"
             entry["filter_results"] = accepted_data["filter_results"]
-            entry["escaped_original_suite"] = accepted_data["escaped_original_suite"]
-            entry["original_failing_tests"] = accepted_data["original_failing_tests"]
+            # entry["escaped_original_suite"] = accepted_data["escaped_original_suite"]
+            # entry["original_failing_tests"] = accepted_data["original_failing_tests"]
             entry["validation_result"] = accepted_data["validation"]
             entry["filter_attempts"] = len(traces)
             final_results.append(entry)
@@ -499,7 +515,7 @@ if __name__ == "__main__":
                         help="等效判定模型")
     parser.add_argument("--filter-model-a", type=str, default="deepseek-v3.2",
                         help="过滤模型 A（应与被评测模型不同厂商/代际）")
-    parser.add_argument("--filter-model-b", type=str, default="qwen3-coder-480b-a35b-instruct",
+    parser.add_argument("--filter-model-b", type=str, default="gpt-5.4-mini",
                         help="过滤模型 B")
     parser.add_argument("--attempts", type=int, default=5,
                         help="每个函数的 bug 对抗尝试次数上限")

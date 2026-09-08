@@ -13,7 +13,7 @@ class BugGenerationAgent:
         self.client = OpenAI(api_key=self.llm_config.API_KEY, base_url=self.llm_config.API_ENDPOINT)
         self.model = self.llm_config.MODEL_NAME
 
-    def init_bug_prompt(self, code, tests_context=None):
+    def init_bug_prompt(self, code):
         system_prompt = """You are a talented Java programmer and experienced in realistic bug synthesis."""
 
     #     user_prompt = f"""
@@ -67,12 +67,11 @@ class BugGenerationAgent:
     {code}
     ````
 
-    Your task is to generate **buggy version** of the code that keep the existing tests PASS.
+    Your task is to generate **buggy version** of the code.
 
     ## Goal
     Create buggy version of the code that:
-    - remains valid and compilable Java,
-    - pass the existing tests.
+    - remains valid and compilable Java
 
     ## Critical constraint – No equivalent mutations
     Do not produce code that is behaviorally identical to the original. Examples of forbidden “no-op” changes:
@@ -95,14 +94,7 @@ class BugGenerationAgent:
     }}
     ```
     """
-        if tests_context:
-            user_prompt += f"""
-## Existing Test Suite (all of them must keep passing)
-The project already contains the tests below for this code. The buggy version must not change any behavior they rely on — every test below must still pass on the buggy code:
-```java
-{tests_context}
-```
-"""
+        
         message = [{"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt}
                     ]
@@ -133,7 +125,7 @@ The project already contains the tests below for this code. The buggy version mu
             logger.error(f"Error calling LLM for bug generation: {e}")
             return code # Return original code on error
 
-    def enhance_bug_prompt(self, code, buggy_code, test_info, tests_context=None):
+    def enhance_bug_prompt(self, code, buggy_code, test_info):
         system_prompt = """You are a talented Java programmer and experienced in realistic bug synthesis."""
 
     #     user_prompt = f"""
@@ -232,14 +224,7 @@ The project already contains the tests below for this code. The buggy version mu
     }}
     ```
     """
-        if tests_context:
-            user_prompt += f"""
-## Existing Test Suite (all of them must keep passing)
-The project already contains the tests below for this code. The buggy version must not change any behavior they rely on — every test below must still pass on the buggy code:
-```java
-{tests_context}
-```
-"""
+        
         message = [{"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt}
                     ]

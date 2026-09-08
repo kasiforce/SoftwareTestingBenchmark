@@ -120,7 +120,7 @@ Your tasks:
 - Boundary conditions and edge cases.
 - Invalid inputs and error handling.
 - Potential issues with dependency interactions.
-3. Write executable test code using Java 8 and JUnit 4.
+3. Write executable test code using Java 21 and JUnit 4.
 4. The test code should be written into {test_path}. Please make sure the imports are correct.
 5. Ensure tests are designed to differentiate between correct and incorrect implementations:
 - At least one test should be able to expose an incorrect implementation if the code were incorrect.
@@ -161,6 +161,7 @@ Return ONLY code without explanations, non-code text, or markdown formatting.
             test_code = response.choices[0].message.content.strip()
             # Ensure we only get Java code block if LLM adds markdown
             test_code = test_code.split("```java")[-1].split("```")[0].strip()
+            print(f"Generated test code:\n{test_code}")
             # if test_code.startswith("```java") and test_code.endswith("```"):
             #     test_code = test_code[len("```java"):-len("```")].strip()
             return test_code

@@ -15,9 +15,9 @@ from openai import OpenAI
 from llm_config import LLMConfig
 
 try:
-    from llm_gentests import TestCodeGenerator
+    from test_gen import TestGenerationAgent
 except ImportError:  # 本地开发目录无 llm_gentests，容器内由挂载提供
-    TestCodeGenerator = None
+    TestGenerationAgent = None
 
 logger = logging.getLogger(__name__)
 
@@ -26,20 +26,17 @@ SYSTEM_PROMPT = "You are a professional test engineer specializing in writing hi
 
 class FilterTestGenerationAgent:
     def __init__(self, llm_config: LLMConfig, suite_retries: int = 2):
-        if TestCodeGenerator is None:
+        if TestGenerationAgent is None:
             raise ImportError(
-                "llm_gentests.py 未找到：请将 gen_test/llm_gentests.py 挂载到 /testbed 下"
+                "test_gen.py 未找到：请将 gen_test/test_gen.py 挂载到 /testbed 下"
                 "（eval_java_adver.py 已包含该挂载）"
             )
         self.llm_config = llm_config
         self.model_name = llm_config.MODEL_NAME
         self.suite_retries = suite_retries
         # specification 模式 + JUnit 4，与评测管线 main() 中的配置一致
-        self.generator = TestCodeGenerator(
-            api_key=llm_config.API_KEY,
-            input="specification",
-            testframe="JUnit 4",
-            model=llm_config.MODEL_NAME,
+        self.generator = TestGenerationAgent(
+            llm_config=llm_config
         )
         self.client = OpenAI(api_key=llm_config.API_KEY, base_url=llm_config.API_ENDPOINT)
 
@@ -64,15 +61,15 @@ class FilterTestGenerationAgent:
     def generate_tests(self, entry, bug_code):
         """按评测协议为当前 bug 生成一套测试，失败返回空字符串。"""
         try:
-            prompt = self.generator.generate_test_prompt(
-                "JUnit 4", self._function_info(entry, bug_code))
-            tests = self.generator.call_llm(prompt)
+            tests = self.generator.init_test_prompt(
+                bug_code, entry)
+            # tests = self.generator.call_llm(prompt)
         except Exception as e:
             logger.error(f"[{self.model_name}] 测试生成失败: {e}")
             return ""
-        if tests and tests[0].strip():
-            return tests[0].strip()
-        return ""
+        # if tests and tests[0].strip():
+        #     return tests[0].strip()
+        return tests.strip()
 
     def _call(self, system, user, temperature=0.5):
         try:
