@@ -30,7 +30,7 @@ def setup_logging(log_file: str):
 def build_prompt(function_info: dict) -> str:
     """根据数据集条目构建发送给 Copilot CLI 的提示"""
     function_name = function_info['name']
-    function_code = function_info['code']
+    function_code = function_info['buggy_code']
     # signature = function_code.split(':\n')[0]
     signature = function_code.split('{', 1)[0].rstrip()
     print(signature)
@@ -66,19 +66,19 @@ Function Information:
 - Is async: {function_info.get('is_async', False)}
 
 Function Code:
-```javascript
+```java
 {function_code}
 
 
 Requirements:
-Use Jest framework for writing tests.
-Your job is to output corresponding test class that obtains high coverage and invokes the code under test.
-The test code should be written into {test_path}. Please make sure the imports are correct.
-Do not modify any source code files in the project. Only create or modify the target test file.
-After writing the file, run the tests with Jest (e.g., npx jest <test_file>).
-If the tests fail, analyze the errors and attempt to fix the test file.
-Stop after all tests pass or after 3 repair attempts.
-Work autonomously and complete the task without asking for further input.
+- You MUST use JUnit 4 framework for writing tests.
+- Your job is to output corresponding test class that obtains high coverage and invokes the code under test.
+- The test code should be written into {test_path}. Please make sure the imports are correct.
+- Do not modify any source code files in the project. 
+- Do not read any existing tests files. Only create or modify the target test file.
+- After writing the test file, run the tests with `mvn test -Drat.skip=true`.
+- If the tests have compilation errors, analyze the errors and attempt to fix the test file. Stop after 3 repair attempts.
+- Work autonomously and complete the task without asking for further input.
 """
 
     
@@ -91,6 +91,7 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
     name = entry.get("name", "unknown")
     src_file = entry.get("src_file", "")
     test_file = entry.get("test_file", "")
+    code = entry.get("buggy_code", "")
     prompt = build_prompt(entry)
 
     # project_dir = (base_path / project_root).resolve()
@@ -111,7 +112,8 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
     cmd = [
         "copilot",
         "-p", prompt,  
-        "--allow-all-tools"
+        "--allow-all-tools",
+        "--share", "/results/"  
     ]
 
     logging.info(f" Running Copilot for '{name}' in {project_dir}")
@@ -132,7 +134,9 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
         return {
             "name": name,
             "project_root": project_root,
+            "src_file": src_file,
             "test_file": test_file,
+            "code": code,
             "returncode": -1,
             "stdout": "",
             "stderr": msg,
@@ -145,7 +149,9 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
         return {
             "name": name,
             "project_root": project_root,
+            "src_file": src_file,
             "test_file": test_file,
+            "code": code,
             "returncode": -1,
             "stdout": "",
             "stderr": msg,
@@ -172,7 +178,9 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
     return {
         "name": name,
         "project_root": project_root,
+        "src_file": src_file,
         "test_file": test_file,
+        "code": code,
         "returncode": returncode,
         "stdout": stdout,
         "stderr": stderr,
