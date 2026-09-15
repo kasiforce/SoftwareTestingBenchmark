@@ -176,164 +176,7 @@ from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, as_compl
 # """
 
 
-# system_prompt = """You are an expert software engineer and technical documentation specialist. Your task is to generate detailed technical specifications for Java methods based on provided code and context.
-
-# You will receive:
-# 1. Method information (name, full code)
-# 2. If it is a class method, it will provide the Class information (name, constructor, fields)
-
-
-# Your response MUST follow this exact format:
-
-# Functional Description: <Provide a 2-3 sentence description of the method's purpose, algorithm, and role in the system.>
-
-# Args:
-# <parameter_name>: <type> - <detailed_description>
-
-# Returns: <return_type> - <description_of_return_value_meaning>
-
-# Preconditions:
-# <condition>
-
-# Postconditions:
-# <condition>
-
-# Invariants:
-# <invariant>
-
-# Exception:
-# <exception_type> - <trigger_condition>
-
-# IMPORTANT RULES:
-# 1. Keep each section concise but comprehensive
-# 2. Use bullet points or numbered lists within sections
-# 3. For helper functions mentioned in code, infer their purpose from names and context
-# 4. Focus on practical information useful for developers
-# 5. Do not include any additional explanations, headers, or formatting beyond the specified structure
-# 6. If information is missing from the input, state "None" or make reasonable inferences
-
-
-# ### Example 1:
-# Input: 
-# public class FlagValidatorClass implements ConstraintValidator<FlagValidator,Integer> {
-#     @Override
-#     public boolean isValid(Integer value, ConstraintValidatorContext constraintValidatorContext) {
-#         boolean isValid = false;
-#         if(value==null){
-#             //当状态为空时使用默认值
-#             return true;
-#         }
-#         for(int i=0;i<values.length;i++){
-#             if(values[i].equals(String.valueOf(value))){
-#                 isValid = true;
-#                 break;
-#             }
-#         }
-#         return isValid;
-#     }
-# }
-
-# Output:
-# Functional Description: Validates whether an Integer value is contained within the predefined list of allowed string values. Returns true for null values (treating them as valid default), otherwise checks if the string representation of the integer matches any value in the configured values array.
-
-# Args:
-# value: Integer - The integer value to validate; can be null
-# constraintValidatorContext: ConstraintValidatorContext - The validation context providing contextual data and operations
-
-# Returns: boolean - True if the value is null OR if its string representation matches any value in the values array; false otherwise
-
-# Preconditions:
-# 1. The validator must be properly initialized via initialize() method before calling isValid()
-# 2. The values array must be populated from FlagValidator annotation configuration
-# 3. FlagValidator annotation must define at least one value in its value() array
-# 4. constraintValidatorContext must be a valid ConstraintValidatorContext instance
-
-# Postconditions:
-# 1. Returns a boolean validation result without modifying any state
-# 2. Input parameters remain unchanged
-# 3. Validator instance state (values array) remains unchanged
-# 4. The validation context is not modified
-
-# Invariants:
-# 1. Null values always return true (treated as valid default)
-# 2. Validation is case-sensitive (uses String.equals())
-# 3. Only exact string matches are considered valid
-# 4. The method is idempotent (same inputs produce same output)
-# 5. values array length and content remain constant during validation
-
-# Exception:
-# NullPointerException - If values array is null when method is called (though initialize() should prevent this)
-# NumberFormatException - If String.valueOf(value) fails (though Integer.toString() should not fail)
-# IllegalStateException - If validator is not properly initialized before use
-
-
-# ### Example 2:
-# Input:
-# public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
-#     @Override
-#     protected void doFilterInternal(HttpServletRequest request,
-#                                     HttpServletResponse response,
-#                                     FilterChain chain) throws ServletException, IOException {
-#         String authHeader = request.getHeader(this.tokenHeader);
-#         if (authHeader != null && authHeader.startsWith(this.tokenHead)) {
-#             String authToken = authHeader.substring(this.tokenHead.length());// The part after "Bearer "
-#             String username = jwtTokenUtil.getUserNameFromToken(authToken);
-#             LOGGER.info("checking username:{}", username);
-#             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-#                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-#                 if (jwtTokenUtil.validateToken(authToken, userDetails)) {
-#                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-#                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-#                     LOGGER.info("authenticated user:{}", username);
-#                     SecurityContextHolder.getContext().setAuthentication(authentication);
-#                 }
-#             }
-#         }
-#         chain.doFilter(request, response);
-#     }
-# }
-
-# Output:
-# Functional Description: Processes HTTP requests to extract and validate JWT authentication tokens from request headers. If a valid token is found, extracts username, loads user details, creates an authentication object, and sets it in Spring Security context. Always continues the filter chain regardless of authentication outcome.
-
-# Args:
-# request: HttpServletRequest - The HTTP request object containing headers including potential JWT token
-# response: HttpServletResponse - The HTTP response object for potential response modification
-# chain: FilterChain - The filter chain to continue processing after authentication logic
-
-# Returns: void - Method does not return a value but may set authentication in SecurityContextHolder and always continues the filter chain
-
-# Preconditions:
-# 1. The filter must be properly configured with tokenHeader and tokenHead values (e.g., "Authorization" and "Bearer ")
-# 2. jwtTokenUtil must be properly initialized and able to extract usernames and validate tokens
-# 3. userDetailsService must be properly configured to load user details by username
-# 4. SecurityContextHolder must be accessible and not already contain authentication for this request
-# 5. HTTP request must contain the appropriate header if authentication is required
-
-# Postconditions:
-# 1. If valid JWT token is present and valid, SecurityContextHolder will contain authentication for the user
-# 2. The filter chain will always be continued via chain.doFilter()
-# 3. Request and response objects are passed unchanged to the next filter/servlet
-# 4. Authentication details include user authorities and web authentication details from the request
-# 5. Log entries are created for username checking and successful authentication
-
-# Invariants:
-# 1. Filter chain is always continued (chain.doFilter() is always called)
-# 2. Existing authentication in SecurityContextHolder is never cleared by this filter
-# 3. Token validation only occurs if header exists and starts with tokenHead
-# 4. Authentication is only set if username is extracted and current context has no authentication
-# 5. User details are loaded only after successful username extraction
-# 6. Token is validated against loaded user details before setting authentication
-
-# Exception:
-# ServletException - If filter chain processing fails
-# IOException - If I/O operations during filter chain processing fail
-# NullPointerException - If dependencies (jwtTokenUtil, userDetailsService) are not properly injected
-# IllegalArgumentException - If token extraction or validation fails internally
-# AuthenticationException - If userDetailsService fails to load user or jwtTokenUtil fails validation (though these may be handled internally)
-# """
-
-system_prompt = """You are an expert software engineer and technical documentation specialist. Your task is to generate detailed technical specifications for JavaScript methods based on provided code and context.
+system_prompt = """You are an expert software engineer and technical documentation specialist. Your task is to generate detailed technical specifications for Java methods based on provided code and context.
 
 You will receive:
 1. Method information (name, full code)
@@ -372,95 +215,252 @@ IMPORTANT RULES:
 
 ### Example 1:
 Input: 
-function getWireframeVersion( geometry ) {
-
-	return ( geometry.index !== null ) ? geometry.index.version : geometry.attributes.position.version;
-
+public class FlagValidatorClass implements ConstraintValidator<FlagValidator,Integer> {
+    @Override
+    public boolean isValid(Integer value, ConstraintValidatorContext constraintValidatorContext) {
+        boolean isValid = false;
+        if(value==null){
+            //当状态为空时使用默认值
+            return true;
+        }
+        for(int i=0;i<values.length;i++){
+            if(values[i].equals(String.valueOf(value))){
+                isValid = true;
+                break;
+            }
+        }
+        return isValid;
+    }
 }
 
 Output:
-Functional Description: Returns the wireframe version number of a geometry object. The version is used to detect changes in geometry data for cache invalidation. It determines whether to read the version from the geometry's index attribute (if present) or from the position attribute's version.
+Functional Description: Validates whether an Integer value is contained within the predefined list of allowed string values. Returns true for null values (treating them as valid default), otherwise checks if the string representation of the integer matches any value in the configured values array.
 
 Args:
-geometry: Object - A geometry object, typically a BufferGeometry instance, containing an index property (which may be null or a BufferAttribute) and an attributes object with a position property (a BufferAttribute).
+value: Integer - The integer value to validate; can be null
+constraintValidatorContext: ConstraintValidatorContext - The validation context providing contextual data and operations
 
-Returns: number - The wireframe version. If geometry.index is not null, returns geometry.index.version; otherwise returns geometry.attributes.position.version.
+Returns: boolean - True if the value is null OR if its string representation matches any value in the values array; false otherwise
 
 Preconditions:
-1. geometry must be a non-null object.
-2. If geometry.index is not null, it must be an object with a version property.
-3. If geometry.index is null, geometry.attributes must exist and geometry.attributes.position must be an object with a version property.
+1. The validator must be properly initialized via initialize() method before calling isValid()
+2. The values array must be populated from FlagValidator annotation configuration
+3. FlagValidator annotation must define at least one value in its value() array
+4. constraintValidatorContext must be a valid ConstraintValidatorContext instance
 
 Postconditions:
-1. The function does not modify any object state.
-2. The returned version reflects the current data version of the geometry.
+1. Returns a boolean validation result without modifying any state
+2. Input parameters remain unchanged
+3. Validator instance state (values array) remains unchanged
+4. The validation context is not modified
 
 Invariants:
-1. The version numbers are read-only and not altered by this function.
-2. The logic follows the convention that wireframe version is tied to the index if present, otherwise to the position attribute.
+1. Null values always return true (treated as valid default)
+2. Validation is case-sensitive (uses String.equals())
+3. Only exact string matches are considered valid
+4. The method is idempotent (same inputs produce same output)
+5. values array length and content remain constant during validation
 
 Exception:
-TypeError - If geometry is null or undefined; or if geometry.index is not null but geometry.index.version is undefined; or if geometry.index is null and geometry.attributes.position is missing or lacks a version property.
-
+NullPointerException - If values array is null when method is called (though initialize() should prevent this)
+NumberFormatException - If String.valueOf(value) fails (though Integer.toString() should not fail)
+IllegalStateException - If validator is not properly initialized before use
 
 
 ### Example 2:
 Input:
-class Ray {
-
-	constructor( origin = new Vector3(), direction = new Vector3( 0, 0, - 1 ) ) {
-		this.origin = origin;
-		this.direction = direction;
-	}
-
-	distanceToPlane( plane ) {
-
-		const denominator = plane.normal.dot( this.direction );
-
-		if ( denominator === 0 ) {
-
-			if ( plane.distanceToPoint( this.origin ) === 0 ) {
-
-				return 0;
-
-			}
-
-			return null;
-
-		}
-
-		const t = - ( this.origin.dot( plane.normal ) + plane.constant ) / denominator;
-
-		return t >= 0 ? t : null;
-
-	}
+public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
+    @Override
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain chain) throws ServletException, IOException {
+        String authHeader = request.getHeader(this.tokenHeader);
+        if (authHeader != null && authHeader.startsWith(this.tokenHead)) {
+            String authToken = authHeader.substring(this.tokenHead.length());// The part after "Bearer "
+            String username = jwtTokenUtil.getUserNameFromToken(authToken);
+            LOGGER.info("checking username:{}", username);
+            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+                if (jwtTokenUtil.validateToken(authToken, userDetails)) {
+                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    LOGGER.info("authenticated user:{}", username);
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                }
+            }
+        }
+        chain.doFilter(request, response);
+    }
 }
 
 Output:
-Functional Description: Computes the distance from the ray's origin to the given plane. If the ray is parallel to the plane, returns 0 if the origin lies on the plane, otherwise returns null. Otherwise, calculates the intersection parameter t and returns t if t >= 0 (ray points toward the plane), else null. This method is used for ray-plane intersection tests.
+Functional Description: Processes HTTP requests to extract and validate JWT authentication tokens from request headers. If a valid token is found, extracts username, loads user details, creates an authentication object, and sets it in Spring Security context. Always continues the filter chain regardless of authentication outcome.
 
 Args:
-plane: Plane - The plane to test against, expected to have normal (Vector3), constant (number) properties and a distanceToPoint method.
+request: HttpServletRequest - The HTTP request object containing headers including potential JWT token
+response: HttpServletResponse - The HTTP response object for potential response modification
+chain: FilterChain - The filter chain to continue processing after authentication logic
 
-Returns: number|null - The distance from the ray origin to the intersection point if the ray intersects the plane in the forward direction; 0 if the origin is exactly on the plane; null if the ray is parallel and origin not on the plane, or if the intersection lies behind the ray (t < 0).
+Returns: void - Method does not return a value but may set authentication in SecurityContextHolder and always continues the filter chain
 
 Preconditions:
-1. The ray instance must have valid origin and direction properties (Vector3 instances). The direction should ideally be normalized, though the method does not enforce it.
-2. The plane argument must be a valid Plane instance with normal, constant, and a distanceToPoint method.
-3. The plane.normal should be normalized for accurate distance calculations, though the method does not enforce it.
+1. The filter must be properly configured with tokenHeader and tokenHead values (e.g., "Authorization" and "Bearer ")
+2. jwtTokenUtil must be properly initialized and able to extract usernames and validate tokens
+3. userDetailsService must be properly configured to load user details by username
+4. SecurityContextHolder must be accessible and not already contain authentication for this request
+5. HTTP request must contain the appropriate header if authentication is required
 
 Postconditions:
-1. The ray and plane objects remain unchanged.
-2. The returned value is based solely on the current state of the ray and plane.
+1. If valid JWT token is present and valid, SecurityContextHolder will contain authentication for the user
+2. The filter chain will always be continued via chain.doFilter()
+3. Request and response objects are passed unchanged to the next filter/servlet
+4. Authentication details include user authorities and web authentication details from the request
+5. Log entries are created for username checking and successful authentication
 
 Invariants:
-1. The method does not modify any external state.
-2. The ray's origin and direction are unchanged.
-3. The plane's normal and constant are unchanged.
+1. Filter chain is always continued (chain.doFilter() is always called)
+2. Existing authentication in SecurityContextHolder is never cleared by this filter
+3. Token validation only occurs if header exists and starts with tokenHead
+4. Authentication is only set if username is extracted and current context has no authentication
+5. User details are loaded only after successful username extraction
+6. Token is validated against loaded user details before setting authentication
 
 Exception:
-TypeError - If plane is not an object; if plane.normal lacks a dot method; if plane.distanceToPoint is not a function; or if the ray's origin or direction do not have a dot method.
+ServletException - If filter chain processing fails
+IOException - If I/O operations during filter chain processing fail
+NullPointerException - If dependencies (jwtTokenUtil, userDetailsService) are not properly injected
+IllegalArgumentException - If token extraction or validation fails internally
+AuthenticationException - If userDetailsService fails to load user or jwtTokenUtil fails validation (though these may be handled internally)
 """
+
+# system_prompt = """You are an expert software engineer and technical documentation specialist. Your task is to generate detailed technical specifications for JavaScript methods based on provided code and context.
+
+# You will receive:
+# 1. Method information (name, full code)
+# 2. If it is a class method, it will provide the Class information (name, constructor, fields)
+
+
+# Your response MUST follow this exact format:
+
+# Functional Description: <Provide a 2-3 sentence description of the method's purpose, algorithm, and role in the system.>
+
+# Args:
+# <parameter_name>: <type> - <detailed_description>
+
+# Returns: <return_type> - <description_of_return_value_meaning>
+
+# Preconditions:
+# <condition>
+
+# Postconditions:
+# <condition>
+
+# Invariants:
+# <invariant>
+
+# Exception:
+# <exception_type> - <trigger_condition>
+
+# IMPORTANT RULES:
+# 1. Keep each section concise but comprehensive
+# 2. Use bullet points or numbered lists within sections
+# 3. For helper functions mentioned in code, infer their purpose from names and context
+# 4. Focus on practical information useful for developers
+# 5. Do not include any additional explanations, headers, or formatting beyond the specified structure
+# 6. If information is missing from the input, state "None" or make reasonable inferences
+
+
+# ### Example 1:
+# Input: 
+# function getWireframeVersion( geometry ) {
+
+# 	return ( geometry.index !== null ) ? geometry.index.version : geometry.attributes.position.version;
+
+# }
+
+# Output:
+# Functional Description: Returns the wireframe version number of a geometry object. The version is used to detect changes in geometry data for cache invalidation. It determines whether to read the version from the geometry's index attribute (if present) or from the position attribute's version.
+
+# Args:
+# geometry: Object - A geometry object, typically a BufferGeometry instance, containing an index property (which may be null or a BufferAttribute) and an attributes object with a position property (a BufferAttribute).
+
+# Returns: number - The wireframe version. If geometry.index is not null, returns geometry.index.version; otherwise returns geometry.attributes.position.version.
+
+# Preconditions:
+# 1. geometry must be a non-null object.
+# 2. If geometry.index is not null, it must be an object with a version property.
+# 3. If geometry.index is null, geometry.attributes must exist and geometry.attributes.position must be an object with a version property.
+
+# Postconditions:
+# 1. The function does not modify any object state.
+# 2. The returned version reflects the current data version of the geometry.
+
+# Invariants:
+# 1. The version numbers are read-only and not altered by this function.
+# 2. The logic follows the convention that wireframe version is tied to the index if present, otherwise to the position attribute.
+
+# Exception:
+# TypeError - If geometry is null or undefined; or if geometry.index is not null but geometry.index.version is undefined; or if geometry.index is null and geometry.attributes.position is missing or lacks a version property.
+
+
+
+# ### Example 2:
+# Input:
+# class Ray {
+
+# 	constructor( origin = new Vector3(), direction = new Vector3( 0, 0, - 1 ) ) {
+# 		this.origin = origin;
+# 		this.direction = direction;
+# 	}
+
+# 	distanceToPlane( plane ) {
+
+# 		const denominator = plane.normal.dot( this.direction );
+
+# 		if ( denominator === 0 ) {
+
+# 			if ( plane.distanceToPoint( this.origin ) === 0 ) {
+
+# 				return 0;
+
+# 			}
+
+# 			return null;
+
+# 		}
+
+# 		const t = - ( this.origin.dot( plane.normal ) + plane.constant ) / denominator;
+
+# 		return t >= 0 ? t : null;
+
+# 	}
+# }
+
+# Output:
+# Functional Description: Computes the distance from the ray's origin to the given plane. If the ray is parallel to the plane, returns 0 if the origin lies on the plane, otherwise returns null. Otherwise, calculates the intersection parameter t and returns t if t >= 0 (ray points toward the plane), else null. This method is used for ray-plane intersection tests.
+
+# Args:
+# plane: Plane - The plane to test against, expected to have normal (Vector3), constant (number) properties and a distanceToPoint method.
+
+# Returns: number|null - The distance from the ray origin to the intersection point if the ray intersects the plane in the forward direction; 0 if the origin is exactly on the plane; null if the ray is parallel and origin not on the plane, or if the intersection lies behind the ray (t < 0).
+
+# Preconditions:
+# 1. The ray instance must have valid origin and direction properties (Vector3 instances). The direction should ideally be normalized, though the method does not enforce it.
+# 2. The plane argument must be a valid Plane instance with normal, constant, and a distanceToPoint method.
+# 3. The plane.normal should be normalized for accurate distance calculations, though the method does not enforce it.
+
+# Postconditions:
+# 1. The ray and plane objects remain unchanged.
+# 2. The returned value is based solely on the current state of the ray and plane.
+
+# Invariants:
+# 1. The method does not modify any external state.
+# 2. The ray's origin and direction are unchanged.
+# 3. The plane's normal and constant are unchanged.
+
+# Exception:
+# TypeError - If plane is not an object; if plane.normal lacks a dot method; if plane.distanceToPoint is not a function; or if the ray's origin or direction do not have a dot method.
+# """
 
 # 配置日志
 logging.basicConfig(level=logging.INFO)
@@ -538,8 +538,9 @@ class TestCodeGenerator:
                    {"role": "user", "content": prompt}
                    ]
         tests = []
-        client = OpenAI(api_key=self.api_key, base_url="https://api.apiyi.com/v1")
-                        # base_url="https://api.agicto.cn/v1")
+        client = OpenAI(api_key=self.api_key, 
+                        # base_url="https://api.apiyi.com/v1")
+                        base_url="https://api.agicto.cn/v1")
         # print(self.model)
         for k in range(max_K):
             try:
@@ -853,7 +854,7 @@ class TestCodeGenerator:
 def main():
     # 从环境变量获取API密钥
     
-    api_key = ""
+    api_key = "sk-TCP3lz5NTOkdlhWUBVCHfj8gR2Db9MEBnw6Fp5D5um9KuTnw"
     if not api_key:
         raise ValueError("请设置 OPENAI_API_KEY 环境变量")
 
@@ -861,7 +862,7 @@ def main():
     generator = TestCodeGenerator(api_key=api_key, model="gpt-4o-mini")
 
     # 加载函数数据
-    input_file = "proton_lite.json"  # 替换为您的输入文件路径
+    input_file = "wepush22.json"  # 替换为您的输入文件路径
     # input_file = "test_output.json"
     with open(input_file, 'r', encoding='utf-8') as f:
         functions_data = json.load(f)
@@ -869,7 +870,7 @@ def main():
     logger.info(f"找到 {len(functions_data)} 个需要生成测试的函数")
 
     # 生成测试代码 - 使用并行版本
-    output_file = "proton_lite_specification_new.json"
+    output_file = "wepush22_specification.json"
 
     # 方法1: 完全并行处理
     # results = generator.generate_tests_for_functions_parallel(
