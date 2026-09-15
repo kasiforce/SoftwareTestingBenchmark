@@ -71,13 +71,13 @@ class FilterTestGenerationAgent:
         #     return tests[0].strip()
         return tests.strip()
 
-    def _call(self, system, user, temperature=0.5):
+    def _call(self, system, user, temperature=0.):
         try:
             response = self.client.chat.completions.create(
                 model=self.model_name,
                 messages=[{"role": "system", "content": system},
                           {"role": "user", "content": user}],
-                temperature=temperature,
+                temperature=0.,
                 max_tokens=16384,
             )
             content = response.choices[0].message.content.strip()
@@ -104,32 +104,27 @@ class FilterTestGenerationAgent:
         <corrected test code>
         ```
         """
+        print(f"修复编译错误, {prompt}")
         return self._call("You are a helpful assistant that fixes failing test code.", prompt)
 
     def repair_tests(self, tests, failure_output):
-        """套件在正确实现上失败（误报）时，修复测试期望值。
-
-        注意：只修复"正确实现应通过"的期望，不削弱对规范的覆盖
-        （覆盖不足属于可选增强的 JaCoCo 检查范畴）。
-        """
-        prompt = f"""The test suite below was designed against a specification, but some of its test cases FAIL even against a CORRECT implementation of the specification (false positives caused by wrong expectations).
-
-        Failing test run output:
-        ```
-        {failure_output}
-        ```
-
+        """修复执行错误、编译错误或误报（failure_output 中说明具体问题）。"""
+        prompt = f"""The test code below has the following problems:
         Tests:
         ```java
         {tests}
         ```
 
-        Please fix the test suite so that:
-        - A correct implementation (following the specification) passes ALL tests.
-        - The tests still thoroughly cover the specification (boundary conditions, invalid inputs, error handling, etc.), so that an incorrect implementation would still fail.
-        - Keep the same test class name and file layout.
+        Error:
+        ```
+        {failure_output}
+        ```
+
+        Please provide a corrected version of the test code that compiles and passes on the correct implementation.
         ```java
         <corrected test code>
         ```
         """
-        return self._call(SYSTEM_PROMPT, prompt)
+        print(f"修复测试, {prompt}")
+        return self._call("You are a helpful assistant that fixes failing test code.", prompt)
+        

@@ -8,9 +8,9 @@ adver_dual.py —— 双大模型过滤的错误代码生成流程。
 2. 过滤协议与评测管线同源：复用 gen_test/llm_gentests.py 的 TestCodeGenerator
    （specification 模式模板、temperature=0、max_K=3 重试），输入为"错误代码 + 规范"，
    与被评测模型看到的信息一致——过滤准则即"在评测协议下该模型未检出此 bug"。
-3. 默认只在错误代码上运行过滤测试；仅当运行失败时补跑一次原代码做 per-test 差分仲裁：
-   - 差分失败（原代码过 ∧ bug 版挂）= 真检出 → 反馈给 bug 生成器重试；
-   - 纯误报（原代码上也挂）= 套件问题 → 反馈修复测试套件，bug 保留；
+3. 只在错误代码上运行过滤测试，按 surefire 失败类型分流（不跑原代码做差分）：
+   - 断言失败（failure）= 过滤模型检出 bug → 反馈给 bug 生成器重试；
+   - 执行异常（error）→ 迭代修复测试套件，bug 保留；
    - 编译始终失败 / 空套件 = 套件问题 → 重新生成套件，不判检出。
 4. 等效判定沿用 valid_agent.py 的语义行为一致性判定。
 
@@ -34,6 +34,7 @@ import re
 import shutil
 import subprocess
 import xml.etree.ElementTree as ET
+from pathlib import Path
 
 from llm_config import LLMConfig
 from bug_generation_agent import BugGenerationAgent
@@ -90,6 +91,46 @@ def set_src_code(src_file, new_code, old_code):
 def test_class_name(test_file):
     return os.path.splitext(os.path.basename(test_file))[0]
 
+def delete_test_files_in_test_dirs(project_root):
+    """在 test/tests 目录中删除 *test*.java 文件"""
+    # 查找 test/tests 目录
+    test_dirs = []
+    for root, dirs, files in os.walk(project_root):
+        root_path = Path(root)
+
+        # 跳过某些目录
+        skip_dirs = ['.git', 'venv', '.venv', '__pycache__']
+        if any(skip in root_path.parts for skip in skip_dirs):
+            continue
+
+        # 如果是 test 或 tests 目录
+        if root_path.name.lower() in ['test', 'tests']:
+            test_dirs.append(root_path)
+
+    if not test_dirs:
+        print("未找到 test 或 tests 目录")
+        return
+
+    # 查找并删除测试文件
+    deleted_files = []
+    for test_dir in test_dirs:
+        for file in test_dir.rglob('*.java'):
+            if 'Test' in file.name:
+                try:
+                    os.remove(file)
+                    deleted_files.append(file)
+                except Exception as e:
+                    print(f"删除失败 {file}: {e}")
+
+    # 显示结果
+    print(f"在 {len(test_dirs)} 个测试目录中删除了 {len(deleted_files)} 个测试文件:")
+    for file in deleted_files[:10]:
+        print(f"  {file}")
+
+    if len(deleted_files) > 10:
+        print(f"  ... 还有 {len(deleted_files)-10} 个文件")
+
+
 
 # ---------------------------------------------------------------------------
 # Surefire 结果解析（per-test 差分仲裁）
@@ -110,7 +151,11 @@ def clean_surefire_reports():
 
 
 def parse_surefire_results():
-    """解析 surefire XML，返回 {(classname, testname): passed|failed|skipped}。"""
+    """解析 surefire XML，返回 {(classname, testname): passed|failed|error|skipped}。
+
+    failed = 断言失败（<failure>），error = 执行异常（<error>）。二者分开记录，
+    修复循环据此区分"疑似检出"与"套件自身坏掉"。
+    """
     results = {}
     for path in surefire_xml_files():
         try:
@@ -119,7 +164,9 @@ def parse_surefire_results():
             continue
         for tc in root.iter("testcase"):
             key = (tc.get("classname", ""), tc.get("name", ""))
-            if tc.find("failure") is not None or tc.find("error") is not None:
+            if tc.find("error") is not None:
+                results[key] = "error"
+            elif tc.find("failure") is not None:
                 results[key] = "failed"
             elif tc.find("skipped") is not None:
                 results[key] = "skipped"
@@ -132,10 +179,11 @@ def diff_surefire(buggy_results, orig_results):
     """差分：检出的定义为"原代码通过 ∧ bug 版失败"。
 
     返回 (differential, false_positives)：真检出的用例名列表 / 误报用例名列表。
+    断言失败（failed）与执行异常（error）都算"未通过"。
     """
     differential, false_positives = [], []
     for key, status in buggy_results.items():
-        if status != "failed":
+        if status in ("passed", "skipped"):
             continue
         if orig_results.get(key) == "passed":
             differential.append(key)
@@ -228,6 +276,7 @@ def compile_test_suite(agent, test_file, tests, fix_attempts=5):
         if result.returncode == 0:
             return True, tests, ""
         last_error = result.stdout
+        print(f"测试套件编译失败，{result.stdout[-4000:]}")
         fixed = agent.fix_compile(tests, result.stdout)
         if not fixed or fixed == tests:
             break
@@ -235,74 +284,72 @@ def compile_test_suite(agent, test_file, tests, fix_attempts=5):
     return False, tests, last_error[-4000:]
 
 
+MAX_REPAIR_ROUNDS = 5  # 单个套件"编译→运行→修复"的共享轮数预算
+
+
 def evaluate_filter_model(agent, entry, bug_code, src_file, original_code,
                           test_file, suite_retries):
     """用一个过滤模型评估当前 bug（Stage 2 单模型分支）。
 
+    统一修复循环：每轮先过编译闸门（compile_test_suite 内含 fix_compile 重试），
+    再运行并按 surefire 失败类型分流（协议约定：不跑原代码做差分仲裁）——
+    - 全部通过 → bug 逃逸（undetected=True）；
+    - 断言失败（failure）→ 过滤模型检出 bug，立即返回，绝不修复断言；
+    - 执行异常（error）/空套件 → 套件自身问题，修复后进下一轮；
+    - 修复后的代码下一轮重新过编译闸门，编译错误由 fix_compile 处理。
+
     返回 (undetected, tests, info)：
     - undetected=True ：套件在 bug 版上全部通过 → 未检出；
-    - undetected=False 且 info["detected"]=True ：真检出（差分）；
-    - undetected=False 且 info["detected"]=False ：套件本身失败（编译不过/空/纯误报未修复）。
+    - undetected=False 且 info["detected"]=True ：断言失败视为检出；
+    - undetected=False 且 info["detected"]=False ：套件本身失败（编译不过/空/纯异常未修复）。
     """
     tests = agent.generate_tests(entry, bug_code)
-    last_feedback = ""
     total_false_positives = None
     for _suite_try in range(suite_retries + 1):
         if not tests:
             tests = agent.generate_tests(entry, bug_code)
             if not tests:
                 continue
-        compile_ok, tests, compile_err = compile_test_suite(agent, test_file, tests)
-        if not compile_ok:
-            last_feedback = compile_err
-            print(f"测试套件编译失败，{compile_err}")
-            tests = ""
-            continue
 
-        # clean_surefire_reports()
-        buggy_run = mvn(["test", f"-Dtest={test_class_name(test_file)}"], timeout=1800)
-        # buggy_results = parse_surefire_results()
+        for _round in range(MAX_REPAIR_ROUNDS):
+            compile_ok, tests, compile_err = compile_test_suite(agent, test_file, tests)
+            if not compile_ok:
+                print(f"测试套件编译失败，{compile_err}")
+                tests = ""  # 清空，触发外层重新生成
+                break
 
-        if buggy_run.returncode == 0:
-            return True, tests, {"detected": False, "note": "passed_on_buggy"}
+            clean_surefire_reports()
+            buggy_run = mvn(["test", f"-Dtest={test_class_name(test_file)}"], timeout=1800)
+            buggy_results = parse_surefire_results()
+            executed = {k: s for k, s in buggy_results.items() if s != "skipped"}
 
-        # if buggy_run.returncode == 0 and buggy_results:
-        #     return True, tests, {"detected": False, "total_cases": len(buggy_results),
-        #                          "false_positives": None, "note": "passed_on_buggy"}
-        # if not buggy_results:
-        #     # 没有任何用例被执行（空套件/类名不匹配/全部被跳过）
-        #     last_feedback = buggy_run.stdout[-4000:] or "no tests were executed"
-        #     tests = agent.repair_tests(tests, last_feedback)
-        #     continue
+            if buggy_run.returncode == 0 and executed:
+                return True, tests, {"detected": False, "total_cases": len(executed),
+                                     "note": "passed_on_buggy"}
 
-        # bug 版运行失败 → 补跑一次原代码做 per-test 差分仲裁
-        set_src_code(src_file, original_code, bug_code)
-        clean_surefire_reports()
-        src_run = mvn(["test", f"-Dtest={test_class_name(test_file)}"], timeout=1800)
-        # orig_results = parse_surefire_results()
-        set_src_code(src_file, bug_code, original_code)  # 恢复 bug 版
+            if not executed:
+                # 没有任何用例真正执行（类名不匹配/全部被跳过/初始化错误）
+                feedback = buggy_run.stdout[-4000:] or "no tests were executed"
+                print(f"测试套件未执行任何用例，{feedback}")
+                tests = agent.repair_tests(tests, feedback)
+                continue
 
-        if src_run.returncode != 0:
-            last_feedback = src_run.stdout[-4000:] or "tests fail on the correct implementation (false positives)"
-            tests = agent.repair_tests(tests, last_feedback)
-        else:
-            # 真检出：原代码过 ∧ bug 版挂
-            return False, tests, {"detected": True, "note": "detected_by_filter",
-                                  "feedback": buggy_run.stdout[-6000:]}
-            
+            failures = [k for k, s in executed.items() if s == "failed"]  # 断言失败
+            errors = [k for k, s in executed.items() if s == "error"]     # 执行异常
 
-        # differential, false_positives = diff_surefire(buggy_results, orig_results)
-        # total_false_positives = len(false_positives)
-        # if differential:
-        #     names = ", ".join(f"{c}.{n}" for c, n in differential)
-        #     return False, tests, {"detected": True, "total_cases": len(buggy_results),
-        #                           "false_positives": len(false_positives),
-        #                           "note": f"detected_by: {names}",
-        #                           "feedback": buggy_run.stdout[-6000:]}
-        # 纯误报：问题在套件不在 bug → 修复套件后重试，bug 保留
-        # last_feedback = buggy_run.stdout[-4000:] or \
-        #     "tests fail on the correct implementation (false positives)"
-        # tests = agent.repair_tests(tests, last_feedback)
+            if failures:
+                # 断言失败 → 过滤模型检出 bug（协议约定，不做差分仲裁）
+                names = ", ".join(f"{c}.{n}" for c, n in failures)
+                print(f"过滤模型检出 bug（断言失败）: {names}")
+                return False, tests, {"detected": True, "total_cases": len(executed),
+                                      "false_positives": total_false_positives,
+                                      "note": f"detected_by: {names}",
+                                      "feedback": buggy_run.stdout[-6000:]}
+
+            # 只有执行异常（error）→ 套件自身问题，迭代修复
+            err_names = ", ".join(f"{c}.{n}" for c, n in errors)
+            print(f"测试套件存在 {len(errors)} 个执行异常，修复后重试: {err_names}")
+            tests = agent.repair_tests(tests, buggy_run.stdout)
 
     return False, tests or "", {"detected": False, "total_cases": 0,
                                 "false_positives": total_false_positives,
@@ -331,6 +378,7 @@ def process_entry(entry, agents, opts):
             bug_json = agents["bug"].enhance_bug_prompt(
                 code, current_bug, test_info)
         if not isinstance(bug_json, dict):
+            print(f"bug 生成失败，返回非字典")
             trace["outcome"] = "bug_generation_error"
             attempt_traces.append(trace)
             continue
@@ -348,7 +396,7 @@ def process_entry(entry, agents, opts):
         compile_ok, current_bug, compile_err = compile_bug(
             agents["bug"], src_file, code, current_bug)
        
-            
+        print("------------------------------------------------------------------")
         if not compile_ok:
             print(f"compile_error: {compile_err}")
             set_src_code(src_file, code, current_bug)
@@ -455,6 +503,8 @@ def main(args):
         data = json.load(f)
     print(f"共 {len(data)} 个函数待处理")
 
+    delete_test_files_in_test_dirs(TESTBED)
+
     final_results = []
     stats = []
     for idx, entry in enumerate(data):
@@ -513,9 +563,9 @@ if __name__ == "__main__":
                         help="bug 生成模型")
     parser.add_argument("--judge-model", type=str, default="gpt-5.4-mini",
                         help="等效判定模型")
-    parser.add_argument("--filter-model-a", type=str, default="deepseek-v3.2",
+    parser.add_argument("--filter-model-a", type=str, default="gpt-5.4-mini",
                         help="过滤模型 A（应与被评测模型不同厂商/代际）")
-    parser.add_argument("--filter-model-b", type=str, default="gpt-5.4-mini",
+    parser.add_argument("--filter-model-b", type=str, default="glm-5",
                         help="过滤模型 B")
     parser.add_argument("--attempts", type=int, default=5,
                         help="每个函数的 bug 对抗尝试次数上限")
@@ -523,5 +573,5 @@ if __name__ == "__main__":
                         help="每个 bug 尝试内测试套件的重新生成次数上限")
     parser.add_argument("--results-path", type=str, default="/testbed/final_results.json")
     parser.add_argument("--stats-path", type=str, default="/testbed/filter_stats.json")
-    parser.add_argument("--results-dir", type=str, default="/testbed/results")
+    parser.add_argument("--results-dir", type=str, default="/results")
     main(parser.parse_args())

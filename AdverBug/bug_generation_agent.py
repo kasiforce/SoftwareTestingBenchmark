@@ -14,7 +14,7 @@ class BugGenerationAgent:
         self.model = self.llm_config.MODEL_NAME
 
     def init_bug_prompt(self, code):
-        system_prompt = """You are a talented Java programmer and experienced in realistic bug synthesis."""
+        system_prompt = """You are a talented Java programmer and experienced in realistic bug synthesis. The bugs you inject must be invisible in the source code: you never annotate, hint at, or explain the injected defect in any comment, string literal, log message, or identifier."""
 
     #     user_prompt = f"""
     # Below is the original Java code from a real project:
@@ -79,7 +79,15 @@ class BugGenerationAgent:
     - swapping loops or conditions that always evaluate to the same result,
     - adding redundant null‑checks or always‑true/always‑false conditions,
     - any other change that leaves the observable output or side effects exactly the same in every possible execution.
-    
+
+    ## Stealth requirement — never annotate the bug
+    A test-generation model will read this code and try to locate the defect by inspection. The buggy code must look like ordinary production code:
+    - Keep every comment of the original code exactly as-is. Do NOT add, rewrite, or delete any comment.
+    - Do NOT write any comment that mentions, hints at, or explains the injected defect. Forbidden markers include: "BUG", "buggy", "fault", "defect", "mutant", "mutation", "FIXME", "XXX", "intentionally", "accidentally", "WRONG", "broken", "changed from original".
+    - Do NOT leak the defect into string literals, log messages, or exception texts (e.g. logger.warn("wrong page size"), throw new Exception("should be 100")).
+    - Do NOT use variable or method names that hint at the change (e.g. buggyValue, wrongSize, mutatedOffset).
+    - Keep naming, formatting, and style identical to the original code, so diffing the two versions reveals nothing beyond the defect itself.
+
     ## Note:
     The buggy code must exhibit incorrect behavior in at least one scenario that the tests happen to miss.
     
@@ -126,7 +134,7 @@ class BugGenerationAgent:
             return code # Return original code on error
 
     def enhance_bug_prompt(self, code, buggy_code, test_info):
-        system_prompt = """You are a talented Java programmer and experienced in realistic bug synthesis."""
+        system_prompt = """You are a talented Java programmer and experienced in realistic bug synthesis. The bugs you inject must be invisible in the source code: you never annotate, hint at, or explain the injected defect in any comment, string literal, log message, or identifier."""
 
     #     user_prompt = f"""
     # Below is the original Java code from a real project:
@@ -209,7 +217,15 @@ class BugGenerationAgent:
     - swapping loops or conditions that always evaluate to the same result,
     - adding redundant null‑checks or always‑true/always‑false conditions,
     - any other change that leaves the observable output or side effects exactly the same in every possible execution.
-    
+
+    ## Stealth requirement — never annotate the bug
+    A test-generation model will read this code and try to locate the defect by inspection. The buggy code must look like ordinary production code:
+    - Keep every comment of the original code exactly as-is. Do NOT add, rewrite, or delete any comment.
+    - Do NOT write any comment that mentions, hints at, or explains the injected defect. Forbidden markers include: "BUG", "buggy", "fault", "defect", "mutant", "mutation", "FIXME", "XXX", "intentionally", "accidentally", "WRONG", "broken", "changed from original".
+    - Do NOT leak the defect into string literals, log messages, or exception texts (e.g. logger.warn("wrong page size"), throw new Exception("should be 100")).
+    - Do NOT use variable or method names that hint at the change (e.g. buggyValue, wrongSize, mutatedOffset).
+    - Keep naming, formatting, and style identical to the original code, so diffing the two versions reveals nothing beyond the defect itself.
+
     ## Note:
     The buggy code must exhibit incorrect behavior in at least one scenario that the tests happen to miss.
 
@@ -259,7 +275,7 @@ class BugGenerationAgent:
             return code # Return original code on error
 
     def debug(self):
-        system_prompt = """You are a talented Java programmer and experienced in realistic bug synthesis."""
+        system_prompt = """You are a talented Java programmer and experienced in realistic bug synthesis. The bugs you inject must be invisible in the source code: you never annotate, hint at, or explain the injected defect in any comment, string literal, log message, or identifier."""
 
         user_prompt = """
     Below is the original Java code from a real project:
@@ -341,10 +357,26 @@ class BugGenerationAgent:
             return buggy_code
         except Exception as e:
             logger.error(f"Error calling LLM for bug generation: {e}")
-            return code # Return original code on error
+            return "" # Return empty on error
+
+    def _call(self, system, user, temperature=0.):
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[{"role": "system", "content": system},
+                          {"role": "user", "content": user}],
+                temperature=temperature,
+                max_tokens=16384,
+            )
+            content = response.choices[0].message.content.strip()
+            return content.split("```java")[-1].split("```")[0].strip()
+        except Exception as e:
+            logger.error(f"Error calling LLM: {e}")
+            return ""
 
     def fix_bug_prompt(self, bug_code: str, error: str) -> str:
-        prompt = f"""The code below has errors:
+        """修复编译错误，保持注入的逻辑与注释不变。"""
+        prompt = f"""The code below fails to compile with the following error:
         Code:
         ```java
         {bug_code}
@@ -355,27 +387,16 @@ class BugGenerationAgent:
         {error}
         ```
 
-        Please provide a corrected version of the code that addresses the error.
+        Please provide a corrected version of the code that compiles.
+
+        Only resolve the compilation error. Keep the existing logic, every comment, string literal, log message, and identifier exactly as in the code above — do not "fix" any behavior, and do not add, rewrite, or delete any comment.
         ```java
         <corrected code>
         ```
         """
-        try:
-            response = self.client.chat.completions.create(
-                model=self.model,
-                messages=[{"role": "system", "content": "You are a helpful assistant that fixes buggy code."},
-                          {"role": "user", "content": prompt}],
-                temperature=0.5,
-                max_tokens=16384
-            )
-            fixed_code = response.choices[0].message.content.strip()
-            # Ensure we only get Java code block if LLM adds markdown
-            if fixed_code.startswith("```java") and fixed_code.endswith("```"):
-                fixed_code = fixed_code[len("```java"):-len("```")].strip()
-            return fixed_code
-        except Exception as e:
-            logger.error(f"Error calling LLM for bug_code fixing: {e}")
-            return bug_code # Return original bug code on error
+        return self._call(
+            "You are a helpful assistant that fixes compilation errors in Java code while keeping its logic and comments unchanged.",
+            prompt)
 
 
 

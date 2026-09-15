@@ -110,7 +110,7 @@ class TestGenerationAgent:
         user_prompt = f"""
 Your task is to design tests that ensure only correct implementations (following the specification) pass, while incorrect implementations would fail.
 You are given the following information:
-- Code under test
+- Function signature
 - Specification
 
 Your tasks:
@@ -126,10 +126,13 @@ Your tasks:
 - At least one test should be able to expose an incorrect implementation if the code were incorrect.
 - A correct implementation should pass all tests.
 
-## Input Method ({function_name}):
+## Function ({function_name}):
 ```java
 {erroneous_code}
 ```
+
+## Specification:
+{specification}
 
 ## Method Context:
 - Src file: {file_path}
@@ -137,8 +140,6 @@ Your tasks:
 - Class: {class_info if class_name else 'Standalone function'}
 - Is async: {function_info.get('is_async', False)}
 
-## Specification:
-{specification}
 
 ### Output Format ###:
 Return ONLY code without explanations, non-code text, or markdown formatting.
@@ -155,7 +156,7 @@ Return ONLY code without explanations, non-code text, or markdown formatting.
             response = self.client.chat.completions.create(
                 model=self.model,
                 messages=message,
-                temperature=0.7, # Higher temperature for more creative tests
+                temperature=0., # Higher temperature for more creative tests
                 max_tokens=16384
             )
             test_code = response.choices[0].message.content.strip()
@@ -280,30 +281,33 @@ Return ONLY code without explanations, non-code text, or markdown formatting.
         user_prompt = f"""
 Your task is to design tests that ensure only correct implementations pass, while incorrect implementations would fail.
 
-
 Your tasks:
 1. Design a set of **test cases** that cover:
 - Basic functionality with valid inputs and expected outputs.
 - Boundary conditions and edge cases.
 - Invalid inputs and error handling.
 - Potential issues with dependency interactions.
-2. Write executable test code using Java 8 and JUnit 4.
+2. Write executable test code using Java 21 and JUnit 4.
 3. The test code should be written into {test_path}. Please make sure the imports are correct.
 4. Ensure tests are designed to differentiate between correct and incorrect implementations:
 - At least one test should be able to expose an incorrect implementation if the code were incorrect.
 - A correct implementation should pass all tests.
 5. The generated test cases must be different from the existing test code.
 
-## Input Method ({function_name}):
+## Function ({function_name}):
 ```java
 {erroneous_code}
 ```
+
+## Specification:
+{specification}
 
 ## Method Context:
 - Src file: {file_path}
 - Imports: {imports}
 - Class: {class_info if class_name else 'Standalone function'}
 - Is async: {function_info.get('is_async', False)}
+
 
 ## Existing Test Code:
 ```java
@@ -325,7 +329,7 @@ Return ONLY code without explanations, non-code text, or markdown formatting.
             response = self.client.chat.completions.create(
                 model=self.model,
                 messages=message,
-                temperature=0.7, # Higher temperature for more creative tests
+                temperature=0., # Higher temperature for more creative tests
                 max_tokens=16384
             )
             test_code = response.choices[0].message.content.strip()
@@ -360,7 +364,7 @@ Return ONLY code without explanations, non-code text, or markdown formatting.
                 model=self.model,
                 messages=[{"role": "system", "content": "You are a helpful assistant that fixes failing test code."},
                           {"role": "user", "content": prompt}],
-                temperature=0.5,
+                temperature=0.,
                 max_tokens=16384
             )
             fixed_test_code = response.choices[0].message.content.strip()
