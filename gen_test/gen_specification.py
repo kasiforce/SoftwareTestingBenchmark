@@ -1002,7 +1002,9 @@ class TestCodeGenerator:
 def main():
     # 从环境变量获取API密钥
     
+
     api_key = "sk-f9iJyNvXH7W8Zc4TC6k3c7gzEpN42jpBOhyqgGfGsay4iEkB"
+
     if not api_key:
         raise ValueError("请设置 OPENAI_API_KEY 环境变量")
 
@@ -1010,7 +1012,9 @@ def main():
     generator = TestCodeGenerator(api_key=api_key, model="gpt-4o-mini")
 
     # 加载函数数据
-    input_file = "jedis.json"  # 替换为您的输入文件路径
+
+    input_file = "wepush22.json"  # 替换为您的输入文件路径
+
     # input_file = "test_output.json"
     with open(input_file, 'r', encoding='utf-8') as f:
         functions_data = json.load(f)
@@ -1018,7 +1022,9 @@ def main():
     logger.info(f"找到 {len(functions_data)} 个需要生成测试的函数")
 
     # 生成测试代码 - 使用并行版本
-    output_file = "jedis_specification.json"
+
+    output_file = "wepush22_specification.json"
+
 
     # 方法1: 完全并行处理
     # results = generator.generate_tests_for_functions_parallel(

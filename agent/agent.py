@@ -29,8 +29,12 @@ def setup_logging(log_file: str):
 
 def build_prompt(function_info: dict) -> str:
     """根据数据集条目构建发送给 Copilot CLI 的提示"""
+    
     function_name = function_info['name']
-    function_code = function_info['buggy_code']
+
+    function_code = function_info['buggy_code'][-1]
+    imports = function_info.get('import', '')
+
     # signature = function_code.split(':\n')[0]
     signature = function_code.split('{', 1)[0].rstrip()
     print(signature)
@@ -51,20 +55,45 @@ def build_prompt(function_info: dict) -> str:
         # if function_info['class_variables']:
         #     class_info['class_variables'] = function_info['class_variables']
 
-    # specification = function_info['specification']
+    specification = function_info['specification']
     file_path = function_info['src_file']
     test_path = function_info['test_file']
 
     
     prompt = f"""
-Please generate a test class for the following function.
+Your task is to design tests that ensure only correct implementations (following the specification) pass, while incorrect implementations would fail.
+You are given the following information:
+- Function
+- Specification
 
-Function Information:
+Your tasks:
+1. Infer the **intended behavior** from the specification.
+2. Design a set of **test cases** that cover:
+- Basic functionality with valid inputs and expected outputs.
+- Boundary conditions and edge cases.
+- Invalid inputs and error handling.
+- Potential issues with dependency interactions.
+3. Write executable test code using Java 21 and JUnit 4.
+4. The test code should be written into {test_path}. Please make sure the imports are correct.
+5. Ensure tests are designed to differentiate between correct and incorrect implementations:
+- At least one test should be able to expose an incorrect implementation if the code were incorrect.
+- A correct implementation should pass all tests.
+
+## Function ({function_name}):
+```java
+{function_code}
+```
+
+## Specification:
+{specification}
+
+## Method Context:
 - Src file: {file_path}
-- Function name: {function_name}
+- Imports: {imports}
 - Class: {class_info if class_name else 'Standalone function'}
 - Is async: {function_info.get('is_async', False)}
 
+<<<<<<< HEAD
 Function Code:
 ```java
 {function_code}
@@ -79,6 +108,13 @@ Requirements:
 - After writing the test file, run the tests with `mvn test -Drat.skip=true`.
 - If the tests have compilation errors, analyze the errors and attempt to fix the test file. Stop after 3 repair attempts.
 - Work autonomously and complete the task without asking for further input.
+=======
+
+Requirements:
+Do not modify any source code files in the project. Only create or modify the target test file.
+After writing the file, run the tests with mvn (e.g., mvn test).
+Work autonomously and complete the task without asking for further input.
+>>>>>>> refs/remotes/origin/main
 """
 
     
@@ -89,9 +125,20 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
     start_time = datetime.now()
     project_root = entry.get("project_root", ".")
     name = entry.get("name", "unknown")
+    code = entry.get("code", "")
+    buggy_code = entry.get("buggy_code", [""])[-1]
     src_file = entry.get("src_file", "")
     test_file = entry.get("test_file", "")
+<<<<<<< HEAD
     code = entry.get("buggy_code", "")
+=======
+
+    with open(src_file, "r", encoding="utf-8") as f:
+        src_code = f.read()
+    src_code = src_code.replace(code, buggy_code)
+    with open(src_file, "w", encoding="utf-8") as f:
+        f.write(src_code)
+>>>>>>> refs/remotes/origin/main
     prompt = build_prompt(entry)
 
     # project_dir = (base_path / project_root).resolve()
@@ -135,6 +182,11 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
             "name": name,
             "project_root": project_root,
             "src_file": src_file,
+<<<<<<< HEAD
+=======
+            "code": code,
+            "buggy_code": buggy_code,
+>>>>>>> refs/remotes/origin/main
             "test_file": test_file,
             "code": code,
             "returncode": -1,
@@ -150,6 +202,11 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
             "name": name,
             "project_root": project_root,
             "src_file": src_file,
+<<<<<<< HEAD
+=======
+            "code": code,
+            "buggy_code": buggy_code,
+>>>>>>> refs/remotes/origin/main
             "test_file": test_file,
             "code": code,
             "returncode": -1,
@@ -179,6 +236,11 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
         "name": name,
         "project_root": project_root,
         "src_file": src_file,
+<<<<<<< HEAD
+=======
+        "code": code,
+        "buggy_code": buggy_code,
+>>>>>>> refs/remotes/origin/main
         "test_file": test_file,
         "code": code,
         "returncode": returncode,

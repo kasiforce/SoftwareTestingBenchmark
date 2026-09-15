@@ -257,14 +257,46 @@ def find_line_span(file_path, code):
     return None
 
 
-def blame_line_dates(repo_dir, rel_path, start, end):
-    """git blame 取 [start, end] 行的 committer 时间戳列表（秒）。"""
-    proc = sh(["git", "blame", "-L", f"{start},{end}", "--porcelain", "--", rel_path],
-              cwd=repo_dir, timeout=120)
+# 按 (repo_dir, rel_path) 缓存整文件 blame 结果：--filter=blob:none 部分克隆下
+# 每方法一次 blame 会触发逐 blob 网络拉取（jackson-databind 级别的大仓库直接
+# 卡死），改为每文件 blame 一次再按行切片，结果与逐段 blame 完全一致
+_BLAME_CACHE = {}
+
+
+def blame_file_times(repo_dir, rel_path):
+    """整文件 git blame --porcelain，返回 {行号: committer 时间戳(秒)}；失败返回 None。"""
+    proc = sh(["git", "blame", "--porcelain", "--", rel_path], cwd=repo_dir, timeout=600)
     if proc.returncode != 0:
         return None
-    times = [int(line.split()[1]) for line in proc.stdout.splitlines()
-             if line.startswith("committer-time ")]
+    sha_time, line_time = {}, {}
+    cur_sha = None
+    for line in proc.stdout.splitlines():
+        if line.startswith("committer-time "):
+            if cur_sha:
+                sha_time[cur_sha] = int(line.split()[1])
+            continue
+        if line.startswith("\t") or not line:
+            continue
+        parts = line.split()
+        sha = parts[0].lstrip("^")
+        if len(parts) >= 3 and len(sha) == 40 and all(c in "0123456789abcdef" for c in sha):
+            cur_sha = sha
+            final, count = int(parts[2]), int(parts[3]) if len(parts) > 3 else 1
+            for ln in range(final, final + count):
+                line_time[ln] = sha  # 先记 sha，时间在下一轮统一替换
+    # 第二遍把行号→sha 替换为行号→时间（短格式行复用同 sha 的时间）
+    return {ln: sha_time.get(s) for ln, s in line_time.items() if sha_time.get(s) is not None}
+
+
+def blame_line_dates(repo_dir, rel_path, start, end):
+    """git blame 取 [start, end] 行的 committer 时间戳列表（秒），按文件缓存。"""
+    key = (repo_dir, rel_path)
+    if key not in _BLAME_CACHE:
+        _BLAME_CACHE[key] = blame_file_times(repo_dir, rel_path)
+    by_line = _BLAME_CACHE[key]
+    if by_line is None:
+        return None
+    times = [by_line[ln] for ln in range(start, end + 1) if ln in by_line]
     return times or None
 
 
@@ -296,6 +328,7 @@ def screen_repo(meta, args):
         return None, row
 
     repo_dir = os.path.join(args.work_dir, name)
+    _BLAME_CACHE.clear()
     try:
         # 1. clone + 固定当前最新 HEAD（CSV 中带 local_path 列时从本地路径 clone，
         #    供测试/离线复跑使用；正式筛选走 GitHub）
