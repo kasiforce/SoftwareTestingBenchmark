@@ -842,11 +842,11 @@ def create_and_run_js(dockerfile_path, project_root, data_file, github_token=Non
     # syntax_report = syntax_analyse_js(project_dir, gen_tests_dir)
 
     # 准备测试结果目录（主机）
-    test_results_base = os.path.join(cwd, "test_results", "javascript")
+    test_results_base = os.path.join(cwd, "test_results", "java")
     repo_name = project_root
     if "/" in project_root:
         repo_name = project_root.split("/")[1]
-    test_results_dir = os.path.join(test_results_base, repo_name, "jest_agent")
+    test_results_dir = os.path.join(test_results_base, repo_name, "junit4_agent")
     os.makedirs(test_results_dir, exist_ok=True)
 
     # 构建镜像
@@ -868,58 +868,113 @@ def create_and_run_js(dockerfile_path, project_root, data_file, github_token=Non
     # 注意：假设项目根目录包含 package.json 并声明 jest 配置，或者使用 npx jest 命令
     try:
         # 构造要在容器中执行的脚本（多行 bash）
-        container_cmd = f"""
-            # proton
-            # jq '.env.test = {{
-            #     "presets": [
-            #         [
-            #         "@babel/preset-env",
-            #         {{
-            #             "modules": "commonjs",
-            #             "targets": {{ "node": "current" }},
-            #             "loose": true,
-            #             "bugfixes": true
-            #         }}
-            #         ]
-            #     ]
-            # }}' .babelrc.json > .babelrc.json.tmp && mv .babelrc.json.tmp .babelrc.json
-
-            # set -e
-            # 安装 Python3
-            if ! command -v python3 &> /dev/null; then
-                apt update && apt install -y python3
-            fi
-
-     
-            # 使用 ci 更可重复；若没有 package-lock.json 可改成 npm install
-            if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
-                npm ci --no-audit --no-fund || npm install --no-audit --no-fund
-            else
-                npm install --no-audit --no-fund
-            fi
-
-            export COPILOT_GITHUB_TOKEN="$GITHUB_TOKEN"
-
-            python3 /testbed/agent.py \
-                --dataset /testbed/{data_file}
-            
-        """
-
-        subprocess.run([
+        result = subprocess.run([
             "docker", "run", "--rm",
             "-v", f"{test_results_dir}:/results",
-            "-e", f"GITHUB_TOKEN={github_token}",
-            # "-v", "/mnt/software-testing/projects/pdf.js/jest.config.js:/testbed/jest.config.js",
-            # "-v", "/mnt/software-testing/projects/pdf.js/babel.config.cjs:/testbed/babel.config.cjs",
             "-v", "./agent/agent.py:/testbed/agent.py",
-            "-v", "./rollup.temp.config.mjs:/testbed/rollup.temp.config.mjs",
-            "-v", "./jest.config.js:/testbed/jest.config.js",
-            "-v", "./babel.config.js:/testbed/babel.config.js",
-            # "-v", "./babel.config.cjs:/testbed/babel.config.cjs",
+            "-v", "./gen_test/gen_tests_files.py:/testbed/delete.py",
             "-v", f"./{data_file}:/testbed/{data_file}",
-            "repo-with-js-test",
-            "bash", "-c", container_cmd
-        ], check=True, cwd=cwd)
+            # "-v", f"{os.path.expanduser('~/.m2')}:/root/.m2",
+            f"java-repo-{repo_name}",
+            "bash", "-c", f"""
+                # set -e
+                cd /testbed
+                ROOT_DIR="$(pwd)"
+                # 安装 Python3
+                if ! command -v python3 &> /dev/null; then
+                    apt-get update && apt-get install -y python3
+                fi
+
+                
+                
+                export COPILOT_PROVIDER_BASE_URL=https://openrouter.ai/api/v1
+                export COPILOT_PROVIDER_API_KEY=""
+                export COPILOT_MODEL="deepseek/deepseek-v4-flash-0731"
+
+
+        
+                # 使用 ci 更可重复；若没有 package-lock.json 可改成 npm install
+                apt-get update
+                apt-get install -y curl ca-certificates
+                curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+                apt-get install -y nodejs
+
+                npm install -g @github/copilot
+
+                # export COPILOT_GITHUB_TOKEN="$GITHUB_TOKEN"
+
+                python3 /testbed/delete.py --project-root /testbed --data-path /testbed/{data_file}
+
+                python3 /testbed/agent.py \
+                    --dataset /testbed/{data_file}
+                    
+                
+       
+            """
+        ], check=False, capture_output=True, text=True)
+
+        # container_cmd = f"""
+        #     # proton
+        #     # jq '.env.test = {{
+        #     #     "presets": [
+        #     #         [
+        #     #         "@babel/preset-env",
+        #     #         {{
+        #     #             "modules": "commonjs",
+        #     #             "targets": {{ "node": "current" }},
+        #     #             "loose": true,
+        #     #             "bugfixes": true
+        #     #         }}
+        #     #         ]
+        #     #     ]
+        #     # }}' .babelrc.json > .babelrc.json.tmp && mv .babelrc.json.tmp .babelrc.json
+
+            
+        #     export COPILOT_PROVIDER_BASE_URL=https://openrouter.ai/api/v1
+        #     export COPILOT_PROVIDER_API_KEY=""
+        #     export COPILOT_MODEL="deepseek/deepseek-v3.2"
+
+        #     # set -e
+        #     # 安装 Python3
+        #     if ! command -v python3 &> /dev/null; then
+        #         apt update && apt install -y python3
+        #     fi
+
+     
+        #     # 使用 ci 更可重复；若没有 package-lock.json 可改成 npm install
+        #     if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
+        #         npm ci --no-audit --no-fund || npm install --no-audit --no-fund
+        #     else
+        #         npm install --no-audit --no-fund
+        #     fi
+
+        #     npm install -g @github/copilot
+
+        #     # export COPILOT_GITHUB_TOKEN="$GITHUB_TOKEN"
+
+        #     python3 /testbed/delete.py --project-root /testbed
+
+        #     python3 /testbed/agent.py \
+        #         --dataset /testbed/{data_file}
+
+            
+        # """
+
+        # subprocess.run([
+        #     "docker", "run", "--rm",
+        #     "-v", f"{test_results_dir}:/results",
+        #     "-e", f"GITHUB_TOKEN={github_token}",
+        #     # "-v", "/mnt/software-testing/projects/pdf.js/jest.config.js:/testbed/jest.config.js",
+        #     "-v", "./gen_test/delete_js_origin_tests.py:/testbed/delete.py",
+        #     "-v", "./agent/agent.py:/testbed/agent.py",
+        #     "-v", "./rollup.temp.config.mjs:/testbed/rollup.temp.config.mjs",
+        #     "-v", "./jest.config.js:/testbed/jest.config.js",
+        #     "-v", "./babel.config.js:/testbed/babel.config.js",
+        #     # "-v", "./babel.config.cjs:/testbed/babel.config.cjs",
+        #     "-v", f"./{data_file}:/testbed/{data_file}",
+        #     "repo-with-js-test",
+        #     "bash", "-c", container_cmd
+        # ], check=True, cwd=cwd)
 
     except subprocess.CalledProcessError as e:
         print(f"容器运行/测试失败: {e}")
@@ -938,6 +993,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # 示例调用：你可以改成你项目的路径
-    create_and_run_js("output/modern-error/dockerfile",
-                      project_root="projects/modern-error", data_file="dataset/tem.json", github_token="")
+    create_and_run_js("output/wepush/dockerfile",
+                      project_root="projects/wepush", data_file="wepush.json", github_token="")
     # create_and_run_js(args.dockerfile_path, args.test_dir, args.cover_source, args.project_root)
