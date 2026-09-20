@@ -62,7 +62,8 @@ def parse_junit_xml(path):
     results = {}
     try:
         root = ET.parse(path).getroot()
-    except ET.ParseError:
+    except (ET.ParseError, OSError):
+        # OSError：pytest 进程被杀（OOM/磁盘满）没写出 junitxml，走"没解析到用例"分支
         return results
     for tc in root.iter("testcase"):
         key = (tc.get("classname", ""), tc.get("name", ""))
@@ -381,8 +382,18 @@ def screen_repo(meta, args):
             return reject(f"过 cutoff 候选不足（strict={len(strict)}, relaxed={len(relaxed)}）")
 
         # 6. 输出（schema 与 dataset/flask.json 等 Python 数据集兼容）
+        # 被测函数所在源文件的 import 上下文（生成测试时需要同样的依赖），按文件缓存
+        imports_cache = {}
         entries = []
         for m in selected:
+            if m["_rel_path"] not in imports_cache:
+                try:
+                    imports_cache[m["_rel_path"]] = extractor.extract_file_imports(
+                        os.path.join(repo_dir, m["_rel_path"]))
+                except Exception as e:
+                    print(f"  import 提取失败 {m['_rel_path']}: {str(e)[:80]}")
+                    imports_cache[m["_rel_path"]] = {
+                        "imports": [], "from_imports": [], "imports_with_aliases": []}
             entry = {
                 "project_root": f"projects/{name}",
                 "name": m["name"],
@@ -390,6 +401,7 @@ def screen_repo(meta, args):
                 "test_file": m.get("test_file") or extractor._gen_test_file_path(
                     m["src_file"], m["name"]),
                 "code": m["code"],
+                "imports": imports_cache[m["_rel_path"]],
                 "is_async": m.get("is_async", False),
                 "type": m.get("type", "method"),
                 "nloc": m["loc"],
@@ -471,6 +483,8 @@ def main():
     parser.add_argument("--limit", type=int, default=None, help="只处理 CSV 前 N 个仓库")
     parser.add_argument("--min-required", type=int, default=5, help="每项目最少候选方法数")
     parser.add_argument("--cap", type=int, default=20, help="每项目最多选用的方法数")
+    parser.add_argument("--target-accepted", type=int, default=None,
+                        help="筛够 N 个 accepted 仓库即停止（默认筛完整个 CSV）")
     parser.add_argument("--timeout", type=int, default=1800, help="单遍 pytest 超时（秒）")
     parser.add_argument("--install-timeout", type=int, default=900, help="venv/pip 安装超时（秒）")
     parser.add_argument("--python-bin", default=sys.executable or "python3",
@@ -491,6 +505,7 @@ def main():
     print(f"待筛查 {len(repos)} 个仓库（已完成跳过 {len([r for r in repos if r['full_name'] in done])} 个），"
           f"cutoff={args.cutoff} recency={args.recency} skip_build={args.skip_build}\n")
 
+    accepted = 0
     for meta in repos:
         if meta["full_name"] in done:
             continue
@@ -508,6 +523,10 @@ def main():
             out_json = os.path.join(args.out, row["full_name"].replace("/", "__") + ".json")
             with open(out_json, "w", encoding="utf-8") as f:
                 json.dump(entries, f, indent=2, ensure_ascii=False)
+            accepted += 1
+            if args.target_accepted and accepted >= args.target_accepted:
+                print(f"\n已达 --target-accepted={args.target_accepted}，停止后续筛查。")
+                break
 
     print(f"\n完成。summary: {summary_path}")
 

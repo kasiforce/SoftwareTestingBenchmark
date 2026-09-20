@@ -93,28 +93,11 @@ Your tasks:
 - Class: {class_info if class_name else 'Standalone function'}
 - Is async: {function_info.get('is_async', False)}
 
-<<<<<<< HEAD
-Function Code:
-```java
-{function_code}
-
-
-Requirements:
-- You MUST use JUnit 4 framework for writing tests.
-- Your job is to output corresponding test class that obtains high coverage and invokes the code under test.
-- The test code should be written into {test_path}. Please make sure the imports are correct.
-- Do not modify any source code files in the project. 
-- Do not read any existing tests files. Only create or modify the target test file.
-- After writing the test file, run the tests with `mvn test -Drat.skip=true`.
-- If the tests have compilation errors, analyze the errors and attempt to fix the test file. Stop after 3 repair attempts.
-- Work autonomously and complete the task without asking for further input.
-=======
 
 Requirements:
 Do not modify any source code files in the project. Only create or modify the target test file.
 After writing the file, run the tests with mvn (e.g., mvn test).
 Work autonomously and complete the task without asking for further input.
->>>>>>> refs/remotes/origin/main
 """
 
     
@@ -129,16 +112,15 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
     buggy_code = entry.get("buggy_code", [""])[-1]
     src_file = entry.get("src_file", "")
     test_file = entry.get("test_file", "")
-<<<<<<< HEAD
-    code = entry.get("buggy_code", "")
-=======
+
 
     with open(src_file, "r", encoding="utf-8") as f:
         src_code = f.read()
-    src_code = src_code.replace(code, buggy_code)
-    with open(src_file, "w", encoding="utf-8") as f:
-        f.write(src_code)
->>>>>>> refs/remotes/origin/main
+    if code in src_code:
+        src_code = src_code.replace(code, buggy_code)
+        with open(src_file, "w", encoding="utf-8") as f:
+            f.write(src_code)
+        print(f"Replaced code in {src_file} for '{name}'")
     prompt = build_prompt(entry)
 
     # project_dir = (base_path / project_root).resolve()
@@ -182,11 +164,8 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
             "name": name,
             "project_root": project_root,
             "src_file": src_file,
-<<<<<<< HEAD
-=======
             "code": code,
             "buggy_code": buggy_code,
->>>>>>> refs/remotes/origin/main
             "test_file": test_file,
             "code": code,
             "returncode": -1,
@@ -202,11 +181,8 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
             "name": name,
             "project_root": project_root,
             "src_file": src_file,
-<<<<<<< HEAD
-=======
             "code": code,
             "buggy_code": buggy_code,
->>>>>>> refs/remotes/origin/main
             "test_file": test_file,
             "code": code,
             "returncode": -1,
@@ -236,11 +212,8 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
         "name": name,
         "project_root": project_root,
         "src_file": src_file,
-<<<<<<< HEAD
-=======
         "code": code,
         "buggy_code": buggy_code,
->>>>>>> refs/remotes/origin/main
         "test_file": test_file,
         "code": code,
         "returncode": returncode,
