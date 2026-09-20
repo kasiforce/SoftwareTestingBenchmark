@@ -52,10 +52,9 @@ from typing import List, Dict, Tuple
 
 
 def delete_test_files_in_test_dirs(project_root):
-<<<<<<< HEAD
+
     # databind需要全删
-=======
->>>>>>> refs/remotes/origin/main
+
     """在 test/tests 目录中删除 *test*.java 文件"""
     # 查找 test/tests 目录
     test_dirs = []
