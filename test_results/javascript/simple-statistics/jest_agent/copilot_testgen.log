@@ -1,0 +1,38 @@
+2026-05-28 02:25:40,245 [INFO]  加载了 4 个待处理条目
+2026-05-28 02:25:40,246 [INFO] [1/4] 正在处理: poissonDistribution
+2026-05-28 02:25:40,247 [INFO]  Running Copilot for 'poissonDistribution' in /testbed
+2026-05-28 02:25:40,252 [ERROR]  Unexpected error: [Errno 2] No such file or directory: 'copilot' for 'poissonDistribution'
+2026-05-28 02:25:40,252 [WARNING]  未完全成功 (返回码=-1)，请检查日志详情
+2026-05-28 02:25:50,253 [INFO] [2/4] 正在处理: chiSquaredGoodnessOfFit
+2026-05-28 02:25:50,254 [INFO]  Running Copilot for 'chiSquaredGoodnessOfFit' in /testbed
+2026-05-28 02:25:50,255 [ERROR]  Unexpected error: [Errno 2] No such file or directory: 'copilot' for 'chiSquaredGoodnessOfFit'
+2026-05-28 02:25:50,255 [WARNING]  未完全成功 (返回码=-1)，请检查日志详情
+2026-05-28 02:26:00,261 [INFO] [3/4] 正在处理: combinationsReplacement
+2026-05-28 02:26:00,261 [INFO]  Running Copilot for 'combinationsReplacement' in /testbed
+2026-05-28 02:26:00,262 [ERROR]  Unexpected error: [Errno 2] No such file or directory: 'copilot' for 'combinationsReplacement'
+2026-05-28 02:26:00,263 [WARNING]  未完全成功 (返回码=-1)，请检查日志详情
+2026-05-28 02:26:10,264 [INFO] [4/4] 正在处理: permutationsHeap
+2026-05-28 02:26:10,264 [INFO]  Running Copilot for 'permutationsHeap' in /testbed
+2026-05-28 02:26:10,265 [ERROR]  Unexpected error: [Errno 2] No such file or directory: 'copilot' for 'permutationsHeap'
+2026-05-28 02:26:10,266 [WARNING]  未完全成功 (返回码=-1)，请检查日志详情
+2026-05-28 02:26:10,266 [INFO]  详细结果已保存至 /results/copilot_testgen_results.json
+2026-05-28 02:26:10,267 [INFO]  处理完成：成功 0/4
+2026-05-28 02:29:44,867 [INFO]  加载了 4 个待处理条目
+2026-05-28 02:29:44,868 [INFO] [1/4] 正在处理: poissonDistribution
+2026-05-28 02:29:44,870 [INFO]  Running Copilot for 'poissonDistribution' in /testbed
+2026-05-28 02:31:23,834 [WARNING]  测试文件未找到: /testbed/test/poisson_distribution/poissonDistribution.test.js
+2026-05-28 02:31:23,836 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-28 02:31:33,847 [INFO] [2/4] 正在处理: chiSquaredGoodnessOfFit
+2026-05-28 02:31:33,847 [INFO]  Running Copilot for 'chiSquaredGoodnessOfFit' in /testbed
+2026-05-28 02:33:16,112 [WARNING]  测试文件未找到: /testbed/test/chi_squared_goodness_of_fit/chiSquaredGoodnessOfFit.test.js
+2026-05-28 02:33:16,113 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-28 02:33:26,123 [INFO] [3/4] 正在处理: combinationsReplacement
+2026-05-28 02:33:26,124 [INFO]  Running Copilot for 'combinationsReplacement' in /testbed
+2026-05-28 02:35:00,930 [WARNING]  测试文件未找到: /testbed/test/combinations_replacement/combinationsReplacement.test.js
+2026-05-28 02:35:00,930 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-28 02:35:10,935 [INFO] [4/4] 正在处理: permutationsHeap
+2026-05-28 02:35:10,936 [INFO]  Running Copilot for 'permutationsHeap' in /testbed
+2026-05-28 02:36:53,179 [WARNING]  测试文件未找到: /testbed/test/permutations_heap/permutationsHeap.test.js
+2026-05-28 02:36:53,180 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-28 02:36:53,182 [INFO]  详细结果已保存至 /results/copilot_testgen_results.json
+2026-05-28 02:36:53,182 [INFO]  处理完成：成功 0/4

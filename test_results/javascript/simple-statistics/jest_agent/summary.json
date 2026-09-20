@@ -1,0 +1,34 @@
+{
+  "compile_pass": 4,
+  "compile_total": 4,
+  "compile_pass_rate": 1.0,
+  "testcase": {
+    "total": 43,
+    "passed": 43,
+    "failed": 0,
+    "skipped": 0,
+    "test_pass_rate": 1.0,
+    "run_pass_rate": 1.0,
+    "num_total_suites": 4,
+    "num_passed_suites": 4,
+    "num_reported_test_suites": 4
+  },
+  "coverage": {
+    "file": {},
+    "function": {},
+    "summary": {
+      "file": {
+        "total_lines": 0,
+        "covered_lines": 0,
+        "total_branches": 0,
+        "covered_branches": 0
+      },
+      "function": {
+        "total_lines": 0,
+        "covered_lines": 0,
+        "total_branches": 0,
+        "covered_branches": 0
+      }
+    }
+  }
+}
