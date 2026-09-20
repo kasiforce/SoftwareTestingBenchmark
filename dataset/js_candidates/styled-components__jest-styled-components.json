@@ -1,0 +1,33 @@
+[
+  {
+    "project_root": "projects/jest-styled-components",
+    "name": "splitCSSRules",
+    "src_file": "src/utils.js",
+    "test_file": "test/utils/splitCSSRules.test.js",
+    "code": "const splitCSSRules = (cssText, origLine, origColumn) => {\n  const rawLines = cssText.split('\\n');\n  const displayLines = [];\n  let errorDisplayLine = -1;\n  let errorDisplayColumn = origColumn;\n\n  for (let i = 0; i < rawLines.length; i++) {\n    const raw = rawLines[i];\n    const isErrorLine = i + 1 === origLine;\n\n    // Find /*!sc*/ positions to split into chunks\n    SC_COMMENT_RE.lastIndex = 0;\n    const separators = [];\n    for (\n      let m = SC_COMMENT_RE.exec(raw);\n      m !== null;\n      m = SC_COMMENT_RE.exec(raw)\n    ) {\n      separators.push({ start: m.index, end: m.index + m[0].length });\n    }\n\n    // No styled-components comments — keep line as-is\n    if (separators.length === 0) {\n      if (raw.length > 0) {\n        displayLines.push(raw);\n        if (isErrorLine) {\n          errorDisplayLine = displayLines.length;\n          errorDisplayColumn = origColumn;\n        }\n      }\n      continue;\n    }\n\n    // Extract chunks between separators\n    let pos = 0;\n    for (const sep of separators) {\n      const chunk = raw.slice(pos, sep.start).trim();\n      if (chunk.length > 0) {\n        displayLines.push(chunk);\n        if (isErrorLine && errorDisplayLine === -1 && origColumn <= sep.start) {\n          errorDisplayLine = displayLines.length;\n          errorDisplayColumn = origColumn - pos;\n        }\n      }\n      // Advance past separator and any trailing whitespace\n      pos = sep.end;\n      while (pos < raw.length && raw[pos] === ' ') pos++;\n    }\n\n    // Trailing content after last separator\n    const tail = raw.slice(pos).trim();\n    if (tail.length > 0) {\n      displayLines.push(tail);\n      if (isErrorLine && errorDisplayLine === -1) {\n        errorDisplayLine = displayLines.length;\n        errorDisplayColumn = origColumn - pos;\n      }\n    }\n\n    if (isErrorLine && errorDisplayLine === -1) {\n      errorDisplayLine = displayLines.length;\n      errorDisplayColumn = 1;\n    }\n  }\n\n  return {\n    lines: displayLines,\n    errorLine: errorDisplayLine,\n    errorColumn: errorDisplayColumn,\n  };\n};",
+    "is_async": false,
+    "type": "function",
+    "nloc": 59,
+    "complexity": 18,
+    "param_count": 3,
+    "tier": "relaxed",
+    "method_last_modified": "2026-03-22",
+    "method_oldest_line": "2026-03-22",
+    "class_covered_in_baseline": true,
+    "repo_meta": {
+      "full_name": "styled-components/jest-styled-components",
+      "html_url": "https://github.com/styled-components/jest-styled-components",
+      "stars": "1580",
+      "license": "MIT",
+      "created_at": "2017-03-18T11:22:41Z",
+      "pushed_at": "2026-06-29T22:16:53Z",
+      "sha": "2d1e663317287fd46e14bf32c75b9a2c542f076a",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "rescued_no_jest": false,
+      "screened_at": "2026-09-17 17:27:39"
+    },
+    "start_line": 59,
+    "end_line": 129
+  }
+]

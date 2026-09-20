@@ -1,0 +1,223 @@
+[
+  {
+    "project_root": "projects/jackson-core",
+    "name": "_nextTokenWithBuffering",
+    "src_file": "src/main/java/tools/jackson/core/filter/FilteringParserDelegate.java",
+    "test_file": "src/test/java/tools/jackson/core/filter/_nextTokenWithBufferingTests.java",
+    "code": "protected final JsonToken _nextTokenWithBuffering(final TokenFilterContext buffRoot)\n        throws JacksonException\n    {\n        main_loop:\n        while (true) {\n            JsonToken t = delegate.nextToken();\n            if (t == null) { // is this even legal?\n                return t;\n            }\n            TokenFilter f;\n\n            // One simplification here: we know for a fact that the item filter is\n            // neither null nor 'include all', for most cases; the only exception\n            // being PROPERTY_NAME handling\n\n            switch (t.id()) {\n            case ID_START_ARRAY:\n                f = _headContext.checkValue(_itemFilter);\n                if (f == null) {\n                    delegate.skipChildren();\n                    continue main_loop;\n                }\n                if (f != TokenFilter.INCLUDE_ALL) {\n                    f = f.filterStartArray();\n                }\n                _itemFilter = f;\n                if (f == TokenFilter.INCLUDE_ALL) {\n                    _headContext = _headContext.createChildArrayContext(f, null, true);\n                    return _nextBuffered(buffRoot);\n                } else if (f != null && _inclusion == Inclusion.INCLUDE_NON_NULL) {\n                    // TODO don't count as match?\n                    _headContext = _headContext.createChildArrayContext(f, null, true);\n                    return _nextBuffered(buffRoot);\n                }\n                _headContext = _headContext.createChildArrayContext(f, null, false);\n                continue main_loop;\n\n            case ID_START_OBJECT:\n                f = _itemFilter;\n                if (f == TokenFilter.INCLUDE_ALL) {\n                    // 14-Aug-2026, tatu: [core#1651] Must replay buffered tokens\n                    //    (like enclosing Property name), not just return START_OBJECT\n                    _headContext = _headContext.createChildObjectContext(f, null, true);\n                    return _nextBuffered(buffRoot);\n                }\n                if (f == null) { // does this occur?\n                    delegate.skipChildren();\n                    continue main_loop;\n                }\n                // Otherwise still iffy, need to check\n                f = _headContext.checkValue(f);\n                if (f == null) {\n                    delegate.skipChildren();\n                    continue main_loop;\n                }\n                if (f != TokenFilter.INCLUDE_ALL) {\n                    f = f.filterStartObject();\n                }\n                _itemFilter = f;\n                if (f == TokenFilter.INCLUDE_ALL) {\n                    _headContext = _headContext.createChildObjectContext(f, null, true);\n                    return _nextBuffered(buffRoot);\n                } else if (f != null && _inclusion == Inclusion.INCLUDE_NON_NULL) {\n                    // TODO don't count as match?\n                    _headContext = _headContext.createChildObjectContext(f, null, true);\n                    return _nextBuffered(buffRoot);\n                }\n                _headContext = _headContext.createChildObjectContext(f, null, false);\n                continue main_loop;\n\n            case ID_END_ARRAY:\n                {\n                    // Unlike with other loops, here we know that content was NOT\n                    // included (won't get this far otherwise)\n                    f = _headContext.getFilter();\n                    boolean gotEnd = (_headContext == buffRoot);\n                    boolean returnEnd = gotEnd && _headContext.isStartHandled();\n\n                    if ((f != null) && (f != TokenFilter.INCLUDE_ALL)) {\n                        f.filterFinishArray();\n                        if (!returnEnd) {\n                            boolean includeEmpty = f.includeEmptyArray(_headContext.hasCurrentIndex());\n                            if (includeEmpty) {\n                                _headContext._needToHandleName = false;\n                                return _nextBuffered(buffRoot);\n                            }\n                        }\n                    }\n\n                    _headContext = _headContext.getParent();\n                    _itemFilter = _headContext.getFilter();\n\n                    if (returnEnd) {\n                        return t;\n                    }\n                    if (gotEnd) {\n                        return null;\n                    }\n                }\n                continue main_loop;\n            case ID_END_OBJECT:\n            {\n                // Unlike with other loops, here we know that content was NOT\n                // included (won't get this far otherwise)\n                f = _headContext.getFilter();\n                boolean gotEnd = (_headContext == buffRoot);\n                boolean returnEnd = gotEnd && _headContext.isStartHandled();\n\n                if ((f != null) && (f != TokenFilter.INCLUDE_ALL)) {\n                    f.filterFinishObject();\n                    if (!returnEnd) {\n                        boolean includeEmpty = f.includeEmptyObject(_headContext.hasCurrentName());\n                        if (includeEmpty) {\n                            _headContext._needToHandleName = false;\n                            return _nextBuffered(buffRoot);\n                        }\n                    }\n                }\n\n                _headContext = _headContext.getParent();\n                _itemFilter = _headContext.getFilter();\n\n                if (returnEnd) {\n                    return t;\n                }\n                if (gotEnd) {\n                    return null;\n                }\n            }\n            continue main_loop;\n\n            case ID_PROPERTY_NAME:\n                {\n                    final String name = delegate.currentName();\n                    f = _headContext.setPropertyName(name);\n                    if (f == TokenFilter.INCLUDE_ALL) {\n                        _itemFilter = f;\n                        return _nextBuffered(buffRoot);\n                    }\n                    if (f == null) { // filter out the value\n                        delegate.nextToken();\n                        delegate.skipChildren();\n                        continue main_loop;\n                    }\n                    f = f.includeProperty(name);\n                    if (f == null) { // filter out the value\n                        delegate.nextToken();\n                        delegate.skipChildren();\n                        continue main_loop;\n                    }\n                    _itemFilter = f;\n                    if (f == TokenFilter.INCLUDE_ALL) {\n                        if (_verifyAllowedMatches()) {\n                            return _nextBuffered(buffRoot);\n                        } else {\n                            // edge case: if no more matches allowed, reset filter\n                            // to initial state to prevent missing a token in next iteration\n                            _itemFilter = _headContext.setPropertyName(name);\n                        }\n                    }\n                }\n                continue main_loop;\n\n            default: // scalar value\n                f = _itemFilter;\n                if (f == TokenFilter.INCLUDE_ALL) {\n                    return _nextBuffered(buffRoot);\n                }\n                if (f != null) {\n                    f = _headContext.checkValue(f);\n                    if ((f == TokenFilter.INCLUDE_ALL)\n                            || ((f != null) && f.includeValue(delegate))) {\n                        if (_verifyAllowedMatches()) {\n                            return _nextBuffered(buffRoot);\n                        }\n                    }\n                }\n                // Otherwise not included (leaves must be explicitly included)\n                continue main_loop;\n            }\n        }\n    }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "FilteringParserDelegate",
+    "full_class_name": "FilteringParserDelegate",
+    "class_constructor": [
+      "public FilteringParserDelegate(JsonParser p, TokenFilter f,\n            TokenFilter.Inclusion inclusion, boolean allowMultipleMatches)\n    {\n        super(p);\n\n        _checkAsyncParser(p);\n\n        initializeFilters(f, inclusion, allowMultipleMatches);\n    }",
+      "public FilteringParserDelegate(JsonParser p, TokenFilter f,\n            TokenFilter.Inclusion inclusion, boolean allowMultipleMatches,\n            boolean allowNonBlockingParser) {\n        super(p);\n\n        if (!allowNonBlockingParser) {\n            _checkAsyncParser(p);\n        }\n\n        initializeFilters(f, inclusion, allowMultipleMatches);\n    }"
+    ],
+    "class_fields": [
+      "protected TokenFilter rootFilter;",
+      "protected boolean _allowMultipleMatches;",
+      "protected TokenFilter.Inclusion _inclusion;",
+      "protected JsonToken _currToken;",
+      "protected JsonToken _lastClearedToken;",
+      "protected TokenFilterContext _headContext;",
+      "protected TokenFilterContext _exposedContext;",
+      "protected TokenFilter _itemFilter;",
+      "protected int _matchCount;"
+    ],
+    "nloc": 155,
+    "complexity": 45,
+    "param_count": 1,
+    "tier": "strict",
+    "method_last_modified": "2026-08-14",
+    "method_oldest_line": "2015-04-15",
+    "class_covered_in_baseline": null,
+    "repo_meta": {
+      "full_name": "FasterXML/jackson-core",
+      "html_url": "https://github.com/FasterXML/jackson-core",
+      "stars": "2379",
+      "license": "Apache-2.0",
+      "created_at": "2011-12-23T02:00:51Z",
+      "pushed_at": "2026-09-01T17:16:20Z",
+      "sha": "57bd0c6552b9ee643cbc3af7457adc300a32136b",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "screened_at": "2026-09-14 21:16:41"
+    }
+  },
+  {
+    "project_root": "projects/jackson-core",
+    "name": "_parseAposName",
+    "src_file": "src/main/java/tools/jackson/core/json/UTF8StreamJsonParser.java",
+    "test_file": "src/test/java/tools/jackson/core/json/_parseAposNameTests.java",
+    "code": "protected String _parseAposName() throws JacksonException\n    {\n        if (_inputPtr >= _inputEnd) {\n            if (!_loadMore()) {\n                return _reportInvalidEOF(\": was expecting closing '\\'' for property name\", JsonToken.PROPERTY_NAME);\n            }\n        }\n        int ch = _inputBuffer[_inputPtr++] & 0xFF;\n        if (ch == INT_APOS) { // special case, ''\n            return \"\";\n        }\n        int[] quads = _quadBuffer;\n        int qlen = 0;\n        int currQuad = 0;\n        int currQuadBytes = 0;\n\n        // Copied from parseEscapedName, with minor mods:\n\n        final int[] codes = _icLatin1;\n\n        while (true) {\n            if (ch == INT_APOS) {\n                break;\n            }\n            // additional check to skip handling of double-quotes\n            if ((codes[ch] != 0) && (ch != INT_QUOTE)) {\n                if (ch != '\\\\') {\n                    // Unquoted white space?\n                    // As per [JACKSON-208], call can now return:\n                    _throwUnquotedSpace(ch, \"name\");\n                } else {\n                    // Nope, escape sequence\n                    ch = _decodeEscaped();\n                }\n                // [jackson-core#1541]: Handle JSON-escaped surrogate pairs in field names\n                if (ch >= 0xD800 && ch <= 0xDBFF) { // high surrogate\n                    if (_inputPtr >= _inputEnd) {\n                        if (!_loadMore()) {\n                            return _reportInvalidEOF(\" in property name\", JsonToken.PROPERTY_NAME);\n                        }\n                    }\n                    if (_inputBuffer[_inputPtr] != INT_BACKSLASH) {\n                        _reportError(\"Broken surrogate pair in property name: expected '\\\\' to start low surrogate, got 0x\"\n                                + Integer.toHexString(_inputBuffer[_inputPtr] & 0xFF));\n                    }\n                    ++_inputPtr;\n                    int lo = _decodeEscaped();\n                    ch = _decodeSurrogate(ch, lo);\n                } else if (ch >= 0xDC00 && ch <= 0xDFFF) { // lone low surrogate\n                    _reportUnexpectedLowSurrogate(ch);\n                }\n                // as per main code, inefficient but will have to do\n                if (ch > 127) {\n                    // Ok, we'll need room for first byte right away\n                    if (currQuadBytes >= 4) {\n                        if (qlen >= quads.length) {\n                            _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n                        }\n                        quads[qlen++] = currQuad;\n                        currQuad = 0;\n                        currQuadBytes = 0;\n                    }\n                    if (ch < 0x800) { // 2-byte\n                        currQuad = (currQuad << 8) | (0xc0 | (ch >> 6));\n                        ++currQuadBytes;\n                        // Second byte gets output below:\n                    } else if (ch < 0x10000) { // 3 bytes\n                        currQuad = (currQuad << 8) | (0xe0 | (ch >> 12));\n                        ++currQuadBytes;\n                        // need room for middle byte?\n                        if (currQuadBytes >= 4) {\n                            if (qlen >= quads.length) {\n                                _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n                            }\n                            quads[qlen++] = currQuad;\n                            currQuad = 0;\n                            currQuadBytes = 0;\n                        }\n                        currQuad = (currQuad << 8) | (0x80 | ((ch >> 6) & 0x3f));\n                        ++currQuadBytes;\n                    } else { // 4 bytes (supplementary character)\n                        currQuad = (currQuad << 8) | (0xf0 | (ch >> 18));\n                        ++currQuadBytes;\n                        if (currQuadBytes >= 4) {\n                            if (qlen >= quads.length) {\n                                _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n                            }\n                            quads[qlen++] = currQuad;\n                            currQuad = 0;\n                            currQuadBytes = 0;\n                        }\n                        currQuad = (currQuad << 8) | (0x80 | ((ch >> 12) & 0x3f));\n                        ++currQuadBytes;\n                        if (currQuadBytes >= 4) {\n                            if (qlen >= quads.length) {\n                                _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n                            }\n                            quads[qlen++] = currQuad;\n                            currQuad = 0;\n                            currQuadBytes = 0;\n                        }\n                        currQuad = (currQuad << 8) | (0x80 | ((ch >> 6) & 0x3f));\n                        ++currQuadBytes;\n                    }\n                    // And same last byte in both cases, gets output below:\n                    ch = 0x80 | (ch & 0x3f);\n                }\n            }\n            // Ok, we have one more byte to add at any rate:\n            if (currQuadBytes < 4) {\n                ++currQuadBytes;\n                currQuad = (currQuad << 8) | ch;\n            } else {\n                if (qlen >= quads.length) {\n                    _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n                }\n                quads[qlen++] = currQuad;\n                currQuad = ch;\n                currQuadBytes = 1;\n            }\n            if (_inputPtr >= _inputEnd) {\n                if (!_loadMore()) {\n                    return _reportInvalidEOF(\" in property name\", JsonToken.PROPERTY_NAME);\n                }\n            }\n            ch = _inputBuffer[_inputPtr++] & 0xFF;\n        }\n\n        if (currQuadBytes > 0) {\n            if (qlen >= quads.length) {\n                _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n            }\n            quads[qlen++] = _padLastQuad(currQuad, currQuadBytes);\n        }\n        String name = _symbols.findName(quads, qlen);\n        if (name == null) {\n            name = addName(quads, qlen, currQuadBytes);\n        }\n        return name;\n    }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "UTF8StreamJsonParser",
+    "full_class_name": "UTF8StreamJsonParser",
+    "class_constructor": [
+      "public UTF8StreamJsonParser(ObjectReadContext readCtxt, IOContext ctxt,\n            int stdFeatures, int formatReadFeatures,\n            InputStream in,\n            ByteQuadsCanonicalizer sym,\n            byte[] inputBuffer, int start, int end, int bytesPreProcessed,\n            boolean bufferRecyclable)\n    {\n        super(readCtxt, ctxt, stdFeatures, formatReadFeatures);\n        _inputStream = in;\n        _symbols = sym;\n        _inputBuffer = inputBuffer;\n        _inputPtr = start;\n        _inputEnd = end;\n        _currInputRowStart = start - bytesPreProcessed;\n        // If we have offset, need to omit that from byte offset, so:\n        _currInputProcessed = -start + bytesPreProcessed;\n        _bufferRecyclable = bufferRecyclable;\n    }"
+    ],
+    "class_fields": [
+      "final static byte BYTE_LF = (byte) '\\n';",
+      "protected final static int[] _icLatin1 = CharTypes.getInputCodeLatin1();",
+      "protected final ByteQuadsCanonicalizer _symbols;",
+      "protected int[] _quadBuffer = new int[16];",
+      "protected boolean _tokenIncomplete;",
+      "protected int _nameStartOffset;",
+      "protected int _nameStartRow;",
+      "protected int _nameStartCol;",
+      "protected InputStream _inputStream;",
+      "protected byte[] _inputBuffer;",
+      "protected boolean _bufferRecyclable;"
+    ],
+    "nloc": 124,
+    "complexity": 34,
+    "param_count": 0,
+    "tier": "strict",
+    "method_last_modified": "2026-02-07",
+    "method_oldest_line": "2011-12-23",
+    "class_covered_in_baseline": null,
+    "repo_meta": {
+      "full_name": "FasterXML/jackson-core",
+      "html_url": "https://github.com/FasterXML/jackson-core",
+      "stars": "2379",
+      "license": "Apache-2.0",
+      "created_at": "2011-12-23T02:00:51Z",
+      "pushed_at": "2026-09-01T17:16:20Z",
+      "sha": "57bd0c6552b9ee643cbc3af7457adc300a32136b",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "screened_at": "2026-09-14 21:16:41"
+    }
+  },
+  {
+    "project_root": "projects/jackson-core",
+    "name": "parseEscapedName",
+    "src_file": "src/main/java/tools/jackson/core/json/UTF8StreamJsonParser.java",
+    "test_file": "src/test/java/tools/jackson/core/json/ParseEscapedNameTests.java",
+    "code": "protected final String parseEscapedName(int[] quads, int qlen, int currQuad, int ch,\n            int currQuadBytes) throws JacksonException\n    {\n        // This may seem weird, but here we do not want to worry about\n        // UTF-8 decoding yet. Rather, we'll assume that part is ok (if not it will get\n        // caught later on), and just handle quotes and backslashes here.\n        final int[] codes = _icLatin1;\n\n        while (true) {\n            if (codes[ch] != 0) {\n                if (ch == INT_QUOTE) { // we are done\n                    break;\n                }\n                // Unquoted white space?\n                if (ch != INT_BACKSLASH) {\n                    // As per [JACKSON-208], call can now return:\n                    _throwUnquotedSpace(ch, \"name\");\n                } else {\n                    // Nope, escape sequence\n                    ch = _decodeEscaped();\n                }\n                // [jackson-core#1541]: Handle JSON-escaped surrogate pairs in field names\n                if (ch >= 0xD800 && ch <= 0xDBFF) { // high surrogate\n                    // Must be followed by \\\\uXXXX low surrogate\n                    if (_inputPtr >= _inputEnd) {\n                        if (!_loadMore()) {\n                            return _reportInvalidEOF(\" in property name\", JsonToken.PROPERTY_NAME);\n                        }\n                    }\n                    if (_inputBuffer[_inputPtr] != INT_BACKSLASH) {\n                        _reportError(\"Broken surrogate pair in property name: expected '\\\\' to start low surrogate, got 0x\"\n                                + Integer.toHexString(_inputBuffer[_inputPtr] & 0xFF));\n                    }\n                    ++_inputPtr;\n                    int lo = _decodeEscaped();\n                    ch = _decodeSurrogate(ch, lo);\n                } else if (ch >= 0xDC00 && ch <= 0xDFFF) { // lone low surrogate\n                    _reportUnexpectedLowSurrogate(ch);\n                }\n                // Oh crap. May need to UTF-8 (re-)encode it, if it's beyond\n                // 7-bit ASCII. Gets pretty messy. If this happens often, may\n                // want to use different name canonicalization to avoid these hits.\n                if (ch > 127) {\n                    // Ok, we'll need room for first byte right away\n                    if (currQuadBytes >= 4) {\n                        if (qlen >= quads.length) {\n                            _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n                        }\n                        quads[qlen++] = currQuad;\n                        currQuad = 0;\n                        currQuadBytes = 0;\n                    }\n                    if (ch < 0x800) { // 2-byte\n                        currQuad = (currQuad << 8) | (0xc0 | (ch >> 6));\n                        ++currQuadBytes;\n                        // Second byte gets output below:\n                    } else if (ch < 0x10000) { // 3 bytes\n                        currQuad = (currQuad << 8) | (0xe0 | (ch >> 12));\n                        ++currQuadBytes;\n                        // need room for middle byte?\n                        if (currQuadBytes >= 4) {\n                            if (qlen >= quads.length) {\n                                _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n                            }\n                            quads[qlen++] = currQuad;\n                            currQuad = 0;\n                            currQuadBytes = 0;\n                        }\n                        currQuad = (currQuad << 8) | (0x80 | ((ch >> 6) & 0x3f));\n                        ++currQuadBytes;\n                    } else { // 4 bytes (supplementary character)\n                        currQuad = (currQuad << 8) | (0xf0 | (ch >> 18));\n                        ++currQuadBytes;\n                        if (currQuadBytes >= 4) {\n                            if (qlen >= quads.length) {\n                                _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n                            }\n                            quads[qlen++] = currQuad;\n                            currQuad = 0;\n                            currQuadBytes = 0;\n                        }\n                        currQuad = (currQuad << 8) | (0x80 | ((ch >> 12) & 0x3f));\n                        ++currQuadBytes;\n                        if (currQuadBytes >= 4) {\n                            if (qlen >= quads.length) {\n                                _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n                            }\n                            quads[qlen++] = currQuad;\n                            currQuad = 0;\n                            currQuadBytes = 0;\n                        }\n                        currQuad = (currQuad << 8) | (0x80 | ((ch >> 6) & 0x3f));\n                        ++currQuadBytes;\n                    }\n                    // And same last byte in both cases, gets output below:\n                    ch = 0x80 | (ch & 0x3f);\n                }\n            }\n            // Ok, we have one more byte to add at any rate:\n            if (currQuadBytes < 4) {\n                ++currQuadBytes;\n                currQuad = (currQuad << 8) | ch;\n            } else {\n                if (qlen >= quads.length) {\n                    _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n                }\n                quads[qlen++] = currQuad;\n                currQuad = ch;\n                currQuadBytes = 1;\n            }\n            if (_inputPtr >= _inputEnd) {\n                if (!_loadMore()) {\n                    return _reportInvalidEOF(\" in property name\", JsonToken.PROPERTY_NAME);\n                }\n            }\n            ch = _inputBuffer[_inputPtr++] & 0xFF;\n        }\n\n        if (currQuadBytes > 0) {\n            if (qlen >= quads.length) {\n                _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n            }\n            quads[qlen++] = _padLastQuad(currQuad, currQuadBytes);\n        }\n        String name = _symbols.findName(quads, qlen);\n        if (name == null) {\n            name = addName(quads, qlen, currQuadBytes);\n        }\n        return name;\n    }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "UTF8StreamJsonParser",
+    "full_class_name": "UTF8StreamJsonParser",
+    "class_constructor": [
+      "public UTF8StreamJsonParser(ObjectReadContext readCtxt, IOContext ctxt,\n            int stdFeatures, int formatReadFeatures,\n            InputStream in,\n            ByteQuadsCanonicalizer sym,\n            byte[] inputBuffer, int start, int end, int bytesPreProcessed,\n            boolean bufferRecyclable)\n    {\n        super(readCtxt, ctxt, stdFeatures, formatReadFeatures);\n        _inputStream = in;\n        _symbols = sym;\n        _inputBuffer = inputBuffer;\n        _inputPtr = start;\n        _inputEnd = end;\n        _currInputRowStart = start - bytesPreProcessed;\n        // If we have offset, need to omit that from byte offset, so:\n        _currInputProcessed = -start + bytesPreProcessed;\n        _bufferRecyclable = bufferRecyclable;\n    }"
+    ],
+    "class_fields": [
+      "final static byte BYTE_LF = (byte) '\\n';",
+      "protected final static int[] _icLatin1 = CharTypes.getInputCodeLatin1();",
+      "protected final ByteQuadsCanonicalizer _symbols;",
+      "protected int[] _quadBuffer = new int[16];",
+      "protected boolean _tokenIncomplete;",
+      "protected int _nameStartOffset;",
+      "protected int _nameStartRow;",
+      "protected int _nameStartCol;",
+      "protected InputStream _inputStream;",
+      "protected byte[] _inputBuffer;",
+      "protected boolean _bufferRecyclable;"
+    ],
+    "nloc": 112,
+    "complexity": 30,
+    "param_count": 5,
+    "tier": "strict",
+    "method_last_modified": "2026-02-07",
+    "method_oldest_line": "2011-12-23",
+    "class_covered_in_baseline": null,
+    "repo_meta": {
+      "full_name": "FasterXML/jackson-core",
+      "html_url": "https://github.com/FasterXML/jackson-core",
+      "stars": "2379",
+      "license": "Apache-2.0",
+      "created_at": "2011-12-23T02:00:51Z",
+      "pushed_at": "2026-09-01T17:16:20Z",
+      "sha": "57bd0c6552b9ee643cbc3af7457adc300a32136b",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "screened_at": "2026-09-14 21:16:41"
+    }
+  },
+  {
+    "project_root": "projects/jackson-core",
+    "name": "_parseAposName",
+    "src_file": "src/main/java/tools/jackson/core/json/UTF8DataInputJsonParser.java",
+    "test_file": "src/test/java/tools/jackson/core/json/_parseAposNameTests.java",
+    "code": "protected String _parseAposName() throws IOException\n    {\n        int ch = readUnsignedByte();\n        if (ch == '\\'') { // special case, ''\n            return \"\";\n        }\n        int[] quads = _quadBuffer;\n        int qlen = 0;\n        int currQuad = 0;\n        int currQuadBytes = 0;\n\n        // Copied from parseEscapedName, with minor mods:\n\n        final int[] codes = _icLatin1;\n\n        while (true) {\n            if (ch == '\\'') {\n                break;\n            }\n            // additional check to skip handling of double-quotes\n            if (ch != '\"' && codes[ch] != 0) {\n                if (ch != '\\\\') {\n                    // Unquoted white space?\n                    // As per [JACKSON-208], call can now return:\n                    _throwUnquotedSpace(ch, \"name\");\n                } else {\n                    // Nope, escape sequence\n                    ch = _decodeEscaped();\n                }\n                // [jackson-core#1541]: Handle JSON-escaped surrogate pairs in field names\n                if (ch >= 0xD800 && ch <= 0xDBFF) { // high surrogate\n                    int next = readUnsignedByte();\n                    if (next != INT_BACKSLASH) {\n                        _reportError(\"Broken surrogate pair in property name: expected '\\\\' to start low surrogate, got 0x\"\n                                + Integer.toHexString(next));\n                    }\n                    int lo = _decodeEscaped();\n                    ch = _decodeSurrogate(ch, lo);\n                } else if (ch >= 0xDC00 && ch <= 0xDFFF) { // lone low surrogate\n                    _reportUnexpectedLowSurrogate(ch);\n                }\n                // May need to UTF-8 (re-)encode it, if it's beyond\n                // 7-bit ASCII. Gets pretty messy.\n                if (ch > 127) {\n                    // Ok, we'll need room for first byte right away\n                    if (currQuadBytes >= 4) {\n                        if (qlen >= quads.length) {\n                            _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n                        }\n                        quads[qlen++] = currQuad;\n                        currQuad = 0;\n                        currQuadBytes = 0;\n                    }\n                    if (ch < 0x800) { // 2-byte\n                        currQuad = (currQuad << 8) | (0xc0 | (ch >> 6));\n                        ++currQuadBytes;\n                        // Second byte gets output below:\n                    } else if (ch < 0x10000) { // 3 bytes\n                        currQuad = (currQuad << 8) | (0xe0 | (ch >> 12));\n                        ++currQuadBytes;\n                        // need room for middle byte?\n                        if (currQuadBytes >= 4) {\n                            if (qlen >= quads.length) {\n                                _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n                            }\n                            quads[qlen++] = currQuad;\n                            currQuad = 0;\n                            currQuadBytes = 0;\n                        }\n                        currQuad = (currQuad << 8) | (0x80 | ((ch >> 6) & 0x3f));\n                        ++currQuadBytes;\n                    } else { // 4 bytes (supplementary character)\n                        currQuad = (currQuad << 8) | (0xf0 | (ch >> 18));\n                        ++currQuadBytes;\n                        if (currQuadBytes >= 4) {\n                            if (qlen >= quads.length) {\n                                _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n                            }\n                            quads[qlen++] = currQuad;\n                            currQuad = 0;\n                            currQuadBytes = 0;\n                        }\n                        currQuad = (currQuad << 8) | (0x80 | ((ch >> 12) & 0x3f));\n                        ++currQuadBytes;\n                        if (currQuadBytes >= 4) {\n                            if (qlen >= quads.length) {\n                                _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n                            }\n                            quads[qlen++] = currQuad;\n                            currQuad = 0;\n                            currQuadBytes = 0;\n                        }\n                        currQuad = (currQuad << 8) | (0x80 | ((ch >> 6) & 0x3f));\n                        ++currQuadBytes;\n                    }\n                    // And same last byte in both cases, gets output below:\n                    ch = 0x80 | (ch & 0x3f);\n                }\n            }\n            // Ok, we have one more byte to add at any rate:\n            if (currQuadBytes < 4) {\n                ++currQuadBytes;\n                currQuad = (currQuad << 8) | ch;\n            } else {\n                if (qlen >= quads.length) {\n                    _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n                }\n                quads[qlen++] = currQuad;\n                currQuad = ch;\n                currQuadBytes = 1;\n            }\n            ch = readUnsignedByte();\n        }\n\n        if (currQuadBytes > 0) {\n            if (qlen >= quads.length) {\n                _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n            }\n            quads[qlen++] = pad(currQuad, currQuadBytes);\n        }\n        String name = _symbols.findName(quads, qlen);\n        if (name == null) {\n            name = addName(quads, qlen, currQuadBytes);\n        }\n        return name;\n    }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "UTF8DataInputJsonParser",
+    "full_class_name": "UTF8DataInputJsonParser",
+    "class_constructor": [
+      "public UTF8DataInputJsonParser(ObjectReadContext readCtxt, IOContext ctxt,\n            int stdFeatures, int formatFeatures, DataInput inputData,\n            ByteQuadsCanonicalizer sym,\n            int firstByte)\n    {\n        super(readCtxt, ctxt, stdFeatures, formatFeatures);\n        _symbols = sym;\n        _inputData = inputData;\n        _nextByte = firstByte;\n    }"
+    ],
+    "class_fields": [
+      "final static byte BYTE_LF = (byte) '\\n';",
+      "protected final static int[] _icLatin1 = CharTypes.getInputCodeLatin1();",
+      "protected final ByteQuadsCanonicalizer _symbols;",
+      "protected int[] _quadBuffer = new int[16];",
+      "protected boolean _tokenIncomplete;",
+      "protected DataInput _inputData;",
+      "protected int _nextByte = -1;"
+    ],
+    "nloc": 109,
+    "complexity": 28,
+    "param_count": 0,
+    "tier": "strict",
+    "method_last_modified": "2026-09-11",
+    "method_oldest_line": "2016-05-09",
+    "class_covered_in_baseline": null,
+    "repo_meta": {
+      "full_name": "FasterXML/jackson-core",
+      "html_url": "https://github.com/FasterXML/jackson-core",
+      "stars": "2379",
+      "license": "Apache-2.0",
+      "created_at": "2011-12-23T02:00:51Z",
+      "pushed_at": "2026-09-01T17:16:20Z",
+      "sha": "57bd0c6552b9ee643cbc3af7457adc300a32136b",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "screened_at": "2026-09-14 21:16:41"
+    }
+  },
+  {
+    "project_root": "projects/jackson-core",
+    "name": "parseEscapedName",
+    "src_file": "src/main/java/tools/jackson/core/json/UTF8DataInputJsonParser.java",
+    "test_file": "src/test/java/tools/jackson/core/json/ParseEscapedNameTests.java",
+    "code": "protected final String parseEscapedName(int[] quads, int qlen, int currQuad, int ch,\n            int currQuadBytes) throws IOException\n    {\n        /* 25-Nov-2008, tatu: This may seem weird, but here we do not want to worry about\n         *   UTF-8 decoding yet. Rather, we'll assume that part is ok (if not it will get\n         *   caught later on), and just handle quotes and backslashes here.\n         */\n        final int[] codes = _icLatin1;\n\n        while (true) {\n            if (codes[ch] != 0) {\n                if (ch == INT_QUOTE) { // we are done\n                    break;\n                }\n                // Unquoted white space?\n                if (ch != INT_BACKSLASH) {\n                    // As per [JACKSON-208], call can now return:\n                    _throwUnquotedSpace(ch, \"name\");\n                } else {\n                    // Nope, escape sequence\n                    ch = _decodeEscaped();\n                }\n                // [jackson-core#1541]: Handle JSON-escaped surrogate pairs in field names\n                if (ch >= 0xD800 && ch <= 0xDBFF) { // high surrogate\n                    // Must be followed by \\\\uXXXX low surrogate\n                    int next = readUnsignedByte();\n                    if (next != INT_BACKSLASH) {\n                        _reportError(\"Broken surrogate pair in property name: expected '\\\\' to start low surrogate, got 0x\"\n                                + Integer.toHexString(next));\n                    }\n                    int lo = _decodeEscaped();\n                    ch = _decodeSurrogate(ch, lo);\n                } else if (ch >= 0xDC00 && ch <= 0xDFFF) { // lone low surrogate\n                    _reportUnexpectedLowSurrogate(ch);\n                }\n                // May need to UTF-8 (re-)encode it, if it's beyond\n                // 7-bit ASCII. Gets pretty messy.\n                if (ch > 127) {\n                    // Ok, we'll need room for first byte right away\n                    if (currQuadBytes >= 4) {\n                        if (qlen >= quads.length) {\n                            _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n                        }\n                        quads[qlen++] = currQuad;\n                        currQuad = 0;\n                        currQuadBytes = 0;\n                    }\n                    if (ch < 0x800) { // 2-byte\n                        currQuad = (currQuad << 8) | (0xc0 | (ch >> 6));\n                        ++currQuadBytes;\n                        // Second byte gets output below:\n                    } else if (ch < 0x10000) { // 3 bytes\n                        currQuad = (currQuad << 8) | (0xe0 | (ch >> 12));\n                        ++currQuadBytes;\n                        // need room for middle byte?\n                        if (currQuadBytes >= 4) {\n                            if (qlen >= quads.length) {\n                                _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n                            }\n                            quads[qlen++] = currQuad;\n                            currQuad = 0;\n                            currQuadBytes = 0;\n                        }\n                        currQuad = (currQuad << 8) | (0x80 | ((ch >> 6) & 0x3f));\n                        ++currQuadBytes;\n                    } else { // 4 bytes (supplementary character)\n                        currQuad = (currQuad << 8) | (0xf0 | (ch >> 18));\n                        ++currQuadBytes;\n                        if (currQuadBytes >= 4) {\n                            if (qlen >= quads.length) {\n                                _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n                            }\n                            quads[qlen++] = currQuad;\n                            currQuad = 0;\n                            currQuadBytes = 0;\n                        }\n                        currQuad = (currQuad << 8) | (0x80 | ((ch >> 12) & 0x3f));\n                        ++currQuadBytes;\n                        if (currQuadBytes >= 4) {\n                            if (qlen >= quads.length) {\n                                _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n                            }\n                            quads[qlen++] = currQuad;\n                            currQuad = 0;\n                            currQuadBytes = 0;\n                        }\n                        currQuad = (currQuad << 8) | (0x80 | ((ch >> 6) & 0x3f));\n                        ++currQuadBytes;\n                    }\n                    // And same last byte in both cases, gets output below:\n                    ch = 0x80 | (ch & 0x3f);\n                }\n            }\n            // Ok, we have one more byte to add at any rate:\n            if (currQuadBytes < 4) {\n                ++currQuadBytes;\n                currQuad = (currQuad << 8) | ch;\n            } else {\n                if (qlen >= quads.length) {\n                    _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n                }\n                quads[qlen++] = currQuad;\n                currQuad = ch;\n                currQuadBytes = 1;\n            }\n            ch = readUnsignedByte();\n        }\n\n        if (currQuadBytes > 0) {\n            if (qlen >= quads.length) {\n                _quadBuffer = quads = _growNameDecodeBuffer(quads, quads.length);\n            }\n            quads[qlen++] = pad(currQuad, currQuadBytes);\n        }\n        String name = _symbols.findName(quads, qlen);\n        if (name == null) {\n            name = addName(quads, qlen, currQuadBytes);\n        }\n        return name;\n    }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "UTF8DataInputJsonParser",
+    "full_class_name": "UTF8DataInputJsonParser",
+    "class_constructor": [
+      "public UTF8DataInputJsonParser(ObjectReadContext readCtxt, IOContext ctxt,\n            int stdFeatures, int formatFeatures, DataInput inputData,\n            ByteQuadsCanonicalizer sym,\n            int firstByte)\n    {\n        super(readCtxt, ctxt, stdFeatures, formatFeatures);\n        _symbols = sym;\n        _inputData = inputData;\n        _nextByte = firstByte;\n    }"
+    ],
+    "class_fields": [
+      "final static byte BYTE_LF = (byte) '\\n';",
+      "protected final static int[] _icLatin1 = CharTypes.getInputCodeLatin1();",
+      "protected final ByteQuadsCanonicalizer _symbols;",
+      "protected int[] _quadBuffer = new int[16];",
+      "protected boolean _tokenIncomplete;",
+      "protected DataInput _inputData;",
+      "protected int _nextByte = -1;"
+    ],
+    "nloc": 102,
+    "complexity": 26,
+    "param_count": 5,
+    "tier": "strict",
+    "method_last_modified": "2026-09-11",
+    "method_oldest_line": "2016-05-09",
+    "class_covered_in_baseline": null,
+    "repo_meta": {
+      "full_name": "FasterXML/jackson-core",
+      "html_url": "https://github.com/FasterXML/jackson-core",
+      "stars": "2379",
+      "license": "Apache-2.0",
+      "created_at": "2011-12-23T02:00:51Z",
+      "pushed_at": "2026-09-01T17:16:20Z",
+      "sha": "57bd0c6552b9ee643cbc3af7457adc300a32136b",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "screened_at": "2026-09-14 21:16:41"
+    }
+  }
+]

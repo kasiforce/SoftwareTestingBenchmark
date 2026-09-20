@@ -1,0 +1,180 @@
+[
+  {
+    "project_root": "projects/opennlp",
+    "name": "lookup",
+    "src_file": "opennlp-extensions/opennlp-spellcheck/src/main/java/opennlp/spellcheck/symspell/SymSpell.java",
+    "test_file": "opennlp-extensions/opennlp-spellcheck/src/test/java/opennlp/spellcheck/symspell/LookupTests.java",
+    "code": "@Override\n  public List<SuggestItem> lookup(String term, Verbosity verbosity, int maxEditDistance) {\n    Objects.requireNonNull(term, \"term must not be null\");\n    Objects.requireNonNull(verbosity, \"verbosity must not be null\");\n    if (maxEditDistance < 0) {\n      throw new IllegalArgumentException(\"maxEditDistance must not be negative: \" + maxEditDistance);\n    }\n    if (maxEditDistance > maxDictionaryEditDistance) {\n      throw new IllegalArgumentException(\n          \"maxEditDistance (\" + maxEditDistance + \") must not exceed maxDictionaryEditDistance (\"\n              + maxDictionaryEditDistance + \")\");\n    }\n\n    final List<SuggestItem> suggestions = new ArrayList<>();\n    final int termLen = term.codePointCount(0, term.length());\n\n    // Early exit: the term is already longer than the longest known word by more than max.\n    if (termLen - maxEditDistance > maxLength) {\n      return suggestions;\n    }\n\n    // Exact match.\n    final Long exactCount = words.get(term);\n    if (exactCount != null && exactCount >= countThreshold) {\n      suggestions.add(new SuggestItem(term, 0, exactCount));\n      if (verbosity != Verbosity.ALL) {\n        return suggestions;\n      }\n    }\n\n    if (maxEditDistance == 0) {\n      return suggestions;\n    }\n\n    final Set<String> consideredDeletes = new HashSet<>();\n    final Set<String> consideredSuggestions = new HashSet<>();\n    consideredSuggestions.add(term);\n\n    int maxEdit2 = maxEditDistance;\n\n    // The candidate strings to expand (BFS over deletes of the query prefix).\n    final List<String> candidates = new ArrayList<>();\n\n    // Only the prefix of the query participates in delete generation.\n    final String termPrefix;\n    if (termLen > prefixLength) {\n      termPrefix = substringByCodePoints(term, 0, prefixLength);\n    } else {\n      termPrefix = term;\n    }\n    candidates.add(termPrefix);\n\n    for (int idx = 0; idx < candidates.size(); idx++) {\n      final String candidate = candidates.get(idx);\n      final int candidateLen = candidate.codePointCount(0, candidate.length());\n      final int lengthDiff = (Math.min(termLen, prefixLength)) - candidateLen;\n\n      // No point expanding: already further from the query than the current best.\n      if (lengthDiff > maxEdit2) {\n        if (verbosity == Verbosity.ALL) {\n          continue;\n        }\n        break;\n      }\n\n      final String[] dictSuggestions = deletes.get(candidate);\n      if (dictSuggestions != null) {\n        for (String suggestion : dictSuggestions) {\n          if (suggestion.equals(term)) {\n            continue;\n          }\n          final int suggestionLen = suggestion.codePointCount(0, suggestion.length());\n\n          // Quick length-based pruning before the costly verification.\n          if (Math.abs(suggestionLen - termLen) > maxEdit2\n              || suggestionLen < candidateLen\n              || (suggestionLen == candidateLen && !suggestion.equals(candidate))) {\n            continue;\n          }\n          final int suggestionPrefixLen = Math.min(suggestionLen, prefixLength);\n          if (suggestionPrefixLen > candidateLen && suggestionPrefixLen - candidateLen > maxEdit2) {\n            continue;\n          }\n\n          final int distance;\n          if (candidateLen == 0) {\n            // The query delete-set produced the empty string; the distance is the\n            // longer length, capped at the current max.\n            distance = Math.max(termLen, suggestionLen);\n            if (distance > maxEdit2 || !consideredSuggestions.add(suggestion)) {\n              continue;\n            }\n          } else if (suggestionLen == 1) {\n            distance = term.indexOf(suggestion.codePointAt(0)) < 0 ? termLen : termLen - 1;\n            if (distance > maxEdit2 || !consideredSuggestions.add(suggestion)) {\n              continue;\n            }\n          } else {\n            if (!consideredSuggestions.add(suggestion)) {\n              continue;\n            }\n            final int computed = editDistance.distance(term, suggestion, maxEdit2);\n            if (computed < 0) {\n              continue;\n            }\n            distance = computed;\n          }\n\n          if (distance <= maxEdit2) {\n            // A delete key always maps to a term present in 'words' (add() populates words\n            // before the deletes index); guard the invariant rather than risk an unbox NPE.\n            final Long suggestionCount = words.get(suggestion);\n            if (suggestionCount == null) {\n              continue;\n            }\n            final SuggestItem item = new SuggestItem(suggestion, distance, suggestionCount);\n            if (!suggestions.isEmpty()) {\n              switch (verbosity) {\n                case CLOSEST:\n                  // Keep only the closest matches found so far.\n                  if (distance < maxEdit2) {\n                    suggestions.clear();\n                  }\n                  break;\n                case TOP:\n                  final SuggestItem best = suggestions.get(0);\n                  if (distance < best.editDistance() || suggestionCount > best.frequency()) {\n                    maxEdit2 = distance;\n                    suggestions.set(0, item);\n                  }\n                  continue;\n                default:\n                  break;\n              }\n            }\n            if (verbosity != Verbosity.ALL) {\n              maxEdit2 = distance;\n            }\n            suggestions.add(item);\n          }\n        }\n      }\n\n      // Generate the next generation of deletes from this candidate.\n      if (lengthDiff < maxEditDistance && candidateLen <= prefixLength) {\n        if (verbosity != Verbosity.ALL && lengthDiff >= maxEdit2) {\n          continue;\n        }\n        final int[] cps = candidate.codePoints().toArray();\n        for (int i = 0; i < cps.length; i++) {\n          final String delete = removeCodePointAt(cps, i);\n          if (consideredDeletes.add(delete)) {\n            candidates.add(delete);\n          }\n        }\n      }\n    }\n\n    if (suggestions.size() > 1) {\n      Collections.sort(suggestions);\n    }\n    return suggestions;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "SymSpell",
+    "full_class_name": "SymSpell",
+    "class_constructor": [
+      "public SymSpell(SymSpellConfig config) {\n    Objects.requireNonNull(config, \"config must not be null\");\n    this.maxDictionaryEditDistance = config.maxDictionaryEditDistance();\n    this.prefixLength = config.prefixLength();\n    this.countThreshold = config.countThreshold();\n    this.editDistance = config.editDistance();\n    this.configuredCorpusWordCount = config.corpusWordCount();\n  }",
+      "public SymSpell() {\n    this(SymSpellConfig.defaultConfig());\n  }"
+    ],
+    "class_fields": [],
+    "nloc": 134,
+    "complexity": 46,
+    "param_count": 3,
+    "tier": "strict",
+    "method_last_modified": "2026-06-12",
+    "method_oldest_line": "2026-06-12",
+    "class_covered_in_baseline": null,
+    "repo_meta": {
+      "full_name": "apache/opennlp",
+      "html_url": "https://github.com/apache/opennlp",
+      "stars": "1602",
+      "license": "Apache-2.0",
+      "created_at": "2011-11-09T08:00:09Z",
+      "pushed_at": "2026-09-03T02:32:35Z",
+      "sha": "6c64f1e022b31d1f87cdb0b16315a33ffae35d9f",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "screened_at": "2026-09-15 00:50:14"
+    }
+  },
+  {
+    "project_root": "projects/opennlp",
+    "name": "lookupCompound",
+    "src_file": "opennlp-extensions/opennlp-spellcheck/src/main/java/opennlp/spellcheck/symspell/SymSpell.java",
+    "test_file": "opennlp-extensions/opennlp-spellcheck/src/test/java/opennlp/spellcheck/symspell/LookupCompoundTests.java",
+    "code": "@Override\n  public List<SuggestItem> lookupCompound(String input, int maxEditDistance) {\n    Objects.requireNonNull(input, \"input must not be null\");\n    if (maxEditDistance < 0) {\n      throw new IllegalArgumentException(\"maxEditDistance must not be negative: \" + maxEditDistance);\n    }\n\n    final String[] termList = StringUtil.splitOnUnicodeWhitespace(input);\n    final List<SuggestItem> suggestionParts = new ArrayList<>();\n\n    boolean lastCombi = false;\n    for (int i = 0; i < termList.length; i++) {\n      final List<SuggestItem> suggestions = lookup(termList[i], Verbosity.TOP, maxEditDistance);\n\n      // Try to merge the current token with the previous one (a wrongly inserted space).\n      if (i > 0 && !lastCombi) {\n        final List<SuggestItem> combi =\n            lookup(termList[i - 1] + termList[i], Verbosity.TOP, maxEditDistance);\n        if (!combi.isEmpty()) {\n          final SuggestItem best1 = suggestionParts.get(suggestionParts.size() - 1);\n          final SuggestItem best2 = suggestions.isEmpty()\n              ? new SuggestItem(termList[i], maxEditDistance + 1, combiEstimatedCount(termList[i]))\n              : suggestions.get(0);\n\n          final int distance1 = best1.editDistance() + best2.editDistance();\n          final SuggestItem combined = combi.get(0);\n          if (distance1 >= 0\n              && (combined.editDistance() + 1 < distance1\n              || (combined.editDistance() + 1 == distance1\n              && (double) combined.frequency()\n              > (double) best1.frequency() / nMax() * best2.frequency()))) {\n            suggestionParts.set(suggestionParts.size() - 1,\n                new SuggestItem(combined.term(), combined.editDistance() + 1, combined.frequency()));\n            lastCombi = true;\n            continue;\n          }\n        }\n      }\n      lastCombi = false;\n\n      // Never split a token that is already correct (ed==0) or is a single character.\n      if (!suggestions.isEmpty()\n          && (suggestions.get(0).editDistance() == 0 || termList[i].length() == 1)) {\n        suggestionParts.add(suggestions.get(0));\n        continue;\n      }\n\n      // Otherwise consider splitting the token into two words, with the single-term\n      // correction (if any) seeded as the candidate to beat.\n      SuggestItem suggestionSplitBest = suggestions.isEmpty() ? null : suggestions.get(0);\n      if (termList[i].length() > 1) {\n        for (int j = 1; j < termList[i].length(); j++) {\n          final String part1 = termList[i].substring(0, j);\n          final String part2 = termList[i].substring(j);\n          final List<SuggestItem> suggestions1 = lookup(part1, Verbosity.TOP, maxEditDistance);\n          if (suggestions1.isEmpty()) {\n            continue;\n          }\n          final List<SuggestItem> suggestions2 = lookup(part2, Verbosity.TOP, maxEditDistance);\n          if (suggestions2.isEmpty()) {\n            continue;\n          }\n          final SuggestItem s1 = suggestions1.get(0);\n          final SuggestItem s2 = suggestions2.get(0);\n          final String split = s1.term() + \" \" + s2.term();\n\n          // Joining two words spends one edit on the removed space, so the split distance\n          // can legitimately exceed maxEditDistance; cap it instead of discarding the split.\n          int splitDistance = editDistance.distance(termList[i], split, maxEditDistance);\n          if (splitDistance < 0) {\n            splitDistance = maxEditDistance + 1;\n          }\n\n          if (suggestionSplitBest != null) {\n            if (splitDistance > suggestionSplitBest.editDistance()) {\n              continue;\n            }\n            if (splitDistance < suggestionSplitBest.editDistance()) {\n              suggestionSplitBest = null;\n            }\n          }\n\n          long freq;\n          final Long bigramCount = bigrams.get(split);\n          if (bigramCount != null) {\n            freq = bigramCount;\n            // Boost the split's count when its parts reconstruct the input or agree with the\n            // single-term correction, so a real bigram outranks that single-term correction.\n            if (!suggestions.isEmpty()) {\n              final SuggestItem best = suggestions.get(0);\n              if ((s1.term() + s2.term()).equals(termList[i])) {\n                freq = Math.max(freq, saturatedAdd(best.frequency(), 2));\n              } else if (s1.term().equals(best.term()) || s2.term().equals(best.term())) {\n                freq = Math.max(freq, saturatedAdd(best.frequency(), 1));\n              }\n            } else if ((s1.term() + s2.term()).equals(termList[i])) {\n              freq = Math.max(freq, saturatedAdd(Math.max(s1.frequency(), s2.frequency()), 2));\n            }\n          } else {\n            // Naive Bayes estimate P(AB)=P(A)*P(B), capped by the smallest real bigram count\n            // so any genuine bigram still ranks above an estimated one.\n            final double estimate = (double) s1.frequency() / (double) nMax() * (double) s2.frequency();\n            freq = Math.min(minBigramCount, (long) estimate);\n          }\n\n          final SuggestItem candidateSplit = new SuggestItem(split, splitDistance, freq);\n          if (suggestionSplitBest == null\n              || candidateSplit.frequency() > suggestionSplitBest.frequency()) {\n            suggestionSplitBest = candidateSplit;\n          }\n        }\n\n        if (suggestionSplitBest != null) {\n          suggestionParts.add(suggestionSplitBest);\n        } else {\n          suggestionParts.add(\n              new SuggestItem(termList[i], maxEditDistance + 1, estimatedCount(termList[i])));\n        }\n      } else {\n        suggestionParts.add(\n            new SuggestItem(termList[i], maxEditDistance + 1, estimatedCount(termList[i])));\n      }\n    }\n\n    // Assemble the final corrected phrase; the count is the Naive-Bayes product P=prod(P(part)).\n    final StringBuilder joined = new StringBuilder();\n    double freqProduct = nMax();\n    final long n = Math.max(1L, nMax());\n    for (SuggestItem part : suggestionParts) {\n      if (joined.length() > 0) {\n        joined.append(' ');\n      }\n      joined.append(part.term());\n      freqProduct *= (double) part.frequency() / n;\n    }\n\n    final String corrected = joined.toString();\n    // Trim on the same set the terms were split on, so the distance is not inflated.\n    final int distance = editDistance.distance(\n        StringUtil.trimUnicodeWhitespace(input), corrected, Integer.MAX_VALUE - 1);\n    final long frequency = (long) freqProduct;\n    return Collections.singletonList(\n        new SuggestItem(corrected, Math.max(distance, 0), frequency));\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "SymSpell",
+    "full_class_name": "SymSpell",
+    "class_constructor": [
+      "public SymSpell(SymSpellConfig config) {\n    Objects.requireNonNull(config, \"config must not be null\");\n    this.maxDictionaryEditDistance = config.maxDictionaryEditDistance();\n    this.prefixLength = config.prefixLength();\n    this.countThreshold = config.countThreshold();\n    this.editDistance = config.editDistance();\n    this.configuredCorpusWordCount = config.corpusWordCount();\n  }",
+      "public SymSpell() {\n    this(SymSpellConfig.defaultConfig());\n  }"
+    ],
+    "class_fields": [],
+    "nloc": 118,
+    "complexity": 34,
+    "param_count": 2,
+    "tier": "strict",
+    "method_last_modified": "2026-07-18",
+    "method_oldest_line": "2026-06-12",
+    "class_covered_in_baseline": null,
+    "repo_meta": {
+      "full_name": "apache/opennlp",
+      "html_url": "https://github.com/apache/opennlp",
+      "stars": "1602",
+      "license": "Apache-2.0",
+      "created_at": "2011-11-09T08:00:09Z",
+      "pushed_at": "2026-09-03T02:32:35Z",
+      "sha": "6c64f1e022b31d1f87cdb0b16315a33ffae35d9f",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "screened_at": "2026-09-15 00:50:14"
+    }
+  },
+  {
+    "project_root": "projects/opennlp",
+    "name": "load",
+    "src_file": "opennlp-api/src/main/java/opennlp/tools/tokenize/lattice/MecabDictionary.java",
+    "test_file": "opennlp-api/src/test/java/opennlp/tools/tokenize/lattice/LoadTests.java",
+    "code": "public static MecabDictionary load(Path directory, Charset charset) throws IOException {\n    if (directory == null) {\n      throw new IllegalArgumentException(\"directory must not be null\");\n    }\n    if (charset == null) {\n      throw new IllegalArgumentException(\"charset must not be null\");\n    }\n    // The connection matrix is read first because its dimensions are what every\n    // lexicon entry's context ids have to be inside of.\n    final Path matrixFile = directory.resolve(MATRIX_DEF);\n    if (!Files.exists(matrixFile)) {\n      throw new IOException(\"required dictionary file is missing: \" + matrixFile);\n    }\n    final int leftSize;\n    final int rightSize;\n    final short[] costs;\n    final int cellCount;\n    try (BufferedReader reader = Files.newBufferedReader(matrixFile, charset)) {\n      final String rawHeader = reader.readLine();\n      if (rawHeader == null) {\n        throw new IOException(\"empty \" + MATRIX_DEF + \" under \" + directory);\n      }\n      final String headerLine = StringUtil.trimUnicodeWhitespace(rawHeader);\n      if (headerLine.isEmpty()) {\n        throw new IOException(\"empty \" + MATRIX_DEF + \" under \" + directory);\n      }\n      final String[] header = splitWhitespace(headerLine);\n      if (header.length != 2) {\n        throw new IOException(\"malformed \" + MATRIX_DEF + \" header: \" + headerLine);\n      }\n      leftSize = parseInt(header[0], MATRIX_DEF, 1);\n      rightSize = parseInt(header[1], MATRIX_DEF, 1);\n      if (leftSize < 1 || rightSize < 1) {\n        throw new IOException(MATRIX_DEF + \" dimensions must be positive, got \"\n            + leftSize + \" \" + rightSize);\n      }\n      if (leftSize > ResourceLimits.MAX_ENTRIES\n          || rightSize > ResourceLimits.MAX_ENTRIES) {\n        throw new IOException(MATRIX_DEF + \" dimensions \" + leftSize + \" x \" + rightSize\n            + \" exceed safe limit of \" + ResourceLimits.MAX_ENTRIES);\n      }\n      final long cells = (long) leftSize * rightSize;\n      if (cells > Integer.MAX_VALUE) {\n        throw new IOException(MATRIX_DEF + \" dimensions \" + leftSize + \" x \" + rightSize\n            + \" overflow the addressable connection matrix\");\n      }\n      if (cells > ResourceLimits.MAX_MATRIX_CELLS) {\n        throw new IOException(MATRIX_DEF + \" dimensions \" + leftSize + \" x \" + rightSize\n            + \" exceed safe limit of \" + ResourceLimits.MAX_MATRIX_CELLS);\n      }\n      cellCount = (int) cells;\n      costs = new short[cellCount];\n      // leftSize bounds right-context ids and rightSize bounds left-context ids, matching\n      // MeCab's connector.h layout (the names read transposed against the id names).\n      final BitSet filled = new BitSet(cellCount);\n      int lineNumber = 1;\n      String raw;\n      while ((raw = reader.readLine()) != null) {\n        lineNumber++;\n        final String line = StringUtil.trimUnicodeWhitespace(raw);\n        if (line.isEmpty()) {\n          continue;\n        }\n        final String[] fields = splitWhitespace(line);\n        if (fields.length != 3) {\n          throw new IOException(\"malformed \" + MATRIX_DEF + \" line \" + lineNumber);\n        }\n        final int right = parseInt(fields[0], MATRIX_DEF, lineNumber);\n        final int left = parseInt(fields[1], MATRIX_DEF, lineNumber);\n        if (right < 0 || right >= leftSize || left < 0 || left >= rightSize) {\n          throw new IOException(\"malformed \" + MATRIX_DEF + \" line \" + lineNumber\n              + \": context ids \" + right + \" \" + left\n              + \" are outside the declared dimensions \" + leftSize + \" \" + rightSize);\n        }\n        final int cost = parseInt(fields[2], MATRIX_DEF, lineNumber);\n        if (cost < Short.MIN_VALUE || cost > Short.MAX_VALUE) {\n          throw new IOException(\"malformed \" + MATRIX_DEF + \" line \" + lineNumber\n              + \": connection cost \" + cost + \" is outside the 16-bit range the\"\n              + \" format defines\");\n        }\n        final int index = right * rightSize + left;\n        if (filled.get(index)) {\n          throw new IOException(\"duplicate \" + MATRIX_DEF + \" entry \" + right + \" \"\n              + left + \" at line \" + lineNumber);\n        }\n        costs[index] = (short) cost;\n        filled.set(index);\n      }\n      if (filled.cardinality() != cellCount) {\n        throw new IOException(MATRIX_DEF + \" declares \" + leftSize + \" x \" + rightSize\n            + \" connection costs but only \" + filled.cardinality()\n            + \" pairs are listed\");\n      }\n    }\n\n    final Map<String, List<WordEntry>> lexicon = new HashMap<>();\n    final List<Path> csvFiles = new ArrayList<>();\n    try (DirectoryStream<Path> stream = Files.newDirectoryStream(directory, LEXICON_GLOB)) {\n      for (final Path csv : stream) {\n        csvFiles.add(csv);\n      }\n    }\n    Collections.sort(csvFiles);\n    final int[] entryCount = {0};\n    for (final Path csv : csvFiles) {\n      readLexicon(csv, charset, lexicon, leftSize, rightSize, entryCount);\n    }\n    if (lexicon.isEmpty()) {\n      throw new IOException(\"no lexicon entries found under \" + directory);\n    }\n\n    final Map<String, Category> categories = new HashMap<>();\n    final CategoryTable.Builder categoryTable = new CategoryTable.Builder();\n    readCharacterDefinition(directory.resolve(CHAR_DEF), charset, categories,\n        categoryTable);\n    final Map<String, List<WordEntry>> unknown = new HashMap<>();\n    final Path unkFile = directory.resolve(UNK_DEF);\n    readLexicon(unkFile, charset, unknown, leftSize, rightSize, new int[] {0});\n    for (final String category : unknown.keySet()) {\n      if (!categories.containsKey(category)) {\n        throw new IOException(\n            UNK_DEF + \" names the undefined category \" + category + \": \" + unkFile);\n      }\n    }\n\n    return new MecabDictionary(DoubleArrayLexicon.build(lexicon), costs,\n        rightSize, categories, categoryTable.build(categories), unknown);\n  }",
+    "is_async": false,
+    "type": "function",
+    "class_name": "MecabDictionary",
+    "full_class_name": "MecabDictionary",
+    "class_constructor": [],
+    "class_fields": [
+      "static final String DEFAULT_CATEGORY = \"DEFAULT\";",
+      "static final String CHAR_DEF = \"char.def\";",
+      "static final String LEXICON_EXTENSION = \".csv\";",
+      "static final String DEFINITION_EXTENSION = \".def\";",
+      "static final String CONFIGURATION_FILE = \"dicrc\";"
+    ],
+    "nloc": 121,
+    "complexity": 29,
+    "param_count": 2,
+    "tier": "strict",
+    "method_last_modified": "2026-09-04",
+    "method_oldest_line": "2026-09-04",
+    "class_covered_in_baseline": null,
+    "repo_meta": {
+      "full_name": "apache/opennlp",
+      "html_url": "https://github.com/apache/opennlp",
+      "stars": "1602",
+      "license": "Apache-2.0",
+      "created_at": "2011-11-09T08:00:09Z",
+      "pushed_at": "2026-09-03T02:32:35Z",
+      "sha": "6c64f1e022b31d1f87cdb0b16315a33ffae35d9f",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "screened_at": "2026-09-15 00:50:14"
+    }
+  },
+  {
+    "project_root": "projects/opennlp",
+    "name": "distance",
+    "src_file": "opennlp-extensions/opennlp-spellcheck/src/main/java/opennlp/spellcheck/distance/DamerauOSADistance.java",
+    "test_file": "opennlp-extensions/opennlp-spellcheck/src/test/java/opennlp/spellcheck/distance/DistanceTests.java",
+    "code": "@Override\n  public int distance(CharSequence a, CharSequence b, int max) {\n    if (a == null || b == null) {\n      throw new IllegalArgumentException(\"input sequences must not be null\");\n    }\n    if (max < 0) {\n      throw new IllegalArgumentException(\"max must not be negative: \" + max);\n    }\n\n    int[] s1 = CodePoints.of(a);\n    int[] s2 = CodePoints.of(b);\n\n    // Keep the shorter string as the columns to minimise memory.\n    if (s1.length > s2.length) {\n      final int[] tmp = s1;\n      s1 = s2;\n      s2 = tmp;\n    }\n\n    int len1 = s1.length;\n    int len2 = s2.length;\n\n    // Trim the common suffix; it contributes nothing to the distance.\n    while (len1 > 0 && s1[len1 - 1] == s2[len2 - 1]) {\n      len1--;\n      len2--;\n    }\n\n    // Trim the common prefix.\n    int offset = 0;\n    while (offset < len1 && s1[offset] == s2[offset]) {\n      offset++;\n    }\n    len1 -= offset;\n    len2 -= offset;\n\n    if (len1 == 0) {\n      return len2 <= max ? len2 : -1;\n    }\n    // Minimum possible distance is the length difference.\n    if (len2 - len1 > max) {\n      return -1;\n    }\n\n    // prev = row i-1, cur = row i, before = row i-2 (for transpositions).\n    final int[] prev = new int[len1 + 1];\n    final int[] cur = new int[len1 + 1];\n    final int[] before = new int[len1 + 1];\n    for (int j = 0; j <= len1; j++) {\n      prev[j] = j;\n    }\n\n    for (int i = 1; i <= len2; i++) {\n      final int c2 = s2[offset + i - 1];\n      cur[0] = i;\n      int rowMin = cur[0];\n      final int prevC2 = i >= 2 ? s2[offset + i - 2] : -1;\n\n      for (int j = 1; j <= len1; j++) {\n        final int c1 = s1[offset + j - 1];\n        final int cost = (c1 == c2) ? 0 : 1;\n        int value = CodePoints.min3(\n            prev[j] + 1,        // deletion\n            cur[j - 1] + 1,     // insertion\n            prev[j - 1] + cost  // substitution / match\n        );\n        if (i >= 2 && j >= 2 && c1 == prevC2 && s1[offset + j - 2] == c2) {\n          value = Math.min(value, before[j - 2] + 1); // transposition\n        }\n        cur[j] = value;\n        if (value < rowMin) {\n          rowMin = value;\n        }\n      }\n\n      if (rowMin > max) {\n        return -1;\n      }\n\n      // Rotate rows: before <- prev <- cur, and reuse 'before' array as next 'cur'.\n      System.arraycopy(prev, 0, before, 0, len1 + 1);\n      System.arraycopy(cur, 0, prev, 0, len1 + 1);\n    }\n\n    final int result = prev[len1];\n    return result <= max ? result : -1;\n  }",
+    "is_async": false,
+    "type": "method",
+    "class_name": "DamerauOSADistance",
+    "full_class_name": "DamerauOSADistance",
+    "class_constructor": [
+      "public DamerauOSADistance() {\n  }"
+    ],
+    "class_fields": [
+      "public static final DamerauOSADistance INSTANCE = new DamerauOSADistance();"
+    ],
+    "nloc": 68,
+    "complexity": 24,
+    "param_count": 3,
+    "tier": "relaxed",
+    "method_last_modified": "2026-06-12",
+    "method_oldest_line": "2026-06-12",
+    "class_covered_in_baseline": null,
+    "repo_meta": {
+      "full_name": "apache/opennlp",
+      "html_url": "https://github.com/apache/opennlp",
+      "stars": "1602",
+      "license": "Apache-2.0",
+      "created_at": "2011-11-09T08:00:09Z",
+      "pushed_at": "2026-09-03T02:32:35Z",
+      "sha": "6c64f1e022b31d1f87cdb0b16315a33ffae35d9f",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "screened_at": "2026-09-15 00:50:14"
+    }
+  },
+  {
+    "project_root": "projects/opennlp",
+    "name": "train",
+    "src_file": "opennlp-core/opennlp-ml/opennlp-ml-libsvm/src/main/java/opennlp/tools/ml/libsvm/doccat/DocumentCategorizerSVM.java",
+    "test_file": "opennlp-core/opennlp-ml/opennlp-ml-libsvm/src/test/java/opennlp/tools/ml/libsvm/doccat/TrainTests.java",
+    "code": "public static SvmDoccatModel train(String lang,\n                                     ObjectStream<DocumentSample> samples,\n                                     SvmDoccatConfiguration config,\n                                     FeatureGenerator... featureGenerators) throws IOException {\n    Objects.requireNonNull(samples, \"samples must not be null\");\n    Objects.requireNonNull(config, \"config must not be null\");\n    Objects.requireNonNull(featureGenerators, \"featureGenerators must not be null\");\n    if (featureGenerators.length == 0) {\n      throw new IllegalArgumentException(\"At least one FeatureGenerator is required\");\n    }\n\n    // --- Pass 1: Collect all samples, build vocabulary + category mappings ---\n    Map<String, Integer> categoryToIndex = new LinkedHashMap<>();\n    Map<Integer, String> indexToCategory = new HashMap<>();\n    List<DocumentSample> allSamples = new ArrayList<>();\n\n    // Per-document: feature string set and term frequency map\n    List<Set<String>> docFeatureSets = new ArrayList<>();\n    List<Map<String, Integer>> docTfMaps = new ArrayList<>();\n    List<String> docLabels = new ArrayList<>();\n\n    // Corpus-level document frequency\n    Map<String, Integer> documentFrequency = new HashMap<>();\n    int totalDocs = 0;\n\n    DocumentSample sample;\n    while ((sample = samples.read()) != null) {\n      allSamples.add(sample);\n      totalDocs++;\n\n      // Register category\n      String category = sample.getCategory();\n      if (!categoryToIndex.containsKey(category)) {\n        int catIdx = categoryToIndex.size();\n        categoryToIndex.put(category, catIdx);\n        indexToCategory.put(catIdx, category);\n      }\n      docLabels.add(category);\n\n      // Extract features\n      String[] context = generateContext(sample.getText(), sample.getExtraInformation(),\n          featureGenerators);\n\n      // Compute term frequency for this document\n      Map<String, Integer> tf = new HashMap<>();\n      for (String feature : context) {\n        tf.merge(feature, 1, Integer::sum);\n      }\n      docTfMaps.add(tf);\n      docFeatureSets.add(tf.keySet());\n\n      // Update document frequency\n      for (String feature : tf.keySet()) {\n        documentFrequency.merge(feature, 1, Integer::sum);\n      }\n    }\n\n    // --- Pass 2: Feature selection ---\n    Set<String> selectedFeatures;\n    if (config.getFeatureSelectionStrategy() != FeatureSelectionStrategy.NONE) {\n      selectedFeatures = FeatureSelection.selectTopFeatures(\n          docFeatureSets, docTfMaps, docLabels,\n          config.getFeatureSelectionStrategy(), config.getMaxFeatures());\n    } else {\n      selectedFeatures = new HashSet<>();\n      for (Set<String> fs : docFeatureSets) {\n        selectedFeatures.addAll(fs);\n      }\n    }\n\n    // Build final vocabulary (only selected features)\n    Map<String, Integer> featureVocabulary = new LinkedHashMap<>();\n    for (String feature : selectedFeatures) {\n      featureVocabulary.put(feature, featureVocabulary.size() + 1);\n    }\n\n    // --- Pass 3: Compute IDF values ---\n    Map<String, Double> idfValues = new HashMap<>();\n    for (String feature : featureVocabulary.keySet()) {\n      int df = documentFrequency.getOrDefault(feature, 0);\n      idfValues.put(feature, df > 0 ? Math.log((double) totalDocs / df) : 0.0);\n    }\n\n    // --- Pass 4: Compute weighted features & collect min/max for scaling ---\n    TermWeightingStrategy weighting = config.getTermWeightingStrategy();\n    List<Map<Integer, Double>> docWeightedFeatures = new ArrayList<>(allSamples.size());\n\n    // Initialize min to 0.0 for all features (absent features have implicit value 0)\n    Map<Integer, Double> featureMin = new HashMap<>();\n    Map<Integer, Double> featureMax = new HashMap<>();\n    for (Integer idx : featureVocabulary.values()) {\n      featureMin.put(idx, 0.0);\n      featureMax.put(idx, 0.0);\n    }\n\n    for (Map<String, Integer> tf : docTfMaps) {\n      Map<Integer, Double> weighted = new TreeMap<>();\n      for (Map.Entry<String, Integer> entry : tf.entrySet()) {\n        String feature = entry.getKey();\n        Integer idx = featureVocabulary.get(feature);\n        if (idx != null) {\n          double idf = idfValues.getOrDefault(feature, 0.0);\n          double value = weighting.weight(entry.getValue(), idf);\n          weighted.put(idx, value);\n\n          featureMin.merge(idx, value, Math::min);\n          featureMax.merge(idx, value, Math::max);\n        }\n      }\n      docWeightedFeatures.add(weighted);\n    }\n\n    // --- Pass 5: Scale and build SVM documents ---\n    List<SvmDocument> svmDocuments = new ArrayList<>(allSamples.size());\n    for (int i = 0; i < allSamples.size(); i++) {\n      Map<Integer, Double> weighted = docWeightedFeatures.get(i);\n      List<SvmFeature> features = buildFeatureVector(weighted, config, featureMin, featureMax);\n\n      SvmDocument svmDoc = new TrainingSvmDocument(features);\n      int categoryLabel = categoryToIndex.get(allSamples.get(i).getCategory());\n      svmDoc.addClassLabel(new TrainingSvmClassLabel(categoryLabel,\n          allSamples.get(i).getCategory(), 1.0));\n      svmDocuments.add(svmDoc);\n    }\n\n    // --- Train SVM ---\n    final SvmTrainer trainer = new SvmTrainerImpl(config.getSvmConfiguration(), \"opennlp-doccat-svm\");\n    final Optional<SvmModel> svmModel = trainer.train(svmDocuments);\n\n    final SvmModel trainedModel = svmModel.orElseThrow(() ->\n        new RuntimeException(\"Training with Cross-Validation=True \"\n            + \"does not result in a valid model.\"));\n\n    return new SvmDoccatModel(trainedModel, featureVocabulary,\n        indexToCategory, categoryToIndex,\n        idfValues, featureMin, featureMax, config, lang);\n  }",
+    "is_async": false,
+    "type": "function",
+    "class_name": "DocumentCategorizerSVM",
+    "full_class_name": "DocumentCategorizerSVM",
+    "class_constructor": [
+      "public DocumentCategorizerSVM(SvmDoccatModel model, FeatureGenerator... featureGenerators) {\n    this.model = Objects.requireNonNull(model, \"model must not be null\");\n    Objects.requireNonNull(featureGenerators, \"featureGenerators must not be null\");\n    if (featureGenerators.length == 0) {\n      throw new IllegalArgumentException(\"At least one FeatureGenerator is required\");\n    }\n    this.featureGenerators = featureGenerators;\n    this.classifier = new SvmClassifierImpl(model.getSvmModel());\n  }"
+    ],
+    "class_fields": [],
+    "nloc": 103,
+    "complexity": 16,
+    "param_count": 4,
+    "tier": "strict",
+    "method_last_modified": "2026-03-31",
+    "method_oldest_line": "2026-03-22",
+    "class_covered_in_baseline": null,
+    "repo_meta": {
+      "full_name": "apache/opennlp",
+      "html_url": "https://github.com/apache/opennlp",
+      "stars": "1602",
+      "license": "Apache-2.0",
+      "created_at": "2011-11-09T08:00:09Z",
+      "pushed_at": "2026-09-03T02:32:35Z",
+      "sha": "6c64f1e022b31d1f87cdb0b16315a33ffae35d9f",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "screened_at": "2026-09-15 00:50:14"
+    }
+  }
+]

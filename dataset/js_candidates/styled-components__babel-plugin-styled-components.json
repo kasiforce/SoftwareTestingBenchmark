@@ -1,0 +1,33 @@
+[
+  {
+    "project_root": "projects/babel-plugin-styled-components",
+    "name": "addConfig",
+    "src_file": "src/visitors/displayNameAndId.js",
+    "test_file": "test/visitors/displayNameAndId/addConfig.test.js",
+    "code": "const addConfig = t => (path, displayName, componentId) => {\n  if (!displayName && !componentId) {\n    return\n  }\n\n  const withConfigProps = []\n\n  if (displayName) {\n    withConfigProps.push(\n      t.objectProperty(\n        t.identifier('displayName'),\n        t.stringLiteral(displayName)\n      )\n    )\n  }\n  if (componentId) {\n    withConfigProps.push(\n      t.objectProperty(\n        t.identifier('componentId'),\n        t.stringLiteral(componentId)\n      )\n    )\n  }\n\n  const existingConfig = getExistingConfig(t)(path)\n\n  if (\n    existingConfig &&\n    existingConfig.arguments.length &&\n    Array.isArray(existingConfig.arguments[0].properties) &&\n    !hasDisplayNameOrComponentId(t, existingConfig.arguments[0].properties)\n  ) {\n    existingConfig.arguments[0].properties.push(...withConfigProps)\n    return\n  }\n\n  if (\n    path.node.callee &&\n    t.isMemberExpression(path.node.callee.callee) &&\n    path.node.callee.callee.property &&\n    path.node.callee.callee.property.name &&\n    path.node.callee.callee.property.name == 'withConfig' &&\n    path.node.callee.arguments.length &&\n    Array.isArray(path.node.callee.arguments[0].properties) &&\n    !hasDisplayNameOrComponentId(t, path.node.callee.arguments[0].properties)\n  ) {\n    path.node.callee.arguments[0].properties.push(...withConfigProps)\n    return\n  }\n\n  if (path.node.tag) {\n    // Replace x`...` with x.withConfig({ })`...`\n    path.node.tag = t.callExpression(\n      t.memberExpression(path.node.tag, t.identifier('withConfig')),\n      [t.objectExpression(withConfigProps)]\n    )\n  } else {\n    path.replaceWith(\n      t.callExpression(\n        t.callExpression(\n          t.memberExpression(path.node.callee, t.identifier('withConfig')),\n          [t.objectExpression(withConfigProps)]\n        ),\n        path.node.arguments\n      )\n    )\n  }\n}",
+    "is_async": false,
+    "type": "function",
+    "nloc": 61,
+    "complexity": 18,
+    "param_count": 0,
+    "tier": "relaxed",
+    "method_last_modified": "2026-05-20",
+    "method_oldest_line": "2016-12-24",
+    "class_covered_in_baseline": true,
+    "repo_meta": {
+      "full_name": "styled-components/babel-plugin-styled-components",
+      "html_url": "https://github.com/styled-components/babel-plugin-styled-components",
+      "stars": "1072",
+      "license": "MIT",
+      "created_at": "2016-10-24T20:26:47Z",
+      "pushed_at": "2026-06-29T23:15:28Z",
+      "sha": "77d7b867dfa06d89084bdd59c289fd3e684797f9",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "rescued_no_jest": false,
+      "screened_at": "2026-09-17 17:45:49"
+    },
+    "start_line": 38,
+    "end_line": 105
+  }
+]

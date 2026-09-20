@@ -1,0 +1,33 @@
+[
+  {
+    "project_root": "projects/minimizer-webpack-plugin",
+    "name": "fileTypeFromBuffer",
+    "src_file": "src/fileType.js",
+    "test_file": "test/fileType/fileTypeFromBuffer.test.js",
+    "code": "function fileTypeFromBuffer(input) {\n  if (!(\n    input instanceof Uint8Array ||\n    input instanceof ArrayBuffer ||\n    Buffer.isBuffer(input)\n  )) {\n    throw new TypeError(\n      `Expected the \\`input\\` argument to be of type \\`Uint8Array\\` or \\`Buffer\\` or \\`ArrayBuffer\\`, got \\`${typeof input}\\``,\n    );\n  }\n\n  const buffer = input instanceof Uint8Array ? input : new Uint8Array(input);\n\n  if (buffer.length < 2) {\n    return undefined;\n  }\n\n  if (startsWith(buffer, PNG_SIGNATURE)) {\n    return isAnimatedPng(buffer)\n      ? { ext: \"apng\", mime: \"image/apng\" }\n      : { ext: \"png\", mime: \"image/png\" };\n  }\n\n  if (startsWith(buffer, [0xff, 0xd8, 0xff])) {\n    return { ext: \"jpg\", mime: \"image/jpeg\" };\n  }\n\n  if (hasText(buffer, \"GIF\")) {\n    return { ext: \"gif\", mime: \"image/gif\" };\n  }\n\n  if (hasText(buffer, \"RIFF\") && hasText(buffer, \"WEBP\", 8)) {\n    return { ext: \"webp\", mime: \"image/webp\" };\n  }\n\n  if (hasText(buffer, \"ftyp\", 4)) {\n    const brand = ISO_BRANDS.get(\n      String.fromCharCode(...buffer.subarray(8, 12)),\n    );\n\n    if (brand) {\n      return { ext: brand, mime: `image/${brand}` };\n    }\n  }\n\n  // The raw codestream, and the container that can hold one.\n  if (\n    startsWith(buffer, [0xff, 0x0a]) ||\n    startsWith(\n      buffer,\n      [0x00, 0x00, 0x00, 0x0c, 0x4a, 0x58, 0x4c, 0x20, 0x0d, 0x0a, 0x87, 0x0a],\n    )\n  ) {\n    return { ext: \"jxl\", mime: \"image/jxl\" };\n  }\n\n  // The same box structure as JPEG XL's container, naming `jP  ` instead, and\n  // the bare codestream a `.j2k` holds.\n  if (\n    startsWith(\n      buffer,\n      [0x00, 0x00, 0x00, 0x0c, 0x6a, 0x50, 0x20, 0x20, 0x0d, 0x0a, 0x87, 0x0a],\n    ) ||\n    startsWith(buffer, [0xff, 0x4f, 0xff, 0x51])\n  ) {\n    return { ext: \"jp2\", mime: \"image/jp2\" };\n  }\n\n  if (\n    startsWith(buffer, [0x49, 0x49, 0x2a, 0x00]) ||\n    startsWith(buffer, [0x4d, 0x4d, 0x00, 0x2a])\n  ) {\n    return { ext: \"tiff\", mime: \"image/tiff\" };\n  }\n\n  if (hasText(buffer, \"BM\")) {\n    return { ext: \"bmp\", mime: \"image/bmp\" };\n  }\n\n  if (startsWith(buffer, [0x00, 0x00, 0x01, 0x00])) {\n    return { ext: \"ico\", mime: \"image/x-icon\" };\n  }\n\n  // Last, so that no signature above is shadowed by a scan of text.\n  if (isSvg(buffer)) {\n    return { ext: \"svg\", mime: \"image/svg+xml\" };\n  }\n\n  return undefined;\n}",
+    "is_async": false,
+    "type": "function",
+    "nloc": 71,
+    "complexity": 23,
+    "param_count": 1,
+    "tier": "relaxed",
+    "method_last_modified": "2026-08-29",
+    "method_oldest_line": "2026-08-28",
+    "class_covered_in_baseline": true,
+    "repo_meta": {
+      "full_name": "webpack/minimizer-webpack-plugin",
+      "html_url": "https://github.com/webpack/minimizer-webpack-plugin",
+      "stars": "1966",
+      "license": "MIT",
+      "created_at": "2018-07-31T19:25:19Z",
+      "pushed_at": "2026-09-03T08:35:23Z",
+      "sha": "319e3c47f5265532897acd66cf2e4a1a748344e4",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "rescued_no_jest": false,
+      "screened_at": "2026-09-17 17:26:56"
+    },
+    "start_line": 224,
+    "end_line": 313
+  }
+]

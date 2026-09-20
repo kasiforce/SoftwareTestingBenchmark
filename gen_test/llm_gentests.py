@@ -321,7 +321,7 @@ class TestCodeGenerator:
             # if function_info['class_variables']:
             #     class_info['class_variables'] = function_info['class_variables']
 
-        specification = function_info['specification']
+        specification = function_info.get('specification', "")
         file_path = function_info['src_file']
         test_path = function_info['test_file']
 
@@ -336,7 +336,7 @@ Function Information:
 - Is async: {function_info.get('is_async', False)}
 
 Function Specification:
-```javascript
+```java
 {signature}
 ```{specification}```
 
@@ -347,7 +347,7 @@ Your job is to output corresponding test class that obtains high coverage and in
 The test code should be written into {test_path}. Please make sure the imports are correct.
 Return ONLY code without explanations, non-code text, or markdown formatting.
 
-```javascript
+```java
 <test code>
 """
 
@@ -386,7 +386,7 @@ Function Information:
 - Is async: {function_info.get('is_async', False)}
 
 Function Code:
-```javascript
+```java
 {function_code}
 
 
@@ -396,7 +396,7 @@ Your job is to output corresponding test class that obtains high coverage and in
 The test code should be written into {test_path}. Please make sure the imports are correct.
 Return ONLY code without explanations, non-code text, or markdown formatting.
 
-```javascript
+```java
 <test code>
 """
 #             prompt = f"""
@@ -443,8 +443,8 @@ Return ONLY code without explanations, non-code text, or markdown formatting.
                    ]
         tests = []
         client = OpenAI(api_key=self.api_key, 
-                        base_url="https://api.apiyi.com/v1")
-                        # base_url="https://api.agicto.cn/v1")
+                        # base_url="https://api.apiyi.com/v1")
+                        base_url="https://api.agicto.cn/v1")
         # print(self.model)
         for k in range(max_K):
             try:
@@ -744,7 +744,7 @@ Return ONLY code without explanations, non-code text, or markdown formatting.
 
     def _extract_code(self, s: str):
         # 使用 '```python' 和 '```' 来分割字符串
-        parts = s.split('```javascript')
+        parts = s.split('```java')
         if len(parts) > 1:
             # 移除后面的 '```'
             code = parts[1].split('```')[0]
@@ -770,30 +770,32 @@ Return ONLY code without explanations, non-code text, or markdown formatting.
 def main():
     # 从环境变量获取API密钥
    
-    api_key = ""
+    api_key = "sk-ACCWt94kmzmTa99Bndmu2PcRgCxZEETjVMUkjljF8zWy4Nm7"
     
     if not api_key:
         raise ValueError("请设置 OPENAI_API_KEY 环境变量")
 
     # 初始化生成器
-    generator = TestCodeGenerator(api_key=api_key, input="specification", testframe="Jest", model="gpt-5-nano")
+    # generator = TestCodeGenerator(api_key=api_key, input="specification", testframe="Jest", model="gpt-5-nano")
     # generator1 = TestCodeGenerator(api_key=api_key, input="specification", testframe="Jest", model="gpt-5-nano")
     # generator2 = TestCodeGenerator(api_key=api_key, input="code", testframe="Jest", model="gpt-5-nano")
-    generator3 = TestCodeGenerator(api_key=api_key, input="code", testframe="Jest", model="gpt-5-nano")
+    generator3 = TestCodeGenerator(api_key=api_key, input="code", testframe="JUnit 4", model="gpt-5.6-luna")
 
     # 加载函数数据
-    input_file = "modern-errors_lite_specification.json"  # 替换为您的输入文件路径
+    input_file = "dataset/java_candidates/FasterXML__jackson-databind.json"  # 替换为您的输入文件路径
     # input_file = "test_output.json"
     with open(input_file, 'r', encoding='utf-8') as f:
         functions_data = json.load(f)
 
+    functions_data = [functions_data[0]]
+
     logger.info(f"找到 {len(functions_data)} 个需要生成测试的函数")
 
     # 生成测试代码 - 使用并行版本
-    output_file = "modern-errors_lite_specification_jest_gpt5nano.json"
+    # output_file = "modern-errors_lite_specification_jest_gpt5nano.json"
     # output_file1 = "tornado_lite_specification_pytest_gpt5nano.json"
     # output_file2= "tornado_lite_pytest_gpt5nano.json"
-    output_file3 = "modern-errors_lite_jest_gpt5nano.json"
+    output_file3 = "databind_junit4_gpt56luna.json"
 
     # 方法1: 完全并行处理
     # results = generator.generate_tests_for_functions_parallel(
@@ -804,13 +806,13 @@ def main():
     # )
 
     # 方法2: 批量并行处理（推荐，可控制速率）
-    results = generator.generate_tests_for_functions_parallel_batch(
-        functions=functions_data,
-        output_file=output_file,
-        max_workers=5,
-        batch_size=20,
-        batch_delay=2
-    )
+    # results = generator.generate_tests_for_functions_parallel_batch(
+    #     functions=functions_data,
+    #     output_file=output_file,
+    #     max_workers=5,
+    #     batch_size=20,
+    #     batch_delay=2
+    # )
 
     # results1 = generator1.generate_tests_for_functions_parallel_batch(
     #     functions=functions_data,
@@ -836,8 +838,8 @@ def main():
         batch_delay=2
     )
     # 统计结果
-    success_count = sum(1 for r in results if r.get('test_generation_status') == 'success')
-    logger.info(f"测试生成完成: {success_count}/{len(results)} 成功")
+    success_count = sum(1 for r in results3 if r.get('test_generation_status') == 'success')
+    logger.info(f"测试生成完成: {success_count}/{len(results3)} 成功")
 
 
 if __name__ == "__main__":
