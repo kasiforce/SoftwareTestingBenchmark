@@ -173,6 +173,9 @@ def run_baseline(repo_dir, timeout, runs=2):
         try:
             proc = sh([jest_bin, "--ci", "--runInBand",
                        "--coverage", "--coverageReporters=json-summary",
+                       # jest 默认单测超时仅 5s，共享机器高负载下会误杀慢测试；
+                       # 放宽到 60s 与 py 版 pytest --timeout=60 同一口径（需 jest>=27）
+                       "--testTimeout=60000",
                        "--json", f"--outputFile={out_json}"],
                       cwd=repo_dir, timeout=timeout)
         except subprocess.TimeoutExpired:
@@ -277,8 +280,14 @@ def screen_repo(meta, args):
         if build is None:
             return reject("仓库根无 package.json（非 npm 项目）")
         row["junit_version"] = "jest"
+        rescued = False
         if not build["jest_declared"]:
-            return reject("未声明 Jest（依赖/scripts.test/jest.config 均未发现）")
+            if not args.rescue_nojest:
+                return reject("未声明 Jest（依赖/scripts.test/jest.config 均未发现）")
+            # rescue：不注入任何配置文件，用 jest 默认 testMatch（*.test.js /
+            # __tests__/）+ babel-jest 默认转换跑基线；基线全绿门槛不变
+            rescued = True
+            print(f"[{full}] rescue 模式：未声明 Jest，改用 jest 默认配置试探")
 
         # 2.5 主代码活跃度快筛
         log_proc = sh(["git", "log", f"--since={args.cutoff}", "--name-only",
@@ -395,6 +404,7 @@ def screen_repo(meta, args):
                     "sha": sha,
                     "cutoff": args.cutoff,
                     "recency": args.recency,
+                    "rescued_no_jest": rescued,
                     "screened_at": row["screened_at"],
                 },
             }
@@ -460,6 +470,9 @@ def main():
     parser.add_argument("--install-timeout", type=int, default=1800, help="依赖安装超时（秒）")
     parser.add_argument("--skip-build", action="store_true",
                         help="跳过依赖安装与 Jest 基线（开发/抽验模式）")
+    parser.add_argument("--rescue-nojest", action="store_true",
+                        help="未声明 Jest 的仓库不直接拒绝，改用 jest 默认配置跑基线"
+                             "（eval 侧 npx jest 会自动补装，行为兼容）")
     parser.add_argument("--keep-clones", action="store_true", help="筛查后保留 clone")
     args = parser.parse_args()
 

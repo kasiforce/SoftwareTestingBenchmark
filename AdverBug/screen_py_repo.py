@@ -62,7 +62,8 @@ def parse_junit_xml(path):
     results = {}
     try:
         root = ET.parse(path).getroot()
-    except ET.ParseError:
+    except (ET.ParseError, OSError):
+        # 文件不存在（pytest 启动即崩没写出 junitxml）或格式损坏 → 视为无用例
         return results
     for tc in root.iter("testcase"):
         key = (tc.get("classname", ""), tc.get("name", ""))
@@ -124,7 +125,11 @@ def setup_venv(repo_dir, python_bin, timeout):
         [python_bin, "-m", "venv", venv_dir],
         [pip, "install", "--quiet", "--upgrade", "pip"],
         [pip, "install", "--quiet", "-e", "."],
-        [pip, "install", "--quiet", "pytest", "pytest-timeout", "coverage"],
+        # 插件集合与 eval_py.py 容器内 pip install 完全一致：eval 不覆盖项目
+        # addopts，addopts 依赖额外插件（--cov/-n 等）的项目在 eval 也会挂，
+        # 应在筛查阶段就拒绝；缺 pytest-asyncio/pytest-mock 则会误杀异步项目
+        [pip, "install", "--quiet", "pytest", "pytest-json-report", "pytest-timeout",
+         "coverage", "pytest-asyncio", "pytest-mock", "pycares"],
     ]
     for cmd in steps:
         try:
