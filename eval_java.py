@@ -484,17 +484,18 @@ def syntax_analyse(data_file):
     syntax_correct = 0
 
     for item in data:
-        test_code = item.get("generated_tests", "")
-        for test in test_code:
-            if not test.strip():
-                continue
+        # test_code = item.get("generated_test_code", "")
+        test_code = item["generated_tests"][-1]
+        # for test in test_code:
+        if not test_code.strip():
+            continue
 
-            total += 1
-            try:
-                javalang.parse.parse(test)
-                syntax_correct += 1
-            except Exception as e:
-                pass
+        total += 1
+        try:
+            javalang.parse.parse(test_code)
+            syntax_correct += 1
+        except Exception as e:
+            pass
 
     return {"total": total, "syntax_correct": syntax_correct, "syntax_correct_rate": syntax_correct / total}
 
@@ -858,7 +859,7 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
     repo_name = repo_dir
     if "/" in repo_dir:
         repo_name = repo_dir.split("/")[1]
-    test_results_dir = os.path.join(cwd, "test_results", "java", repo_name, "specification_junit4_qwen")
+    test_results_dir = os.path.join(cwd, "test_results", "java", repo_name, "src_bug_junit4_qwen")
 
     os.makedirs(test_results_dir, exist_ok=True)
 
@@ -1053,61 +1054,17 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
                     --project-root /testbed \
                     --data-path /testbed/{data_file}
 
-                
-                
-                if ! grep -q "<artifactId>junit</artifactId>" pom.xml; then
-                    sed -i '/<\/dependencies>/i \
-            <dependency>\
-                <groupId>junit</groupId>\
-                <artifactId>junit</artifactId>\
-                <version>4.13.2</version>\
-                <scope>test</scope>\
-            </dependency>' pom.xml
-                fi
-
-                # 添加 JUnit Vintage 引擎（版本与项目 JUnit 5 一致）
-                if ! grep -q "<artifactId>junit-vintage-engine</artifactId>" pom.xml; then
-                    sed -i '/<\/dependencies>/i \
-                    <dependency>\
-                        <groupId>org.junit.vintage</groupId>\
-                        <artifactId>junit-vintage-engine</artifactId>\
-                        <version>5.14.1</version>\
-                        <scope>test</scope>\
-                    </dependency>' pom.xml
-                fi
-
                 if ! grep -q "<artifactId>mockito-core</artifactId>" pom.xml; then
                     sed -i '/<\/dependencies>/i \
                     <dependency>\
                         <groupId>org.mockito</groupId>\
                         <artifactId>mockito-core</artifactId>\
-                        <version>4.11.0</version>\
+                        <version>5.18.0</version>\
                         <scope>test</scope>\
                     </dependency>' pom.xml
                 fi
-
-                if ! grep -q "<artifactId>powermock-module-junit4</artifactId>" pom.xml; then
-                    sed -i '/<\/dependencies>/i \
-                    <dependency>\
-                        <groupId>org.powermock</groupId>\
-                        <artifactId>powermock-module-junit4</artifactId>\
-                        <version>2.0.9</version>\
-                        <scope>test</scope>\
-                    </dependency>' pom.xml
-                fi
-
-                if ! grep -q "<artifactId>powermock-api-mockito2</artifactId>" pom.xml; then
-                    sed -i '/<\/dependencies>/i \
-                    <dependency>\
-                        <groupId>org.powermock</groupId>\
-                        <artifactId>powermock-api-mockito2</artifactId>\
-                        <version>2.0.9</version>\
-                        <scope>test</scope>\
-                    </dependency>' pom.xml
-                fi
-
-
                 
+                              
 
                 MAX_RETRIES=10
                 RETRY_COUNT=0
@@ -1179,9 +1136,12 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
                 # 然后继续执行测试和覆盖率收集...
 
                 echo "执行测试并收集覆盖率..."
-                mvn -fae clean org.jacoco:jacoco-maven-plugin:0.8.14:prepare-agent test org.jacoco:jacoco-maven-plugin:0.8.14:report \
-                    -DskipTests=false -Dmaven.test.skip=false -DfailIfNoTests=false \
-                    -Dmaven.test.failure.ignore=true -Drat.skip=true -B
+                # mvn -fae clean org.jacoco:jacoco-maven-plugin:0.8.14:prepare-agent test org.jacoco:jacoco-maven-plugin:0.8.14:report \
+                #     -DskipTests=false -Dmaven.test.skip=false -DfailIfNoTests=false \
+                #     -Dmaven.test.failure.ignore=true -Drat.skip=true -B
+
+                mvn clean test -DskipTests=false -Dmaven.test.skip=false -DfailIfNoTests=false -Dmaven.test.failure.ignore=true -Drat.skip=true -B jacoco:report
+
 
                 # 统计编译成功的测试类，并输出文件列表
                 compiled_class_files=$(find . -path "*/target/test-classes/*Tests.class" ! -name "*\\$*")
@@ -1404,5 +1364,5 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
 
 if __name__ == "__main__":
     # 示例调用
-    create_and_run_java("output/commons-jxpath/dockerfile", "projects/commons-jxpath", "data_file.json")
+    create_and_run_java("output/wepush/dockerfile", "projects/wepush", "wepush-bug_specification_junit4_qwen3.7plus.json")
     # pass
