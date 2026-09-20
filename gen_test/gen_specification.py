@@ -467,6 +467,154 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
+tests = """
+class BasicTypeConverterTest {
+
+    public void assertConversion(final Object from, final Class toType, final Object expected) {
+        final boolean can = TypeUtils.canConvert(from, toType);
+        assertTrue(can, "Can convert: " + from.getClass() + " to " + toType);
+        Object result = TypeUtils.convert(from, toType);
+        if (result.getClass().isArray()) {
+            final ArrayList list = new ArrayList();
+            for (int j = 0; j < Array.getLength(result); j++) {
+                list.add(Array.get(result, j));
+            }
+            result = list;
+        }
+        assertEquals(expected, result, "Convert: " + from.getClass() + " to " + toType);
+    }
+
+    @Test
+    void testArrayToArray() {
+        assertConversion(new int[] { 1, 2 }, String[].class, Arrays.asList(new String[] { "1", "2" }));
+    }
+
+    @Test
+    void testArrayToList() {
+        assertConversion(new int[] { 1, 2 }, List.class, Arrays.asList(new Object[] { Integer.valueOf(1), Integer.valueOf(2) }));
+    }
+
+    @Test
+    void testBeanUtilsConverter() {
+        assertConversion("12", BigDecimal.class, new BigDecimal(12));
+    }
+
+    @Test
+    void testInvalidConversion() {
+        assertThrows(Exception.class, () -> TypeUtils.convert("'foo'", Date.class), "Type conversion exception");
+    }
+
+    @Test
+    void testListToArray() {
+        assertConversion(Arrays.asList(new Integer[] { Integer.valueOf(1), Integer.valueOf(2) }), String[].class, Arrays.asList(new String[] { "1", "2" }));
+        assertConversion(Arrays.asList(new String[] { "1", "2" }), int[].class, Arrays.asList(new Integer[] { Integer.valueOf(1), Integer.valueOf(2) }));
+    }
+
+    // succeeds in current version
+    @Test
+    void testNodeSetToInteger() {
+        assertConversion(new NodeSet() {
+
+            @Override
+            public List getNodes() {
+                return null;
+            }
+
+            @Override
+            public List getPointers() {
+                return null;
+            }
+
+            @Override
+            public List getValues() {
+                return Collections.singletonList("9");
+            }
+        }, Integer.class, Integer.valueOf(9));
+    }
+
+    @Test
+    void testNodeSetToString() {
+        assertConversion(new NodeSet() {
+
+            @Override
+            public List getNodes() {
+                return null;
+            }
+
+            @Override
+            public List getPointers() {
+                return null;
+            }
+
+            @Override
+            public List getValues() {
+                final List list = new ArrayList();
+                list.add("hello");
+                list.add("goodbye");
+                return Collections.singletonList(list);
+            }
+        }, String.class, "hello");
+    }
+
+    @Test
+    void testPointerToString() {
+        assertConversion(new Pointer() {
+
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            public String asPath() {
+                return null;
+            }
+
+            @Override
+            public Object clone() {
+                return null;
+            }
+
+            @Override
+            public int compareTo(final Object o) {
+                return 0;
+            }
+
+            @Override
+            public Object getNode() {
+                return null;
+            }
+
+            @Override
+            public Object getRootNode() {
+                return null;
+            }
+
+            @Override
+            public Object getValue() {
+                return "value";
+            }
+
+            @Override
+            public void setValue(final Object value) {
+            }
+        }, String.class, "value");
+    }
+
+    @Test
+    void testPrimitiveToString() {
+        assertConversion(Integer.valueOf(1), String.class, "1");
+    }
+
+    @Test
+    void testSingletonArrayToString() {
+        assertConversion(new String[] { "Earth" }, String.class, "Earth");
+    }
+
+    @Test
+    void testSingletonCollectionToString() {
+        assertConversion(Collections.singleton("Earth"), String.class, "Earth");
+    }
+}
+"""
+
 class TestCodeGenerator:
     def __init__(self, api_key: str, model: str = "gpt-4o-mini"):
         """
@@ -517,7 +665,7 @@ class TestCodeGenerator:
 
     Class Information:
     {class_info if class_name else 'Standalone function'}
-
+    
     Please generate the specification according to the required format.
     """
 
@@ -854,7 +1002,9 @@ class TestCodeGenerator:
 def main():
     # 从环境变量获取API密钥
     
-    api_key = "sk-TCP3lz5NTOkdlhWUBVCHfj8gR2Db9MEBnw6Fp5D5um9KuTnw"
+
+    api_key = "sk-f9iJyNvXH7W8Zc4TC6k3c7gzEpN42jpBOhyqgGfGsay4iEkB"
+
     if not api_key:
         raise ValueError("请设置 OPENAI_API_KEY 环境变量")
 
@@ -862,7 +1012,9 @@ def main():
     generator = TestCodeGenerator(api_key=api_key, model="gpt-4o-mini")
 
     # 加载函数数据
+
     input_file = "wepush22.json"  # 替换为您的输入文件路径
+
     # input_file = "test_output.json"
     with open(input_file, 'r', encoding='utf-8') as f:
         functions_data = json.load(f)
@@ -870,7 +1022,9 @@ def main():
     logger.info(f"找到 {len(functions_data)} 个需要生成测试的函数")
 
     # 生成测试代码 - 使用并行版本
+
     output_file = "wepush22_specification.json"
+
 
     # 方法1: 完全并行处理
     # results = generator.generate_tests_for_functions_parallel(

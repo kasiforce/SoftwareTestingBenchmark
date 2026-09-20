@@ -1,0 +1,95 @@
+2026-07-15 04:30:11,269 [INFO]  加载了 8 个待处理条目
+2026-07-15 04:30:11,269 [INFO] [1/8] 正在处理: addRequiredOption
+2026-07-15 04:30:11,269 [INFO]  Running Copilot for 'addRequiredOption' in /testbed
+2026-07-15 04:34:33,978 [INFO]  成功读取生成的测试文件: /testbed/src/test/java/org/apache/commons/cli/AddRequiredOptionTests.java
+2026-07-15 04:34:33,979 [INFO]  成功 (返回码=0)
+2026-07-15 04:34:43,986 [INFO] [2/8] 正在处理: addOptions
+2026-07-15 04:34:43,986 [INFO]  Running Copilot for 'addOptions' in /testbed
+2026-07-15 04:42:08,605 [INFO]  成功读取生成的测试文件: /testbed/src/test/java/org/apache/commons/cli/AddOptionsTests.java
+2026-07-15 04:42:08,607 [INFO]  成功 (返回码=0)
+2026-07-15 04:42:18,618 [INFO] [3/8] 正在处理: makeColumnQueues
+2026-07-15 04:42:18,620 [INFO]  Running Copilot for 'makeColumnQueues' in /testbed
+2026-07-15 04:42:31,075 [INFO]  加载了 8 个待处理条目
+2026-07-15 04:42:31,075 [INFO] [1/8] 正在处理: addRequiredOption
+2026-07-15 04:42:31,076 [INFO]  Running Copilot for 'addRequiredOption' in /testbed
+2026-07-15 05:12:46,120 [INFO]  加载了 8 个待处理条目
+2026-07-15 05:12:46,120 [INFO] [1/8] 正在处理: addRequiredOption
+2026-07-15 05:12:46,121 [INFO]  Running Copilot for 'addRequiredOption' in /testbed
+2026-07-15 05:21:52,872 [INFO]  成功读取生成的测试文件: /testbed/src/test/java/org/apache/commons/cli/AddRequiredOptionTests.java
+2026-07-15 05:21:52,873 [INFO]  成功 (返回码=0)
+2026-07-15 05:22:02,884 [INFO] [2/8] 正在处理: addOptions
+2026-07-15 05:22:02,884 [INFO]  Running Copilot for 'addOptions' in /testbed
+2026-07-15 05:29:08,212 [INFO]  成功读取生成的测试文件: /testbed/src/test/java/org/apache/commons/cli/AddOptionsTests.java
+2026-07-15 05:29:08,213 [INFO]  成功 (返回码=0)
+2026-07-15 05:29:18,222 [INFO] [3/8] 正在处理: makeColumnQueues
+2026-07-15 05:29:18,222 [INFO]  Running Copilot for 'makeColumnQueues' in /testbed
+2026-07-15 06:38:32,620 [INFO]  加载了 8 个待处理条目
+2026-07-15 06:38:32,621 [INFO] [1/8] 正在处理: addOptionGroup
+2026-07-15 06:38:32,622 [INFO]  Running Copilot for 'addOptionGroup' in /testbed
+2026-07-15 06:45:49,307 [INFO]  成功读取生成的测试文件: /testbed/src/test/java/org/apache/commons/cli/AddOptionGroupTests.java
+2026-07-15 06:45:49,308 [INFO]  成功 (返回码=0)
+2026-07-15 06:45:59,314 [INFO] [2/8] 正在处理: addRequiredOption
+2026-07-15 06:45:59,314 [INFO]  Running Copilot for 'addRequiredOption' in /testbed
+2026-07-15 06:49:41,301 [INFO]  成功读取生成的测试文件: /testbed/src/test/java/org/apache/commons/cli/AddRequiredOptionTests.java
+2026-07-15 06:49:41,301 [INFO]  成功 (返回码=0)
+2026-07-15 06:49:51,311 [INFO] [3/8] 正在处理: addOptions
+2026-07-15 06:49:51,311 [INFO]  Running Copilot for 'addOptions' in /testbed
+2026-07-15 06:54:20,768 [INFO]  成功读取生成的测试文件: /testbed/src/test/java/org/apache/commons/cli/AddOptionsTests.java
+2026-07-15 06:54:20,768 [INFO]  成功 (返回码=0)
+2026-07-15 06:54:30,774 [INFO] [4/8] 正在处理: makeColumnQueues
+2026-07-15 06:54:30,774 [INFO]  Running Copilot for 'makeColumnQueues' in /testbed
+2026-07-15 06:59:27,792 [INFO]  加载了 8 个待处理条目
+2026-07-15 06:59:27,793 [INFO] [1/8] 正在处理: addOptionGroup
+2026-07-15 06:59:27,793 [INFO]  Running Copilot for 'addOptionGroup' in /testbed
+2026-07-15 07:58:23,832 [ERROR]  Timeout after 3600s for 'makeColumnQueues'
+2026-07-15 07:58:24,046 [WARNING]  未完全成功 (返回码=-1)，请检查日志详情
+2026-07-15 07:58:34,133 [INFO] [5/8] 正在处理: pad
+2026-07-15 07:58:34,134 [INFO]  Running Copilot for 'pad' in /testbed
+2026-07-15 07:59:27,032 [INFO]  成功读取生成的测试文件: /testbed/src/test/java/org/apache/commons/cli/AddOptionGroupTests.java
+2026-07-15 07:59:27,033 [INFO]  成功 (返回码=0)
+2026-07-15 07:59:37,043 [INFO] [2/8] 正在处理: addRequiredOption
+2026-07-15 07:59:37,044 [INFO]  Running Copilot for 'addRequiredOption' in /testbed
+2026-07-15 08:05:47,788 [INFO]  成功读取生成的测试文件: /testbed/src/test/java/org/apache/commons/cli/AddRequiredOptionTests.java
+2026-07-15 08:05:47,789 [INFO]  成功 (返回码=0)
+2026-07-15 08:05:57,802 [INFO] [3/8] 正在处理: addOptions
+2026-07-15 08:05:57,802 [INFO]  Running Copilot for 'addOptions' in /testbed
+2026-07-15 08:07:05,905 [INFO]  成功读取生成的测试文件: /testbed/src/test/java/org/apache/commons/cli/help/PadTests.java
+2026-07-15 08:07:05,906 [INFO]  成功 (返回码=0)
+2026-07-15 08:07:15,911 [INFO] [6/8] 正在处理: indexOfWrap
+2026-07-15 08:07:15,912 [INFO]  Running Copilot for 'indexOfWrap' in /testbed
+2026-07-15 08:13:24,715 [INFO]  成功读取生成的测试文件: /testbed/src/test/java/org/apache/commons/cli/AddOptionsTests.java
+2026-07-15 08:13:24,718 [INFO]  成功 (返回码=0)
+2026-07-15 08:13:34,732 [INFO] [4/8] 正在处理: makeColumnQueues
+2026-07-15 08:13:34,733 [INFO]  Running Copilot for 'makeColumnQueues' in /testbed
+2026-07-15 08:15:20,921 [INFO]  成功读取生成的测试文件: /testbed/src/test/java/org/apache/commons/cli/help/IndexOfWrapTests.java
+2026-07-15 08:15:20,921 [INFO]  成功 (返回码=0)
+2026-07-15 08:15:30,925 [INFO] [7/8] 正在处理: makeColumnQueue
+2026-07-15 08:15:30,926 [INFO]  Running Copilot for 'makeColumnQueue' in /testbed
+2026-07-15 09:15:48,664 [ERROR]  Timeout after 3600s for 'makeColumnQueues'
+2026-07-15 09:16:13,722 [ERROR]  Timeout after 3600s for 'makeColumnQueue'
+2026-07-15 09:32:56,516 [WARNING]  未完全成功 (返回码=-1)，请检查日志详情
+2026-07-15 09:39:20,731 [WARNING]  未完全成功 (返回码=-1)，请检查日志详情
+2026-07-15 10:17:26,962 [INFO] [8/8] 正在处理: adjustTableFormat
+2026-07-15 10:17:26,974 [INFO]  Running Copilot for 'adjustTableFormat' in /testbed
+2026-07-15 10:17:27,033 [INFO] [5/8] 正在处理: pad
+2026-07-15 10:17:27,034 [INFO]  Running Copilot for 'pad' in /testbed
+2026-07-15 11:18:43,299 [ERROR]  Timeout after 3600s for 'adjustTableFormat'
+2026-07-15 11:18:43,299 [ERROR]  Timeout after 3600s for 'pad'
+2026-07-15 11:26:47,049 [WARNING]  未完全成功 (返回码=-1)，请检查日志详情
+2026-07-15 11:26:40,964 [WARNING]  未完全成功 (返回码=-1)，请检查日志详情
+2026-07-15 11:34:32,077 [INFO]  详细结果已保存至 /results/copilot_testgen_results.json
+2026-07-15 11:34:33,516 [INFO]  处理完成：成功 5/8
+2026-07-15 11:34:42,053 [INFO] [6/8] 正在处理: indexOfWrap
+2026-07-15 11:34:42,075 [INFO]  Running Copilot for 'indexOfWrap' in /testbed
+2026-07-15 12:15:29,164 [INFO]  成功读取生成的测试文件: /testbed/src/test/java/org/apache/commons/cli/help/IndexOfWrapTests.java
+2026-07-15 12:15:29,169 [INFO]  成功 (返回码=0)
+2026-07-15 12:15:39,182 [INFO] [7/8] 正在处理: makeColumnQueue
+2026-07-15 12:15:39,186 [INFO]  Running Copilot for 'makeColumnQueue' in /testbed
+2026-07-15 12:39:13,400 [INFO]  成功读取生成的测试文件: /testbed/src/test/java/org/apache/commons/cli/help/MakeColumnQueueTests.java
+2026-07-15 12:39:13,404 [INFO]  成功 (返回码=0)
+2026-07-15 12:39:23,418 [INFO] [8/8] 正在处理: adjustTableFormat
+2026-07-15 12:39:23,420 [INFO]  Running Copilot for 'adjustTableFormat' in /testbed
+2026-07-15 12:51:35,742 [INFO]  成功读取生成的测试文件: /testbed/src/test/java/org/apache/commons/cli/help/AdjustTableFormatTests.java
+2026-07-15 12:51:35,745 [INFO]  成功 (返回码=0)
+2026-07-15 12:51:35,750 [INFO]  详细结果已保存至 /results/copilot_testgen_results.json
+2026-07-15 12:51:35,750 [INFO]  处理完成：成功 6/8

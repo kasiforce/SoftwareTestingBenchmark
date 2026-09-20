@@ -1,0 +1,243 @@
+[
+  {
+    "project_root": "projects/Finance",
+    "name": "screen",
+    "src_file": "src/finance/data/finviz.py",
+    "test_file": "test/finance/data/Testfinviz/test_screen.py",
+    "code": "def screen(\n        self, filters: list[str] | None = None, *, order: str = \"ticker\", limit: int = 100\n    ) -> pd.DataFrame:\n        \"\"\"Fetch up to limit rows using Finviz filter codes, e.g. ['cap_largeover'].\n\n        Index: source ticker. Columns: name, sector, industry, country, market_cap,\n        pe, price, change, volume. Percent change is fractional; missing numbers are NaN.\n        Inspect attrs['complete'] and attrs['total_matches'] before treating this as\n        the full result. These are current snapshots, not historical constituents.\n        \"\"\"\n        if isinstance(limit, bool) or not isinstance(limit, int) or not 1 <= limit <= 10000:\n            raise ValueError(\"limit must be an integer in [1,10000]\")\n        if any(not re.fullmatch(r\"[\\w.-]+\", item) for item in [order, *(filters or [])]):\n            raise ValueError(\"invalid Finviz filter/order code\")\n        records, total = [], None\n        url = \"\"\n        for offset in range(1, limit + 1, 20):\n            root, url = self._get(\n                \"screener.ashx\", v=111, f=\",\".join(filters or []), o=order, r=offset\n            )\n            text = _text(root)\n            match = re.search(r\"/\\s*([\\d,]+)\\s+Total\", text)\n            if match is None:\n                raise ProviderError(\n                    f\"Finviz total count missing at offset {offset}; completeness cannot be established\"\n                )\n            count = int(match[1].replace(\",\", \"\"))\n            if total is not None and count != total:\n                raise ProviderError(\"Screener changed during pagination; retry the snapshot\")\n            total = count\n            if total == 0:\n                break\n            headers, rows = _table(root, [\"Ticker\", \"Company\", \"Market Cap\", \"Price\"])\n            page = []\n            for row in rows:\n                cells = row.xpath(\"./td\")\n                if len(cells) != len(headers):\n                    continue\n                values = dict(zip(headers, cells, strict=True))\n                page.append(\n                    {\n                        \"ticker\": _symbol(values[\"Ticker\"]),\n                        \"name\": _text(values[\"Company\"]),\n                        \"sector\": _text(values[\"Sector\"]),\n                        \"industry\": _text(values[\"Industry\"]),\n                        \"country\": _text(values[\"Country\"]),\n                        \"market_cap\": number(_text(values[\"Market Cap\"])),\n                        \"pe\": number(_text(values[\"P/E\"])),\n                        \"price\": number(_text(values[\"Price\"])),\n                        \"change\": number(_text(values[\"Change %\"])),\n                        \"volume\": number(_text(values[\"Volume\"])),\n                    }\n                )\n            if not page:\n                raise ProviderError(\"Finviz returned no parseable screener rows\")\n            records.extend(page)\n            if len(records) >= total:\n                break\n        result = pd.DataFrame(\n            records,\n            columns=[\n                \"ticker\",\n                \"name\",\n                \"sector\",\n                \"industry\",\n                \"country\",\n                \"market_cap\",\n                \"pe\",\n                \"price\",\n                \"change\",\n                \"volume\",\n            ],\n        ).set_index(\"ticker\")\n        if result.index.has_duplicates:\n            raise ProviderError(\"Duplicate tickers across screener pages; retry the snapshot\")\n        result = result.iloc[:limit]\n        result.attrs.update(\n            total_matches=total, complete=len(result) == total, filters=filters or []\n        )\n        return _stamp(result, url)",
+    "imports": {
+      "imports": [
+        "import re"
+      ],
+      "from_imports": [
+        "from dataclasses import dataclass, field",
+        "from urllib.parse import parse_qs, urlencode, urljoin, urlparse",
+        "from finance.data.providers import ProviderError",
+        "from finance.data.web import PublicWeb",
+        "from lxml import html"
+      ],
+      "imports_with_aliases": [
+        "import numpy as np",
+        "import pandas as pd"
+      ]
+    },
+    "is_async": false,
+    "type": "method",
+    "nloc": 73,
+    "complexity": 19,
+    "param_count": 5,
+    "tier": "relaxed",
+    "method_last_modified": "2026-09-12",
+    "method_oldest_line": "2026-09-07",
+    "class_covered_in_baseline": true,
+    "repo_meta": {
+      "full_name": "shashankvemuri/Finance",
+      "html_url": "https://github.com/shashankvemuri/Finance",
+      "stars": "4205",
+      "license": "MIT",
+      "created_at": "2020-02-09T23:16:59Z",
+      "pushed_at": "2026-03-26T06:24:50Z",
+      "sha": "20799035c34de202818afdefd13600d2594dbcd8",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "screened_at": "2026-09-15 22:30:08"
+    },
+    "class_name": "Finviz",
+    "full_class_name": "Finviz",
+    "class_hierarchy": [
+      "Finviz"
+    ],
+    "class_fields": [],
+    "class_variables": [
+      "web: PublicWeb = field(default_factory=PublicWeb)"
+    ]
+  },
+  {
+    "project_root": "projects/Finance",
+    "name": "select_strategy",
+    "src_file": "src/finance/strategies/research.py",
+    "test_file": "test/finance/strategies/Testresearch/test_select_strategy.py",
+    "code": "def select_strategy(\n    prices: pd.DataFrame,\n    candidates: dict[str, Callable],\n    *,\n    train_fraction: float = 0.7,\n    commission: float = 0.001,\n    metric: str = \"total_return\",\n    stop_losses: tuple[float | None, ...] = (None,),\n) -> StrategySelection:\n    \"\"\"Rank training performance, then execute the selected candidate on one holdout.\n\n    candidates maps names to callbacks taking OHLCV history and returning aligned,\n    unshifted target Series. Callbacks must be causal within their input history;\n    holdout evaluation calls them on expanding observed prefixes. training_scores\n    contains training metrics, while holdout contains the selected backtest result.\n    \"\"\"\n    if metric not in (\"total_return\", \"sharpe\", \"sortino\"):\n        raise ValueError(\"metric must be total_return, sharpe or sortino\")\n    prices = normalize_ohlcv(prices)\n    if not candidates or not 0.2 < train_fraction < 0.9:\n        raise ValueError(\"provide candidates and a split in (.2,.9)\")\n    split = int(len(prices) * train_fraction)\n    if split < 60 or len(prices) - split < 20:\n        raise ValueError(\"insufficient train/holdout history\")\n    training = prices.iloc[:split]\n    if not stop_losses or any(\n        x is not None and (not np.isfinite(x) or not 0 < x < 1) for x in stop_losses\n    ):\n        raise ValueError(\"stop_losses must contain None or fractions in (0,1)\")\n    scores = []\n    for name, strategy in candidates.items():\n        targets = strategy(training.copy())\n        for stop in stop_losses:\n            result = backtest(\n                training.open,\n                training.close,\n                targets,\n                commission=commission,\n                liquidate=True,\n                high_prices=training.high,\n                low_prices=training.low,\n                stop_loss=stop,\n            )\n            scores.append({\"candidate\": name, \"stop_loss\": stop, **result.metrics.to_dict()})\n    table = pd.DataFrame(scores).sort_values(metric, ascending=False, ignore_index=True)\n    if not np.isfinite(table[metric].iloc[0]):\n        raise ValueError(\"no candidate has a finite training score\")\n    selected = table.candidate.iloc[0]\n    stop_loss = table.stop_loss.iloc[0]\n    stop_loss = None if pd.isna(stop_loss) else float(stop_loss)\n    # Evaluate each decision on a prefix, so callbacks cannot inspect future bars.\n    targets = [\n        candidates[selected](prices.iloc[: i + 1].copy()).iloc[-1]\n        for i in range(split - 1, len(prices))\n    ]\n    evaluation = prices.iloc[split - 1 :]\n    result = backtest(\n        evaluation.open,\n        evaluation.close,\n        pd.Series(targets, index=evaluation.index),\n        commission=commission,\n        liquidate=True,\n        high_prices=evaluation.high,\n        low_prices=evaluation.low,\n        stop_loss=stop_loss,\n    )\n    # Drop the signal-only seed bar from holdout performance and benchmark timing.\n    equity = result.equity.iloc[1:]\n    benchmark = (10000 / prices.open.iloc[split] * prices.close.iloc[split:]).rename(\"benchmark\")\n    metrics = performance(result.returns.iloc[1:])\n    for key in (\"commissions\", \"borrow_costs\", \"fill_count\"):\n        metrics[key] = result.metrics[key]\n    metrics[\"benchmark_return\"] = benchmark.iloc[-1] / 10000 - 1\n    result = replace(\n        result,\n        equity=equity,\n        cash=result.cash.iloc[1:],\n        holdings=result.holdings.iloc[1:],\n        returns=result.returns.iloc[1:],\n        benchmark=benchmark,\n        metrics=metrics,\n    )\n    return StrategySelection(table, selected, result, training.index[-1], prices.index[split])",
+    "imports": {
+      "imports": [],
+      "from_imports": [
+        "from collections.abc import Callable",
+        "from dataclasses import dataclass, replace",
+        "from finance.analytics import performance",
+        "from finance.backtesting import BacktestResult, backtest",
+        "from finance.data import normalize_ohlcv",
+        "from finance.indicators import ichimoku, keltner, macd, stochastic, williams_r",
+        "from finance.strategies.signals import crossover, threshold_reversion"
+      ],
+      "imports_with_aliases": [
+        "import numpy as np",
+        "import pandas as pd"
+      ]
+    },
+    "is_async": false,
+    "type": "function",
+    "nloc": 74,
+    "complexity": 17,
+    "param_count": 8,
+    "tier": "relaxed",
+    "method_last_modified": "2026-09-08",
+    "method_oldest_line": "2026-09-07",
+    "class_covered_in_baseline": true,
+    "repo_meta": {
+      "full_name": "shashankvemuri/Finance",
+      "html_url": "https://github.com/shashankvemuri/Finance",
+      "stars": "4205",
+      "license": "MIT",
+      "created_at": "2020-02-09T23:16:59Z",
+      "pushed_at": "2026-03-26T06:24:50Z",
+      "sha": "20799035c34de202818afdefd13600d2594dbcd8",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "screened_at": "2026-09-15 22:30:08"
+    }
+  },
+  {
+    "project_root": "projects/Finance",
+    "name": "completed_trades",
+    "src_file": "src/finance/backtesting/trades.py",
+    "test_file": "test/finance/backtesting/Testtrades/test_completed_trades.py",
+    "code": "def completed_trades(fills: pd.DataFrame) -> pd.DataFrame:\n    \"\"\"One row per matched lot portion; commissions allocated by quantity, excludes borrow costs.\"\"\"\n    required = [\"date\", \"asset\", \"quantity\", \"price\", \"commission\"]\n    if not set(required) <= set(fills):\n        raise ValueError(f\"required fill columns: {required}\")\n    values = fills[[\"quantity\", \"price\", \"commission\"]]\n    if (\n        not np.isfinite(values).all().all()\n        or (fills.price <= 0).any()\n        or (fills.commission < 0).any()\n    ):\n        raise ValueError(\"finite quantities, positive prices and nonnegative fees required\")\n    if not pd.Index(fills.date).is_monotonic_increasing:\n        raise ValueError(\"fills must be chronological, preserving within-bar execution order\")\n    lots, rows = defaultdict(deque), []\n    for fill in fills.itertuples():\n        remaining = float(fill.quantity)\n        if remaining == 0:\n            if fill.commission != 0:\n                raise ValueError(\"zero-quantity fills cannot carry commissions\")\n            continue\n        fee_per_share = fill.commission / abs(remaining)\n        book = lots[fill.asset]\n        while book and np.sign(book[0][\"quantity\"]) != np.sign(remaining):\n            lot = book[0]\n            matched = min(abs(lot[\"quantity\"]), abs(remaining))\n            side = np.sign(lot[\"quantity\"])\n            gross = side * matched * (fill.price - lot[\"price\"])\n            fees = matched * (lot[\"fee\"] + fee_per_share)\n            rows.append(\n                {\n                    \"asset\": fill.asset,\n                    \"entry_date\": lot[\"date\"],\n                    \"exit_date\": fill.date,\n                    \"side\": \"long\" if side > 0 else \"short\",\n                    \"quantity\": matched,\n                    \"entry_price\": lot[\"price\"],\n                    \"exit_price\": fill.price,\n                    \"gross_pnl\": gross,\n                    \"commission\": fees,\n                    \"net_pnl\": gross - fees,\n                    \"return\": (gross - fees) / (matched * lot[\"price\"]),\n                    \"duration\": pd.Timestamp(fill.date) - pd.Timestamp(lot[\"date\"]),\n                }\n            )\n            lot[\"quantity\"] -= side * matched\n            remaining += side * matched\n            if abs(lot[\"quantity\"]) < 1e-10:\n                book.popleft()\n            if abs(remaining) < 1e-10:\n                remaining = 0\n                break\n        if remaining:\n            book.append(\n                {\n                    \"quantity\": remaining,\n                    \"price\": fill.price,\n                    \"date\": fill.date,\n                    \"fee\": fee_per_share,\n                }\n            )\n    return pd.DataFrame(\n        rows,\n        columns=[\n            \"asset\",\n            \"entry_date\",\n            \"exit_date\",\n            \"side\",\n            \"quantity\",\n            \"entry_price\",\n            \"exit_price\",\n            \"gross_pnl\",\n            \"commission\",\n            \"net_pnl\",\n            \"return\",\n            \"duration\",\n        ],\n    )",
+    "imports": {
+      "imports": [],
+      "from_imports": [
+        "from collections import defaultdict, deque"
+      ],
+      "imports_with_aliases": [
+        "import numpy as np",
+        "import pandas as pd"
+      ]
+    },
+    "is_async": false,
+    "type": "function",
+    "nloc": 77,
+    "complexity": 15,
+    "param_count": 1,
+    "tier": "relaxed",
+    "method_last_modified": "2026-09-07",
+    "method_oldest_line": "2026-09-07",
+    "class_covered_in_baseline": true,
+    "repo_meta": {
+      "full_name": "shashankvemuri/Finance",
+      "html_url": "https://github.com/shashankvemuri/Finance",
+      "stars": "4205",
+      "license": "MIT",
+      "created_at": "2020-02-09T23:16:59Z",
+      "pushed_at": "2026-03-26T06:24:50Z",
+      "sha": "20799035c34de202818afdefd13600d2594dbcd8",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "screened_at": "2026-09-15 22:30:08"
+    }
+  },
+  {
+    "project_root": "projects/Finance",
+    "name": "company",
+    "src_file": "src/finance/data/finviz.py",
+    "test_file": "test/finance/data/Testfinviz/test_company.py",
+    "code": "def company(self, ticker: str) -> pd.Series:\n        \"\"\"Numeric snapshot named by ticker; growth, yield and ownership are fractions.\n\n        RSI uses 0–100. Unavailable numbers are NaN; source-absent optional fields may\n        be omitted. attrs['raw_fields'] retains source labels and duplicate values.\n        \"\"\"\n        root, url = self._get(\"quote.ashx\", t=ticker)\n        fields = {\n            \"Market Cap\": \"market_cap\",\n            \"Enterprise Value\": \"enterprise_value\",\n            \"P/E\": \"pe\",\n            \"Forward P/E\": \"forward_pe\",\n            \"PEG\": \"peg\",\n            \"P/S\": \"price_sales\",\n            \"P/B\": \"price_book\",\n            \"P/FCF\": \"price_fcf\",\n            \"ROE\": \"roe\",\n            \"ROA\": \"roa\",\n            \"ROIC\": \"roic\",\n            \"Gross Margin\": \"gross_margin\",\n            \"Oper. Margin\": \"operating_margin\",\n            \"Profit Margin\": \"profit_margin\",\n            \"EPS Q/Q\": \"earnings_growth\",\n            \"Sales Q/Q\": \"revenue_growth\",\n            \"EPS Y/Y TTM\": \"earnings_growth_ttm\",\n            \"Sales Y/Y TTM\": \"revenue_growth_ttm\",\n            \"EPS next 5Y\": \"expected_earnings_growth_5y\",\n            \"Insider Own\": \"insider_ownership\",\n            \"Insider Trans\": \"insider_transactions\",\n            \"Inst Own\": \"institutional_ownership\",\n            \"Inst Trans\": \"institutional_transactions\",\n            \"SMA20\": \"distance_sma20\",\n            \"SMA50\": \"distance_sma50\",\n            \"SMA200\": \"distance_sma200\",\n            \"RSI (14)\": \"rsi\",\n            \"Rel Volume\": \"relative_volume\",\n            \"Avg Volume\": \"average_volume\",\n            \"Volume\": \"volume\",\n            \"Price\": \"price\",\n            \"Target Price\": \"target_price\",\n            \"Recom\": \"analyst_rating\",\n            \"Shs Outstand\": \"shares\",\n            \"Short Float\": \"short_float\",\n            \"Beta\": \"beta\",\n            \"Debt/Eq\": \"debt_equity\",\n            \"Perf Year\": \"return_1y\",\n            \"Perf Quarter\": \"return_quarter\",\n            \"Perf Month\": \"return_month\",\n        }\n        result, raw = {}, {}\n        for row in root.xpath('//table[contains(@class,\"snapshot-table2\")]//tr'):\n            cells = row.xpath(\"./td\")\n            for i in range(0, len(cells) - 1, 2):\n                label, value = _text(cells[i]), _text(cells[i + 1])\n                # Some source labels are duplicated (EPS next Y amount versus growth).\n                raw.setdefault(label, []).append(value)\n                if label in fields:\n                    result[fields[label]] = number(value)\n                if label == \"EPS next Y\":\n                    result[\"expected_earnings_growth\" if \"%\" in value else \"expected_eps\"] = number(\n                        value\n                    )\n                if label in (\"52W High\", \"52W Low\"):\n                    parts = value.split()\n                    if len(parts) == 2:\n                        suffix = \"high\" if label.endswith(\"High\") else \"low\"\n                        result[f\"{suffix}_52w\"] = number(parts[0])\n                        result[f\"distance_{suffix}_52w\"] = number(parts[1])\n                if label == \"Dividend TTM\":\n                    match = re.fullmatch(r\"([\\d.,]+)\\s*\\(([\\d.]+%)\\)\", value)\n                    if match:\n                        result[\"annual_dividend\"], result[\"dividend_yield\"] = (\n                            number(match[1]),\n                            number(match[2]),\n                        )\n        if not {\"price\", \"market_cap\", \"pe\", \"roe\"} <= result.keys():\n            raise ProviderError(f\"Finviz company schema missing for {ticker}\")\n        if not np.isfinite(result[\"price\"]) or result[\"price\"] <= 0:\n            raise ProviderError(f\"Invalid Finviz price for {ticker}\")\n        output = pd.Series(result, name=ticker)\n        output.attrs[\"raw_fields\"] = raw\n        return _stamp(output, url)",
+    "imports": {
+      "imports": [
+        "import re"
+      ],
+      "from_imports": [
+        "from dataclasses import dataclass, field",
+        "from urllib.parse import parse_qs, urlencode, urljoin, urlparse",
+        "from finance.data.providers import ProviderError",
+        "from finance.data.web import PublicWeb",
+        "from lxml import html"
+      ],
+      "imports_with_aliases": [
+        "import numpy as np",
+        "import pandas as pd"
+      ]
+    },
+    "is_async": false,
+    "type": "method",
+    "nloc": 76,
+    "complexity": 14,
+    "param_count": 2,
+    "tier": "relaxed",
+    "method_last_modified": "2026-09-08",
+    "method_oldest_line": "2026-09-07",
+    "class_covered_in_baseline": true,
+    "repo_meta": {
+      "full_name": "shashankvemuri/Finance",
+      "html_url": "https://github.com/shashankvemuri/Finance",
+      "stars": "4205",
+      "license": "MIT",
+      "created_at": "2020-02-09T23:16:59Z",
+      "pushed_at": "2026-03-26T06:24:50Z",
+      "sha": "20799035c34de202818afdefd13600d2594dbcd8",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "screened_at": "2026-09-15 22:30:08"
+    },
+    "class_name": "Finviz",
+    "full_class_name": "Finviz",
+    "class_hierarchy": [
+      "Finviz"
+    ],
+    "class_fields": [],
+    "class_variables": [
+      "web: PublicWeb = field(default_factory=PublicWeb)"
+    ]
+  },
+  {
+    "project_root": "projects/Finance",
+    "name": "recommendations",
+    "src_file": "src/finance/data/tradingview.py",
+    "test_file": "test/finance/data/Testtradingview/test_recommendations.py",
+    "code": "def recommendations(self, symbols: list[str], interval: str = \"1d\") -> pd.DataFrame:\n        \"\"\"Exchange-qualified symbols; vendor numeric recommendations in [-1,1], current snapshots.\"\"\"\n        suffixes = {\n            \"1m\": \"|1\",\n            \"5m\": \"|5\",\n            \"15m\": \"|15\",\n            \"1h\": \"|60\",\n            \"4h\": \"|240\",\n            \"1d\": \"\",\n            \"1w\": \"|1W\",\n            \"1mo\": \"|1M\",\n        }\n        if (\n            interval not in suffixes\n            or not symbols\n            or len(symbols) > 100\n            or len(set(symbols)) != len(symbols)\n        ):\n            raise ValueError(\"supported interval and 1–100 distinct symbols required\")\n        if self.timeout <= 0 or any(\n            not re.fullmatch(r\"[A-Z0-9_]+:[A-Z0-9_.!-]+\", s) for s in symbols\n        ):\n            raise ValueError(\"positive timeout and EXCHANGE:SYMBOL identifiers required\")\n        columns = [\n            name + suffixes[interval]\n            for name in [\"close\", \"Recommend.All\", \"Recommend.MA\", \"Recommend.Other\"]\n        ]\n        payload = {\n            \"symbols\": {\"tickers\": symbols, \"query\": {\"types\": []}},\n            \"columns\": columns,\n            \"range\": [0, len(symbols)],\n        }\n        request = Request(\n            \"https://scanner.tradingview.com/america/scan\",\n            data=json.dumps(payload).encode(),\n            headers={\"Content-Type\": \"application/json\", \"User-Agent\": \"Mozilla/5.0\"},\n        )\n        try:\n            with urlopen(request, timeout=self.timeout) as response:\n                raw = json.load(response)\n            rows = [\n                {\n                    \"symbol\": row[\"s\"],\n                    **dict(\n                        zip(\n                            [\"price\", \"overall\", \"moving_averages\", \"oscillators\"],\n                            row[\"d\"],\n                            strict=True,\n                        )\n                    ),\n                }\n                for row in raw[\"data\"]\n            ]\n            result = pd.DataFrame(rows).set_index(\"symbol\").reindex(symbols)\n            if (\n                not np.isfinite(result).all().all()\n                or (result.price <= 0).any()\n                or (result.drop(columns=\"price\").abs() > 1).any().any()\n            ):\n                raise ValueError(\"missing symbols or invalid recommendations\")\n            result.attrs.update(\n                provider=\"TradingView public scanner\",\n                interval=interval,\n                retrieved_at=pd.Timestamp.now(tz=\"UTC\").isoformat(),\n                historical=False,\n            )\n            return result\n        except (HTTPError, URLError, TimeoutError, ValueError, KeyError, TypeError) as exc:\n            raise ProviderError(f\"TradingView scanner failed: {exc}\") from exc",
+    "imports": {
+      "imports": [
+        "import json",
+        "import re"
+      ],
+      "from_imports": [
+        "from dataclasses import dataclass",
+        "from urllib.error import HTTPError, URLError",
+        "from urllib.request import Request, urlopen",
+        "from finance.data.providers import ProviderError"
+      ],
+      "imports_with_aliases": [
+        "import numpy as np",
+        "import pandas as pd"
+      ]
+    },
+    "is_async": false,
+    "type": "method",
+    "nloc": 68,
+    "complexity": 14,
+    "param_count": 3,
+    "tier": "relaxed",
+    "method_last_modified": "2026-09-07",
+    "method_oldest_line": "2026-09-07",
+    "class_covered_in_baseline": true,
+    "repo_meta": {
+      "full_name": "shashankvemuri/Finance",
+      "html_url": "https://github.com/shashankvemuri/Finance",
+      "stars": "4205",
+      "license": "MIT",
+      "created_at": "2020-02-09T23:16:59Z",
+      "pushed_at": "2026-03-26T06:24:50Z",
+      "sha": "20799035c34de202818afdefd13600d2594dbcd8",
+      "cutoff": "2026-01-01",
+      "recency": "any_line",
+      "screened_at": "2026-09-15 22:30:08"
+    },
+    "class_name": "TradingView",
+    "full_class_name": "TradingView",
+    "class_hierarchy": [
+      "TradingView"
+    ],
+    "class_fields": [],
+    "class_variables": [
+      "timeout: float = 20"
+    ]
+  }
+]

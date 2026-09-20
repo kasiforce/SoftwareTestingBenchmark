@@ -365,8 +365,9 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
             "-v", f"{test_results_dir}:/results",
             # "-v", "./gen_test/gen_tests_files.py:/testbed/gentests_files.py",
             # "-v", "./delete_files.py:/testbed/delete_files.py",
-            "-v", f"./AdverBug/adver.py:/testbed/adver.py",
-            "-v", f"./AdverBug/test_generation_agent.py:/testbed/test_generation_agent.py",
+            "-v", f"./AdverBug/adver_dual.py:/testbed/adver.py",
+            "-v", f"./AdverBug/test_gen.py:/testbed/test_gen.py",
+            "-v", f"./AdverBug/filter_test_gen.py:/testbed/filter_test_gen.py",
             "-v", f"./AdverBug/bug_generation_agent.py:/testbed/bug_generation_agent.py",
             "-v", f"./AdverBug/llm_config.py:/testbed/llm_config.py",
             "-v", f"./AdverBug/valid_agent.py:/testbed/valid_agent.py",
@@ -383,7 +384,7 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
                 python3 /testbed/adver.py \
                     --data-path /testbed/{data_file}
 
-                cp /testbed/final_results.json /testbed/results/
+                cp /testbed/final_results.json /results/
                 
                 
        
@@ -406,5 +407,5 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
 
 if __name__ == "__main__":
     # 示例调用
-    create_and_run_java("output/hutool/dockerfile", "projects/hutool", "hutool_100_specification.json")
+    create_and_run_java("output/wepush/dockerfile", "projects/wepush", "wepush_specification.json")
     # pass

@@ -1,0 +1,4 @@
+javalang==0.13.0
+openai==1.50.2
+torch==2.2.1
+transformers==5.3.0

@@ -52,7 +52,10 @@ from typing import List, Dict, Tuple
 
 
 def delete_test_files_in_test_dirs(project_root):
+<<<<<<< HEAD
     # databind需要全删
+=======
+>>>>>>> refs/remotes/origin/main
     """在 test/tests 目录中删除 *test*.java 文件"""
     # 查找 test/tests 目录
     test_dirs = []
@@ -164,6 +167,9 @@ def write_generated_tests(project_root, test_json_path, bug_json_path=None):
             # test = func["repair_history"][-1]["test_code"]
             # raw_code = test
             raw_code = "\n\n".join(func["generated_tests"])
+            # if func["tests"]:
+            #     raw_code = func["tests"][-1]
+
 
             raw_code = """
 package tools.jackson.databind.deser.bean;
@@ -228,6 +234,7 @@ public class _deserializeUsingPropertyBasedTests
             #     print(f"替换 {src_file} 中的源代码为 buggy_code")
             #     with open(src_file, 'w', encoding='utf-8') as f:
             #         f.write(src_content)
+
 
     except Exception as e:
         print(f"写入文件失败: {e}")

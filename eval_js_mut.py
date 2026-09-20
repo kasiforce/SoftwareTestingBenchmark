@@ -915,18 +915,20 @@ def create_and_run_js(dockerfile_path, gen_tests_dir, cover_source, project_root
 
             npm install --save-dev \
                 jest@30.4.2 \
+                stryker \
                 @stryker-mutator/core \
-                @stryker-mutator/jest-runner
+                @stryker-mutator/jest-runner \
+                rx \
+                stryker-api
 
             npx jest --clearCache
+            
             npx jest --json --outputFile=/results/report.json
 
             python3 /testbed/delete_js_fail.py /results/report.json
 
 
-            npx stryker init
-
-            npx stryker run || true
+            npx stryker run
 
             find . -path "*/reports/*.xml" \
                     -exec cp {{}} /results/ \\;
@@ -961,7 +963,7 @@ def create_and_run_js(dockerfile_path, gen_tests_dir, cover_source, project_root
         # 仍然尝试解析已有报告
         # sys.exit(1)
 
-    filter_function_level_mutants(test_results_dir,"dataset/modern-error.json",test_results_dir+"/stryker_mutation.json")
+    filter_function_level_mutants(test_results_dir,"dataset/pdf.json",test_results_dir+"/stryker_mutation.json")
     # 解析测试报告与覆盖率
     # report_json = os.path.join(test_results_dir, "report.json")
     # coverage_summary = os.path.join(test_results_dir, "coverage", "coverage-final.json")
@@ -1004,19 +1006,21 @@ if __name__ == "__main__":
     # args = parser.parse_args()
 
     # 示例调用：你可以改成你项目的路径
-    for root, dirs, files in os.walk("tests/test_gen/javascript/fix_modern-error"):
-        for file in files:
-            if file.endswith(".json"):
-                data_file = os.path.join(root, file)
-                print(f"处理数据文件: {data_file}")
-                create_and_run_js(
-                    dockerfile_path="output/modern-error/dockerfile",
-                    gen_tests_dir="",
-                    cover_source="",
-                    project_root="projects/modern-error",
-                    data_file=data_file
-                )
-                time.sleep(5)  # 每次运行后等待几秒，避免过快连续运行导致问题
-    # create_and_run_js("output/simple-statistics/dockerfile", gen_tests_dir="", cover_source="",
-    #                   project_root="projects/simple-statistics", data_file="tests/test_gen/javascript/fix_simple-statistics/repaired_simple-statistics_jest_glm-4.7.json")
+    # for root, dirs, files in os.walk("tests/test_gen/javascript/fix_modern-error"):
+    #     for file in files:
+    #         if file.endswith(".json"):
+    #             if "jest_DS" in file or "specification_jest_qwen" in file:
+    #                 continue
+    #             data_file = os.path.join(root, file)
+    #             print(f"处理数据文件: {data_file}")
+    #             create_and_run_js(
+    #                 dockerfile_path="output/modern-error/dockerfile",
+    #                 gen_tests_dir="",
+    #                 cover_source="",
+    #                 project_root="projects/modern-error",
+    #                 data_file=data_file
+    #             )
+    #             time.sleep(5)  # 每次运行后等待几秒，避免过快连续运行导致问题
+    create_and_run_js("output/pdf/dockerfile", gen_tests_dir="", cover_source="",
+                      project_root="projects/pdf", data_file="test_results/javascript/pdf/jest_agent/copilot_testgen_results.json")
     # create_and_run_js(args.dockerfile_path, args.test_dir, args.cover_source, args.project_root)

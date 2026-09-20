@@ -166,7 +166,38 @@ def create_and_run_py(dockerfile_path, gen_tests_dir, cover_source, project_root
     cwd = os.getcwd()
     print(f"当前工作目录: {cwd}")
 
-    syntax_report = syntax_analyse(data_file)
+    with open(data_file, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    fix_data = []
+    data1 = data['items']
+    for func in data1:
+        func1 = func['repair_history']
+        raw_code = func1[-1]["test_code"] if func1 else ""
+
+        # if len(func1) > 2: 
+        #     raw_code = func1[2]["test_code"]
+        # else:
+        #     raw_code = func1[-1]["test_code"]
+       
+        if not raw_code.strip():
+            continue
+
+        item = {
+            "project_root": func.get("project_root", ""),
+            "src_file": func.get("src_file", ""),
+            "name": func.get("name", ""),
+            "class_name": func.get("class_name", ""),
+            "test_file": func.get("test_file", ""),
+            "generated_tests": [raw_code]
+        }
+        fix_data.append(item)
+    
+    fix_data_path = "fix_data.json"
+    with open(fix_data_path, 'w', encoding='utf-8') as f:
+        json.dump(fix_data, f, indent=2, ensure_ascii=False)
+
+    syntax_report = syntax_analyse(fix_data_path)
 
     project_dir = os.path.join(cwd, project_root)
 
@@ -212,8 +243,8 @@ def create_and_run_py(dockerfile_path, gen_tests_dir, cover_source, project_root
             "docker", "run", "--rm",
             "-v", f"{test_results_dir}:/results",
             "-v", "./gen_test/gen_py_test.py:/testbed/gentests_files.py",
-            "-v", "setup.cfg:/testbed/setup.cfg",
-            "-v", f"./{data_file}:/testbed/{data_file}",
+            # "-v", "setup.cfg:/testbed/setup.cfg",
+            "-v", f"./{fix_data_path}:/testbed/{fix_data_path}",
             "-v", "./gen_test/delete_py_fail_test.py:/testbed/delete_fail.py",
             "repo-with-test",
             "bash", "-c", f"""
@@ -223,7 +254,7 @@ def create_and_run_py(dockerfile_path, gen_tests_dir, cover_source, project_root
 
             python /testbed/gentests_files.py \
                 --project-root /testbed \
-                --data-path /testbed/{data_file}
+                --data-path /testbed/{fix_data_path}
 
             # ======================
             # 1. coverage + pytest
@@ -599,7 +630,7 @@ if __name__ == "__main__":
     #                   data_file=full_path)
     create_and_run_py("output/markitdown/dockerfile", gen_tests_dir="",
                       cover_source="", project_root="projects/markitdown", 
-                      data_file="tests/test_gen/python/markitdown/markitdown_lite_specification_pytest_CodeLlama-7b.json")
+                      data_file="tests/test_gen/python/fix_markitdown/repaired_markitdown_lite_pytest_gpt5nano.json")
     
 
 

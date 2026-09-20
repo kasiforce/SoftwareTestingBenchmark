@@ -1,0 +1,139 @@
+{
+  "total": 12,
+  "syntax_correct": 12,
+  "syntax_correct_rate": 1.0,
+  "compile_pass": 10,
+  "test_summary": {
+    "total": 124,
+    "passed": 71,
+    "failures": 26,
+    "errors": 27,
+    "pass_rate": 0.5725806451612904
+  },
+  "file_coverage": {
+    "org/apache/commons/jxpath/ri/compiler/CoreOperationMod.java": {
+      "total_line": 8,
+      "covered_line": 0,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "org/apache/commons/jxpath/ri/compiler/LocationPath.java": {
+      "total_line": 21,
+      "covered_line": 11,
+      "total_branch": 18,
+      "covered_branch": 5
+    },
+    "org/apache/commons/jxpath/ri/model/container/ContainerPointer.java": {
+      "total_line": 39,
+      "covered_line": 7,
+      "total_branch": 24,
+      "covered_branch": 2
+    },
+    "org/apache/commons/jxpath/ri/model/dynamic/DynamicPointer.java": {
+      "total_line": 33,
+      "covered_line": 15,
+      "total_branch": 24,
+      "covered_branch": 4
+    },
+    "org/apache/commons/jxpath/ri/model/jdom/JDOMNodePointer.java": {
+      "total_line": 367,
+      "covered_line": 159,
+      "total_branch": 295,
+      "covered_branch": 92
+    },
+    "org/apache/commons/jxpath/ri/parser/XPathParserTokenManager.java": {
+      "total_line": 1035,
+      "covered_line": 60,
+      "total_branch": 873,
+      "covered_branch": 1
+    },
+    "org/apache/commons/jxpath/util/ValueUtils.java": {
+      "total_line": 218,
+      "covered_line": 17,
+      "total_branch": 150,
+      "covered_branch": 12
+    }
+  },
+  "function_coverage": {
+    "org.apache.commons.jxpath.ri.model.dynamic.DynamicPointer.asPath": {
+      "total_line": 4,
+      "covered_line": 4,
+      "total_branch": 6,
+      "covered_branch": 4
+    },
+    "org.apache.commons.jxpath.util.ValueUtils.iterate": {
+      "total_line": 16,
+      "covered_line": 16,
+      "total_branch": 12,
+      "covered_branch": 12
+    },
+    "org.apache.commons.jxpath.ri.parser.XPathParserTokenManager.jjFillToken": {
+      "total_line": 9,
+      "covered_line": 6,
+      "total_branch": 2,
+      "covered_branch": 1
+    },
+    "org.apache.commons.jxpath.ri.compiler.CoreOperationMod.computeValue": {
+      "total_line": 3,
+      "covered_line": 0,
+      "total_branch": 0,
+      "covered_branch": 0
+    },
+    "org.apache.commons.jxpath.ri.compiler.LocationPath.compute": {
+      "total_line": 4,
+      "covered_line": 3,
+      "total_branch": 2,
+      "covered_branch": 1
+    },
+    "org.apache.commons.jxpath.ri.compiler.LocationPath.computeContextDependent": {
+      "total_line": 1,
+      "covered_line": 1,
+      "total_branch": 4,
+      "covered_branch": 1
+    },
+    "org.apache.commons.jxpath.ri.compiler.LocationPath.computeValue": {
+      "total_line": 4,
+      "covered_line": 3,
+      "total_branch": 4,
+      "covered_branch": 3
+    },
+    "org.apache.commons.jxpath.ri.model.jdom.JDOMNodePointer.findEnclosingAttribute": {
+      "total_line": 10,
+      "covered_line": 10,
+      "total_branch": 10,
+      "covered_branch": 10
+    },
+    "org.apache.commons.jxpath.ri.model.jdom.JDOMNodePointer.asPath": {
+      "total_line": 36,
+      "covered_line": 36,
+      "total_branch": 22,
+      "covered_branch": 17
+    },
+    "org.apache.commons.jxpath.ri.model.jdom.JDOMNodePointer.compareChildNodePointers": {
+      "total_line": 29,
+      "covered_line": 28,
+      "total_branch": 28,
+      "covered_branch": 24
+    },
+    "org.apache.commons.jxpath.ri.model.container.ContainerPointer.asPath": {
+      "total_line": 1,
+      "covered_line": 1,
+      "total_branch": 2,
+      "covered_branch": 2
+    }
+  },
+  "summary": {
+    "file": {
+      "total_lines": 1721,
+      "covered_lines": 269,
+      "total_branches": 1384,
+      "covered_branches": 116
+    },
+    "function": {
+      "total_lines": 117,
+      "covered_lines": 108,
+      "total_branches": 92,
+      "covered_branches": 75
+    }
+  }
+}

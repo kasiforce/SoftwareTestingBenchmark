@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="cn.hutool.core.io.FileUtilTest" time="0.015" tests="57" errors="0" skipped="21" failures="0">
+  <properties>
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="sun.cpu.isalist" value=""/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/usr/share/maven/boot/plexus-classworlds-2.x.jar"/>
+    <property name="forkCount" value="0"/>
+    <property name="java.vm.vendor" value="Temurin"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="sun.font.fontmanager" value="sun.awt.X11FontManager"/>
+    <property name="java.vendor.url" value="https://adoptium.net/"/>
+    <property name="user.timezone" value="Asia/Shanghai"/>
+    <property name="maven.conf" value="/usr/share/maven/conf"/>
+    <property name="os.name" value="Linux"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="rat.skip" value="true"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="/opt/java/openjdk/jre/lib/amd64"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -fae clean org.jacoco:jacoco-maven-plugin:0.8.14:prepare-agent test org.jacoco:jacoco-maven-plugin:0.8.14:report -DskipTests=false -Dmaven.test.skip=false -DfailIfNoTests=false -Dmaven.test.failure.ignore=true -Drat.skip=true -DforkCount=0 -B"/>
+    <property name="maven.home" value="/usr/share/maven"/>
+    <property name="surefire.test.class.path" value="/testbed/hutool-core/target/test-classes:/testbed/hutool-core/target/classes:/root/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.3/junit-jupiter-engine-5.10.3.jar:/root/.m2/repository/org/junit/platform/junit-platform-engine/1.10.3/junit-platform-engine-1.10.3.jar:/root/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/root/.m2/repository/org/junit/platform/junit-platform-commons/1.10.3/junit-platform-commons-1.10.3.jar:/root/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.3/junit-jupiter-api-5.10.3.jar:/root/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/root/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.3/junit-jupiter-params-5.10.3.jar:/root/.m2/repository/org/projectlombok/lombok/1.18.34/lombok-1.18.34.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/root"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.home" value="/opt/java/openjdk/jre"/>
+    <property name="basedir" value="/testbed/hutool-core"/>
+    <property name="file.separator" value="/"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property name="sun.boot.class.path" value="/opt/java/openjdk/jre/lib/resources.jar:/opt/java/openjdk/jre/lib/rt.jar:/opt/java/openjdk/jre/lib/sunrsasign.jar:/opt/java/openjdk/jre/lib/jsse.jar:/opt/java/openjdk/jre/lib/jce.jar:/opt/java/openjdk/jre/lib/charsets.jar:/opt/java/openjdk/jre/lib/jfr.jar:/opt/java/openjdk/jre/classes"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="1.8.0_502-b07"/>
+    <property name="user.name" value="root"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="5.15.0-164-generic"/>
+    <property name="java.endorsed.dirs" value="/opt/java/openjdk/jre/lib/endorsed"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="skipTests" value="false"/>
+    <property name="localRepository" value="/root/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="maven.test.skip" value="false"/>
+    <property name="java.version" value="1.8.0_502"/>
+    <property name="user.dir" value="/testbed/hutool-core"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="maven.multiModuleProjectDirectory" value="/testbed"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+    <property name="failIfNoTests" value="false"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.library.path" value="/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vendor" value="Temurin"/>
+    <property name="java.vm.version" value="25.502-b07"/>
+    <property name="classworlds.conf" value="/usr/share/maven/bin/m2.conf"/>
+    <property name="java.specification.maintenance.version" value="6"/>
+    <property name="java.ext.dirs" value="/opt/java/openjdk/jre/lib/ext:/usr/java/packages/lib/ext"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="library.jansi.path" value="/usr/share/maven/lib/jansi-native"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="maven.test.failure.ignore" value="true"/>
+  </properties>
+  <testcase name="normalizeHomePathTest2" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="loopFilesTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0">
+    <skipped message="public void cn.hutool.core.io.FileUtilTest.loopFilesTest() is @Disabled"/>
+  </testcase>
+  <testcase name="listFileNamesTest" classname="cn.hutool.core.io.FileUtilTest" time="0.001"/>
+  <testcase name="subPathTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="convertLineSeparatorTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0">
+    <skipped message="public void cn.hutool.core.io.FileUtilTest.convertLineSeparatorTest() is @Disabled"/>
+  </testcase>
+  <testcase name="doubleNormalizeTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="normalizeTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="normalizeClassPathTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="fileTest1" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="fileTest2" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="normalizeBlankTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="appendLinesTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0">
+    <skipped message="public void cn.hutool.core.io.FileUtilTest.appendLinesTest() is @Disabled"/>
+  </testcase>
+  <testcase name="renameTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0">
+    <skipped message="public void cn.hutool.core.io.FileUtilTest.renameTest() is @Disabled"/>
+  </testcase>
+  <testcase name="getTotalLinesTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="isSub_SubIsAncestorOfParentTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="isSub_SamePathTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="loopFilesWithDepthTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0">
+    <skipped message="public void cn.hutool.core.io.FileUtilTest.loopFilesWithDepthTest() is @Disabled"/>
+  </testcase>
+  <testcase name="getParentTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="extNameTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="copyTest" classname="cn.hutool.core.io.FileUtilTest" time="0.001"/>
+  <testcase name="getNameTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="renameToSubTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0">
+    <skipped message="public void cn.hutool.core.io.FileUtilTest.renameToSubTest() is @Disabled"/>
+  </testcase>
+  <testcase name="smbPathTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0">
+    <skipped message="Disabled on operating system: Linux"/>
+  </testcase>
+  <testcase name="renameTest2" classname="cn.hutool.core.io.FileUtilTest" time="0.0">
+    <skipped message="public void cn.hutool.core.io.FileUtilTest.renameTest2() is @Disabled"/>
+  </testcase>
+  <testcase name="renameTest3" classname="cn.hutool.core.io.FileUtilTest" time="0.0">
+    <skipped message="public void cn.hutool.core.io.FileUtilTest.renameTest3() is @Disabled"/>
+  </testcase>
+  <testcase name="isSub_NullParentTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="normalizeClassPathTest2" classname="cn.hutool.core.io.FileUtilTest" time="0.001"/>
+  <testcase name="normalizeHomePathTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="mainNameTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="copyFilesFromDirTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0">
+    <skipped message="public void cn.hutool.core.io.FileUtilTest.copyFilesFromDirTest() is @Disabled"/>
+  </testcase>
+  <testcase name="getPathEle" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="getTotalLinesCrlfTest" classname="cn.hutool.core.io.FileUtilTest" time="0.001"/>
+  <testcase name="touchTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0">
+    <skipped message="public void cn.hutool.core.io.FileUtilTest.touchTest() is @Disabled"/>
+  </testcase>
+  <testcase name="equalsTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="getMimeTypeTest" classname="cn.hutool.core.io.FileUtilTest" time="0.001"/>
+  <testcase name="isSubRelativeTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="getTotalLinesCrTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="listFileNamesTest2" classname="cn.hutool.core.io.FileUtilTest" time="0.0">
+    <skipped message="public void cn.hutool.core.io.FileUtilTest.listFileNamesTest2() is @Disabled"/>
+  </testcase>
+  <testcase name="getWebRootTest" classname="cn.hutool.core.io.FileUtilTest" time="0.001"/>
+  <testcase name="isSub_NonexistentPathsTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="delTest2" classname="cn.hutool.core.io.FileUtilTest" time="0.0">
+    <skipped message="public void cn.hutool.core.io.FileUtilTest.delTest2() is @Disabled"/>
+  </testcase>
+  <testcase name="getAbsolutePathTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="isAbsolutePathTest" classname="cn.hutool.core.io.FileUtilTest" time="0.001"/>
+  <testcase name="copyDirTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0">
+    <skipped message="public void cn.hutool.core.io.FileUtilTest.copyDirTest() is @Disabled"/>
+  </testcase>
+  <testcase name="lastIndexOfSeparatorTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="checkSlipTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="loopFilesTest2" classname="cn.hutool.core.io.FileUtilTest" time="0.0">
+    <skipped message="public void cn.hutool.core.io.FileUtilTest.loopFilesTest2() is @Disabled"/>
+  </testcase>
+  <testcase name="isSub_NullSubTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="copyTest2" classname="cn.hutool.core.io.FileUtilTest" time="0.0">
+    <skipped message="public void cn.hutool.core.io.FileUtilTest.copyTest2() is @Disabled"/>
+  </testcase>
+  <testcase name="issue3591Test" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="delTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0">
+    <skipped message="public void cn.hutool.core.io.FileUtilTest.delTest() is @Disabled"/>
+  </testcase>
+  <testcase name="renameSameTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0">
+    <skipped message="public void cn.hutool.core.io.FileUtilTest.renameSameTest() is @Disabled"/>
+  </testcase>
+  <testcase name="subPathTest2" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="createTempFileTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0">
+    <skipped message="public void cn.hutool.core.io.FileUtilTest.createTempFileTest() is @Disabled"/>
+  </testcase>
+  <testcase name="moveDirTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0">
+    <skipped message="public void cn.hutool.core.io.FileUtilTest.moveDirTest() is @Disabled"/>
+  </testcase>
+  <testcase name="isSubTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0"/>
+  <testcase name="listFileNamesInJarTest" classname="cn.hutool.core.io.FileUtilTest" time="0.0">
+    <skipped message="public void cn.hutool.core.io.FileUtilTest.listFileNamesInJarTest() is @Disabled"/>
+  </testcase>
+</testsuite>

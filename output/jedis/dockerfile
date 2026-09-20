@@ -1,0 +1,72 @@
+# Base image specification
+FROM --platform=linux/x86_64 ubuntu:22.04
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Etc/UTC
+
+# Fix for GPG time validation issue during apt update
+RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-time
+
+# Fix for GPG signature verification issues
+RUN apt-get update --allow-releaseinfo-change || true
+RUN apt-key update || true
+RUN apt-get clean
+
+# System dependencies installation with additional steps to fix potential GPG issues
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    wget \
+    git \
+    software-properties-common \
+    openjdk-8-jdk \
+    maven \
+    curl \
+    gnupg \
+    locales \
+    tzdata && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A1234567890ABCDEF1234567890ABCDEF12345678 || true && \
+    rm -rf /var/lib/apt/lists/*
+
+# Configure locale
+RUN apt-get update && apt-get install -y locales && locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
+# Install Redis CLI for interacting with Redis
+RUN apt-get update && apt-get install -y redis-tools && rm -rf /var/lib/apt/lists/*
+
+# Set environment variables for Java
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+ENV PATH=$JAVA_HOME/bin:$PATH
+
+# Install Docker CLI for spinning up the Redis server (useful for tests)
+RUN curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh && rm get-docker.sh
+
+# Set default work directory
+WORKDIR /testbed/
+
+# Clone the Jedis repository and checkout the specified commit
+RUN git clone https://github.com/redis/jedis.git /testbed/ && \
+    cd /testbed/ && \
+    git reset --hard 6dac31d4c224fb3257c216f3985340c6f500cdcb && \
+    git remote remove origin
+
+# Install project dependencies
+RUN mvn clean install -DskipTests -B
+
+# Make Maven binaries available in PATH
+ENV PATH=/testbed/.mvn/wrapper:$PATH
+
+# Clean up and permissions setting
+RUN chmod -R 777 /testbed/
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        python3 \
+        python3-pip \
+        python3-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && pip3 install --no-cache-dir openai
+
+# Dummy command to keep the container alive for testing or interactive sessions
+CMD ["/bin/bash"]

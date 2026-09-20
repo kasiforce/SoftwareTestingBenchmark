@@ -33,8 +33,10 @@ def build_prompt(function_info: dict) -> str:
     
     function_name = function_info['name']
 
+
     function_code = function_info['buggy_code'][-1]
     imports = function_info.get('import', '')
+
 
     # signature = function_code.split(':\n')[0]
     signature = function_code.split('{', 1)[0].rstrip()
@@ -164,6 +166,11 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
         with open(src_file, "w", encoding="utf-8") as f:
             f.write(src_code)
         print(f"Replaced code in {src_file} for '{name}'")
+    if code in src_code:
+        src_code = src_code.replace(code, buggy_code)
+        with open(src_file, "w", encoding="utf-8") as f:
+            f.write(src_code)
+        print(f"Replaced code in {src_file} for '{name}'")
     prompt = build_prompt(entry)
 
     # project_dir = (base_path / project_root).resolve()
@@ -227,6 +234,7 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
             "buggy_code": buggy_code,
             "test_file": test_file,
             "code": code,
+            "code": code,
             "returncode": -1,
             "stdout": "",
             "stderr": msg,
@@ -244,6 +252,7 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
             "code": code,
             "buggy_code": buggy_code,
             "test_file": test_file,
+            "code": code,
             "code": code,
             "returncode": -1,
             "stdout": "",
@@ -275,6 +284,7 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
         "code": code,
         "buggy_code": buggy_code,
         "test_file": test_file,
+        "code": code,
         "code": code,
         "returncode": returncode,
         "stdout": stdout,

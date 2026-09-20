@@ -846,7 +846,7 @@ def create_and_run_js(dockerfile_path, gen_tests_dir, cover_source, project_root
     repo_name = project_root
     if "/" in project_root:
         repo_name = project_root.split("/")[1]
-    test_results_dir = os.path.join(test_results_base, repo_name, "jest_DSv3.21")
+    test_results_dir = os.path.join(test_results_base, repo_name, "jest_agent")
     os.makedirs(test_results_dir, exist_ok=True)
 
     # 构建镜像
@@ -952,7 +952,7 @@ def create_and_run_js(dockerfile_path, gen_tests_dir, cover_source, project_root
             "-v", "./gen_test/gen_javascript_testfiles.py:/testbed/gentests_files.py",
             "-v", "./rollup.temp.config.mjs:/testbed/rollup.temp.config.mjs",
             "-v", "./jest.config.js:/testbed/jest.config.js",
-            # "-v", "./babel.config.js:/testbed/babel.config.js",
+            "-v", "./babel.config.js:/testbed/babel.config.js",
             # "-v", "./babel.config.cjs:/testbed/babel.config.cjs",
             "-v", f"./{data_file}:/testbed/{data_file}",
             "repo-with-js-test",
@@ -1006,6 +1006,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # 示例调用：你可以改成你项目的路径
-    create_and_run_js("output/proton/dockerfile", gen_tests_dir="", cover_source="",
-                      project_root="projects/proton", data_file="data_file.json")
+    create_and_run_js("output/pdf/dockerfile", gen_tests_dir="", cover_source="",
+                      project_root="projects/pdf", data_file="test_results/javascript/pdf/jest_agent/copilot_testgen_results.json")
     # create_and_run_js(args.dockerfile_path, args.test_dir, args.cover_source, args.project_root)

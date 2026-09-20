@@ -1,0 +1,21 @@
+2026-05-30 04:56:43,476 [INFO]  加载了 1 个待处理条目
+2026-05-30 04:56:43,476 [INFO] [1/1] 正在处理: convertRGBToRGBA
+2026-05-30 04:56:43,497 [INFO]  Running Copilot for 'convertRGBToRGBA' in /testbed
+2026-05-30 04:56:48,310 [WARNING]  测试文件未找到: /testbed/test/shared/image_utils/convertRGBToRGBA.test.js
+2026-05-30 04:56:48,323 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-30 04:56:48,324 [INFO]  详细结果已保存至 /results/copilot_testgen_results.json
+2026-05-30 04:56:48,324 [INFO]  处理完成：成功 0/1
+2026-05-30 05:02:29,025 [INFO]  加载了 1 个待处理条目
+2026-05-30 05:02:29,026 [INFO] [1/1] 正在处理: convertRGBToRGBA
+2026-05-30 05:02:29,028 [INFO]  Running Copilot for 'convertRGBToRGBA' in /testbed
+2026-05-30 05:02:33,461 [WARNING]  测试文件未找到: /testbed/test/shared/image_utils/convertRGBToRGBA.test.js
+2026-05-30 05:02:33,464 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-30 05:02:33,465 [INFO]  详细结果已保存至 /results/copilot_testgen_results.json
+2026-05-30 05:02:33,465 [INFO]  处理完成：成功 0/1
+2026-05-30 05:14:46,878 [INFO]  加载了 1 个待处理条目
+2026-05-30 05:14:46,879 [INFO] [1/1] 正在处理: convertRGBToRGBA
+2026-05-30 05:14:46,882 [INFO]  Running Copilot for 'convertRGBToRGBA' in /testbed
+2026-05-30 05:16:34,229 [WARNING]  测试文件未找到: /testbed/test/shared/image_utils/convertRGBToRGBA.test.js
+2026-05-30 05:16:34,232 [WARNING]  未完全成功 (返回码=1)，请检查日志详情
+2026-05-30 05:16:34,233 [INFO]  详细结果已保存至 /results/copilot_testgen_results.json
+2026-05-30 05:16:34,233 [INFO]  处理完成：成功 0/1

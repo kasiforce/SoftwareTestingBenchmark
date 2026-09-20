@@ -1484,7 +1484,7 @@ class EnhancedPythonFocalExtractor:
             tree = python_parser.parse(bytes(code, 'utf-8'))
             root_node = tree.root_node
 
-            # imports = self._extract_imports(root_node, code)
+            imports = self._extract_imports(root_node, code)
             class_info_dict = self._extract_all_classes(root_node, code)
 
             focal_methods = []
@@ -1526,7 +1526,7 @@ class EnhancedPythonFocalExtractor:
                     if function_name and not function_name.startswith('_'):
 
                         # 计算代码行数、复杂度、参数个数
-                        method_code = code[node.start_byte:node.end_byte]
+                        method_code = node.text.decode('utf-8')
 
                         complexity, loc, param_count = self._compute_complexity_and_loc(method_code)
 
@@ -1541,7 +1541,7 @@ class EnhancedPythonFocalExtractor:
                             'test_file': self._gen_test_file_path(file_path, function_name),
                             'code': method_code,
                             'is_async': self._is_async_function(node),
-                            # 'imports': imports,
+                            'imports': imports,
                             'loc': loc,
                             'complexity': complexity,
                             'param_count': param_count
@@ -1614,14 +1614,14 @@ class EnhancedPythonFocalExtractor:
 
         def traverse_imports(node):
             if node.type == 'import_statement':
-                import_text = code[node.start_byte:node.end_byte].strip()
+                import_text = node.text.decode('utf-8').strip()
                 if ' as ' in import_text:
                     imports['imports_with_aliases'].append(import_text)
                 else:
                     imports['imports'].append(import_text)
 
             elif node.type == 'import_from_statement':
-                import_text = code[node.start_byte:node.end_byte].strip()
+                import_text = node.text.decode('utf-8').strip()
                 imports['from_imports'].append(import_text)
 
             for child in node.children:
@@ -1629,6 +1629,14 @@ class EnhancedPythonFocalExtractor:
 
         traverse_imports(root_node)
         return imports
+
+    def extract_file_imports(self, file_path):
+        """提取文件中全部import语句（供筛选输出/测试生成复用），去重并保持出现顺序"""
+        with open(file_path, 'r', encoding='utf-8') as f:
+            code = f.read()
+        tree = python_parser.parse(bytes(code, 'utf-8'))
+        imports = self._extract_imports(tree.root_node, code)
+        return {key: list(dict.fromkeys(stmts)) for key, stmts in imports.items()}
 
     def _extract_all_classes(self, root_node, code):
         """提取文件中所有的类信息，包括构造函数和字段"""
@@ -1668,13 +1676,13 @@ class EnhancedPythonFocalExtractor:
                             func_name = self._get_name(inner)
                             if func_name == '__init__':
                                 if not self._decorated_definition_has_deprecated(child, code):
-                                    class_info['constructor'] = code[inner.start_byte:inner.end_byte]
+                                    class_info['constructor'] = inner.text.decode('utf-8')
                         continue
 
                     if child.type == 'function_definition':
                         func_name = self._get_name(child)
                         if func_name == '__init__':
-                            class_info['constructor'] = code[child.start_byte:child.end_byte]
+                            class_info['constructor'] = child.text.decode('utf-8')
 
                     elif child.type == 'expression_statement':
                         assignment = self._find_assignment(child)
@@ -1728,7 +1736,7 @@ class EnhancedPythonFocalExtractor:
         """检查装饰器中是否包含deprecated关键字"""
         try:
             for child in decorated_node.children:
-                text = code[child.start_byte:child.end_byte].strip()
+                text = child.text.decode('utf-8').strip()
                 if text.startswith('@'):
                     if re.search(r'\bdeprecated\b', text.lower()):
                         return True
@@ -1751,7 +1759,7 @@ class EnhancedPythonFocalExtractor:
         """检查是否是实例字段赋值"""
         for child in assignment_node.children:
             if child.type == 'attribute':
-                attr_text = code[child.start_byte:child.end_byte]
+                attr_text = child.text.decode('utf-8')
                 if attr_text.startswith('self.'):
                     return True
         return False
@@ -1765,13 +1773,12 @@ class EnhancedPythonFocalExtractor:
 
             for i, child in enumerate(assignment_node.children):
                 if child.type == 'identifier' or child.type == 'attribute':
-                    left_side = code[child.start_byte:child.end_byte]
+                    left_side = child.text.decode('utf-8')
                     left_node = child
 
                 elif child.type == '=':
                     if i + 1 < len(assignment_node.children):
-                        right_side = code[assignment_node.children[i + 1].start_byte:assignment_node.children[
-                            i + 1].end_byte]
+                        right_side = assignment_node.children[i + 1].text.decode('utf-8')
                     break
 
             if left_side:
@@ -1788,7 +1795,7 @@ class EnhancedPythonFocalExtractor:
                     if attr_parts and attr_parts[-1].startswith('_'):
                         return None
 
-                return code[assignment_node.start_byte:assignment_node.end_byte]
+                return assignment_node.text.decode('utf-8')
 
         except Exception as e:
             pass

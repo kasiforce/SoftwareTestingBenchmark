@@ -56,7 +56,11 @@ class JavaGeneratedTestRepairer:
 
         # 模型定价（人民币/百万 tokens）
         self.model_pricing = {
+<<<<<<< HEAD
             "gpt-5.6-luna": {"prompt": 1.26, "completion": 7.56},
+=======
+            "gpt-5-nano": {"prompt": 0.35, "completion": 2.80},
+>>>>>>> refs/remotes/origin/main
             "gpt-4o": {"prompt": 17.5, "completion": 70.00},
             "deepseek-v3.2": {"prompt": 2.00, "completion": 3.00},
             "glm-4.7": {"prompt": 4.00, "completion": 16.00},
@@ -238,6 +242,7 @@ Return ONLY code without explanations, non-code text, or markdown formatting.
 cd /testbed
 touch /tmp/compile.txt /tmp/test.txt
 
+<<<<<<< HEAD
 if ! grep -q "<artifactId>mockito-core</artifactId>" pom.xml; then
     sed -i '/<\/dependencies>/i \
     <dependency>\
@@ -247,6 +252,8 @@ if ! grep -q "<artifactId>mockito-core</artifactId>" pom.xml; then
         <scope>test</scope>\
     </dependency>' pom.xml
 fi
+=======
+>>>>>>> refs/remotes/origin/main
 
 # 安装 Python3
 # if ! command -v python3 &> /dev/null; then
@@ -269,7 +276,11 @@ fi
 """
 
             if self.reuse_container and self.container_name:
+<<<<<<< HEAD
                 subprocess.run(["docker", "cp", str(Path("gen_test/gen_tests_files_bug.py").resolve()), f"{self.container_name}:/testbed/gentests_files.py"], check=True)
+=======
+                subprocess.run(["docker", "cp", str(Path("gen_test/gen_tests_files.py").resolve()), f"{self.container_name}:/testbed/gentests_files.py"], check=True)
+>>>>>>> refs/remotes/origin/main
                 subprocess.run(["docker", "cp", str(item_json.resolve()), f"{self.container_name}:/tmp/item.json"], check=True)
                 subprocess.run(["docker", "exec", self.container_name, "bash", "-c", run_cmd], check=True)
                 subprocess.run(["docker", "cp", f"{self.container_name}:/tmp/compile.txt", str(compile_result)], check=True)
@@ -278,7 +289,11 @@ fi
                 subprocess.run(
                     [
                         "docker", "run", "--rm",
+<<<<<<< HEAD
                         "-v", f"{Path('gen_test/gen_tests_files_bug.py').resolve()}:/testbed/gentests_files.py",
+=======
+                        "-v", f"{Path('gen_test/gen_tests_files.py').resolve()}:/testbed/gentests_files.py",
+>>>>>>> refs/remotes/origin/main
                         "-v", f"{item_json.resolve()}:/tmp/item.json",
                         "-v", f"{td_path.resolve()}:/tmp_out",
                         self.image_name,
@@ -408,7 +423,11 @@ fi
             total_usage = deepcopy(self.usage_stats)
             try:
                 results_map = {}
+<<<<<<< HEAD
                 # data = data['items']
+=======
+                data = data['items']
+>>>>>>> refs/remotes/origin/main
                 for idx, item in enumerate(data):
                     repaired_item = self.repair_item(item, idx, category, test_framework)
                     results_map[idx] = repaired_item
@@ -465,15 +484,25 @@ def main() -> None:
 
     repairer = JavaGeneratedTestRepairer(
                     api_key="sk-bPIsoQILxCFW6sNRKyKB5DcjpVdqtzTM9YQaKNWJ5OL2nQCP",
+<<<<<<< HEAD
                     model="qwen3.7-plus",
                     dockerfile_path="output/wepush/dockerfile",
                     data_file="wepush-bug_specification_junit4_qwen3.7plus.json",
+=======
+                    model="gpt-5.6-luna",
+                    dockerfile_path="output/wepush/dockerfile",
+                    data_file="wepush-bug_junit4_gpt56luna.json",
+>>>>>>> refs/remotes/origin/main
                     max_rounds=3,
                     base_url="https://api.agicto.cn/v1",
                     reuse_container=False,
                     parallel_workers=1,
                 )
+<<<<<<< HEAD
     repairer.repair_file("tests/test_gen/java/fix_wepush/repaired_wepush-bug_specification_junit4_qwen3.7plus.json")
+=======
+    repairer.repair_file("tests/test_gen/java/fix_wepush/repaired_wepush-bug_junit4_gpt5.6-luna.json")
+>>>>>>> refs/remotes/origin/main
 
 
 

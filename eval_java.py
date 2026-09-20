@@ -482,7 +482,7 @@ def syntax_analyse(data_file):
 
     total = 0
     syntax_correct = 0
-
+    data = data["items"]
     for item in data:
         # test_code = item.get("generated_test_code", "")
         test_code = item["generated_tests"][-1]
@@ -1035,7 +1035,7 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
         result = subprocess.run([
             "docker", "run", "--rm",
             "-v", f"{test_results_dir}:/results",
-            "-v", "./gen_test/gen_tests_files.py:/testbed/gentests_files.py",
+            "-v", "./gen_test/gen_tests_files_bug.py:/testbed/gentests_files.py",
             "-v", "./delete_files.py:/testbed/delete_files.py",
             "-v", f"./{data_file}:/testbed/{data_file}",
             # "-v", f"{os.path.expanduser('~/.m2')}:/root/.m2",
@@ -1050,9 +1050,9 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
                 fi
 
                 echo "生成测试文件..."
-                python3 /testbed/gentests_files.py \
-                    --project-root /testbed \
-                    --data-path /testbed/{data_file}
+                # python3 /testbed/gentests_files.py \
+                #     --project-root /testbed \
+                #     --data-path /testbed/{data_file}
 
                 if ! grep -q "<artifactId>mockito-core</artifactId>" pom.xml; then
                     sed -i '/<\/dependencies>/i \
@@ -1071,29 +1071,29 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
                 LOG_FILE="/tmp/compile.log"
                 CLEAN_LOG="/tmp/compile.clean.log"
 
-                while true; do
-                    echo "===== 编译尝试 $((RETRY_COUNT+1)) ====="
-                    # 运行编译，输出到日志文件，并保存退出码
-                    mvn test-compile -Drat.skip=true > "$LOG_FILE" 2>&1
-                    MVN_EXIT_CODE=$?
-                    # 去除 ANSI 颜色码，生成干净日志（不影响后续判断）
-                    sed -e 's/\x1b\[[0-9;]*m//g' "$LOG_FILE" > "$CLEAN_LOG"
+                # while true; do
+                #     echo "===== 编译尝试 $((RETRY_COUNT+1)) ====="
+                #     # 运行编译，输出到日志文件，并保存退出码
+                #     mvn test-compile -Drat.skip=true > "$LOG_FILE" 2>&1
+                #     MVN_EXIT_CODE=$?
+                #     # 去除 ANSI 颜色码，生成干净日志（不影响后续判断）
+                #     sed -e 's/\x1b\[[0-9;]*m//g' "$LOG_FILE" > "$CLEAN_LOG"
 
-                    if [ $MVN_EXIT_CODE -eq 0 ]; then
-                        echo "✅ 编译成功！"
-                        break
-                    else
-                        echo "❌ 编译失败，正在删除错误文件..."
-                        python3 /testbed/delete_files.py "$CLEAN_LOG"
+                #     if [ $MVN_EXIT_CODE -eq 0 ]; then
+                #         echo "✅ 编译成功！"
+                #         break
+                #     else
+                #         echo "❌ 编译失败，正在删除错误文件..."
+                #         python3 /testbed/delete_files.py "$CLEAN_LOG"
 
-                        RETRY_COUNT=$((RETRY_COUNT+1))
-                        if [ $RETRY_COUNT -ge $MAX_RETRIES ]; then
-                            echo "已达到最大重试次数 ($MAX_RETRIES)，退出。"
-                            exit 1
-                        fi
-                        sleep 2
-                    fi
-                done
+                #         RETRY_COUNT=$((RETRY_COUNT+1))
+                #         if [ $RETRY_COUNT -ge $MAX_RETRIES ]; then
+                #             echo "已达到最大重试次数 ($MAX_RETRIES)，退出。"
+                #             exit 1
+                #         fi
+                #         sleep 2
+                #     fi
+                # done
 
                 
                 echo "编译测试类，并删除失败的文件..."

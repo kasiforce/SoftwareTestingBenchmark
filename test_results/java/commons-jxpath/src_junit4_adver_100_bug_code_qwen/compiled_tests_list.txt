@@ -1,0 +1,4 @@
+./target/test-classes/org/apache/commons/jxpath/util/ConvertTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/parser/WildcardNameTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/parser/NCNameTests.class
+./target/test-classes/org/apache/commons/jxpath/ri/parser/CoreFunctionNameTests.class

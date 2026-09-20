@@ -76,6 +76,7 @@ class JavaGeneratedTestRepairer:
     @staticmethod
     def _build_initial_prompt(item: Dict[str, Any], category: str, test_framework: str) -> str:
         function_name = item.get("name", "")
+        # function_code = item["buggy_code"][-1]
         function_code = item.get("code", "")
         file_path = item.get("src_file", "")
         test_path = item.get("test_file", "")
@@ -103,13 +104,17 @@ Function Information:
 - Class: {class_info if class_name else 'Standalone function'}
 - Is async: {item.get('is_async', False)}
 
+Function Code:
+```java
+{function_code}
+
 Function Specification:
 ```java
 {signature}
 ```{specification}```
 
 Requirements:
-Java version: Java 17
+Java version: Java 8
 Use {test_framework} framework for writing tests.
 Your job is to output corresponding test class that obtains high coverage and invokes the code under test.
 The test code should be written into {test_path}. Please make sure the imports are correct.
@@ -133,7 +138,7 @@ Function Code:
 {function_code}
 
 Requirements:
-Java version: Java 17
+Java version: Java 8
 Use {test_framework} framework for writing tests.
 Your job is to output corresponding test class that obtains high coverage and invokes the code under test.
 The test code should be written into {test_path}. Please make sure the imports are correct.
@@ -237,19 +242,20 @@ touch /tmp/compile.txt /tmp/test.txt
 if ! grep -q "<artifactId>junit</artifactId>" pom.xml; then
     sed -i '/<\/dependencies>/i \
 <dependency>\
-<groupId>junit</groupId>\
-<artifactId>junit</artifactId>\
-<version>4.13.2</version>\
-<scope>test</scope>\
+    <groupId>junit</groupId>\
+    <artifactId>junit</artifactId>\
+    <version>4.13.2</version>\
+    <scope>test</scope>\
 </dependency>' pom.xml
 fi
 
+# 添加 JUnit Vintage 引擎（版本与项目 JUnit 5 一致）
 if ! grep -q "<artifactId>junit-vintage-engine</artifactId>" pom.xml; then
     sed -i '/<\/dependencies>/i \
     <dependency>\
         <groupId>org.junit.vintage</groupId>\
         <artifactId>junit-vintage-engine</artifactId>\
-        <version>5.13.3</version>\
+        <version>5.14.1</version>\
         <scope>test</scope>\
     </dependency>' pom.xml
 fi
@@ -264,31 +270,32 @@ if ! grep -q "<artifactId>mockito-core</artifactId>" pom.xml; then
     </dependency>' pom.xml
 fi
 
-# sed -i 's|<argLine>-javaagent:src/test/resources/agent.jar</argLine>|<argLine>@{{argLine}} -javaagent:src/test/resources/agent.jar</argLine>|' pom.xml
-
-if ! grep -q "<artifactId>jakarta.xml.bind-api</artifactId>" pom.xml; then
+if ! grep -q "<artifactId>powermock-module-junit4</artifactId>" pom.xml; then
     sed -i '/<\/dependencies>/i \
     <dependency>\
-        <groupId>jakarta.xml.bind</groupId>\
-        <artifactId>jakarta.xml.bind-api</artifactId>\
-        <version>4.0.0</version>\
+        <groupId>org.powermock</groupId>\
+        <artifactId>powermock-module-junit4</artifactId>\
+        <version>2.0.9</version>\
+        <scope>test</scope>\
     </dependency>' pom.xml
 fi
 
-if ! grep -q "<artifactId>jaxb-runtime</artifactId>" pom.xml; then
+if ! grep -q "<artifactId>powermock-api-mockito2</artifactId>" pom.xml; then
     sed -i '/<\/dependencies>/i \
     <dependency>\
-        <groupId>org.glassfish.jaxb</groupId>\
-        <artifactId>jaxb-runtime</artifactId>\
-        <version>4.0.3</version>\
-        <scope>runtime</scope>\
+        <groupId>org.powermock</groupId>\
+        <artifactId>powermock-api-mockito2</artifactId>\
+        <version>2.0.9</version>\
+        <scope>test</scope>\
     </dependency>' pom.xml
 fi
+
+
 
 # 安装 Python3
-if ! command -v python3 &> /dev/null; then
-    apt-get update && apt-get install -y python3
-fi
+# if ! command -v python3 &> /dev/null; then
+#     apt-get update && apt-get install -y python3
+# fi
 python3 /testbed/gentests_files.py --project-root /testbed --data-path /tmp/item.json
 mvn -q test-compile -Drat.skip=true >/tmp/compile.log 2>&1
 MVN_EXIT_CODE=$?       
@@ -369,6 +376,10 @@ fi
                 final_status = "success"
                 history.append({"round": round_idx, "stage": "done", "test_code": current_test})
                 break
+            if eval_result["stage"] == "run":
+                final_status = "run_error"
+                history.append({"round": round_idx, "stage": "run", "feedback": eval_result.get("error", ""), "test_code": current_test})
+                break
 
             stage = eval_result.get("stage", "unknown")
             feedback = self._build_error_feedback(eval_result.get("error", ""))
@@ -441,6 +452,7 @@ fi
             total_usage = deepcopy(self.usage_stats)
             try:
                 results_map = {}
+                data = data['items']
                 for idx, item in enumerate(data):
                     repaired_item = self.repair_item(item, idx, category, test_framework)
                     results_map[idx] = repaired_item
@@ -505,64 +517,63 @@ def main() -> None:
     # parser.add_argument("--parallel-workers", type=int, default=1)
     # args = parser.parse_args()
 
-    for root, dirs, files in os.walk("tests/test_gen/java/nfe"):
-            for file in files:
-                if "codellama" in  file.lower() or "ds6.7b" in file.lower():
-                    continue
+    # for root, dirs, files in os.walk("tests/test_gen/java/nfe"):
+    #         for file in files:
+    #             if "codellama" in  file.lower() or "ds6.7b" in file.lower():
+    #                 continue
                 
-                if "dsv3.2" in file.lower() or "gpt4o" in file.lower():
-                    continue
+    #             if "dsv3.2" in file.lower() or "gpt4o" in file.lower():
+    #                 continue
                 
-                if "specification_junit4_qwen" in file.lower() or "lite_junit5_gpt5" in file.lower() or "lite_junit5_glm" in file.lower():
-                    continue
+    #             if "specification_junit4_qwen" in file.lower() or "lite_junit5_gpt5" in file.lower() or "lite_junit5_glm" in file.lower():
+    #                 continue
                 
-                if "specification_junit4_glm" in file.lower() or "commons-jxpath_lite_specification_junit5_gpt5" in file.lower() or "commons-jxpath_lite_junit4_qwen" in file.lower() or "lite_junit4_glm" in file.lower() or "lite_junit4_gpt5" in file.lower() or "specification_junit5_qwen" in file.lower():
-                    continue
+    #             if "specification_junit4_glm" in file.lower() or "commons-jxpath_lite_specification_junit5_gpt5" in file.lower() or "commons-jxpath_lite_junit4_qwen" in file.lower() or "lite_junit4_glm" in file.lower() or "lite_junit4_gpt5" in file.lower() or "specification_junit5_qwen" in file.lower():
+    #                 continue
 
-                # if "commons-jxpath_lite_junit4_glm-4.7" in file.lower() or "specification_junit4_gpt5" in file.lower() or "commons-jxpath_lite_junit5_dsv3.2" in file.lower() or "commons-jxpath_lite_specification_junit4_gpt4o" in file.lower() or "commons-jxpath_lite_specification_junit5_glm-4.7" in file.lower() or "commons-jxpath_lite_specification_junit4_qwen" in file.lower():
-                    # continue
+    #             # if "commons-jxpath_lite_junit4_glm-4.7" in file.lower() or "specification_junit4_gpt5" in file.lower() or "commons-jxpath_lite_junit5_dsv3.2" in file.lower() or "commons-jxpath_lite_specification_junit4_gpt4o" in file.lower() or "commons-jxpath_lite_specification_junit5_glm-4.7" in file.lower() or "commons-jxpath_lite_specification_junit4_qwen" in file.lower():
+    #                 # continue
                     
 
-                if "qwen" in file.lower() :
-                    model_name = "qwen3-coder-480b-a35b-instruct"
-                if "glm" in file.lower():
-                    model_name = "glm-4.7"
-                if "gpt5" in file.lower():
-                    model_name = "gpt-5-nano"
-                if "gpt4o" in file.lower():
-                    model_name = "gpt-4o"
-                if "dsv3.2" in file.lower():
-                    model_name = "deepseek-v3.2"
+    #             if "qwen" in file.lower() :
+    #                 model_name = "qwen3-coder-480b-a35b-instruct"
+    #             if "glm" in file.lower():
+    #                 model_name = "glm-4.7"
+    #             if "gpt5" in file.lower():
+    #                 model_name = "gpt-5-nano"
+    #             if "gpt4o" in file.lower():
+    #                 model_name = "gpt-4o"
+    #             if "dsv3.2" in file.lower():
+    #                 model_name = "deepseek-v3.2"
 
-                full_path = os.path.join(root, file)
-                print(full_path)
-                print(model_name)
-                repairer = JavaGeneratedTestRepairer(
-                    api_key="",
-                    api_key="",
-                    model=model_name,
-                    dockerfile_path="output/nfe/dockerfile",
-                    data_file=full_path,
+    #             full_path = os.path.join(root, file)
+    #             print(full_path)
+    #             print(model_name)
+    #             repairer = JavaGeneratedTestRepairer(
+    #                 api_key="",
+    #                 api_key="",
+    #                 model=model_name,
+    #                 dockerfile_path="output/nfe/dockerfile",
+    #                 data_file=full_path,
+    #                 max_rounds=3,
+    #                 base_url="https://api.agicto.cn/v1",
+    #                 reuse_container=False,
+    #                 parallel_workers=1,
+    #             )
+    #             repairer.repair_file("tests/test_gen/java/fix_nfe/repaired_"+file)
+                    # time.sleep(10)  # 每次修复后等待10秒，避免过快调用API
+
+    repairer = JavaGeneratedTestRepairer(
+                    api_key="sk-hIrt8jKCY6fysHpf79w5jQwtxlSRuQYAFQ5nWwWRfGMYmOB3",
+                    model="gpt-5.6-luna",
+                    dockerfile_path="output/wepush/dockerfile",
+                    data_file="tests/test_gen/java/fix_commons-jxpath/repaired_commons-jxpath_src_specification_junit4_gpt5.6-luna.json",
                     max_rounds=3,
                     base_url="https://api.agicto.cn/v1",
                     reuse_container=False,
                     parallel_workers=1,
                 )
-                repairer.repair_file("tests/test_gen/java/fix_nfe/repaired_"+file)
-                    # time.sleep(10)  # 每次修复后等待10秒，避免过快调用API
-
-    # repairer = JavaGeneratedTestRepairer(
-    #                 api_key="",
-    #                 api_key="",
-    #                 model="gpt-5-nano",
-    #                 dockerfile_path="output/commons-jxpath/dockerfile",
-    #                 data_file="tests/test_gen/java/commons-jxpath/commons-jxpath_junit4_gpt5nano.json",
-    #                 max_rounds=3,
-    #                 base_url="",
-    #                 reuse_container=False,
-    #                 parallel_workers=1,
-    #             )
-    # repairer.repair_file("tests/test_gen/java/fix_commons-jxpath/repaired_commons-jxpath_junit4_gpt5nano.json")
+    repairer.repair_file("tests/test_gen/java/fix_commons-jxpath/repaired_commons-jxpath-src-specification_junit4_gpt5.6-luna.json")
 
 
 
