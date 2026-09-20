@@ -52,7 +52,6 @@ from typing import List, Dict, Tuple
 
 
 def delete_test_files_in_test_dirs(project_root):
-    # jxpath要删掉所有java文件
     """在 test/tests 目录中删除 *test*.java 文件"""
     # 查找 test/tests 目录
     test_dirs = []
@@ -135,17 +134,17 @@ def delete_test_files_in_test_dirs(project_root):
 #         print(f"  ... 还有 {len(deleted_files) - 10} 个文件")
 
 
-def write_generated_tests(project_root, test_json_path, bug_json_path):
+def write_generated_tests(project_root, test_json_path, bug_json_path=None):
     """生成测试文件（指定 utf-8 编码）"""
     try:
         with open(test_json_path, 'r', encoding='utf-8') as f:
             functions = json.load(f)
             print(len(functions))
-        with open(bug_json_path, 'r', encoding='utf-8') as f:
-            bugs = json.load(f)
-            # print(len(bugs))
-        bug_code = bugs[1]["bugged_code"]
-        src_code = bugs[1]["src_code"]
+        # with open(bug_json_path, 'r', encoding='utf-8') as f:
+        #     bugs = json.load(f)
+        #     # print(len(bugs))
+        # bug_code = bugs[1]["bugged_code"]
+        # src_code = bugs[1]["src_code"]
         
         # funcs = functions["items"]
         for func in functions:
@@ -153,10 +152,10 @@ def write_generated_tests(project_root, test_json_path, bug_json_path):
             test_file = func.get("test_file", "")
             root = func.get("project_root", "").split('/')
             # print(root)
-            if len(root) > 2 and root[-1] != 'src':
-                test_file = os.path.join(root[-1], test_file)
-            test_file1 = project_root + "/" + test_file
-           
+            # if len(root) > 2 and root[-1] != 'src':
+            #     test_file = os.path.join(root[-1], test_file)
+            # test_file1 = project_root + "/" + test_file
+            test_file1 = test_file
             dir_path = os.path.dirname(test_file1)
             if not os.path.exists(dir_path):
                 os.makedirs(dir_path, exist_ok=True)
@@ -164,19 +163,26 @@ def write_generated_tests(project_root, test_json_path, bug_json_path):
             # test = func["repair_history"][-1]["test_code"]
             # raw_code = test
             raw_code = "\n\n".join(func["generated_tests"])
+            # if func["tests"]:
+            #     raw_code = func["tests"][-1]
 
             # 写入文件（UTF-8）
-            with open(test_file1, 'w', encoding='utf-8') as f:
-                f.write("\n\n" + raw_code)
-            print(f"写入 {test_file1}")
+            if raw_code:
+                with open(test_file1, 'w', encoding='utf-8') as f:
+                    f.write("\n\n" + raw_code)
+                print(f"写入 {test_file1}")
 
-            if func.get("code", "") == src_code:
-                print(f"找到匹配的源代码")
-                src_file = func.get("src_file", "")
-                with open(src_file, 'r', encoding='utf-8') as f:
-                    src_content = f.read()
+            # if func.get("code", "") == src_code:
+                # print(f"找到匹配的源代码")
+            bug_code = func["buggy_code"][-1]
+            src_code = func.get("code", "")
+            src_file = func.get("src_file", "")
+            with open(src_file, 'r', encoding='utf-8') as f:
+                src_content = f.read()
+            if bug_code and src_code in src_content:
                 src_content = src_content.replace(src_code, bug_code)
-                print(f"替换的源代码: {src_content}")
+                # print(f"替换的源代码: {src_content}")
+                print(f"替换 {src_file} 中的源代码为 buggy_code")
                 with open(src_file, 'w', encoding='utf-8') as f:
                     f.write(src_content)
 
@@ -196,15 +202,15 @@ if __name__ == "__main__":
         type=str,
         help="Path to data.",
     )
-    parser.add_argument(
-        "--bug-path",
-        type=str,
-        help="Path to bugged code.",
-    )
+    # parser.add_argument(
+    #     "--bug-path",
+    #     type=str,
+    #     help="Path to bugged code.",
+    # )
     args = parser.parse_args()
 
     delete_test_files_in_test_dirs(args.project_root)
-    write_generated_tests(args.project_root, args.data_path, args.bug_path)
+    write_generated_tests(args.project_root, args.data_path)
 
     # delete_test_files_in_test_dirs("projects/markitdown")
     # write_generated_tests("projects/flask", "fix_data.json")

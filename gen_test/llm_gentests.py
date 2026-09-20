@@ -300,7 +300,9 @@ class TestCodeGenerator:
             生成的提示字符串
         """
         function_name = function_info['name']
-        function_code = function_info['code']
+        function_code = function_info['buggy_code'][-1]
+        # function_code = function_info['code']
+        imports = function_info.get('import', '')
         # signature = function_code.split(':\n')[0]
         signature = function_code.split('{', 1)[0].rstrip()
         print(signature)
@@ -327,28 +329,43 @@ class TestCodeGenerator:
 
         if self.input == "specification":
             prompt = f"""
-Please generate a test class for the following function.
+Your task is to design tests that ensure only correct implementations (following the specification) pass, while incorrect implementations would fail.
+You are given the following information:
+- Code under test
+- Specification
 
-Function Information:
+Your tasks:
+1. Infer the **intended behavior** from the specification.
+2. Design a set of **test cases** that cover:
+- Basic functionality with valid inputs and expected outputs.
+- Boundary conditions and edge cases.
+- Invalid inputs and error handling.
+- Potential issues with dependency interactions.
+3. Write executable test code using Java 21 and JUnit 4.
+4. The test code should be written into {test_path}. Please make sure the imports are correct.
+5. Ensure tests are designed to differentiate between correct and incorrect implementations:
+- At least one test should be able to expose an incorrect implementation if it does not fully follow the behavior of the specification.
+- A correct implementation should pass all tests.
+
+## Input Method ({function_name}):
+```java
+{function_code}
+
+## Specification:
+{specification}
+
+## Method Context:
 - Src file: {file_path}
-- Function name: {function_name}
+- Imports: {imports}
 - Class: {class_info if class_name else 'Standalone function'}
 - Is async: {function_info.get('is_async', False)}
 
-Function Specification:
-```javascript
-{signature}
-```{specification}```
 
-
-Requirements:
-Use {test_framework} framework for writing tests.
-Your job is to output corresponding test class that obtains high coverage and invokes the code under test.
-The test code should be written into {test_path}. Please make sure the imports are correct.
+### Output Format ###:
 Return ONLY code without explanations, non-code text, or markdown formatting.
-
-```javascript
+```java
 <test code>
+```
 """
 
 #             prompt = f"""
@@ -377,26 +394,35 @@ Return ONLY code without explanations, non-code text, or markdown formatting.
         # print(test_framework)
         else:
             prompt = f"""
-Please generate a test class for the following function.
+Your task is to design tests that ensure only correct implementations pass, while incorrect implementations would fail.
 
-Function Information:
+
+Your tasks:
+1. Design a set of **test cases** that cover:
+- Basic functionality with valid inputs and expected outputs.
+- Boundary conditions and edge cases.
+- Invalid inputs and error handling.
+- Potential issues with dependency interactions.
+2. Write executable test code using Java 21 and JUnit 4.
+3. The test code should be written into {test_path}. Please make sure the imports are correct.
+4. Ensure tests are designed to differentiate between correct and incorrect implementations:
+- At least one test should be able to expose an incorrect implementation if the code were incorrect.
+- A correct implementation should pass all tests.
+
+## Input Method ({function_name}):
+```java
+{function_code}
+
+## Method Context:
 - Src file: {file_path}
-- Function name: {function_name}
+- Imports: {imports}
 - Class: {class_info if class_name else 'Standalone function'}
 - Is async: {function_info.get('is_async', False)}
 
-Function Code:
-```javascript
-{function_code}
 
-
-Requirements:
-Use {test_framework} framework for writing tests.
-Your job is to output corresponding test class that obtains high coverage and invokes the code under test.
-The test code should be written into {test_path}. Please make sure the imports are correct.
+### Output Format ###:
 Return ONLY code without explanations, non-code text, or markdown formatting.
-
-```javascript
+```java
 <test code>
 """
 #             prompt = f"""
@@ -744,7 +770,7 @@ Return ONLY code without explanations, non-code text, or markdown formatting.
 
     def _extract_code(self, s: str):
         # 使用 '```python' 和 '```' 来分割字符串
-        parts = s.split('```javascript')
+        parts = s.split('```java')
         if len(parts) > 1:
             # 移除后面的 '```'
             code = parts[1].split('```')[0]
@@ -770,19 +796,19 @@ Return ONLY code without explanations, non-code text, or markdown formatting.
 def main():
     # 从环境变量获取API密钥
    
-    api_key = ""
+    api_key = "sk-3cldxh99pf3YLoMm14D14dB9Fa22453eB440D13aB27bF5A8"
     
     if not api_key:
         raise ValueError("请设置 OPENAI_API_KEY 环境变量")
 
     # 初始化生成器
-    generator = TestCodeGenerator(api_key=api_key, input="specification", testframe="Jest", model="gpt-5-nano")
+    # generator = TestCodeGenerator(api_key=api_key, input="specification", testframe="Jest", model="gpt-5-nano")
     # generator1 = TestCodeGenerator(api_key=api_key, input="specification", testframe="Jest", model="gpt-5-nano")
     # generator2 = TestCodeGenerator(api_key=api_key, input="code", testframe="Jest", model="gpt-5-nano")
-    generator3 = TestCodeGenerator(api_key=api_key, input="code", testframe="Jest", model="gpt-5-nano")
+    generator3 = TestCodeGenerator(api_key=api_key, input="code", testframe="JUnit 4", model="gpt-5.6-luna")
 
     # 加载函数数据
-    input_file = "modern-errors_lite_specification.json"  # 替换为您的输入文件路径
+    input_file = "wepush.json"  # 替换为您的输入文件路径
     # input_file = "test_output.json"
     with open(input_file, 'r', encoding='utf-8') as f:
         functions_data = json.load(f)
@@ -790,10 +816,10 @@ def main():
     logger.info(f"找到 {len(functions_data)} 个需要生成测试的函数")
 
     # 生成测试代码 - 使用并行版本
-    output_file = "modern-errors_lite_specification_jest_gpt5nano.json"
+    # output_file = "modern-errors_lite_specification_jest_gpt5nano.json"
     # output_file1 = "tornado_lite_specification_pytest_gpt5nano.json"
     # output_file2= "tornado_lite_pytest_gpt5nano.json"
-    output_file3 = "modern-errors_lite_jest_gpt5nano.json"
+    output_file3 = "wepush-bug_junit4_gpt56luna.json"
 
     # 方法1: 完全并行处理
     # results = generator.generate_tests_for_functions_parallel(
@@ -804,13 +830,13 @@ def main():
     # )
 
     # 方法2: 批量并行处理（推荐，可控制速率）
-    results = generator.generate_tests_for_functions_parallel_batch(
-        functions=functions_data,
-        output_file=output_file,
-        max_workers=5,
-        batch_size=20,
-        batch_delay=2
-    )
+    # results = generator.generate_tests_for_functions_parallel_batch(
+    #     functions=functions_data,
+    #     output_file=output_file,
+    #     max_workers=5,
+    #     batch_size=20,
+    #     batch_delay=2
+    # )
 
     # results1 = generator1.generate_tests_for_functions_parallel_batch(
     #     functions=functions_data,
@@ -836,8 +862,8 @@ def main():
         batch_delay=2
     )
     # 统计结果
-    success_count = sum(1 for r in results if r.get('test_generation_status') == 'success')
-    logger.info(f"测试生成完成: {success_count}/{len(results)} 成功")
+    success_count = sum(1 for r in results3 if r.get('test_generation_status') == 'success')
+    logger.info(f"测试生成完成: {success_count}/{len(results3)} 成功")
 
 
 if __name__ == "__main__":
