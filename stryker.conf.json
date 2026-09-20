@@ -1,21 +1,20 @@
 {
-    "mutate": [
-        "src/**/*.js"
-    ],
+  "mutate": [
+    "src/**/*.js"
+  ],
 
-    "testRunner": "jest",
+  "testRunner": "jest",
 
-    "jest": {
-        "projectType": "custom"
-    },
+  "jest": {
+    "projectType": "custom",
+    "configFile": "jest.config.js"
+  },
 
-    "reporters": [
-        "html",
-        "clear-text",
-        "json"
-    ],
+  "coverageAnalysis": "perTest",
 
-    "coverageAnalysis": "off",
-
-    "tempDirName": "stryker-tmp"
+  "reporters": [
+    "html",
+    "clear-text",
+    "json"
+  ]
 }

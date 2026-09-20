@@ -482,9 +482,10 @@ def syntax_analyse(data_file):
 
     total = 0
     syntax_correct = 0
-
+    data = data["items"]
     for item in data:
-        test_code = item.get("generated_tests", "")
+        # test_code = item.get("generated_tests", "")
+        test_code = item.get("repair_history", [])[-1].get("test_code", "")
         for test in test_code:
             if not test.strip():
                 continue
@@ -858,7 +859,7 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
     repo_name = repo_dir
     if "/" in repo_dir:
         repo_name = repo_dir.split("/")[1]
-    test_results_dir = os.path.join(cwd, "test_results", "java", repo_name, "specification_junit4_qwen")
+    test_results_dir = os.path.join(cwd, "test_results", "java", repo_name, "GT")
 
     os.makedirs(test_results_dir, exist_ok=True)
 
@@ -1034,7 +1035,7 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
         result = subprocess.run([
             "docker", "run", "--rm",
             "-v", f"{test_results_dir}:/results",
-            "-v", "./gen_test/gen_tests_files.py:/testbed/gentests_files.py",
+            "-v", "./gen_test/gen_tests_files_bug.py:/testbed/gentests_files.py",
             "-v", "./delete_files.py:/testbed/delete_files.py",
             "-v", f"./{data_file}:/testbed/{data_file}",
             # "-v", f"{os.path.expanduser('~/.m2')}:/root/.m2",
@@ -1049,94 +1050,41 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
                 fi
 
                 echo "生成测试文件..."
-                python3 /testbed/gentests_files.py \
-                    --project-root /testbed \
-                    --data-path /testbed/{data_file}
+                # python3 /testbed/gentests_files.py \
+                #     --project-root /testbed \
+                #     --data-path /testbed/{data_file}
 
                 
                 
-                if ! grep -q "<artifactId>junit</artifactId>" pom.xml; then
-                    sed -i '/<\/dependencies>/i \
-            <dependency>\
-                <groupId>junit</groupId>\
-                <artifactId>junit</artifactId>\
-                <version>4.13.2</version>\
-                <scope>test</scope>\
-            </dependency>' pom.xml
-                fi
+       
+                # MAX_RETRIES=10
+                # RETRY_COUNT=0
+                # LOG_FILE="/tmp/compile.log"
+                # CLEAN_LOG="/tmp/compile.clean.log"
 
-                # 添加 JUnit Vintage 引擎（版本与项目 JUnit 5 一致）
-                if ! grep -q "<artifactId>junit-vintage-engine</artifactId>" pom.xml; then
-                    sed -i '/<\/dependencies>/i \
-                    <dependency>\
-                        <groupId>org.junit.vintage</groupId>\
-                        <artifactId>junit-vintage-engine</artifactId>\
-                        <version>5.14.1</version>\
-                        <scope>test</scope>\
-                    </dependency>' pom.xml
-                fi
+                # while true; do
+                #     echo "===== 编译尝试 $((RETRY_COUNT+1)) ====="
+                #     # 运行编译，输出到日志文件，并保存退出码
+                #     mvn test-compile -Drat.skip=true > "$LOG_FILE" 2>&1
+                #     MVN_EXIT_CODE=$?
+                #     # 去除 ANSI 颜色码，生成干净日志（不影响后续判断）
+                #     sed -e 's/\x1b\[[0-9;]*m//g' "$LOG_FILE" > "$CLEAN_LOG"
 
-                if ! grep -q "<artifactId>mockito-core</artifactId>" pom.xml; then
-                    sed -i '/<\/dependencies>/i \
-                    <dependency>\
-                        <groupId>org.mockito</groupId>\
-                        <artifactId>mockito-core</artifactId>\
-                        <version>4.11.0</version>\
-                        <scope>test</scope>\
-                    </dependency>' pom.xml
-                fi
+                #     if [ $MVN_EXIT_CODE -eq 0 ]; then
+                #         echo "✅ 编译成功！"
+                #         break
+                #     else
+                #         echo "❌ 编译失败，正在删除错误文件..."
+                #         python3 /testbed/delete_files.py "$CLEAN_LOG"
 
-                if ! grep -q "<artifactId>powermock-module-junit4</artifactId>" pom.xml; then
-                    sed -i '/<\/dependencies>/i \
-                    <dependency>\
-                        <groupId>org.powermock</groupId>\
-                        <artifactId>powermock-module-junit4</artifactId>\
-                        <version>2.0.9</version>\
-                        <scope>test</scope>\
-                    </dependency>' pom.xml
-                fi
-
-                if ! grep -q "<artifactId>powermock-api-mockito2</artifactId>" pom.xml; then
-                    sed -i '/<\/dependencies>/i \
-                    <dependency>\
-                        <groupId>org.powermock</groupId>\
-                        <artifactId>powermock-api-mockito2</artifactId>\
-                        <version>2.0.9</version>\
-                        <scope>test</scope>\
-                    </dependency>' pom.xml
-                fi
-
-
-                
-
-                MAX_RETRIES=10
-                RETRY_COUNT=0
-                LOG_FILE="/tmp/compile.log"
-                CLEAN_LOG="/tmp/compile.clean.log"
-
-                while true; do
-                    echo "===== 编译尝试 $((RETRY_COUNT+1)) ====="
-                    # 运行编译，输出到日志文件，并保存退出码
-                    mvn test-compile -Drat.skip=true > "$LOG_FILE" 2>&1
-                    MVN_EXIT_CODE=$?
-                    # 去除 ANSI 颜色码，生成干净日志（不影响后续判断）
-                    sed -e 's/\x1b\[[0-9;]*m//g' "$LOG_FILE" > "$CLEAN_LOG"
-
-                    if [ $MVN_EXIT_CODE -eq 0 ]; then
-                        echo "✅ 编译成功！"
-                        break
-                    else
-                        echo "❌ 编译失败，正在删除错误文件..."
-                        python3 /testbed/delete_files.py "$CLEAN_LOG"
-
-                        RETRY_COUNT=$((RETRY_COUNT+1))
-                        if [ $RETRY_COUNT -ge $MAX_RETRIES ]; then
-                            echo "已达到最大重试次数 ($MAX_RETRIES)，退出。"
-                            exit 1
-                        fi
-                        sleep 2
-                    fi
-                done
+                #         RETRY_COUNT=$((RETRY_COUNT+1))
+                #         if [ $RETRY_COUNT -ge $MAX_RETRIES ]; then
+                #             echo "已达到最大重试次数 ($MAX_RETRIES)，退出。"
+                #             exit 1
+                #         fi
+                #         sleep 2
+                #     fi
+                # done
 
                 
                 echo "编译测试类，并删除失败的文件..."
@@ -1181,7 +1129,7 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
                 echo "执行测试并收集覆盖率..."
                 mvn -fae clean org.jacoco:jacoco-maven-plugin:0.8.14:prepare-agent test org.jacoco:jacoco-maven-plugin:0.8.14:report \
                     -DskipTests=false -Dmaven.test.skip=false -DfailIfNoTests=false \
-                    -Dmaven.test.failure.ignore=true -Drat.skip=true -B
+                    -Dmaven.test.failure.ignore=true -Drat.skip=true -DforkCount=0 -B
 
                 # 统计编译成功的测试类，并输出文件列表
                 compiled_class_files=$(find . -path "*/target/test-classes/*Tests.class" ! -name "*\\$*")
@@ -1404,5 +1352,5 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
 
 if __name__ == "__main__":
     # 示例调用
-    create_and_run_java("output/commons-jxpath/dockerfile", "projects/commons-jxpath", "data_file.json")
+    create_and_run_java("output/fess/dockerfile", "projects/fess", "tests/test_gen/java/fix_commons-jxpath/repaired_commons-jxpath-specification_junit4_qwen3.7-plus.json")
     # pass

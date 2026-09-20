@@ -855,44 +855,44 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
     cwd = os.getcwd()
     print(f"当前工作目录: {cwd}")
 
-    with open(data_file, 'r', encoding='utf-8') as f:
-        data = json.load(f)
+    # with open(data_file, 'r', encoding='utf-8') as f:
+    #     data = json.load(f)
 
-    fix_data = []
-    data1 = data['items']
-    for func in data1:
-        func1 = func['repair_history']
-        raw_code = func1[-1]["test_code"] if func1 else ""
+    # fix_data = []
+    # data1 = data['items']
+    # for func in data1:
+    #     func1 = func['repair_history']
+    #     raw_code = func1[-1]["test_code"] if func1 else ""
 
         # if len(func1) > 1: 
         #     raw_code = func1[1]["test_code"]
         # else:
         #     raw_code = func1[-1]["test_code"]
        
-        if not raw_code.strip():
-            continue
+    #     if not raw_code.strip():
+    #         continue
 
-        item = {
-            "project_root": func.get("project_root", ""),
-            "src_file": func.get("src_file", ""),
-            "code": func.get("code", ""),
-            "name": func.get("name", ""),
-            "class_name": func.get("class_name", ""),
-            "test_file": func.get("test_file", ""),
-            "generated_tests": [raw_code]
-        }
-        fix_data.append(item)
+    #     item = {
+    #         "project_root": func.get("project_root", ""),
+    #         "src_file": func.get("src_file", ""),
+    #         "code": func.get("code", ""),
+    #         "name": func.get("name", ""),
+    #         "class_name": func.get("class_name", ""),
+    #         "test_file": func.get("test_file", ""),
+    #         "generated_tests": [raw_code]
+    #     }
+    #     fix_data.append(item)
     
-    fix_data_path = "fix_data.json"
-    with open(fix_data_path, 'w', encoding='utf-8') as f:
-        json.dump(fix_data, f, indent=2, ensure_ascii=False)
-
+    # fix_data_path = "fix_data.json"
+    # with open(fix_data_path, 'w', encoding='utf-8') as f:
+    #     json.dump(fix_data, f, indent=2, ensure_ascii=False)
+    fix_data_path = data_file
 
     test_results_dir = os.path.join(cwd, "test_results", "java")
     repo_name = repo_dir
     if "/" in repo_dir:
         repo_name = repo_dir.split("/")[1]
-    test_results_dir = os.path.join(test_results_dir, "bug_addRequiredOption_"+repo_name)
+    test_results_dir = os.path.join(test_results_dir, "bug_pad_correct"+repo_name)
 
     data_file1 = data_file.split(".json")[0]
     model_name = data_file1.split("_")[-1]
@@ -1085,7 +1085,7 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
             "docker", "run", "--rm",
             "-v", f"{test_results_dir}:/results",
             "-v", "./gen_test/gen_tests_files_bug.py:/testbed/gentests_files.py",
-            "-v", "./dataset/gen_bug.json:/testbed/gen_bug.json",
+            "-v", "./dataset/tem1.json:/testbed/gen_bug.json",
             "-v", "./delete_files.py:/testbed/delete_files.py",
             "-v", f"./{fix_data_path}:/testbed/{fix_data_path}",
             # "-v", f"{os.path.expanduser('~/.m2')}:/root/.m2",
@@ -1428,7 +1428,7 @@ def create_and_run_java(dockerfile_path, repo_dir, data_file):
 
 if __name__ == "__main__":
     # 示例调用
-    create_and_run_java("output/commons-cli/dockerfile", "projects/commons-cli", "tests/test_gen/java/fix_commons-cli/repaired_commons-cli_lite_specification_junit4_qwen.json")
+    create_and_run_java("output/commons-cli/dockerfile", "projects/commons-cli", "commons-cli_bug_junit4_qwen1.json")
     # pass
     # root = "tests/test_gen/java/fix_nfe"
     # for root, dirs, files in os.walk(root):
