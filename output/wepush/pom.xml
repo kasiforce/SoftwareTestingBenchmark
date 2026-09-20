@@ -1,0 +1,50 @@
+if ! grep -q "<artifactId>mockito-core</artifactId>" pom.xml; then
+    sed -i '/<\/dependencies>/i \
+    <dependency>\
+        <groupId>org.mockito</groupId>\
+        <artifactId>mockito-core</artifactId>\
+        <version>5.18.0</version>\
+        <scope>test</scope>\
+    </dependency>' pom.xml
+fi
+
+               
+if ! grep -q "<artifactId>maven-surefire-plugin</artifactId>" pom.xml; then
+    sed -i '/^        <plugins>$/a\
+    <plugin>\
+        <groupId>org.apache.maven.plugins</groupId>\
+        <artifactId>maven-surefire-plugin</artifactId>\
+        <version>3.5.2</version>\
+        <configuration>\
+            <testFailureIgnore>true</testFailureIgnore>\
+        </configuration>\
+    </plugin>' pom.xml
+fi
+
+
+if ! grep -q "<artifactId>jacoco-maven-plugin</artifactId>" pom.xml; then
+    sed -i '/^        <plugins>$/a\
+    <plugin>\
+        <groupId>org.jacoco</groupId>\
+        <artifactId>jacoco-maven-plugin</artifactId>\
+        <version>0.8.14</version>\
+        <executions>\
+            <execution>\
+                <id>prepare-agent</id>\
+                <goals>\
+                    <goal>prepare-agent</goal>\
+                </goals>\
+            </execution>\
+            <execution>\
+                <id>report</id>\
+                <phase>test</phase>\
+                <goals>\
+                    <goal>report</goal>\
+                </goals>\
+                <configuration>\
+                    <formats>XML,CSV,HTML</formats>\
+                </configuration>\
+            </execution>\
+        </executions>\
+    </plugin>' pom.xml
+fi

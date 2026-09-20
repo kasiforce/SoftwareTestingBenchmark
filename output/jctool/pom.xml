@@ -1,0 +1,25 @@
+if ! grep -A5 "<artifactId>jacoco-maven-plugin</artifactId>" pom.xml | grep -q "prepare-agent"; then
+    # 插入 prepare-agent 到 build/plugins
+    sed -i '/<\/pluginManagement>/,/^        <\/plugins>$/{
+        /^        <plugins>$/a\
+                <plugin>\
+                    <groupId>org.jacoco</groupId>\
+                    <artifactId>jacoco-maven-plugin</artifactId>\
+                    <executions>\
+                        <execution>\
+                            <id>prepare-agent</id>\
+                            <goals>\
+                                <goal>prepare-agent</goal>\
+                            </goals>\
+                        </execution>\
+                    </executions>\
+                </plugin>
+    }' pom.xml
+fi
+
+# 修复空 argLine
+sed -i 's|<argLine></argLine>|<argLine>@{argLine}</argLine>|' pom.xml
+
+# 修复 java9+ argLine
+sed -i 's|^\( *\)--add-opens java.base/jdk.internal.misc=ALL-UNNAMED|\1@{argLine} --add-opens java.base/jdk.internal.misc=ALL-UNNAMED|' pom.xml
+sed -i 's|^\(\s*\)--add-opens java.base/jdk.internal.misc=ALL-UNNAMED|\1@{argLine} --add-opens java.base/jdk.internal.misc=ALL-UNNAMED|' jctools-core/pom.xml

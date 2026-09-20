@@ -1,0 +1,71 @@
+# Base image specification
+FROM --platform=linux/x86_64 ubuntu:22.04
+
+# Set environment variables to avoid prompts
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Etc/UTC
+
+# Address potential GPG key issues during apt-get update
+ARG FAKE_DATE
+RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-time
+
+# Install essential system tools and Java runtime
+RUN apt update && apt install -y \
+    git \
+    curl \
+    unzip \
+    wget \
+    openjdk-21-jdk \
+    maven \
+    tzdata \
+    locales \
+    && rm -rf /var/lib/apt/lists/*
+
+# Configure locale and timezone settings
+RUN locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
+# Set up Miniconda for development isolation
+RUN wget 'https://repo.anaconda.com/miniconda/Miniconda3-py311_23.11.0-2-Linux-x86_64.sh' -O miniconda.sh && \
+    bash miniconda.sh -b -p /opt/miniconda3 && \
+    rm miniconda.sh
+ENV PATH=/opt/miniconda3/bin:$PATH
+RUN conda init bash && conda config --append channels conda-forge
+
+# Set up the testbed Conda environment
+RUN /bin/bash -c "source /opt/miniconda3/etc/profile.d/conda.sh && \
+    conda create -n testbed python=3.9 -y"
+
+# Clone the repository and set up the work environment
+WORKDIR /testbed/
+RUN /bin/bash -c "source /opt/miniconda3/etc/profile.d/conda.sh && \
+    conda activate testbed && \
+    git clone https://github.com/codelibs/fess.git /testbed && \
+    cd /testbed && \
+    git reset --hard 32cfe9479f953b011055d6f571c13ac59b16ba06 && \
+    git remote remove origin"
+
+# Ensure the fess-parent directory is initialized
+WORKDIR /testbed
+RUN /bin/bash -c "source /opt/miniconda3/etc/profile.d/conda.sh && \
+    conda activate testbed && \
+    cd /testbed && \
+    mvn -B antrun:run --file pom.xml"
+
+# Pre-build Fess parent directory and install dependencies using Maven
+WORKDIR /testbed/fess-parent
+RUN /bin/bash -c "source /opt/miniconda3/etc/profile.d/conda.sh && \
+    conda activate testbed && \
+    mvn install -Dgpg.skip=true"
+
+# Build the project and all components except running tests
+WORKDIR /testbed
+RUN /bin/bash -c "source /opt/miniconda3/etc/profile.d/conda.sh && \
+    conda activate testbed && \
+    mvn -B source:jar javadoc:jar package --file pom.xml \
+    -Dparallel=classes -DthreadCount=4 -DforkCount=1C -DreuseForks=true -DskipTests"
+
+# Add environment configuration to the bash profile for test execution
+RUN echo "source /opt/miniconda3/etc/profile.d/conda.sh && conda activate testbed" >> /root/.bashrc

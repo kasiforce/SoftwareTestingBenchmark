@@ -1,0 +1,59 @@
+# Use an Ubuntu base image that includes Bash for compatibility
+FROM --platform=linux/x86_64 ubuntu:22.04
+
+# Set environment variables for non-interactive installations
+ARG DEBIAN_FRONTEND=noninteractive
+ARG FAKE_DATE
+ENV TZ=Etc/UTC
+ENV FAKE_SYSTEM_DATE=${FAKE_DATE}
+
+# Avoid GPG issues with expired keys
+RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-time
+
+# Install essential tools and dependencies
+RUN apt update && apt install -y \
+    wget \
+    git \
+    curl \
+    build-essential \
+    libffi-dev \
+    software-properties-common \
+    tzdata \
+    locales \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set locale to prevent issues with UTF-8 encoding
+RUN locale-gen en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US:en
+ENV LC_ALL=en_US.UTF-8
+
+# Install OpenJDK 17 instead of AdoptOpenJDK (due to GPG issues with AdoptOpenJDK)
+RUN apt update && apt install -y openjdk-17-jdk && \
+    rm -rf /var/lib/apt/lists/*
+
+# Set JAVA_HOME environment variable
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+ENV PATH=$JAVA_HOME/bin:$PATH
+
+# Install Maven as the build tool
+RUN apt update && apt install -y maven && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /testbed/
+
+# Clone the target repository and checkout the specified commit SHA
+ARG REPO_URL=https://github.com/FasterXML/jackson-databind.git
+ARG COMMIT_SHA=2a428d9b569ec1ac28f0b071a71f3296a43fa6a3
+RUN git clone ${REPO_URL} . && \
+    git reset --hard ${COMMIT_SHA} && \
+    git remote remove origin
+
+# Install project dependencies using Maven
+RUN mvn --batch-mode --fail-fast --no-transfer-progress clean install -DskipTests
+
+# Set environment variables required during test execution
+ENV JAVA_OPTS=-XX:+TieredCompilation -XX:TieredStopAtLevel=1
+
+# Add a command to activate Maven Wrapper in future sessions
+RUN echo "alias mvn='./mvnw'" >> ~/.bashrc

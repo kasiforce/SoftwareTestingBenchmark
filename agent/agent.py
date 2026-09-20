@@ -7,6 +7,7 @@
 """
 
 import json
+import os
 import subprocess
 import time
 import logging
@@ -31,8 +32,10 @@ def build_prompt(function_info: dict) -> str:
     """根据数据集条目构建发送给 Copilot CLI 的提示"""
     
     function_name = function_info['name']
+
     function_code = function_info['buggy_code'][-1]
     imports = function_info.get('import', '')
+
     # signature = function_code.split(':\n')[0]
     signature = function_code.split('{', 1)[0].rstrip()
     print(signature)
@@ -59,6 +62,7 @@ def build_prompt(function_info: dict) -> str:
 
     
     prompt = f"""
+You are a professional test engineer specializing in writing high-quality unit test code
 Your task is to design tests that ensure only correct implementations (following the specification) pass, while incorrect implementations would fail.
 You are given the following information:
 - Function
@@ -91,15 +95,56 @@ Your tasks:
 - Class: {class_info if class_name else 'Standalone function'}
 - Is async: {function_info.get('is_async', False)}
 
-
-Requirements:
-Do not modify any source code files in the project. Only create or modify the target test file.
-After writing the file, run the tests with mvn (e.g., mvn test).
-Work autonomously and complete the task without asking for further input.
+Note:
+Do NOT modify main code files in the project.
+Do NOT download or install any dependency. 
+Do NOT read any existing test files.
+Only create or modify the target test file.
+You can run the specific test with mvn, e.g.:
+  mvn -q -Dtest=<TestClassName> test
 """
 
     
     return prompt
+
+def delete_test_files_in_test_dirs(project_root):
+    """在 test/tests 目录中删除 *test*.java 文件"""
+    # 查找 test/tests 目录
+    test_dirs = []
+    for root, dirs, files in os.walk(project_root):
+        root_path = Path(root)
+
+        # 跳过某些目录
+        skip_dirs = ['.git', 'venv', '.venv', '__pycache__']
+        if any(skip in root_path.parts for skip in skip_dirs):
+            continue
+
+        # 如果是 test 或 tests 目录
+        if root_path.name.lower() in ['test', 'tests']:
+            test_dirs.append(root_path)
+
+    if not test_dirs:
+        print("未找到 test 或 tests 目录")
+        return
+
+    # 查找并删除测试文件
+    deleted_files = []
+    for test_dir in test_dirs:
+        for file in test_dir.rglob('*.java'):
+            if 'Test' in file.name:
+                try:
+                    os.remove(file)
+                    deleted_files.append(file)
+                except Exception as e:
+                    print(f"删除失败 {file}: {e}")
+
+    # 显示结果
+    print(f"在 {len(test_dirs)} 个测试目录中删除了 {len(deleted_files)} 个测试文件:")
+    for file in deleted_files[:10]:
+        print(f"  {file}")
+
+    if len(deleted_files) > 10:
+        print(f"  ... 还有 {len(deleted_files)-10} 个文件")
 
 def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> dict:
     """为单个条目执行 Copilot CLI 并返回详细结果（含生成的测试代码）"""
@@ -110,12 +155,15 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
     buggy_code = entry.get("buggy_code", [""])[-1]
     src_file = entry.get("src_file", "")
     test_file = entry.get("test_file", "")
+    delete_test_files_in_test_dirs(".")
 
     with open(src_file, "r", encoding="utf-8") as f:
         src_code = f.read()
-    src_code = src_code.replace(code, buggy_code)
-    with open(src_file, "w", encoding="utf-8") as f:
-        f.write(src_code)
+    if code in src_code:
+        src_code = src_code.replace(code, buggy_code)
+        with open(src_file, "w", encoding="utf-8") as f:
+            f.write(src_code)
+        print(f"Replaced code in {src_file} for '{name}'")
     prompt = build_prompt(entry)
 
     # project_dir = (base_path / project_root).resolve()
@@ -136,8 +184,18 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
     cmd = [
         "copilot",
         "-p", prompt,  
-        "--allow-all-tools"
+        "--allow-all-tools" 
     ]
+    # cmd = [
+    #     "copilot",
+    #     "-p", prompt,
+    #     "--allow-tool", "read",
+    #     "--allow-tool", "write",
+    #     "--allow-tool", "shell(mvn:*)",
+    #     "--deny-tool", "shell(curl:*)",
+    #     "--deny-tool", "shell(wget:*)",
+    #     "--share", "/results/"
+    # ]
 
     logging.info(f" Running Copilot for '{name}' in {project_dir}")
     try:
@@ -151,9 +209,16 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
         returncode = result.returncode
         stdout = result.stdout
         stderr = result.stderr
+        with open(src_file, "r", encoding="utf-8") as f:
+                src_code = f.read()
+        src_code = src_code.replace(buggy_code, code)
+        with open(src_file, "w", encoding="utf-8") as f:
+            f.write(src_code)
+        print(f"恢复了 {src_file} 中的原始代码 for '{name}'")
     except subprocess.TimeoutExpired:
         msg = f"Timeout after {timeout}s"
         logging.error(f" {msg} for '{name}'")
+        end_time = datetime.now()
         return {
             "name": name,
             "project_root": project_root,
@@ -161,15 +226,17 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
             "code": code,
             "buggy_code": buggy_code,
             "test_file": test_file,
+            "code": code,
             "returncode": -1,
             "stdout": "",
             "stderr": msg,
-            "generated_test_code": "",
-            "timestamp": datetime.now().isoformat()
+            "generated_tests": "",
+            "time": (end_time - start_time).total_seconds()
         }
     except Exception as e:
         msg = f"Unexpected error: {e}"
         logging.error(f" {msg} for '{name}'")
+        end_time = datetime.now()
         return {
             "name": name,
             "project_root": project_root,
@@ -177,11 +244,12 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
             "code": code,
             "buggy_code": buggy_code,
             "test_file": test_file,
+            "code": code,
             "returncode": -1,
             "stdout": "",
             "stderr": msg,
-            "generated_test_code": "",
-            "timestamp": datetime.now().isoformat()
+            "generated_tests": "",
+            "time": (end_time - start_time).total_seconds()
         }
 
     # ========== 增强部分：读取生成的测试文件内容 ==========
@@ -207,10 +275,11 @@ def run_copilot_for_entry(entry: dict, base_path: Path, timeout: int = 3600) -> 
         "code": code,
         "buggy_code": buggy_code,
         "test_file": test_file,
+        "code": code,
         "returncode": returncode,
         "stdout": stdout,
         "stderr": stderr,
-        "generated_test_code": generated_code,
+        "generated_tests": generated_code,
         "time": (end_time - start_time).total_seconds(), 
     }
 

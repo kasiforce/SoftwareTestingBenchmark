@@ -1,0 +1,37 @@
+# Use Ubuntu 22.04 as the base image
+FROM --platform=linux/x86_64 ubuntu:22.04
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Etc/UTC
+RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-time
+
+# Install essential tools and libraries required for development and runtime
+RUN apt update && apt install -y \
+    wget \
+    git \
+    curl \
+    unzip \
+    openjdk-11-jdk \
+    maven \
+    && rm -rf /var/lib/apt/lists/*
+
+# Setup Java environment variables
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+ENV PATH=$JAVA_HOME/bin:$PATH
+
+# Set default working directory
+WORKDIR /testbed/
+
+# Clone the target repository and checkout the specified commit
+RUN git clone https://github.com/JCTools/JCTools.git /testbed/ && \
+    cd /testbed/ && \
+    git reset --hard f6883851e88c3c6b5fb8b6aa2d7a04a8c7c6c9dc && \
+    git remote remove origin
+
+# Install Maven dependencies without running tests
+RUN mvn install -DskipTests
+
+# Add a note for the user to activate the required environment
+RUN echo "The JAVA_HOME environment variable has been set to JDK 11, and Maven is installed and configured."
+
+# Expose workdir as the container entrypoint for evaluation scripts
+CMD ["/bin/bash"]

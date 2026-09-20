@@ -1,0 +1,67 @@
+# Base image specification. Defines the foundation OS and architecture for the container
+FROM --platform=linux/x86_64 ubuntu:22.04
+
+# Set build arguments and environment variables
+ARG DEBIAN_FRONTEND=noninteractive
+ARG FAKE_DATE
+ENV TZ=Etc/UTC
+ENV FAKE_SYSTEM_DATE=${FAKE_DATE}
+
+# Prevent GPG validation errors for apt
+RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-time
+
+# Install essential system dependencies
+RUN apt-get update && apt-get install -y \
+    wget \
+    git \
+    curl \
+    unzip \
+    openjdk-21-jdk \
+    maven \
+    net-tools \
+    sqlite3 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set JAVA_HOME environment variable to point to OpenJDK 21
+ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+ENV PATH="${JAVA_HOME}/bin:${PATH}"
+
+# Set default working directory
+WORKDIR /testbed
+
+# Clone the repository and checkout a specific commit
+RUN git clone https://github.com/rememberber/WePush.git . \
+    && git reset --hard 48ff0f6b6b6488841b948c8332664f3ea1ac969c \
+    && git remote remove origin
+
+# Ensure JAR dependencies are properly copied from their verified locations in the repository
+RUN mkdir -p ./lib \
+    && cp lib-repo/net/sourceforge/cpdetector/cpdetector/1.0.10/cpdetector-1.0.10.jar ./lib/cpdetector_1.0.10.jar \
+    && cp lib-repo/com/taobao/taobao-sdk-java-auto/1.0.0/taobao-sdk-java-auto-1.0.0.jar ./lib/taobao-sdk-java-auto.jar \
+    && cp lib-repo/net/sourceforge/cpdetector/antlr/2.7.4/antlr-2.7.4.jar ./lib/antlr-2.7.4.jar \
+    && cp lib-repo/net/sourceforge/cpdetector/chardet/1.0.0/chardet-1.0.0.jar ./lib/chardet-1.0.jar \
+    && cp lib-repo/net/sourceforge/cpdetector/jargs/1.0.0/jargs-1.0.0.jar ./lib/jargs-1.0.jar
+
+# Install custom Maven dependencies using the collected JARs
+RUN mvn install:install-file -Dfile=./lib/antlr-2.7.4.jar -DgroupId=net.sourceforge.cpdetector -DartifactId=antlr -Dpackaging=jar -Dversion=2.7.4 -DgeneratePom=true -DcreateChecksum=true \
+    && mvn install:install-file -Dfile=./lib/chardet-1.0.jar -DgroupId=net.sourceforge.cpdetector -DartifactId=chardet -Dpackaging=jar -Dversion=1.0.0 -DgeneratePom=true -DcreateChecksum=true \
+    && mvn install:install-file -Dfile=./lib/cpdetector_1.0.10.jar -DgroupId=net.sourceforge.cpdetector -DartifactId=cpdetector -Dpackaging=jar -Dversion=1.0.10 -DgeneratePom=true -DcreateChecksum=true \
+    && mvn install:install-file -Dfile=./lib/jargs-1.0.jar -DgroupId=net.sourceforge.cpdetector -DartifactId=jargs -Dpackaging=jar -Dversion=1.0.0 -DgeneratePom=true -DcreateChecksum=true \
+    && mvn install:install-file -Dfile=./lib/taobao-sdk-java-auto.jar -DgroupId=com.taobao -DartifactId=taobao-sdk-java-auto -Dpackaging=jar -Dversion=1.0.0 -DgeneratePom=true -DcreateChecksum=true
+
+# Build the project and download dependencies
+RUN mvn clean package -Dmaven.test.skip=true
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        python3 \
+        python3-pip \
+        python3-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && pip3 install --no-cache-dir openai
+
+# Expose PATH to include Maven
+ENV PATH="/usr/share/maven/bin:$PATH"
+
+# Command to activate the build environment in shell
+RUN echo "export PATH=/usr/share/maven/bin:\$PATH" >> /root/.bashrc
