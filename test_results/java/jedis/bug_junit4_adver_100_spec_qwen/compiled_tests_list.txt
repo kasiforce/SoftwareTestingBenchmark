@@ -1,0 +1,6 @@
+./target/test-classes/redis/clients/jedis/authentication/TokenBasedAuthenticationUnitTests.class
+./target/test-classes/redis/clients/jedis/authentication/TokenBasedAuthenticationIntegrationTests.class
+./target/test-classes/redis/clients/jedis/authentication/RedisEntraIDManagedIdentityIntegrationTests.class
+./target/test-classes/redis/clients/jedis/authentication/TokenBasedAuthenticationClusterIntegrationTests.class
+./target/test-classes/redis/clients/jedis/authentication/RedisEntraIDClusterIntegrationTests.class
+./target/test-classes/redis/clients/jedis/authentication/RedisEntraIDIntegrationTests.class

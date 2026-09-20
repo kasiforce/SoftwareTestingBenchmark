@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="redis.clients.jedis.timeseries.TSMRangeParamsTest" time="0.026" tests="11" errors="0" skipped="0" failures="0" flakes="0">
+  <properties>
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="sun.cpu.isalist" value=""/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/usr/share/maven/boot/plexus-classworlds-2.x.jar"/>
+    <property name="forkCount" value="0"/>
+    <property name="java.vm.vendor" value="Private Build"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="user.timezone" value="Etc/UTC"/>
+    <property name="maven.conf" value="/usr/share/maven/conf"/>
+    <property name="os.name" value="Linux"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="rat.skip" value="true"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -fae clean org.jacoco:jacoco-maven-plugin:0.8.14:prepare-agent test org.jacoco:jacoco-maven-plugin:0.8.14:report -DskipTests=false -Dmaven.test.skip=false -DfailIfNoTests=false -Dmaven.test.failure.ignore=true -Drat.skip=true -DforkCount=0 -B"/>
+    <property name="maven.home" value="/usr/share/maven"/>
+    <property name="surefire.test.class.path" value="/testbed/target/test-classes:/testbed/target/classes:/root/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar:/root/.m2/repository/org/apache/commons/commons-pool2/2.13.1/commons-pool2-2.13.1.jar:/root/.m2/repository/org/json/json/20260814/json-20260814.jar:/root/.m2/repository/com/google/code/gson/gson/2.14.0/gson-2.14.0.jar:/root/.m2/repository/com/google/errorprone/error_prone_annotations/2.48.0/error_prone_annotations-2.48.0.jar:/root/.m2/repository/redis/clients/authentication/redis-authx-core/0.2.0/redis-authx-core-0.2.0.jar:/root/.m2/repository/com/kohlschutter/junixsocket/junixsocket-native-common/2.11.0/junixsocket-native-common-2.11.0.jar:/root/.m2/repository/com/kohlschutter/junixsocket/junixsocket-common/2.11.0/junixsocket-common-2.11.0.jar:/root/.m2/repository/org/locationtech/jts/jts-core/1.20.0/jts-core-1.20.0.jar:/root/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.14.4/junit-jupiter-api-5.14.4.jar:/root/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/root/.m2/repository/org/junit/platform/junit-platform-commons/1.14.4/junit-platform-commons-1.14.4.jar:/root/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/root/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.14.4/junit-jupiter-params-5.14.4.jar:/root/.m2/repository/org/mockito/mockito-junit-jupiter/4.11.0/mockito-junit-jupiter-4.11.0.jar:/root/.m2/repository/org/mockito/mockito-core/4.11.0/mockito-core-4.11.0.jar:/root/.m2/repository/net/bytebuddy/byte-buddy/1.12.19/byte-buddy-1.12.19.jar:/root/.m2/repository/net/bytebuddy/byte-buddy-agent/1.12.19/byte-buddy-agent-1.12.19.jar:/root/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/root/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.14.4/junit-jupiter-engine-5.14.4.jar:/root/.m2/repository/org/junit/platform/junit-platform-engine/1.14.4/junit-platform-engine-1.14.4.jar:/root/.m2/repository/org/hamcrest/hamcrest/3.0/hamcrest-3.0.jar:/root/.m2/repository/ch/qos/logback/logback-classic/1.2.13/logback-classic-1.2.13.jar:/root/.m2/repository/ch/qos/logback/logback-core/1.2.13/logback-core-1.2.13.jar:/root/.m2/repository/org/mockito/mockito-inline/4.11.0/mockito-inline-4.11.0.jar:/root/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.22.2/jackson-databind-2.22.2.jar:/root/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.22/jackson-annotations-2.22.jar:/root/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.22.2/jackson-core-2.22.2.jar:/root/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.22.2/jackson-datatype-jsr310-2.22.2.jar:/root/.m2/repository/net/javacrumbs/json-unit/json-unit/2.40.1/json-unit-2.40.1.jar:/root/.m2/repository/net/javacrumbs/json-unit/json-unit-core/2.40.1/json-unit-core-2.40.1.jar:/root/.m2/repository/org/hamcrest/hamcrest-core/2.2/hamcrest-core-2.2.jar:/root/.m2/repository/org/apache/httpcomponents/client5/httpclient5-fluent/5.6.4/httpclient5-fluent-5.6.4.jar:/root/.m2/repository/org/apache/httpcomponents/client5/httpclient5/5.6.4/httpclient5-5.6.4.jar:/root/.m2/repository/org/apache/httpcomponents/core5/httpcore5/5.4.3/httpcore5-5.4.3.jar:/root/.m2/repository/org/apache/httpcomponents/core5/httpcore5-h2/5.4.3/httpcore5-h2-5.4.3.jar:/root/.m2/repository/org/awaitility/awaitility/4.3.0/awaitility-4.3.0.jar:/root/.m2/repository/redis/clients/authentication/redis-authx-entraid/0.2.0/redis-authx-entraid-0.2.0.jar:/root/.m2/repository/com/auth0/java-jwt/4.5.0/java-jwt-4.5.0.jar:/root/.m2/repository/com/microsoft/azure/msal4j/1.26.0/msal4j-1.26.0.jar:/root/.m2/repository/com/azure/azure-json/1.4.0/azure-json-1.4.0.jar:/root/.m2/repository/com/azure/azure-identity/1.18.4/azure-identity-1.18.4.jar:/root/.m2/repository/com/azure/azure-core/1.58.1/azure-core-1.58.1.jar:/root/.m2/repository/com/azure/azure-xml/1.2.1/azure-xml-1.2.1.jar:/root/.m2/repository/io/projectreactor/reactor-core/3.7.18/reactor-core-3.7.18.jar:/root/.m2/repository/org/reactivestreams/reactive-streams/1.0.4/reactive-streams-1.0.4.jar:/root/.m2/repository/com/azure/azure-core-http-netty/1.16.5/azure-core-http-netty-1.16.5.jar:/root/.m2/repository/io/netty/netty-handler/4.1.135.Final/netty-handler-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-resolver/4.1.135.Final/netty-resolver-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-transport/4.1.135.Final/netty-transport-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-handler-proxy/4.1.135.Final/netty-handler-proxy-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-codec-socks/4.1.135.Final/netty-codec-socks-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-buffer/4.1.135.Final/netty-buffer-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-codec/4.1.135.Final/netty-codec-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-codec-http/4.1.135.Final/netty-codec-http-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-codec-http2/4.1.135.Final/netty-codec-http2-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-transport-native-unix-common/4.1.135.Final/netty-transport-native-unix-common-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-transport-native-epoll/4.1.135.Final/netty-transport-native-epoll-4.1.135.Final-linux-x86_64.jar:/root/.m2/repository/io/netty/netty-transport-classes-epoll/4.1.135.Final/netty-transport-classes-epoll-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-transport-native-kqueue/4.1.135.Final/netty-transport-native-kqueue-4.1.135.Final-osx-x86_64.jar:/root/.m2/repository/io/netty/netty-transport-classes-kqueue/4.1.135.Final/netty-transport-classes-kqueue-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-tcnative-boringssl-static/2.0.78.Final/netty-tcnative-boringssl-static-2.0.78.Final.jar:/root/.m2/repository/io/netty/netty-tcnative-classes/2.0.78.Final/netty-tcnative-classes-2.0.78.Final.jar:/root/.m2/repository/io/netty/netty-tcnative-boringssl-static/2.0.78.Final/netty-tcnative-boringssl-static-2.0.78.Final-linux-x86_64.jar:/root/.m2/repository/io/netty/netty-tcnative-boringssl-static/2.0.78.Final/netty-tcnative-boringssl-static-2.0.78.Final-linux-aarch_64.jar:/root/.m2/repository/io/netty/netty-tcnative-boringssl-static/2.0.78.Final/netty-tcnative-boringssl-static-2.0.78.Final-osx-x86_64.jar:/root/.m2/repository/io/netty/netty-tcnative-boringssl-static/2.0.78.Final/netty-tcnative-boringssl-static-2.0.78.Final-osx-aarch_64.jar:/root/.m2/repository/io/netty/netty-tcnative-boringssl-static/2.0.78.Final/netty-tcnative-boringssl-static-2.0.78.Final-windows-x86_64.jar:/root/.m2/repository/io/projectreactor/netty/reactor-netty-http/1.2.18/reactor-netty-http-1.2.18.jar:/root/.m2/repository/io/netty/netty-resolver-dns/4.1.135.Final/netty-resolver-dns-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-codec-dns/4.1.135.Final/netty-codec-dns-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-resolver-dns-native-macos/4.1.135.Final/netty-resolver-dns-native-macos-4.1.135.Final-osx-x86_64.jar:/root/.m2/repository/io/netty/netty-resolver-dns-classes-macos/4.1.135.Final/netty-resolver-dns-classes-macos-4.1.135.Final.jar:/root/.m2/repository/io/projectreactor/netty/reactor-netty-core/1.2.18/reactor-netty-core-1.2.18.jar:/root/.m2/repository/io/netty/netty-common/4.1.135.Final/netty-common-4.1.135.Final.jar:/root/.m2/repository/com/microsoft/azure/msal4j-persistence-extension/1.3.0/msal4j-persistence-extension-1.3.0.jar:/root/.m2/repository/net/java/dev/jna/jna/5.13.0/jna-5.13.0.jar:/root/.m2/repository/net/java/dev/jna/jna-platform/5.17.0/jna-platform-5.17.0.jar:/root/.m2/repository/eu/rekawek/toxiproxy/toxiproxy-java/2.1.11/toxiproxy-java-2.1.11.jar:/root/.m2/repository/org/openjdk/jmh/jmh-core/1.37/jmh-core-1.37.jar:/root/.m2/repository/net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar:/root/.m2/repository/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar:/root/.m2/repository/org/openjdk/jmh/jmh-generator-annprocess/1.37/jmh-generator-annprocess-1.37.jar:/root/.m2/repository/io/github/resilience4j/resilience4j-all/1.7.1/resilience4j-all-1.7.1.jar:/root/.m2/repository/io/vavr/vavr/0.10.2/vavr-0.10.2.jar:/root/.m2/repository/io/vavr/vavr-match/0.10.2/vavr-match-0.10.2.jar:/root/.m2/repository/io/github/resilience4j/resilience4j-ratelimiter/1.7.1/resilience4j-ratelimiter-1.7.1.jar:/root/.m2/repository/io/github/resilience4j/resilience4j-bulkhead/1.7.1/resilience4j-bulkhead-1.7.1.jar:/root/.m2/repository/io/github/resilience4j/resilience4j-cache/1.7.1/resilience4j-cache-1.7.1.jar:/root/.m2/repository/javax/cache/cache-api/1.1.0/cache-api-1.1.0.jar:/root/.m2/repository/io/github/resilience4j/resilience4j-timelimiter/1.7.1/resilience4j-timelimiter-1.7.1.jar:/root/.m2/repository/io/github/resilience4j/resilience4j-circuitbreaker/1.7.1/resilience4j-circuitbreaker-1.7.1.jar:/root/.m2/repository/io/github/resilience4j/resilience4j-core/1.7.1/resilience4j-core-1.7.1.jar:/root/.m2/repository/io/github/resilience4j/resilience4j-retry/1.7.1/resilience4j-retry-1.7.1.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/root"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.home" value="/usr/lib/jvm/java-8-openjdk-amd64/jre"/>
+    <property name="basedir" value="/testbed"/>
+    <property name="file.separator" value="/"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property name="sun.boot.class.path" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/resources.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jsse.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jce.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/charsets.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jfr.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/classes"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="1.8.0_502-8u502-ga~us1-0ubuntu1~22.04-b07"/>
+    <property name="user.name" value="root"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="5.15.0-164-generic"/>
+    <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/endorsed"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="skipTests" value="false"/>
+    <property name="localRepository" value="/root/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="maven.test.skip" value="false"/>
+    <property name="java.version" value="1.8.0_502"/>
+    <property name="user.dir" value="/testbed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="maven.multiModuleProjectDirectory" value="/testbed"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+    <property name="failIfNoTests" value="false"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.library.path" value="/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vendor" value="Private Build"/>
+    <property name="java.vm.version" value="25.502-b07"/>
+    <property name="redis-hosts" value=""/>
+    <property name="classworlds.conf" value="/usr/share/maven/bin/m2.conf"/>
+    <property name="java.specification.maintenance.version" value="6"/>
+    <property name="java.ext.dirs" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext:/usr/java/packages/lib/ext"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="library.jansi.path" value="/usr/share/maven/lib/jansi-native"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="maven.test.failure.ignore" value="true"/>
+  </properties>
+  <testcase name="noAggregationClauseWhenUnset" classname="redis.clients.jedis.timeseries.TSMRangeParamsTest$AddParamsTests" time="0.002"/>
+  <testcase name="multipleAggregatorsAreCommaJoined" classname="redis.clients.jedis.timeseries.TSMRangeParamsTest$AddParamsTests" time="0.0"/>
+  <testcase name="singleAggregatorWireFormat" classname="redis.clients.jedis.timeseries.TSMRangeParamsTest$AddParamsTests" time="0.0"/>
+  <testcase name="aggregatorsEmptyArrayThrowsException" classname="redis.clients.jedis.timeseries.TSMRangeParamsTest$ValidationTests" time="0.0"/>
+  <testcase name="excludeEmptyWithGroupByThrowsException" classname="redis.clients.jedis.timeseries.TSMRangeParamsTest$ValidationTests" time="0.001"/>
+  <testcase name="aggregatorsNullElementThrowsException" classname="redis.clients.jedis.timeseries.TSMRangeParamsTest$ValidationTests" time="0.001"/>
+  <testcase name="excludeEmptyDistinguishesEquality" classname="redis.clients.jedis.timeseries.TSMRangeParamsTest$ExcludeEmptyTests" time="0.0"/>
+  <testcase name="noExcludeEmptyFlagWhenUnset" classname="redis.clients.jedis.timeseries.TSMRangeParamsTest$ExcludeEmptyTests" time="0.0"/>
+  <testcase name="excludeEmptyEmitsFlagOnceBeforeFilter" classname="redis.clients.jedis.timeseries.TSMRangeParamsTest$ExcludeEmptyTests" time="0.001"/>
+  <testcase name="excludeEmptyComposesWithRangeOptions" classname="redis.clients.jedis.timeseries.TSMRangeParamsTest$ExcludeEmptyTests" time="0.0"/>
+  <testcase name="singleAggregationEqualsOneElementArrayAggregation" classname="redis.clients.jedis.timeseries.TSMRangeParamsTest$AggregationOverloadEquivalenceTests" time="0.001"/>
+</testsuite>

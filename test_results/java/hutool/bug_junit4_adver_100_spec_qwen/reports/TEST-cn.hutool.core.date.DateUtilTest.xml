@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="cn.hutool.core.date.DateUtilTest" time="0.076" tests="92" errors="0" skipped="1" failures="0">
+  <properties>
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="sun.cpu.isalist" value=""/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/usr/share/maven/boot/plexus-classworlds-2.x.jar"/>
+    <property name="forkCount" value="0"/>
+    <property name="java.vm.vendor" value="Temurin"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="sun.font.fontmanager" value="sun.awt.X11FontManager"/>
+    <property name="java.vendor.url" value="https://adoptium.net/"/>
+    <property name="user.timezone" value="Asia/Shanghai"/>
+    <property name="maven.conf" value="/usr/share/maven/conf"/>
+    <property name="os.name" value="Linux"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="rat.skip" value="true"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="/opt/java/openjdk/jre/lib/amd64"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -fae clean org.jacoco:jacoco-maven-plugin:0.8.14:prepare-agent test org.jacoco:jacoco-maven-plugin:0.8.14:report -DskipTests=false -Dmaven.test.skip=false -DfailIfNoTests=false -Dmaven.test.failure.ignore=true -Drat.skip=true -DforkCount=0 -B"/>
+    <property name="maven.home" value="/usr/share/maven"/>
+    <property name="surefire.test.class.path" value="/testbed/hutool-core/target/test-classes:/testbed/hutool-core/target/classes:/root/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.3/junit-jupiter-engine-5.10.3.jar:/root/.m2/repository/org/junit/platform/junit-platform-engine/1.10.3/junit-platform-engine-1.10.3.jar:/root/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/root/.m2/repository/org/junit/platform/junit-platform-commons/1.10.3/junit-platform-commons-1.10.3.jar:/root/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.3/junit-jupiter-api-5.10.3.jar:/root/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/root/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.3/junit-jupiter-params-5.10.3.jar:/root/.m2/repository/org/projectlombok/lombok/1.18.34/lombok-1.18.34.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/root"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.home" value="/opt/java/openjdk/jre"/>
+    <property name="basedir" value="/testbed/hutool-core"/>
+    <property name="file.separator" value="/"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property name="sun.boot.class.path" value="/opt/java/openjdk/jre/lib/resources.jar:/opt/java/openjdk/jre/lib/rt.jar:/opt/java/openjdk/jre/lib/sunrsasign.jar:/opt/java/openjdk/jre/lib/jsse.jar:/opt/java/openjdk/jre/lib/jce.jar:/opt/java/openjdk/jre/lib/charsets.jar:/opt/java/openjdk/jre/lib/jfr.jar:/opt/java/openjdk/jre/classes"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="1.8.0_502-b07"/>
+    <property name="user.name" value="root"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="5.15.0-164-generic"/>
+    <property name="java.endorsed.dirs" value="/opt/java/openjdk/jre/lib/endorsed"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="skipTests" value="false"/>
+    <property name="localRepository" value="/root/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="maven.test.skip" value="false"/>
+    <property name="java.version" value="1.8.0_502"/>
+    <property name="user.dir" value="/testbed/hutool-core"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="maven.multiModuleProjectDirectory" value="/testbed"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+    <property name="failIfNoTests" value="false"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.library.path" value="/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vendor" value="Temurin"/>
+    <property name="java.vm.version" value="25.502-b07"/>
+    <property name="classworlds.conf" value="/usr/share/maven/bin/m2.conf"/>
+    <property name="java.specification.maintenance.version" value="6"/>
+    <property name="java.ext.dirs" value="/opt/java/openjdk/jre/lib/ext:/usr/java/packages/lib/ext"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="library.jansi.path" value="/usr/share/maven/lib/jansi-native"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="maven.test.failure.ignore" value="true"/>
+  </properties>
+  <testcase name="parseSingleMonthAndDayTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="isOverlapTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="dayOfYearTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="parseWithMilsTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="isExpiredTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="secondToTimeTest2" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="formatAndParseCustomTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="endOfYearTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="parseCSTTest2" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="ageTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="yearAndQTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="parseTest2" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="parseTest3" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="parseTest4" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="parseTest5" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="parseTest6" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="parseTest7" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="parseTest8" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="dayOfWeekTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="formatBetweenTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="isWeekendTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="parseISOTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="isOverlapTest2" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="parseAndOffsetTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="ceilingDayTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="betweenWeekTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="formatChineseDateTimeTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="cellingAmPmTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="isInTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="endOfWeekTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="compareTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="betweenTest2" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="betweenTest3" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="parseISO8601ShortZoneOffsetTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="offsetDateTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="calendarTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="parseJDkTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="issueI8NMP7Test" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="beginAndEndTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="beginOfWeekTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="roundAmPmTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="dateTest2" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="localDateTimeTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="formatNormDateTimeFormatterTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="timeToSecondTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="secondToTimeTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="parseRFC2822Test" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="timerTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="parseEmptyTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="parseToDateTimeTest1" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="parseToDateTimeTest2" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="parseToDateTimeTest3" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="parseToDateTimeTest4" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="parseToDateTimeTest5" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="offsetMonthTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="formatAndParseTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="localDateTimeTest2" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="beginOfWeekTest2" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="isSameWeekTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="formatTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="parseUTCTest3" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="parseUTCTest4" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="parseISO8601Test" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="currentTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="truncateTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="parseDateTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="ceilingMinuteTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="formatHttpDateTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="parseNotFitTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="parseUTCTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="endOfDayTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="toInstantTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="formatChineseDateTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="parseTimeTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001">
+    <system-out><![CDATA[2026-09-01 12:23:34
+]]></system-out>
+  </testcase>
+  <testcase name="ageTest2" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="ageTest3" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="ageTest4" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="issueI7H34NTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="parseSingleNumberTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="endOfQuarterTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="betweenTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="dateTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="formatSpeedTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0">
+    <skipped message="public void cn.hutool.core.date.DateUtilTest.formatSpeedTest() is @Disabled"/>
+  </testcase>
+  <testcase name="parseByDateTimeFormatterTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="isLastDayTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="formatAndParseCustomTest2" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="issueI9CYHITest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="weekOfYearTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="parseNormFullTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="parseUTCOffsetTest" classname="cn.hutool.core.date.DateUtilTest" time="0.001"/>
+  <testcase name="nowTest" classname="cn.hutool.core.date.DateUtilTest" time="0.0"/>
+  <testcase name="betweenDayTest" classname="cn.hutool.core.date.DateUtilTest" time="0.029"/>
+</testsuite>

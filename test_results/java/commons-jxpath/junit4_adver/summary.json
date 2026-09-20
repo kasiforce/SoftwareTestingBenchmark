@@ -1,0 +1,55 @@
+{
+  "total": 2,
+  "syntax_correct": 1,
+  "syntax_correct_rate": 0.5,
+  "compile_pass": 1,
+  "test_summary": {
+    "total": 413,
+    "passed": 413,
+    "failures": 0,
+    "errors": 0,
+    "pass_rate": 1.0
+  },
+  "file_coverage": {
+    "org/apache/commons/jxpath/ri/compiler/CoreOperationMod.java": {
+      "total_line": 10,
+      "covered_line": 8,
+      "total_branch": 2,
+      "covered_branch": 1
+    },
+    "org/apache/commons/jxpath/ri/model/jdom/JDOMNodePointer.java": {
+      "total_line": 365,
+      "covered_line": 271,
+      "total_branch": 297,
+      "covered_branch": 194
+    }
+  },
+  "function_coverage": {
+    "org.apache.commons.jxpath.ri.compiler.CoreOperationMod.computeValue": {
+      "total_line": 5,
+      "covered_line": 4,
+      "total_branch": 2,
+      "covered_branch": 1
+    },
+    "org.apache.commons.jxpath.ri.model.jdom.JDOMNodePointer.asPath": {
+      "total_line": 36,
+      "covered_line": 31,
+      "total_branch": 26,
+      "covered_branch": 17
+    }
+  },
+  "summary": {
+    "file": {
+      "total_lines": 375,
+      "covered_lines": 279,
+      "total_branches": 299,
+      "covered_branches": 195
+    },
+    "function": {
+      "total_lines": 41,
+      "covered_lines": 35,
+      "total_branches": 28,
+      "covered_branches": 18
+    }
+  }
+}

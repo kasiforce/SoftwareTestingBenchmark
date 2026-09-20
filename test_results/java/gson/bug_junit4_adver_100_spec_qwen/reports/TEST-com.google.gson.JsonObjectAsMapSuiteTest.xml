@@ -1,0 +1,974 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.google.gson.JsonObjectAsMapSuiteTest" time="0.698" tests="906" errors="0" skipped="0" failures="0" flakes="0">
+  <properties>
+    <property name="java.specification.version" value="17"/>
+    <property name="sun.jnu.encoding" value="ANSI_X3.4-1968"/>
+    <property name="java.class.path" value="/opt/maven/boot/plexus-classworlds-2.7.0.jar"/>
+    <property name="forkCount" value="0"/>
+    <property name="java.vm.vendor" value="Ubuntu"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://ubuntu.com/"/>
+    <property name="user.timezone" value="Etc/UTC"/>
+    <property name="maven.conf" value="/opt/maven/conf"/>
+    <property name="java.vm.specification.version" value="17"/>
+    <property name="os.name" value="Linux"/>
+    <property name="rat.skip" value="true"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-17-openjdk-amd64/lib"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher --show-version --batch-mode --no-transfer-progress -fae clean org.jacoco:jacoco-maven-plugin:0.8.14:prepare-agent test org.jacoco:jacoco-maven-plugin:0.8.14:report -DskipTests=false -Dmaven.test.skip=false -DfailIfNoTests=false -Dmaven.test.failure.ignore=true -Drat.skip=true -DforkCount=0 -B"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="maven.home" value="/opt/maven"/>
+    <property name="surefire.test.class.path" value="/testbed/gson/target/test-classes:/testbed/gson/target/classes:/root/.m2/repository/com/google/errorprone/error_prone_annotations/2.50.0/error_prone_annotations-2.50.0.jar:/root/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/root/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/root/.m2/repository/com/google/truth/truth/1.4.5/truth-1.4.5.jar:/root/.m2/repository/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar:/root/.m2/repository/com/google/auto/value/auto-value-annotations/1.11.0/auto-value-annotations-1.11.0.jar:/root/.m2/repository/org/ow2/asm/asm/9.8/asm-9.8.jar:/root/.m2/repository/com/google/guava/guava-testlib/33.6.0-jre/guava-testlib-33.6.0-jre.jar:/root/.m2/repository/com/google/j2objc/j2objc-annotations/3.1/j2objc-annotations-3.1.jar:/root/.m2/repository/com/google/guava/guava/33.6.0-jre/guava-33.6.0-jre.jar:/root/.m2/repository/com/google/guava/failureaccess/1.0.3/failureaccess-1.0.3.jar:/root/.m2/repository/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/root"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="jansi.mode" value="strip"/>
+    <property name="java.version.date" value="2026-07-21"/>
+    <property name="java.home" value="/usr/lib/jvm/java-17-openjdk-amd64"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/testbed/gson"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="17.0.20+8-1-22.04-Ubuntu"/>
+    <property name="user.name" value="root"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="5.15.0-164-generic"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="ANSI_X3.4-1968"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="skipTests" value="false"/>
+    <property name="localRepository" value="/root/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://bugs.launchpad.net/ubuntu/+source/openjdk-17"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="java.version" value="17.0.20"/>
+    <property name="maven.test.skip" value="false"/>
+    <property name="user.dir" value="/testbed/gson"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="maven.multiModuleProjectDirectory" value="/testbed"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="failIfNoTests" value="false"/>
+    <property name="native.encoding" value="ANSI_X3.4-1968"/>
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Ubuntu"/>
+    <property name="java.vm.version" value="17.0.20+8-1-22.04-Ubuntu"/>
+    <property name="classworlds.conf" value="/opt/maven/bin/m2.conf"/>
+    <property name="java.specification.maintenance.version" value="1"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="library.jansi.path" value="/opt/maven/lib/jansi-native"/>
+    <property name="java.class.version" value="61.0"/>
+    <property name="maven.test.failure.ignore" value="true"/>
+  </properties>
+  <testcase name="testClear[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapClearTester" time="0.001"/>
+  <testcase name="testClear[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapClearTester" time="0.0"/>
+  <testcase name="testClear[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapClearTester" time="0.0"/>
+  <testcase name="testCompute_absentToAbsent[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapComputeTester" time="0.0"/>
+  <testcase name="testCompute_absentToPresent[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapComputeTester" time="0.001"/>
+  <testcase name="testCompute_absentFunctionThrows[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapComputeTester" time="0.001"/>
+  <testcase name="testCompute_absentToAbsent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapComputeTester" time="0.0"/>
+  <testcase name="testCompute_presentToPresent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapComputeTester" time="0.001"/>
+  <testcase name="testCompute_absentToPresent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapComputeTester" time="0.0"/>
+  <testcase name="testCompute_presentFunctionThrows[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapComputeTester" time="0.002"/>
+  <testcase name="testCompute_absentFunctionThrows[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapComputeTester" time="0.0"/>
+  <testcase name="testCompute_presentToAbsent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapComputeTester" time="0.0"/>
+  <testcase name="testCompute_absentToAbsent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapComputeTester" time="0.0"/>
+  <testcase name="testCompute_presentToPresent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapComputeTester" time="0.001"/>
+  <testcase name="testCompute_absentToPresent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapComputeTester" time="0.0"/>
+  <testcase name="testCompute_presentFunctionThrows[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapComputeTester" time="0.0"/>
+  <testcase name="testCompute_absentFunctionThrows[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapComputeTester" time="0.0"/>
+  <testcase name="testCompute_presentToAbsent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapComputeTester" time="0.0"/>
+  <testcase name="testComputeIfAbsent_functionReturnsNullNotInserted[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapComputeIfAbsentTester" time="0.0"/>
+  <testcase name="testComputeIfAbsent_supportedAbsent[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapComputeIfAbsentTester" time="0.0"/>
+  <testcase name="testComputeIfAbsent_nullKeyUnsupported[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapComputeIfAbsentTester" time="0.001"/>
+  <testcase name="testComputeIfAbsent_functionThrows[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapComputeIfAbsentTester" time="0.0"/>
+  <testcase name="testComputeIfAbsent_supportedPresent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapComputeIfAbsentTester" time="0.001"/>
+  <testcase name="testComputeIfAbsent_functionReturnsNullNotInserted[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapComputeIfAbsentTester" time="0.0"/>
+  <testcase name="testComputeIfAbsent_supportedAbsent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapComputeIfAbsentTester" time="0.0"/>
+  <testcase name="testComputeIfAbsent_nullKeyUnsupported[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapComputeIfAbsentTester" time="0.0"/>
+  <testcase name="testComputeIfAbsent_functionThrows[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapComputeIfAbsentTester" time="0.0"/>
+  <testcase name="testComputeIfAbsent_supportedPresent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapComputeIfAbsentTester" time="0.0"/>
+  <testcase name="testComputeIfAbsent_functionReturnsNullNotInserted[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapComputeIfAbsentTester" time="0.0"/>
+  <testcase name="testComputeIfAbsent_supportedAbsent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapComputeIfAbsentTester" time="0.0"/>
+  <testcase name="testComputeIfAbsent_nullKeyUnsupported[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapComputeIfAbsentTester" time="0.001"/>
+  <testcase name="testComputeIfAbsent_functionThrows[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapComputeIfAbsentTester" time="0.0"/>
+  <testcase name="testComputeIfPresent_supportedAbsent[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapComputeIfPresentTester" time="0.001"/>
+  <testcase name="testComputeIfPresent_supportedAbsent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapComputeIfPresentTester" time="0.0"/>
+  <testcase name="testComputeIfPresent_functionReturnsNull[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapComputeIfPresentTester" time="0.0"/>
+  <testcase name="testComputeIfPresent_functionThrows[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapComputeIfPresentTester" time="0.001"/>
+  <testcase name="testComputeIfPresent_supportedPresent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapComputeIfPresentTester" time="0.0"/>
+  <testcase name="testComputeIfPresent_supportedAbsent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapComputeIfPresentTester" time="0.0"/>
+  <testcase name="testComputeIfPresent_functionReturnsNull[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapComputeIfPresentTester" time="0.0"/>
+  <testcase name="testComputeIfPresent_functionThrows[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapComputeIfPresentTester" time="0.0"/>
+  <testcase name="testComputeIfPresent_supportedPresent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapComputeIfPresentTester" time="0.0"/>
+  <testcase name="testContains_no[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapContainsKeyTester" time="0.0"/>
+  <testcase name="testContains_nullNotContainedButAllowed[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapContainsKeyTester" time="0.0"/>
+  <testcase name="testContains_wrongType[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapContainsKeyTester" time="0.0"/>
+  <testcase name="testContains_yes[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapContainsKeyTester" time="0.0"/>
+  <testcase name="testContains_no[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapContainsKeyTester" time="0.0"/>
+  <testcase name="testContains_nullNotContainedButAllowed[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapContainsKeyTester" time="0.0"/>
+  <testcase name="testContains_wrongType[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapContainsKeyTester" time="0.0"/>
+  <testcase name="testContains_yes[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapContainsKeyTester" time="0.0"/>
+  <testcase name="testContains_no[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapContainsKeyTester" time="0.0"/>
+  <testcase name="testContains_nullNotContainedButAllowed[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapContainsKeyTester" time="0.0"/>
+  <testcase name="testContains_wrongType[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapContainsKeyTester" time="0.0"/>
+  <testcase name="testContains_no[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapContainsValueTester" time="0.0"/>
+  <testcase name="testContains_nullNotContainedButAllowed[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapContainsValueTester" time="0.0"/>
+  <testcase name="testContains_wrongType[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapContainsValueTester" time="0.001"/>
+  <testcase name="testContains_yes[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapContainsValueTester" time="0.001"/>
+  <testcase name="testContains_no[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapContainsValueTester" time="0.0"/>
+  <testcase name="testContains_nullNotContainedButAllowed[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapContainsValueTester" time="0.0"/>
+  <testcase name="testContains_wrongType[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapContainsValueTester" time="0.0"/>
+  <testcase name="testContains_yes[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapContainsValueTester" time="0.0"/>
+  <testcase name="testContains_no[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapContainsValueTester" time="0.0"/>
+  <testcase name="testContains_nullNotContainedButAllowed[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapContainsValueTester" time="0.0"/>
+  <testcase name="testContains_wrongType[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapContainsValueTester" time="0.0"/>
+  <testcase name="testContainsEntryWithNullKeyAbsent[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapEntrySetTester" time="0.0"/>
+  <testcase name="testContainsEntryWithIncomparableKey[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapEntrySetTester" time="0.001"/>
+  <testcase name="testContainsEntryWithIncomparableValue[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapEntrySetTester" time="0.0"/>
+  <testcase name="testContainsEntryWithNullValueAbsent[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapEntrySetTester" time="0.0"/>
+  <testcase name="testContainsEntryWithNullKeyAbsent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapEntrySetTester" time="0.0"/>
+  <testcase name="testContainsEntryWithIncomparableKey[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapEntrySetTester" time="0.001"/>
+  <testcase name="testContainsEntryWithIncomparableValue[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapEntrySetTester" time="0.0"/>
+  <testcase name="testSetValueWithNullValuesAbsent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapEntrySetTester" time="0.0"/>
+  <testcase name="testIteratorRemoveOnly[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapEntrySetTester" time="0.0"/>
+  <testcase name="testIteratorSetValueAndRemove[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapEntrySetTester" time="0.0"/>
+  <testcase name="testContainsEntryWithNullValueAbsent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapEntrySetTester" time="0.0"/>
+  <testcase name="testSetValue[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapEntrySetTester" time="0.002"/>
+  <testcase name="testContainsEntryWithNullKeyAbsent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapEntrySetTester" time="0.0"/>
+  <testcase name="testContainsEntryWithIncomparableKey[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapEntrySetTester" time="0.0"/>
+  <testcase name="testContainsEntryWithIncomparableValue[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapEntrySetTester" time="0.001"/>
+  <testcase name="testSetValueWithNullValuesAbsent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapEntrySetTester" time="0.0"/>
+  <testcase name="testIteratorSetValueAndRemove[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapEntrySetTester" time="0.0"/>
+  <testcase name="testIteratorRemoveMultiple[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapEntrySetTester" time="0.0"/>
+  <testcase name="testContainsEntryWithNullValueAbsent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapEntrySetTester" time="0.0"/>
+  <testcase name="testSetValue[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapEntrySetTester" time="0.0"/>
+  <testcase name="testEquals_list[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherMapWithSameEntries[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapEqualsTester" time="0.001"/>
+  <testcase name="testEquals_largerMap[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapEqualsTester" time="0.0"/>
+  <testcase name="testEquals_list[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherMapWithDifferentEntries[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherMapWithSameEntries[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherContainsNullValue[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapEqualsTester" time="0.0"/>
+  <testcase name="testEquals_largerMap[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherContainsNullKey[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapEqualsTester" time="0.0"/>
+  <testcase name="testEquals_smallerMap[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapEqualsTester" time="0.0"/>
+  <testcase name="testEquals_list[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherMapWithDifferentEntries[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherMapWithSameEntries[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherContainsNullValue[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapEqualsTester" time="0.0"/>
+  <testcase name="testEquals_largerMap[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherContainsNullKey[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapEqualsTester" time="0.0"/>
+  <testcase name="testEquals_smallerMap[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapEqualsTester" time="0.001"/>
+  <testcase name="testForEachKnownOrder[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapForEachTester" time="0.0"/>
+  <testcase name="testForEachKnownOrder[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapForEachTester" time="0.0"/>
+  <testcase name="testForEachKnownOrder[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapForEachTester" time="0.0"/>
+  <testcase name="testGet_no[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapGetTester" time="0.0"/>
+  <testcase name="testGet_nullNotContainedButAllowed[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapGetTester" time="0.001"/>
+  <testcase name="testGet_wrongType[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapGetTester" time="0.0"/>
+  <testcase name="testGet_yes[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapGetTester" time="0.0"/>
+  <testcase name="testGet_no[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapGetTester" time="0.0"/>
+  <testcase name="testGet_nullNotContainedButAllowed[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapGetTester" time="0.0"/>
+  <testcase name="testGet_wrongType[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapGetTester" time="0.0"/>
+  <testcase name="testGet_yes[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapGetTester" time="0.0"/>
+  <testcase name="testGet_no[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapGetTester" time="0.0"/>
+  <testcase name="testGet_nullNotContainedButAllowed[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapGetTester" time="0.0"/>
+  <testcase name="testGet_wrongType[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapGetTester" time="0.0"/>
+  <testcase name="testGetOrDefault_absentNull[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapGetOrDefaultTester" time="0.0"/>
+  <testcase name="testGetOrDefault_absent[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapGetOrDefaultTester" time="0.0"/>
+  <testcase name="testGetOrDefault_absentNullDefault[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapGetOrDefaultTester" time="0.0"/>
+  <testcase name="testGet_wrongType[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapGetOrDefaultTester" time="0.0"/>
+  <testcase name="testGetOrDefault_absentNull[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapGetOrDefaultTester" time="0.0"/>
+  <testcase name="testGetOrDefault_present[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapGetOrDefaultTester" time="0.0"/>
+  <testcase name="testGetOrDefault_absent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapGetOrDefaultTester" time="0.0"/>
+  <testcase name="testGetOrDefault_absentNullDefault[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapGetOrDefaultTester" time="0.0"/>
+  <testcase name="testGetOrDefault_presentNullDefault[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapGetOrDefaultTester" time="0.001"/>
+  <testcase name="testGet_wrongType[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapGetOrDefaultTester" time="0.0"/>
+  <testcase name="testGetOrDefault_absentNull[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapGetOrDefaultTester" time="0.0"/>
+  <testcase name="testGetOrDefault_present[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapGetOrDefaultTester" time="0.0"/>
+  <testcase name="testGetOrDefault_absent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapGetOrDefaultTester" time="0.0"/>
+  <testcase name="testGetOrDefault_absentNullDefault[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapGetOrDefaultTester" time="0.0"/>
+  <testcase name="testGetOrDefault_presentNullDefault[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapGetOrDefaultTester" time="0.0"/>
+  <testcase name="testGet_wrongType[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapGetOrDefaultTester" time="0.0"/>
+  <testcase name="testHashCode[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapHashCodeTester" time="0.0"/>
+  <testcase name="testHashCode[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapHashCodeTester" time="0.001"/>
+  <testcase name="testHashCode[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapHashCodeTester" time="0.0"/>
+  <testcase name="testIsEmpty_yes[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapIsEmptyTester" time="0.0"/>
+  <testcase name="testIsEmpty_no[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapIsEmptyTester" time="0.0"/>
+  <testcase name="testIsEmpty_no[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapIsEmptyTester" time="0.0"/>
+  <testcase name="testMergeNullFunction[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapMergeTester" time="0.0"/>
+  <testcase name="testAbsent[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapMergeTester" time="0.0"/>
+  <testcase name="testMergeNullValue[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapMergeTester" time="0.0"/>
+  <testcase name="testMergePresentToNull[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapMergeTester" time="0.0"/>
+  <testcase name="testMergePresent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapMergeTester" time="0.0"/>
+  <testcase name="testMergeNullFunction[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapMergeTester" time="0.0"/>
+  <testcase name="testAbsent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapMergeTester" time="0.0"/>
+  <testcase name="testMergeFunctionThrows[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapMergeTester" time="0.001"/>
+  <testcase name="testMergeNullValue[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapMergeTester" time="0.0"/>
+  <testcase name="testMergePresentToNull[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapMergeTester" time="0.0"/>
+  <testcase name="testMergePresent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapMergeTester" time="0.0"/>
+  <testcase name="testMergeNullFunction[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapMergeTester" time="0.0"/>
+  <testcase name="testAbsent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapMergeTester" time="0.0"/>
+  <testcase name="testMergeFunctionThrows[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapMergeTester" time="0.001"/>
+  <testcase name="testMergeNullValue[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapMergeTester" time="0.0"/>
+  <testcase name="testPut_nullKeyUnsupported[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapPutTester" time="0.001"/>
+  <testcase name="testPut_supportedNotPresent[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapPutTester" time="0.0"/>
+  <testcase name="testPut_nullValueUnsupported[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapPutTester" time="0.0"/>
+  <testcase name="testPut_nullKeyUnsupported[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapPutTester" time="0.0"/>
+  <testcase name="testPut_replaceWithNullValueUnsupported[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapPutTester" time="0.0"/>
+  <testcase name="testPut_supportedNotPresent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapPutTester" time="0.0"/>
+  <testcase name="testPut_nullValueUnsupported[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapPutTester" time="0.0"/>
+  <testcase name="testPut_supportedPresent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapPutTester" time="0.0"/>
+  <testcase name="testPut_nullKeyUnsupported[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapPutTester" time="0.0"/>
+  <testcase name="testPut_replaceWithNullValueUnsupported[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapPutTester" time="0.0"/>
+  <testcase name="testPut_supportedNotPresent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapPutTester" time="0.0"/>
+  <testcase name="testPut_nullValueUnsupported[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapPutTester" time="0.0"/>
+  <testcase name="testPut_supportedPresent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapPutTester" time="0.0"/>
+  <testcase name="testPutAll_nullKeyUnsupported[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapPutAllTester" time="0.001"/>
+  <testcase name="testPutAll_supportedNonePresent[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapPutAllTester" time="0.0"/>
+  <testcase name="testPutAll_nullValueUnsupported[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapPutAllTester" time="0.0"/>
+  <testcase name="testPutAll_supportedNothing[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapPutAllTester" time="0.001"/>
+  <testcase name="testPutAll_nullCollectionReference[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapPutAllTester" time="0.0"/>
+  <testcase name="testPutAll_nullKeyUnsupported[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapPutAllTester" time="0.0"/>
+  <testcase name="testPutAll_supportedNonePresent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapPutAllTester" time="0.0"/>
+  <testcase name="testPutAll_nullValueUnsupported[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapPutAllTester" time="0.001"/>
+  <testcase name="testPutAll_supportedNothing[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapPutAllTester" time="0.0"/>
+  <testcase name="testPutAll_supportedSomePresent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapPutAllTester" time="0.0"/>
+  <testcase name="testPutAll_nullCollectionReference[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapPutAllTester" time="0.0"/>
+  <testcase name="testPutAll_nullKeyUnsupported[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapPutAllTester" time="0.0"/>
+  <testcase name="testPutAll_supportedNonePresent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapPutAllTester" time="0.0"/>
+  <testcase name="testPutAll_nullValueUnsupported[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapPutAllTester" time="0.0"/>
+  <testcase name="testPutAll_supportedNothing[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapPutAllTester" time="0.0"/>
+  <testcase name="testPutAll_supportedSomePresent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapPutAllTester" time="0.0"/>
+  <testcase name="testPutAll_nullCollectionReference[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapPutAllTester" time="0.001"/>
+  <testcase name="testPutIfAbsent_nullValueUnsupportedAndKeyAbsent[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapPutIfAbsentTester" time="0.0"/>
+  <testcase name="testPutIfAbsent_nullKeyUnsupported[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapPutIfAbsentTester" time="0.001"/>
+  <testcase name="testPutIfAbsent_supportedAbsent[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapPutIfAbsentTester" time="0.0"/>
+  <testcase name="testPutIfAbsent_nullValueUnsupportedAndKeyPresent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapPutIfAbsentTester" time="0.0"/>
+  <testcase name="testPutIfAbsent_nullValueUnsupportedAndKeyAbsent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapPutIfAbsentTester" time="0.0"/>
+  <testcase name="testPutIfAbsent_nullKeyUnsupported[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapPutIfAbsentTester" time="0.0"/>
+  <testcase name="testPutIfAbsent_supportedAbsent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapPutIfAbsentTester" time="0.0"/>
+  <testcase name="testPutIfAbsent_supportedPresent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapPutIfAbsentTester" time="0.0"/>
+  <testcase name="testPutIfAbsent_nullValueUnsupportedAndKeyPresent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapPutIfAbsentTester" time="0.0"/>
+  <testcase name="testPutIfAbsent_nullValueUnsupportedAndKeyAbsent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapPutIfAbsentTester" time="0.0"/>
+  <testcase name="testPutIfAbsent_nullKeyUnsupported[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapPutIfAbsentTester" time="0.0"/>
+  <testcase name="testPutIfAbsent_supportedAbsent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapPutIfAbsentTester" time="0.0"/>
+  <testcase name="testPutIfAbsent_supportedPresent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapPutIfAbsentTester" time="0.0"/>
+  <testcase name="testRemove_nullSupportedMissing[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapRemoveTester" time="0.001"/>
+  <testcase name="testRemove_wrongType[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapRemoveTester" time="0.0"/>
+  <testcase name="testRemove_notPresent[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapRemoveTester" time="0.0"/>
+  <testcase name="testRemove_present[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapRemoveTester" time="0.0"/>
+  <testcase name="testRemove_nullSupportedMissing[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapRemoveTester" time="0.0"/>
+  <testcase name="testRemove_wrongType[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapRemoveTester" time="0.0"/>
+  <testcase name="testRemove_notPresent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapRemoveTester" time="0.0"/>
+  <testcase name="testRemove_present[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapRemoveTester" time="0.0"/>
+  <testcase name="testRemove_nullSupportedMissing[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapRemoveTester" time="0.0"/>
+  <testcase name="testRemove_wrongType[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapRemoveTester" time="0.0"/>
+  <testcase name="testRemove_notPresent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapRemoveTester" time="0.0"/>
+  <testcase name="testRemove_supportedWrongKeyPresentValue[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapRemoveEntryTester" time="0.0"/>
+  <testcase name="testRemove_supportedPresentKeyWrongValue[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapRemoveEntryTester" time="0.0"/>
+  <testcase name="testRemove_supportedAbsentKeyAbsentValue[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapRemoveEntryTester" time="0.0"/>
+  <testcase name="testRemove_supportedWrongKeyPresentValue[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapRemoveEntryTester" time="0.0"/>
+  <testcase name="testRemove_supportedPresentKeyWrongValue[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapRemoveEntryTester" time="0.0"/>
+  <testcase name="testRemove_supportedAbsentKeyAbsentValue[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapRemoveEntryTester" time="0.0"/>
+  <testcase name="testRemove_supportedPresent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapRemoveEntryTester" time="0.001"/>
+  <testcase name="testRemove_supportedWrongKeyPresentValue[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapRemoveEntryTester" time="0.0"/>
+  <testcase name="testRemove_supportedPresentKeyWrongValue[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapRemoveEntryTester" time="0.0"/>
+  <testcase name="testRemove_supportedAbsentKeyAbsentValue[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapRemoveEntryTester" time="0.0"/>
+  <testcase name="testRemove_supportedPresent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapRemoveEntryTester" time="0.0"/>
+  <testcase name="testReplace_supportedAbsent[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapReplaceTester" time="0.0"/>
+  <testcase name="testReplace_presentNullValueUnsupported[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapReplaceTester" time="0.0"/>
+  <testcase name="testReplace_supportedPresent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapReplaceTester" time="0.0"/>
+  <testcase name="testReplace_supportedAbsent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapReplaceTester" time="0.0"/>
+  <testcase name="testReplace_supportedPresentNoChange[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapReplaceTester" time="0.0"/>
+  <testcase name="testReplace_presentNullValueUnsupported[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapReplaceTester" time="0.0"/>
+  <testcase name="testReplace_supportedPresent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapReplaceTester" time="0.0"/>
+  <testcase name="testReplace_supportedAbsent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapReplaceTester" time="0.001"/>
+  <testcase name="testReplace_supportedPresentNoChange[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapReplaceTester" time="0.0"/>
+  <testcase name="testReplaceAllPreservesOrder[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapReplaceAllTester" time="0.001"/>
+  <testcase name="testReplaceAllRotate[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapReplaceAllTester" time="0.0"/>
+  <testcase name="testReplaceAllPreservesOrder[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapReplaceAllTester" time="0.0"/>
+  <testcase name="testReplaceAllRotate[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapReplaceAllTester" time="0.001"/>
+  <testcase name="testReplaceAllPreservesOrder[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapReplaceAllTester" time="0.0"/>
+  <testcase name="testReplaceAllRotate[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapReplaceAllTester" time="0.0"/>
+  <testcase name="testReplaceEntry_nullDifferentFromAbsent[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapReplaceEntryTester" time="0.0"/>
+  <testcase name="testReplaceEntry_supportedAbsentKey[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapReplaceEntryTester" time="0.0"/>
+  <testcase name="testReplaceEntry_supportedPresentUnchanged[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapReplaceEntryTester" time="0.0"/>
+  <testcase name="testReplaceEntry_supportedPresent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapReplaceEntryTester" time="0.0"/>
+  <testcase name="testReplaceEntry_nullDifferentFromAbsent[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapReplaceEntryTester" time="0.0"/>
+  <testcase name="testReplaceEntry_presentNullValueUnsupported[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapReplaceEntryTester" time="0.0"/>
+  <testcase name="testReplaceEntry_supportedAbsentKey[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapReplaceEntryTester" time="0.0"/>
+  <testcase name="testReplaceEntry_supportedWrongValue[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapReplaceEntryTester" time="0.001"/>
+  <testcase name="testReplaceEntry_supportedPresentUnchanged[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapReplaceEntryTester" time="0.0"/>
+  <testcase name="testReplaceEntry_supportedPresent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapReplaceEntryTester" time="0.0"/>
+  <testcase name="testReplaceEntry_nullDifferentFromAbsent[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapReplaceEntryTester" time="0.0"/>
+  <testcase name="testReplaceEntry_presentNullValueUnsupported[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapReplaceEntryTester" time="0.0"/>
+  <testcase name="testReplaceEntry_supportedAbsentKey[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapReplaceEntryTester" time="0.0"/>
+  <testcase name="testReplaceEntry_supportedWrongValue[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapReplaceEntryTester" time="0.0"/>
+  <testcase name="testSize[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapSizeTester" time="0.001"/>
+  <testcase name="testSize[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapSizeTester" time="0.0"/>
+  <testcase name="testSize[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapSizeTester" time="0.0"/>
+  <testcase name="testToString_size0[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapToStringTester" time="0.0"/>
+  <testcase name="testToString_formatting[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapToStringTester" time="0.002"/>
+  <testcase name="testToString_minimal[JsonObject#asMap [collection size: zero]]" classname="com.google.common.collect.testing.testers.MapToStringTester" time="0.0"/>
+  <testcase name="testToString_size1[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapToStringTester" time="0.001"/>
+  <testcase name="testToString_formatting[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapToStringTester" time="0.0"/>
+  <testcase name="testToString_minimal[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapToStringTester" time="0.0"/>
+  <testcase name="testToString_formatting[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapToStringTester" time="0.0"/>
+  <testcase name="testToString_minimal[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapToStringTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedNothing[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedNonePresent[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.002"/>
+  <testcase name="testAddAll_unsupportedNothing[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedNonePresent[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedNothing[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedNonePresent[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.001"/>
+  <testcase name="testAddAll_unsupportedSomePresent[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedNothing[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedNonePresent[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.001"/>
+  <testcase name="testAddAll_unsupportedAllPresent[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedSomePresent[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.001"/>
+  <testcase name="testAddAll_unsupportedNothing[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedNonePresent[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedAllPresent[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedSomePresent[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedNothing[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedNonePresent[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedAllPresent[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedSomePresent[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedNothing[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedNonePresent[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedAllPresent[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedSomePresent[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedNothing[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedNonePresent[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedAllPresent[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedSomePresent[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedNothing[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedNonePresent[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.0"/>
+  <testcase name="testAddAll_unsupportedAllPresent[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionAddAllTester" time="0.001"/>
+  <testcase name="testAdd_unsupportedNotPresent[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionAddTester" time="0.0"/>
+  <testcase name="testAdd_unsupportedNotPresent[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionAddTester" time="0.0"/>
+  <testcase name="testAdd_unsupportedNotPresent[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionAddTester" time="0.0"/>
+  <testcase name="testAdd_unsupportedNotPresent[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionAddTester" time="0.0"/>
+  <testcase name="testAdd_unsupportedPresent[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionAddTester" time="0.0"/>
+  <testcase name="testAdd_unsupportedNotPresent[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionAddTester" time="0.001"/>
+  <testcase name="testAdd_unsupportedPresent[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionAddTester" time="0.0"/>
+  <testcase name="testAdd_unsupportedNotPresent[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionAddTester" time="0.001"/>
+  <testcase name="testAdd_unsupportedPresent[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionAddTester" time="0.0"/>
+  <testcase name="testAdd_unsupportedNotPresent[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionAddTester" time="0.0"/>
+  <testcase name="testAdd_unsupportedPresent[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionAddTester" time="0.0"/>
+  <testcase name="testAdd_unsupportedNotPresent[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionAddTester" time="0.0"/>
+  <testcase name="testAdd_unsupportedPresent[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionAddTester" time="0.0"/>
+  <testcase name="testAdd_unsupportedNotPresent[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionAddTester" time="0.0"/>
+  <testcase name="testAdd_unsupportedPresent[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionAddTester" time="0.0"/>
+  <testcase name="testClear[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionClearTester" time="0.0"/>
+  <testcase name="testClear[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionClearTester" time="0.0"/>
+  <testcase name="testClear[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionClearTester" time="0.0"/>
+  <testcase name="testClear[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionClearTester" time="0.0"/>
+  <testcase name="testClear[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionClearTester" time="0.0"/>
+  <testcase name="testClear[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionClearTester" time="0.0"/>
+  <testcase name="testClear[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionClearTester" time="0.0"/>
+  <testcase name="testClear[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionClearTester" time="0.0"/>
+  <testcase name="testClear[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionClearTester" time="0.0"/>
+  <testcase name="testContainsAll_nullAllowed[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_disjoint[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_self[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_wrongType[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_empty[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_sameElements[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_partialOverlap[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_nullAllowed[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_disjoint[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_self[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_wrongType[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_empty[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_sameElements[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_partialOverlap[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_nullAllowed[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_disjoint[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_self[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_wrongType[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_empty[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_sameElements[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_partialOverlap[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_subset[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_nullAllowed[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_disjoint[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_self[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_wrongType[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_empty[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_sameElements[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.001"/>
+  <testcase name="testContainsAll_partialOverlap[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_subset[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_nullAllowed[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_disjoint[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_self[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_wrongType[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_empty[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_sameElements[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_partialOverlap[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_subset[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_nullAllowed[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_disjoint[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_self[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_wrongType[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_empty[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_sameElements[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_partialOverlap[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_subset[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_nullAllowed[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_disjoint[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_self[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_wrongType[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_empty[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_sameElements[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_partialOverlap[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_subset[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_nullAllowed[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_disjoint[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_self[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_wrongType[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_empty[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_sameElements[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_partialOverlap[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_subset[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_nullAllowed[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_disjoint[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_self[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_wrongType[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_empty[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_sameElements[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContainsAll_partialOverlap[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsAllTester" time="0.0"/>
+  <testcase name="testContains_nullNotContainedButQueriesSupported[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_no[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_wrongType[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_nullNotContainedButQueriesSupported[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_no[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_wrongType[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_nullNotContainedButQueriesSupported[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_no[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_wrongType[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_nullNotContainedButQueriesSupported[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_yes[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_no[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_wrongType[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_nullNotContainedButQueriesSupported[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_yes[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_no[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.001"/>
+  <testcase name="testContains_wrongType[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_nullNotContainedButQueriesSupported[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.001"/>
+  <testcase name="testContains_yes[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_no[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_wrongType[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_nullNotContainedButQueriesSupported[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_yes[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_no[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_wrongType[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_nullNotContainedButQueriesSupported[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_yes[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_no[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_wrongType[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_nullNotContainedButQueriesSupported[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_yes[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_no[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testContains_wrongType[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionContainsTester" time="0.0"/>
+  <testcase name="testEquals_null[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_self[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_notACollection[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_null[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.001"/>
+  <testcase name="testEquals_self[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_notACollection[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_null[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_self[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_notACollection[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_null[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_self[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_notACollection[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_null[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_self[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_notACollection[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_null[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_self[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_notACollection[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_null[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_self[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_notACollection[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_null[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_self[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_notACollection[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_null[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_self[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testEquals_notACollection[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionEqualsTester" time="0.0"/>
+  <testcase name="testForEachKnownOrder[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionForEachTester" time="0.001"/>
+  <testcase name="testForEachKnownOrder[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionForEachTester" time="0.0"/>
+  <testcase name="testForEachKnownOrder[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionForEachTester" time="0.0"/>
+  <testcase name="testForEachKnownOrder[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionForEachTester" time="0.0"/>
+  <testcase name="testForEachKnownOrder[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionForEachTester" time="0.0"/>
+  <testcase name="testForEachKnownOrder[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionForEachTester" time="0.0"/>
+  <testcase name="testForEachKnownOrder[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionForEachTester" time="0.001"/>
+  <testcase name="testForEachKnownOrder[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionForEachTester" time="0.0"/>
+  <testcase name="testForEachKnownOrder[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionForEachTester" time="0.0"/>
+  <testcase name="testIsEmpty_yes[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionIsEmptyTester" time="0.0"/>
+  <testcase name="testIsEmpty_yes[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionIsEmptyTester" time="0.0"/>
+  <testcase name="testIsEmpty_yes[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionIsEmptyTester" time="0.001"/>
+  <testcase name="testIsEmpty_no[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionIsEmptyTester" time="0.001"/>
+  <testcase name="testIsEmpty_no[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionIsEmptyTester" time="0.0"/>
+  <testcase name="testIsEmpty_no[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionIsEmptyTester" time="0.0"/>
+  <testcase name="testIsEmpty_no[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionIsEmptyTester" time="0.0"/>
+  <testcase name="testIsEmpty_no[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionIsEmptyTester" time="0.0"/>
+  <testcase name="testIsEmpty_no[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionIsEmptyTester" time="0.0"/>
+  <testcase name="testIteratorNoSuchElementException[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIterationOrdering[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.001"/>
+  <testcase name="testIterator_knownOrderRemoveSupported[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.037"/>
+  <testcase name="testIterator[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIteratorNoSuchElementException[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIterationOrdering[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIterator_knownOrderRemoveSupported[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.011"/>
+  <testcase name="testIterator[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIteratorNoSuchElementException[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIterationOrdering[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIterator_knownOrderRemoveSupported[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.01"/>
+  <testcase name="testIterator[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIteratorNoSuchElementException[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIterationOrdering[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.001"/>
+  <testcase name="testIterator_removeAffectsBackingCollection[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIterator_knownOrderRemoveSupported[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.017"/>
+  <testcase name="testIterator[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIteratorNoSuchElementException[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIterationOrdering[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIterator_removeAffectsBackingCollection[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIterator_knownOrderRemoveSupported[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.011"/>
+  <testcase name="testIterator[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIteratorNoSuchElementException[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIterationOrdering[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIterator_removeAffectsBackingCollection[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIterator_knownOrderRemoveSupported[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.006"/>
+  <testcase name="testIterator[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIteratorNoSuchElementException[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIterationOrdering[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.002"/>
+  <testcase name="testIterator_removeAffectsBackingCollection[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIterator_knownOrderRemoveSupported[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.02"/>
+  <testcase name="testIterator[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIteratorNoSuchElementException[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIterationOrdering[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIterator_removeAffectsBackingCollection[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIterator_knownOrderRemoveSupported[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.009"/>
+  <testcase name="testIterator[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIteratorNoSuchElementException[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIterationOrdering[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.001"/>
+  <testcase name="testIterator_removeAffectsBackingCollection[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testIterator_knownOrderRemoveSupported[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.011"/>
+  <testcase name="testIterator[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionIteratorTester" time="0.0"/>
+  <testcase name="testRemoveAll_containsWrongType[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_nullCollectionReferenceEmptySubject[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_emptyCollection[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_containsNullNoButAllowed[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_nonePresent[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_containsWrongType[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.001"/>
+  <testcase name="testRemoveAll_nullCollectionReferenceEmptySubject[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_emptyCollection[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_containsNullNoButAllowed[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_nonePresent[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_containsWrongType[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_nullCollectionReferenceEmptySubject[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_emptyCollection[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.001"/>
+  <testcase name="testRemoveAll_containsNullNoButAllowed[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_nonePresent[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_containsWrongType[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_allPresent[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_somePresent[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.001"/>
+  <testcase name="testRemoveAll_nullCollectionReferenceNonEmptySubject[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_emptyCollection[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_containsNullNoButAllowed[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_nonePresent[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_somePresentLargeCollectionToRemove[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_containsWrongType[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_allPresent[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.001"/>
+  <testcase name="testRemoveAll_somePresent[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_nullCollectionReferenceNonEmptySubject[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_emptyCollection[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_containsNullNoButAllowed[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_nonePresent[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.001"/>
+  <testcase name="testRemoveAll_somePresentLargeCollectionToRemove[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_containsWrongType[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_allPresent[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.002"/>
+  <testcase name="testRemoveAll_somePresent[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_nullCollectionReferenceNonEmptySubject[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_emptyCollection[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_containsNullNoButAllowed[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_nonePresent[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_somePresentLargeCollectionToRemove[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_containsWrongType[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_allPresent[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_somePresent[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_nullCollectionReferenceNonEmptySubject[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_emptyCollection[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_containsNullNoButAllowed[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_nonePresent[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_somePresentLargeCollectionToRemove[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_containsWrongType[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_allPresent[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_somePresent[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_nullCollectionReferenceNonEmptySubject[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_emptyCollection[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_containsNullNoButAllowed[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_nonePresent[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_somePresentLargeCollectionToRemove[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_containsWrongType[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_allPresent[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_somePresent[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_nullCollectionReferenceNonEmptySubject[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_emptyCollection[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_containsNullNoButAllowed[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_nonePresent[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveAll_somePresentLargeCollectionToRemove[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveAllTester" time="0.0"/>
+  <testcase name="testRemoveIf_alwaysFalse[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveIfTester" time="0.0"/>
+  <testcase name="testRemoveIf_alwaysFalse[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveIfTester" time="0.0"/>
+  <testcase name="testRemoveIf_alwaysFalse[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveIfTester" time="0.0"/>
+  <testcase name="testRemoveIf_alwaysFalse[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveIfTester" time="0.0"/>
+  <testcase name="testRemoveIf_allPresent[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveIfTester" time="0.0"/>
+  <testcase name="testRemoveIf_sometimesTrue[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveIfTester" time="0.0"/>
+  <testcase name="testRemoveIf_alwaysFalse[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveIfTester" time="0.0"/>
+  <testcase name="testRemoveIf_allPresent[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveIfTester" time="0.0"/>
+  <testcase name="testRemoveIf_sometimesTrue[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveIfTester" time="0.0"/>
+  <testcase name="testRemoveIf_alwaysFalse[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveIfTester" time="0.0"/>
+  <testcase name="testRemoveIf_allPresent[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveIfTester" time="0.0"/>
+  <testcase name="testRemoveIf_sometimesTrue[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveIfTester" time="0.0"/>
+  <testcase name="testRemoveIf_alwaysFalse[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveIfTester" time="0.0"/>
+  <testcase name="testRemoveIf_allPresent[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveIfTester" time="0.0"/>
+  <testcase name="testRemoveIf_sometimesTrue[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveIfTester" time="0.0"/>
+  <testcase name="testRemoveIf_alwaysFalse[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveIfTester" time="0.0"/>
+  <testcase name="testRemoveIf_allPresent[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveIfTester" time="0.0"/>
+  <testcase name="testRemoveIf_sometimesTrue[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveIfTester" time="0.0"/>
+  <testcase name="testRemoveIf_alwaysFalse[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveIfTester" time="0.0"/>
+  <testcase name="testRemoveIf_allPresent[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveIfTester" time="0.0"/>
+  <testcase name="testRemoveIf_sometimesTrue[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveIfTester" time="0.0"/>
+  <testcase name="testRemove_wrongType[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_nullAllowed[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_notPresent[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_wrongType[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_nullAllowed[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_notPresent[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_wrongType[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_nullAllowed[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_notPresent[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_present[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_wrongType[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_nullAllowed[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.002"/>
+  <testcase name="testRemove_notPresent[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.001"/>
+  <testcase name="testRemove_present[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_wrongType[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_nullAllowed[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_notPresent[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_present[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_wrongType[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_nullAllowed[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_notPresent[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_present[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_wrongType[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_nullAllowed[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_notPresent[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_present[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_wrongType[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_nullAllowed[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_notPresent[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_present[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_wrongType[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_nullAllowed[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRemove_notPresent[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRemoveTester" time="0.0"/>
+  <testcase name="testRetainAll_emptyPreviouslyEmpty[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.001"/>
+  <testcase name="testRetainAll_nullCollectionReferenceEmptySubject[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_nullSingletonPreviouslyEmpty[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_disjointPreviouslyEmpty[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_superset[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_sameElements[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_emptyPreviouslyEmpty[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_nullCollectionReferenceEmptySubject[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_nullSingletonPreviouslyEmpty[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_disjointPreviouslyEmpty[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_superset[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_sameElements[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.001"/>
+  <testcase name="testRetainAll_emptyPreviouslyEmpty[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_nullCollectionReferenceEmptySubject[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_nullSingletonPreviouslyEmpty[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_disjointPreviouslyEmpty[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_superset[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_sameElements[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_nullSingletonPreviouslyNonEmpty[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_disjointPreviouslyNonEmpty[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_nullCollectionReferenceNonEmptySubject[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_superset[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_containsDuplicatesSizeOne[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_emptyPreviouslyNonEmpty[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_sameElements[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_nullSingletonPreviouslyNonEmpty[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_disjointPreviouslyNonEmpty[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_nullCollectionReferenceNonEmptySubject[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.001"/>
+  <testcase name="testRetainAll_superset[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_containsDuplicatesSizeOne[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_emptyPreviouslyNonEmpty[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_sameElements[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_nullSingletonPreviouslyNonEmpty[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_disjointPreviouslyNonEmpty[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_nullCollectionReferenceNonEmptySubject[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_superset[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_containsDuplicatesSizeOne[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_emptyPreviouslyNonEmpty[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_sameElements[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_nullSingletonPreviouslyNonEmpty[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_disjointPreviouslyNonEmpty[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_nullCollectionReferenceNonEmptySubject[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_superset[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_containsDuplicatesSizeSeveral[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_subset[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_emptyPreviouslyNonEmpty[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_sameElements[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_partialOverlap[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_nullSingletonPreviouslyNonEmpty[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_disjointPreviouslyNonEmpty[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_nullCollectionReferenceNonEmptySubject[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_superset[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_containsDuplicatesSizeSeveral[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_subset[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_emptyPreviouslyNonEmpty[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_sameElements[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_partialOverlap[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_nullSingletonPreviouslyNonEmpty[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_disjointPreviouslyNonEmpty[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_nullCollectionReferenceNonEmptySubject[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_superset[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_containsDuplicatesSizeSeveral[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.001"/>
+  <testcase name="testRetainAll_subset[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_emptyPreviouslyNonEmpty[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_sameElements[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testRetainAll_partialOverlap[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionRetainAllTester" time="0.0"/>
+  <testcase name="testSize[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionSizeTester" time="0.0"/>
+  <testcase name="testSize[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionSizeTester" time="0.0"/>
+  <testcase name="testSize[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionSizeTester" time="0.0"/>
+  <testcase name="testSize[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionSizeTester" time="0.0"/>
+  <testcase name="testSize[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionSizeTester" time="0.0"/>
+  <testcase name="testSize[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionSizeTester" time="0.0"/>
+  <testcase name="testSize[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionSizeTester" time="0.0"/>
+  <testcase name="testSize[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionSizeTester" time="0.0"/>
+  <testcase name="testSize[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionSizeTester" time="0.0"/>
+  <testcase name="testSpliteratorNotImmutable_collectionAllowsRemove[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionSpliteratorTester" time="0.0"/>
+  <testcase name="testSpliteratorKnownOrder[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionSpliteratorTester" time="0.007"/>
+  <testcase name="testSpliteratorNotImmutable_collectionAllowsRemove[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionSpliteratorTester" time="0.0"/>
+  <testcase name="testSpliteratorKnownOrder[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionSpliteratorTester" time="0.0"/>
+  <testcase name="testSpliteratorNotImmutable_collectionAllowsRemove[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionSpliteratorTester" time="0.001"/>
+  <testcase name="testSpliteratorKnownOrder[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionSpliteratorTester" time="0.0"/>
+  <testcase name="testSpliteratorNotImmutable_collectionAllowsRemove[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionSpliteratorTester" time="0.001"/>
+  <testcase name="testSpliteratorKnownOrder[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionSpliteratorTester" time="0.0"/>
+  <testcase name="testSpliteratorNotImmutable_collectionAllowsRemove[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionSpliteratorTester" time="0.001"/>
+  <testcase name="testSpliteratorKnownOrder[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionSpliteratorTester" time="0.0"/>
+  <testcase name="testSpliteratorNotImmutable_collectionAllowsRemove[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionSpliteratorTester" time="0.0"/>
+  <testcase name="testSpliteratorKnownOrder[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionSpliteratorTester" time="0.0"/>
+  <testcase name="testSpliteratorNotImmutable_collectionAllowsRemove[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionSpliteratorTester" time="0.0"/>
+  <testcase name="testSpliteratorKnownOrder[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionSpliteratorTester" time="0.0"/>
+  <testcase name="testSpliteratorNotImmutable_collectionAllowsRemove[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionSpliteratorTester" time="0.0"/>
+  <testcase name="testSpliteratorKnownOrder[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionSpliteratorTester" time="0.0"/>
+  <testcase name="testSpliteratorNotImmutable_collectionAllowsRemove[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionSpliteratorTester" time="0.0"/>
+  <testcase name="testSpliteratorKnownOrder[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionSpliteratorTester" time="0.0"/>
+  <testcase name="testStreamToArrayKnownOrder[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionStreamTester" time="0.0"/>
+  <testcase name="testStreamCount[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionStreamTester" time="0.0"/>
+  <testcase name="testStreamToArrayKnownOrder[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionStreamTester" time="0.0"/>
+  <testcase name="testStreamCount[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionStreamTester" time="0.0"/>
+  <testcase name="testStreamToArrayKnownOrder[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionStreamTester" time="0.0"/>
+  <testcase name="testStreamCount[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionStreamTester" time="0.0"/>
+  <testcase name="testStreamToArrayKnownOrder[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionStreamTester" time="0.0"/>
+  <testcase name="testStreamCount[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionStreamTester" time="0.0"/>
+  <testcase name="testStreamToArrayKnownOrder[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionStreamTester" time="0.0"/>
+  <testcase name="testStreamCount[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionStreamTester" time="0.0"/>
+  <testcase name="testStreamToArrayKnownOrder[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionStreamTester" time="0.0"/>
+  <testcase name="testStreamCount[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionStreamTester" time="0.0"/>
+  <testcase name="testStreamToArrayKnownOrder[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionStreamTester" time="0.0"/>
+  <testcase name="testStreamCount[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionStreamTester" time="0.0"/>
+  <testcase name="testStreamToArrayKnownOrder[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionStreamTester" time="0.0"/>
+  <testcase name="testStreamCount[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionStreamTester" time="0.0"/>
+  <testcase name="testStreamToArrayKnownOrder[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionStreamTester" time="0.0"/>
+  <testcase name="testStreamCount[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionStreamTester" time="0.0"/>
+  <testcase name="testToArray_emptyArray[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArrayOfWrongTypeForEmptyCollection[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_oversizedArray[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.001"/>
+  <testcase name="testToArray_rightSizedArray_ordered[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArrayOfObject[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArrayOfObject_ordered[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_noArgs[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_oversizedArray_ordered[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_isPlainObjectArray[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArrayOfObject[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArray_ordered[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArray[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArray[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArrayOfWrongTypeForEmptyCollection[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_oversizedArray[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArray_ordered[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArrayOfObject[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArrayOfObject_ordered[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_noArgs[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_oversizedArray_ordered[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_isPlainObjectArray[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArrayOfObject[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArray_ordered[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArray[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArray[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArrayOfWrongTypeForEmptyCollection[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_oversizedArray[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArray_ordered[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArrayOfObject[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArrayOfObject_ordered[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_noArgs[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_oversizedArray_ordered[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_isPlainObjectArray[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArrayOfObject[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArray_ordered[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.001"/>
+  <testcase name="testToArray_rightSizedArray[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArray[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_oversizedArray[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArray_ordered[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArrayOfObject[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArrayOfObject_ordered[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArrayOfWrongTypeForNonEmptyCollection[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.001"/>
+  <testcase name="testToArray_noArgs[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.002"/>
+  <testcase name="testToArray_oversizedArray_ordered[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_isPlainObjectArray[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.001"/>
+  <testcase name="testToArray_rightSizedArrayOfObject[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArray_ordered[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArray[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArray[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_oversizedArray[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArray_ordered[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArrayOfObject[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArrayOfObject_ordered[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArrayOfWrongTypeForNonEmptyCollection[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_noArgs[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_oversizedArray_ordered[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_isPlainObjectArray[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArrayOfObject[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArray_ordered[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArray[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArray[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_oversizedArray[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArray_ordered[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArrayOfObject[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArrayOfObject_ordered[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArrayOfWrongTypeForNonEmptyCollection[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.001"/>
+  <testcase name="testToArray_noArgs[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_oversizedArray_ordered[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_isPlainObjectArray[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArrayOfObject[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArray_ordered[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArray[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArray[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_oversizedArray[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArray_ordered[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArrayOfObject[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArrayOfObject_ordered[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArrayOfWrongTypeForNonEmptyCollection[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_noArgs[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_oversizedArray_ordered[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_isPlainObjectArray[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArrayOfObject[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArray_ordered[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArray[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArray[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_oversizedArray[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArray_ordered[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.001"/>
+  <testcase name="testToArray_emptyArrayOfObject[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArrayOfObject_ordered[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArrayOfWrongTypeForNonEmptyCollection[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_noArgs[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.001"/>
+  <testcase name="testToArray_oversizedArray_ordered[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_isPlainObjectArray[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArrayOfObject[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArray_ordered[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArray[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArray[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_oversizedArray[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArray_ordered[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArrayOfObject[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArrayOfObject_ordered[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArrayOfWrongTypeForNonEmptyCollection[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_noArgs[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_oversizedArray_ordered[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_isPlainObjectArray[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArrayOfObject[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_emptyArray_ordered[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToArray_rightSizedArray[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToArrayTester" time="0.0"/>
+  <testcase name="testToString_size0[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToStringTester" time="0.0"/>
+  <testcase name="testToString_minimal[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToStringTester" time="0.0"/>
+  <testcase name="testToString_size0[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToStringTester" time="0.0"/>
+  <testcase name="testToString_minimal[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToStringTester" time="0.0"/>
+  <testcase name="testToString_size0[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToStringTester" time="0.0"/>
+  <testcase name="testToString_minimal[JsonObject#asMap [collection size: zero] values [collection size: zero]]" classname="com.google.common.collect.testing.testers.CollectionToStringTester" time="0.0"/>
+  <testcase name="testToString_size1[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToStringTester" time="0.0"/>
+  <testcase name="testToString_minimal[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToStringTester" time="0.0"/>
+  <testcase name="testToString_size1[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToStringTester" time="0.0"/>
+  <testcase name="testToString_minimal[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToStringTester" time="0.0"/>
+  <testcase name="testToString_size1[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToStringTester" time="0.0"/>
+  <testcase name="testToString_minimal[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionToStringTester" time="0.0"/>
+  <testcase name="testToString_sizeSeveral[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToStringTester" time="0.0"/>
+  <testcase name="testToString_minimal[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToStringTester" time="0.0"/>
+  <testcase name="testToString_sizeSeveral[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToStringTester" time="0.0"/>
+  <testcase name="testToString_minimal[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToStringTester" time="0.0"/>
+  <testcase name="testToString_sizeSeveral[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToStringTester" time="0.0"/>
+  <testcase name="testToString_minimal[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionToStringTester" time="0.0"/>
+  <testcase name="testHashCode[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.SetHashCodeTester" time="0.0"/>
+  <testcase name="testHashCode[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.SetHashCodeTester" time="0.0"/>
+  <testcase name="testHashCode[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.SetHashCodeTester" time="0.0"/>
+  <testcase name="testHashCode[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.SetHashCodeTester" time="0.0"/>
+  <testcase name="testHashCode[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.SetHashCodeTester" time="0.0"/>
+  <testcase name="testHashCode[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.SetHashCodeTester" time="0.0"/>
+  <testcase name="testEquals_list[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.001"/>
+  <testcase name="testEquals_otherSetWithSameElements[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_largerSet[JsonObject#asMap [collection size: zero] entrySet [collection size: zero]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_list[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherSetWithSameElements[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_largerSet[JsonObject#asMap [collection size: zero] keys [collection size: zero]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_list[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherSetWithSameElements[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_largerSet[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherContainsNull[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_smallerSet[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherSetWithDifferentElements[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_list[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherSetWithSameElements[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_largerSet[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherContainsNull[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_smallerSet[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherSetWithDifferentElements[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_list[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherSetWithSameElements[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_largerSet[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherContainsNull[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_smallerSet[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherSetWithDifferentElements[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_list[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherSetWithSameElements[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_largerSet[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherContainsNull[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_smallerSet[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testEquals_otherSetWithDifferentElements[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.SetEqualsTester" time="0.0"/>
+  <testcase name="testCreateWithNullValueUnsupported[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapCreationTester" time="0.0"/>
+  <testcase name="testCreateWithNullKeyUnsupported[JsonObject#asMap [collection size: one]]" classname="com.google.common.collect.testing.testers.MapCreationTester" time="0.0"/>
+  <testcase name="testCreateWithNullValueUnsupported[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapCreationTester" time="0.0"/>
+  <testcase name="testCreateWithDuplicates_nonNullDuplicatesNotRejected[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapCreationTester" time="0.0"/>
+  <testcase name="testCreateWithNullKeyUnsupported[JsonObject#asMap [collection size: several]]" classname="com.google.common.collect.testing.testers.MapCreationTester" time="0.0"/>
+  <testcase name="testCreateWithNull_unsupported[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionCreationTester" time="0.0"/>
+  <testcase name="testCreateWithNull_unsupported[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionCreationTester" time="0.0"/>
+  <testcase name="testCreateWithNull_unsupported[JsonObject#asMap [collection size: one] values [collection size: one]]" classname="com.google.common.collect.testing.testers.CollectionCreationTester" time="0.0"/>
+  <testcase name="testCreateWithNull_unsupported[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionCreationTester" time="0.0"/>
+  <testcase name="testCreateWithNull_unsupported[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionCreationTester" time="0.0"/>
+  <testcase name="testCreateWithNull_unsupported[JsonObject#asMap [collection size: several] values [collection size: several]]" classname="com.google.common.collect.testing.testers.CollectionCreationTester" time="0.0"/>
+  <testcase name="testRemove_present[JsonObject#asMap [collection size: one] entrySet [collection size: one]]" classname="com.google.common.collect.testing.testers.SetRemoveTester" time="0.0"/>
+  <testcase name="testRemove_present[JsonObject#asMap [collection size: one] keys [collection size: one]]" classname="com.google.common.collect.testing.testers.SetRemoveTester" time="0.0"/>
+  <testcase name="testRemove_present[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.SetRemoveTester" time="0.0"/>
+  <testcase name="testRemove_present[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.SetRemoveTester" time="0.0"/>
+  <testcase name="testCreateWithDuplicates_nonNullDuplicatesNotRejected[JsonObject#asMap [collection size: several] entrySet [collection size: several]]" classname="com.google.common.collect.testing.testers.SetCreationTester" time="0.0"/>
+  <testcase name="testCreateWithDuplicates_nonNullDuplicatesNotRejected[JsonObject#asMap [collection size: several] keys [collection size: several]]" classname="com.google.common.collect.testing.testers.SetCreationTester" time="0.001"/>
+</testsuite>

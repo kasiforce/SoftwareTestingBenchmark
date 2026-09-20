@@ -1,0 +1,67 @@
+{
+  "total": 4,
+  "syntax_correct": 0,
+  "syntax_correct_rate": 0.0,
+  "compile_pass": 1,
+  "test_summary": {
+    "total": 66,
+    "passed": 54,
+    "failures": 2,
+    "errors": 10,
+    "pass_rate": 0.8181818181818182
+  },
+  "file_coverage": {
+    "org/apache/commons/jxpath/ri/parser/XPathParser.java": {
+      "total_line": 1724,
+      "covered_line": 0,
+      "total_branch": 975,
+      "covered_branch": 0
+    },
+    "org/apache/commons/jxpath/util/BasicTypeConverter.java": {
+      "total_line": 238,
+      "covered_line": 0,
+      "total_branch": 226,
+      "covered_branch": 0
+    }
+  },
+  "function_coverage": {
+    "org.apache.commons.jxpath.util.BasicTypeConverter.convert": {
+      "total_line": 78,
+      "covered_line": 0,
+      "total_branch": 64,
+      "covered_branch": 0
+    },
+    "org.apache.commons.jxpath.ri.parser.XPathParser.CoreFunctionName": {
+      "total_line": 98,
+      "covered_line": 0,
+      "total_branch": 32,
+      "covered_branch": 0
+    },
+    "org.apache.commons.jxpath.ri.parser.XPathParser.NCName": {
+      "total_line": 77,
+      "covered_line": 0,
+      "total_branch": 37,
+      "covered_branch": 0
+    },
+    "org.apache.commons.jxpath.ri.parser.XPathParser.WildcardName": {
+      "total_line": 27,
+      "covered_line": 0,
+      "total_branch": 10,
+      "covered_branch": 0
+    }
+  },
+  "summary": {
+    "file": {
+      "total_lines": 1962,
+      "covered_lines": 0,
+      "total_branches": 1201,
+      "covered_branches": 0
+    },
+    "function": {
+      "total_lines": 280,
+      "covered_lines": 0,
+      "total_branches": 143,
+      "covered_branches": 0
+    }
+  }
+}

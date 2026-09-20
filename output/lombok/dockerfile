@@ -1,0 +1,93 @@
+FROM --platform=linux/amd64 ubuntu:22.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+ENV TZ=Etc/UTC
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US:en
+ENV LC_ALL=en_US.UTF-8
+
+# ---------------------------------------------------------
+# Install system dependencies
+# ---------------------------------------------------------
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        ca-certificates \
+        curl \
+        wget \
+        git \
+        openjdk-11-jdk \
+        maven \
+        build-essential \
+        locales \
+        tzdata \
+        unzip \
+    && rm -rf /var/lib/apt/lists/*
+
+# ---------------------------------------------------------
+# Configure timezone and locale
+# ---------------------------------------------------------
+RUN ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime && \
+    dpkg-reconfigure --frontend noninteractive tzdata && \
+    locale-gen en_US.UTF-8 && \
+    update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+
+# ---------------------------------------------------------
+# Java environment
+# ---------------------------------------------------------
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+ENV PATH=${JAVA_HOME}/bin:${PATH}
+
+# Reduce Maven/JVM resource usage
+ENV MAVEN_OPTS="-Xms128m -Xmx768m -XX:+TieredCompilation -XX:TieredStopAtLevel=1"
+
+# ---------------------------------------------------------
+# Work directory
+# ---------------------------------------------------------
+WORKDIR /testbed/
+
+# ---------------------------------------------------------
+# Clone Lombok repository
+# ---------------------------------------------------------
+RUN git clone https://github.com/projectlombok/lombok.git /testbed && \
+    cd /testbed && \
+    git reset --hard d1d003945f864d32bb3115cf81fa363e1c7bc6bb && \
+    git remote remove origin
+
+# ---------------------------------------------------------
+# Download required lombok.jar
+# ---------------------------------------------------------
+RUN mkdir -p /workspace && \
+    wget -q \
+        https://repo1.maven.org/maven2/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar \
+        -O /workspace/lombok.jar
+
+# ---------------------------------------------------------
+# Verify Java / Maven
+# ---------------------------------------------------------
+RUN java -version && \
+    mvn -version
+
+# ---------------------------------------------------------
+# Build Lombok
+# Do not run tests during image construction
+# ---------------------------------------------------------
+RUN mvn install \
+    -DskipTests=true \
+    -Dmaven.javadoc.skip=true \
+    -Dmaven.compiler.source=11 \
+    -Dmaven.compiler.target=11 \
+    -Dmaven.compiler.compilerArgument="-Werror,-Xlint:all,-J--add-opens" \
+    -B
+
+# ---------------------------------------------------------
+# Runtime classpath
+# ---------------------------------------------------------
+ENV CLASSPATH=/workspace/lombok.jar
+
+# ---------------------------------------------------------
+# Shell environment
+# ---------------------------------------------------------
+RUN echo 'export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64' >> /root/.bashrc && \
+    echo 'export PATH=$JAVA_HOME/bin:/opt/maven/apache-maven-3.8.0/bin:$PATH' >> /root/.bashrc && \
+    echo 'export CLASSPATH=/workspace/lombok.jar:$CLASSPATH' >> /root/.bashrc

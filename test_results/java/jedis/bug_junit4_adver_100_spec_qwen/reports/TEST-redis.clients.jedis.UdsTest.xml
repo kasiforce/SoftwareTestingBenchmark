@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="redis.clients.jedis.UdsTest" time="0.002" tests="4" errors="0" skipped="4" failures="0" flakes="0">
+  <properties/>
+  <testcase name="jedisConnectsToUds" classname="redis.clients.jedis.UdsTest" time="0.0">
+    <skipped message="Test requires environment [oss-source], but current environment is &apos;oss-docker&apos;"/>
+    <system-out><![CDATA[2026-09-02 03:21:22.883 [main] DEBUG r.clients.jedis.util.EnvCondition - Test disabled: Test requires environment [oss-source], but current environment is 'oss-docker'
+]]></system-out>
+  </testcase>
+  <testcase name="redisClientConnectsToUdsResp3" classname="redis.clients.jedis.UdsTest" time="0.0">
+    <skipped message="Test requires environment [oss-source], but current environment is &apos;oss-docker&apos;"/>
+  </testcase>
+  <testcase name="jedisConnectsToUdsResp3" classname="redis.clients.jedis.UdsTest" time="0.0">
+    <skipped message="Test requires environment [oss-source], but current environment is &apos;oss-docker&apos;"/>
+  </testcase>
+  <testcase name="redisClientConnectsToUds" classname="redis.clients.jedis.UdsTest" time="0.0">
+    <skipped message="Test requires environment [oss-source], but current environment is &apos;oss-docker&apos;"/>
+  </testcase>
+</testsuite>

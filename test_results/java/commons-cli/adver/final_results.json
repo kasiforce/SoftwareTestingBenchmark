@@ -1,0 +1,26 @@
+[
+    {
+        "project_root": "projects/commons-cli",
+        "name": "addOptions",
+        "src_file": "src/main/java/org/apache/commons/cli/Options.java",
+        "test_file": "src/test/java/org/apache/commons/cli/AddOptionsTests.java",
+        "code": "public Options addOptions(final Options options) {\n        options.getOptions().forEach(opt -> {\n            if (hasOption(opt.getKey())) {\n                throw new IllegalArgumentException(\"Duplicate key: \" + opt.getKey());\n            }\n            addOption(opt);\n        });\n        options.getOptionGroups().forEach(this::addOptionGroup);\n        return this;\n    }",
+        "is_async": false,
+        "type": "method",
+        "class_name": "Options",
+        "full_class_name": "Options",
+        "class_constructor": [
+            "public Options() {\n        // empty\n    }"
+        ],
+        "class_fields": [],
+        "specification": [
+            "Functional Description: Adds options and option groups from the provided Options object to the current instance. It first checks for duplicate keys in the options; if a duplicate is found, an IllegalArgumentException is thrown. After validating and adding the options, it proceeds to add the option groups.\n\nArgs:\noptions: Options - The Options object containing a list of options and option groups to be added to the current instance\n\nReturns: Options - The current instance of Options after adding the new options and option groups\n\nPreconditions:\n1. The options parameter must not be null\n2. The Options object must contain valid options and option groups\n\nPostconditions:\n1. The current instance will contain the newly added options and option groups\n2. If duplicates are found, an exception is thrown and the state remains unchanged\n\nInvariants:\n1. No duplicate keys are allowed in the options being added\n2. The method is idempotent with respect to the same options being added multiple times (if no duplicates exist)\n\nException:\nIllegalArgumentException - If a duplicate key is found in the options being added"
+        ],
+        "generated_tests": [
+            "package org.apache.commons.cli;\n\nimport org.junit.Test;\n\nimport static org.junit.Assert.assertEquals;\nimport static org.junit.Assert.assertTrue;\n\npublic class AddOptionsTests {\n    @Test\n    public void testAddOptions() {\n        Options options = new Options();\n        options.addOptions(new Options());\n        assertEquals(0, options.getOptions().size());\n        assertTrue(options.getOptionGroups().isEmpty());\n    }\n}"
+        ],
+        "test_generation_status": "success",
+        "buggy_code": "public Options addOptions(final Options options) {\n    options.getOptions().forEach(opt -> {\n        if (hasOption(opt.getKey())) {\n            throw new IllegalArgumentException(\"Duplicate key: \" + opt.getKey());\n        }\n        addOption(opt);\n    });\n    java.util.List<OptionGroup> groups = new java.util.ArrayList<>(options.getOptionGroups());\n    for (int i = 1; i < groups.size(); i++) {\n        addOptionGroup(groups.get(i));\n    }\n    return this;\n}\n",
+        "flag": false
+    }
+]

@@ -1,0 +1,43 @@
+{
+  "total": 1,
+  "syntax_correct": 1,
+  "syntax_correct_rate": 1.0,
+  "compile_pass": 1,
+  "test_summary": {
+    "total": 6,
+    "passed": 6,
+    "failures": 0,
+    "errors": 0,
+    "pass_rate": 1.0
+  },
+  "file_coverage": {
+    "org/apache/commons/cli/help/TextStyle.java": {
+      "total_line": 77,
+      "covered_line": 44,
+      "total_branch": 20,
+      "covered_branch": 14
+    }
+  },
+  "function_coverage": {
+    "org.apache.commons.cli.help.TextStyle.pad": {
+      "total_line": 25,
+      "covered_line": 24,
+      "total_branch": 18,
+      "covered_branch": 14
+    }
+  },
+  "summary": {
+    "file": {
+      "total_lines": 77,
+      "covered_lines": 44,
+      "total_branches": 20,
+      "covered_branches": 14
+    },
+    "function": {
+      "total_lines": 25,
+      "covered_lines": 24,
+      "total_branches": 18,
+      "covered_branches": 14
+    }
+  }
+}

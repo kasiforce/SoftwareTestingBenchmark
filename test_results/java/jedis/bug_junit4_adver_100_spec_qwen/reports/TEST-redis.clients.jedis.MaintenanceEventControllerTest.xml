@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="redis.clients.jedis.MaintenanceEventControllerTest" time="2.323" tests="15" errors="0" skipped="0" failures="0" flakes="0">
+  <properties>
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="sun.cpu.isalist" value=""/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/usr/share/maven/boot/plexus-classworlds-2.x.jar"/>
+    <property name="forkCount" value="0"/>
+    <property name="java.vm.vendor" value="Private Build"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="user.timezone" value="Etc/UTC"/>
+    <property name="maven.conf" value="/usr/share/maven/conf"/>
+    <property name="os.name" value="Linux"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="rat.skip" value="true"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -fae clean org.jacoco:jacoco-maven-plugin:0.8.14:prepare-agent test org.jacoco:jacoco-maven-plugin:0.8.14:report -DskipTests=false -Dmaven.test.skip=false -DfailIfNoTests=false -Dmaven.test.failure.ignore=true -Drat.skip=true -DforkCount=0 -B"/>
+    <property name="maven.home" value="/usr/share/maven"/>
+    <property name="surefire.test.class.path" value="/testbed/target/test-classes:/testbed/target/classes:/root/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar:/root/.m2/repository/org/apache/commons/commons-pool2/2.13.1/commons-pool2-2.13.1.jar:/root/.m2/repository/org/json/json/20260814/json-20260814.jar:/root/.m2/repository/com/google/code/gson/gson/2.14.0/gson-2.14.0.jar:/root/.m2/repository/com/google/errorprone/error_prone_annotations/2.48.0/error_prone_annotations-2.48.0.jar:/root/.m2/repository/redis/clients/authentication/redis-authx-core/0.2.0/redis-authx-core-0.2.0.jar:/root/.m2/repository/com/kohlschutter/junixsocket/junixsocket-native-common/2.11.0/junixsocket-native-common-2.11.0.jar:/root/.m2/repository/com/kohlschutter/junixsocket/junixsocket-common/2.11.0/junixsocket-common-2.11.0.jar:/root/.m2/repository/org/locationtech/jts/jts-core/1.20.0/jts-core-1.20.0.jar:/root/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.14.4/junit-jupiter-api-5.14.4.jar:/root/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/root/.m2/repository/org/junit/platform/junit-platform-commons/1.14.4/junit-platform-commons-1.14.4.jar:/root/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/root/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.14.4/junit-jupiter-params-5.14.4.jar:/root/.m2/repository/org/mockito/mockito-junit-jupiter/4.11.0/mockito-junit-jupiter-4.11.0.jar:/root/.m2/repository/org/mockito/mockito-core/4.11.0/mockito-core-4.11.0.jar:/root/.m2/repository/net/bytebuddy/byte-buddy/1.12.19/byte-buddy-1.12.19.jar:/root/.m2/repository/net/bytebuddy/byte-buddy-agent/1.12.19/byte-buddy-agent-1.12.19.jar:/root/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/root/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.14.4/junit-jupiter-engine-5.14.4.jar:/root/.m2/repository/org/junit/platform/junit-platform-engine/1.14.4/junit-platform-engine-1.14.4.jar:/root/.m2/repository/org/hamcrest/hamcrest/3.0/hamcrest-3.0.jar:/root/.m2/repository/ch/qos/logback/logback-classic/1.2.13/logback-classic-1.2.13.jar:/root/.m2/repository/ch/qos/logback/logback-core/1.2.13/logback-core-1.2.13.jar:/root/.m2/repository/org/mockito/mockito-inline/4.11.0/mockito-inline-4.11.0.jar:/root/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.22.2/jackson-databind-2.22.2.jar:/root/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.22/jackson-annotations-2.22.jar:/root/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.22.2/jackson-core-2.22.2.jar:/root/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.22.2/jackson-datatype-jsr310-2.22.2.jar:/root/.m2/repository/net/javacrumbs/json-unit/json-unit/2.40.1/json-unit-2.40.1.jar:/root/.m2/repository/net/javacrumbs/json-unit/json-unit-core/2.40.1/json-unit-core-2.40.1.jar:/root/.m2/repository/org/hamcrest/hamcrest-core/2.2/hamcrest-core-2.2.jar:/root/.m2/repository/org/apache/httpcomponents/client5/httpclient5-fluent/5.6.4/httpclient5-fluent-5.6.4.jar:/root/.m2/repository/org/apache/httpcomponents/client5/httpclient5/5.6.4/httpclient5-5.6.4.jar:/root/.m2/repository/org/apache/httpcomponents/core5/httpcore5/5.4.3/httpcore5-5.4.3.jar:/root/.m2/repository/org/apache/httpcomponents/core5/httpcore5-h2/5.4.3/httpcore5-h2-5.4.3.jar:/root/.m2/repository/org/awaitility/awaitility/4.3.0/awaitility-4.3.0.jar:/root/.m2/repository/redis/clients/authentication/redis-authx-entraid/0.2.0/redis-authx-entraid-0.2.0.jar:/root/.m2/repository/com/auth0/java-jwt/4.5.0/java-jwt-4.5.0.jar:/root/.m2/repository/com/microsoft/azure/msal4j/1.26.0/msal4j-1.26.0.jar:/root/.m2/repository/com/azure/azure-json/1.4.0/azure-json-1.4.0.jar:/root/.m2/repository/com/azure/azure-identity/1.18.4/azure-identity-1.18.4.jar:/root/.m2/repository/com/azure/azure-core/1.58.1/azure-core-1.58.1.jar:/root/.m2/repository/com/azure/azure-xml/1.2.1/azure-xml-1.2.1.jar:/root/.m2/repository/io/projectreactor/reactor-core/3.7.18/reactor-core-3.7.18.jar:/root/.m2/repository/org/reactivestreams/reactive-streams/1.0.4/reactive-streams-1.0.4.jar:/root/.m2/repository/com/azure/azure-core-http-netty/1.16.5/azure-core-http-netty-1.16.5.jar:/root/.m2/repository/io/netty/netty-handler/4.1.135.Final/netty-handler-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-resolver/4.1.135.Final/netty-resolver-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-transport/4.1.135.Final/netty-transport-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-handler-proxy/4.1.135.Final/netty-handler-proxy-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-codec-socks/4.1.135.Final/netty-codec-socks-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-buffer/4.1.135.Final/netty-buffer-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-codec/4.1.135.Final/netty-codec-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-codec-http/4.1.135.Final/netty-codec-http-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-codec-http2/4.1.135.Final/netty-codec-http2-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-transport-native-unix-common/4.1.135.Final/netty-transport-native-unix-common-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-transport-native-epoll/4.1.135.Final/netty-transport-native-epoll-4.1.135.Final-linux-x86_64.jar:/root/.m2/repository/io/netty/netty-transport-classes-epoll/4.1.135.Final/netty-transport-classes-epoll-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-transport-native-kqueue/4.1.135.Final/netty-transport-native-kqueue-4.1.135.Final-osx-x86_64.jar:/root/.m2/repository/io/netty/netty-transport-classes-kqueue/4.1.135.Final/netty-transport-classes-kqueue-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-tcnative-boringssl-static/2.0.78.Final/netty-tcnative-boringssl-static-2.0.78.Final.jar:/root/.m2/repository/io/netty/netty-tcnative-classes/2.0.78.Final/netty-tcnative-classes-2.0.78.Final.jar:/root/.m2/repository/io/netty/netty-tcnative-boringssl-static/2.0.78.Final/netty-tcnative-boringssl-static-2.0.78.Final-linux-x86_64.jar:/root/.m2/repository/io/netty/netty-tcnative-boringssl-static/2.0.78.Final/netty-tcnative-boringssl-static-2.0.78.Final-linux-aarch_64.jar:/root/.m2/repository/io/netty/netty-tcnative-boringssl-static/2.0.78.Final/netty-tcnative-boringssl-static-2.0.78.Final-osx-x86_64.jar:/root/.m2/repository/io/netty/netty-tcnative-boringssl-static/2.0.78.Final/netty-tcnative-boringssl-static-2.0.78.Final-osx-aarch_64.jar:/root/.m2/repository/io/netty/netty-tcnative-boringssl-static/2.0.78.Final/netty-tcnative-boringssl-static-2.0.78.Final-windows-x86_64.jar:/root/.m2/repository/io/projectreactor/netty/reactor-netty-http/1.2.18/reactor-netty-http-1.2.18.jar:/root/.m2/repository/io/netty/netty-resolver-dns/4.1.135.Final/netty-resolver-dns-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-codec-dns/4.1.135.Final/netty-codec-dns-4.1.135.Final.jar:/root/.m2/repository/io/netty/netty-resolver-dns-native-macos/4.1.135.Final/netty-resolver-dns-native-macos-4.1.135.Final-osx-x86_64.jar:/root/.m2/repository/io/netty/netty-resolver-dns-classes-macos/4.1.135.Final/netty-resolver-dns-classes-macos-4.1.135.Final.jar:/root/.m2/repository/io/projectreactor/netty/reactor-netty-core/1.2.18/reactor-netty-core-1.2.18.jar:/root/.m2/repository/io/netty/netty-common/4.1.135.Final/netty-common-4.1.135.Final.jar:/root/.m2/repository/com/microsoft/azure/msal4j-persistence-extension/1.3.0/msal4j-persistence-extension-1.3.0.jar:/root/.m2/repository/net/java/dev/jna/jna/5.13.0/jna-5.13.0.jar:/root/.m2/repository/net/java/dev/jna/jna-platform/5.17.0/jna-platform-5.17.0.jar:/root/.m2/repository/eu/rekawek/toxiproxy/toxiproxy-java/2.1.11/toxiproxy-java-2.1.11.jar:/root/.m2/repository/org/openjdk/jmh/jmh-core/1.37/jmh-core-1.37.jar:/root/.m2/repository/net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar:/root/.m2/repository/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar:/root/.m2/repository/org/openjdk/jmh/jmh-generator-annprocess/1.37/jmh-generator-annprocess-1.37.jar:/root/.m2/repository/io/github/resilience4j/resilience4j-all/1.7.1/resilience4j-all-1.7.1.jar:/root/.m2/repository/io/vavr/vavr/0.10.2/vavr-0.10.2.jar:/root/.m2/repository/io/vavr/vavr-match/0.10.2/vavr-match-0.10.2.jar:/root/.m2/repository/io/github/resilience4j/resilience4j-ratelimiter/1.7.1/resilience4j-ratelimiter-1.7.1.jar:/root/.m2/repository/io/github/resilience4j/resilience4j-bulkhead/1.7.1/resilience4j-bulkhead-1.7.1.jar:/root/.m2/repository/io/github/resilience4j/resilience4j-cache/1.7.1/resilience4j-cache-1.7.1.jar:/root/.m2/repository/javax/cache/cache-api/1.1.0/cache-api-1.1.0.jar:/root/.m2/repository/io/github/resilience4j/resilience4j-timelimiter/1.7.1/resilience4j-timelimiter-1.7.1.jar:/root/.m2/repository/io/github/resilience4j/resilience4j-circuitbreaker/1.7.1/resilience4j-circuitbreaker-1.7.1.jar:/root/.m2/repository/io/github/resilience4j/resilience4j-core/1.7.1/resilience4j-core-1.7.1.jar:/root/.m2/repository/io/github/resilience4j/resilience4j-retry/1.7.1/resilience4j-retry-1.7.1.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/root"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.home" value="/usr/lib/jvm/java-8-openjdk-amd64/jre"/>
+    <property name="basedir" value="/testbed"/>
+    <property name="file.separator" value="/"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property name="sun.boot.class.path" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/resources.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jsse.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jce.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/charsets.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jfr.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/classes"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="1.8.0_502-8u502-ga~us1-0ubuntu1~22.04-b07"/>
+    <property name="user.name" value="root"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="5.15.0-164-generic"/>
+    <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/endorsed"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="skipTests" value="false"/>
+    <property name="localRepository" value="/root/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="maven.test.skip" value="false"/>
+    <property name="java.version" value="1.8.0_502"/>
+    <property name="user.dir" value="/testbed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="maven.multiModuleProjectDirectory" value="/testbed"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+    <property name="failIfNoTests" value="false"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.library.path" value="/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vendor" value="Private Build"/>
+    <property name="java.vm.version" value="25.502-b07"/>
+    <property name="redis-hosts" value=""/>
+    <property name="classworlds.conf" value="/usr/share/maven/bin/m2.conf"/>
+    <property name="java.specification.maintenance.version" value="6"/>
+    <property name="java.ext.dirs" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext:/usr/java/packages/lib/ext"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="library.jansi.path" value="/usr/share/maven/lib/jansi-native"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="maven.test.failure.ignore" value="true"/>
+  </properties>
+  <testcase name="sameSeqSameTarget_mergesAffectedSources" classname="redis.clients.jedis.MaintenanceEventControllerTest" time="0.43">
+    <system-out><![CDATA[2026-09-02 03:22:08.191 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-b.example.com:6380 (seq=1, grace=100s) conn=Connection{id: 0x7279E342, L:/127.0.0.1:38780 - R:/127.0.0.1:33327}
+2026-09-02 03:22:08.196 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:33327 -> node-b.example.com:6380 (seq=1, grace=100s, sources=1)
+2026-09-02 03:22:08.306 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-b.example.com:6380 (seq=1, grace=100s) conn=Connection{id: 0x54ED0D8F, L:/0:0:0:0:0:0:0:1:33506 - R:/0:0:0:0:0:0:0:1:33327}
+2026-09-02 03:22:08.307 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /0:0:0:0:0:0:0:1:33327 -> node-b.example.com:6380 (seq=1, grace=100s, sources=2)
+2026-09-02 03:22:08.409 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-b.example.com:6380 (seq=1, grace=100s) conn=Connection{id: 0x54ED0D8F, L:/0:0:0:0:0:0:0:1:33506 - R:/0:0:0:0:0:0:0:1:33327}
+]]></system-out>
+  </testcase>
+  <testcase name="newEventAfterExpiry_appliesAgain" classname="redis.clients.jedis.MaintenanceEventControllerTest" time="0.051">
+    <system-out><![CDATA[2026-09-02 03:22:08.620 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-b.example.com:6380 (seq=5, grace=10s) conn=Connection{id: 0x25ABFD0B, L:/127.0.0.1:54538 - R:/127.0.0.1:45251}
+2026-09-02 03:22:08.639 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:45251 -> node-b.example.com:6380 (seq=5, grace=10s, sources=1)
+2026-09-02 03:22:08.648 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-c.example.com:6381 (seq=6, grace=10s) conn=Connection{id: 0x25ABFD0B, L:/127.0.0.1:54538 - R:/127.0.0.1:45251}
+2026-09-02 03:22:08.660 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:45251 -> node-c.example.com:6381 (seq=6, grace=10s, sources=1)
+]]></system-out>
+  </testcase>
+  <testcase name="relaxActiveUntilLastEventExpires" classname="redis.clients.jedis.MaintenanceEventControllerTest" time="0.056">
+    <system-out><![CDATA[2026-09-02 03:22:08.673 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-b.example.com:6380 (seq=1, grace=10s) conn=Connection{id: 0x6E10E90B, L:/127.0.0.1:57310 - R:/127.0.0.1:37599}
+2026-09-02 03:22:08.694 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:37599 -> node-b.example.com:6380 (seq=1, grace=10s, sources=1)
+2026-09-02 03:22:08.700 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-c.example.com:6381 (seq=2, grace=30s) conn=Connection{id: 0x615E60B0, L:/127.0.0.1:47714 - R:/127.0.0.1:40409}
+2026-09-02 03:22:08.714 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:40409 -> node-c.example.com:6381 (seq=2, grace=30s, sources=1)
+]]></system-out>
+  </testcase>
+  <testcase name="noneAndTargetedOverlap_coexist" classname="redis.clients.jedis.MaintenanceEventControllerTest" time="0.102">
+    <system-out><![CDATA[2026-09-02 03:22:08.730 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-b.example.com:6380 (seq=5, grace=100s) conn=Connection{id: 0x191168D8, L:/127.0.0.1:54972 - R:/127.0.0.1:37075}
+2026-09-02 03:22:08.753 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:37075 -> node-b.example.com:6380 (seq=5, grace=100s, sources=1)
+2026-09-02 03:22:08.781 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to null (seq=6, grace=100s) conn=Connection{id: 0x15714A97, L:/127.0.0.1:51122 - R:/127.0.0.1:42821}
+2026-09-02 03:22:08.808 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:42821 -> null (seq=6, grace=100s, sources=1)
+]]></system-out>
+  </testcase>
+  <testcase name="newerEventDoesNotDisplaceEarlier" classname="redis.clients.jedis.MaintenanceEventControllerTest" time="0.069">
+    <system-out><![CDATA[2026-09-02 03:22:08.831 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-b.example.com:6380 (seq=5, grace=100s) conn=Connection{id: 0x51E6C055, L:/127.0.0.1:60268 - R:/127.0.0.1:33151}
+2026-09-02 03:22:08.854 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:33151 -> node-b.example.com:6380 (seq=5, grace=100s, sources=1)
+2026-09-02 03:22:08.865 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-c.example.com:6381 (seq=6, grace=10s) conn=Connection{id: 0xE040AFC, L:/127.0.0.1:35254 - R:/127.0.0.1:40161}
+2026-09-02 03:22:08.885 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:40161 -> node-c.example.com:6381 (seq=6, grace=10s, sources=1)
+]]></system-out>
+  </testcase>
+  <testcase name="getSocketAddress_returnsNullAfterDeadline" classname="redis.clients.jedis.MaintenanceEventControllerTest" time="0.031">
+    <system-out><![CDATA[2026-09-02 03:22:08.903 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-b.example.com:6380 (seq=1, grace=10s) conn=Connection{id: 0x1A18D438, L:/127.0.0.1:37556 - R:/127.0.0.1:37347}
+2026-09-02 03:22:08.925 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:37347 -> node-b.example.com:6380 (seq=1, grace=10s, sources=1)
+]]></system-out>
+  </testcase>
+  <testcase name="redeliveryAfterExpiry_startsFreshOperation" classname="redis.clients.jedis.MaintenanceEventControllerTest" time="0.033">
+    <system-out><![CDATA[2026-09-02 03:22:08.932 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-b.example.com:6380 (seq=1, grace=10s) conn=Connection{id: 0x55E4CA02, L:/127.0.0.1:55430 - R:/127.0.0.1:41807}
+2026-09-02 03:22:08.953 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:41807 -> node-b.example.com:6380 (seq=1, grace=10s, sources=1)
+2026-09-02 03:22:08.961 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-b.example.com:6380 (seq=1, grace=10s) conn=Connection{id: 0x55E4CA02, L:/127.0.0.1:55430 - R:/127.0.0.1:41807}
+2026-09-02 03:22:08.962 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:41807 -> node-b.example.com:6380 (seq=1, grace=10s, sources=1)
+]]></system-out>
+  </testcase>
+  <testcase name="borrowRelaxesConnection_duringRebindWindow" classname="redis.clients.jedis.MaintenanceEventControllerTest" time="0.049">
+    <system-out><![CDATA[2026-09-02 03:22:08.966 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to 127.0.0.1:39317 (seq=1, grace=100s) conn=Connection{id: 0x61463341, L:/127.0.0.1:52966 - R:/127.0.0.1:39317}
+2026-09-02 03:22:08.967 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:39317 -> 127.0.0.1:39317 (seq=1, grace=100s, sources=1)
+]]></system-out>
+  </testcase>
+  <testcase name="lowerSeqDifferentTarget_coexists" classname="redis.clients.jedis.MaintenanceEventControllerTest" time="0.006">
+    <system-out><![CDATA[2026-09-02 03:22:09.016 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-b.example.com:6380 (seq=5, grace=100s) conn=Connection{id: 0x32ACC994, L:/127.0.0.1:42144 - R:/127.0.0.1:37497}
+2026-09-02 03:22:09.018 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:37497 -> node-b.example.com:6380 (seq=5, grace=100s, sources=1)
+2026-09-02 03:22:09.019 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-c.example.com:6381 (seq=3, grace=100s) conn=Connection{id: 0x29E88997, L:/127.0.0.1:48482 - R:/127.0.0.1:37147}
+2026-09-02 03:22:09.019 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:37147 -> node-c.example.com:6381 (seq=3, grace=100s, sources=1)
+]]></system-out>
+  </testcase>
+  <testcase name="getSocketAddress_comparesResolvedIpsIgnoringHostname" classname="redis.clients.jedis.MaintenanceEventControllerTest" time="0.004">
+    <system-out><![CDATA[2026-09-02 03:22:09.022 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-b.example.com:6380 (seq=1, grace=10s) conn=Connection{id: 0x15F5179C, L:/127.0.0.1:37076 - R:/127.0.0.1:39515}
+2026-09-02 03:22:09.023 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:39515 -> node-b.example.com:6380 (seq=1, grace=10s, sources=1)
+]]></system-out>
+  </testcase>
+  <testcase name="handshakeReadsRelaxed_whenConnectionOpensDuringRebindWindow" classname="redis.clients.jedis.MaintenanceEventControllerTest" time="1.236">
+    <system-out><![CDATA[2026-09-02 03:22:09.279 [main] DEBUG r.clients.jedis.ConnectionFactory - Error while makeObject
+redis.clients.jedis.exceptions.JedisConnectionException: java.net.SocketTimeoutException: Read timed out
+	at redis.clients.jedis.util.RedisInputStream.ensureFill(RedisInputStream.java:262)
+	at redis.clients.jedis.util.RedisInputStream.readByte(RedisInputStream.java:55)
+	at redis.clients.jedis.Protocol.process(Protocol.java:133)
+	at redis.clients.jedis.Protocol.read(Protocol.java:298)
+	at redis.clients.jedis.Connection.protocolRead(Connection.java:772)
+	at redis.clients.jedis.Connection.readProtocolWithCheckingBroken(Connection.java:785)
+	at redis.clients.jedis.Connection.getOne(Connection.java:753)
+	at redis.clients.jedis.Connection.hello(Connection.java:1037)
+	at redis.clients.jedis.Connection.hello(Connection.java:1088)
+	at redis.clients.jedis.ProtocolHandshake.enforceProtocolWithAuth(ProtocolHandshake.java:142)
+	at redis.clients.jedis.ProtocolHandshake.establish(ProtocolHandshake.java:71)
+	at redis.clients.jedis.Connection.establishProtocol(Connection.java:998)
+	at redis.clients.jedis.Connection.initializeFromClientConfig(Connection.java:888)
+	at redis.clients.jedis.Connection.initializeFromClientConfig(Connection.java:856)
+	at redis.clients.jedis.ConnectionFactory.initialize(ConnectionFactory.java:184)
+	at redis.clients.jedis.ConnectionFactory.build(ConnectionFactory.java:173)
+	at redis.clients.jedis.ConnectionFactory.lambda$initAuthXManager$0(ConnectionFactory.java:162)
+	at redis.clients.jedis.ConnectionFactory.makeObject(ConnectionFactory.java:207)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:39)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3153)
+	at redis.clients.jedis.MaintenanceEventControllerTest.handshakeReadsRelaxed_whenConnectionOpensDuringRebindWindow(MaintenanceEventControllerTest.java:369)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:786)
+	at org.junit.platform.commons.support.ReflectionSupport.invokeMethod(ReflectionSupport.java:514)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.SameThreadTimeoutInvocation.proceed(SameThreadTimeoutInvocation.java:49)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:161)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:152)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:91)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:112)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:94)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:87)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$4(TestMethodTestDescriptor.java:221)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:217)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:159)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:70)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:157)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:147)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:145)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:101)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:161)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:147)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:145)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:101)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:161)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:147)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:145)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:101)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.executeEngine(EngineExecutionOrchestrator.java:230)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.failOrExecuteEngine(EngineExecutionOrchestrator.java:204)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:172)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:101)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:64)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:150)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:63)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:109)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:91)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$1(InterceptingLauncher.java:39)
+	at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25)
+	at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:38)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LauncherAdapter.executeWithoutCancellationToken(LauncherAdapter.java:60)
+	at org.apache.maven.surefire.junitplatform.LauncherAdapter.execute(LauncherAdapter.java:52)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:203)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:168)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:136)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.api.util.ReflectionUtils.invokeMethodWithArray2(ReflectionUtils.java:137)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:148)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:88)
+	at org.apache.maven.plugin.surefire.InPluginVMSurefireStarter.runSuitesInProcess(InPluginVMSurefireStarter.java:91)
+	at org.apache.maven.plugin.surefire.AbstractSurefireMojo.executeProvider(AbstractSurefireMojo.java:1327)
+	at org.apache.maven.plugin.surefire.AbstractSurefireMojo.executeAfterPreconditionsChecked(AbstractSurefireMojo.java:1154)
+	at org.apache.maven.plugin.surefire.AbstractSurefireMojo.execute(AbstractSurefireMojo.java:988)
+	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:137)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:210)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:156)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:148)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:117)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:81)
+	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:56)
+	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:305)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:192)
+	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:105)
+	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:957)
+	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:289)
+	at org.apache.maven.cli.MavenCli.main(MavenCli.java:193)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:282)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:225)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:406)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:347)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:171)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.net.SocketInputStream.read(SocketInputStream.java:127)
+	at redis.clients.jedis.util.RedisInputStream.ensureFill(RedisInputStream.java:256)
+	... 129 common frames omitted
+2026-09-02 03:22:09.311 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to 127.0.0.1:38729 (seq=1, grace=100s) conn=Connection{id: 0x25978EF7, L:/127.0.0.1:35146 - R:/127.0.0.1:38729}
+2026-09-02 03:22:09.312 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:38729 -> 127.0.0.1:38729 (seq=1, grace=100s, sources=1)
+2026-09-02 03:22:09.929 [pool-163-thread-3] ERROR r.c.jedis.util.server.TcpMockServer - Error handling client: Broken pipe (Write failed)
+]]></system-out>
+  </testcase>
+  <testcase name="sameSeqDifferentTarget_isDistinctEvent" classname="redis.clients.jedis.MaintenanceEventControllerTest" time="0.005">
+    <system-out><![CDATA[2026-09-02 03:22:10.264 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-b.example.com:6380 (seq=5, grace=100s) conn=Connection{id: 0x358C704A, L:/127.0.0.1:59310 - R:/127.0.0.1:36733}
+2026-09-02 03:22:10.264 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:36733 -> node-b.example.com:6380 (seq=5, grace=100s, sources=1)
+2026-09-02 03:22:10.265 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-c.example.com:6381 (seq=5, grace=100s) conn=Connection{id: 0x1E2EE4AC, L:/127.0.0.1:52290 - R:/127.0.0.1:44249}
+2026-09-02 03:22:10.266 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:44249 -> node-c.example.com:6381 (seq=5, grace=100s, sources=1)
+]]></system-out>
+  </testcase>
+  <testcase name="getSocketAddress_remapsAffectedOnly" classname="redis.clients.jedis.MaintenanceEventControllerTest" time="0.009">
+    <system-out><![CDATA[2026-09-02 03:22:10.269 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-b.example.com:6380 (seq=1, grace=10s) conn=Connection{id: 0x2E47FF27, L:/127.0.0.1:48164 - R:/127.0.0.1:41893}
+2026-09-02 03:22:10.269 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:41893 -> node-b.example.com:6380 (seq=1, grace=10s, sources=1)
+]]></system-out>
+  </testcase>
+  <testcase name="onMoving_relaxWindowUsesServerTtl" classname="redis.clients.jedis.MaintenanceEventControllerTest" time="0.03">
+    <system-out><![CDATA[2026-09-02 03:22:10.279 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-b.example.com:6380 (seq=1, grace=100s) conn=Connection{id: 0x7D171816, L:/127.0.0.1:40224 - R:/127.0.0.1:36007}
+2026-09-02 03:22:10.300 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:36007 -> node-b.example.com:6380 (seq=1, grace=100s, sources=1)
+]]></system-out>
+  </testcase>
+  <testcase name="handoffHook_firesOncePerAppliedHandoff" classname="redis.clients.jedis.MaintenanceEventControllerTest" time="0.192">
+    <system-out><![CDATA[2026-09-02 03:22:10.308 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-b.example.com:6380 (seq=5, grace=100s) conn=Connection{id: 0x54DFE934, L:/127.0.0.1:45812 - R:/127.0.0.1:37309}
+2026-09-02 03:22:10.328 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:37309 -> node-b.example.com:6380 (seq=5, grace=100s, sources=1)
+2026-09-02 03:22:10.332 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-c.example.com:6381 (seq=5, grace=100s) conn=Connection{id: 0x54DFE934, L:/127.0.0.1:45812 - R:/127.0.0.1:37309}
+2026-09-02 03:22:10.345 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:37309 -> node-c.example.com:6381 (seq=5, grace=100s, sources=1)
+2026-09-02 03:22:10.358 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-c.example.com:6381 (seq=6, grace=100s) conn=Connection{id: 0x54DFE934, L:/127.0.0.1:45812 - R:/127.0.0.1:37309}
+2026-09-02 03:22:10.374 [main] DEBUG r.c.jedis.MaintenanceEventController - Applied MOVING /127.0.0.1:37309 -> node-c.example.com:6381 (seq=6, grace=100s, sources=1)
+2026-09-02 03:22:10.386 [main] DEBUG r.c.jedis.MaintenanceEventController - Moving to node-c.example.com:6381 (seq=6, grace=100s) conn=Connection{id: 0x54DFE934, L:/127.0.0.1:45812 - R:/127.0.0.1:37309}
+]]></system-out>
+  </testcase>
+</testsuite>
